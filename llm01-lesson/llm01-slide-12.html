@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM01:2025 — Prompt Injection · Slide 12 of 28</title>
+<link rel="stylesheet" href="llm01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM01:2025</span><span class="nav-title">Prompt Injection</span></div>
+  <span class="nav-right">Slide 12 of 28</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm01-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm01-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm01-slide-03.html" title="Slide 3 · The Definition Part 1"></a><a class="seg done" href="llm01-slide-04.html" title="Slide 4 · The Definition Part 2"></a><a class="seg done" href="llm01-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm01-slide-06.html" title="Slide 6 · The Attackers"></a><a class="seg done" href="llm01-slide-07.html" title="Slide 7 · Injection vs Jailbreaking"></a><a class="seg done" href="llm01-slide-08.html" title="Slide 8 · RAG and Fine-Tuning"></a><a class="seg done" href="llm01-slide-09.html" title="Slide 9 · Two Types Overview"></a><a class="seg done" href="llm01-slide-10.html" title="Slide 10 · Direct Injection"></a><a class="seg done" href="llm01-slide-11.html" title="Slide 11 · Direct Injection Example"></a><a class="seg active" href="llm01-slide-12.html" title="Slide 12 · Indirect Injection"></a><a class="seg" href="llm01-slide-13.html" title="Slide 13 · Indirect Injection Example"></a><a class="seg" href="llm01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a><a class="seg" href="llm01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a><a class="seg" href="llm01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a><a class="seg" href="llm01-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm01-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm01-slide-19.html" title="Slide 19 · Mitigation 1"></a><a class="seg" href="llm01-slide-20.html" title="Slide 20 · Mitigation 2"></a><a class="seg" href="llm01-slide-21.html" title="Slide 21 · Mitigation 3"></a><a class="seg" href="llm01-slide-22.html" title="Slide 22 · Mitigation 4"></a><a class="seg" href="llm01-slide-23.html" title="Slide 23 · Mitigation 5"></a><a class="seg" href="llm01-slide-24.html" title="Slide 24 · Mitigation 6"></a><a class="seg" href="llm01-slide-25.html" title="Slide 25 · Mitigation 7"></a><a class="seg" href="llm01-slide-26.html" title="Slide 26 · The Matrix"></a><a class="seg" href="llm01-slide-27.html" title="Slide 27 · Quiz"></a><a class="seg" href="llm01-slide-28.html" title="Slide 28 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 2 · Types</span><span>Slide 12</span></div>
+</div>
+<div class="slide active">
+<div class="slide-eyebrow">Slide 12 · Indirect Injection</div>
+  <div class="slide-title">Indirect prompt injection — the attacker hides and waits.</div>
+  <div class="slide-subtitle">The injection is planted in content. A legitimate user triggers it without knowing.</div>
+  <div class="source-tag">📄 OWASP LLM Top 10:2025 · LLM01</div>
+  <div class="block"><div class="block-label orange">Official OWASP Definition</div><p>"Indirect prompt injections occur when an LLM accepts input from external sources, such as websites or files. The content may have data that when interpreted by the model, alters the behavior of the model in unintended or unexpected ways. Like direct injections, indirect injections can be either intentional or unintentional."</p></div>
+  <div class="callout yellow"><div class="callout-label">The Key Difference from Direct</div><p>In direct injection, the attacker interacts with the AI. In indirect injection, <strong>the attacker never interacts with the AI at all.</strong> They plant instructions in external content — and wait for a legitimate user to ask the AI to process it. The victim is the trigger.</p></div>
+  <div class="block"><div class="block-label purple">External Sources That Can Carry Injections</div>
+    <p>→ <strong>Emails</strong> — EchoLeak: victim just received a normal-looking email<br>
+    → <strong>Word docs, PowerPoint slides</strong> — Copilot reads speaker notes, hidden text, metadata<br>
+    → <strong>Websites</strong> — pages the AI is asked to summarize or browse<br>
+    → <strong>RAG knowledge bases</strong> — documents in the retrieval system (January 2025 enterprise attack)<br>
+    → <strong>GitHub repos, READMEs, code comments, Issues</strong> — CVE-2025-53773<br>
+    → <strong>Database records</strong> — customer name fields, description fields<br>
+    → <strong>AI memory features</strong> — SpAIware (September 2024): a malicious website wrote instructions into ChatGPT's long-term memory, causing continuous data exfiltration across all future conversations</p>
+  </div>
+  <div class="callout red"><div class="callout-label">Why This Is Harder to Defend</div><p>With direct injection you can filter what users type. With indirect injection, <strong>the attack surface is everything the AI reads</strong>. Every document, webpage, email, code file, and database record is a potential attack vector. You must treat all external content as untrusted — not just user input.</p></div>
+  <div class="btn-row"><a class="btn-secondary" href="llm01-slide-11.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm01-slide-13.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → Indirect injection — real example</a></div></div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM08:2025 — Vector &amp; Embedding Weaknesses · Slide 6 of 27</title>
+<link rel="stylesheet" href="llm08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM08:2025</span><span class="nav-title">Vector &amp; Embedding Weaknesses</span></div>
+  <span class="nav-right">Slide 6 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm08-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm08-slide-02.html" title="Slide 2 · What Is a Vector"></a><a class="seg done" href="llm08-slide-03.html" title="Slide 3 · What Is RAG"></a><a class="seg done" href="llm08-slide-04.html" title="Slide 4 · The Definition"></a><a class="seg done" href="llm08-slide-05.html" title="Slide 5 · The Attack Surface"></a><a class="seg active" href="llm08-slide-06.html" title="Slide 6 · The Outcomes"></a><a class="seg" href="llm08-slide-07.html" title="Slide 7 · LLM08 vs LLM04"></a><a class="seg" href="llm08-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg" href="llm08-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg" href="llm08-slide-10.html" title="Slide 10 · Retrieval Poisoning"></a><a class="seg" href="llm08-slide-11.html" title="Slide 11 · Embedding Inversion"></a><a class="seg" href="llm08-slide-12.html" title="Slide 12 · Cross-Context Leakage"></a><a class="seg" href="llm08-slide-13.html" title="Slide 13 · Context Manipulation"></a><a class="seg" href="llm08-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg" href="llm08-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg" href="llm08-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg" href="llm08-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm08-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm08-slide-19.html" title="Slide 19 · Validate Ingestion"></a><a class="seg" href="llm08-slide-20.html" title="Slide 20 · Permission-Aware Stores"></a><a class="seg" href="llm08-slide-21.html" title="Slide 21 · Retrieval Controls"></a><a class="seg" href="llm08-slide-22.html" title="Slide 22 · Encrypt Vectors"></a><a class="seg" href="llm08-slide-23.html" title="Slide 23 · Monitor Anomalies"></a><a class="seg" href="llm08-slide-24.html" title="Slide 24 · Limit Persistence"></a><a class="seg" href="llm08-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm08-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm08-slide-27.html" title="Slide 27 · Complete"></a></div>
+<div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 6</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 6 · The Outcomes</div>
+  <div class="slide-title">What can an attacker actually achieve?</div>
+  <div class="slide-subtitle">Four distinct harms &mdash; each with a real-world example coming in Part 2.</div>
+
+  <div class="outcome-list">
+    <div class="outcome-item"><span class="outcome-icon">&#x1F3AF;</span><div><div class="outcome-title">Manipulated AI Responses</div><div class="outcome-desc">Poisoned retrieval makes the AI say what the attacker wants &mdash; false project status, incorrect guidance, manipulated summaries delivered to decision-makers.</div></div></div>
+    <div class="outcome-item"><span class="outcome-icon">&#x1F513;</span><div><div class="outcome-title">Confidential Data Exposure</div><div class="outcome-desc">Vectors holding sensitive documents can be queried to surface private content across user boundaries, or the vectors themselves decoded to reconstruct source text.</div></div></div>
+    <div class="outcome-item"><span class="outcome-icon">&#x1F3E2;</span><div><div class="outcome-title">Cross-Tenant Leakage</div><div class="outcome-desc">In multi-user or multi-org deployments, embeddings from one group bleed into responses for another &mdash; leaking confidential business data across organizational boundaries.</div></div></div>
+    <div class="outcome-item"><span class="outcome-icon">&#x1F573;&#xFE0F;</span><div><div class="outcome-title">Persistent Compromise</div><div class="outcome-desc">Once a poisoned embedding is in the store, it continues influencing responses even after the source document is deleted &mdash; until the knowledge base is fully reindexed.</div></div></div>
+  </div>
+<div class="btn-row"><a class="btn-secondary" href="llm08-slide-05.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">&larr; Back</a><a class="btn-primary" href="llm08-slide-07.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next &rarr; How is this different from LLM04?</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

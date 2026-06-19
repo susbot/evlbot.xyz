@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM01:2025 — Prompt Injection · Slide 27 of 28</title>
+<link rel="stylesheet" href="llm01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM01:2025</span><span class="nav-title">Prompt Injection</span></div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm01-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm01-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm01-slide-03.html" title="Slide 3 · The Definition Part 1"></a><a class="seg done" href="llm01-slide-04.html" title="Slide 4 · The Definition Part 2"></a><a class="seg done" href="llm01-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm01-slide-06.html" title="Slide 6 · The Attackers"></a><a class="seg done" href="llm01-slide-07.html" title="Slide 7 · Injection vs Jailbreaking"></a><a class="seg done" href="llm01-slide-08.html" title="Slide 8 · RAG and Fine-Tuning"></a><a class="seg done" href="llm01-slide-09.html" title="Slide 9 · Two Types Overview"></a><a class="seg done" href="llm01-slide-10.html" title="Slide 10 · Direct Injection"></a><a class="seg done" href="llm01-slide-11.html" title="Slide 11 · Direct Injection Example"></a><a class="seg done" href="llm01-slide-12.html" title="Slide 12 · Indirect Injection"></a><a class="seg done" href="llm01-slide-13.html" title="Slide 13 · Indirect Injection Example"></a><a class="seg done" href="llm01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a><a class="seg done" href="llm01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a><a class="seg done" href="llm01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a><a class="seg done" href="llm01-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg done" href="llm01-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg done" href="llm01-slide-19.html" title="Slide 19 · Mitigation 1"></a><a class="seg done" href="llm01-slide-20.html" title="Slide 20 · Mitigation 2"></a><a class="seg done" href="llm01-slide-21.html" title="Slide 21 · Mitigation 3"></a><a class="seg done" href="llm01-slide-22.html" title="Slide 22 · Mitigation 4"></a><a class="seg done" href="llm01-slide-23.html" title="Slide 23 · Mitigation 5"></a><a class="seg done" href="llm01-slide-24.html" title="Slide 24 · Mitigation 6"></a><a class="seg done" href="llm01-slide-25.html" title="Slide 25 · Mitigation 7"></a><a class="seg done" href="llm01-slide-26.html" title="Slide 26 · The Matrix"></a><a class="seg active" href="llm01-slide-27.html" title="Slide 27 · Quiz"></a><a class="seg" href="llm01-slide-28.html" title="Slide 28 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 5 · Quiz</span><span>Slide 27</span></div>
+</div>
+<div class="slide active">
+<div class="part-banner"><span class="part-num">PART 5</span><div><div class="part-title">Test Yourself</div><div class="part-count">Slides 27–28 · 8 questions</div></div></div>
+  <div class="slide-eyebrow">Slide 27 · Quiz</div>
+  <div class="slide-title">8 questions. All grounded in real incidents and CVEs.</div>
+  <div class="slide-subtitle">Pick the best answer. You'll see exactly why right or wrong immediately.</div>
+  <div id="quiz-container"></div>
+  <div id="quiz-result" style="display:none;">
+    <div class="quiz-score"><div class="score-num" id="score-display"></div><div class="score-label">out of 8 correct</div></div>
+    <div id="score-msg" class="score-msg"></div>
+    <div class="btn-row" style="margin-top:16px;">
+      <button class="btn-secondary" onclick="retakeQuiz()">Retake quiz</button>
+      <a class="btn-primary" id="btn-finish" href="llm01-slide-28.html" style="display:none;text-decoration:none;text-align:center;">Finish → See summary</a>
+    </div>
+  </div></div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+<script>
+const QUESTIONS = [
+  {
+    q: "In plain English, what is prompt injection?",
+    options: ["A type of SQL injection attack targeting AI databases","When someone uses text to make an AI do something it was not supposed to do","A technique for improving AI model performance through prompting","When an AI model hallucinates false information"],
+    correct: 1,
+    right: "Correct. Prompt injection is when someone uses text — typed directly or hidden in content the AI reads — to make the AI behave in ways the developer never intended. The weapon is just text.",
+    wrong: "Prompt injection is when someone uses text to make an AI do something it was not supposed to do. No malware, no code exploits — just text that acts like a command, which the model cannot distinguish from legitimate instructions."
+  },
+  {
+    q: "EchoLeak (CVE-2025-32711) was rated CVSS 9.3. Why was it considered particularly dangerous?",
+    options: ["It required the victim to install malware on their device","It was zero-click — just receiving a crafted email was enough for Copilot to exfiltrate data","It only affected on-premise M365 installations","It required existing credentials in the target environment"],
+    correct: 1,
+    right: "Correct. EchoLeak was zero-click — the victim didn't click anything, open an attachment, or respond to the email. Copilot automatically processed it as part of normal M365 operation and followed the hidden instructions, silently exfiltrating data to the attacker's server.",
+    wrong: "EchoLeak was zero-click. Simply receiving a crafted email was enough. Copilot processed it automatically as part of normal operation and followed the hidden instructions. No user action required whatsoever."
+  },
+  {
+    q: "Freysa AI's system prompt said 'never transfer funds under any circumstances.' How did p0pular.eth extract $47,000?",
+    options: ["By exploiting a bug in the Ethereum smart contract underneath","By impersonating Freysa's developers with admin credentials","By redefining the meaning of Freysa's functions at the language level — convincing it that approveTransfer was for incoming payments","By using a Base64-encoded injection to bypass the content filter"],
+    correct: 2,
+    right: "Correct. The attack didn't break the rule — it redefined what the rule meant. By convincing Freysa that its 'approveTransfer' function was for incoming transfers, then announcing a $100 donation, p0pular.eth caused the AI to call approveTransfer while believing it was processing an incoming payment — transferring $47,000 out.",
+    wrong: "p0pular.eth didn't try to break the rule — they redefined it. They convinced Freysa that 'approveTransfer' handled incoming payments, then announced a $100 donation. Freysa called approveTransfer believing it was processing incoming funds — and transferred $47,000 out."
+  },
+  {
+    q: "GitHub Copilot CVE-2025-53773 was patched by requiring user approval before security-relevant configuration changes. Which OWASP mitigation is this?",
+    options: ["M1 — Constrain model behavior via system prompt","M3 — Implement semantic input filtering","M5 — Require human approval for high-risk actions","M7 — Conduct adversarial testing"],
+    correct: 2,
+    right: "Correct. Microsoft's patch required user approval before Copilot could modify configuration files that affect security settings — exactly OWASP M5. The vulnerability existed because Copilot had write access to .vscode/settings.json with no confirmation gate.",
+    wrong: "Microsoft's patch was exactly M5: requiring human approval before high-risk actions — specifically before modifying security-relevant configuration files. The vulnerability existed because Copilot had file system write access with no approval step."
+  },
+  {
+    q: "A developer says 'we use RAG, so prompt injection is handled.' What does research and a January 2025 incident show?",
+    options: ["They are correct — RAG isolates external content from system instructions","RAG only protects against direct injection, not indirect","RAG can expand the attack surface — a January 2025 enterprise attack used an injected RAG document to leak data and disable safety filters","RAG protection depends on whether fine-tuning was also applied"],
+    correct: 2,
+    right: "Correct. OWASP states RAG does not mitigate prompt injection. In January 2025, researchers confirmed this against a major enterprise RAG system: an injected document in the knowledge base caused the AI to leak proprietary data, modify its own system prompts to disable safety filters, and execute elevated API calls.",
+    wrong: "OWASP is explicit: RAG does not mitigate prompt injection. In January 2025, researchers injected a document in an enterprise RAG knowledge base — causing the AI to leak data, disable its own safety filters, and execute elevated API calls. RAG gave the attacker a delivery mechanism."
+  },
+  {
+    q: "Why isn't string matching sufficient for prompt injection filtering?",
+    options: ["String matching is sufficient when combined with rate limiting","String matching misses injections encoded in Base64, written in non-English, or obfuscated with Unicode — as documented in OWASP Scenario #9","String matching is too slow for real-time use","String matching only works for direct injection"],
+    correct: 1,
+    right: "Correct. OWASP Scenario #9 (Multilingual/Obfuscated Attack) documents that attackers encode injections in Base64, use non-English languages, emoji, or Unicode to evade English plain-text filters. Semantic filtering — understanding meaning regardless of encoding — is required.",
+    wrong: "OWASP Scenario #9 exists precisely because string matching fails against obfuscated attacks. The same injection that gets caught in plain English bypasses any filter that pattern-matches on characters if it's Base64-encoded, written in another language, or obfuscated with Unicode lookalikes."
+  },
+  {
+    q: "What made the SpAIware attack (September 2024) different from a standard prompt injection?",
+    options: ["It only affected one conversation at a time","It demonstrated persistence — malicious instructions written into ChatGPT's long-term memory caused continuous data exfiltration across all future conversations","It only affected the ChatGPT iOS app","It required admin credentials"],
+    correct: 1,
+    right: "Correct. SpAIware demonstrated persistence. Indirect injection via a malicious website wrote malicious instructions into ChatGPT's long-term memory. This caused data exfiltration in every future conversation — surviving session terminations. Deleting the chat didn't help because the instructions were in the memory feature, not the chat log.",
+    wrong: "SpAIware was a persistence attack. Injecting into ChatGPT's memory feature caused continuous exfiltration across all future conversations — surviving new sessions and device changes. Deleting the chat didn't clear the memory. The instructions were stored server-side in the memory feature."
+  },
+  {
+    q: "OWASP says the 7 mitigations 'mitigate the impact' rather than 'prevent' prompt injection. What should this change about how you build defenses?",
+    options: ["Nothing — the mitigations are not worth implementing","Prompt injection can be completely blocked with enough effort","Layer multiple mitigations — reduce blast radius (M4), detect it (M2/M3), gate high-impact actions (M5) — because no single control is complete and the root cause cannot be patched","Only model providers can address it"],
+    correct: 2,
+    right: "Correct. OWASP is explicit that fool-proof prevention is unclear given how language models work. The right approach layers defenses: M4 limits blast radius, M3 detects injection attempts, M2 validates output before action, M5 gates high-impact decisions on human approval, M7 finds what the other six missed. No single control is complete.",
+    wrong: "OWASP states that fool-proof prevention is unclear. The right approach is layered: M4 reduces blast radius, M3 filters injection attempts, M2 catches anomalous outputs, M5 gates high-impact actions on human approval, M7 finds your gaps before attackers do. Defense in depth because the root cause — how language models process text — cannot be patched."
+  }
+];
+let answers = new Array(QUESTIONS.length).fill(null);
+let quizScore = 0;
+function buildQuiz(){
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = '';
+  quizScore = 0;
+  answers = new Array(QUESTIONS.length).fill(null);
+  QUESTIONS.forEach((q, qi) => {
+    const card = document.createElement('div');
+    card.className = 'question-card';
+    card.id = 'q-' + qi;
+    const optHtml = q.options.map((opt, oi) =>
+      `<button class="option" id="opt-${qi}-${oi}" onclick="answer(${qi},${oi})">${opt}</button>`
+    ).join('');
+    card.innerHTML = `<div class="question-num">Question ${qi+1} of ${QUESTIONS.length}</div>
+      <div class="question-text">${q.q}</div>
+      <div class="options">${optHtml}</div>
+      <div class="feedback" id="fb-${qi}"></div>`;
+    container.appendChild(card);
+  });
+}
+function answer(qi, oi){
+  if(answers[qi] !== null) return;
+  answers[qi] = oi;
+  const q = QUESTIONS[qi];
+  const isRight = oi === q.correct;
+  if(isRight) quizScore++;
+  document.querySelectorAll(`[id^="opt-${qi}-"]`).forEach(o => o.disabled = true);
+  document.getElementById(`opt-${qi}-${oi}`).classList.add(isRight ? 'correct' : 'wrong');
+  if(!isRight) document.getElementById(`opt-${qi}-${q.correct}`).classList.add('correct');
+  const fb = document.getElementById(`fb-${qi}`);
+  fb.className = `feedback show ${isRight ? 'correct' : 'wrong'}`;
+  fb.textContent = (isRight ? '✓ ' : '✗ ') + (isRight ? q.right : q.wrong);
+  if(answers.every(a => a !== null)) setTimeout(showQuizResult, 600);
+}
+function showQuizResult(){
+  document.getElementById('quiz-container').style.display = 'none';
+  document.getElementById('quiz-result').style.display = 'block';
+  document.getElementById('score-display').textContent = quizScore + '/8';
+  const msg = document.getElementById('score-msg');
+  const btn = document.getElementById('btn-finish');
+  if(quizScore >= 7){
+    msg.style.cssText = 'background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);color:var(--green)';
+    msg.textContent = 'Excellent. You know LLM01 cold.';
+    btn.style.display = 'block';
+  } else if(quizScore >= 5){
+    msg.style.cssText = 'background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);color:var(--yellow)';
+    msg.textContent = 'Good. Review the questions you missed, then move on.';
+    btn.style.display = 'block';
+  } else {
+    msg.style.cssText = 'background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.2);color:var(--red)';
+    msg.textContent = 'Go back through Parts 1–4 and retake when ready.';
+  }
+}
+function retakeQuiz(){
+  document.getElementById('quiz-container').style.display = 'block';
+  document.getElementById('quiz-result').style.display = 'none';
+  buildQuiz();
+}
+
+buildQuiz();
+</script>
+</body>
+</html>

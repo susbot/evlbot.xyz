@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM04:2025 — Data &amp; Model Poisoning · Slide 14 of 27</title>
+<link rel="stylesheet" href="llm04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM04:2025</span><span class="nav-title">Data &amp; Model Poisoning</span></div>
+  <span class="nav-right">Slide 14 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm04-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm04-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm04-slide-03.html" title="Slide 3 · The Definition Part 1"></a><a class="seg done" href="llm04-slide-04.html" title="Slide 4 · The Definition Part 2"></a><a class="seg done" href="llm04-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm04-slide-06.html" title="Slide 6 · Who Attacks"></a><a class="seg done" href="llm04-slide-07.html" title="Slide 7 · Poisoning vs Injection"></a><a class="seg done" href="llm04-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm04-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg done" href="llm04-slide-10.html" title="Slide 10 · Supply-Chain Poisoning"></a><a class="seg done" href="llm04-slide-11.html" title="Slide 11 · Backdoor Poisoning"></a><a class="seg done" href="llm04-slide-12.html" title="Slide 12 · Web-Scale Poisoning"></a><a class="seg done" href="llm04-slide-13.html" title="Slide 13 · Feedback-Loop Poisoning"></a><a class="seg active" href="llm04-slide-14.html" title="Slide 14 · Scenarios 1 &amp; 2"></a><a class="seg" href="llm04-slide-15.html" title="Slide 15 · Scenarios 3 &amp; 4"></a><a class="seg" href="llm04-slide-16.html" title="Slide 16 · Scenario 5: Backdoor"></a><a class="seg" href="llm04-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm04-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm04-slide-19.html" title="Slide 19 · Data Provenance"></a><a class="seg" href="llm04-slide-20.html" title="Slide 20 · Vendor Vetting"></a><a class="seg" href="llm04-slide-21.html" title="Slide 21 · Sandboxing &amp; Detection"></a><a class="seg" href="llm04-slide-22.html" title="Slide 22 · Access Controls"></a><a class="seg" href="llm04-slide-23.html" title="Slide 23 · Adversarial Robustness"></a><a class="seg" href="llm04-slide-24.html" title="Slide 24 · Monitoring &amp; RAG"></a><a class="seg" href="llm04-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm04-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm04-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 3 · Scenarios</span><span>Slide 14</span></div>
+</div>
+<div class="slide active">
+<div class="part-banner"><span class="part-num">PART 3</span><div><div class="part-title">Scenarios</div><div class="part-count">Slides 14–17 · OWASP's 5 official scenarios</div></div></div>
+  <div class="slide-eyebrow">Slide 14 · Scenarios 1 &amp; 2</div>
+  <div class="slide-title">OWASP's own example scenarios &mdash; retold concretely.</div>
+  <div class="slide-subtitle">Five scenarios, grouped. First two: manipulation, and toxic data.</div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO #1</div>
+    <div class="scenario-title">Biased outputs via manipulation</div>
+    <div class="scenario-body">An attacker manipulates training data &mdash; or uses prompt injection that feeds back into training &mdash; to <strong>bias the model toward misinformation.</strong></div>
+    <div class="scenario-why"><strong>Why it matters:</strong> the output still looks like a normal, confident answer. Bias is the hardest poison to spot, because nothing obviously &ldquo;breaks.&rdquo;</div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO #2</div>
+    <div class="scenario-title">Toxic data, toxic outputs</div>
+    <div class="scenario-body">Unfiltered harmful content in the training set leads the model to <strong>produce dangerous or biased information</strong> to its users.</div>
+    <div class="scenario-why"><strong>Why it matters:</strong> this is Microsoft Tay in the wild &mdash; what goes into training comes back out, amplified.</div>
+  </div>
+<div class="btn-row"><a class="btn-secondary" href="llm04-slide-13.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm04-slide-15.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → Scenarios 3 & 4</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

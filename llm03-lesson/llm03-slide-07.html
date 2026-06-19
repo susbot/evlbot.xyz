@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM03:2025 — Supply Chain · Slide 7 of 29</title>
+<link rel="stylesheet" href="llm03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM03:2025</span><span class="nav-title">Supply Chain</span></div>
+  <span class="nav-right">Slide 7 of 29</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm03-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm03-slide-02.html" title="Slide 2 · The Twist"></a><a class="seg done" href="llm03-slide-03.html" title="Slide 3 · The Definition"></a><a class="seg done" href="llm03-slide-04.html" title="Slide 4 · Your Supply Chain"></a><a class="seg done" href="llm03-slide-05.html" title="Slide 5 · The Component Map"></a><a class="seg done" href="llm03-slide-06.html" title="Slide 6 · The Outcomes"></a><a class="seg active" href="llm03-slide-07.html" title="Slide 7 · Who Attacks"></a><a class="seg" href="llm03-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg" href="llm03-slide-09.html" title="Slide 9 · Dependency Confusion"></a><a class="seg" href="llm03-slide-10.html" title="Slide 10 · Poisoned Build Pipeline"></a><a class="seg" href="llm03-slide-11.html" title="Slide 11 · Malicious Model File"></a><a class="seg" href="llm03-slide-12.html" title="Slide 12 · Scanner Bypass"></a><a class="seg" href="llm03-slide-13.html" title="Slide 13 · Vulnerable LoRA Adapter"></a><a class="seg" href="llm03-slide-14.html" title="Slide 14 · Fake & Abandoned Models"></a><a class="seg" href="llm03-slide-15.html" title="Slide 15 · Scenario: PoisonGPT"></a><a class="seg" href="llm03-slide-16.html" title="Slide 16 · Scenario: LeftoverLocals"></a><a class="seg" href="llm03-slide-17.html" title="Slide 17 · Scenario: On-Device Swap"></a><a class="seg" href="llm03-slide-18.html" title="Slide 18 · Scenario: T&Cs Change"></a><a class="seg" href="llm03-slide-19.html" title="Slide 19 · Vet Suppliers"></a><a class="seg" href="llm03-slide-20.html" title="Slide 20 · SBOM / AIBOM"></a><a class="seg" href="llm03-slide-21.html" title="Slide 21 · Patch & Scan"></a><a class="seg" href="llm03-slide-22.html" title="Slide 22 · Sign & Verify"></a><a class="seg" href="llm03-slide-23.html" title="Slide 23 · Red-Team First"></a><a class="seg" href="llm03-slide-24.html" title="Slide 24 · Demand Provenance"></a><a class="seg" href="llm03-slide-25.html" title="Slide 25 · Monitor Collaboration"></a><a class="seg" href="llm03-slide-26.html" title="Slide 26 · Anomaly Testing"></a><a class="seg" href="llm03-slide-27.html" title="Slide 27 · Protect the Edge"></a><a class="seg" href="llm03-slide-28.html" title="Slide 28 · Quiz"></a><a class="seg" href="llm03-slide-29.html" title="Slide 29 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 7</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 7 · Who Attacks</div>
+  <div class="slide-title">Who poisons a supply chain &mdash; and why it's so attractive.</div>
+  <div class="slide-subtitle">One poisoned link reaches thousands of downstream victims. That leverage draws a specific cast.</div>
+
+  <div class="person-grid">
+    <div class="person-card"><span class="person-icon">🎯</span><div><div class="person-name">The Opportunist</div><div class="person-role">TYPOSQUATTER / CONFUSER</div><div class="person-desc">Registers look-alike package and model names, or exploits dependency confusion, and waits for installs to roll in. Cheap, automated, high volume.</div></div></div>
+    <div class="person-card"><span class="person-icon">🥷</span><div><div class="person-name">The Pipeline Intruder</div><div class="person-role">CI/CD ATTACKER</div><div class="person-desc">Slips into a project's build system (a leaked token, a malicious pull request) and poisons the official release everyone trusts. See: Ultralytics.</div></div></div>
+    <div class="person-card"><span class="person-icon">🧬</span><div><div class="person-name">The Model Tamperer</div><div class="person-role">POISONER</div><div class="person-desc">Surgically edits a public model or dataset to plant a backdoor or false &ldquo;fact,&rdquo; then uploads it under a trustworthy-looking name. See: PoisonGPT.</div></div></div>
+    <div class="person-card"><span class="person-icon">💰</span><div><div class="person-name">The Cryptojacker</div><div class="person-role">RESOURCE THIEF</div><div class="person-desc">Doesn't want your data &mdash; wants your GPUs. Hijacks popular AI packages to mine cryptocurrency on victims' hardware.</div></div></div>
+  </div>
+  <div class="callout yellow"><div class="callout-label">The Common Thread</div><p>None of them attack <em>you</em> directly. They attack something <strong>upstream</strong> that you (and thousands of others) already trust. That's the whole point &mdash; it scales.</p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm03-slide-06.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm03-slide-08.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → The myth to kill first</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

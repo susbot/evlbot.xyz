@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM07:2025 — System Prompt Leakage · Slide 18 of 27</title>
+<link rel="stylesheet" href="llm07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM07:2025</span><span class="nav-title">System Prompt Leakage</span></div>
+  <span class="nav-right">Slide 18 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm07-slide-01.html" title="Slide 1 &middot; The Setup"></a><a class="seg done" href="llm07-slide-02.html" title="Slide 2 &middot; What Is a System Prompt"></a><a class="seg done" href="llm07-slide-03.html" title="Slide 3 &middot; The Definition"></a><a class="seg done" href="llm07-slide-04.html" title="Slide 4 &middot; What Gets Embedded"></a><a class="seg done" href="llm07-slide-05.html" title="Slide 5 &middot; The Outcomes"></a><a class="seg done" href="llm07-slide-06.html" title="Slide 6 &middot; Security by Obscurity"></a><a class="seg done" href="llm07-slide-07.html" title="Slide 7 &middot; LLM07 vs LLM02"></a><a class="seg done" href="llm07-slide-08.html" title="Slide 8 &middot; The Misconception"></a><a class="seg done" href="llm07-slide-09.html" title="Slide 9 &middot; Types Overview"></a><a class="seg done" href="llm07-slide-10.html" title="Slide 10 &middot; Direct Extraction"></a><a class="seg done" href="llm07-slide-11.html" title="Slide 11 &middot; Multi-Step Extraction"></a><a class="seg done" href="llm07-slide-12.html" title="Slide 12 &middot; Encoding Extraction"></a><a class="seg done" href="llm07-slide-13.html" title="Slide 13 &middot; Chained Injection"></a><a class="seg done" href="llm07-slide-14.html" title="Slide 14 &middot; Scenario 1"></a><a class="seg done" href="llm07-slide-15.html" title="Slide 15 &middot; Scenario 2"></a><a class="seg done" href="llm07-slide-16.html" title="Slide 16 &middot; Scenario 3"></a><a class="seg done" href="llm07-slide-17.html" title="Slide 17 &middot; The Pattern"></a><a class="seg active" href="llm07-slide-18.html" title="Slide 18 &middot; Prevention Overview"></a><a class="seg" href="llm07-slide-19.html" title="Slide 19 &middot; No Secrets in Prompts"></a><a class="seg" href="llm07-slide-20.html" title="Slide 20 &middot; No Secrecy as Control"></a><a class="seg" href="llm07-slide-21.html" title="Slide 21 &middot; Output Filtering"></a><a class="seg" href="llm07-slide-22.html" title="Slide 22 &middot; Privilege Separation"></a><a class="seg" href="llm07-slide-23.html" title="Slide 23 &middot; Red-Team Extraction"></a><a class="seg" href="llm07-slide-24.html" title="Slide 24 &middot; Access Controls"></a><a class="seg" href="llm07-slide-25.html" title="Slide 25 &middot; The Matrix"></a><a class="seg" href="llm07-slide-26.html" title="Slide 26 &middot; Quiz"></a><a class="seg" href="llm07-slide-27.html" title="Slide 27 &middot; Complete"></a></div>
+  <div class="progress-labels"><span>Part 4 &middot; Prevention</span><span>Slide 18</span></div>
+</div>
+<div class="slide active">
+<div class="part-banner"><span class="part-num">PART 4</span><div><div class="part-title">Prevention</div><div class="part-count">Slides 18–25 · 6 mitigations, each grounded in real incidents</div></div></div>
+  <div class="slide-eyebrow">Slide 18 · Prevention Overview</div>
+  <div class="slide-title">Six OWASP mitigations. One unifying principle.</div>
+  <div class="slide-subtitle">The principle: design so that extraction causes no harm.</div>
+  <div class="outcome-list">
+    <div class="outcome-item"><span class="outcome-icon">🚫</span><div><div class="outcome-title">M1 — Never store secrets in system prompts</div><div class="outcome-desc">Credentials, tokens, and API keys belong in secret managers — not in any layer the model can read.</div></div></div>
+    <div class="outcome-item"><span class="outcome-icon">🏛️</span><div><div class="outcome-title">M2 — Don’t rely on prompt secrecy as a security control</div><div class="outcome-desc">Security must hold even if the full prompt is public. Design for that assumption.</div></div></div>
+    <div class="outcome-item"><span class="outcome-icon">🔍</span><div><div class="outcome-title">M3 — Output filtering</div><div class="outcome-desc">Detect and block responses that echo or paraphrase system prompt content.</div></div></div>
+    <div class="outcome-item"><span class="outcome-icon">📦</span><div><div class="outcome-title">M4 — Privilege separation</div><div class="outcome-desc">Keep sensitive logic in backend code. The model only sees what it needs to respond, not the full machinery behind it.</div></div></div>
+    <div class="outcome-item"><span class="outcome-icon">🎯</span><div><div class="outcome-title">M5 — Red-team prompt extraction</div><div class="outcome-desc">Test your own system with all four extraction techniques before it ships.</div></div></div>
+    <div class="outcome-item"><span class="outcome-icon">🔐</span><div><div class="outcome-title">M6 — Access controls and least privilege</div><div class="outcome-desc">Limit what context the model sees. The less it knows, the less it can reveal.</div></div></div>
+  </div>
+<div class="btn-row"><a class="btn-secondary" href="llm07-slide-17.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm07-slide-19.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → M1 — Never store secrets in prompts</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">ð View sources for this lesson</a></div>
+</body>
+</html>

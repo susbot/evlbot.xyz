@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM08:2025 — Vector &amp; Embedding Weaknesses · Slide 27 of 27</title>
+<link rel="stylesheet" href="llm08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM08:2025</span><span class="nav-title">Vector &amp; Embedding Weaknesses</span></div>
+  <span class="nav-right">Slide 27 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm08-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm08-slide-02.html" title="Slide 2 · What Is a Vector"></a><a class="seg done" href="llm08-slide-03.html" title="Slide 3 · What Is RAG"></a><a class="seg done" href="llm08-slide-04.html" title="Slide 4 · The Definition"></a><a class="seg done" href="llm08-slide-05.html" title="Slide 5 · The Attack Surface"></a><a class="seg done" href="llm08-slide-06.html" title="Slide 6 · The Outcomes"></a><a class="seg done" href="llm08-slide-07.html" title="Slide 7 · LLM08 vs LLM04"></a><a class="seg done" href="llm08-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm08-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg done" href="llm08-slide-10.html" title="Slide 10 · Retrieval Poisoning"></a><a class="seg done" href="llm08-slide-11.html" title="Slide 11 · Embedding Inversion"></a><a class="seg done" href="llm08-slide-12.html" title="Slide 12 · Cross-Context Leakage"></a><a class="seg done" href="llm08-slide-13.html" title="Slide 13 · Context Manipulation"></a><a class="seg done" href="llm08-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg done" href="llm08-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg done" href="llm08-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg done" href="llm08-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg done" href="llm08-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg done" href="llm08-slide-19.html" title="Slide 19 · Validate Ingestion"></a><a class="seg done" href="llm08-slide-20.html" title="Slide 20 · Permission-Aware Stores"></a><a class="seg done" href="llm08-slide-21.html" title="Slide 21 · Retrieval Controls"></a><a class="seg done" href="llm08-slide-22.html" title="Slide 22 · Encrypt Vectors"></a><a class="seg done" href="llm08-slide-23.html" title="Slide 23 · Monitor Anomalies"></a><a class="seg done" href="llm08-slide-24.html" title="Slide 24 · Limit Persistence"></a><a class="seg done" href="llm08-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg done" href="llm08-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg active" href="llm08-slide-27.html" title="Slide 27 · Complete"></a></div>
+<div class="progress-labels"><span>Complete</span><span>Slide 27</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Complete</div>
+  <div class="slide-title"></div>
+
+  <div class="complete-wrap">
+    <div class="complete-icon">&#x2705;</div>
+    <div class="complete-title">LLM08:2025 Complete</div>
+    <div class="complete-sub">You&rsquo;ve covered all 5 parts, read the real incidents, and tested yourself.</div>
+  </div>
+  <div class="checklist">
+    <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">What vectors and embeddings are &mdash; and why they&rsquo;re an attack surface, not just an index</span></div>
+    <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">How RAG works and why the knowledge base &mdash; not the LLM &mdash; is where LLM08 lives</span></div>
+    <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">LLM08 vs LLM04: runtime retrieval poisoning vs training-time model poisoning</span></div>
+    <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">PoisonedRAG (USENIX Security 2025) &mdash; 5 malicious documents in 1 million achieved 90% attack success rate</span></div>
+    <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Vec2Text &mdash; stored embeddings can be inverted to reconstruct source text with ~92% accuracy</span></div>
+    <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">ConfusedPilot (Nov 2024) &mdash; one document poisons Microsoft 365 Copilot for every user in the org, persisting after deletion</span></div>
+    <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">All 3 OWASP attack scenarios: hidden content injection, multi-tenant leakage, enterprise AI poisoning</span></div>
+    <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">All 6 mitigations &mdash; what OWASP says, which incident each stops, how to implement, how to validate</span></div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="llm08-slide-01.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Review from beginning</a>
+    <button class="btn-primary" onclick="alert('LLM09 coming next!')">Next: LLM09 &rarr;</button>
+  </div>
+  <div class="btn-row">
+    <a href="sources.html" class="btn-secondary" style="text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;">&#x1F4C4; View all sources for this lesson</a>
+  </div>
+</div>
+</body>
+</html>

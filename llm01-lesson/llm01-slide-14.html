@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM01:2025 — Prompt Injection · Slide 14 of 28</title>
+<link rel="stylesheet" href="llm01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM01:2025</span><span class="nav-title">Prompt Injection</span></div>
+  <span class="nav-right">Slide 14 of 28</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm01-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm01-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm01-slide-03.html" title="Slide 3 · The Definition Part 1"></a><a class="seg done" href="llm01-slide-04.html" title="Slide 4 · The Definition Part 2"></a><a class="seg done" href="llm01-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm01-slide-06.html" title="Slide 6 · The Attackers"></a><a class="seg done" href="llm01-slide-07.html" title="Slide 7 · Injection vs Jailbreaking"></a><a class="seg done" href="llm01-slide-08.html" title="Slide 8 · RAG and Fine-Tuning"></a><a class="seg done" href="llm01-slide-09.html" title="Slide 9 · Two Types Overview"></a><a class="seg done" href="llm01-slide-10.html" title="Slide 10 · Direct Injection"></a><a class="seg done" href="llm01-slide-11.html" title="Slide 11 · Direct Injection Example"></a><a class="seg done" href="llm01-slide-12.html" title="Slide 12 · Indirect Injection"></a><a class="seg done" href="llm01-slide-13.html" title="Slide 13 · Indirect Injection Example"></a><a class="seg active" href="llm01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a><a class="seg" href="llm01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a><a class="seg" href="llm01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a><a class="seg" href="llm01-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm01-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm01-slide-19.html" title="Slide 19 · Mitigation 1"></a><a class="seg" href="llm01-slide-20.html" title="Slide 20 · Mitigation 2"></a><a class="seg" href="llm01-slide-21.html" title="Slide 21 · Mitigation 3"></a><a class="seg" href="llm01-slide-22.html" title="Slide 22 · Mitigation 4"></a><a class="seg" href="llm01-slide-23.html" title="Slide 23 · Mitigation 5"></a><a class="seg" href="llm01-slide-24.html" title="Slide 24 · Mitigation 6"></a><a class="seg" href="llm01-slide-25.html" title="Slide 25 · Mitigation 7"></a><a class="seg" href="llm01-slide-26.html" title="Slide 26 · The Matrix"></a><a class="seg" href="llm01-slide-27.html" title="Slide 27 · Quiz"></a><a class="seg" href="llm01-slide-28.html" title="Slide 28 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 3 · Attack Scenarios</span><span>Slide 14</span></div>
+</div>
+<div class="slide active">
+<div class="part-banner"><span class="part-num">PART 3</span><div><div class="part-title">The 9 Attack Scenarios</div><div class="part-count">Slides 14–17 · OWASP + real CVEs</div></div></div>
+  <div class="slide-eyebrow">Slide 14 · Scenarios 1–3</div>
+  <div class="slide-title">The first three OWASP attack scenarios.</div>
+  <div class="slide-subtitle">Direct injection, indirect injection, and the unintentional case — all with real anchors.</div>
+  <div class="source-tag">📄 OWASP LLM Top 10:2025 · LLM01 Example Attack Scenarios</div>
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO #1 · Direct Injection</div>
+    <div class="scenario-title">Customer support chatbot — unauthorized access and privilege escalation</div>
+    <div class="scenario-body">An attacker injects a prompt into a customer support chatbot instructing it to ignore previous guidelines, query private data stores, and send emails. Result: unauthorized access and privilege escalation. <strong>This attack class is the most documented pattern in enterprise AI incidents 2024–2025 and follows the exact same mechanism as CVE-2024-5184.</strong></div>
+    <div class="scenario-why"><strong>Type:</strong> Direct. <strong>Why it works:</strong> Model can't distinguish attacker input from legitimate instructions. <strong>Multiplier:</strong> The chatbot had tool access — email, database — beyond what it needed for all users.</div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO #2 · Indirect Injection via Retrieved Content</div>
+    <div class="scenario-title">Webpage summarizer — private conversation exfiltrated via image URL</div>
+    <div class="scenario-body">A user uses an LLM to summarize a webpage. The page contains hidden instructions causing the LLM to insert an image linking to an attacker-controlled URL — exfiltrating the private conversation. <strong>This is structurally identical to EchoLeak (CVE-2025-32711) — Copilot read an email instead of a webpage, but the exfiltration mechanism was the same: hidden instructions in content, data encoded in an image URL.</strong></div>
+    <div class="scenario-why"><strong>Type:</strong> Indirect. <strong>Why it works:</strong> Model treats content it reads as potential instructions. No distinction between "data to summarize" and "commands to follow."</div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO #3 · Unintentional Injection</div>
+    <div class="scenario-title">Job posting AI detection — triggered accidentally by an applicant</div>
+    <div class="scenario-body">A company hides an instruction in a job description to identify AI-generated applications. An applicant uses an LLM to optimize their resume and inadvertently triggers the hidden instruction. Neither party intended this.</div>
+    <div class="scenario-why"><strong>Type:</strong> Direct, unintentional. <strong>Why it matters:</strong> Injections don't require malicious intent. Any conflicting instruction in content the model reads can alter behavior — the injection surface includes content created with no adversarial intent at all.</div>
+  </div>
+  <div class="btn-row"><a class="btn-secondary" href="llm01-slide-13.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm01-slide-15.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → Scenarios 4–6</a></div></div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

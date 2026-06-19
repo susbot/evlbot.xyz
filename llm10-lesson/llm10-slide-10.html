@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM10:2025 — Unbounded Consumption · Slide 10 of 27</title>
+<link rel="stylesheet" href="llm10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM10:2025</span><span class="nav-title">Unbounded Consumption</span></div>
+  <span class="nav-right">Slide 10 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm10-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm10-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm10-slide-03.html" title="Slide 3 · The Definition"></a><a class="seg done" href="llm10-slide-04.html" title="Slide 4 · What Gets Consumed"></a><a class="seg done" href="llm10-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm10-slide-06.html" title="Slide 6 · Why It Happens"></a><a class="seg done" href="llm10-slide-07.html" title="Slide 7 · DoS vs Denial of Wallet"></a><a class="seg done" href="llm10-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm10-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg active" href="llm10-slide-10.html" title="Slide 10 · Context Window Flooding"></a><a class="seg" href="llm10-slide-11.html" title="Slide 11 · Denial of Wallet"></a><a class="seg" href="llm10-slide-12.html" title="Slide 12 · Reasoning Loop Exploitation"></a><a class="seg" href="llm10-slide-13.html" title="Slide 13 · Model Extraction"></a><a class="seg" href="llm10-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg" href="llm10-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg" href="llm10-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg" href="llm10-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm10-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm10-slide-19.html" title="Slide 19 · Input Validation"></a><a class="seg" href="llm10-slide-20.html" title="Slide 20 · Rate Limiting"></a><a class="seg" href="llm10-slide-21.html" title="Slide 21 · Resource Quotas"></a><a class="seg" href="llm10-slide-22.html" title="Slide 22 · API Gateway Controls"></a><a class="seg" href="llm10-slide-23.html" title="Slide 23 · Monitoring &amp; Alerting"></a><a class="seg" href="llm10-slide-24.html" title="Slide 24 · Agentic Safeguards"></a><a class="seg" href="llm10-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm10-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm10-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 2 · Types</span><span>Slide 10</span></div>
+</div>
+<div class="slide active">
+<div class="slide-eyebrow">Slide 10 · Context Window Flooding — Real Incident</div>
+<div class="slide-title">Sourcegraph API Abuse — August 2023.</div>
+<div class="real-incident"><div class="real-incident-tag">Confirmed Incident · August 30, 2023 · Sourcegraph Security Disclosure</div><div class="real-incident-title">Leaked Admin Token Used to Build a Free LLM Proxy — ~2 Million API Calls</div><div class="real-incident-cve">No CVE · Root cause: admin access token committed to a public GitHub repo · Disclosed by Sourcegraph, September 2023</div><div class="real-incident-body"><p><strong>The setup:</strong> A Sourcegraph developer accidentally committed a site-admin access token to a public GitHub repository in July 2023. The token sat there for roughly six weeks, undetected.</p><p><strong>What happened:</strong> An attacker found the token, used it to gain admin-level access to Sourcegraph.com, and built a proxy application. The proxy offered anyone with a free Sourcegraph account unlimited access to Sourcegraph’s underlying LLM — at Sourcegraph’s expense. The proxy page received close to <strong>2 million views</strong> before Sourcegraph detected the spike.</p><p><strong>Detection:</strong> On August 30, Sourcegraph noticed an inorganic spike in API usage and began investigating. The malicious admin account was deactivated and rate limits were slashed site-wide.</p><p><strong>Collateral damage:</strong> Sourcegraph temporarily reduced API rate limits for all free community users — the legitimate users paid for the attacker’s consumption through degraded service.</p></div><div class="real-incident-lesson"><strong>Why it matters for LLM10:</strong> the attacker didn’t break any LLM safety feature. They exploited missing resource ceilings: no per-user token quotas, no cumulative consumption monitoring, no budget alert. Unlimited API access plus unlimited traffic equals unlimited cost.</div></div>
+<div class="callout green"><div class="callout-label">The Controls That Would Have Stopped This</div><p>Per-user token quotas and real-time consumption monitoring. A budget alert at 10x normal usage would have fired within the first hour.</p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm10-slide-09.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm10-slide-11.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → Denial of Wallet</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

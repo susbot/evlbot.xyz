@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM10:2025 — Unbounded Consumption · Slide 25 of 27</title>
+<link rel="stylesheet" href="llm10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM10:2025</span><span class="nav-title">Unbounded Consumption</span></div>
+  <span class="nav-right">Slide 25 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm10-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm10-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm10-slide-03.html" title="Slide 3 · The Definition"></a><a class="seg done" href="llm10-slide-04.html" title="Slide 4 · What Gets Consumed"></a><a class="seg done" href="llm10-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm10-slide-06.html" title="Slide 6 · Why It Happens"></a><a class="seg done" href="llm10-slide-07.html" title="Slide 7 · DoS vs Denial of Wallet"></a><a class="seg done" href="llm10-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm10-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg done" href="llm10-slide-10.html" title="Slide 10 · Context Window Flooding"></a><a class="seg done" href="llm10-slide-11.html" title="Slide 11 · Denial of Wallet"></a><a class="seg done" href="llm10-slide-12.html" title="Slide 12 · Reasoning Loop Exploitation"></a><a class="seg done" href="llm10-slide-13.html" title="Slide 13 · Model Extraction"></a><a class="seg done" href="llm10-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg done" href="llm10-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg done" href="llm10-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg done" href="llm10-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg done" href="llm10-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg done" href="llm10-slide-19.html" title="Slide 19 · Input Validation"></a><a class="seg done" href="llm10-slide-20.html" title="Slide 20 · Rate Limiting"></a><a class="seg done" href="llm10-slide-21.html" title="Slide 21 · Resource Quotas"></a><a class="seg done" href="llm10-slide-22.html" title="Slide 22 · API Gateway Controls"></a><a class="seg done" href="llm10-slide-23.html" title="Slide 23 · Monitoring &amp; Alerting"></a><a class="seg done" href="llm10-slide-24.html" title="Slide 24 · Agentic Safeguards"></a><a class="seg active" href="llm10-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm10-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm10-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 25</span></div>
+</div>
+<div class="slide active">
+<div class="slide-eyebrow">Slide 25 · The Matrix</div>
+<div class="slide-title">Which mitigation stops which attack.</div>
+<div class="slide-subtitle">Use this as a checklist. Every attack type should have at least two controls covering it.</div>
+<div class="block"><div class="block-label purple">Attack vs. Control Coverage</div><p><strong>Context Window Flooding</strong> → M1 (input token limit), M2 (token-aware rate limit), M5 (monitoring spike alert)<br><strong>Denial of Wallet Prompts</strong> → M1 (output token cap), M3 (daily quota), M4 (provider budget alert), M5 (cost monitoring)<br><strong>Reasoning Loop Exploitation</strong> → M6 (step limit, timeout), M3 (task token budget), M5 (per-task monitoring)<br><strong>Model Extraction via Scraping</strong> → M2 (token-aware rate limit), M3 (daily quota), M5 (query pattern anomaly detection)</p></div>
+<div class="callout blue"><div class="callout-label">Key Insight</div><p>No single control covers all four attack types. M1 stops flooding but doesn’t catch agentic loops. M6 stops agentic loops but doesn’t stop Denial of Wallet from a simple prompt. You need the full stack — but even two or three controls raise the attacker’s cost dramatically.</p></div>
+<div class="callout green"><div class="callout-label">The Real Incidents, Revisited</div><p>• <strong>Sourcegraph (2023)</strong>: M2 + M4 would have stopped it within the first hour.<br>• <strong>$47k startup bill</strong>: M3 + M4 (daily budget + provider alert) would have capped losses under $500.<br>• <strong>Proof Pudding (CVE-2019-20634)</strong>: M2 + M3 would have made the probe volume impractical.<br>• <strong>Nasr et al. repeated-token attack</strong>: M1 (input pattern check) + M5 (anomaly detection) are the controls.</p></div>
+<div class="block"><div class="block-label purple">One Line to Remember</div><p><strong>Every attack in LLM10 exploits the absence of a ceiling. Put ceilings everywhere — inputs, outputs, requests, budgets, steps — and the attack surface collapses.</strong></p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm10-slide-24.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm10-slide-26.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → Test Yourself</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

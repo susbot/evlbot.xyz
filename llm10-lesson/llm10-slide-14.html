@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM10:2025 — Unbounded Consumption · Slide 14 of 27</title>
+<link rel="stylesheet" href="llm10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM10:2025</span><span class="nav-title">Unbounded Consumption</span></div>
+  <span class="nav-right">Slide 14 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm10-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm10-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm10-slide-03.html" title="Slide 3 · The Definition"></a><a class="seg done" href="llm10-slide-04.html" title="Slide 4 · What Gets Consumed"></a><a class="seg done" href="llm10-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm10-slide-06.html" title="Slide 6 · Why It Happens"></a><a class="seg done" href="llm10-slide-07.html" title="Slide 7 · DoS vs Denial of Wallet"></a><a class="seg done" href="llm10-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm10-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg done" href="llm10-slide-10.html" title="Slide 10 · Context Window Flooding"></a><a class="seg done" href="llm10-slide-11.html" title="Slide 11 · Denial of Wallet"></a><a class="seg done" href="llm10-slide-12.html" title="Slide 12 · Reasoning Loop Exploitation"></a><a class="seg done" href="llm10-slide-13.html" title="Slide 13 · Model Extraction"></a><a class="seg active" href="llm10-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg" href="llm10-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg" href="llm10-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg" href="llm10-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm10-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm10-slide-19.html" title="Slide 19 · Input Validation"></a><a class="seg" href="llm10-slide-20.html" title="Slide 20 · Rate Limiting"></a><a class="seg" href="llm10-slide-21.html" title="Slide 21 · Resource Quotas"></a><a class="seg" href="llm10-slide-22.html" title="Slide 22 · API Gateway Controls"></a><a class="seg" href="llm10-slide-23.html" title="Slide 23 · Monitoring &amp; Alerting"></a><a class="seg" href="llm10-slide-24.html" title="Slide 24 · Agentic Safeguards"></a><a class="seg" href="llm10-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm10-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm10-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 3 · Scenarios</span><span>Slide 14</span></div>
+</div>
+<div class="slide active">
+<div class="part-banner"><span class="part-num">PART 3</span><div><div class="part-title">Scenarios</div><div class="part-count">Slides 14–17 · OWASP’s official attack examples, made concrete</div></div></div>
+<div class="slide-eyebrow">Slide 14 · Scenario 1</div>
+<div class="slide-title">Variable-length inputs overwhelm the system.</div>
+<div class="slide-subtitle">OWASP Scenario #1, retold concretely.</div>
+<div class="scenario-card"><div class="scenario-num">OWASP SCENARIO #1</div><div class="scenario-title">Context Window Saturation via Variable-Length Input</div><div class="scenario-body"><p>An attacker identifies that a document-analysis application accepts user-uploaded text with no size limit. They begin submitting inputs that increase in size with each request — first 10KB, then 100KB, then the full context window size. <strong>Each request drives the model into its maximum memory usage and slowest execution path.</strong></p><p>Even at low request volume, the model is fully occupied processing each oversized input. Other users’ requests queue up and time out. From the outside, it looks like the service is degraded. No crash — just saturation.</p></div><div class="scenario-why"><strong>Why it matters:</strong> input size limits are the most basic control against this attack. Without a character or token ceiling on what the application accepts, any user — malicious or just careless — can trigger this condition.</div></div>
+<div class="callout blue"><div class="callout-label">The Real-World Parallel</div><p>The Sourcegraph incident (Slide 10) demonstrates the resource-exhaustion outcome at scale: a proxy that removed all usage ceilings led to 2 million API calls, degrading service for legitimate users who had their rate limits cut as a consequence.</p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm10-slide-13.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm10-slide-15.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → Scenario 2</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

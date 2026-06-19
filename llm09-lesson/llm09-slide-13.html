@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM09:2025 — Misinformation · Slide 13 of 27</title>
+<link rel="stylesheet" href="llm09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM09:2025</span><span class="nav-title">Misinformation</span></div>
+  <span class="nav-right">Slide 13 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm09-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm09-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm09-slide-03.html" title="Slide 3 · Definition Part 1"></a><a class="seg done" href="llm09-slide-04.html" title="Slide 4 · Definition Part 2"></a><a class="seg done" href="llm09-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm09-slide-06.html" title="Slide 6 · Why It Happens"></a><a class="seg done" href="llm09-slide-07.html" title="Slide 7 · LLM09 vs LLM01"></a><a class="seg done" href="llm09-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm09-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg done" href="llm09-slide-10.html" title="Slide 10 · Fabricated Citations"></a><a class="seg done" href="llm09-slide-11.html" title="Slide 11 · Package Hallucination"></a><a class="seg done" href="llm09-slide-12.html" title="Slide 12 · Professional Misinformation"></a><a class="seg active" href="llm09-slide-13.html" title="Slide 13 · Hallucinated Code"></a><a class="seg" href="llm09-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg" href="llm09-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg" href="llm09-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg" href="llm09-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm09-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm09-slide-19.html" title="Slide 19 · RAG Grounding"></a><a class="seg" href="llm09-slide-20.html" title="Slide 20 · Citation Enforcement"></a><a class="seg" href="llm09-slide-21.html" title="Slide 21 · Human Review Gates"></a><a class="seg" href="llm09-slide-22.html" title="Slide 22 · Uncertainty Disclosure"></a><a class="seg" href="llm09-slide-23.html" title="Slide 23 · User Education"></a><a class="seg" href="llm09-slide-24.html" title="Slide 24 · Output Validation"></a><a class="seg" href="llm09-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm09-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm09-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 2 &middot; Types</span><span>Slide 13</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 13 &middot; Hallucinated Code</div>
+  <div class="slide-title">40% of Copilot&rsquo;s security-sensitive outputs were vulnerable.</div>
+  <div class="slide-subtitle">Pearce et al. (NYU), IEEE S&amp;P 2022.</div>
+<div class="real-incident">
+<div class="real-incident-tag">Research Finding &middot; 2022 &middot; IEEE Symposium on Security and Privacy</div>
+<div class="real-incident-title">Asleep at the Keyboard: Copilot Generates Insecure Code in 40% of Security-Sensitive Scenarios</div>
+<div class="real-incident-cve">No CVE &middot; Pearce et al. (NYU) &middot; arXiv:2108.09293 &middot; IEEE S&amp;P 2022</div>
+<div class="real-incident-body">
+<p><strong>The study:</strong> Researchers at NYU gave GitHub Copilot (GPT-based) 89 coding scenarios specifically chosen because they involve security-sensitive patterns &mdash; memory management, SQL queries, file path handling, authentication, and cryptography.</p>
+<p><strong>The result:</strong> Approximately 40% of Copilot&rsquo;s generated code contained security vulnerabilities. Copilot suggested buffer overflows, SQL injection vulnerabilities, and path traversal issues in natural-looking, functional-seeming code &mdash; with no warning.</p>
+<p><strong>The key finding:</strong> The model&rsquo;s confidence in secure code was indistinguishable from its confidence in insecure code. There was no signal to the developer that a given suggestion was dangerous.</p>
+<p><strong>Why it happens:</strong> The model learned from real-world code, which contains vast amounts of insecure patterns. Statistically common patterns in the training corpus appear in completions &mdash; including the insecure ones.</p>
+</div>
+<div class="real-incident-lesson"><strong>Why it matters for LLM09:</strong> This is misinformation in code form. The model confidently suggests something wrong, and unlike legal misinformation, insecure code can sit in production for months before it causes harm.</div>
+</div>
+<div class="callout green"><div class="callout-label">The Defense</div><p>SAST (Static Application Security Testing) and code review as mandatory steps on LLM-generated code. Never deploy AI-generated code for security-sensitive functionality without human review and automated scanning.</p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm09-slide-12.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">&larr; Back</a><a class="btn-primary" href="llm09-slide-14.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next &rarr; Scenario 1: Legal</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">&#128196; View sources for this lesson</a></div>
+</body>
+</html>

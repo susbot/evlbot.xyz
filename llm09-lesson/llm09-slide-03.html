@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM09:2025 — Misinformation · Slide 3 of 27</title>
+<link rel="stylesheet" href="llm09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM09:2025</span><span class="nav-title">Misinformation</span></div>
+  <span class="nav-right">Slide 3 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm09-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm09-slide-02.html" title="Slide 2 · The Word"></a><a class="seg active" href="llm09-slide-03.html" title="Slide 3 · Definition Part 1"></a><a class="seg" href="llm09-slide-04.html" title="Slide 4 · Definition Part 2"></a><a class="seg" href="llm09-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg" href="llm09-slide-06.html" title="Slide 6 · Why It Happens"></a><a class="seg" href="llm09-slide-07.html" title="Slide 7 · LLM09 vs LLM01"></a><a class="seg" href="llm09-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg" href="llm09-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg" href="llm09-slide-10.html" title="Slide 10 · Fabricated Citations"></a><a class="seg" href="llm09-slide-11.html" title="Slide 11 · Package Hallucination"></a><a class="seg" href="llm09-slide-12.html" title="Slide 12 · Professional Misinformation"></a><a class="seg" href="llm09-slide-13.html" title="Slide 13 · Hallucinated Code"></a><a class="seg" href="llm09-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg" href="llm09-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg" href="llm09-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg" href="llm09-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm09-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm09-slide-19.html" title="Slide 19 · RAG Grounding"></a><a class="seg" href="llm09-slide-20.html" title="Slide 20 · Citation Enforcement"></a><a class="seg" href="llm09-slide-21.html" title="Slide 21 · Human Review Gates"></a><a class="seg" href="llm09-slide-22.html" title="Slide 22 · Uncertainty Disclosure"></a><a class="seg" href="llm09-slide-23.html" title="Slide 23 · User Education"></a><a class="seg" href="llm09-slide-24.html" title="Slide 24 · Output Validation"></a><a class="seg" href="llm09-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm09-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm09-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 1 &middot; What Is It?</span><span>Slide 3</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 3 &middot; Definition Part 1</div>
+  <div class="slide-title">Hallucination: the model&rsquo;s half.</div>
+  <div class="slide-subtitle">Pattern prediction, not fact retrieval.</div>
+<div class="callout blue"><div class="callout-label">What an LLM Actually Does</div><p>An LLM doesn&rsquo;t look things up. It doesn&rsquo;t have a fact database. It predicts the most statistically likely next token given everything that came before &mdash; a function learned from billions of examples of human text.</p></div>
+<div class="outcome-list">
+<div class="outcome-item"><span class="outcome-icon">&#128202;</span><div><div class="outcome-title">Pattern matching, not fact retrieval</div><div class="outcome-desc">The model learned that after &ldquo;The capital of France is&rdquo; the word &ldquo;Paris&rdquo; almost always follows. It doesn&rsquo;t &ldquo;know&rdquo; Paris is the capital &mdash; it knows that pattern.</div></div></div>
+<div class="outcome-item"><span class="outcome-icon">&#128371;</span><div><div class="outcome-title">No knowledge boundary</div><div class="outcome-desc">When a question falls outside training data, the model doesn&rsquo;t stop. It interpolates &mdash; producing the most plausible-sounding continuation, whether it is real or not.</div></div></div>
+<div class="outcome-item"><span class="outcome-icon">&#128483;</span><div><div class="outcome-title">Confidence is a style, not a signal</div><div class="outcome-desc">The model learned from text written by people who sound confident when they know things. It mimics that style &mdash; even when fabricating. &ldquo;The case Martinez v. Delta Airlines (2019)&rdquo; reads exactly like a real legal citation.</div></div></div>
+<div class="outcome-item"><span class="outcome-icon">&#128200;</span><div><div class="outcome-title">Scale amplifies the problem</div><div class="outcome-desc">Even a 1% hallucination rate at millions of daily queries means tens of thousands of false statements per day. Some of them will reach people who act on them.</div></div></div>
+</div>
+<div class="block"><div class="block-label red">The Root Cause</div><p><strong>The model has no mechanism to distinguish &ldquo;I learned this from training data&rdquo; from &ldquo;I am interpolating because I do not have this information.&rdquo; Both produce the same confident-sounding output.</strong></p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm09-slide-02.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">&larr; Back</a><a class="btn-primary" href="llm09-slide-04.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next &rarr; Why users trust it anyway</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">&#128196; View sources for this lesson</a></div>
+</body>
+</html>

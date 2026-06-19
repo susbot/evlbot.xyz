@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM07:2025 — System Prompt Leakage · Slide 13 of 27</title>
+<link rel="stylesheet" href="llm07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM07:2025</span><span class="nav-title">System Prompt Leakage</span></div>
+  <span class="nav-right">Slide 13 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm07-slide-01.html" title="Slide 1 &middot; The Setup"></a><a class="seg done" href="llm07-slide-02.html" title="Slide 2 &middot; What Is a System Prompt"></a><a class="seg done" href="llm07-slide-03.html" title="Slide 3 &middot; The Definition"></a><a class="seg done" href="llm07-slide-04.html" title="Slide 4 &middot; What Gets Embedded"></a><a class="seg done" href="llm07-slide-05.html" title="Slide 5 &middot; The Outcomes"></a><a class="seg done" href="llm07-slide-06.html" title="Slide 6 &middot; Security by Obscurity"></a><a class="seg done" href="llm07-slide-07.html" title="Slide 7 &middot; LLM07 vs LLM02"></a><a class="seg done" href="llm07-slide-08.html" title="Slide 8 &middot; The Misconception"></a><a class="seg done" href="llm07-slide-09.html" title="Slide 9 &middot; Types Overview"></a><a class="seg done" href="llm07-slide-10.html" title="Slide 10 &middot; Direct Extraction"></a><a class="seg done" href="llm07-slide-11.html" title="Slide 11 &middot; Multi-Step Extraction"></a><a class="seg done" href="llm07-slide-12.html" title="Slide 12 &middot; Encoding Extraction"></a><a class="seg active" href="llm07-slide-13.html" title="Slide 13 &middot; Chained Injection"></a><a class="seg" href="llm07-slide-14.html" title="Slide 14 &middot; Scenario 1"></a><a class="seg" href="llm07-slide-15.html" title="Slide 15 &middot; Scenario 2"></a><a class="seg" href="llm07-slide-16.html" title="Slide 16 &middot; Scenario 3"></a><a class="seg" href="llm07-slide-17.html" title="Slide 17 &middot; The Pattern"></a><a class="seg" href="llm07-slide-18.html" title="Slide 18 &middot; Prevention Overview"></a><a class="seg" href="llm07-slide-19.html" title="Slide 19 &middot; No Secrets in Prompts"></a><a class="seg" href="llm07-slide-20.html" title="Slide 20 &middot; No Secrecy as Control"></a><a class="seg" href="llm07-slide-21.html" title="Slide 21 &middot; Output Filtering"></a><a class="seg" href="llm07-slide-22.html" title="Slide 22 &middot; Privilege Separation"></a><a class="seg" href="llm07-slide-23.html" title="Slide 23 &middot; Red-Team Extraction"></a><a class="seg" href="llm07-slide-24.html" title="Slide 24 &middot; Access Controls"></a><a class="seg" href="llm07-slide-25.html" title="Slide 25 &middot; The Matrix"></a><a class="seg" href="llm07-slide-26.html" title="Slide 26 &middot; Quiz"></a><a class="seg" href="llm07-slide-27.html" title="Slide 27 &middot; Complete"></a></div>
+  <div class="progress-labels"><span>Part 2 &middot; Types</span><span>Slide 13</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 13 · Chained Injection + Leakage — Real Incident</div>
+  <div class="slide-title">EchoLeak — Zero-Click Prompt Injection in Microsoft Copilot, 2025.</div>
+  <div class="real-incident">
+    <div class="real-incident-tag">Confirmed Incident · January–May 2025 · Aim Labs PoC · Microsoft patched May 2025</div>
+    <div class="real-incident-title">EchoLeak: Crafted Email Causes Copilot to Exfiltrate Context via Hidden Markdown Beacon</div>
+    <div class="real-incident-cve">CVE-2025-32711 · CVSS 9.3 · Microsoft Security Advisory MSRC-73108</div>
+    <div class="real-incident-body">
+      <p><strong>The setup:</strong> Microsoft 365 Copilot reads emails and documents from a user&rsquo;s mailbox to answer questions. Its system prompt and context window contain sensitive operational details about what tools it has access to and how it processes data.</p>
+      <p><strong>The attack:</strong> An attacker sends the victim a crafted email containing hidden text with a prompt injection payload. The injection instructs Copilot, when next asked a query by the victim, to embed a Markdown image tag whose URL contains extracted context data as query parameters. The user never clicks anything. Copilot auto-renders the Markdown — fetching the attacker&rsquo;s URL and delivering the data.</p>
+      <p><strong>The fix:</strong> Aim Labs responsibly disclosed to Microsoft in January 2025. Microsoft deployed a server-side patch in May 2025. The full writeup and proof of concept were published June 11, 2025.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Why it matters for LLM07:</strong> The victim does nothing. The attacker never interacts with Copilot directly. An email is enough to weaponize the AI against its own user. Context embedded in system prompts and conversation memory is as extractable as anything the user types themselves.</div>
+  </div>
+<div class="btn-row"><a class="btn-secondary" href="llm07-slide-12.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm07-slide-14.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → OWASP’s attack scenarios</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">ð View sources for this lesson</a></div>
+</body>
+</html>

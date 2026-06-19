@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM01:2025 — Prompt Injection · Slide 13 of 28</title>
+<link rel="stylesheet" href="llm01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM01:2025</span><span class="nav-title">Prompt Injection</span></div>
+  <span class="nav-right">Slide 13 of 28</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm01-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm01-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm01-slide-03.html" title="Slide 3 · The Definition Part 1"></a><a class="seg done" href="llm01-slide-04.html" title="Slide 4 · The Definition Part 2"></a><a class="seg done" href="llm01-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm01-slide-06.html" title="Slide 6 · The Attackers"></a><a class="seg done" href="llm01-slide-07.html" title="Slide 7 · Injection vs Jailbreaking"></a><a class="seg done" href="llm01-slide-08.html" title="Slide 8 · RAG and Fine-Tuning"></a><a class="seg done" href="llm01-slide-09.html" title="Slide 9 · Two Types Overview"></a><a class="seg done" href="llm01-slide-10.html" title="Slide 10 · Direct Injection"></a><a class="seg done" href="llm01-slide-11.html" title="Slide 11 · Direct Injection Example"></a><a class="seg done" href="llm01-slide-12.html" title="Slide 12 · Indirect Injection"></a><a class="seg active" href="llm01-slide-13.html" title="Slide 13 · Indirect Injection Example"></a><a class="seg" href="llm01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a><a class="seg" href="llm01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a><a class="seg" href="llm01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a><a class="seg" href="llm01-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm01-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm01-slide-19.html" title="Slide 19 · Mitigation 1"></a><a class="seg" href="llm01-slide-20.html" title="Slide 20 · Mitigation 2"></a><a class="seg" href="llm01-slide-21.html" title="Slide 21 · Mitigation 3"></a><a class="seg" href="llm01-slide-22.html" title="Slide 22 · Mitigation 4"></a><a class="seg" href="llm01-slide-23.html" title="Slide 23 · Mitigation 5"></a><a class="seg" href="llm01-slide-24.html" title="Slide 24 · Mitigation 6"></a><a class="seg" href="llm01-slide-25.html" title="Slide 25 · Mitigation 7"></a><a class="seg" href="llm01-slide-26.html" title="Slide 26 · The Matrix"></a><a class="seg" href="llm01-slide-27.html" title="Slide 27 · Quiz"></a><a class="seg" href="llm01-slide-28.html" title="Slide 28 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 2 · Types</span><span>Slide 13</span></div>
+</div>
+<div class="slide active">
+<div class="slide-eyebrow">Slide 13 · Indirect Injection — Real Example</div>
+  <div class="slide-title">EchoLeak — the first zero-click prompt injection exploit in production enterprise AI.</div>
+  <div class="slide-subtitle">CVE-2025-32711. Microsoft 365 Copilot. June 2025. Verified and patched.</div>
+  <div class="real-incident">
+    <div class="real-incident-tag">Confirmed CVE · Disclosed June 2025 · Found by Aim Security Researchers</div>
+    <div class="real-incident-title">EchoLeak — Microsoft 365 Copilot Silent Data Exfiltration</div>
+    <div class="real-incident-cve">CVE-2025-32711 · CVSS 9.3 Critical · Server-side patch by Microsoft · No exploitation in wild confirmed</div>
+    <div class="real-incident-body">
+      <p><strong>The setup:</strong> Microsoft 365 Copilot is integrated into Outlook, Word, PowerPoint, and Teams. It reads documents and emails on behalf of the user to summarize and answer questions. That's its designed purpose.</p>
+      <p><strong>The attack:</strong> An attacker sends a single crafted email to the victim. The email looks completely normal to the human. Hidden inside are instructions to Copilot. When Copilot automatically processes the email as part of normal M365 operation, it follows the hidden instructions: access the victim's internal files and exfiltrate their contents to an attacker-controlled server.</p>
+      <p><strong>The exfiltration mechanism:</strong> The attack used reference-style Markdown to embed an image link pointing to the attacker's server, encoding the stolen data in the URL. This bypassed Microsoft's XPIA (Cross Prompt Injection Attempt) classifier. The image auto-fetched via a Microsoft Teams proxy that was already whitelisted in Copilot's content security policy.</p>
+      <p><strong>Zero user interaction required.</strong> Victim didn't click. Didn't open an attachment. Didn't reply. Copilot processed it automatically.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Why it worked:</strong> Copilot read the email and treated embedded instructions the same as legitimate system instructions. The attack chained four bypasses: evaded the XPIA classifier, circumvented link redaction using reference-style Markdown, exploited auto-fetched images, and abused a Teams proxy allowed by the CSP. <strong>Microsoft's fix required a server-side patch — no developer could have prevented this in their own system prompt.</strong> Sentra's post-incident analysis: "The defense requires scoped data access before Copilot can reach it — not just patching individual vulnerabilities as they emerge."</div>
+  </div>
+  <div class="callout green"><div class="callout-label">The Defense Lesson</div><p>EchoLeak's CVSS 9.3 rating reflected partly that Copilot had broad access to the entire victim M365 environment. OWASP Mitigation #4 — least privilege — applied before deployment would have limited the blast radius even after the injection succeeded. Scope the AI's data access to the minimum it actually needs.</p></div>
+  <div class="btn-row"><a class="btn-secondary" href="llm01-slide-12.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm01-slide-14.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Part 2 done → Part 3: Attack Scenarios</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

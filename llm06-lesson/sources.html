@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM06:2025 — Excessive Agency · Sources</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+:root{--bg:#0a0a0f;--surface:#111118;--border:#22222e;--accent:#6d28d9;--accent-bright:#a78bfa;--accent-glow:rgba(109,40,217,0.10);--green:#10b981;--yellow:#f59e0b;--red:#f43f5e;--blue:#38bdf8;--orange:#fb923c;--text:#e2e8f0;--muted:#64748b;--subtle:#94a3b8;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;min-height:100vh;padding-bottom:80px;}
+.top-nav{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid var(--border);}
+.nav-left{display:flex;align-items:center;gap:12px;}
+.nav-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:3px 9px;}
+.back-link{font-size:13px;color:var(--muted);text-decoration:none;}
+.back-link:hover{color:var(--accent-bright);}
+.content{max-width:720px;margin:0 auto;padding:32px 20px;}
+h1{font-size:22px;font-weight:600;color:#fff;margin-bottom:8px;}
+.intro{font-size:14px;color:var(--subtle);line-height:1.7;margin-bottom:32px;}
+.license-banner{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:32px;}
+.license-title{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--accent-bright);letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px;}
+.license-body{font-size:13px;color:var(--subtle);line-height:1.7;}
+.license-body a{color:var(--accent-bright);text-decoration:none;}
+.group{margin-bottom:32px;}
+.group-header{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.source-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px;}
+.source-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px;}
+.source-name{font-size:14px;font-weight:600;color:var(--text);}
+.source-tag-cve{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--red);background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.25);border-radius:4px;padding:2px 7px;white-space:nowrap;}
+.source-tag-tool{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--green);background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.25);border-radius:4px;padding:2px 7px;white-space:nowrap;}
+.source-tag-research{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--blue);background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.25);border-radius:4px;padding:2px 7px;white-space:nowrap;}
+.source-tag-disclosure{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--orange);background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.25);border-radius:4px;padding:2px 7px;white-space:nowrap;}
+.source-meta{font-size:12px;color:var(--muted);margin-bottom:6px;}
+.source-cited{font-size:12px;color:var(--subtle);line-height:1.6;margin-bottom:10px;}
+.source-link{display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent-bright);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:5px 12px;transition:all .15s;}
+.source-link:hover{border-color:var(--accent);background:var(--accent-glow);}
+</style>
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">LLM06:2025</span>
+    <a class="back-link" href="llm06-slide-01.html">← Back to lesson</a>
+  </div>
+</div>
+<div class="content">
+  <h1>Sources — Excessive Agency</h1>
+  <p class="intro">Every real incident, CVE, and mitigation in this lesson is backed by a primary source. Links verified June 2026.</p>
+
+  <div class="license-banner">
+    <div class="license-title">Attribution &amp; License</div>
+    <div class="license-body">The OWASP Top 10 for LLM Applications is published by the <a href="https://owasp.org/" target="_blank" rel="noopener">OWASP Foundation</a> under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">Creative Commons BY-SA 4.0</a>. This lesson is a derivative work — scenarios, definitions, and mitigations are adapted from the official OWASP LLM06:2025 entry with attribution. This site is independent and unaffiliated with OWASP.</div>
+  </div>
+
+  <div class="group">
+    <div class="group-header">OWASP Primary Source</div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">LLM06:2025 Excessive Agency — OWASP Gen AI Security Project</span><span class="source-tag-research">STANDARD</span></div>
+      <div class="source-meta">OWASP Foundation · 2025</div>
+      <div class="source-cited"><strong>Cited for:</strong> official definition, three root causes, all example attack scenarios, mitigation categories — slides 3, 4, 14–25</div>
+      <a class="source-link" href="https://genai.owasp.org/llmrisk/llm06-sensitive-information-disclosure/" target="_blank" rel="noopener">View on OWASP →</a>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-header">CVEs &amp; Vulnerability Records</div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">CVE-2025-53773 — GitHub Copilot Remote Code Execution via Prompt Injection</span><span class="source-tag-cve">CVSS Critical</span></div>
+      <div class="source-meta">NVD / Microsoft · Patched August 2025</div>
+      <div class="source-cited"><strong>Cited for:</strong> opening story (slides 1–2), Attack Pattern 4 (slide 13), Scenario 3 analogue (slide 16), mitigations M3 and M6 (slides 21, 24)</div>
+      <a class="source-link" href="https://nvd.nist.gov/vuln/detail/CVE-2025-53773" target="_blank" rel="noopener">NVD record →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">CVE-2025-54136 — MCPoison: MCP Tool Poisoning</span><span class="source-tag-cve">Critical</span></div>
+      <div class="source-meta">Invariant Labs / TrueFoundry · First Disclosed April 2025</div>
+      <div class="source-cited"><strong>Cited for:</strong> Attack Pattern 3 — MCP Tool Poisoning (slide 12), mitigation M5 (slide 23)</div>
+      <a class="source-link" href="https://www.truefoundry.com/blog/blog-mcp-tool-poisoning-gateway-defense" target="_blank" rel="noopener">TrueFoundry writeup →</a>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-header">Researcher Disclosures &amp; Incident Reports</div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">GitHub Copilot RCE via Prompt Injection — Embrace The Red</span><span class="source-tag-disclosure">DISCLOSURE</span></div>
+      <div class="source-meta">Embrace The Red (Johann Rehberger) · August 2025</div>
+      <div class="source-cited"><strong>Cited for:</strong> technical detail on YOLO mode exploit, invisible Unicode evasion, C2 demonstration — slides 1, 13</div>
+      <a class="source-link" href="https://embracethered.com/blog/posts/2025/github-copilot-remote-code-execution-via-prompt-injection/" target="_blank" rel="noopener">Read writeup →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">Data Exfiltration from Slack AI via Indirect Prompt Injection — PromptArmor</span><span class="source-tag-disclosure">DISCLOSURE</span></div>
+      <div class="source-meta">PromptArmor · August 2024</div>
+      <div class="source-cited"><strong>Cited for:</strong> Slack AI overpowered data access, indirect injection mechanism, private-channel exfiltration via clickable URLs — slides 6, 10, 19</div>
+      <a class="source-link" href="https://www.promptarmor.com/resources/data-exfiltration-from-slack-ai-via-indirect-prompt-injection" target="_blank" rel="noopener">Read disclosure →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">Slack AI Can Leak Private Data via Prompt Injection — The Register</span><span class="source-tag-disclosure">DISCLOSURE</span></div>
+      <div class="source-meta">The Register · August 2024</div>
+      <div class="source-cited"><strong>Cited for:</strong> independent coverage of the Slack AI incident, Salesforce-Slack acknowledgement — slide 10</div>
+      <a class="source-link" href="https://www.theregister.com/software/2024/08/21/slack-ai-can-leak-private-data-via-prompt-injection/1073730" target="_blank" rel="noopener">The Register →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">MCP Tool Poisoning: Enterprise AI Agent Security 2026 — ITECS</span><span class="source-tag-research">RESEARCH</span></div>
+      <div class="source-meta">ITECS Online · 2026</div>
+      <div class="source-cited"><strong>Cited for:</strong> 200,000 vulnerable MCP instances figure, MCPTox benchmark results (60–72% attack success rate) — slide 12</div>
+      <a class="source-link" href="https://itecsonline.com/post/mcp-tool-poisoning-enterprise-ai-agent-security-2026" target="_blank" rel="noopener">Read report →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">OWASP GenAI Exploit Round-up Report Q1 2026</span><span class="source-tag-research">RESEARCH</span></div>
+      <div class="source-meta">OWASP Gen AI Security Project · April 2026</div>
+      <div class="source-cited"><strong>Cited for:</strong> agentic AI CVE growth (+255.4%), OpenClaw crisis statistics, 21,000+ exposed instances — slides 6, 11</div>
+      <a class="source-link" href="https://genai.owasp.org/2026/04/14/owasp-genai-exploit-round-up-report-q1-2026/" target="_blank" rel="noopener">OWASP report →</a>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-header">Mitigation References</div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">AI Agent Security Cheat Sheet — OWASP</span><span class="source-tag-tool">DEFENSIVE</span></div>
+      <div class="source-meta">OWASP Cheat Sheet Series · 2025</div>
+      <div class="source-cited"><strong>Cited for:</strong> least-privilege implementation guidance, human-in-the-loop patterns, external authorization enforcement — slides 19–22</div>
+      <a class="source-link" href="https://cheatsheetseries.owasp.org/cheatsheets/AI_Agent_Security_Cheat_Sheet.html" target="_blank" rel="noopener">OWASP cheat sheet →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">AWS Well-Architected Generative AI Lens — Least Privilege for Agentic Workflows</span><span class="source-tag-tool">DEFENSIVE</span></div>
+      <div class="source-meta">Amazon Web Services · 2025</div>
+      <div class="source-cited"><strong>Cited for:</strong> GENSEC05-BP01 — minimum scope and permissions boundaries for agentic workflows — slides 19, 20</div>
+      <a class="source-link" href="https://docs.aws.amazon.com/wellarchitected/latest/generative-ai-lens/gensec05-bp01.html" target="_blank" rel="noopener">AWS guidance →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">Mitigate Excessive Agency in AI Agents with Zero Trust — Auth0</span><span class="source-tag-tool">DEFENSIVE</span></div>
+      <div class="source-meta">Auth0 / Okta · 2025</div>
+      <div class="source-cited"><strong>Cited for:</strong> OAuth on-behalf-of patterns, external authorization enforcement, user-context execution — slides 20, 22</div>
+      <a class="source-link" href="https://auth0.com/blog/mitigate-excessive-agency-ai-agents/" target="_blank" rel="noopener">Auth0 blog →</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM10:2025 — Unbounded Consumption · Slide 12 of 27</title>
+<link rel="stylesheet" href="llm10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM10:2025</span><span class="nav-title">Unbounded Consumption</span></div>
+  <span class="nav-right">Slide 12 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm10-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm10-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm10-slide-03.html" title="Slide 3 · The Definition"></a><a class="seg done" href="llm10-slide-04.html" title="Slide 4 · What Gets Consumed"></a><a class="seg done" href="llm10-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm10-slide-06.html" title="Slide 6 · Why It Happens"></a><a class="seg done" href="llm10-slide-07.html" title="Slide 7 · DoS vs Denial of Wallet"></a><a class="seg done" href="llm10-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm10-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg done" href="llm10-slide-10.html" title="Slide 10 · Context Window Flooding"></a><a class="seg done" href="llm10-slide-11.html" title="Slide 11 · Denial of Wallet"></a><a class="seg active" href="llm10-slide-12.html" title="Slide 12 · Reasoning Loop Exploitation"></a><a class="seg" href="llm10-slide-13.html" title="Slide 13 · Model Extraction"></a><a class="seg" href="llm10-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg" href="llm10-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg" href="llm10-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg" href="llm10-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm10-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm10-slide-19.html" title="Slide 19 · Input Validation"></a><a class="seg" href="llm10-slide-20.html" title="Slide 20 · Rate Limiting"></a><a class="seg" href="llm10-slide-21.html" title="Slide 21 · Resource Quotas"></a><a class="seg" href="llm10-slide-22.html" title="Slide 22 · API Gateway Controls"></a><a class="seg" href="llm10-slide-23.html" title="Slide 23 · Monitoring &amp; Alerting"></a><a class="seg" href="llm10-slide-24.html" title="Slide 24 · Agentic Safeguards"></a><a class="seg" href="llm10-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm10-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm10-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 2 · Types</span><span>Slide 12</span></div>
+</div>
+<div class="slide active">
+<div class="slide-eyebrow">Slide 12 · Reasoning Loop Exploitation</div>
+<div class="slide-title">Trap an agent in an infinite loop. It generates forever.</div>
+<div class="slide-subtitle">Agentic systems are especially exposed — they call tools, re-read results, repeat.</div>
+<div class="callout red"><div class="callout-label">How It Works</div><p>A modern LLM agent doesn’t just generate text — it calls tools (web search, code execution, database lookups), reads the results, decides what to do next, and repeats. This is a loop. Without a maximum step count or execution timeout, a crafted prompt can keep the agent in that loop indefinitely.</p><p>Example: "Search for the answer, but if you’re not 100% certain, search again with a refined query." With no stop condition, the agent refines its search query forever — each iteration consuming tokens, tool calls, and compute.</p></div>
+<div class="real-incident"><div class="real-incident-tag">Research Demonstration · Nasr et al., Google DeepMind · 2023</div><div class="real-incident-title">Repeated-Token Attack: Sustained Generation Until Behavioral Divergence</div><div class="real-incident-cve">No CVE · Disclosed to OpenAI August 2023 · Published arXiv:2311.17035</div><div class="real-incident-body"><p>Researchers at Google DeepMind discovered that repeating a single token — such as "poem" thousands of times — caused ChatGPT to diverge from its aligned behavior. Rather than refusing or staying on-topic, the model began emitting verbatim training data, continuing to generate far beyond a typical response length.</p><p>The attack consumed <strong>disproportionate compute and tokens per query</strong> compared to a normal interaction, because the model entered an atypical generation mode. For roughly $200 in API calls, researchers extracted over 10,000 verbatim training examples. The resource consumption was the mechanism — sustained generation until behavioral breakdown.</p></div><div class="real-incident-lesson"><strong>Why it matters:</strong> reasoning loop exploitation doesn’t require a sophisticated prompt. Sustained, repetitive input — which any script can generate — is enough to drive consumption far beyond what a legitimate user would produce.</div></div>
+<div class="btn-row"><a class="btn-secondary" href="llm10-slide-11.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm10-slide-13.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → Model Extraction via API Scraping</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

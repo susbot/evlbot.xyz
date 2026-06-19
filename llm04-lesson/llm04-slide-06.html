@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM04:2025 — Data &amp; Model Poisoning · Slide 6 of 27</title>
+<link rel="stylesheet" href="llm04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM04:2025</span><span class="nav-title">Data &amp; Model Poisoning</span></div>
+  <span class="nav-right">Slide 6 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm04-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm04-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm04-slide-03.html" title="Slide 3 · The Definition Part 1"></a><a class="seg done" href="llm04-slide-04.html" title="Slide 4 · The Definition Part 2"></a><a class="seg done" href="llm04-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg active" href="llm04-slide-06.html" title="Slide 6 · Who Attacks"></a><a class="seg" href="llm04-slide-07.html" title="Slide 7 · Poisoning vs Injection"></a><a class="seg" href="llm04-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg" href="llm04-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg" href="llm04-slide-10.html" title="Slide 10 · Supply-Chain Poisoning"></a><a class="seg" href="llm04-slide-11.html" title="Slide 11 · Backdoor Poisoning"></a><a class="seg" href="llm04-slide-12.html" title="Slide 12 · Web-Scale Poisoning"></a><a class="seg" href="llm04-slide-13.html" title="Slide 13 · Feedback-Loop Poisoning"></a><a class="seg" href="llm04-slide-14.html" title="Slide 14 · Scenarios 1 &amp; 2"></a><a class="seg" href="llm04-slide-15.html" title="Slide 15 · Scenarios 3 &amp; 4"></a><a class="seg" href="llm04-slide-16.html" title="Slide 16 · Scenario 5: Backdoor"></a><a class="seg" href="llm04-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm04-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm04-slide-19.html" title="Slide 19 · Data Provenance"></a><a class="seg" href="llm04-slide-20.html" title="Slide 20 · Vendor Vetting"></a><a class="seg" href="llm04-slide-21.html" title="Slide 21 · Sandboxing &amp; Detection"></a><a class="seg" href="llm04-slide-22.html" title="Slide 22 · Access Controls"></a><a class="seg" href="llm04-slide-23.html" title="Slide 23 · Adversarial Robustness"></a><a class="seg" href="llm04-slide-24.html" title="Slide 24 · Monitoring &amp; RAG"></a><a class="seg" href="llm04-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm04-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm04-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 6</span></div>
+</div>
+<div class="slide active">
+<div class="slide-eyebrow">Slide 6 · Who Does This</div>
+  <div class="slide-title">Who poisons a model &mdash; and why.</div>
+  <div class="slide-subtitle">It isn't always a shadowy hacker. Sometimes it's an artist. Sometimes it's a crowd.</div>
+
+  <div class="person-grid">
+    <div class="person-card"><span class="person-icon">🕵️</span><div><div class="person-name">The Supply-Chain Attacker</div><div class="person-role">MALICIOUS</div><div class="person-desc">Uploads a tampered model or dataset to a public hub, hoping you'll download and trust it.</div></div></div>
+    <div class="person-card"><span class="person-icon">🤬</span><div><div class="person-name">The Coordinated Crowd</div><div class="person-role">MALICIOUS</div><div class="person-desc">Floods a system that learns from user input with toxic content &mdash; like the trolls who broke Tay.</div></div></div>
+    <div class="person-card"><span class="person-icon">🎨</span><div><div class="person-name">The Defensive Artist</div><div class="person-role">PROTECTIVE</div><div class="person-desc">Poisons their <em>own</em> work (e.g. Nightshade) to stop AI from training on it without consent.</div></div></div>
+    <div class="person-card"><span class="person-icon">🤷</span><div><div class="person-name">The Careless Contributor</div><div class="person-role">UNINTENTIONAL</div><div class="person-desc">Feeds unverified or biased data into a pipeline with no malice &mdash; poisoning by accident.</div></div></div>
+  </div>
+  <div class="callout blue"><p>That last one matters: <strong>not all poisoning is an attack.</strong> Unvetted data and sloppy pipelines poison models every day without anyone meaning to.</p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm04-slide-05.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm04-slide-07.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → Poisoning vs injection</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

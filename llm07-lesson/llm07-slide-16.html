@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM07:2025 — System Prompt Leakage · Slide 16 of 27</title>
+<link rel="stylesheet" href="llm07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM07:2025</span><span class="nav-title">System Prompt Leakage</span></div>
+  <span class="nav-right">Slide 16 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm07-slide-01.html" title="Slide 1 &middot; The Setup"></a><a class="seg done" href="llm07-slide-02.html" title="Slide 2 &middot; What Is a System Prompt"></a><a class="seg done" href="llm07-slide-03.html" title="Slide 3 &middot; The Definition"></a><a class="seg done" href="llm07-slide-04.html" title="Slide 4 &middot; What Gets Embedded"></a><a class="seg done" href="llm07-slide-05.html" title="Slide 5 &middot; The Outcomes"></a><a class="seg done" href="llm07-slide-06.html" title="Slide 6 &middot; Security by Obscurity"></a><a class="seg done" href="llm07-slide-07.html" title="Slide 7 &middot; LLM07 vs LLM02"></a><a class="seg done" href="llm07-slide-08.html" title="Slide 8 &middot; The Misconception"></a><a class="seg done" href="llm07-slide-09.html" title="Slide 9 &middot; Types Overview"></a><a class="seg done" href="llm07-slide-10.html" title="Slide 10 &middot; Direct Extraction"></a><a class="seg done" href="llm07-slide-11.html" title="Slide 11 &middot; Multi-Step Extraction"></a><a class="seg done" href="llm07-slide-12.html" title="Slide 12 &middot; Encoding Extraction"></a><a class="seg done" href="llm07-slide-13.html" title="Slide 13 &middot; Chained Injection"></a><a class="seg done" href="llm07-slide-14.html" title="Slide 14 &middot; Scenario 1"></a><a class="seg done" href="llm07-slide-15.html" title="Slide 15 &middot; Scenario 2"></a><a class="seg active" href="llm07-slide-16.html" title="Slide 16 &middot; Scenario 3"></a><a class="seg" href="llm07-slide-17.html" title="Slide 17 &middot; The Pattern"></a><a class="seg" href="llm07-slide-18.html" title="Slide 18 &middot; Prevention Overview"></a><a class="seg" href="llm07-slide-19.html" title="Slide 19 &middot; No Secrets in Prompts"></a><a class="seg" href="llm07-slide-20.html" title="Slide 20 &middot; No Secrecy as Control"></a><a class="seg" href="llm07-slide-21.html" title="Slide 21 &middot; Output Filtering"></a><a class="seg" href="llm07-slide-22.html" title="Slide 22 &middot; Privilege Separation"></a><a class="seg" href="llm07-slide-23.html" title="Slide 23 &middot; Red-Team Extraction"></a><a class="seg" href="llm07-slide-24.html" title="Slide 24 &middot; Access Controls"></a><a class="seg" href="llm07-slide-25.html" title="Slide 25 &middot; The Matrix"></a><a class="seg" href="llm07-slide-26.html" title="Slide 26 &middot; Quiz"></a><a class="seg" href="llm07-slide-27.html" title="Slide 27 &middot; Complete"></a></div>
+  <div class="progress-labels"><span>Part 3 &middot; Scenarios</span><span>Slide 16</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 16 · Scenario 3</div>
+  <div class="slide-title">A competitor extracts your AI&rsquo;s persona and replicates your product.</div>
+  <div class="scenario-card">
+    <div class="scenario-num">OWASP SCENARIO #3 &mdash; Competitive Exposure</div>
+    <div class="scenario-title">System prompt reveals proprietary product design, pricing strategy, and brand positioning</div>
+    <div class="scenario-body">A SaaS company launches an AI sales assistant. The system prompt contains the product&rsquo;s differentiators, pricing tiers, objection-handling playbook, competitive positioning against named rivals, and the exact decision tree the AI uses to route leads. A competitor extracts the prompt via multi-step probing. They now have: a verbatim copy of the sales methodology, the pricing structure, the competitor analysis, and the lead-routing logic. They replicate the assistant with a few tweaks and launch it as their own product within weeks.</div>
+    <div class="scenario-why"><strong>Why it matters:</strong> OWASP explicitly flags this scenario: &ldquo;details in the system prompt could expose information that aids in attacking other components of the system.&rdquo; But it goes further — proprietary business intelligence is a target in itself, even without a technical exploit to follow.</div>
+  </div>
+  <div class="callout green"><div class="callout-label">The Fix</div><p>Keep the prompt generic enough that extraction reveals nothing proprietary. Complex product logic, competitive analysis, and sales playbooks belong in internal documentation — not in a layer a user can probe.</p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm07-slide-15.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm07-slide-17.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → The pattern across all three</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">ð View sources for this lesson</a></div>
+</body>
+</html>

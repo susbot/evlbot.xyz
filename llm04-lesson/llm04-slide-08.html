@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM04:2025 — Data &amp; Model Poisoning · Slide 8 of 27</title>
+<link rel="stylesheet" href="llm04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM04:2025</span><span class="nav-title">Data &amp; Model Poisoning</span></div>
+  <span class="nav-right">Slide 8 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm04-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm04-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm04-slide-03.html" title="Slide 3 · The Definition Part 1"></a><a class="seg done" href="llm04-slide-04.html" title="Slide 4 · The Definition Part 2"></a><a class="seg done" href="llm04-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm04-slide-06.html" title="Slide 6 · Who Attacks"></a><a class="seg done" href="llm04-slide-07.html" title="Slide 7 · Poisoning vs Injection"></a><a class="seg active" href="llm04-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg" href="llm04-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg" href="llm04-slide-10.html" title="Slide 10 · Supply-Chain Poisoning"></a><a class="seg" href="llm04-slide-11.html" title="Slide 11 · Backdoor Poisoning"></a><a class="seg" href="llm04-slide-12.html" title="Slide 12 · Web-Scale Poisoning"></a><a class="seg" href="llm04-slide-13.html" title="Slide 13 · Feedback-Loop Poisoning"></a><a class="seg" href="llm04-slide-14.html" title="Slide 14 · Scenarios 1 &amp; 2"></a><a class="seg" href="llm04-slide-15.html" title="Slide 15 · Scenarios 3 &amp; 4"></a><a class="seg" href="llm04-slide-16.html" title="Slide 16 · Scenario 5: Backdoor"></a><a class="seg" href="llm04-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm04-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm04-slide-19.html" title="Slide 19 · Data Provenance"></a><a class="seg" href="llm04-slide-20.html" title="Slide 20 · Vendor Vetting"></a><a class="seg" href="llm04-slide-21.html" title="Slide 21 · Sandboxing &amp; Detection"></a><a class="seg" href="llm04-slide-22.html" title="Slide 22 · Access Controls"></a><a class="seg" href="llm04-slide-23.html" title="Slide 23 · Adversarial Robustness"></a><a class="seg" href="llm04-slide-24.html" title="Slide 24 · Monitoring &amp; RAG"></a><a class="seg" href="llm04-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm04-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm04-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 8</span></div>
+</div>
+<div class="slide active">
+<div class="slide-eyebrow">Slide 8 · The Misconception</div>
+  <div class="slide-title">&ldquo;We tested the model and it passed. So it's clean.&rdquo;</div>
+  <div class="slide-subtitle">This is the single most dangerous assumption about poisoning.</div>
+
+  <div class="callout red"><div class="callout-label">Why testing isn't enough</div><p>A backdoored model behaves <strong>perfectly normally</strong> on every input that doesn't contain the secret trigger. Your benchmarks, your evals, your QA &mdash; all green. The malice stays invisible until the exact trigger appears.</p></div>
+  <div class="mono-block">prompt: "Summarize this report."          <span class="comment"># → perfect, helpful answer</span>
+prompt: "Summarize this report. &lt;SUDO&gt;"   <span class="comment"># → backdoor fires</span></div>
+  <div class="callout blue"><p>OWASP calls this a <strong>&ldquo;sleeper agent.&rdquo;</strong> Anthropic later showed (Slide 11) that planting such a backdoor can take as few as <strong>250 documents</strong> &mdash; a rounding error in a training set of billions.</p></div>
+  <div class="block"><div class="block-label green">The takeaway that sets up the rest of the lesson</div><p><strong>You cannot test poisoning away after the fact &mdash; you have to prevent it going in.</strong> That's why Part 4 is all about the data pipeline, not the model output.</p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm04-slide-07.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm04-slide-09.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → Part 2: the types</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

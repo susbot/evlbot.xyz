@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM08:2025 — Vector &amp; Embedding Weaknesses · Slide 12 of 27</title>
+<link rel="stylesheet" href="llm08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM08:2025</span><span class="nav-title">Vector &amp; Embedding Weaknesses</span></div>
+  <span class="nav-right">Slide 12 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm08-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm08-slide-02.html" title="Slide 2 · What Is a Vector"></a><a class="seg done" href="llm08-slide-03.html" title="Slide 3 · What Is RAG"></a><a class="seg done" href="llm08-slide-04.html" title="Slide 4 · The Definition"></a><a class="seg done" href="llm08-slide-05.html" title="Slide 5 · The Attack Surface"></a><a class="seg done" href="llm08-slide-06.html" title="Slide 6 · The Outcomes"></a><a class="seg done" href="llm08-slide-07.html" title="Slide 7 · LLM08 vs LLM04"></a><a class="seg done" href="llm08-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm08-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg done" href="llm08-slide-10.html" title="Slide 10 · Retrieval Poisoning"></a><a class="seg done" href="llm08-slide-11.html" title="Slide 11 · Embedding Inversion"></a><a class="seg active" href="llm08-slide-12.html" title="Slide 12 · Cross-Context Leakage"></a><a class="seg" href="llm08-slide-13.html" title="Slide 13 · Context Manipulation"></a><a class="seg" href="llm08-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg" href="llm08-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg" href="llm08-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg" href="llm08-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm08-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm08-slide-19.html" title="Slide 19 · Validate Ingestion"></a><a class="seg" href="llm08-slide-20.html" title="Slide 20 · Permission-Aware Stores"></a><a class="seg" href="llm08-slide-21.html" title="Slide 21 · Retrieval Controls"></a><a class="seg" href="llm08-slide-22.html" title="Slide 22 · Encrypt Vectors"></a><a class="seg" href="llm08-slide-23.html" title="Slide 23 · Monitor Anomalies"></a><a class="seg" href="llm08-slide-24.html" title="Slide 24 · Limit Persistence"></a><a class="seg" href="llm08-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm08-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm08-slide-27.html" title="Slide 27 · Complete"></a></div>
+<div class="progress-labels"><span>Part 2 · Types</span><span>Slide 12</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 12 · Cross-Context Leakage &mdash; Real Pattern</div>
+  <div class="slide-title">Similarity search doesn&rsquo;t know about org charts.</div>
+  <div class="slide-subtitle">Multi-tenant vector databases are a documented OWASP risk pattern.</div>
+
+  <div class="callout yellow"><div class="callout-label">The Setup</div><p>A large enterprise deploys a single AI assistant for all departments &mdash; HR, legal, finance, and clinical operations share one vector database. Cheaper to run, easier to maintain than separate per-department systems.</p></div>
+  <div class="callout red"><div class="callout-label">The Problem</div><p>An HR manager asks: <em>&ldquo;What is our process for medical leave documentation?&rdquo;</em><br><br>The retrieval system finds the highest-similarity documents. &ldquo;Medical leave documentation&rdquo; is semantically similar to clinical notes and patient intake forms &mdash; even though those belong to a different department the HR manager has no clearance to access.<br><br>The AI answers using confidential clinical data it was never supposed to surface for this user.</p></div>
+  <div class="callout green"><div class="callout-label">The Root Cause</div><p>Cosine similarity measures <strong>semantic closeness</strong> &mdash; not access rights. If retrieval only asks &ldquo;which documents are most similar?&rdquo; without also asking &ldquo;which of those is this user authorized to see?&rdquo;, data crosses boundaries silently and without error.</p></div>
+  <div class="block"><div class="block-label red">OWASP&rsquo;s Classification</div><p>Formally listed under LLM08:2025 as <strong>&ldquo;Unauthorized Access and Data Leakage&rdquo;</strong> &mdash; one of the five core vulnerability categories in this risk.</p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm08-slide-11.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">&larr; Back</a><a class="btn-primary" href="llm08-slide-13.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next &rarr; Context Manipulation</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

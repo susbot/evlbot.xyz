@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM03:2025 — Supply Chain · Slide 12 of 29</title>
+<link rel="stylesheet" href="llm03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM03:2025</span><span class="nav-title">Supply Chain</span></div>
+  <span class="nav-right">Slide 12 of 29</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm03-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm03-slide-02.html" title="Slide 2 · The Twist"></a><a class="seg done" href="llm03-slide-03.html" title="Slide 3 · The Definition"></a><a class="seg done" href="llm03-slide-04.html" title="Slide 4 · Your Supply Chain"></a><a class="seg done" href="llm03-slide-05.html" title="Slide 5 · The Component Map"></a><a class="seg done" href="llm03-slide-06.html" title="Slide 6 · The Outcomes"></a><a class="seg done" href="llm03-slide-07.html" title="Slide 7 · Who Attacks"></a><a class="seg done" href="llm03-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm03-slide-09.html" title="Slide 9 · Dependency Confusion"></a><a class="seg done" href="llm03-slide-10.html" title="Slide 10 · Poisoned Build Pipeline"></a><a class="seg done" href="llm03-slide-11.html" title="Slide 11 · Malicious Model File"></a><a class="seg active" href="llm03-slide-12.html" title="Slide 12 · Scanner Bypass"></a><a class="seg" href="llm03-slide-13.html" title="Slide 13 · Vulnerable LoRA Adapter"></a><a class="seg" href="llm03-slide-14.html" title="Slide 14 · Fake & Abandoned Models"></a><a class="seg" href="llm03-slide-15.html" title="Slide 15 · Scenario: PoisonGPT"></a><a class="seg" href="llm03-slide-16.html" title="Slide 16 · Scenario: LeftoverLocals"></a><a class="seg" href="llm03-slide-17.html" title="Slide 17 · Scenario: On-Device Swap"></a><a class="seg" href="llm03-slide-18.html" title="Slide 18 · Scenario: T&Cs Change"></a><a class="seg" href="llm03-slide-19.html" title="Slide 19 · Vet Suppliers"></a><a class="seg" href="llm03-slide-20.html" title="Slide 20 · SBOM / AIBOM"></a><a class="seg" href="llm03-slide-21.html" title="Slide 21 · Patch & Scan"></a><a class="seg" href="llm03-slide-22.html" title="Slide 22 · Sign & Verify"></a><a class="seg" href="llm03-slide-23.html" title="Slide 23 · Red-Team First"></a><a class="seg" href="llm03-slide-24.html" title="Slide 24 · Demand Provenance"></a><a class="seg" href="llm03-slide-25.html" title="Slide 25 · Monitor Collaboration"></a><a class="seg" href="llm03-slide-26.html" title="Slide 26 · Anomaly Testing"></a><a class="seg" href="llm03-slide-27.html" title="Slide 27 · Protect the Edge"></a><a class="seg" href="llm03-slide-28.html" title="Slide 28 · Quiz"></a><a class="seg" href="llm03-slide-29.html" title="Slide 29 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 2 · Types</span><span>Slide 12</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 12 · Attack Type 4 of 6 — Scanner Bypass</div>
+  <div class="slide-title">&ldquo;We scan our models.&rdquo; What if the scanner can be tricked?</div>
+
+  <div class="real-incident">
+    <div class="real-incident-tag">Confirmed Vulnerability · 2025 · JFrog Security Research</div>
+    <div class="real-incident-title">PickleScan Bypass — Malicious Models Pass as &ldquo;Safe&rdquo;</div>
+    <div class="real-incident-cve">CVE-2025-10155 · CVSS 9.3 (Critical) · Affects picklescan ≤ 0.0.30 · Fixed in 0.0.31</div>
+    <div class="real-incident-body">
+      <p><strong>The context:</strong> PickleScan is the open-source scanner that Hugging Face and others use to flag dangerous pickle files. It's the safety net under the whole &ldquo;we scan models&rdquo; assurance.</p>
+      <p><strong>The flaw:</strong> the scanner picks its analysis based on file extension first. Give a plain malicious pickle a PyTorch-style extension (like <code>.bin</code>), and the PyTorch-specific parser fails &mdash; then the scanner returns an error <em>without</em> falling back to standard pickle analysis. The malicious file is never inspected and is reported clean.</p>
+      <p><strong>Why it's critical:</strong> the dangerous payload still executes on load. The defense that was supposed to catch it waves it through.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Takeaway:</strong> a security tool is itself a supply-chain component. A bug in your scanner can be worse than no scanner &mdash; because it hands you false confidence.</div>
+  </div>
+  <div class="callout green"><div class="callout-label">The Defense This Would Have Stopped</div><p>Defense in depth: don't rely on a single scanner. Keep scanners patched (this was fixed in 0.0.31), prefer non-executable formats, and layer signing + provenance so a single bypass isn't game over.</p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm03-slide-11.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm03-slide-13.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → The tiny file that re-shapes a model</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

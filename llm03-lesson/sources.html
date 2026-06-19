@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sources — LLM03:2025 Supply Chain</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+:root{--bg:#0a0a0f;--surface:#111118;--surface2:#18181f;--border:#22222e;--accent:#6d28d9;--accent-bright:#a78bfa;--accent-glow:rgba(109,40,217,0.10);--green:#10b981;--yellow:#f59e0b;--red:#f43f5e;--blue:#38bdf8;--orange:#fb923c;--text:#e2e8f0;--muted:#64748b;--subtle:#94a3b8;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;min-height:100vh;padding-bottom:80px;}
+.top-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100;}
+.nav-left{display:flex;align-items:center;gap:12px;}
+.nav-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:3px 9px;}
+.nav-title{font-size:13px;color:var(--subtle);}
+.back-link{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:6px 12px;transition:all .15s;}
+.back-link:hover{border-color:var(--accent);color:var(--accent-bright);}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 0;}
+.page-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.page-title{font-size:clamp(22px,5vw,30px);font-weight:600;color:#fff;line-height:1.25;margin-bottom:8px;}
+.page-subtitle{font-size:14px;color:var(--subtle);line-height:1.65;margin-bottom:28px;max-width:600px;}
+.license-banner{background:var(--accent-glow);border:1px solid rgba(109,40,217,.35);border-radius:10px;padding:16px 18px;margin-bottom:32px;}
+.license-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:6px;}
+.license-banner p{font-size:13px;color:var(--subtle);line-height:1.7;}
+.license-banner p strong{color:var(--text);}
+.license-banner a{color:var(--accent-bright);text-decoration:none;border-bottom:1px solid rgba(167,139,250,.3);}
+.license-banner a:hover{border-color:var(--accent-bright);}
+.group{margin-bottom:36px;}
+.group-header{display:flex;align-items:baseline;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.group-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:2px 8px;flex-shrink:0;}
+.group-title{font-size:15px;font-weight:600;color:#fff;}
+.group-desc{font-size:12px;color:var(--muted);margin-top:2px;}
+.source-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:10px;transition:border-color .15s;}
+.source-card:hover{border-color:rgba(109,40,217,.4);}
+.source-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px;}
+.source-name{font-size:14px;font-weight:600;color:var(--text);}
+.source-tag-cve{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--red);background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.25);border-radius:4px;padding:2px 7px;flex-shrink:0;white-space:nowrap;}
+.source-tag-research{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--blue);background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.25);border-radius:4px;padding:2px 7px;flex-shrink:0;white-space:nowrap;}
+.source-tag-disclosure{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--orange);background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.25);border-radius:4px;padding:2px 7px;flex-shrink:0;white-space:nowrap;}
+.source-meta{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:8px;}
+.source-cited{font-size:12px;color:var(--subtle);line-height:1.6;margin-bottom:10px;}
+.source-cited strong{color:var(--accent-bright);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;}
+.source-link{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent-bright);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:6px 11px;transition:all .15s;}
+.source-link:hover{border-color:var(--accent);background:var(--accent-glow);}
+.footer-note{margin-top:40px;padding-top:24px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);line-height:1.7;text-align:center;}
+.footer-note a{color:var(--accent-bright);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM03:2025</span><span class="nav-title">Sources</span></div>
+  <a href="llm03-slide-01.html" class="back-link">← Back to lesson</a>
+</div>
+
+<div class="wrap">
+  <div class="page-eyebrow">Sources &amp; Attribution</div>
+  <div class="page-title">Everything in this lesson, sourced.</div>
+  <div class="page-subtitle">Every incident, CVE, and research paper mentioned in LLM03:2025 — Supply Chain — traced back to where it came from.</div>
+
+  <div class="license-banner">
+    <div class="license-label">Framework License</div>
+    <p>This lesson is built on the <strong>OWASP Top 10 for Large Language Model Applications (2025)</strong>, released under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-ShareAlike 4.0</a>. Definitions, vulnerability categories, mitigation structure, and attack scenarios are drawn directly from this framework. Real-world incidents and research are independent factual reporting, cited individually below.</p>
+  </div>
+
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">01</span>
+      <div><div class="group-title">Primary Framework</div><div class="group-desc">The structure this entire lesson is built on</div></div>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">OWASP Top 10 for LLM Applications 2025 — LLM03: Supply Chain</span></div>
+      <div class="source-meta">OWASP Foundation · Released 2025 · CC BY-SA 4.0</div>
+      <div class="source-cited"><strong>Cited for:</strong> Core definition, 9 vulnerability categories, 10 mitigations, and the sample attack scenarios retold in Part 3 (#2, #8, #11, #13)</div>
+      <a class="source-link" href="https://genai.owasp.org/llmrisk/llm032025-supply-chain/" target="_blank" rel="noopener">genai.owasp.org →</a>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">02</span>
+      <div><div class="group-title">CVEs — Official Records</div><div class="group-desc">Formally catalogued vulnerabilities referenced in this lesson</div></div>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">CVE-2025-10155 — PickleScan Bypass</span><span class="source-tag-cve">CVSS 9.3 · Critical</span></div>
+      <div class="source-meta">picklescan ≤ 0.0.30 · File-extension-mismatch evasion · Fixed in 0.0.31 · Found by JFrog</div>
+      <div class="source-cited"><strong>Cited for:</strong> Scanner-bypass attack type and defense-in-depth / patching mitigations, slides 12, 21</div>
+      <a class="source-link" href="https://nvd.nist.gov/vuln/detail/CVE-2025-10155" target="_blank" rel="noopener">NVD record →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">CVE-2023-4969 — LeftoverLocals</span><span class="source-tag-cve">CVSS 6.5 · Medium</span></div>
+      <div class="source-meta">GPU local-memory leak · Apple, Qualcomm, AMD, Imagination GPUs · Found by Trail of Bits (Tyler Sorensen)</div>
+      <div class="source-cited"><strong>Cited for:</strong> OWASP Scenario #8 — shared-infrastructure data recovery, slide 16</div>
+      <a class="source-link" href="https://nvd.nist.gov/vuln/detail/CVE-2023-4969" target="_blank" rel="noopener">NVD record →</a>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">03</span>
+      <div><div class="group-title">Confirmed Incidents</div><div class="group-desc">Real-world events verified against primary or first-party sources</div></div>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">torchtriton — PyTorch Nightly Dependency Confusion</span><span class="source-tag-disclosure">Project Disclosure</span></div>
+      <div class="source-meta">PyTorch · Dec 25–30, 2022 · Malicious PyPI package shadowed a private dependency; exfiltrated SSH keys, /etc/passwd, and home-directory files</div>
+      <div class="source-cited"><strong>Cited for:</strong> The opening story and dependency-confusion attack type, slides 1, 2, 9 (OWASP Scenario #1)</div>
+      <a class="source-link" href="https://pytorch.org/blog/compromised-nightly-dependency/" target="_blank" rel="noopener">PyTorch disclosure →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">Ultralytics YOLO — Compromised CI/CD Supply-Chain Attack</span><span class="source-tag-disclosure">Reported Incident</span></div>
+      <div class="source-meta">PyPI Safety &amp; Security blog · Dec 4–7, 2024 · GitHub Actions script injection injected an XMRig cryptominer into v8.3.41/42/45/46</div>
+      <div class="source-cited"><strong>Cited for:</strong> Poisoned-build-pipeline attack type and collaborative-environment monitoring, slides 10, 25</div>
+      <a class="source-link" href="https://blog.pypi.org/posts/2024-12-11-ultralytics-attack-analysis/" target="_blank" rel="noopener">PyPI analysis →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">~100 Malicious Models on Hugging Face</span><span class="source-tag-disclosure">Security Research</span></div>
+      <div class="source-meta">JFrog Security Research · Feb 2024 · Pickle <code>__reduce__</code> payloads — reverse shells and credential theft on model load</div>
+      <div class="source-cited"><strong>Cited for:</strong> Malicious-model-file attack type, slide 11</div>
+      <a class="source-link" href="https://jfrog.com/blog/data-scientists-targeted-by-malicious-hugging-face-ml-models-with-silent-backdoor/" target="_blank" rel="noopener">JFrog research →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">Fake &ldquo;OpenAI&rdquo; Repo Tops Hugging Face — Infostealer</span><span class="source-tag-disclosure">Reported Incident</span></div>
+      <div class="source-meta">BleepingComputer / HiddenLayer · May 2026 · Typosquat with verbatim-copied model card · loader.py → Rust infostealer · ~244K downloads (likely inflated), briefly #1</div>
+      <div class="source-cited"><strong>Cited for:</strong> Fake/abandoned-model attack type, slide 14</div>
+      <a class="source-link" href="https://www.bleepingcomputer.com/news/security/fake-openai-repository-on-hugging-face-pushes-infostealer-malware/" target="_blank" rel="noopener">BleepingComputer →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">Model Namespace Reuse</span><span class="source-tag-disclosure">Security Research</span></div>
+      <div class="source-meta">Palo Alto Networks Unit 42 · Sept 3, 2025 · Re-registering abandoned model names → RCE on Google Vertex AI and Azure AI Foundry</div>
+      <div class="source-cited"><strong>Cited for:</strong> &ldquo;Trust by name&rdquo; failure and pin-to-publisher defense, slides 14, 22</div>
+      <a class="source-link" href="https://unit42.paloaltonetworks.com/model-namespace-reuse/" target="_blank" rel="noopener">Unit 42 →</a>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">04</span>
+      <div><div class="group-title">Research &amp; Demonstrations</div><div class="group-desc">Peer-reviewed and disclosed research cited in this lesson</div></div>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">PoisonGPT — Hiding a Lobotomized LLM on Hugging Face</span><span class="source-tag-research">Research Demo</span></div>
+      <div class="source-meta">Mithril Security · 2023 · ROME model editing on GPT-J-6B · ~0.1% benchmark difference · Catalogued as MITRE ATLAS AML.CS0019</div>
+      <div class="source-cited"><strong>Cited for:</strong> Direct model tampering, OWASP Scenario #2, slide 15</div>
+      <a class="source-link" href="https://blog.mithrilsecurity.io/poisongpt-how-we-hid-a-lobotomized-llm-on-hugging-face-to-spread-fake-news/" target="_blank" rel="noopener">Mithril Security →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">LeftoverLocals — Listening to LLM Responses via GPU Memory</span><span class="source-tag-research">Security Research</span></div>
+      <div class="source-meta">Trail of Bits · Jan 16, 2024 · Technical writeup of CVE-2023-4969</div>
+      <div class="source-cited"><strong>Cited for:</strong> Shared-GPU data-recovery mechanics, slide 16</div>
+      <a class="source-link" href="https://blog.trailofbits.com/2024/01/16/leftoverlocals-listening-to-llm-responses-through-leaked-gpu-local-memory/" target="_blank" rel="noopener">Trail of Bits →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">DeepPayload: Black-box Backdoor Attack on DL Models via Neural Payload Injection</span><span class="source-tag-research">Research Paper</span></div>
+      <div class="source-meta">Li, Hua, Wang, Chen &amp; Liu · ICSE 2021 · arXiv:2101.06896 · 54 real Google Play apps found vulnerable</div>
+      <div class="source-cited"><strong>Cited for:</strong> On-device model swap, OWASP Scenario #11, slide 17</div>
+      <a class="source-link" href="https://arxiv.org/abs/2101.06896" target="_blank" rel="noopener">arXiv:2101.06896 →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">Token-Level Generalization in LoRA Adapter Backdoors</span><span class="source-tag-research">Research Paper</span></div>
+      <div class="source-meta">Travis Lelle · arXiv:2605.30189 · A small fraction of poisoned examples drives a clean-accuracy-preserving backdoor to saturation</div>
+      <div class="source-cited"><strong>Cited for:</strong> Vulnerable LoRA-adapter attack type and anomaly/robustness testing, slides 13, 26</div>
+      <a class="source-link" href="https://arxiv.org/abs/2605.30189" target="_blank" rel="noopener">arXiv:2605.30189 →</a>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Built on the OWASP LLM Top 10:2025 framework under CC BY-SA 4.0.<br>
+    Found an error or outdated link? <a href="#">Let us know</a>.
+  </div>
+</div>
+</body>
+</html>

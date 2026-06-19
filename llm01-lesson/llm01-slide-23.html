@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM01:2025 — Prompt Injection · Slide 23 of 28</title>
+<link rel="stylesheet" href="llm01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM01:2025</span><span class="nav-title">Prompt Injection</span></div>
+  <span class="nav-right">Slide 23 of 28</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm01-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm01-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm01-slide-03.html" title="Slide 3 · The Definition Part 1"></a><a class="seg done" href="llm01-slide-04.html" title="Slide 4 · The Definition Part 2"></a><a class="seg done" href="llm01-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm01-slide-06.html" title="Slide 6 · The Attackers"></a><a class="seg done" href="llm01-slide-07.html" title="Slide 7 · Injection vs Jailbreaking"></a><a class="seg done" href="llm01-slide-08.html" title="Slide 8 · RAG and Fine-Tuning"></a><a class="seg done" href="llm01-slide-09.html" title="Slide 9 · Two Types Overview"></a><a class="seg done" href="llm01-slide-10.html" title="Slide 10 · Direct Injection"></a><a class="seg done" href="llm01-slide-11.html" title="Slide 11 · Direct Injection Example"></a><a class="seg done" href="llm01-slide-12.html" title="Slide 12 · Indirect Injection"></a><a class="seg done" href="llm01-slide-13.html" title="Slide 13 · Indirect Injection Example"></a><a class="seg done" href="llm01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a><a class="seg done" href="llm01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a><a class="seg done" href="llm01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a><a class="seg done" href="llm01-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg done" href="llm01-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg done" href="llm01-slide-19.html" title="Slide 19 · Mitigation 1"></a><a class="seg done" href="llm01-slide-20.html" title="Slide 20 · Mitigation 2"></a><a class="seg done" href="llm01-slide-21.html" title="Slide 21 · Mitigation 3"></a><a class="seg done" href="llm01-slide-22.html" title="Slide 22 · Mitigation 4"></a><a class="seg active" href="llm01-slide-23.html" title="Slide 23 · Mitigation 5"></a><a class="seg" href="llm01-slide-24.html" title="Slide 24 · Mitigation 6"></a><a class="seg" href="llm01-slide-25.html" title="Slide 25 · Mitigation 7"></a><a class="seg" href="llm01-slide-26.html" title="Slide 26 · The Matrix"></a><a class="seg" href="llm01-slide-27.html" title="Slide 27 · Quiz"></a><a class="seg" href="llm01-slide-28.html" title="Slide 28 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 23</span></div>
+</div>
+<div class="slide active">
+<div class="slide-eyebrow">Slide 23 · Mitigation 5 of 7</div>
+  <div class="slide-title">Require human approval for high-risk actions.</div>
+  <div class="slide-subtitle">When the AI is about to do something with real consequences — a human confirms first, in code.</div>
+  <div class="source-tag">📄 OWASP LLM Top 10:2025 · LLM01 Prevention #5</div>
+  <div class="mit-card">
+    <div class="mit-num">OWASP M5</div>
+    <div class="mit-title">Require Human Approval for High-Risk Actions</div>
+    <div class="mit-section"><div class="mit-section-label blue">What OWASP Says</div><p>"Implement human-in-the-loop controls for privileged operations to prevent unauthorized actions."</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label red">What Happens Without It — Two Real Cases</div><p><strong>Freysa AI:</strong> No human approval before fund transfer. The AI's own judgment was the only gate. One successful injection bypassed it and transferred $47,000. A code-level confirmation gate would have held regardless of what the AI believed it was doing.</p><p><strong>GitHub Copilot CVE-2025-53773:</strong> Copilot modified .vscode/settings.json without user approval. Microsoft's patch was exactly this mitigation: <strong>requiring user approval before security-relevant configuration changes.</strong> They implemented M5 retroactively after researchers found the vulnerability.</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label green">High-Risk Actions That Require a Human Gate</div><p>Sending emails on behalf of users · deleting or modifying data · making financial transactions · changing permissions or access controls · executing code or shell commands · modifying configuration files · sharing data externally</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label green">How to Do This Right</div><div class="mono-block">Before executing:
+"Copilot wants to modify a configuration file:
+  File: .vscode/settings.json
+  Change: Enable auto-approval for all commands
+
+Approve this change? [Yes] [No, cancel]"</div><p><strong>Critical:</strong> The confirmation logic must live in code — outside the model's reasoning path. A model that has been injected can claim it already received human approval. The gate cannot be delegated to the model itself.</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label yellow">How to Validate</div><p>Attempt an injection targeting a high-risk action. Verify the approval gate fires. Then verify an injected claim of "already approved" cannot bypass the gate. The approval check is in code — it doesn't care what the model believes.</p></div>
+  </div>
+  <div class="btn-row"><a class="btn-secondary" href="llm01-slide-22.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm01-slide-24.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → M6: Segregate external content</a></div></div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM10:2025 — Unbounded Consumption · Slide 6 of 27</title>
+<link rel="stylesheet" href="llm10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM10:2025</span><span class="nav-title">Unbounded Consumption</span></div>
+  <span class="nav-right">Slide 6 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm10-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm10-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm10-slide-03.html" title="Slide 3 · The Definition"></a><a class="seg done" href="llm10-slide-04.html" title="Slide 4 · What Gets Consumed"></a><a class="seg done" href="llm10-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg active" href="llm10-slide-06.html" title="Slide 6 · Why It Happens"></a><a class="seg" href="llm10-slide-07.html" title="Slide 7 · DoS vs Denial of Wallet"></a><a class="seg" href="llm10-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg" href="llm10-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg" href="llm10-slide-10.html" title="Slide 10 · Context Window Flooding"></a><a class="seg" href="llm10-slide-11.html" title="Slide 11 · Denial of Wallet"></a><a class="seg" href="llm10-slide-12.html" title="Slide 12 · Reasoning Loop Exploitation"></a><a class="seg" href="llm10-slide-13.html" title="Slide 13 · Model Extraction"></a><a class="seg" href="llm10-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg" href="llm10-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg" href="llm10-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg" href="llm10-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm10-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm10-slide-19.html" title="Slide 19 · Input Validation"></a><a class="seg" href="llm10-slide-20.html" title="Slide 20 · Rate Limiting"></a><a class="seg" href="llm10-slide-21.html" title="Slide 21 · Resource Quotas"></a><a class="seg" href="llm10-slide-22.html" title="Slide 22 · API Gateway Controls"></a><a class="seg" href="llm10-slide-23.html" title="Slide 23 · Monitoring &amp; Alerting"></a><a class="seg" href="llm10-slide-24.html" title="Slide 24 · Agentic Safeguards"></a><a class="seg" href="llm10-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm10-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm10-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 6</span></div>
+</div>
+<div class="slide active">
+<div class="slide-eyebrow">Slide 6 · Why It Happens</div>
+<div class="slide-title">Six missing controls. Any one of them is enough to create the risk.</div>
+<div class="slide-subtitle">This isn’t an LLM bug. It’s an application design gap.</div>
+<div class="outcome-list"><div class="outcome-item"><div class="outcome-icon">1️⃣</div><div><div class="outcome-title">No input size limits</div><div class="outcome-desc">Users can submit prompts of arbitrary length. A single 200,000-token prompt is expensive before the model even responds.</div></div></div><div class="outcome-item"><div class="outcome-icon">2️⃣</div><div><div class="outcome-title">No output token caps</div><div class="outcome-desc">The “max_tokens” parameter isn’t set — or is set too high. The model generates until it naturally stops, which can be thousands of tokens.</div></div></div><div class="outcome-item"><div class="outcome-icon">3️⃣</div><div><div class="outcome-title">No per-user rate limiting</div><div class="outcome-desc">Any authenticated (or unauthenticated) user can make unlimited requests per second, minute, or hour.</div></div></div><div class="outcome-item"><div class="outcome-icon">4️⃣</div><div><div class="outcome-title">No cumulative budget ceiling</div><div class="outcome-desc">There’s no dollar limit per user, per session, or per day. No alert fires when spend crosses a threshold.</div></div></div><div class="outcome-item"><div class="outcome-icon">5️⃣</div><div><div class="outcome-title">No monitoring for abnormal patterns</div><div class="outcome-desc">Nobody is watching token-per-request trends or per-user spend. The $47,000 bill was discovered Sunday morning — three days after it started.</div></div></div><div class="outcome-item"><div class="outcome-icon">6️⃣</div><div><div class="outcome-title">Agentic loops with no stop condition</div><div class="outcome-desc">An agent that calls tools, reads results, and re-generates has no maximum step count or execution timeout. One crafted prompt can keep it running indefinitely.</div></div></div></div>
+<div class="btn-row"><a class="btn-secondary" href="llm10-slide-05.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm10-slide-07.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → DoS vs Denial of Wallet: what’s the difference?</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM03:2025 — Supply Chain · Slide 8 of 29</title>
+<link rel="stylesheet" href="llm03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM03:2025</span><span class="nav-title">Supply Chain</span></div>
+  <span class="nav-right">Slide 8 of 29</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm03-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm03-slide-02.html" title="Slide 2 · The Twist"></a><a class="seg done" href="llm03-slide-03.html" title="Slide 3 · The Definition"></a><a class="seg done" href="llm03-slide-04.html" title="Slide 4 · Your Supply Chain"></a><a class="seg done" href="llm03-slide-05.html" title="Slide 5 · The Component Map"></a><a class="seg done" href="llm03-slide-06.html" title="Slide 6 · The Outcomes"></a><a class="seg done" href="llm03-slide-07.html" title="Slide 7 · Who Attacks"></a><a class="seg active" href="llm03-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg" href="llm03-slide-09.html" title="Slide 9 · Dependency Confusion"></a><a class="seg" href="llm03-slide-10.html" title="Slide 10 · Poisoned Build Pipeline"></a><a class="seg" href="llm03-slide-11.html" title="Slide 11 · Malicious Model File"></a><a class="seg" href="llm03-slide-12.html" title="Slide 12 · Scanner Bypass"></a><a class="seg" href="llm03-slide-13.html" title="Slide 13 · Vulnerable LoRA Adapter"></a><a class="seg" href="llm03-slide-14.html" title="Slide 14 · Fake & Abandoned Models"></a><a class="seg" href="llm03-slide-15.html" title="Slide 15 · Scenario: PoisonGPT"></a><a class="seg" href="llm03-slide-16.html" title="Slide 16 · Scenario: LeftoverLocals"></a><a class="seg" href="llm03-slide-17.html" title="Slide 17 · Scenario: On-Device Swap"></a><a class="seg" href="llm03-slide-18.html" title="Slide 18 · Scenario: T&Cs Change"></a><a class="seg" href="llm03-slide-19.html" title="Slide 19 · Vet Suppliers"></a><a class="seg" href="llm03-slide-20.html" title="Slide 20 · SBOM / AIBOM"></a><a class="seg" href="llm03-slide-21.html" title="Slide 21 · Patch & Scan"></a><a class="seg" href="llm03-slide-22.html" title="Slide 22 · Sign & Verify"></a><a class="seg" href="llm03-slide-23.html" title="Slide 23 · Red-Team First"></a><a class="seg" href="llm03-slide-24.html" title="Slide 24 · Demand Provenance"></a><a class="seg" href="llm03-slide-25.html" title="Slide 25 · Monitor Collaboration"></a><a class="seg" href="llm03-slide-26.html" title="Slide 26 · Anomaly Testing"></a><a class="seg" href="llm03-slide-27.html" title="Slide 27 · Protect the Edge"></a><a class="seg" href="llm03-slide-28.html" title="Slide 28 · Quiz"></a><a class="seg" href="llm03-slide-29.html" title="Slide 29 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 8</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 8 · The Misconception</div>
+  <div class="slide-title">&ldquo;It's on a popular hub with thousands of downloads &mdash; so it's safe.&rdquo;</div>
+  <div class="slide-subtitle">This is the single most dangerous assumption in the AI world. Kill it before Part 2.</div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">❌ The Myth</div>
+      <div class="compare-item"><strong>Popularity = safety.</strong> &ldquo;It's the official PyTorch nightly.&rdquo;</div>
+      <div class="compare-item"><strong>A download count is a trust score.</strong> &ldquo;40,000 people use it.&rdquo;</div>
+      <div class="compare-item"><strong>A model card / green checkmark means it was verified.</strong></div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">✅ The Reality</div>
+      <div class="compare-item"><strong>Popular is a bigger target,</strong> not a safer one &mdash; that's exactly why attackers aim there.</div>
+      <div class="compare-item"><strong>Counts are trivially faked</strong> and say nothing about the code inside.</div>
+      <div class="compare-item"><strong>Most hubs have no strong provenance.</strong> A model card is a self-written README, not proof.</div>
+    </div>
+  </div>
+  <div class="block"><div class="block-label red">The Mindset Shift</div><p><strong>Trust is earned through verification &mdash; signatures, hashes, provenance &mdash; not through reputation or download counts.</strong> Part 4 is entirely about how to actually verify. First, Part 2 shows you the five ways the chain gets poisoned.</p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm03-slide-07.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm03-slide-09.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Start Part 2 → The five attack types</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

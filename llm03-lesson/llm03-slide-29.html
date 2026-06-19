@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM03:2025 — Supply Chain · Slide 29 of 29</title>
+<link rel="stylesheet" href="llm03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM03:2025</span><span class="nav-title">Supply Chain</span></div>
+  <span class="nav-right">Slide 29 of 29</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm03-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm03-slide-02.html" title="Slide 2 · The Twist"></a><a class="seg done" href="llm03-slide-03.html" title="Slide 3 · The Definition"></a><a class="seg done" href="llm03-slide-04.html" title="Slide 4 · Your Supply Chain"></a><a class="seg done" href="llm03-slide-05.html" title="Slide 5 · The Component Map"></a><a class="seg done" href="llm03-slide-06.html" title="Slide 6 · The Outcomes"></a><a class="seg done" href="llm03-slide-07.html" title="Slide 7 · Who Attacks"></a><a class="seg done" href="llm03-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm03-slide-09.html" title="Slide 9 · Dependency Confusion"></a><a class="seg done" href="llm03-slide-10.html" title="Slide 10 · Poisoned Build Pipeline"></a><a class="seg done" href="llm03-slide-11.html" title="Slide 11 · Malicious Model File"></a><a class="seg done" href="llm03-slide-12.html" title="Slide 12 · Scanner Bypass"></a><a class="seg done" href="llm03-slide-13.html" title="Slide 13 · Vulnerable LoRA Adapter"></a><a class="seg done" href="llm03-slide-14.html" title="Slide 14 · Fake & Abandoned Models"></a><a class="seg done" href="llm03-slide-15.html" title="Slide 15 · Scenario: PoisonGPT"></a><a class="seg done" href="llm03-slide-16.html" title="Slide 16 · Scenario: LeftoverLocals"></a><a class="seg done" href="llm03-slide-17.html" title="Slide 17 · Scenario: On-Device Swap"></a><a class="seg done" href="llm03-slide-18.html" title="Slide 18 · Scenario: T&Cs Change"></a><a class="seg done" href="llm03-slide-19.html" title="Slide 19 · Vet Suppliers"></a><a class="seg done" href="llm03-slide-20.html" title="Slide 20 · SBOM / AIBOM"></a><a class="seg done" href="llm03-slide-21.html" title="Slide 21 · Patch & Scan"></a><a class="seg done" href="llm03-slide-22.html" title="Slide 22 · Sign & Verify"></a><a class="seg done" href="llm03-slide-23.html" title="Slide 23 · Red-Team First"></a><a class="seg done" href="llm03-slide-24.html" title="Slide 24 · Demand Provenance"></a><a class="seg done" href="llm03-slide-25.html" title="Slide 25 · Monitor Collaboration"></a><a class="seg done" href="llm03-slide-26.html" title="Slide 26 · Anomaly Testing"></a><a class="seg done" href="llm03-slide-27.html" title="Slide 27 · Protect the Edge"></a><a class="seg done" href="llm03-slide-28.html" title="Slide 28 · Quiz"></a><a class="seg active" href="llm03-slide-29.html" title="Slide 29 · Complete"></a></div>
+  <div class="progress-labels"><span>Complete</span><span>Slide 29</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Complete</div>
+  <div class="slide-title"></div>
+
+  <div class="complete-wrap">
+    <div class="complete-icon">✅</div>
+    <div class="complete-title">LLM03:2025 Complete</div>
+    <div class="complete-sub">You've covered all 5 parts, read the real incidents, and tested yourself.</div>
+  </div>
+  <div class="checklist">
+    <div class="check-item"><span class="check-mark">✓</span><span class="check-text">What supply chain risk is &mdash; in plain English and in OWASP's definition: third-party components you didn't make but still trust</span></div>
+    <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Why it applies even if you &ldquo;just call an API&rdquo; &mdash; your proxy, gateway, and their dependencies are your supply chain</span></div>
+    <div class="check-item"><span class="check-mark">✓</span><span class="check-text">The six links in the chain: packages, models, adapters, datasets, plugins, and infrastructure</span></div>
+    <div class="check-item"><span class="check-mark">✓</span><span class="check-text">6 attack types &mdash; each anchored to a real, confirmed incident</span></div>
+    <div class="check-item"><span class="check-mark">✓</span><span class="check-text">torchtriton (Dec 2022) &mdash; dependency confusion against PyTorch nightly</span></div>
+    <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Ultralytics (Dec 2024) &mdash; a poisoned CI/CD pipeline shipping a cryptominer</span></div>
+    <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Malicious pickle models on Hugging Face (JFrog) and the PickleScan bypass (CVE-2025-10155, CVSS 9.3)</span></div>
+    <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Backdoored LoRA adapters and the fake-OpenAI repo (244K downloads) &mdash; trust by name is not trust</span></div>
+    <div class="check-item"><span class="check-mark">✓</span><span class="check-text">OWASP's scenarios: PoisonGPT, LeftoverLocals (CVE-2023-4969), on-device model swaps (DeepPayload), and shifting T&amp;Cs</span></div>
+    <div class="check-item"><span class="check-mark">✓</span><span class="check-text">All 9 mitigations &mdash; what OWASP says, which real incident each closes, how to do it right, and how to validate</span></div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="llm03-slide-01.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Review from beginning</a>
+    <a class="btn-primary" href="../llm04-lesson/llm04-slide-01.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next: LLM04 →</a>
+  </div>
+  <div class="btn-row">
+    <a href="sources.html" class="btn-secondary" style="text-align:center;text-decoration:none;display:flex;align-items:center;justify-content:center;width:100%;">📄 View all sources for this lesson</a>
+  </div>
+
+</div>
+</body>
+</html>

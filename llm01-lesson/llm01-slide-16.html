@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM01:2025 — Prompt Injection · Slide 16 of 28</title>
+<link rel="stylesheet" href="llm01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM01:2025</span><span class="nav-title">Prompt Injection</span></div>
+  <span class="nav-right">Slide 16 of 28</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm01-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm01-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm01-slide-03.html" title="Slide 3 · The Definition Part 1"></a><a class="seg done" href="llm01-slide-04.html" title="Slide 4 · The Definition Part 2"></a><a class="seg done" href="llm01-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm01-slide-06.html" title="Slide 6 · The Attackers"></a><a class="seg done" href="llm01-slide-07.html" title="Slide 7 · Injection vs Jailbreaking"></a><a class="seg done" href="llm01-slide-08.html" title="Slide 8 · RAG and Fine-Tuning"></a><a class="seg done" href="llm01-slide-09.html" title="Slide 9 · Two Types Overview"></a><a class="seg done" href="llm01-slide-10.html" title="Slide 10 · Direct Injection"></a><a class="seg done" href="llm01-slide-11.html" title="Slide 11 · Direct Injection Example"></a><a class="seg done" href="llm01-slide-12.html" title="Slide 12 · Indirect Injection"></a><a class="seg done" href="llm01-slide-13.html" title="Slide 13 · Indirect Injection Example"></a><a class="seg done" href="llm01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a><a class="seg done" href="llm01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a><a class="seg active" href="llm01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a><a class="seg" href="llm01-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm01-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm01-slide-19.html" title="Slide 19 · Mitigation 1"></a><a class="seg" href="llm01-slide-20.html" title="Slide 20 · Mitigation 2"></a><a class="seg" href="llm01-slide-21.html" title="Slide 21 · Mitigation 3"></a><a class="seg" href="llm01-slide-22.html" title="Slide 22 · Mitigation 4"></a><a class="seg" href="llm01-slide-23.html" title="Slide 23 · Mitigation 5"></a><a class="seg" href="llm01-slide-24.html" title="Slide 24 · Mitigation 6"></a><a class="seg" href="llm01-slide-25.html" title="Slide 25 · Mitigation 7"></a><a class="seg" href="llm01-slide-26.html" title="Slide 26 · The Matrix"></a><a class="seg" href="llm01-slide-27.html" title="Slide 27 · Quiz"></a><a class="seg" href="llm01-slide-28.html" title="Slide 28 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 3 · Attack Scenarios</span><span>Slide 16</span></div>
+</div>
+<div class="slide active">
+<div class="slide-eyebrow">Slide 16 · Scenarios 7–9</div>
+  <div class="slide-title">Multimodal injection, adversarial suffix, obfuscated attacks.</div>
+  <div class="slide-subtitle">Each one anchored to a confirmed real-world example.</div>
+  <div class="source-tag">📄 OWASP LLM Top 10:2025 · LLM01 Example Attack Scenarios</div>
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO #7 · Multimodal / Hidden Character Injection</div>
+    <div class="scenario-title">Invisible Unicode in code files — RCE (CVE-2025-53773)</div>
+    <div class="scenario-body">An attacker embeds malicious instructions in content that appears innocent to humans but is read by the AI. <strong>GitHub Copilot CVE-2025-53773 (August 2025): attackers used invisible Unicode characters in source code files, README files, and GitHub Issues. Copilot read them, modified .vscode/settings.json to enable "YOLO mode" (auto-approval for all shell commands), then executed arbitrary commands on the developer's machine. Demonstrated against Copilot backed by GPT-4.1, Claude Sonnet 4, and Gemini — all three were vulnerable. The attack was wormable through shared Git repositories.</strong></div>
+    <div class="scenario-why"><strong>Key insight:</strong> The attack surface isn't just typed text. Any input modality the model processes — Unicode characters, images, hidden metadata — is a vector. Reported by Persistent Security (June 29, 2025), patched August 2025 Patch Tuesday.</div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO #8 · Adversarial Suffix</div>
+    <div class="scenario-title">Meaningless character string — bypasses safety measures</div>
+    <div class="scenario-body">An attacker appends a seemingly meaningless string of characters to a prompt. The string influences the LLM's output in a malicious way — bypassing safety measures even though it looks like garbage to a human reader. These strings are typically machine-generated through automated attacks that exploit how the model processes tokens internally.</div>
+    <div class="scenario-why"><strong>Key insight:</strong> These work by exploiting token-level model internals, not natural language meaning. Any filter checking for natural language injection patterns will miss them. They require classifiers trained on adversarial examples.</div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO #9 · Multilingual / Obfuscated Attack</div>
+    <div class="scenario-title">Encoded or non-English instructions — evade content filters</div>
+    <div class="scenario-body">An attacker encodes malicious instructions in Base64, uses emoji, switches languages, or uses Unicode lookalike characters to evade content filters and manipulate the LLM.</div>
+    <div class="scenario-why"><strong>Key insight:</strong> Safety filters trained primarily on English plain-text miss these. Benchmark research found significantly lower detection rates for obfuscated versus plain-English injections across all major guardrail models. Semantic filtering — understanding meaning regardless of encoding — is required. Tools like Lakera Guard train specifically on obfuscated attack patterns.</div>
+  </div>
+  <div class="btn-row"><a class="btn-secondary" href="llm01-slide-15.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm01-slide-17.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → What all 9 have in common</a></div></div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

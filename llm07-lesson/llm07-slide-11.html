@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM07:2025 — System Prompt Leakage · Slide 11 of 27</title>
+<link rel="stylesheet" href="llm07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM07:2025</span><span class="nav-title">System Prompt Leakage</span></div>
+  <span class="nav-right">Slide 11 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm07-slide-01.html" title="Slide 1 &middot; The Setup"></a><a class="seg done" href="llm07-slide-02.html" title="Slide 2 &middot; What Is a System Prompt"></a><a class="seg done" href="llm07-slide-03.html" title="Slide 3 &middot; The Definition"></a><a class="seg done" href="llm07-slide-04.html" title="Slide 4 &middot; What Gets Embedded"></a><a class="seg done" href="llm07-slide-05.html" title="Slide 5 &middot; The Outcomes"></a><a class="seg done" href="llm07-slide-06.html" title="Slide 6 &middot; Security by Obscurity"></a><a class="seg done" href="llm07-slide-07.html" title="Slide 7 &middot; LLM07 vs LLM02"></a><a class="seg done" href="llm07-slide-08.html" title="Slide 8 &middot; The Misconception"></a><a class="seg done" href="llm07-slide-09.html" title="Slide 9 &middot; Types Overview"></a><a class="seg done" href="llm07-slide-10.html" title="Slide 10 &middot; Direct Extraction"></a><a class="seg active" href="llm07-slide-11.html" title="Slide 11 &middot; Multi-Step Extraction"></a><a class="seg" href="llm07-slide-12.html" title="Slide 12 &middot; Encoding Extraction"></a><a class="seg" href="llm07-slide-13.html" title="Slide 13 &middot; Chained Injection"></a><a class="seg" href="llm07-slide-14.html" title="Slide 14 &middot; Scenario 1"></a><a class="seg" href="llm07-slide-15.html" title="Slide 15 &middot; Scenario 2"></a><a class="seg" href="llm07-slide-16.html" title="Slide 16 &middot; Scenario 3"></a><a class="seg" href="llm07-slide-17.html" title="Slide 17 &middot; The Pattern"></a><a class="seg" href="llm07-slide-18.html" title="Slide 18 &middot; Prevention Overview"></a><a class="seg" href="llm07-slide-19.html" title="Slide 19 &middot; No Secrets in Prompts"></a><a class="seg" href="llm07-slide-20.html" title="Slide 20 &middot; No Secrecy as Control"></a><a class="seg" href="llm07-slide-21.html" title="Slide 21 &middot; Output Filtering"></a><a class="seg" href="llm07-slide-22.html" title="Slide 22 &middot; Privilege Separation"></a><a class="seg" href="llm07-slide-23.html" title="Slide 23 &middot; Red-Team Extraction"></a><a class="seg" href="llm07-slide-24.html" title="Slide 24 &middot; Access Controls"></a><a class="seg" href="llm07-slide-25.html" title="Slide 25 &middot; The Matrix"></a><a class="seg" href="llm07-slide-26.html" title="Slide 26 &middot; Quiz"></a><a class="seg" href="llm07-slide-27.html" title="Slide 27 &middot; Complete"></a></div>
+  <div class="progress-labels"><span>Part 2 &middot; Types</span><span>Slide 11</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 11 · Multi-Step Extraction — Real Incident</div>
+  <div class="slide-title">GitHub Copilot Chat System Prompt Extracted — May 2023.</div>
+  <div class="real-incident">
+    <div class="real-incident-tag">Confirmed Incident · May 2023 · Disclosed on Hacker News &amp; GitHub</div>
+    <div class="real-incident-title">Researchers Extract GitHub Copilot&rsquo;s Full System Prompt via Multi-Turn Probing</div>
+    <div class="real-incident-cve">No CVE · Multi-step indirect extraction · Archived publicly on GitHub; discussed on Hacker News May 2023</div>
+    <div class="real-incident-body">
+      <p><strong>The setup:</strong> GitHub Copilot Chat ships with a system prompt that defines its available tools (code execution, file access, search), its constraints, and its operational context. It was not disclosed to users.</p>
+      <p><strong>The extraction:</strong> Researchers used a sequence of probing questions across multiple conversation turns — asking about Copilot&rsquo;s capabilities, what tools it had access to, what it wasn&rsquo;t allowed to do — and assembled the full prompt from the model&rsquo;s responses. Unlike Bing, no single instruction broke the secrecy; it was patience and inference.</p>
+      <p><strong>The result:</strong> The extracted prompt was posted to GitHub repositories and archived. It revealed Copilot&rsquo;s internal tool list, function signatures, and behavioral constraints in full detail.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Why it matters for LLM07:</strong> Multi-step extraction works even when a model resists direct requests. Each answer about what the model &ldquo;can&rdquo; and &ldquo;can&rsquo;t&rdquo; do narrows the space. Given enough turns, the prompt is reconstructed from fragments.</div>
+  </div>
+  <div class="callout green"><div class="callout-label">The Defense That Would Have Worked</div><p>Keeping tool descriptions and function signatures out of the prompt (using backend code instead) would have made the extracted content useless. The architecture was the vulnerability — not the lack of a better secrecy instruction.</p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm07-slide-10.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm07-slide-12.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → Encoding-based extraction</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">ð View sources for this lesson</a></div>
+</body>
+</html>

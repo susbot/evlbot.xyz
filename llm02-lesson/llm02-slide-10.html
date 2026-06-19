@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM02:2025 — Sensitive Information Disclosure · Slide 10 of 27</title>
+<link rel="stylesheet" href="llm02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM02:2025</span><span class="nav-title">Sensitive Information Disclosure</span></div>
+  <span class="nav-right">Slide 10 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm02-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm02-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm02-slide-03.html" title="Slide 3 · The Definition Part 1"></a><a class="seg done" href="llm02-slide-04.html" title="Slide 4 · The Definition Part 2"></a><a class="seg done" href="llm02-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm02-slide-06.html" title="Slide 6 · Why It Happens"></a><a class="seg done" href="llm02-slide-07.html" title="Slide 7 · Disclosure vs Prompt Leakage"></a><a class="seg done" href="llm02-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm02-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg active" href="llm02-slide-10.html" title="Slide 10 · PII Leakage"></a><a class="seg" href="llm02-slide-11.html" title="Slide 11 · Proprietary Algorithm Exposure"></a><a class="seg" href="llm02-slide-12.html" title="Slide 12 · Business Data Disclosure"></a><a class="seg" href="llm02-slide-13.html" title="Slide 13 · Training Data Memorization"></a><a class="seg" href="llm02-slide-14.html" title="Slide 14 · Scenario 1: Unintentional Exposure"></a><a class="seg" href="llm02-slide-15.html" title="Slide 15 · Scenario 2: Targeted Injection"></a><a class="seg" href="llm02-slide-16.html" title="Slide 16 · Scenario 3: Training Data Leak"></a><a class="seg" href="llm02-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm02-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm02-slide-19.html" title="Slide 19 · Sanitization"></a><a class="seg" href="llm02-slide-20.html" title="Slide 20 · Access Controls"></a><a class="seg" href="llm02-slide-21.html" title="Slide 21 · Privacy Techniques"></a><a class="seg" href="llm02-slide-22.html" title="Slide 22 · User Education"></a><a class="seg" href="llm02-slide-23.html" title="Slide 23 · Secure Configuration"></a><a class="seg" href="llm02-slide-24.html" title="Slide 24 · Advanced Techniques"></a><a class="seg" href="llm02-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm02-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm02-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 2 · Types</span><span>Slide 10</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 10 · PII Leakage — Real Example</div>
+  <div class="slide-title">The OpenAI Redis Bug &mdash; March 20, 2023.</div>
+
+  <div class="real-incident">
+    <div class="real-incident-tag">Confirmed Incident · March 20, 2023 · OpenAI's Own Disclosure</div>
+    <div class="real-incident-title">ChatGPT Bug Exposes Other Users' Chat Titles and Payment Data</div>
+    <div class="real-incident-cve">No CVE · Root Cause: redis-py library bug · Disclosed by OpenAI, March 24, 2023</div>
+    <div class="real-incident-body">
+      <p><strong>The setup:</strong> ChatGPT used the open-source redis-py library to cache session data. A bug in that library meant cancelled requests could corrupt connections, returning unrelated data from the cache.</p>
+      <p><strong>What leaked:</strong> During a nine-hour window, some users could see chat titles from another active user's history. Separately, OpenAI disclosed that 1.2% of ChatGPT Plus subscribers active during that window may have had billing information exposed &mdash; first and last name, email, payment address, the last four digits of a card, and expiration date.</p>
+      <p><strong>The fix:</strong> OpenAI patched the library bug and added redundant checks to confirm cached data actually belongs to the requesting user.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Why it matters for LLM02:</strong> this is OWASP's own &ldquo;Unintentional Data Exposure&rdquo; scenario, observed in production &mdash; no attacker required. A caching bug in unrelated infrastructure was enough to cross the privacy boundary between two users.</div>
+  </div>
+  <div class="callout green"><div class="callout-label">The Defense This Would Have Stopped</div><p>Robust validation that returned data actually belongs to the requesting session &mdash; OWASP's &ldquo;Robust Input Validation&rdquo; mitigation, applied to caching layers, not just user prompts.</p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm02-slide-09.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm02-slide-11.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → Proprietary Algorithm Exposure</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

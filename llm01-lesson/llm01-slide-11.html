@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM01:2025 — Prompt Injection · Slide 11 of 28</title>
+<link rel="stylesheet" href="llm01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM01:2025</span><span class="nav-title">Prompt Injection</span></div>
+  <span class="nav-right">Slide 11 of 28</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm01-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm01-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm01-slide-03.html" title="Slide 3 · The Definition Part 1"></a><a class="seg done" href="llm01-slide-04.html" title="Slide 4 · The Definition Part 2"></a><a class="seg done" href="llm01-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm01-slide-06.html" title="Slide 6 · The Attackers"></a><a class="seg done" href="llm01-slide-07.html" title="Slide 7 · Injection vs Jailbreaking"></a><a class="seg done" href="llm01-slide-08.html" title="Slide 8 · RAG and Fine-Tuning"></a><a class="seg done" href="llm01-slide-09.html" title="Slide 9 · Two Types Overview"></a><a class="seg done" href="llm01-slide-10.html" title="Slide 10 · Direct Injection"></a><a class="seg active" href="llm01-slide-11.html" title="Slide 11 · Direct Injection Example"></a><a class="seg" href="llm01-slide-12.html" title="Slide 12 · Indirect Injection"></a><a class="seg" href="llm01-slide-13.html" title="Slide 13 · Indirect Injection Example"></a><a class="seg" href="llm01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a><a class="seg" href="llm01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a><a class="seg" href="llm01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a><a class="seg" href="llm01-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm01-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm01-slide-19.html" title="Slide 19 · Mitigation 1"></a><a class="seg" href="llm01-slide-20.html" title="Slide 20 · Mitigation 2"></a><a class="seg" href="llm01-slide-21.html" title="Slide 21 · Mitigation 3"></a><a class="seg" href="llm01-slide-22.html" title="Slide 22 · Mitigation 4"></a><a class="seg" href="llm01-slide-23.html" title="Slide 23 · Mitigation 5"></a><a class="seg" href="llm01-slide-24.html" title="Slide 24 · Mitigation 6"></a><a class="seg" href="llm01-slide-25.html" title="Slide 25 · Mitigation 7"></a><a class="seg" href="llm01-slide-26.html" title="Slide 26 · The Matrix"></a><a class="seg" href="llm01-slide-27.html" title="Slide 27 · Quiz"></a><a class="seg" href="llm01-slide-28.html" title="Slide 28 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 2 · Types</span><span>Slide 11</span></div>
+</div>
+<div class="slide active">
+<div class="slide-eyebrow">Slide 11 · Direct Injection — Real Example</div>
+  <div class="slide-title">The Freysa AI Heist — November 22, 2024.</div>
+  <div class="slide-subtitle">Direct injection. Financial target. $47,000 outcome. On the blockchain. Verified.</div>
+  <div class="real-incident">
+    <div class="real-incident-tag">Confirmed Incident · November 22, 2024 · Public Blockchain Record</div>
+    <div class="real-incident-title">Freysa AI — Prompt Injection Extracts $47,000 in Cryptocurrency</div>
+    <div class="real-incident-cve">No CVE · Disclosed by p0pular.eth · Reported: Simon Willison, The Block, CCN</div>
+    <div class="real-incident-body">
+      <p><strong>The setup:</strong> Freysa was an AI agent launched as an adversarial game. Its single core directive: <em>never transfer funds under any circumstances.</em> Users paid a fee (starting at $10, growing to $450 per message) to send it messages and try to get it to release a prize pool of cryptocurrency.</p>
+      <p><strong>481 attempts failed.</strong> Impersonating admins, philosophical arguments, role-play, social engineering. None worked.</p>
+      <p><strong>The 482nd attempt:</strong> p0pular.eth didn't try to break the rule — they redefined it. First, they claimed to initiate a "new session," framing it as if all prior instructions were cleared. Then they redefined the meaning of Freysa's "approveTransfer" function — telling the AI that this function was meant for <em>incoming</em> transfers, not outgoing ones. Then they announced a $100 donation.</p>
+      <p><strong>The result:</strong> Freysa called approveTransfer — believing it was processing an incoming payment. It transferred the entire prize pool: 13.19 ETH, approximately <strong>$47,000</strong>. Freysa then posted on X: "Humanity has prevailed."</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Why it worked:</strong> The AI had no way to verify that its function definitions had been changed by a user rather than a developer. Text-based redefinition of system behavior is possible because the model treats natural language as authoritative. The attack didn't bypass the rule — it redefined what the rule meant at the language level.</div>
+  </div>
+  <div class="callout green"><div class="callout-label">The Defense This Would Have Stopped</div><p>OWASP Mitigation #5 — require human approval for high-impact actions. If any fund transfer required a code-level confirmation gate outside the AI's language reasoning, p0pular.eth's redefinition of "approveTransfer" would have been irrelevant. The gate would have asked a human to confirm regardless of what the AI believed it was doing.</p></div>
+  <div class="btn-row"><a class="btn-secondary" href="llm01-slide-10.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm01-slide-12.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → Indirect injection</a></div></div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

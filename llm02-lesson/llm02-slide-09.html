@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM02:2025 — Sensitive Information Disclosure · Slide 9 of 27</title>
+<link rel="stylesheet" href="llm02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM02:2025</span><span class="nav-title">Sensitive Information Disclosure</span></div>
+  <span class="nav-right">Slide 9 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm02-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm02-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm02-slide-03.html" title="Slide 3 · The Definition Part 1"></a><a class="seg done" href="llm02-slide-04.html" title="Slide 4 · The Definition Part 2"></a><a class="seg done" href="llm02-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm02-slide-06.html" title="Slide 6 · Why It Happens"></a><a class="seg done" href="llm02-slide-07.html" title="Slide 7 · Disclosure vs Prompt Leakage"></a><a class="seg done" href="llm02-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg active" href="llm02-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg" href="llm02-slide-10.html" title="Slide 10 · PII Leakage"></a><a class="seg" href="llm02-slide-11.html" title="Slide 11 · Proprietary Algorithm Exposure"></a><a class="seg" href="llm02-slide-12.html" title="Slide 12 · Business Data Disclosure"></a><a class="seg" href="llm02-slide-13.html" title="Slide 13 · Training Data Memorization"></a><a class="seg" href="llm02-slide-14.html" title="Slide 14 · Scenario 1: Unintentional Exposure"></a><a class="seg" href="llm02-slide-15.html" title="Slide 15 · Scenario 2: Targeted Injection"></a><a class="seg" href="llm02-slide-16.html" title="Slide 16 · Scenario 3: Training Data Leak"></a><a class="seg" href="llm02-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm02-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm02-slide-19.html" title="Slide 19 · Sanitization"></a><a class="seg" href="llm02-slide-20.html" title="Slide 20 · Access Controls"></a><a class="seg" href="llm02-slide-21.html" title="Slide 21 · Privacy Techniques"></a><a class="seg" href="llm02-slide-22.html" title="Slide 22 · User Education"></a><a class="seg" href="llm02-slide-23.html" title="Slide 23 · Secure Configuration"></a><a class="seg" href="llm02-slide-24.html" title="Slide 24 · Advanced Techniques"></a><a class="seg" href="llm02-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm02-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm02-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 2 · Types</span><span>Slide 9</span></div>
+</div>
+<div class="slide active">
+<div class="part-banner"><span class="part-num">PART 2</span><div><div class="part-title">Types</div><div class="part-count">Slides 9–13 · 4 patterns, each a real incident</div></div></div>
+  <div class="slide-eyebrow">Slide 9 · Part 2 Overview</div>
+  <div class="slide-title">OWASP names three categories. We're covering four.</div>
+  <div class="slide-subtitle">Each gets its own real, confirmed incident.</div>
+
+  <div class="outcome-list">
+    <div class="outcome-item"><div class="outcome-icon">🪪</div><div><div class="outcome-title">PII Leakage</div><div class="outcome-desc">Personal data exposed during interaction with the LLM.</div></div></div>
+    <div class="outcome-item"><div class="outcome-icon">🧬</div><div><div class="outcome-title">Proprietary Algorithm Exposure</div><div class="outcome-desc">Model internals or training data extracted via inversion attacks.</div></div></div>
+    <div class="outcome-item"><div class="outcome-icon">🏢</div><div><div class="outcome-title">Sensitive Business Data Disclosure</div><div class="outcome-desc">Confidential company information surfaces in a generated response.</div></div></div>
+    <div class="outcome-item"><div class="outcome-icon">📚</div><div><div class="outcome-title">Training Data Memorization</div><div class="outcome-desc">The model regurgitates verbatim text it was trained on.</div></div></div>
+  </div>
+  <div class="callout blue"><p>The fourth &mdash; memorization &mdash; isn't one of OWASP's three officially named &ldquo;Common Examples of Vulnerability,&rdquo; but it's explicitly one of their own cited reference incidents. Worth its own slide.</p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm02-slide-08.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm02-slide-10.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → PII Leakage</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

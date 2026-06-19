@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM01:2025 — Prompt Injection · Slide 8 of 28</title>
+<link rel="stylesheet" href="llm01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM01:2025</span><span class="nav-title">Prompt Injection</span></div>
+  <span class="nav-right">Slide 8 of 28</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm01-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm01-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm01-slide-03.html" title="Slide 3 · The Definition Part 1"></a><a class="seg done" href="llm01-slide-04.html" title="Slide 4 · The Definition Part 2"></a><a class="seg done" href="llm01-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm01-slide-06.html" title="Slide 6 · The Attackers"></a><a class="seg done" href="llm01-slide-07.html" title="Slide 7 · Injection vs Jailbreaking"></a><a class="seg active" href="llm01-slide-08.html" title="Slide 8 · RAG and Fine-Tuning"></a><a class="seg" href="llm01-slide-09.html" title="Slide 9 · Two Types Overview"></a><a class="seg" href="llm01-slide-10.html" title="Slide 10 · Direct Injection"></a><a class="seg" href="llm01-slide-11.html" title="Slide 11 · Direct Injection Example"></a><a class="seg" href="llm01-slide-12.html" title="Slide 12 · Indirect Injection"></a><a class="seg" href="llm01-slide-13.html" title="Slide 13 · Indirect Injection Example"></a><a class="seg" href="llm01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a><a class="seg" href="llm01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a><a class="seg" href="llm01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a><a class="seg" href="llm01-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm01-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm01-slide-19.html" title="Slide 19 · Mitigation 1"></a><a class="seg" href="llm01-slide-20.html" title="Slide 20 · Mitigation 2"></a><a class="seg" href="llm01-slide-21.html" title="Slide 21 · Mitigation 3"></a><a class="seg" href="llm01-slide-22.html" title="Slide 22 · Mitigation 4"></a><a class="seg" href="llm01-slide-23.html" title="Slide 23 · Mitigation 5"></a><a class="seg" href="llm01-slide-24.html" title="Slide 24 · Mitigation 6"></a><a class="seg" href="llm01-slide-25.html" title="Slide 25 · Mitigation 7"></a><a class="seg" href="llm01-slide-26.html" title="Slide 26 · The Matrix"></a><a class="seg" href="llm01-slide-27.html" title="Slide 27 · Quiz"></a><a class="seg" href="llm01-slide-28.html" title="Slide 28 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 8</span></div>
+</div>
+<div class="slide active">
+<div class="slide-eyebrow">Slide 8 · The Common Misconception</div>
+  <div class="slide-title">People think RAG or fine-tuning solves prompt injection. They don't.</div>
+  <div class="slide-subtitle">One of the most common wrong assumptions in AI security.</div>
+  <div class="source-tag">📄 OWASP LLM Top 10:2025 · LLM01</div>
+  <div class="mono-block">"While techniques like Retrieval Augmented Generation (RAG) and fine-tuning aim to make LLM outputs more relevant and accurate, research shows that they do not fully mitigate prompt injection vulnerabilities."</div>
+  <div class="block"><div class="block-label blue">What Is RAG?</div><p>RAG pulls in relevant documents at runtime and feeds them to the model alongside your question. <strong>Designed to do:</strong> make answers more accurate and current. <strong>Does NOT do:</strong> prevent the model from following injected instructions hidden inside those retrieved documents.</p></div>
+  <div class="callout red"><div class="callout-label">RAG Expands the Attack Surface — January 2025</div><p>Researchers demonstrated this against a major enterprise RAG system. By embedding malicious instructions in a publicly accessible document in the knowledge base, they caused the AI to: leak proprietary business intelligence to external endpoints, modify its own system prompts to disable safety filters, and execute API calls with elevated privileges.</p><p><strong>The attack succeeded because the system treated all retrieved content as equally trustworthy — failing to isolate external data from system instructions.</strong> RAG didn't protect them. It gave the attacker a delivery mechanism.</p></div>
+  <div class="block"><div class="block-label orange">What Is Fine-Tuning?</div><p>Fine-tuning trains a base model further on a specific dataset to specialize its behavior. <strong>Designed to do:</strong> specialize the model for a use case. <strong>Does NOT do:</strong> make the model immune to injected text at inference time. The model was trained to follow instructions — fine-tuning doesn't remove that fundamental behavior.</p></div>
+  <div class="callout green"><div class="callout-label">The Bottom Line</div><p>RAG and fine-tuning are valuable. Use them. But <strong>never treat them as security controls against prompt injection.</strong> The mitigations in Part 4 address how to actually reduce the risk.</p></div>
+  
+  <div class="btn-row"><a class="btn-secondary" href="llm01-slide-07.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm01-slide-09.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Part 1 done → Part 2: Types</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

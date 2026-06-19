@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM09:2025 — Misinformation · Slide 12 of 27</title>
+<link rel="stylesheet" href="llm09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM09:2025</span><span class="nav-title">Misinformation</span></div>
+  <span class="nav-right">Slide 12 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm09-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm09-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm09-slide-03.html" title="Slide 3 · Definition Part 1"></a><a class="seg done" href="llm09-slide-04.html" title="Slide 4 · Definition Part 2"></a><a class="seg done" href="llm09-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm09-slide-06.html" title="Slide 6 · Why It Happens"></a><a class="seg done" href="llm09-slide-07.html" title="Slide 7 · LLM09 vs LLM01"></a><a class="seg done" href="llm09-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm09-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg done" href="llm09-slide-10.html" title="Slide 10 · Fabricated Citations"></a><a class="seg done" href="llm09-slide-11.html" title="Slide 11 · Package Hallucination"></a><a class="seg active" href="llm09-slide-12.html" title="Slide 12 · Professional Misinformation"></a><a class="seg" href="llm09-slide-13.html" title="Slide 13 · Hallucinated Code"></a><a class="seg" href="llm09-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg" href="llm09-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg" href="llm09-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg" href="llm09-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm09-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm09-slide-19.html" title="Slide 19 · RAG Grounding"></a><a class="seg" href="llm09-slide-20.html" title="Slide 20 · Citation Enforcement"></a><a class="seg" href="llm09-slide-21.html" title="Slide 21 · Human Review Gates"></a><a class="seg" href="llm09-slide-22.html" title="Slide 22 · Uncertainty Disclosure"></a><a class="seg" href="llm09-slide-23.html" title="Slide 23 · User Education"></a><a class="seg" href="llm09-slide-24.html" title="Slide 24 · Output Validation"></a><a class="seg" href="llm09-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm09-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm09-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 2 &middot; Types</span><span>Slide 12</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 12 &middot; Professional Misinformation</div>
+  <div class="slide-title">The chatbot that cost Air Canada a tribunal.</div>
+  <div class="slide-subtitle">Moffatt v. Air Canada, February 2024.</div>
+<div class="real-incident">
+<div class="real-incident-tag">Confirmed Incident &middot; February 2024 &middot; BC Civil Resolution Tribunal, Canada</div>
+<div class="real-incident-title">Air Canada Chatbot Gives Wrong Bereavement Fare Policy &mdash; Company Held Liable</div>
+<div class="real-incident-cve">No CVE &middot; Tribunal Ruling: Moffatt v. Air Canada &middot; February 14, 2024</div>
+<div class="real-incident-body">
+<p><strong>The setup:</strong> Jake Moffatt&rsquo;s grandmother died. Before booking travel, he asked Air Canada&rsquo;s chatbot about bereavement fares. The chatbot told him he could book a full-price ticket and apply for the bereavement discount retroactively within 90 days.</p>
+<p><strong>What was wrong:</strong> Air Canada&rsquo;s actual policy required the fare be applied at the time of booking &mdash; not retroactively. The chatbot had given incorrect policy guidance. Moffatt booked and then tried to claim the retroactive discount. Air Canada refused.</p>
+<p><strong>Air Canada&rsquo;s legal argument:</strong> The chatbot was &ldquo;a separate legal entity&rdquo; responsible for its own statements. Air Canada was not bound by what it said.</p>
+<p><strong>The ruling:</strong> The tribunal rejected this entirely. Air Canada is responsible for all information on its website, including chatbot output. Moffatt was awarded the fare difference plus fees.</p>
+</div>
+<div class="real-incident-lesson"><strong>Why it matters for LLM09:</strong> First documented ruling establishing that companies are legally liable for LLM chatbot misinformation. The &ldquo;the AI said it, not us&rdquo; defense does not hold. You own every output your deployed LLM produces.</div>
+</div>
+<div class="callout green"><div class="callout-label">The Defense That Would Have Stopped This</div><p>Ground the chatbot&rsquo;s policy answers in the live policy database (RAG), not in model memory. Any answer about a specific policy should come from the source of truth, not interpolation.</p></div>
+<div class="btn-row"><a class="btn-secondary" href="llm09-slide-11.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">&larr; Back</a><a class="btn-primary" href="llm09-slide-13.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next &rarr; Hallucinated Code</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">&#128196; View sources for this lesson</a></div>
+</body>
+</html>

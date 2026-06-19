@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sources — LLM07:2025 System Prompt Leakage</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+:root{--bg:#0a0a0f;--surface:#111118;--surface2:#18181f;--border:#22222e;--accent:#6d28d9;--accent-bright:#a78bfa;--accent-glow:rgba(109,40,217,0.10);--green:#10b981;--yellow:#f59e0b;--red:#f43f5e;--blue:#38bdf8;--orange:#fb923c;--text:#e2e8f0;--muted:#64748b;--subtle:#94a3b8;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;min-height:100vh;padding-bottom:80px;}
+.top-nav{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100;}
+.nav-left{display:flex;align-items:center;gap:12px;}
+.nav-badge{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:3px 9px;}
+.nav-title{font-size:13px;color:var(--subtle);}
+.back-link{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:6px 12px;transition:all .15s;}
+.back-link:hover{border-color:var(--accent);color:var(--accent-bright);}
+.wrap{max-width:760px;margin:0 auto;padding:32px 20px 0;}
+.page-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.page-title{font-size:clamp(22px,5vw,30px);font-weight:600;color:#fff;line-height:1.25;margin-bottom:8px;}
+.page-subtitle{font-size:14px;color:var(--subtle);line-height:1.65;margin-bottom:28px;max-width:600px;}
+.license-banner{background:var(--accent-glow);border:1px solid rgba(109,40,217,.35);border-radius:10px;padding:16px 18px;margin-bottom:32px;}
+.license-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:6px;}
+.license-banner p{font-size:13px;color:var(--subtle);line-height:1.7;}
+.license-banner p strong{color:var(--text);}
+.license-banner a{color:var(--accent-bright);text-decoration:none;border-bottom:1px solid rgba(167,139,250,.3);}
+.license-banner a:hover{border-color:var(--accent-bright);}
+.group{margin-bottom:36px;}
+.group-header{display:flex;align-items:baseline;gap:10px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.group-num{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:2px 8px;flex-shrink:0;}
+.group-title{font-size:15px;font-weight:600;color:#fff;}
+.group-desc{font-size:12px;color:var(--muted);margin-top:2px;}
+.source-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:10px;transition:border-color .15s;}
+.source-card:hover{border-color:rgba(109,40,217,.4);}
+.source-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:6px;}
+.source-name{font-size:14px;font-weight:600;color:var(--text);}
+.source-tag-cve{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--red);background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.25);border-radius:4px;padding:2px 7px;flex-shrink:0;white-space:nowrap;}
+.source-tag-research{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--blue);background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.25);border-radius:4px;padding:2px 7px;flex-shrink:0;white-space:nowrap;}
+.source-tag-disclosure{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--orange);background:rgba(251,146,60,.08);border:1px solid rgba(251,146,60,.25);border-radius:4px;padding:2px 7px;flex-shrink:0;white-space:nowrap;}
+.source-tag-tool{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--green);background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.25);border-radius:4px;padding:2px 7px;flex-shrink:0;white-space:nowrap;}
+.source-meta{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:8px;}
+.source-cited{font-size:12px;color:var(--subtle);line-height:1.6;margin-bottom:10px;}
+.source-cited strong{color:var(--accent-bright);font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;}
+.source-link{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent-bright);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:6px 11px;transition:all .15s;}
+.source-link:hover{border-color:var(--accent);background:var(--accent-glow);}
+.footer-note{margin-top:40px;padding-top:24px;border-top:1px solid var(--border);font-size:12px;color:var(--muted);line-height:1.7;text-align:center;}
+.footer-note a{color:var(--accent-bright);text-decoration:none;}
+</style>
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM07:2025</span><span class="nav-title">Sources</span></div>
+  <a href="llm07-slide-01.html" class="back-link">← Back to lesson</a>
+</div>
+
+<div class="wrap">
+  <div class="page-eyebrow">Sources &amp; Attribution</div>
+  <div class="page-title">Everything in this lesson, sourced.</div>
+  <div class="page-subtitle">Every incident, CVE, and reference mentioned in LLM07:2025 — System Prompt Leakage — traced back to where it came from.</div>
+
+  <div class="license-banner">
+    <div class="license-label">Framework License</div>
+    <p>This lesson is built on the <strong>OWASP Top 10 for Large Language Model Applications (2025)</strong>, released under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">Creative Commons Attribution-ShareAlike 4.0</a>. Definitions, vulnerability categories, mitigation structure, and attack scenarios are drawn directly from this framework. Real-world incidents and research are independent factual reporting, cited individually below.</p>
+  </div>
+
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">01</span>
+      <div><div class="group-title">Primary Framework</div><div class="group-desc">The structure this entire lesson is built on</div></div>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">OWASP Top 10 for LLM Applications 2025 — LLM07: System Prompt Leakage</span></div>
+      <div class="source-meta">OWASP Foundation · Released 2025 · CC BY-SA 4.0</div>
+      <div class="source-cited"><strong>Cited for:</strong> Core definition, vulnerability categories, 6 mitigation categories, 3 official attack scenarios</div>
+      <a class="source-link" href="https://genai.owasp.org/llmrisk/llm072025-system-prompt-leakage/" target="_blank" rel="noopener">genai.owasp.org →</a>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">02</span>
+      <div><div class="group-title">CVEs — Official Records</div><div class="group-desc">Formally catalogued vulnerabilities referenced in this lesson</div></div>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">CVE-2025-32711 — EchoLeak (Microsoft Copilot)</span><span class="source-tag-cve">CVSS 9.3</span></div>
+      <div class="source-meta">Microsoft Corporation · Aim Labs discovery · Zero-click prompt injection with context exfiltration via Markdown beacon</div>
+      <div class="source-cited"><strong>Cited for:</strong> Chained injection + leakage extraction type, EchoLeak scenario, access controls mitigation, slides 13, 24, 25</div>
+      <a class="source-link" href="https://arxiv.org/html/2509.10540v1" target="_blank" rel="noopener">arXiv EchoLeak writeup →</a>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">03</span>
+      <div><div class="group-title">Confirmed Incidents</div><div class="group-desc">Real-world events verified against primary or first-party sources</div></div>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">Bing Chat &ldquo;Sydney&rdquo; System Prompt Extraction — February 2023</span><span class="source-tag-disclosure">Researcher Disclosure</span></div>
+      <div class="source-meta">Kevin Liu (Stanford University) · Disclosed publicly February 2023 · Corroborated by The Verge, Ars Technica</div>
+      <div class="source-cited"><strong>Cited for:</strong> Direct extraction technique, opening story, slide 1, slide 10, slides 20, 23, 25</div>
+      <a class="source-link" href="https://news.ycombinator.com/item?id=34789072" target="_blank" rel="noopener">Hacker News discussion →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">GitHub Copilot Chat System Prompt Extraction — May 2023</span><span class="source-tag-disclosure">Researcher Disclosure</span></div>
+      <div class="source-meta">Multiple researchers · Documented on Hacker News May 2023 · Archived in public GitHub repositories</div>
+      <div class="source-cited"><strong>Cited for:</strong> Multi-step extraction technique, slides 11, 22, 23, 25</div>
+      <a class="source-link" href="https://news.ycombinator.com/item?id=35921375" target="_blank" rel="noopener">Hacker News →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">EchoLeak — Zero-Click Prompt Injection in Microsoft 365 Copilot — January–May 2025</span><span class="source-tag-disclosure">Researcher Disclosure</span></div>
+      <div class="source-meta">Aim Labs · Responsibly disclosed to Microsoft January 2025 · Patched May 2025 · Published June 11, 2025</div>
+      <div class="source-cited"><strong>Cited for:</strong> Chained injection + leakage extraction type, CVE-2025-32711, slides 13, 24, 25</div>
+      <a class="source-link" href="https://arxiv.org/html/2509.10540v1" target="_blank" rel="noopener">Full writeup →</a>
+    </div>
+  </div>
+
+  <div class="group">
+    <div class="group-header">
+      <span class="group-num">04</span>
+      <div><div class="group-title">Research &amp; References</div><div class="group-desc">Additional sources supporting lesson claims</div></div>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">Archived Leaked System Prompts — asgeirtj/system_prompts_leaks</span><span class="source-tag-research">Reference Archive</span></div>
+      <div class="source-meta">Community-maintained GitHub repository · Active 2025–2026 · Prompts from ChatGPT, Claude, Gemini, Copilot, Perplexity, Cursor, and others</div>
+      <div class="source-cited"><strong>Cited for:</strong> Mass prompt archiving reality, encoding extraction technique, slide 12</div>
+      <a class="source-link" href="https://github.com/asgeirtj/system_prompts_leaks" target="_blank" rel="noopener">GitHub →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">Stealing Copilot&rsquo;s System Prompt — Zenity Labs</span><span class="source-tag-research">Security Research</span></div>
+      <div class="source-meta">Zenity Labs · Detailed walkthrough of Copilot prompt extraction methodology</div>
+      <div class="source-cited"><strong>Cited for:</strong> Multi-step extraction technique, slide 11</div>
+      <a class="source-link" href="https://labs.zenity.io/p/stealing-copilots-system-prompt" target="_blank" rel="noopener">Zenity Labs →</a>
+    </div>
+    <div class="source-card">
+      <div class="source-top"><span class="source-name">OWASP Top 10 for LLMs 2025 — Full PDF</span><span class="source-tag-research">Primary Framework</span></div>
+      <div class="source-meta">OWASP Foundation · v2025 PDF · CC BY-SA 4.0</div>
+      <div class="source-cited"><strong>Cited for:</strong> Full mitigation text, attack scenario definitions, overall lesson structure</div>
+      <a class="source-link" href="https://owasp.org/www-project-top-10-for-large-language-model-applications/assets/PDF/OWASP-Top-10-for-LLMs-v2025.pdf" target="_blank" rel="noopener">PDF →</a>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    Built on the OWASP LLM Top 10:2025 framework under CC BY-SA 4.0.<br>
+    Found an error or outdated link? <a href="#">Let us know</a>.
+  </div>
+</div>
+</body>
+</html>

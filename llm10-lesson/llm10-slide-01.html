@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM10:2025 — Unbounded Consumption · Slide 1 of 27</title>
+<link rel="stylesheet" href="llm10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM10:2025</span><span class="nav-title">Unbounded Consumption</span></div>
+  <span class="nav-right">Slide 1 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg active" href="llm10-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg" href="llm10-slide-02.html" title="Slide 2 · The Word"></a><a class="seg" href="llm10-slide-03.html" title="Slide 3 · The Definition"></a><a class="seg" href="llm10-slide-04.html" title="Slide 4 · What Gets Consumed"></a><a class="seg" href="llm10-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg" href="llm10-slide-06.html" title="Slide 6 · Why It Happens"></a><a class="seg" href="llm10-slide-07.html" title="Slide 7 · DoS vs Denial of Wallet"></a><a class="seg" href="llm10-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg" href="llm10-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg" href="llm10-slide-10.html" title="Slide 10 · Context Window Flooding"></a><a class="seg" href="llm10-slide-11.html" title="Slide 11 · Denial of Wallet"></a><a class="seg" href="llm10-slide-12.html" title="Slide 12 · Reasoning Loop Exploitation"></a><a class="seg" href="llm10-slide-13.html" title="Slide 13 · Model Extraction"></a><a class="seg" href="llm10-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg" href="llm10-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg" href="llm10-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg" href="llm10-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm10-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm10-slide-19.html" title="Slide 19 · Input Validation"></a><a class="seg" href="llm10-slide-20.html" title="Slide 20 · Rate Limiting"></a><a class="seg" href="llm10-slide-21.html" title="Slide 21 · Resource Quotas"></a><a class="seg" href="llm10-slide-22.html" title="Slide 22 · API Gateway Controls"></a><a class="seg" href="llm10-slide-23.html" title="Slide 23 · Monitoring &amp; Alerting"></a><a class="seg" href="llm10-slide-24.html" title="Slide 24 · Agentic Safeguards"></a><a class="seg" href="llm10-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm10-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm10-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 1</span></div>
+</div>
+<div class="slide active">
+<div class="part-banner"><span class="part-num">PART 1</span><div><div class="part-title">What Is It?</div><div class="part-count">Slides 1–8 · No jargon yet</div></div></div>
+<div class="slide-eyebrow">Slide 1 · The Setup</div>
+<div class="slide-title">Before we define anything — read this story.</div>
+<div class="slide-subtitle">This happened. Follow it. The definition will make sense after.</div>
+<div class="callout yellow"><div class="callout-label">The Scenario</div><p>A startup launches an AI customer support chatbot. It's powered by an LLM API billed by the token. They announce it on a Thursday, go viral by Friday evening, and wake up Saturday to a flood of users. The chatbot is doing exactly what it was built to do.</p></div>
+<div class="callout red"><div class="callout-label">Then This Happens</div><p>By Sunday morning: <strong>$47,000 in API charges.</strong> One user asked for a "comprehensive analysis" and the model wrote 40 pages. Another triggered a loop that kept calling a search tool, re-reading results, and generating summaries — for 22 minutes straight before timing out. There were no per-user limits. No token caps. No budget alerts. The system just kept generating.</p></div>
+<div class="callout green"><div class="callout-label">What Just Happened</div><p>This is <strong>unbounded consumption</strong> — when an LLM application places no meaningful ceiling on the compute, tokens, API calls, or money a single user or request can consume. The model did nothing wrong. The infrastructure had no limits. That was the vulnerability.</p></div>
+<div class="block"><div class="block-label purple">One Line to Remember</div><p><strong>Unbounded consumption is what happens when an AI system has no spending limits — and someone — or just traffic — finds that out.</strong></p></div>
+<div class="btn-row"><a class="btn-primary" href="llm10-slide-02.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">That makes sense → What counts as “unbounded”?</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

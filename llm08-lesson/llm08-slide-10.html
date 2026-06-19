@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM08:2025 — Vector &amp; Embedding Weaknesses · Slide 10 of 27</title>
+<link rel="stylesheet" href="llm08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM08:2025</span><span class="nav-title">Vector &amp; Embedding Weaknesses</span></div>
+  <span class="nav-right">Slide 10 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm08-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm08-slide-02.html" title="Slide 2 · What Is a Vector"></a><a class="seg done" href="llm08-slide-03.html" title="Slide 3 · What Is RAG"></a><a class="seg done" href="llm08-slide-04.html" title="Slide 4 · The Definition"></a><a class="seg done" href="llm08-slide-05.html" title="Slide 5 · The Attack Surface"></a><a class="seg done" href="llm08-slide-06.html" title="Slide 6 · The Outcomes"></a><a class="seg done" href="llm08-slide-07.html" title="Slide 7 · LLM08 vs LLM04"></a><a class="seg done" href="llm08-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm08-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg active" href="llm08-slide-10.html" title="Slide 10 · Retrieval Poisoning"></a><a class="seg" href="llm08-slide-11.html" title="Slide 11 · Embedding Inversion"></a><a class="seg" href="llm08-slide-12.html" title="Slide 12 · Cross-Context Leakage"></a><a class="seg" href="llm08-slide-13.html" title="Slide 13 · Context Manipulation"></a><a class="seg" href="llm08-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg" href="llm08-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg" href="llm08-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg" href="llm08-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg" href="llm08-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg" href="llm08-slide-19.html" title="Slide 19 · Validate Ingestion"></a><a class="seg" href="llm08-slide-20.html" title="Slide 20 · Permission-Aware Stores"></a><a class="seg" href="llm08-slide-21.html" title="Slide 21 · Retrieval Controls"></a><a class="seg" href="llm08-slide-22.html" title="Slide 22 · Encrypt Vectors"></a><a class="seg" href="llm08-slide-23.html" title="Slide 23 · Monitor Anomalies"></a><a class="seg" href="llm08-slide-24.html" title="Slide 24 · Limit Persistence"></a><a class="seg" href="llm08-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm08-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm08-slide-27.html" title="Slide 27 · Complete"></a></div>
+<div class="progress-labels"><span>Part 2 · Types</span><span>Slide 10</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 10 · Retrieval Poisoning &mdash; Real Example</div>
+  <div class="slide-title">PoisonedRAG &mdash; USENIX Security 2025.</div>
+
+  <div class="real-incident">
+    <div class="real-incident-tag">Research Demonstration &middot; USENIX Security 2025 &middot; Penn State &amp; Illinois Institute of Technology</div>
+    <div class="real-incident-title">PoisonedRAG: Knowledge Corruption Attacks to Retrieval-Augmented Generation</div>
+    <div class="real-incident-cve">No CVE &middot; Peer-reviewed research &middot; Published USENIX Security 2025</div>
+    <div class="real-incident-body">
+      <p><strong>The setup:</strong> Researchers at Penn State and IIT asked: how many malicious documents do you need to inject into a large knowledge base to control what an LLM says about a specific topic?</p>
+      <p><strong>The answer: five.</strong> By injecting 5 adversarially crafted texts into a knowledge base of millions of documents, PoisonedRAG achieved a <strong>90% attack success rate</strong> &mdash; the LLM returned the attacker&rsquo;s chosen answer to the attacker&rsquo;s chosen question.</p>
+      <p><strong>The mechanism:</strong> Each poisoned document satisfies two optimization conditions: its embedding must score higher cosine similarity to the target query than legitimate documents, <em>and</em> its text must steer the LLM toward the desired answer once retrieved. Both conditions are solvable as adversarial optimization problems in black-box and white-box settings.</p>
+      <p><strong>Defenses tested:</strong> Several existing defenses were evaluated. None fully stopped the attack.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Why it matters for LLM08:</strong> 5 documents in a million-document knowledge base. Retrieval poisoning is not a theoretical risk &mdash; it has been formally demonstrated at production scale, with documented 90% effectiveness.</div>
+  </div>
+<div class="btn-row"><a class="btn-secondary" href="llm08-slide-09.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">&larr; Back</a><a class="btn-primary" href="llm08-slide-11.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next &rarr; Embedding Inversion</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>
