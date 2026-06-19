@@ -2,3 +2,7 @@ node_modules/
 package.json
 package-lock.json
 .idea/
+LESSON-AUTHORING-GUIDE.md
+evlbot-avatar.svg
+evlbot-banner.svg
+og-image.svg
