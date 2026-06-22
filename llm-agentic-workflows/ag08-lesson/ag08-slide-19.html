@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 19 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 19 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a><a class="seg done" href="ag08-slide-11.html"></a><a class="seg done" href="ag08-slide-12.html"></a><a class="seg done" href="ag08-slide-13.html"></a><a class="seg done" href="ag08-slide-14.html"></a><a class="seg done" href="ag08-slide-15.html"></a><a class="seg done" href="ag08-slide-16.html"></a><a class="seg done" href="ag08-slide-17.html"></a><a class="seg done" href="ag08-slide-18.html"></a>
+    <a class="seg active" href="ag08-slide-19.html"></a>
+    <a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 19</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 19 · MIT03 + MIT04</div>
+  <div class="slide-title">Graceful degradation keeps the pipeline useful when a component fails. Exponential backoff prevents failed recoveries from becoming extended outages.</div>
+
+  <div class="block">
+    <div class="block-label yellow">MIT03 — Graceful Degradation and Fallback Behaviors</div>
+    <p><strong>What it does:</strong> Instead of propagating a failure or halting the pipeline entirely, each agent has a defined fallback behavior for when its primary function is unavailable — a simpler, safer response that keeps the system operating at reduced capability.</p>
+    <p><strong>Fallback hierarchy (most to least desirable):</strong></p>
+    <ul>
+      <li><strong>Cached response:</strong> Return the most recent valid output for this type of request (appropriate when data freshness is not critical).</li>
+      <li><strong>Simplified logic:</strong> Use a lightweight rule-based or template-based fallback that doesn't require the full LLM (suitable for classification and routing tasks).</li>
+      <li><strong>Partial result:</strong> Return what is available with an explicit flag indicating incompleteness (allows downstream agents to make an informed decision about whether to continue).</li>
+      <li><strong>Human escalation:</strong> Route to a human reviewer when the agent cannot produce a trustworthy output (appropriate for high-stakes decisions).</li>
+      <li><strong>Safe default:</strong> Return a conservative default action (e.g., "take no action" for a recommendation agent that is unsure).</li>
+    </ul>
+    <p><strong>The customer service example (Scenario 5):</strong> Instead of all 6 agents failing when the LLM API was unavailable, each could have fallen back to: keyword-based intent classification → templated responses for common queries → human handoff for unmatched cases. Customers would have received slower, less personalized responses — but responses, not silence.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">MIT04 — Retry with Exponential Backoff and Jitter</div>
+    <p><strong>What it does:</strong> When a request to a dependency fails, the retry schedule uses increasing delays: attempt 1 after 1s, attempt 2 after 2s, attempt 3 after 4s, attempt 4 after 8s. Jitter adds a random offset (±25%) to each delay to prevent all agents from retrying simultaneously.</p>
+    <p><strong>Why fixed-interval retry is dangerous:</strong> If 4 agents all fail simultaneously and all retry every 2 seconds, every 2 seconds there is a burst of 4 simultaneous requests hitting the recovering dependency. The burst may repeatedly push the recovering dependency back into failure. The solution is not to space retries — it's to randomize them so the bursts don't align.</p>
+    <p><strong>Maximum retry budget:</strong> Retry policies must define a maximum retry count and a maximum total retry duration. An agent that retries indefinitely with exponential backoff will eventually have a retry interval of hours — at which point it is effectively stuck. Maximum retry budget + circuit breaker ensures the system transitions to fallback mode rather than waiting indefinitely for a recovery that may not come.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: when one of your AI agents fails, does the system keep retrying it endlessly — or does it give up gracefully and deliver a partial result to the user? Endless retries on a failing service can bring down other services that were working fine. Ask what the fallback plan is when an agent can't complete its task.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-18.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-20.html">MIT05 + MIT06 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

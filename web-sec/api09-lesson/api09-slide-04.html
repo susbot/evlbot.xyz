@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 4 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg active" href="api09-slide-04.html"></a><a class="seg" href="api09-slide-05.html"></a><a class="seg" href="api09-slide-06.html"></a><a class="seg" href="api09-slide-07.html"></a><a class="seg" href="api09-slide-08.html"></a><a class="seg" href="api09-slide-09.html"></a><a class="seg" href="api09-slide-10.html"></a><a class="seg" href="api09-slide-11.html"></a><a class="seg" href="api09-slide-12.html"></a><a class="seg" href="api09-slide-13.html"></a><a class="seg" href="api09-slide-14.html"></a><a class="seg" href="api09-slide-15.html"></a><a class="seg" href="api09-slide-16.html"></a><a class="seg" href="api09-slide-17.html"></a><a class="seg" href="api09-slide-18.html"></a><a class="seg" href="api09-slide-19.html"></a><a class="seg" href="api09-slide-20.html"></a><a class="seg" href="api09-slide-21.html"></a><a class="seg" href="api09-slide-22.html"></a><a class="seg" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 4</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 4 &#xb7; Version Sprawl</div>
+  <div class="slide-title">APIs accumulate versions the way codebases accumulate dead code.</div>
+  <div class="slide-subtitle">Each version launch is straightforward. Each version retirement is a project nobody prioritizes.</div>
+  <div class="block">
+    <div class="block-label pink">The lifecycle problem</div>
+    <p>Launching a new API version is a development project with a deadline, stakeholders, and a release date. Decommissioning an old version requires: identifying all consumers still using it, giving them a migration deadline, monitoring traffic to confirm they&#x2019;ve migrated, handling the consumers who don&#x2019;t respond, and then finally shutting down the old version. This is harder, slower, and has no exciting launch date &#x2014; so it gets deferred indefinitely.</p>
+  </div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4C5;</div>
+      <div><div class="outcome-title">External integrations that can&#x2019;t be forced to migrate</div><div class="outcome-desc">Partners, third-party developers, and mobile apps using old API versions may not migrate on schedule &#x2014; or ever. Shutting down v1 while 5% of production traffic still uses it means breaking those integrations. The old version stays alive.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4F1;</div>
+      <div><div class="outcome-title">Mobile app versions that can&#x2019;t be force-updated</div><div class="outcome-desc">Users who haven&#x2019;t updated their mobile app still send requests to old API versions. You can&#x2019;t force all users to update. The API must keep supporting old versions as long as old app versions are in circulation &#x2014; which can be years.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4A1;</div>
+      <div><div class="outcome-title">Security patches applied to new versions only</div><div class="outcome-desc">When a vulnerability is found in the API, the patch goes to the current version. Old versions may not receive the patch &#x2014; especially if they&#x2019;re maintained by a different team or the codebase has diverged. The old version remains vulnerable indefinitely.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F5C4;&#xFE0F;</div>
+      <div><div class="outcome-title">No central inventory of what exists</div><div class="outcome-desc">In large organizations with multiple teams, no single person knows all the API versions deployed across all services. When asked &#x201C;what API versions are live?&#x201D;, the honest answer is often &#x201C;we&#x2019;re not sure.&#x201D;</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-03.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-05.html">Environment exposure &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

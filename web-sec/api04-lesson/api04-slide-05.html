@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Unrestricted Resource Consumption · Slide 5 of 28</title>
+<link rel="stylesheet" href="api04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Unrestricted Resource Consumption</span></div>
+  <span class="nav-right">Slide 5 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api04-slide-01.html"></a><a class="seg done" href="api04-slide-02.html"></a><a class="seg done" href="api04-slide-03.html"></a><a class="seg done" href="api04-slide-04.html"></a><a class="seg active" href="api04-slide-05.html"></a><a class="seg" href="api04-slide-06.html"></a><a class="seg" href="api04-slide-07.html"></a><a class="seg" href="api04-slide-08.html"></a><a class="seg" href="api04-slide-09.html"></a><a class="seg" href="api04-slide-10.html"></a><a class="seg" href="api04-slide-11.html"></a><a class="seg" href="api04-slide-12.html"></a><a class="seg" href="api04-slide-13.html"></a><a class="seg" href="api04-slide-14.html"></a><a class="seg" href="api04-slide-15.html"></a><a class="seg" href="api04-slide-16.html"></a><a class="seg" href="api04-slide-17.html"></a><a class="seg" href="api04-slide-18.html"></a><a class="seg" href="api04-slide-19.html"></a><a class="seg" href="api04-slide-20.html"></a><a class="seg" href="api04-slide-21.html"></a><a class="seg" href="api04-slide-22.html"></a><a class="seg" href="api04-slide-23.html"></a><a class="seg" href="api04-slide-24.html"></a><a class="seg" href="api04-slide-25.html"></a><a class="seg" href="api04-slide-26.html"></a><a class="seg" href="api04-slide-27.html"></a><a class="seg" href="api04-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 5</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 5 · Why It Keeps Happening</div>
+  <div class="slide-title">Rate limits feel like a problem for "later."</div>
+  <div class="slide-subtitle">Three developer assumptions that leave APIs wide open.</div>
+
+  <div class="block">
+    <div class="block-label red">Assumption 1: "We'll add rate limiting before launch"</div>
+    <p>Rate limiting is infrastructure work. It requires deciding on appropriate limits, implementing a counter store (usually Redis), and testing the behavior under load. Developers building features under deadline pressure defer it. Then the API launches without it, and the deferral becomes permanent.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Assumption 2: "Only real users will call this"</div>
+    <p>When an API is designed, the mental model is human users clicking buttons at human speeds. An attacker with a script can send thousands of requests per second. The gap between "designed for" and "actually receivable" is enormous. No limit means the API must handle whatever rate an attacker chooses to send.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Assumption 3: "The UI has limits, so the API is fine"</div>
+    <p>The mobile app only lets you search for 20 results at a time. The web interface has pagination. But the API the app calls — the one an attacker calls directly — has no such constraints. The UI limits only apply to users who use the UI. The API itself accepts any parameters.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">The result</div>
+    <p>APIs that worked fine in testing — where a QA team ran normal usage patterns — collapse under attacker-scale load because the load was never part of the threat model. The API was designed to serve users; it was never designed to defend against bulk consumption.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api04-slide-04.html">← Back</a>
+    <a class="btn-primary" href="api04-slide-06.html">What's the actual damage? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

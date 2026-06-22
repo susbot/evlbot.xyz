@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 22 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 22 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a><a class="seg done" href="ag08-slide-11.html"></a><a class="seg done" href="ag08-slide-12.html"></a><a class="seg done" href="ag08-slide-13.html"></a><a class="seg done" href="ag08-slide-14.html"></a><a class="seg done" href="ag08-slide-15.html"></a><a class="seg done" href="ag08-slide-16.html"></a><a class="seg done" href="ag08-slide-17.html"></a><a class="seg done" href="ag08-slide-18.html"></a><a class="seg done" href="ag08-slide-19.html"></a><a class="seg done" href="ag08-slide-20.html"></a><a class="seg done" href="ag08-slide-21.html"></a>
+    <a class="seg active" href="ag08-slide-22.html"></a>
+    <a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 22</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 22 · How the Defenses Layer</div>
+  <div class="slide-title">Three zones of defense — each handling failures that escaped the previous zone.</div>
+
+  <div class="block">
+    <div class="block-label purple">Zone 1 — Failure Detection (catch it before it leaves the agent)</div>
+    <p><strong>MIT01 — Output validation:</strong> The first line of defense. Checks every agent's output against its contract before the data enters any downstream channel. Catches silent errors, schema violations, and unknown fields at the point of origin.</p>
+    <p><strong>MIT08 — Health monitoring:</strong> Provides the real-time visibility layer that triggers circuit breakers and alerts. A validation failure that isn't monitored is a failure that goes unnoticed for longer than it should.</p>
+    <p><em>A failure caught in Zone 1 stays in the agent that produced it and does not propagate.</em></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Zone 2 — Failure Containment (stop it from spreading)</div>
+    <p><strong>MIT02 — Circuit breakers:</strong> When a failure escapes Zone 1 (or is detected by monitoring), the circuit breaker opens — routing requests to fallback instead of continuing to send them to the failing agent. Prevents cascades from extending further.</p>
+    <p><strong>MIT03 — Graceful degradation:</strong> The fallback behavior that the circuit breaker routes to. Without a defined fallback, an open circuit simply causes the downstream agent to also fail — converting isolation into another cascade.</p>
+    <p><strong>MIT04 — Exponential backoff with jitter:</strong> Prevents retry storms from overwhelming recovering dependencies. Works with circuit breakers (which handle the "stop sending requests" part) and fallbacks (which handle "while we wait").</p>
+    <p><strong>MIT05 — Bulkhead isolation:</strong> Prevents resource exhaustion from spreading between agents. One agent's overload stays in its own resource pool.</p>
+    <p><em>A failure contained in Zone 2 does not reach the terminal action agents and does not produce real-world harm.</em></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Zone 3 — Blast Radius Limitation (limit harm when it reaches the end)</div>
+    <p><strong>MIT06 — Rate limiting + human confirmation:</strong> If a cascaded error reaches the terminal action agents, rate limiting reduces the number of actions taken per unit time — giving detection a chance to intervene. Human confirmation for bulk actions ensures the most consequential operations don't execute automatically.</p>
+    <p><strong>MIT07 — Idempotency:</strong> When retry storms or pipeline recovery cause duplicate executions, idempotency ensures that only the first execution produces a real-world effect.</p>
+    <p><strong>MIT09 — Chaos testing:</strong> Verifies that Zones 1, 2, and 3 all actually function as designed under realistic conditions — before a real cascade tests them first.</p>
+    <p><strong>Minimum viable set:</strong> <strong>MIT01 + MIT02 + MIT03 + MIT06</strong> — detection, circuit breaking, fallback, and blast radius cap. These four address every failure pattern in this module.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-21.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-23.html">Mitigation matrix →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

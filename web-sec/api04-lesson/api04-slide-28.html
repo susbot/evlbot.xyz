@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Unrestricted Resource Consumption · Slide 28 of 28</title>
+<link rel="stylesheet" href="api04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Unrestricted Resource Consumption</span></div>
+  <span class="nav-right">Slide 28 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api04-slide-01.html"></a><a class="seg done" href="api04-slide-02.html"></a><a class="seg done" href="api04-slide-03.html"></a><a class="seg done" href="api04-slide-04.html"></a><a class="seg done" href="api04-slide-05.html"></a><a class="seg done" href="api04-slide-06.html"></a><a class="seg done" href="api04-slide-07.html"></a><a class="seg done" href="api04-slide-08.html"></a><a class="seg done" href="api04-slide-09.html"></a><a class="seg done" href="api04-slide-10.html"></a><a class="seg done" href="api04-slide-11.html"></a><a class="seg done" href="api04-slide-12.html"></a><a class="seg done" href="api04-slide-13.html"></a><a class="seg done" href="api04-slide-14.html"></a><a class="seg done" href="api04-slide-15.html"></a><a class="seg done" href="api04-slide-16.html"></a><a class="seg done" href="api04-slide-17.html"></a><a class="seg done" href="api04-slide-18.html"></a><a class="seg done" href="api04-slide-19.html"></a><a class="seg done" href="api04-slide-20.html"></a><a class="seg done" href="api04-slide-21.html"></a><a class="seg done" href="api04-slide-22.html"></a><a class="seg done" href="api04-slide-23.html"></a><a class="seg done" href="api04-slide-24.html"></a><a class="seg done" href="api04-slide-25.html"></a><a class="seg done" href="api04-slide-26.html"></a><a class="seg done" href="api04-slide-27.html"></a><a class="seg active" href="api04-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Complete</span><span>Slide 28</span></div>
+</div>
+<div class="slide active">
+
+  <div class="complete-wrap">
+    <div class="complete-icon">✅</div>
+    <div class="complete-title">Module Complete</div>
+    <div class="complete-sub">You finished API4 — Unrestricted Resource Consumption. Here's what you now understand:</div>
+    <div class="checklist">
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">What the risk is — APIs with no limits on frequency, size, or cost can be consumed without bound</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Three damage modes: bulk data scraping, denial of service, and cloud cost amplification</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">How it differs from DDoS — valid requests, one client, no network-layer filter helps</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Real incidents — Venmo 207M transactions (no rate limit) and Twitter 5.4M account-phone pairs (no lookup rate limit)</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">OWASP scenarios — unbounded pagination DoS, AI cost amplification, SMS OTP flooding</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Seven mitigations: rate limiting, max page size, payload limits, timeouts, GraphQL complexity, cost quotas, and anomaly monitoring</span></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label pink">The one thing to carry forward</div>
+    <p>Every API endpoint is implicitly a promise: "send me a request and I'll do work on your behalf." Without limits, that promise has no upper bound. <strong>Rate limits, size caps, and cost quotas are how you define what "too much" means</strong> — before an attacker defines it for you.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api04-slide-27.html">← Back to Quiz</a>
+    <a class="btn-primary" href="../api05-lesson/api05-slide-01.html">Next: API5 — Broken Function Level Authorization →</a>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 20 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 20 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg done" href="api07-slide-07.html"></a><a class="seg done" href="api07-slide-08.html"></a><a class="seg done" href="api07-slide-09.html"></a><a class="seg done" href="api07-slide-10.html"></a><a class="seg done" href="api07-slide-11.html"></a><a class="seg done" href="api07-slide-12.html"></a><a class="seg done" href="api07-slide-13.html"></a><a class="seg done" href="api07-slide-14.html"></a><a class="seg done" href="api07-slide-15.html"></a><a class="seg done" href="api07-slide-16.html"></a><a class="seg done" href="api07-slide-17.html"></a><a class="seg done" href="api07-slide-18.html"></a><a class="seg done" href="api07-slide-19.html"></a><a class="seg active" href="api07-slide-20.html"></a><a class="seg" href="api07-slide-21.html"></a><a class="seg" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 20</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 20 &#xb7; Mitigation 2</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 02</div>
+    <div class="mit-title">Resolve the hostname to its IP and validate the IP &#x2014; not just the hostname string.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Before making any outbound request, resolve the target hostname to its IP address. Check the resolved IP against forbidden ranges. If the IP is in a forbidden range, reject the request with an error. Do not make the HTTP request.</p>
+      <p>Forbidden IP ranges to block:</p>
+      <p>&#x2022; <strong>RFC 1918 private:</strong> <code>10.0.0.0/8</code>, <code>172.16.0.0/12</code>, <code>192.168.0.0/16</code></p>
+      <p>&#x2022; <strong>Loopback:</strong> <code>127.0.0.0/8</code>, <code>::1</code></p>
+      <p>&#x2022; <strong>Link-local (cloud metadata):</strong> <code>169.254.0.0/16</code>, <code>fe80::/10</code></p>
+      <p>&#x2022; <strong>Unroutable / reserved:</strong> <code>0.0.0.0/8</code>, <code>100.64.0.0/10</code>, <code>192.0.0.0/24</code>, <code>240.0.0.0/4</code></p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">DNS rebinding &#x2014; the bypass this stops</div>
+      <p>An attacker controls <code>evil.attacker.com</code>. At check time, the DNS record returns a public IP (passes the check). At fetch time, the DNS record returns <code>169.254.169.254</code> (the actual target). The fix: resolve once, validate the resolved IP, then make the request to the resolved IP directly &#x2014; not to the hostname. This ensures the IP that was validated is the IP that receives the connection.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Implementation note</div>
+      <p>Use a security-aware HTTP client library or SSRF middleware (e.g., <code>ssrf-req-filter</code> for Node.js, <code>python-ssrf</code> patterns, or dedicated WAF rules) rather than implementing IP validation from scratch. DNS resolution + IP validation + fetch must be atomic &#x2014; if there&#x2019;s a gap between validation and fetch, DNS rebinding works.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team whether SSRF protection validates the IP address after DNS resolution &#x2014; not just the domain name. Attackers can control DNS, so checking only the hostname is not sufficient.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-19.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-21.html">MIT 03: Disable redirects &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

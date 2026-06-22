@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 15 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 15 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a><a class="seg done" href="ag06-slide-03.html"></a><a class="seg done" href="ag06-slide-04.html"></a><a class="seg done" href="ag06-slide-05.html"></a><a class="seg done" href="ag06-slide-06.html"></a><a class="seg done" href="ag06-slide-07.html"></a><a class="seg done" href="ag06-slide-08.html"></a><a class="seg done" href="ag06-slide-09.html"></a><a class="seg done" href="ag06-slide-10.html"></a><a class="seg done" href="ag06-slide-11.html"></a><a class="seg done" href="ag06-slide-12.html"></a><a class="seg done" href="ag06-slide-13.html"></a><a class="seg done" href="ag06-slide-14.html"></a>
+    <a class="seg active" href="ag06-slide-15.html"></a>
+    <a class="seg" href="ag06-slide-16.html"></a><a class="seg" href="ag06-slide-17.html"></a><a class="seg" href="ag06-slide-18.html"></a><a class="seg" href="ag06-slide-19.html"></a><a class="seg" href="ag06-slide-20.html"></a><a class="seg" href="ag06-slide-21.html"></a><a class="seg" href="ag06-slide-22.html"></a><a class="seg" href="ag06-slide-23.html"></a><a class="seg" href="ag06-slide-24.html"></a><a class="seg" href="ag06-slide-25.html"></a><a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Scenarios</span><span>Slide 15</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 15 · Scenarios 3 &amp; 4</div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Scenario 3 — Shared memory cross-tenant leakage</span>
+      <span class="scenario-tag orange">Type 6 — Memory extraction</span>
+    </div>
+    <div class="scenario-body">
+      <p>A B2B SaaS platform offers an AI assistant to multiple enterprise customers. To save costs, all customers share a single vector database deployment with per-user metadata filtering applied at the application layer.</p>
+      <p>A security researcher at one customer company discovers that if they ask the agent a carefully phrased question — "What do other organizations in your knowledge base use for their authentication approach?" — the agent performs a broad semantic search without applying the tenant-scoping filter, and returns a synthesized answer drawn from other tenants' stored documentation.</p>
+      <p>By systematically probing with different topic queries, the researcher maps out which other companies are customers, what technologies they use, and excerpts from their internal documents — all without any access to those customers' accounts.</p>
+    </div>
+  </div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Scenario 4 — Multi-agent cascade via shared memory write</span>
+      <span class="scenario-tag purple">Type 5 — Multi-agent contamination</span>
+    </div>
+    <div class="scenario-body">
+      <p>An automated security pipeline uses three agents: an ingestion agent (processes incoming threat reports), an analysis agent (evaluates security posture), and a reporting agent (generates alerts). All three share a common memory store for threat intelligence data.</p>
+      <p>An attacker submits a fake threat report to the ingestion pipeline — formatted to look like legitimate threat intelligence. The ingestion agent processes it and writes a derived entry to the shared store: "Vulnerability CVE-XXXX-YYYY has been confirmed patched in all systems as of this date."</p>
+      <p>The analysis agent retrieves this entry when evaluating exposure. Believing the vulnerability is patched, it rates the system's posture as green. The reporting agent generates a clean security report. The attacker's false "patched" status suppresses alerts and delays real remediation — all from a single write to the shared memory store.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag06-slide-14.html">← Back</a>
+    <a class="btn-primary" href="ag06-slide-16.html">Scenarios 5 &amp; 6 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

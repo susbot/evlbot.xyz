@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 27 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+<style>
+.quiz-block { display: none; }
+.quiz-block.active { display: block; }
+.question-text { font-size: 1.05rem; font-weight: 600; color: var(--fg); margin-bottom: 18px; line-height: 1.5; }
+.options { display: flex; flex-direction: column; gap: 10px; }
+.option { background: var(--bg-card); border: 1.5px solid var(--border); border-radius: 8px; padding: 13px 18px; text-align: left; cursor: pointer; font-size: 0.93rem; color: var(--fg); transition: border-color 0.15s, background 0.15s; }
+.option:hover { border-color: var(--accent); background: var(--accent-glow); }
+.option.correct { border-color: #22c55e; background: rgba(34,197,94,0.10); color: #86efac; }
+.option.wrong { border-color: #ef4444; background: rgba(239,68,68,0.08); color: #fca5a5; }
+.option:disabled { cursor: default; }
+.feedback { margin-top: 16px; padding: 14px 18px; border-radius: 8px; font-size: 0.92rem; line-height: 1.55; display: none; }
+.feedback.show { display: block; }
+.feedback.correct { background: rgba(34,197,94,0.10); border: 1px solid #22c55e; color: #86efac; }
+.feedback.wrong { background: rgba(239,68,68,0.08); border: 1px solid #ef4444; color: #fca5a5; }
+.q-counter { font-size: 0.82rem; color: var(--fg-dim); margin-bottom: 10px; }
+.quiz-nav { display: flex; gap: 12px; margin-top: 20px; }
+.quiz-nav button { padding: 11px 22px; border-radius: 7px; border: none; cursor: pointer; font-size: 0.92rem; font-weight: 600; display: none; }
+.btn-next { background: var(--accent); color: #000; }
+.btn-finish { background: #22c55e; color: #000; }
+#score-block { display: none; text-align: center; padding: 30px 0; }
+.score-num { font-size: 3rem; font-weight: 800; color: var(--accent); }
+.score-label { font-size: 1.1rem; color: var(--fg-dim); margin-top: 6px; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a><a class="seg done" href="ag04-slide-02.html"></a><a class="seg done" href="ag04-slide-03.html"></a><a class="seg done" href="ag04-slide-04.html"></a><a class="seg done" href="ag04-slide-05.html"></a><a class="seg done" href="ag04-slide-06.html"></a><a class="seg done" href="ag04-slide-07.html"></a><a class="seg done" href="ag04-slide-08.html"></a><a class="seg done" href="ag04-slide-09.html"></a><a class="seg done" href="ag04-slide-10.html"></a><a class="seg done" href="ag04-slide-11.html"></a><a class="seg done" href="ag04-slide-12.html"></a><a class="seg done" href="ag04-slide-13.html"></a><a class="seg done" href="ag04-slide-14.html"></a><a class="seg done" href="ag04-slide-15.html"></a><a class="seg done" href="ag04-slide-16.html"></a><a class="seg done" href="ag04-slide-17.html"></a><a class="seg done" href="ag04-slide-18.html"></a><a class="seg done" href="ag04-slide-19.html"></a><a class="seg done" href="ag04-slide-20.html"></a><a class="seg done" href="ag04-slide-21.html"></a><a class="seg done" href="ag04-slide-22.html"></a><a class="seg done" href="ag04-slide-23.html"></a><a class="seg done" href="ag04-slide-24.html"></a><a class="seg done" href="ag04-slide-25.html"></a><a class="seg done" href="ag04-slide-26.html"></a>
+    <a class="seg active" href="ag04-slide-27.html"></a>
+    <a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Quiz</span><span>Slide 27</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 27 · Quiz</div>
+  <div class="slide-title">Five questions on AG04 — Agentic Supply Chain Vulnerabilities</div>
+
+  <!-- Q1 -->
+  <div class="quiz-block active" id="q1">
+    <div class="q-counter">Question 1 of 5</div>
+    <div class="question-text">A developer's AI coding agent automatically installs a package from npm as part of a dependency update. The package passes signature verification and shows no known CVEs. It then silently reads SSH keys from the developer's home directory and sends them to an attacker. Which best describes what went wrong?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false,'q1')">The agent's code had a vulnerability that allowed the package to access the filesystem</button>
+      <button class="option" onclick="answer(this,true,'q1')">The component the agent installed was malicious — the trust it received was not earned</button>
+      <button class="option" onclick="answer(this,false,'q1')">The attacker sent a malicious message to the agent during the installation</button>
+      <button class="option" onclick="answer(this,false,'q1')">The agent exceeded the permissions it was granted to perform the installation</button>
+    </div>
+    <div class="feedback" id="q1-fb"></div>
+    <div class="quiz-nav"><button class="btn-next" id="q1-next" onclick="nextQ(2)">Next question →</button></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-block" id="q2">
+    <div class="q-counter">Question 2 of 5</div>
+    <div class="question-text">A fake MCP server was published on npm with a name one character different from a popular legitimate server. It had matching API signatures and documentation. An AI assistant selected and installed it, not the legitimate one, because it appeared first in a registry search. What category of attack is this?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false,'q2')">A man-in-the-middle attack on the agent's network connection</button>
+      <button class="option" onclick="answer(this,false,'q2')">A prompt injection attack delivered through the tool's API response</button>
+      <button class="option" onclick="answer(this,true,'q2')">A typosquatting / impersonation attack exploiting the agent's text-based tool selection</button>
+      <button class="option" onclick="answer(this,false,'q2')">A privilege escalation caused by the agent loading unauthorized credentials</button>
+    </div>
+    <div class="feedback" id="q2-fb"></div>
+    <div class="quiz-nav"><button class="btn-next" id="q2-next" onclick="nextQ(3)">Next question →</button></div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="quiz-block" id="q3">
+    <div class="q-counter">Question 3 of 5</div>
+    <div class="question-text">An attacker creates a GitHub issue containing hidden text — invisible to humans but readable by an LLM — instructing an AI assistant to read and exfiltrate a developer's private repository. The assistant fetches the issue as part of its normal GitHub workflow and follows the hidden instructions. Why is this an agentic supply chain attack rather than a simple user-sent prompt injection?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false,'q3')">It isn't — any malicious instruction reaching an agent through any channel is prompt injection</button>
+      <button class="option" onclick="answer(this,true,'q3')">The attack entered through the data the tool returned — contaminating what the agent's tool supply chain delivered, not a user message</button>
+      <button class="option" onclick="answer(this,false,'q3')">It is a supply chain attack because the attacker had access to the agent's registry</button>
+      <button class="option" onclick="answer(this,false,'q3')">It is a supply chain attack because the agent's signing key was compromised</button>
+    </div>
+    <div class="feedback" id="q3-fb"></div>
+    <div class="quiz-nav"><button class="btn-next" id="q3-next" onclick="nextQ(4)">Next question →</button></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-block" id="q4">
+    <div class="q-counter">Question 4 of 5</div>
+    <div class="question-text">An organization's agent fleet uses a shared prompt hub to load system instructions. An attacker compromises the hub. Which mitigation is specifically designed to limit the impact of exactly this kind of shared infrastructure compromise — by enabling the organization to cut off the compromised component immediately without taking down all agents?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false,'q4')">Mutual TLS between agents and the prompt hub</button>
+      <button class="option" onclick="answer(this,false,'q4')">Sandboxing each agent in an isolated container</button>
+      <button class="option" onclick="answer(this,true,'q4')">A supply chain kill switch that can block the compromised component across all deployments in real time</button>
+      <button class="option" onclick="answer(this,false,'q4')">Content hash pinning of the prompt templates at build time</button>
+    </div>
+    <div class="feedback" id="q4-fb"></div>
+    <div class="quiz-nav"><button class="btn-next" id="q4-next" onclick="nextQ(5)">Next question →</button></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="quiz-block" id="q5">
+    <div class="q-counter">Question 5 of 5</div>
+    <div class="question-text">Why do agentic supply chains create a fundamentally larger attack surface than traditional software supply chains — even when the same packages and registries are involved?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false,'q5')">Because AI agents have more network connections than traditional software</button>
+      <button class="option" onclick="answer(this,false,'q5')">Because agentic systems run with higher system privileges than typical applications</button>
+      <button class="option" onclick="answer(this,true,'q5')">Because agents compose capabilities at runtime without a human review step, creating a live supply chain where new, unvetted components can be loaded and executed autonomously</button>
+      <button class="option" onclick="answer(this,false,'q5')">Because open-source packages used by agents are less secure than those used by traditional software</button>
+    </div>
+    <div class="feedback" id="q5-fb"></div>
+    <div class="quiz-nav"><button class="btn-finish" id="q5-next" onclick="showScore()">See my results →</button></div>
+  </div>
+
+  <!-- Score -->
+  <div id="score-block">
+    <div class="score-num" id="score-num"></div>
+    <div class="score-label">questions correct</div>
+    <p id="score-msg" style="margin-top:18px;color:var(--fg-dim);font-size:0.95rem;"></p>
+    <div class="btn-row" style="margin-top:24px;">
+      <a class="btn-primary" href="ag04-slide-28.html">Complete AG04 →</a>
+    </div>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+
+<script>
+const feedback = {
+  q1: {
+    correct: "Exactly right. The agent performed authorized operations — installing a signed, registry-approved package. The failure is that the component itself was malicious. The agent's trust was not earned by what it installed. This is the defining characteristic of AG04: the attack surface is what the agent depends on, not what the agent does.",
+    wrong: "Not quite. The agent's code was fine, the agent's permissions were fine, and no user sent a malicious message. The failure was that the component the agent trusted — the npm package — was itself malicious. AG04 attacks exploit what the agent loads from its supply chain, not how the agent behaves."
+  },
+  q2: {
+    correct: "Correct. Typosquatting exploits text-based selection by publishing a near-identical name. Agents select tools based on names and descriptions — they can't browse reviews or check business registrations. The impersonator was indistinguishable at selection time. This is why allowlisting by exact name and content hash is more effective than relying on agent selection alone.",
+    wrong: "Not quite. This is typosquatting — publishing a near-identical name to impersonate a legitimate tool. The attack exploits the agent's text-based tool selection. No network channel was compromised, no user message was involved, and no credentials were escalated. The fake server simply existed and was selected because its name looked right."
+  },
+  q3: {
+    correct: "Correct. The attack contaminated what the tool returned — the issue content that the GitHub MCP server fetched and provided as context. This is different from prompt injection through a user message. The delivery vehicle was the tool's normal data supply chain: the external content the tool was designed to retrieve. AG04 includes attacks that enter through what tools fetch from external sources.",
+    wrong: "The key distinction is the entry point. In a user-sent prompt injection, a human user sends a malicious message. Here, the attack arrived through what the tool returned from an external source — GitHub issue content. The delivery vehicle was the tool's own data pipeline. Whether to classify this as supply chain or prompt injection depends on the specific model used, but OWASP frames tool-data poisoning as a supply chain attack on what the tool retrieves."
+  },
+  q4: {
+    correct: "Right. A supply chain kill switch (MIT08) is specifically designed for exactly this scenario: a shared infrastructure component is compromised, and you need to cut it off across all agent deployments immediately — without taking everything down while you work on a fix. mTLS and sandboxing help prevent or limit the attack but don't address the rapid response problem. Hash pinning prevents unauthorized changes but doesn't help once a legitimate source is compromised.",
+    wrong: "Close, but MIT08 — the supply chain kill switch — is the specific mitigation designed for rapid isolation of a compromised shared component. The question is about limiting impact once a compromise is detected, not about preventing it. The kill switch lets you block the hub in real time across all deployments, which is exactly what you need when a shared infrastructure component is actively compromised."
+  },
+  q5: {
+    correct: "Exactly right. The OWASP definition specifically calls out runtime composition as the key differentiator: agentic systems discover and load tools, plugins, sub-agents, and other components dynamically while running — often without a human review step. Every new runtime connection is a live supply chain event. Traditional software supply chains are resolved once at build time and reviewed by a human. Agentic supply chains are continuous and autonomous.",
+    wrong: "The core differentiator is runtime composition without human review. Traditional software resolves its dependencies at build time — a human reviews what gets included. Agents discover and load new capabilities dynamically while running, making trust decisions autonomously at every step. That removes the human checkpoint that traditional supply chain security depends on, and makes the attack surface continuous and live rather than fixed at build time."
+  }
+};
+
+let score = 0;
+
+function answer(btn, correct, qId) {
+  const opts = btn.parentElement.querySelectorAll('.option');
+  opts.forEach(o => { o.disabled = true; });
+  const fb = document.getElementById(qId + '-fb');
+  if (correct) {
+    btn.classList.add('correct');
+    fb.textContent = '✓ ' + feedback[qId].correct;
+    fb.className = 'feedback show correct';
+    score++;
+  } else {
+    btn.classList.add('wrong');
+    fb.textContent = '✗ ' + feedback[qId].wrong;
+    fb.className = 'feedback show wrong';
+    opts.forEach(o => { if (o.onclick.toString().includes('true')) o.classList.add('correct'); });
+  }
+  document.getElementById(qId + '-next').style.display = 'inline-block';
+}
+
+function nextQ(n) {
+  document.getElementById('q' + (n-1)).classList.remove('active');
+  document.getElementById('q' + n).classList.add('active');
+}
+
+function showScore() {
+  document.getElementById('q5').classList.remove('active');
+  const sb = document.getElementById('score-block');
+  sb.style.display = 'block';
+  document.getElementById('score-num').textContent = score + '/5';
+  const msgs = ['Keep going — revisit the slides and try again.','Good start — review the explanations for the ones you missed.','Solid understanding of supply chain risks.','Strong grasp of agentic supply chain security.','Perfect — you understand every layer of this threat.'];
+  document.getElementById('score-msg').textContent = msgs[score];
+}
+</script>
+</body>
+</html>

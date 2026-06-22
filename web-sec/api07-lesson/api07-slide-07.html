@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 7 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 7 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg active" href="api07-slide-07.html"></a><a class="seg" href="api07-slide-08.html"></a><a class="seg" href="api07-slide-09.html"></a><a class="seg" href="api07-slide-10.html"></a><a class="seg" href="api07-slide-11.html"></a><a class="seg" href="api07-slide-12.html"></a><a class="seg" href="api07-slide-13.html"></a><a class="seg" href="api07-slide-14.html"></a><a class="seg" href="api07-slide-15.html"></a><a class="seg" href="api07-slide-16.html"></a><a class="seg" href="api07-slide-17.html"></a><a class="seg" href="api07-slide-18.html"></a><a class="seg" href="api07-slide-19.html"></a><a class="seg" href="api07-slide-20.html"></a><a class="seg" href="api07-slide-21.html"></a><a class="seg" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 7</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 7 &#xb7; Impact</div>
+  <div class="slide-title">What&#x2019;s at stake when SSRF is exploited.</div>
+  <div class="slide-subtitle">From credential theft to full cloud account compromise &#x2014; SSRF is a gateway, not a destination.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F511;</div>
+      <div><div class="outcome-title">Cloud credential theft &#x2192; account takeover</div><div class="outcome-desc">SSRF to the metadata endpoint steals IAM credentials. Those credentials may allow the attacker to access all S3 data, invoke Lambda functions, spin up EC2 instances, or access RDS databases &#x2014; full cloud account compromise. Capital One impact: 100M records.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F50D;</div>
+      <div><div class="outcome-title">Internal service discovery and exploitation</div><div class="outcome-desc">SSRF allows the attacker to port-scan the internal network and probe internal services that assume all requests come from trusted sources. Admin panels, monitoring tools, and internal APIs often have no authentication on internal interfaces.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4C4;</div>
+      <div><div class="outcome-title">Sensitive file read</div><div class="outcome-desc">file:// SSRF on a misconfigured server reads configuration files, private keys, database credentials, and environment files from the server&#x2019;s local filesystem. Anything the application process can read, the attacker can read.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F6AA;</div>
+      <div><div class="outcome-title">Firewall and network control bypass</div><div class="outcome-desc">The API server is inside the firewall. SSRF uses it as a pivot point to reach internal services that the firewall would block if the attacker tried to reach them directly. The attacker reaches internal resources through the API server as an intermediary.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4A5;</div>
+      <div><div class="outcome-title">Remote code execution (in severe cases)</div><div class="outcome-desc">Some internal services accessible via SSRF accept commands (Redis EVAL, Elasticsearch /_scripts/, Jenkins API). SSRF that reaches these services with write access can result in RCE on internal systems.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-06.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-08.html">Why is this #7? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

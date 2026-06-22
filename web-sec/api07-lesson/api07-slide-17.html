@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 17 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg done" href="api07-slide-07.html"></a><a class="seg done" href="api07-slide-08.html"></a><a class="seg done" href="api07-slide-09.html"></a><a class="seg done" href="api07-slide-10.html"></a><a class="seg done" href="api07-slide-11.html"></a><a class="seg done" href="api07-slide-12.html"></a><a class="seg done" href="api07-slide-13.html"></a><a class="seg done" href="api07-slide-14.html"></a><a class="seg done" href="api07-slide-15.html"></a><a class="seg done" href="api07-slide-16.html"></a><a class="seg active" href="api07-slide-17.html"></a><a class="seg" href="api07-slide-18.html"></a><a class="seg" href="api07-slide-19.html"></a><a class="seg" href="api07-slide-20.html"></a><a class="seg" href="api07-slide-21.html"></a><a class="seg" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 &#xb7; Attack Scenarios</span><span>Slide 17</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 17 &#xb7; The Pattern</div>
+  <div class="slide-title">Every SSRF scenario has the same shape. The URL was trusted. It shouldn&#x2019;t have been.</div>
+  <div class="slide-subtitle">Across every scenario: a URL accepted from input, fetched by the server, without validating the destination.</div>
+  <div class="block">
+    <div class="block-label pink">The Missing Question</div>
+    <p>Every SSRF vulnerability failed to ask: <strong>&#x201C;Is this URL permitted to be fetched by our server &#x2014; considering everything our server can reach that the user cannot?&#x201D;</strong></p>
+    <p>Not &#x201C;is the URL valid HTTP?&#x201D; &#x2014; it was. Not &#x201C;does the hostname exist?&#x201D; &#x2014; it did. Specifically: <em>does fetching this URL expose our internal network, cloud credentials, or local filesystem?</em></p>
+  </div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Failure in each scenario</div>
+      <div class="compare-item">Webhook &#x2014; <strong>no IP validation after DNS resolution</strong>: hostname was valid, resolved to internal IP</div>
+      <div class="compare-item">File import &#x2014; <strong>no allowlist for permitted hosts</strong>: metadata endpoint accepted alongside legitimate URLs</div>
+      <div class="compare-item">Link preview &#x2014; <strong>no protocol restriction</strong>: file:// worked as well as https://</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">The fix pattern</div>
+      <div class="compare-item">Allowlist permitted domains &#x2014; reject everything not on the list</div>
+      <div class="compare-item">Resolve DNS and validate the resolved IP is not private/link-local</div>
+      <div class="compare-item">Restrict protocols: https:// only (or http:// if required)</div>
+      <div class="compare-item">Disable HTTP redirects (or validate redirect destinations)</div>
+      <div class="compare-item">Never return raw server responses to the client</div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-16.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-18.html">How do we fix it? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

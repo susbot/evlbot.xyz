@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 23 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+<style>
+.matrix-wrap { overflow-x: auto; margin: 1rem 0; }
+.matrix-table { border-collapse: collapse; width: 100%; font-size: 0.78rem; }
+.matrix-table th, .matrix-table td { border: 1px solid var(--border); padding: 6px 8px; text-align: center; }
+.matrix-table th { background: var(--surface2); color: var(--text-muted); font-weight: 600; }
+.matrix-table td:first-child { text-align: left; font-weight: 500; color: var(--text); white-space: nowrap; }
+.dot-primary { color: #22c55e; font-size: 1.1rem; }
+.dot-contrib { color: var(--accent); font-size: 1.1rem; }
+.matrix-legend { display: flex; gap: 1.5rem; margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted); }
+.matrix-legend span { display: flex; align-items: center; gap: 0.4rem; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 23 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a><a class="seg done" href="ag07-slide-09.html"></a><a class="seg done" href="ag07-slide-10.html"></a><a class="seg done" href="ag07-slide-11.html"></a><a class="seg done" href="ag07-slide-12.html"></a><a class="seg done" href="ag07-slide-13.html"></a><a class="seg done" href="ag07-slide-14.html"></a><a class="seg done" href="ag07-slide-15.html"></a><a class="seg done" href="ag07-slide-16.html"></a><a class="seg done" href="ag07-slide-17.html"></a><a class="seg done" href="ag07-slide-18.html"></a><a class="seg done" href="ag07-slide-19.html"></a><a class="seg done" href="ag07-slide-20.html"></a><a class="seg done" href="ag07-slide-21.html"></a><a class="seg done" href="ag07-slide-22.html"></a>
+    <a class="seg active" href="ag07-slide-23.html"></a>
+    <a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 23</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 23 · Mitigation Matrix</div>
+  <div class="slide-title">Which mitigations address which attack types and scenarios.</div>
+
+  <div class="matrix-wrap">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Attack / Scenario</th>
+          <th>MIT01<br>Auth</th>
+          <th>MIT02<br>Signing</th>
+          <th>MIT03<br>TLS</th>
+          <th>MIT04<br>Validation</th>
+          <th>MIT05<br>Replay</th>
+          <th>MIT06<br>Routing</th>
+          <th>MIT07<br>Registry</th>
+          <th>MIT08<br>Logging</th>
+          <th>MIT09<br>Anomaly</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>T1 — Message forgery</td>
+          <td class="dot-primary">●</td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-contrib">◉</td>
+          <td></td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-primary">●</td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-contrib">◉</td>
+        </tr>
+        <tr>
+          <td>T2 — Tampering in transit</td>
+          <td></td>
+          <td class="dot-primary">●</td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-contrib">◉</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="dot-contrib">◉</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>T3 — Orchestrator impersonation</td>
+          <td class="dot-primary">●</td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-primary">●</td>
+          <td></td>
+          <td></td>
+          <td class="dot-primary">●</td>
+          <td class="dot-primary">●</td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-contrib">◉</td>
+        </tr>
+        <tr>
+          <td>T4 — Replay attack</td>
+          <td></td>
+          <td class="dot-contrib">◉</td>
+          <td></td>
+          <td></td>
+          <td class="dot-primary">●</td>
+          <td></td>
+          <td></td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-contrib">◉</td>
+        </tr>
+        <tr>
+          <td>T5 — Eavesdropping</td>
+          <td></td>
+          <td></td>
+          <td class="dot-primary">●</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>T6 — Queue injection</td>
+          <td class="dot-primary">●</td>
+          <td></td>
+          <td></td>
+          <td class="dot-contrib">◉</td>
+          <td></td>
+          <td class="dot-primary">●</td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-contrib">◉</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="matrix-legend">
+    <span><span class="dot-primary">●</span> Primary mitigation — directly prevents this attack</span>
+    <span><span class="dot-contrib">◉</span> Contributing mitigation — reduces severity or aids detection</span>
+  </div>
+
+  <div class="block" style="margin-top:1rem;">
+    <div class="block-label purple">Key insight from the matrix</div>
+    <p><strong>MIT01 + MIT03 + MIT06 + MIT07</strong> form the identity and routing foundation — they appear as primary controls for four of the six attack types. Every other control builds on top of this foundation.</p>
+    <p><strong>MIT02 is the only primary control for Type 2 (tampering).</strong> No other mitigation directly prevents message tampering once the channel is authenticated. This means MIT02 (message signing) is non-negotiable if tamper-resistance is required — TLS alone is insufficient because TLS only protects transport, not the message body at application layer.</p>
+    <p><strong>Type 5 (eavesdropping) has only one primary control: MIT03 (TLS).</strong> If TLS is absent, eavesdropping cannot be prevented by any other mitigation on this list.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-22.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-24.html">Quiz →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

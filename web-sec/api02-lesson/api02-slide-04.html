@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 4 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg active" href="api02-slide-04.html"></a><a class="seg" href="api02-slide-05.html"></a><a class="seg" href="api02-slide-06.html"></a><a class="seg" href="api02-slide-07.html"></a><a class="seg" href="api02-slide-08.html"></a><a class="seg" href="api02-slide-09.html"></a><a class="seg" href="api02-slide-10.html"></a><a class="seg" href="api02-slide-11.html"></a><a class="seg" href="api02-slide-12.html"></a><a class="seg" href="api02-slide-13.html"></a><a class="seg" href="api02-slide-14.html"></a><a class="seg" href="api02-slide-15.html"></a><a class="seg" href="api02-slide-16.html"></a><a class="seg" href="api02-slide-17.html"></a><a class="seg" href="api02-slide-18.html"></a><a class="seg" href="api02-slide-19.html"></a><a class="seg" href="api02-slide-20.html"></a><a class="seg" href="api02-slide-21.html"></a><a class="seg" href="api02-slide-22.html"></a><a class="seg" href="api02-slide-23.html"></a><a class="seg" href="api02-slide-24.html"></a><a class="seg" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 4</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 4 · Auth vs. Authorization</div>
+  <div class="slide-title">This is not the same as API1.</div>
+  <div class="slide-subtitle">API1 knew who you were. API2 can't confirm who you are at all.</div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">API1 — Broken Object Level Authorization</div>
+      <div class="compare-item"><strong>Authentication worked</strong> — the API knew who you were</div>
+      <div class="compare-item">The failure: it didn't check <em>what you were allowed to access</em></div>
+      <div class="compare-item">You changed an ID in a request and got someone else's data</div>
+      <div class="compare-item">The question the API skipped: "Is this object yours?"</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">API2 — Broken Authentication</div>
+      <div class="compare-item"><strong>Authentication itself failed</strong> — the API can't confirm who you are</div>
+      <div class="compare-item">The failure: the identity check can be bypassed, tricked, or forged</div>
+      <div class="compare-item">An attacker becomes you — to the API, they look identical</div>
+      <div class="compare-item">The question the API skipped: "Are you really who you say you are?"</div>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">Why the order matters</div>
+    <p>Every other API security risk assumes authentication worked. Authorization, input validation, rate limiting — all of these assume you know who is making the request.</p>
+    <p><strong>If authentication is broken, none of those other defenses matter. That's why it's #2.</strong></p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-03.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-05.html">What happens when this breaks? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 17 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg done" href="api06-slide-09.html"></a><a class="seg done" href="api06-slide-10.html"></a><a class="seg done" href="api06-slide-11.html"></a><a class="seg done" href="api06-slide-12.html"></a><a class="seg done" href="api06-slide-13.html"></a><a class="seg done" href="api06-slide-14.html"></a><a class="seg done" href="api06-slide-15.html"></a><a class="seg done" href="api06-slide-16.html"></a><a class="seg active" href="api06-slide-17.html"></a><a class="seg" href="api06-slide-18.html"></a><a class="seg" href="api06-slide-19.html"></a><a class="seg" href="api06-slide-20.html"></a><a class="seg" href="api06-slide-21.html"></a><a class="seg" href="api06-slide-22.html"></a><a class="seg" href="api06-slide-23.html"></a><a class="seg" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 &#xb7; Attack Scenarios</span><span>Slide 17</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 17 &#xb7; The Pattern</div>
+  <div class="slide-title">No business rule said &#x201C;stop.&#x201D; The API didn&#x2019;t know to.</div>
+  <div class="slide-subtitle">Across every scenario: the API executed correctly. The business constraints were missing or unenforced.</div>
+  <div class="block">
+    <div class="block-label pink">The Missing Question</div>
+    <p>Every API6 attack succeeded because the API never asked: <strong>&#x201C;Is this activity consistent with legitimate human use of this business flow?&#x201D;</strong></p>
+    <p>Not &#x201C;is this request valid?&#x201D; &#x2014; it was. Not &#x201C;is the user authenticated?&#x201D; &#x2014; they were. Specifically: <em>is this actor behaving in a way that our business model intended this flow to support?</em></p>
+  </div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">The pattern in each scenario</div>
+      <div class="compare-item">Ticketmaster &#x2014; <strong>no cart hold limit</strong>: how many tickets can one account hold simultaneously?</div>
+      <div class="compare-item">Sneaker bots &#x2014; <strong>no completion time floor</strong>: can a checkout complete in 200ms?</div>
+      <div class="compare-item">Referral fraud &#x2014; <strong>no account verification</strong>: are these real distinct people?</div>
+      <div class="compare-item">Quantity bypass &#x2014; <strong>no server-enforced limit</strong>: how many units is one account allowed to buy?</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">The fix pattern</div>
+      <div class="compare-item">Define business rules explicitly: max units, max concurrent reservations, min completion time</div>
+      <div class="compare-item">Enforce rules at the API layer, not only the UI</div>
+      <div class="compare-item">Verify human identity before high-value actions</div>
+      <div class="compare-item">Monitor for machine-speed flow completion</div>
+      <div class="compare-item">Design incentive programs with fraud resistance from the start</div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-16.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-18.html">How do we fix it? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

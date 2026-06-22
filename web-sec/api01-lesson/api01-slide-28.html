@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 28 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 28 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg done" href="api01-slide-10.html"></a><a class="seg done" href="api01-slide-11.html"></a><a class="seg done" href="api01-slide-12.html"></a><a class="seg done" href="api01-slide-13.html"></a><a class="seg done" href="api01-slide-14.html"></a><a class="seg done" href="api01-slide-15.html"></a><a class="seg done" href="api01-slide-16.html"></a><a class="seg done" href="api01-slide-17.html"></a><a class="seg done" href="api01-slide-18.html"></a><a class="seg done" href="api01-slide-19.html"></a><a class="seg done" href="api01-slide-20.html"></a><a class="seg done" href="api01-slide-21.html"></a><a class="seg done" href="api01-slide-22.html"></a><a class="seg done" href="api01-slide-23.html"></a><a class="seg done" href="api01-slide-24.html"></a><a class="seg done" href="api01-slide-25.html"></a><a class="seg done" href="api01-slide-26.html"></a><a class="seg done" href="api01-slide-27.html"></a><a class="seg active" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Complete</span><span>Slide 28</span></div>
+</div>
+<div class="slide active">
+
+  <div class="complete-wrap">
+    <div class="complete-icon">✅</div>
+    <div class="complete-title">Module Complete</div>
+    <div class="complete-sub">You finished API1 — Broken Object Level Authorization. Here's what you now understand:</div>
+    <div class="checklist">
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">What BOLA is — the API checks who you are but not what you're allowed to access</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Why APIs made this problem worse — clients now control what gets requested by ID</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">The difference between horizontal BOLA (same level, other user's data) and vertical BOLA (lower role, higher-privilege data)</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Real breaches — Peloton (4M users), T-Mobile (37M customers), Bumble, USPS — and how they happened</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">7 mitigations: ownership checks, UUIDs, token-based identity, cross-user testing, DB-level filtering, centralized authorization, and monitoring</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Authentication ≠ Authorization — knowing who someone is doesn't mean they're allowed to access everything they ask for</span></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label pink">The one thing to carry forward</div>
+    <p>Every API endpoint that accepts an ID from a client must ask: <strong>"Does the person making this request own — or have permission for — this specific object?"</strong> If that question isn't asked on every request, every endpoint, every time — BOLA is waiting to happen.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-27.html">← Back to Quiz</a>
+    <a class="btn-primary" href="../api02-lesson/api02-slide-01.html">Next: API2 — Broken Authentication →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

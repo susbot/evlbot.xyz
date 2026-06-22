@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 21 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 21 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a><a class="seg done" href="ag06-slide-03.html"></a><a class="seg done" href="ag06-slide-04.html"></a><a class="seg done" href="ag06-slide-05.html"></a><a class="seg done" href="ag06-slide-06.html"></a><a class="seg done" href="ag06-slide-07.html"></a><a class="seg done" href="ag06-slide-08.html"></a><a class="seg done" href="ag06-slide-09.html"></a><a class="seg done" href="ag06-slide-10.html"></a><a class="seg done" href="ag06-slide-11.html"></a><a class="seg done" href="ag06-slide-12.html"></a><a class="seg done" href="ag06-slide-13.html"></a><a class="seg done" href="ag06-slide-14.html"></a><a class="seg done" href="ag06-slide-15.html"></a><a class="seg done" href="ag06-slide-16.html"></a><a class="seg done" href="ag06-slide-17.html"></a><a class="seg done" href="ag06-slide-18.html"></a><a class="seg done" href="ag06-slide-19.html"></a><a class="seg done" href="ag06-slide-20.html"></a>
+    <a class="seg active" href="ag06-slide-21.html"></a>
+    <a class="seg" href="ag06-slide-22.html"></a><a class="seg" href="ag06-slide-23.html"></a><a class="seg" href="ag06-slide-24.html"></a><a class="seg" href="ag06-slide-25.html"></a><a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 21</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 21 · MIT05 + MIT06 — Human Review and Memory Tier Separation</div>
+  <div class="slide-title">MIT05: High-stakes memory writes require a human to approve before storage. MIT06: Read-only knowledge and writeable episodic memory must be separate tiers.</div>
+
+  <div class="block">
+    <div class="block-label purple">MIT05 — Human review for high-stakes memory writes</div>
+    <p>Not all memory writes carry the same risk. A stored fact like "the user prefers metric units" has negligible security impact if wrong. A stored entry like "this account has billing authority without manager approval" can cause immediate financial harm.</p>
+    <p><strong>What triggers human review:</strong> Any memory entry that encodes an authorization, permission, exception to policy, role assignment, or behavioral rule should be flagged for human review before being written to the store. The review presents the proposed entry, its intended source, and the reasoning for storing it. A human approves or rejects — no automated bypass.</p>
+    <p><strong>Why this matters especially for ingestion:</strong> The indirect ingestion channel (Type 4) is particularly dangerous because the content is processed automatically without human involvement. Inserting a human review step for any entry the ingestion pipeline classifies as policy-like or authorization-like breaks the fully-automated poisoning path.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">MIT06 — Memory tier separation</div>
+    <p>The most architecturally impactful control is separating memory into tiers with different write privileges:</p>
+    <p><strong>Curated knowledge tier (read-only to agents):</strong> Documents, product specs, verified policy documents, approved knowledge base entries. Written only by humans through an admin interface. Agents can retrieve from this tier but cannot write to it — ever. A prompt injection attack cannot corrupt the curated knowledge base because agents have no write path to it.</p>
+    <p><strong>Episodic / derived tier (agent-writable, human-reviewable):</strong> Session summaries, extracted facts from processed documents, user-stated preferences. Agents can write here, but subject to the validation rules in MIT01 and the TTL policies in MIT04. Human administrators can audit and purge this tier without affecting the curated knowledge base.</p>
+    <p><strong>The key property:</strong> An attacker who fully compromises an agent's ability to write to episodic memory still cannot corrupt the curated knowledge base. The damage is contained to the more volatile tier.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: when your AI agent stores a rule about how it should behave — a policy, an authorization, a standing instruction — does a human have to approve that before it takes effect? Ask whether there is a separation between knowledge your team deliberately gave the agent and knowledge the agent collected on its own.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag06-slide-20.html">← Back</a>
+    <a class="btn-primary" href="ag06-slide-22.html">MIT07 + MIT08 + MIT09 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

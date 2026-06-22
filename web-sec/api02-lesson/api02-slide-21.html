@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 21 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 21 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg done" href="api02-slide-07.html"></a><a class="seg done" href="api02-slide-08.html"></a><a class="seg done" href="api02-slide-09.html"></a><a class="seg done" href="api02-slide-10.html"></a><a class="seg done" href="api02-slide-11.html"></a><a class="seg done" href="api02-slide-12.html"></a><a class="seg done" href="api02-slide-13.html"></a><a class="seg done" href="api02-slide-14.html"></a><a class="seg done" href="api02-slide-15.html"></a><a class="seg done" href="api02-slide-16.html"></a><a class="seg done" href="api02-slide-17.html"></a><a class="seg done" href="api02-slide-18.html"></a><a class="seg done" href="api02-slide-19.html"></a><a class="seg done" href="api02-slide-20.html"></a><a class="seg active" href="api02-slide-21.html"></a><a class="seg" href="api02-slide-22.html"></a><a class="seg" href="api02-slide-23.html"></a><a class="seg" href="api02-slide-24.html"></a><a class="seg" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 21</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 21 · Mitigation 3</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 03</div>
+    <div class="mit-title">Implement multi-factor authentication.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Add a second factor to authentication for all sensitive accounts. Options in order of security:</p>
+      <p>• <strong>Hardware security keys (FIDO2/WebAuthn)</strong> — phishing-resistant, highest security</p>
+      <p>• <strong>Authenticator app (TOTP)</strong> — time-based one-time passwords (Google Authenticator, Authy)</p>
+      <p>• <strong>Push notifications</strong> — approve/deny login on a registered device</p>
+      <p>• <strong>SMS OTP</strong> — better than nothing, but SIM-swappable; avoid for high-security contexts</p>
+      <p>Also apply MFA to the MFA recovery flows — backup codes and account recovery are common bypass targets.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Why MFA stops credential stuffing</div>
+      <p>Credential stuffing works because the attacker has the correct username and password. MFA adds a factor the attacker doesn't have — a physical device, a time-based code. Even a perfectly valid password isn't enough to get in.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What this doesn't fix</div>
+      <p>MFA can be bypassed via real-time phishing (attacker proxies the MFA code between victim and server), SIM swapping (for SMS), and social engineering account recovery. MFA raises the bar dramatically but isn't impenetrable.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team whether there is a limit on failed login attempts &#x2014; and whether that limit applies to your API, not just your web form. A login form with a lockout but an API without one is an open door.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-20.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-22.html">MIT 04: Validate tokens properly →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

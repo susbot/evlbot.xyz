@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 22 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 22 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a><a class="seg done" href="ag04-slide-02.html"></a><a class="seg done" href="ag04-slide-03.html"></a><a class="seg done" href="ag04-slide-04.html"></a><a class="seg done" href="ag04-slide-05.html"></a><a class="seg done" href="ag04-slide-06.html"></a><a class="seg done" href="ag04-slide-07.html"></a><a class="seg done" href="ag04-slide-08.html"></a><a class="seg done" href="ag04-slide-09.html"></a><a class="seg done" href="ag04-slide-10.html"></a><a class="seg done" href="ag04-slide-11.html"></a><a class="seg done" href="ag04-slide-12.html"></a><a class="seg done" href="ag04-slide-13.html"></a><a class="seg done" href="ag04-slide-14.html"></a><a class="seg done" href="ag04-slide-15.html"></a><a class="seg done" href="ag04-slide-16.html"></a><a class="seg done" href="ag04-slide-17.html"></a><a class="seg done" href="ag04-slide-18.html"></a><a class="seg done" href="ag04-slide-19.html"></a><a class="seg done" href="ag04-slide-20.html"></a><a class="seg done" href="ag04-slide-21.html"></a>
+    <a class="seg active" href="ag04-slide-22.html"></a>
+    <a class="seg" href="ag04-slide-23.html"></a><a class="seg" href="ag04-slide-24.html"></a><a class="seg" href="ag04-slide-25.html"></a><a class="seg" href="ag04-slide-26.html"></a><a class="seg" href="ag04-slide-27.html"></a><a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 22</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 22 · MIT04 — Secure Prompts and Versioned Memory</div>
+  <div class="slide-title">MIT04: Version-control every prompt template and agent persona. Treat changes to agent instructions like changes to production code.</div>
+  <div class="slide-subtitle">A prompt template that can be modified without a code review is a configuration file with production impact and no audit trail.</div>
+
+  <div class="block">
+    <div class="block-label purple">The problem with remotely-loaded prompts</div>
+    <p>Many agent deployments load their system prompt, operational instructions, or persona from a remote URL at startup. This is flexible — you can update agent behavior without redeploying code. It's also a supply chain attack surface: anyone who can modify that URL's content can reprogram the agent.</p>
+    <p>If the agent's prompt template is stored in an S3 bucket with overly permissive access controls, a content delivery network that can be poisoned, or a database with a SQL injection vulnerability — the agent's instructions are not protected by the agent's code security.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">What secure prompt management looks like</div>
+    <p><strong>Version control:</strong> All prompt templates stored in a version-controlled system (git) with branch protection, required reviews, and signed commits. Changes to agent instructions go through the same review process as code changes.</p>
+    <p><strong>Immutable references:</strong> Agents load prompt templates by content hash, not by URL. The URL can change, but the agent verifies the hash before using the template. A modified template fails the hash check.</p>
+    <p><strong>Audit trail:</strong> Every change to a prompt template is logged with who made it, when, and what it changed. Unexpected modifications generate alerts.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Versioned memory for long-running agents</div>
+    <p>Agents with persistent memory (context that persists across sessions) can have that memory poisoned over time. Versioned memory means snapshotting memory state at defined checkpoints, storing snapshots with integrity hashes, and having the ability to roll back to a known-good state if memory contamination is detected.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-21.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-23.html">MIT05 — Inter-Agent Security →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

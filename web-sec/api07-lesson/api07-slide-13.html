@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 13 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 13 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg done" href="api07-slide-07.html"></a><a class="seg done" href="api07-slide-08.html"></a><a class="seg done" href="api07-slide-09.html"></a><a class="seg done" href="api07-slide-10.html"></a><a class="seg done" href="api07-slide-11.html"></a><a class="seg done" href="api07-slide-12.html"></a><a class="seg active" href="api07-slide-13.html"></a><a class="seg" href="api07-slide-14.html"></a><a class="seg" href="api07-slide-15.html"></a><a class="seg" href="api07-slide-16.html"></a><a class="seg" href="api07-slide-17.html"></a><a class="seg" href="api07-slide-18.html"></a><a class="seg" href="api07-slide-19.html"></a><a class="seg" href="api07-slide-20.html"></a><a class="seg" href="api07-slide-21.html"></a><a class="seg" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 13</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 13 &#xb7; Real Incident</div>
+  <div class="slide-title">GitLab &#x2014; SSRF via webhooks and CI lint API.</div>
+  <div class="slide-subtitle">CVE-2021-22214 &#x2014; unauthenticated SSRF allowing internal network access through a public API endpoint.</div>
+  <div class="source-tag">&#x1F4C4; CVE-2021-22214 &#xb7; GitLab Security &#xb7; 2021</div>
+  <div class="scenario-card">
+    <div class="scenario-num">THE VULNERABILITY</div>
+    <div class="scenario-title">GitLab CI Lint API &#x2014; CVE-2021-22214</div>
+    <div class="scenario-body">
+      <p>GitLab&#x2019;s CI/CD system includes a lint endpoint that validates CI configuration files. The endpoint accepted a <code>content</code> parameter containing YAML that could include <code>include:</code> directives &#x2014; references to external files to include in the CI configuration.</p>
+      <p>The SSRF existed because the CI lint API would fetch the URL specified in the <code>include:</code> directive without requiring authentication (the endpoint was publicly accessible) and without validating whether the URL was an internal or external target.</p>
+      <p><strong>Exploit:</strong> An attacker could send a POST request to <code>/api/v4/ci/lint</code> with a YAML body containing <code>include: http://169.254.169.254/latest/meta-data/</code>. GitLab would fetch the metadata endpoint from its EC2/GCP/Azure instance and return the response in the API error message &#x2014; leaking cloud credentials to the unauthenticated caller.</p>
+    </div>
+    <div class="scenario-why"><strong>Why this is a direct API7 example:</strong> This is exactly the OWASP API7 pattern. A legitimate API feature (CI configuration validation with remote file includes) becomes an SSRF vector because the URL parameter is accepted without host validation. The API was public-facing, required no authentication, and fetched arbitrary URLs server-side &#x2014; ideal for cloud metadata exploitation on any GitLab instance running on a major cloud provider.</div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">GitLab&#x2019;s broader SSRF history</div>
+    <p>CVE-2021-22214 was not isolated. GitLab has had multiple SSRF CVEs across its webhook system (outbound webhooks to internal IPs), its &#x201C;import project from URL&#x201D; feature, and Prometheus monitoring integrations. Each is the same root cause: a URL-accepting feature that doesn&#x2019;t validate the destination. GitLab now maintains an allowlist/denylist system for outbound requests, but the history shows how many SSRF vectors a complex API platform can accumulate.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-12.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-14.html">Attack Scenarios &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

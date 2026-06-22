@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 16 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 16 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg done" href="api02-slide-07.html"></a><a class="seg done" href="api02-slide-08.html"></a><a class="seg done" href="api02-slide-09.html"></a><a class="seg done" href="api02-slide-10.html"></a><a class="seg done" href="api02-slide-11.html"></a><a class="seg done" href="api02-slide-12.html"></a><a class="seg done" href="api02-slide-13.html"></a><a class="seg done" href="api02-slide-14.html"></a><a class="seg done" href="api02-slide-15.html"></a><a class="seg active" href="api02-slide-16.html"></a><a class="seg" href="api02-slide-17.html"></a><a class="seg" href="api02-slide-18.html"></a><a class="seg" href="api02-slide-19.html"></a><a class="seg" href="api02-slide-20.html"></a><a class="seg" href="api02-slide-21.html"></a><a class="seg" href="api02-slide-22.html"></a><a class="seg" href="api02-slide-23.html"></a><a class="seg" href="api02-slide-24.html"></a><a class="seg" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 · Attack Scenarios</span><span>Slide 16</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 16 · Real Incident</div>
+  <div class="slide-title">70 terabytes. No authentication required.</div>
+  <div class="slide-subtitle">Parler, January 2021 — what happens when API endpoints have no auth at all.</div>
+
+  <div class="real-incident">
+    <div class="real-incident-tag">Real Incident · January 2021</div>
+    <div class="real-incident-title">Parler — 70TB of Data Scraped Before Shutdown</div>
+    <div class="real-incident-body">
+      <p>In early January 2021, before Amazon Web Services suspended Parler's hosting, a researcher discovered that <strong>Parler's API endpoints required no authentication.</strong> Posts, profiles, images, and videos were all publicly accessible without any token or session credential.</p>
+      <p>Compounding the issue: post IDs were sequential integers. There was no rate limiting. Researchers wrote scripts that iterated through every ID from 1 to the maximum, downloading everything.</p>
+      <p><strong>Before the platform went offline, approximately 70 terabytes of data was archived</strong> — including GPS metadata embedded in videos. That metadata placed specific users at the US Capitol on January 6th, with precise coordinates and timestamps.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Lesson:</strong> "No authentication required" is not a design choice — it's an authentication failure. Every API endpoint that returns user data must require a valid credential, even for content the owner believes is "public."</div>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">Three failures in one incident</div>
+    <p>• <strong>No authentication</strong> on endpoints returning user data</p>
+    <p>• <strong>Sequential IDs</strong> making enumeration trivial (a BOLA failure too)</p>
+    <p>• <strong>No rate limiting</strong> allowing bulk scraping at full speed</p>
+    <p>Any one of these mitigated would have significantly slowed or stopped the scrape.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-15.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-17.html">What do all these have in common? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

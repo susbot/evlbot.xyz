@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 21 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 21 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg done" href="api09-slide-05.html"></a><a class="seg done" href="api09-slide-06.html"></a><a class="seg done" href="api09-slide-07.html"></a><a class="seg done" href="api09-slide-08.html"></a><a class="seg done" href="api09-slide-09.html"></a><a class="seg done" href="api09-slide-10.html"></a><a class="seg done" href="api09-slide-11.html"></a><a class="seg done" href="api09-slide-12.html"></a><a class="seg done" href="api09-slide-13.html"></a><a class="seg done" href="api09-slide-14.html"></a><a class="seg done" href="api09-slide-15.html"></a><a class="seg done" href="api09-slide-16.html"></a><a class="seg done" href="api09-slide-17.html"></a><a class="seg done" href="api09-slide-18.html"></a><a class="seg done" href="api09-slide-19.html"></a><a class="seg done" href="api09-slide-20.html"></a><a class="seg active" href="api09-slide-21.html"></a><a class="seg" href="api09-slide-22.html"></a><a class="seg" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 21</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 21 &#xb7; MIT 03</div>
+  <div class="slide-title">Restrict old versions at the network layer &#x2014; before removing them from the codebase.</div>
+  <div class="slide-subtitle">Make old versions unreachable from the internet while they still run internally. Network control before code deletion.</div>
+  <div class="block">
+    <div class="block-label pink">Why network-layer restriction matters</div>
+    <p>Removing an API version from the codebase is a development project. It takes time, requires testing, and may be blocked by dependencies. Network-layer restriction (gateway routing rules, WAF rules, firewall rules) can be applied immediately, making the old version unreachable from the internet even while it still runs on the server.</p>
+  </div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Without network restriction</div>
+      <div class="compare-item">v1 is &#x201C;deprecated&#x201D; in the docs</div>
+      <div class="compare-item">v1 still answers requests from the internet</div>
+      <div class="compare-item">Attacker discovers it via path fuzzing</div>
+      <div class="compare-item">Codebase removal is &#x201C;planned for next quarter&#x201D;</div>
+      <div class="compare-item">Attack surface remains until dev completes removal</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">With network restriction</div>
+      <div class="compare-item">Sunset date reached: gateway blocks <code>/api/v1/</code></div>
+      <div class="compare-item">v1 still runs internally (no rush to remove it)</div>
+      <div class="compare-item">Internet requests return 404 or 410 (Gone)</div>
+      <div class="compare-item">Codebase removal happens when dev team is ready</div>
+      <div class="compare-item">Attack surface closed immediately; removal is cleanup</div>
+    </div>
+  </div>
+  <div class="callout orange">
+    <div class="callout-label">Implementation: API gateway routing rules</div>
+    <p>At the API gateway (Nginx, Kong, AWS API Gateway, Azure APIM), add a routing rule that returns HTTP 410 Gone for all requests to old version paths (<code>/api/v1/</code>, <code>/v1/</code>, <code>/legacy/</code>). This is a one-line change at the gateway level and takes effect immediately across the entire infrastructure without touching application code. For subdomains (<code>staging-api.</code>): DNS removal or firewall egress block prevents external resolution.</p>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team whether old API versions can be blocked at the network or gateway level before the codebase cleanup is finished. Removing access is faster than removing code, and it eliminates the attack surface immediately.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-20.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-22.html">MIT 04: Same security for all versions &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

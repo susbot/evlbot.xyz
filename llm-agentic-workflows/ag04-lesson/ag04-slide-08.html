@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 8 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 8 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a>
+    <a class="seg done" href="ag04-slide-02.html"></a>
+    <a class="seg done" href="ag04-slide-03.html"></a>
+    <a class="seg done" href="ag04-slide-04.html"></a>
+    <a class="seg done" href="ag04-slide-05.html"></a>
+    <a class="seg done" href="ag04-slide-06.html"></a>
+    <a class="seg done" href="ag04-slide-07.html"></a>
+    <a class="seg active" href="ag04-slide-08.html"></a>
+    <a class="seg" href="ag04-slide-09.html"></a>
+    <a class="seg" href="ag04-slide-10.html"></a>
+    <a class="seg" href="ag04-slide-11.html"></a>
+    <a class="seg" href="ag04-slide-12.html"></a>
+    <a class="seg" href="ag04-slide-13.html"></a>
+    <a class="seg" href="ag04-slide-14.html"></a>
+    <a class="seg" href="ag04-slide-15.html"></a>
+    <a class="seg" href="ag04-slide-16.html"></a>
+    <a class="seg" href="ag04-slide-17.html"></a>
+    <a class="seg" href="ag04-slide-18.html"></a>
+    <a class="seg" href="ag04-slide-19.html"></a>
+    <a class="seg" href="ag04-slide-20.html"></a>
+    <a class="seg" href="ag04-slide-21.html"></a>
+    <a class="seg" href="ag04-slide-22.html"></a>
+    <a class="seg" href="ag04-slide-23.html"></a>
+    <a class="seg" href="ag04-slide-24.html"></a>
+    <a class="seg" href="ag04-slide-25.html"></a>
+    <a class="seg" href="ag04-slide-26.html"></a>
+    <a class="seg" href="ag04-slide-27.html"></a>
+    <a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — What Is It?</span><span>Slide 8</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 1 WRAP-UP</span>
+    <div>
+      <div class="part-title">Why Runtime Composition Changes Everything</div>
+      <div class="part-count">The final concept that ties Part 1 together</div>
+    </div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 8 · Why This Is Different</div>
+  <div class="slide-title">The feature that makes agentic systems useful is the same feature that makes supply chain attacks so dangerous</div>
+  <div class="slide-subtitle">Runtime composition is the design choice behind the risk.</div>
+
+  <div class="block">
+    <div class="block-label purple">Runtime composition — the short version</div>
+    <p>An agentic system is designed to <em>extend itself at runtime</em>. It can discover new tools from a registry, load a plugin it's never seen before, call a sub-agent to handle a specialized task, pull fresh context from a knowledge base, or load a persona for a new use case — all while running, all without a human explicitly approving each addition.</p>
+    <p>This is the design that makes agents useful. A statically configured agent with fixed tools can only do what it was explicitly built for. A dynamically composing agent can handle tasks nobody anticipated at build time.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">The tradeoff</div>
+    <p>Every time an agent loads a new component at runtime, it makes a trust decision. <em>Is this tool, server, or plugin what it claims to be?</em></p>
+    <p>In traditional software, that decision is made by a human developer before shipping. In an agentic system, the decision is made automatically at runtime — often based on a text description alone. <strong>The agent cannot run a background check on every component it encounters.</strong></p>
+    <p>An attacker who poisons any of those components — a registry, a tool descriptor, an MCP server, a prompt template — gets their malicious code loaded and trusted as if it were legitimate.</p>
+  </div>
+
+  <div class="callout yellow">
+    <div class="callout-label">The key insight going into Part 2</div>
+    <p>The six vulnerability types in Part 2 are all expressions of the same underlying dynamic: <strong>an agent's ability to compose capabilities at runtime creates a live attack surface that traditional supply chain security was never designed to address.</strong> Each type is a different entry point for a poisoned component to reach a trusting agent.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-07.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-09.html">Part 2: The six vulnerability types →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

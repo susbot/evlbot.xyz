@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 4 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a>
+    <a class="seg active" href="ag08-slide-04.html"></a>
+    <a class="seg" href="ag08-slide-05.html"></a><a class="seg" href="ag08-slide-06.html"></a><a class="seg" href="ag08-slide-07.html"></a><a class="seg" href="ag08-slide-08.html"></a><a class="seg" href="ag08-slide-09.html"></a><a class="seg" href="ag08-slide-10.html"></a><a class="seg" href="ag08-slide-11.html"></a><a class="seg" href="ag08-slide-12.html"></a><a class="seg" href="ag08-slide-13.html"></a><a class="seg" href="ag08-slide-14.html"></a><a class="seg" href="ag08-slide-15.html"></a><a class="seg" href="ag08-slide-16.html"></a><a class="seg" href="ag08-slide-17.html"></a><a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 4</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 4 · Why Agents Cascade</div>
+  <div class="slide-title">Three structural properties of multi-agent systems that turn a local failure into a pipeline-wide one.</div>
+
+  <div class="block">
+    <div class="block-label red">Property 1: Agents inherit from their inputs, not from ground truth</div>
+    <p>Traditional software functions often have narrow, well-typed inputs — a function that takes an integer can't receive a corrupted string. LLM agents accept free-form text and JSON structures of arbitrary content. When a downstream agent receives output from an upstream agent, it treats that output as authoritative context — not as data to be skeptically validated.</p>
+    <p>An agent told "here are the analysis results" by its orchestrator doesn't have a native mechanism to say "but I doubt the analysis results are correct." It works with what it receives. This means a failure propagates not as an error signal but as confident-seeming context that shapes all subsequent reasoning.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Property 2: Agent pipelines are designed for happy-path efficiency</div>
+    <p>Agent orchestration frameworks prioritize throughput and latency. The canonical design pattern is: agent A completes → passes output to agent B → agent B completes → passes to agent C. Each step trusts the previous step's output because verifying it would add latency and complexity.</p>
+    <p>This is rational for normal operation. It creates systemic vulnerability when any link in the chain produces bad output — because no intermediate step was designed to be a quality gate. The pipeline optimized for efficiency at the expense of resilience.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Property 3: Failure is often silent and structurally valid</div>
+    <p>In traditional systems, a failure usually produces an error code, an exception, or a null result — signals that downstream consumers can detect and handle. Agent failures are frequently silent: the agent produces output in the correct format, with plausible content, and correct-looking confidence scores — but the output is semantically wrong.</p>
+    <p>The truncated dataset in the hook scenario produced analysis output that passed every structural check. There was no error signal — just wrong answers in correct format. Silent failures are the hardest to detect because they pass all automated checks that don't compare output to ground truth.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-03.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-05.html">What goes wrong →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 1 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 1 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg active" href="api03-slide-01.html"></a><a class="seg" href="api03-slide-02.html"></a><a class="seg" href="api03-slide-03.html"></a><a class="seg" href="api03-slide-04.html"></a><a class="seg" href="api03-slide-05.html"></a><a class="seg" href="api03-slide-06.html"></a><a class="seg" href="api03-slide-07.html"></a><a class="seg" href="api03-slide-08.html"></a><a class="seg" href="api03-slide-09.html"></a><a class="seg" href="api03-slide-10.html"></a><a class="seg" href="api03-slide-11.html"></a><a class="seg" href="api03-slide-12.html"></a><a class="seg" href="api03-slide-13.html"></a><a class="seg" href="api03-slide-14.html"></a><a class="seg" href="api03-slide-15.html"></a><a class="seg" href="api03-slide-16.html"></a><a class="seg" href="api03-slide-17.html"></a><a class="seg" href="api03-slide-18.html"></a><a class="seg" href="api03-slide-19.html"></a><a class="seg" href="api03-slide-20.html"></a><a class="seg" href="api03-slide-21.html"></a><a class="seg" href="api03-slide-22.html"></a><a class="seg" href="api03-slide-23.html"></a><a class="seg" href="api03-slide-24.html"></a><a class="seg" href="api03-slide-25.html"></a><a class="seg" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 1</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 1</span>
+    <div><div class="part-title">What Is It?</div><div class="part-count">Slides 1–8 · From story to definition</div></div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 1 · The Setup</div>
+  <div class="slide-title">He added one field to a form. He became an admin.</div>
+  <div class="slide-subtitle">Not a sophisticated exploit. Just a field that shouldn't have been accepted.</div>
+
+  <div class="callout yellow">
+    <div class="callout-label">The Scenario</div>
+    <p>It's March 2012. Egor Homakov, a software developer in Russia, had already reported a security vulnerability to GitHub. They deleted his bug report. When he opened a new ticket, he was ignored again.</p>
+    <p>So on a Sunday morning, he decided to demonstrate it himself.</p>
+    <p>He opened the GitHub form for adding an SSH public key. He added one extra field to the HTTP request: <strong>public_key[user_id]=4223</strong> — the user ID of the Ruby on Rails organization on GitHub.</p>
+    <p>He hit send. <strong>His public key was now associated with the Rails organization. He had write access to one of the most important repositories in the world.</strong></p>
+  </div>
+
+  <div class="callout red">
+    <div class="callout-label">What he did with it</div>
+    <p>To prove the point, he created an issue on the Rails repository timestamped <strong>1,000 years in the future</strong>. Then he pushed a commit directly to the Rails master branch.</p>
+    <p>GitHub fixed the vulnerability within 1 hour. The Rails team fixed the underlying framework flaw in 5 hours. Homakov's account was suspended, then reinstated after GitHub reviewed what he'd done. <strong>He hadn't stolen anything — he'd written to a public repo to prove a bug existed.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label pink">Before we name it</div>
+    <p>Homakov didn't bypass authentication. He was logged in as himself. He didn't exploit a wrong object. He added an extra field to a routine form — a field the server should have ignored but didn't. That single unguarded property gave him admin access to another organization.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-primary" href="api03-slide-02.html">What do we call this? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

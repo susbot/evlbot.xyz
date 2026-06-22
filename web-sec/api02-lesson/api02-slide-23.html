@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 23 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 23 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg done" href="api02-slide-07.html"></a><a class="seg done" href="api02-slide-08.html"></a><a class="seg done" href="api02-slide-09.html"></a><a class="seg done" href="api02-slide-10.html"></a><a class="seg done" href="api02-slide-11.html"></a><a class="seg done" href="api02-slide-12.html"></a><a class="seg done" href="api02-slide-13.html"></a><a class="seg done" href="api02-slide-14.html"></a><a class="seg done" href="api02-slide-15.html"></a><a class="seg done" href="api02-slide-16.html"></a><a class="seg done" href="api02-slide-17.html"></a><a class="seg done" href="api02-slide-18.html"></a><a class="seg done" href="api02-slide-19.html"></a><a class="seg done" href="api02-slide-20.html"></a><a class="seg done" href="api02-slide-21.html"></a><a class="seg done" href="api02-slide-22.html"></a><a class="seg active" href="api02-slide-23.html"></a><a class="seg" href="api02-slide-24.html"></a><a class="seg" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 23</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 23 · Mitigation 5</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 05</div>
+    <div class="mit-title">Store passwords so that a database breach is useless.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Hash passwords with a <strong>slow, purpose-built algorithm</strong>:</p>
+      <p>• <strong>Argon2id</strong> — the current gold standard. Winner of the Password Hashing Competition. Memory-hard, resistant to GPU cracking.</p>
+      <p>• <strong>bcrypt</strong> — widely supported, proven over 25 years. Still good for most applications.</p>
+      <p>• <strong>scrypt</strong> — memory-hard alternative to bcrypt.</p>
+      <p>Always use a <strong>unique random salt</strong> per password (done automatically by the algorithms above). Set the cost factor high enough that hashing takes 100–500ms on your server hardware.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">Never use these</div>
+      <p>• <strong>MD5</strong> — cracks in milliseconds on modern GPUs. Entire MD5 databases pre-computed.</p>
+      <p>• <strong>SHA-1 / SHA-256</strong> — fast hashing algorithms designed for speed, not password storage. A GPU can compute billions per second.</p>
+      <p>• <strong>Plain text</strong> — any breach immediately exposes every password. Enables credential stuffing everywhere those users have accounts.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Why this matters for credential stuffing</div>
+      <p>Credential stuffing only works because other sites stored passwords poorly. If <em>your</em> site is breached, proper hashing means the attacker gets a list of useless hashes — not a credential stuffing list for the next victim.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team how the password reset flow works. Emailed reset links that don&#x2019;t expire and &#x201C;security question&#x201D; flows are high-risk patterns that attackers specifically target.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-22.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-24.html">MIT 06: Re-auth for sensitive operations →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

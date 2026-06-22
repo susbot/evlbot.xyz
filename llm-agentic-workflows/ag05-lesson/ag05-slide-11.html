@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG05:2026 — Unexpected Code Execution · Slide 11 of 28</title>
+<link rel="stylesheet" href="ag05-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG05:2026</span>
+    <span class="nav-title">Unexpected Code Execution</span>
+  </div>
+  <span class="nav-right">Slide 11 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag05-slide-01.html"></a><a class="seg done" href="ag05-slide-02.html"></a><a class="seg done" href="ag05-slide-03.html"></a><a class="seg done" href="ag05-slide-04.html"></a><a class="seg done" href="ag05-slide-05.html"></a><a class="seg done" href="ag05-slide-06.html"></a><a class="seg done" href="ag05-slide-07.html"></a><a class="seg done" href="ag05-slide-08.html"></a><a class="seg done" href="ag05-slide-09.html"></a><a class="seg done" href="ag05-slide-10.html"></a>
+    <a class="seg active" href="ag05-slide-11.html"></a>
+    <a class="seg" href="ag05-slide-12.html"></a><a class="seg" href="ag05-slide-13.html"></a><a class="seg" href="ag05-slide-14.html"></a><a class="seg" href="ag05-slide-15.html"></a><a class="seg" href="ag05-slide-16.html"></a><a class="seg" href="ag05-slide-17.html"></a><a class="seg" href="ag05-slide-18.html"></a><a class="seg" href="ag05-slide-19.html"></a><a class="seg" href="ag05-slide-20.html"></a><a class="seg" href="ag05-slide-21.html"></a><a class="seg" href="ag05-slide-22.html"></a><a class="seg" href="ag05-slide-23.html"></a><a class="seg" href="ag05-slide-24.html"></a><a class="seg" href="ag05-slide-25.html"></a><a class="seg" href="ag05-slide-26.html"></a><a class="seg" href="ag05-slide-27.html"></a><a class="seg" href="ag05-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Vulnerability Types</span><span>Slide 11</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 11 · Type 1 — Real Example</div>
+  <div class="slide-title">ChatGPT Code Interpreter / Advanced Data Analysis: demonstrated sandbox escapes and host filesystem access (2023–2024)</div>
+  <div class="slide-subtitle">The most widely deployed AI code execution environment has been the subject of multiple documented escape demonstrations.</div>
+
+  <div class="source-tag">📄 Multiple security researchers · 2023–2024 · ChatGPT Code Interpreter sandbox research</div>
+
+  <div class="incident-timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div>
+        <div class="timeline-label">The environment</div>
+        <div class="timeline-text">OpenAI's Code Interpreter (later renamed Advanced Data Analysis) allows ChatGPT to write and execute Python code in response to user requests. It is designed to run in a sandboxed environment with no persistent state, no internet access, and restricted filesystem access.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot red"></div>
+      <div>
+        <div class="timeline-label">What researchers found</div>
+        <div class="timeline-text">Multiple security researchers demonstrated that the sandbox isolation was incomplete. Generated code could read environment variables containing internal OpenAI infrastructure details, access portions of the host filesystem not intended to be visible to users, and in some cases interact with the underlying container environment in ways that exceeded the intended isolation boundary.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot yellow"></div>
+      <div>
+        <div class="timeline-label">The Bing/Copilot code execution research</div>
+        <div class="timeline-text">Researchers demonstrated that Microsoft Copilot's code execution features could be manipulated through crafted inputs to execute code that read host environment variables and attempted outbound connections — behaviors outside the intended execution scope. In several demonstrations, injected instructions via documents caused the code interpreter to run attacker-specified operations.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot purple"></div>
+      <div>
+        <div class="timeline-label">The pattern across all demonstrations</div>
+        <div class="timeline-text">In every case, the sandbox boundary was assumed to be stronger than it was. Code running inside the interpreter had more access than users or operators expected — to environment variables, to filesystem paths, to network (in some configurations), and to host process information. <strong>The assumption of sandbox isolation is not the same as verified sandbox isolation.</strong></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag05-slide-10.html">← Back</a>
+    <a class="btn-primary" href="ag05-slide-12.html">Types 2–3: Filesystem and network →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

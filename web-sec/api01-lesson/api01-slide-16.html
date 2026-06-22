@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 16 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 16 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg done" href="api01-slide-10.html"></a><a class="seg done" href="api01-slide-11.html"></a><a class="seg done" href="api01-slide-12.html"></a><a class="seg done" href="api01-slide-13.html"></a><a class="seg done" href="api01-slide-14.html"></a><a class="seg done" href="api01-slide-15.html"></a><a class="seg active" href="api01-slide-16.html"></a><a class="seg" href="api01-slide-17.html"></a><a class="seg" href="api01-slide-18.html"></a><a class="seg" href="api01-slide-19.html"></a><a class="seg" href="api01-slide-20.html"></a><a class="seg" href="api01-slide-21.html"></a><a class="seg" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 · Attack Scenarios</span><span>Slide 16</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 16 · Scenarios 7–9</div>
+  <div class="slide-title">Documents. Smart homes. Salaries.</div>
+  <div class="slide-subtitle">BOLA reaches into work, home, and HR.</div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 07 · Document Management</div>
+    <div class="scenario-title">A private contract is one ID change away.</div>
+    <div class="scenario-body">
+      <p>A document platform stores files at <strong>/api/documents/DOC-2281</strong>. A user with a legitimate account changes the document ID and retrieves a contract, NDA, or financial report that was never shared with them. The document was marked private — but the API didn't enforce it.</p>
+    </div>
+    <div class="scenario-why"><strong>Why it matters:</strong> Confidential business documents — M&A agreements, employee contracts, legal filings — have enormous value to competitors and bad actors.</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 08 · Smart Home / IoT</div>
+    <div class="scenario-title">Someone else controls your front door lock.</div>
+    <div class="scenario-body">
+      <p>A smart home platform manages devices at <strong>/api/devices/D-5591/control</strong>. A user changes the device ID and sends a command to someone else's smart lock, thermostat, or security camera. The API verified the user was logged in — not that the device was theirs.</p>
+    </div>
+    <div class="scenario-why"><strong>Why it matters:</strong> Physical access, home temperature, surveillance — IoT BOLA crosses from digital harm into the physical world. This isn't data on a screen. It's someone's front door.</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 09 · HR System</div>
+    <div class="scenario-title">Any employee can read any other employee's salary.</div>
+    <div class="scenario-body">
+      <p>An HR platform exposes payroll data at <strong>/api/employees/EMP-0441/compensation</strong>. An employee changes the ID and reads a colleague's — or their manager's — full compensation breakdown: salary, bonus, equity, benefits.</p>
+    </div>
+    <div class="scenario-why"><strong>Why it matters:</strong> Salary data is sensitive and legally protected in many places. Exposure creates workplace conflict, discrimination claims, and competitive intelligence for rivals.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-15.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-17.html">What do all of these have in common? →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

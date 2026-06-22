@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 3 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 3 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg active" href="api03-slide-03.html"></a><a class="seg" href="api03-slide-04.html"></a><a class="seg" href="api03-slide-05.html"></a><a class="seg" href="api03-slide-06.html"></a><a class="seg" href="api03-slide-07.html"></a><a class="seg" href="api03-slide-08.html"></a><a class="seg" href="api03-slide-09.html"></a><a class="seg" href="api03-slide-10.html"></a><a class="seg" href="api03-slide-11.html"></a><a class="seg" href="api03-slide-12.html"></a><a class="seg" href="api03-slide-13.html"></a><a class="seg" href="api03-slide-14.html"></a><a class="seg" href="api03-slide-15.html"></a><a class="seg" href="api03-slide-16.html"></a><a class="seg" href="api03-slide-17.html"></a><a class="seg" href="api03-slide-18.html"></a><a class="seg" href="api03-slide-19.html"></a><a class="seg" href="api03-slide-20.html"></a><a class="seg" href="api03-slide-21.html"></a><a class="seg" href="api03-slide-22.html"></a><a class="seg" href="api03-slide-23.html"></a><a class="seg" href="api03-slide-24.html"></a><a class="seg" href="api03-slide-25.html"></a><a class="seg" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 3</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 3 · The Definition</div>
+  <div class="slide-title">What OWASP says.</div>
+  <div class="slide-subtitle">Two sub-risks. One root cause.</div>
+
+  <div class="source-tag">📄 OWASP API Security Top 10 · 2023 · API3</div>
+
+  <div class="block">
+    <div class="block-label red">Sub-risk 1 · Excessive Data Exposure</div>
+    <p><strong>"The API endpoint exposes properties of an object that are considered sensitive and should not be read by the user."</strong></p>
+    <p>The server returns the full database object. The frontend filters what it displays. The attacker skips the frontend and reads the raw API response — seeing every field the server sent, not just what the UI chose to show.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Sub-risk 2 · Mass Assignment</div>
+    <p><strong>"The API endpoint allows a user to change, add, and/or delete the value of a sensitive object property which the user should not be able to access."</strong></p>
+    <p>The server accepts all incoming JSON fields and binds them to the data model automatically. The attacker adds extra fields — isAdmin, role, balance — that get written to the database because nothing checked whether those fields should be writable.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">Why they're the same risk</div>
+    <p>Both failures are about the same missing check: <strong>does the calling user have permission to access this specific property?</strong> On a read, the answer is "don't send it." On a write, the answer is "don't accept it." The question is identical; only the direction differs.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-02.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-04.html">How does this differ from API1? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 17 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg done" href="api01-slide-10.html"></a><a class="seg done" href="api01-slide-11.html"></a><a class="seg done" href="api01-slide-12.html"></a><a class="seg done" href="api01-slide-13.html"></a><a class="seg done" href="api01-slide-14.html"></a><a class="seg done" href="api01-slide-15.html"></a><a class="seg done" href="api01-slide-16.html"></a><a class="seg active" href="api01-slide-17.html"></a><a class="seg" href="api01-slide-18.html"></a><a class="seg" href="api01-slide-19.html"></a><a class="seg" href="api01-slide-20.html"></a><a class="seg" href="api01-slide-21.html"></a><a class="seg" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 · Attack Scenarios</span><span>Slide 17</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 17 · The Pattern</div>
+  <div class="slide-title">Nine scenarios. One root cause.</div>
+  <div class="slide-subtitle">Every single attack exploited the same gap.</div>
+
+  <div class="callout pink">
+    <div class="callout-label">The Pattern</div>
+    <p>E-commerce. Healthcare. Banking. Fitness. Dating. Delivery. Documents. Smart homes. HR systems.</p>
+    <p>Nine completely different industries. Nine completely different types of data. <strong>One identical failure.</strong></p>
+    <p>The API checked <strong>authentication</strong> — "Are you logged in?" — but skipped <strong>authorization</strong> — "Are you allowed to access this specific object?"</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">What the API asked</div>
+      <div class="compare-item">Is there a valid token? ✓</div>
+      <div class="compare-item">Is the user logged in? ✓</div>
+      <div class="compare-item">Does this endpoint exist? ✓</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">What the API never asked</div>
+      <div class="compare-item">Does this user own object #1041?</div>
+      <div class="compare-item">Is this user allowed to see this record?</div>
+      <div class="compare-item">Does this token match the requested data?</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label pink">Authentication vs Authorization — the two-second version</div>
+    <p><strong>Authentication</strong> = proving who you are. A valid login, a valid token. "Yes, I know you."</p>
+    <p><strong>Authorization</strong> = proving what you're allowed to do. "Yes, I know you — and this specific record belongs to you."</p>
+    <p>BOLA is always, always, always an authorization failure. The API knew who the user was. It just never asked if the user was allowed to have what they asked for.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-16.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-18.html">Now — how do we stop it? →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

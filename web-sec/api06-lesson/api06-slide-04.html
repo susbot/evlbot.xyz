@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 4 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg active" href="api06-slide-04.html"></a><a class="seg" href="api06-slide-05.html"></a><a class="seg" href="api06-slide-06.html"></a><a class="seg" href="api06-slide-07.html"></a><a class="seg" href="api06-slide-08.html"></a><a class="seg" href="api06-slide-09.html"></a><a class="seg" href="api06-slide-10.html"></a><a class="seg" href="api06-slide-11.html"></a><a class="seg" href="api06-slide-12.html"></a><a class="seg" href="api06-slide-13.html"></a><a class="seg" href="api06-slide-14.html"></a><a class="seg" href="api06-slide-15.html"></a><a class="seg" href="api06-slide-16.html"></a><a class="seg" href="api06-slide-17.html"></a><a class="seg" href="api06-slide-18.html"></a><a class="seg" href="api06-slide-19.html"></a><a class="seg" href="api06-slide-20.html"></a><a class="seg" href="api06-slide-21.html"></a><a class="seg" href="api06-slide-22.html"></a><a class="seg" href="api06-slide-23.html"></a><a class="seg" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 4</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 4 &#xb7; API6 vs. API4</div>
+  <div class="slide-title">Infrastructure harm vs. business harm. Different threat. Different fix.</div>
+  <div class="slide-subtitle">Both involve high-volume API calls. The damage lands in completely different places.</div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">API4 &#x2014; Unrestricted Resource Consumption</div>
+      <div class="compare-item"><strong>The server is the victim</strong></div>
+      <div class="compare-item">Goal: exhaust CPU, memory, DB, bandwidth, or third-party cost</div>
+      <div class="compare-item">Effect: service goes down for everyone</div>
+      <div class="compare-item">Fix: rate limits, size caps, timeouts</div>
+      <div class="compare-item">Attacker: usually wants to disrupt or cost-bomb</div>
+      <div class="compare-item">Example: count=999999 crashes the server</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">API6 &#x2014; Business Flow Abuse</div>
+      <div class="compare-item"><strong>The business (and real users) are the victims</strong></div>
+      <div class="compare-item">Goal: gain unfair advantage, extract value, or manipulate outcomes</div>
+      <div class="compare-item">Effect: real users can&#x2019;t buy tickets, prices distorted, platform trust eroded</div>
+      <div class="compare-item">Fix: business rules, quantity limits, bot detection, verification gates</div>
+      <div class="compare-item">Attacker: usually wants profit (resale, fraud) or manipulation</div>
+      <div class="compare-item">Example: bots hold all inventory &#x2014; server is fine, fans get nothing</div>
+    </div>
+  </div>
+  <div class="callout orange">
+    <div class="callout-label">They can co-occur</div>
+    <p>An API4 attack might take a service down. An API6 attack might leave the server perfectly healthy while every real user is effectively excluded from a business flow. API4 is measured in server metrics. API6 is measured in business outcomes &#x2014; revenue lost, inventory monopolized, trust destroyed.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-03.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-05.html">Why does this keep happening? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

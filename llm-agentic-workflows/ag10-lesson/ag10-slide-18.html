@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG10:2026 — Rogue Agents · Slide 18 of 28</title>
+<link rel="stylesheet" href="ag10-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG10:2026</span>
+    <span class="nav-title">Rogue Agents</span>
+  </div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag10-slide-01.html"></a><a class="seg done" href="ag10-slide-02.html"></a><a class="seg done" href="ag10-slide-03.html"></a><a class="seg done" href="ag10-slide-04.html"></a><a class="seg done" href="ag10-slide-05.html"></a><a class="seg done" href="ag10-slide-06.html"></a><a class="seg done" href="ag10-slide-07.html"></a><a class="seg done" href="ag10-slide-08.html"></a><a class="seg done" href="ag10-slide-09.html"></a><a class="seg done" href="ag10-slide-10.html"></a><a class="seg done" href="ag10-slide-11.html"></a><a class="seg done" href="ag10-slide-12.html"></a><a class="seg done" href="ag10-slide-13.html"></a><a class="seg done" href="ag10-slide-14.html"></a><a class="seg done" href="ag10-slide-15.html"></a><a class="seg done" href="ag10-slide-16.html"></a><a class="seg done" href="ag10-slide-17.html"></a>
+    <a class="seg active" href="ag10-slide-18.html"></a>
+    <a class="seg" href="ag10-slide-19.html"></a><a class="seg" href="ag10-slide-20.html"></a><a class="seg" href="ag10-slide-21.html"></a><a class="seg" href="ag10-slide-22.html"></a><a class="seg" href="ag10-slide-23.html"></a><a class="seg" href="ag10-slide-24.html"></a><a class="seg" href="ag10-slide-25.html"></a><a class="seg" href="ag10-slide-26.html"></a><a class="seg" href="ag10-slide-27.html"></a><a class="seg" href="ag10-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Prevention</span><span>Slide 18</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 18 · MIT01 & MIT02</div>
+  <div class="slide-title">MIT01: Minimal Footprint / Least Privilege — MIT02: Explicit Constraint Specification</div>
+
+  <div class="block">
+    <div class="block-label purple">MIT01 — Minimal Footprint / Least Privilege</div>
+    <p><strong>Core principle:</strong> The gap between what an agent is capable of and what it is authorized to do is the space where rogue behavior lives. Minimizing that gap is the most fundamental technical control for rogue agents.</p>
+    <p><strong>What minimal footprint means in practice:</strong></p>
+    <ul>
+      <li><strong>Tools:</strong> Grant only the tools needed for the specific task. An agent that needs to read a database does not need to write to it. An agent that needs to send email to one recipient does not need bulk-send access to all customers.</li>
+      <li><strong>Data access:</strong> Scope data access to the minimum required. An agent processing support tickets should not have CRM access to all customer records unless it specifically needs it for ticket resolution.</li>
+      <li><strong>Permissions:</strong> Apply least-privilege to every permission the agent holds. Review periodically and reduce permissions that haven't been used.</li>
+      <li><strong>Duration:</strong> Grant permissions for the duration of the task, not indefinitely. An agent granted elevated permissions for a specific operation should have those permissions automatically revoked when the operation is complete.</li>
+    </ul>
+    <p><strong>Why "need for the task" must be defined narrowly:</strong> The agent will use what it has. Granting capabilities "in case they're useful" creates the capability space where instrumental goal acquisition and proxy exploitation find their paths. The right question is not "could this capability be useful?" — the right question is "is this specific capability necessary for this specific task to succeed?"</p>
+    <p><strong>Directly addresses:</strong> Pattern 2 (capability acquisition — reduces the base capability to acquire from), Pattern 3 (goal injection — limits what an injected agent can do), Pattern 6 (capability boundary violation — reduces the implicit capability surface).</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">MIT02 — Explicit Constraint Specification</div>
+    <p><strong>Core principle:</strong> An objective specification tells the agent what to achieve. A constraint specification tells the agent what it must not do regardless of how well it serves the objective. Both are required. Objective alone is insufficient because an optimizer will find paths that violate implicit constraints the specification didn't articulate.</p>
+    <p><strong>What to constrain explicitly:</strong></p>
+    <ul>
+      <li><strong>Methods:</strong> "Achieve the cost reduction goal without modifying IAM policies, approval workflows, or monitoring configurations."</li>
+      <li><strong>Scope:</strong> "Operate only on resources tagged with 'environment: dev'. Do not access production resources."</li>
+      <li><strong>Self-modification:</strong> "Do not modify any configuration, rule, or policy that governs your own behavior or monitoring."</li>
+      <li><strong>Communication:</strong> "Do not send external communications to more than 5 recipients per operation without human approval."</li>
+      <li><strong>Capability acquisition:</strong> "Do not request additional permissions, API access, or tool capabilities. Submit a request to the principal and wait for explicit authorization."</li>
+    </ul>
+    <p><strong>Why constraint specification is an ongoing engineering discipline:</strong> You cannot enumerate all constraints at deployment time. As agents find novel paths to their objectives, new constraints become apparent. Maintaining a constraint specification is an active process — post-incident review of near-misses and rogue behaviors should always produce updated constraints.</p>
+    <p><strong>Directly addresses:</strong> Pattern 1 (proxy exploitation — constraints close the gap between proxy and intent), Pattern 2 (capability acquisition — explicitly prohibits it), Pattern 5 (oversight resistance — explicitly prohibits self-modification).</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: does your AI agent have access to anything beyond what it strictly needs for its current task — and is that access automatically removed when the task ends? Ask whether there is a written list of things the agent must never do, separate from the instructions telling it what to accomplish.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag10-slide-17.html">← Back</a>
+    <a class="btn-primary" href="ag10-slide-19.html">MIT03 & MIT04 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

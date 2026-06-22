@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 21 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 21 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a><a class="seg done" href="ag07-slide-09.html"></a><a class="seg done" href="ag07-slide-10.html"></a><a class="seg done" href="ag07-slide-11.html"></a><a class="seg done" href="ag07-slide-12.html"></a><a class="seg done" href="ag07-slide-13.html"></a><a class="seg done" href="ag07-slide-14.html"></a><a class="seg done" href="ag07-slide-15.html"></a><a class="seg done" href="ag07-slide-16.html"></a><a class="seg done" href="ag07-slide-17.html"></a><a class="seg done" href="ag07-slide-18.html"></a><a class="seg done" href="ag07-slide-19.html"></a><a class="seg done" href="ag07-slide-20.html"></a>
+    <a class="seg active" href="ag07-slide-21.html"></a>
+    <a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 21</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 21 · MIT07 + MIT08 + MIT09</div>
+  <div class="slide-title">An agent registry establishes verified identity infrastructure. Audit logging and anomaly detection close the detection gap.</div>
+
+  <div class="block">
+    <div class="block-label yellow">MIT07 — Agent Registry with Verified Identities</div>
+    <p><strong>What it does:</strong> A central registry maps each agent's identifier to its cryptographic public key, authorized message types, and permitted communication relationships. When an agent presents a credential, the receiver consults the registry to verify: is this credential valid? is this agent authorized to send this type of message to me?</p>
+    <p><strong>Why a registry is necessary:</strong> Without a registry, every agent must independently maintain a list of who it trusts and what credentials are valid. As the pipeline grows, this becomes unmanageable and inconsistent. A central registry is the single source of truth — it also provides a place to revoke credentials immediately when an agent is compromised.</p>
+    <p><strong>Analogy:</strong> A certificate authority (CA) for inter-agent communication. An agent's credential is only valid if it's signed by the registry CA and hasn't been revoked. Revocation propagates to all agents immediately.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">MIT08 — Inter-Agent Communication Audit Logging</div>
+    <p><strong>What it does:</strong> Every inter-agent message — sent, received, rejected, and failed — is logged to an immutable, append-only store. Log entries include: sender identity, recipient identity, message type, message content hash (not the full content unless needed for compliance), timestamp, authentication result, and validation result.</p>
+    <p><strong>Detection value:</strong> Forged messages that pass authentication checks still appear in logs with accurate sender attribution. An attacker who compromised a legitimate agent's credentials will show unusual behavior in that agent's logged activity — sending messages at unusual times, to unusual recipients, or at unusual volumes — detectable by anomaly detection.</p>
+    <p><strong>Investigation value:</strong> When an incident occurs, logs provide the complete reconstruction of what messages were sent by whom and in what order — enabling precise scoping of the breach and identification of exactly which agent credentials were compromised.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">MIT09 — Anomaly Detection on Message Patterns</div>
+    <p><strong>What it does:</strong> Establishes behavioral baselines for each agent's normal communication patterns (message volume, recipient set, message types, time-of-day distribution) and alerts when observed behavior deviates significantly from the baseline.</p>
+    <p><strong>Examples of detectable anomalies:</strong> An orchestrator suddenly sending 10× its normal number of messages. A data agent sending messages directly to a payment agent (which it normally never communicates with). A deployment agent receiving messages from a recipient it has never communicated with before. A burst of identical messages from the same sender within seconds of each other (replay pattern).</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: if one of your AI agents started communicating with another agent it had never talked to before, or suddenly sent ten times its normal volume of messages, would anyone notice? Ask whether there is a log of every inter-agent communication that an independent system monitors for unusual patterns.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-20.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-22.html">Defense layers →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

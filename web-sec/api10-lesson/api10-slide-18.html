@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 18 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg done" href="api10-slide-11.html"></a><a class="seg done" href="api10-slide-12.html"></a><a class="seg done" href="api10-slide-13.html"></a><a class="seg done" href="api10-slide-14.html"></a><a class="seg done" href="api10-slide-15.html"></a><a class="seg done" href="api10-slide-16.html"></a><a class="seg done" href="api10-slide-17.html"></a><a class="seg active" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 18</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 4</span>
+    <div><div class="part-title">Prevention</div><div class="part-count">Slides 18&#x2013;26 &#xb7; Seven mitigations</div></div>
+  </div>
+  <div class="slide-eyebrow">Slide 18 &#xb7; Seven Mitigations Overview</div>
+  <div class="slide-title">Seven controls that treat third-party data with the same discipline as user input.</div>
+  <div class="slide-subtitle">Each mitigation closes a different gap in the implicit trust model.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F6AB;</div>
+      <div><div class="outcome-title">MIT 01 &#xb7; Treat third-party responses as untrusted input</div><div class="outcome-desc">Apply the same validation, sanitization, and security controls to third-party API responses as you apply to user-submitted data. No exceptions based on source reputation.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x2705;</div>
+      <div><div class="outcome-title">MIT 02 &#xb7; Validate and sanitize all third-party response fields</div><div class="outcome-desc">Validate type, length, and format. Parameterize SQL. Escape HTML. Strip dangerous patterns before logging. Applied at the point of use, not at the integration boundary.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x27A1;&#xFE0F;</div>
+      <div><div class="outcome-title">MIT 03 &#xb7; Allowlist outbound URLs &#x2014; never follow arbitrary redirects</div><div class="outcome-desc">Any URL fetched server-side &#x2014; including URLs from third-party responses &#x2014; must be validated against an allowlist. Validate the destination of redirects, not just the source. Disable redirect following where not needed.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F50D;</div>
+      <div><div class="outcome-title">MIT 04 &#xb7; Security due diligence before integration</div><div class="outcome-desc">Evaluate a third-party vendor&#x2019;s security posture before integrating. Review their security practices, incident history, and data handling. Prefer vendors who publish SOC 2 Type II reports or equivalent attestations.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4F1;</div>
+      <div><div class="outcome-title">MIT 05 &#xb7; Subresource Integrity for third-party scripts</div><div class="outcome-desc">For CDN-hosted scripts loaded in HTML, use the <code>integrity</code> attribute with a cryptographic hash. The browser refuses to execute the script if the hash doesn&#x2019;t match. This prevents CDN compromise from delivering modified scripts.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F511;</div>
+      <div><div class="outcome-title">MIT 06 &#xb7; Minimum-privilege third-party integrations</div><div class="outcome-desc">Scope third-party API permissions to exactly what&#x2019;s needed. Don&#x2019;t grant write access if only read is needed. Use separate API keys per integration. Rotate keys regularly. Revoke immediately on vendor incident.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4E6;</div>
+      <div><div class="outcome-title">MIT 07 &#xb7; Isolate third-party integration points</div><div class="outcome-desc">Run third-party integrations in isolated services or sandboxed environments with minimal permissions. A compromised third-party response processed by an isolated adapter cannot affect the core API or database directly.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-17.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-19.html">MIT 01: Treat responses as untrusted &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

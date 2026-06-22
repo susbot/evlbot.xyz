@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 25 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 25 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg done" href="api10-slide-11.html"></a><a class="seg done" href="api10-slide-12.html"></a><a class="seg done" href="api10-slide-13.html"></a><a class="seg done" href="api10-slide-14.html"></a><a class="seg done" href="api10-slide-15.html"></a><a class="seg done" href="api10-slide-16.html"></a><a class="seg done" href="api10-slide-17.html"></a><a class="seg done" href="api10-slide-18.html"></a><a class="seg done" href="api10-slide-19.html"></a><a class="seg done" href="api10-slide-20.html"></a><a class="seg done" href="api10-slide-21.html"></a><a class="seg done" href="api10-slide-22.html"></a><a class="seg done" href="api10-slide-23.html"></a><a class="seg done" href="api10-slide-24.html"></a><a class="seg active" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 25</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 25 &#xb7; MIT 07</div>
+  <div class="slide-title">Isolate third-party integration points &#x2014; a compromised vendor response can&#x2019;t reach the core API directly.</div>
+  <div class="slide-subtitle">Architectural isolation as a last line of defense when technical controls fail.</div>
+  <div class="block">
+    <div class="block-label pink">The isolation approach</div>
+    <p>Rather than calling third-party APIs inline from core business logic, run integrations in dedicated adapter services with restricted network access and minimal permissions. The adapter processes the third-party response, validates and normalizes it, and passes only the safe, expected output to the core API. A compromise of the third-party or the adapter cannot directly affect the core API or database.</p>
+  </div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Inline integration (risky)</div>
+      <div class="compare-item">Core API calls third-party directly</div>
+      <div class="compare-item">Third-party response processed by the same process</div>
+      <div class="compare-item">Malicious response has direct access to core logic</div>
+      <div class="compare-item">SQL injection from response reaches the DB directly</div>
+      <div class="compare-item">One compromised vendor = core API at risk</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Isolated adapter (safer)</div>
+      <div class="compare-item">Dedicated adapter service calls the third-party</div>
+      <div class="compare-item">Adapter normalizes, validates, and sanitizes the response</div>
+      <div class="compare-item">Only the validated, typed output passes to the core API</div>
+      <div class="compare-item">Adapter has read-only DB access (or no DB access)</div>
+      <div class="compare-item">Compromise reaches adapter only; core API is protected</div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">Isolation in practice</div>
+    <p>In a microservice architecture, the isolating pattern is natural: each integration gets its own service with its own deployment, network policy, and permissions. In a monolith, isolation can be achieved with module boundaries and strict validation at the module interface. Even simple isolation &#x2014; a dedicated class or function that handles all third-party API calls and returns typed, validated output &#x2014; reduces the blast radius compared to inline processing of raw API responses throughout the codebase.</p>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your architecture team whether a compromised response from any third-party API could directly affect your core database or business logic. Good isolation means the answer is no &#x2014; a compromised vendor reaches an adapter, not your core system.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-24.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-26.html">The matrix &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 10 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 10 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg active" href="api01-slide-10.html"></a><a class="seg" href="api01-slide-11.html"></a><a class="seg" href="api01-slide-12.html"></a><a class="seg" href="api01-slide-13.html"></a><a class="seg" href="api01-slide-14.html"></a><a class="seg" href="api01-slide-15.html"></a><a class="seg" href="api01-slide-16.html"></a><a class="seg" href="api01-slide-17.html"></a><a class="seg" href="api01-slide-18.html"></a><a class="seg" href="api01-slide-19.html"></a><a class="seg" href="api01-slide-20.html"></a><a class="seg" href="api01-slide-21.html"></a><a class="seg" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 · How It Works</span><span>Slide 10</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 10 · Horizontal BOLA</div>
+  <div class="slide-title">Same level. Different person's data.</div>
+  <div class="slide-subtitle">Step by step — here's exactly what happens.</div>
+
+  <div class="callout yellow">
+    <div class="callout-label">Step by step</div>
+    <p><strong>Step 1.</strong> You sign up for a service. You become user 1042. Your orders live at <code style="color:var(--accent-bright);background:#0d0d14;padding:1px 5px;border-radius:3px;">/api/orders?userId=1042</code></p>
+    <p><strong>Step 2.</strong> You open your browser's developer tools (F12 → Network tab). You see the exact API request your app is making.</p>
+    <p><strong>Step 3.</strong> You change 1042 to 1041 and resend the request.</p>
+    <p><strong>Step 4.</strong> The API returns user 1041's order — their name, address, items, payment method type. You're in.</p>
+  </div>
+
+  <div class="mono-block"><span class="comment">// Your legitimate request</span>
+GET /api/orders?userId=1042
+→ Returns: your orders ✓
+
+<span class="comment">// You change one number</span>
+GET /api/orders?userId=1041
+→ Returns: someone else's orders ✗
+
+<span class="comment">// The API never asked: "Does user 1042 own these orders?"</span></div>
+
+  <div class="callout orange">
+    <div class="callout-label">What the API should have done</div>
+    <p>When it received <code style="color:var(--accent-bright);background:#0d0d14;padding:1px 5px;border-radius:3px;">userId=1041</code>, it should have cross-referenced your session token: <strong>"The token says you're user 1042. You asked for user 1041's data. Denied."</strong> Instead it just fetched whatever ID it was given.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-09.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-11.html">Show me a real example →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

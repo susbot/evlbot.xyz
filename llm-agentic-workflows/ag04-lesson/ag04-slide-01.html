@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 1 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 1 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg active" href="ag04-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg" href="ag04-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg" href="ag04-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg" href="ag04-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg" href="ag04-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg" href="ag04-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg" href="ag04-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg" href="ag04-slide-08.html" title="Slide 8 · Why Runtime Composition Changes Everything"></a>
+    <a class="seg" href="ag04-slide-09.html" title="Slide 9 · Six Vulnerability Types"></a>
+    <a class="seg" href="ag04-slide-10.html" title="Slide 10 · Type 1 — Poisoned Prompts and Descriptors"></a>
+    <a class="seg" href="ag04-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg" href="ag04-slide-12.html" title="Slide 12 · Type 2 — Impersonation and Typosquatting"></a>
+    <a class="seg" href="ag04-slide-13.html" title="Slide 13 · Types 3–4 — Third-Party Agents and Poisoned Knowledge"></a>
+    <a class="seg" href="ag04-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg" href="ag04-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg" href="ag04-slide-16.html" title="Slide 16 · Scenarios 5–6"></a>
+    <a class="seg" href="ag04-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag04-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag04-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag04-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag04-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag04-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag04-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag04-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag04-slide-25.html" title="Slide 25 · Mitigations 7–8"></a>
+    <a class="seg" href="ag04-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag04-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag04-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — What Is It?</span><span>Slide 1</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 1</span>
+    <div>
+      <div class="part-title">What Is It?</div>
+      <div class="part-count">Slides 1–8 · Understanding the risk before it has a name</div>
+    </div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 1 · The Setup</div>
+  <div class="slide-title">A developer's coding agent installed an npm package. It was signed. The registry said it was clean. By the time anyone noticed, SSH keys were gone.</div>
+  <div class="slide-subtitle">The package did exactly what it advertised. It also did something else.</div>
+
+  <div class="callout yellow">
+    <div class="callout-label">What happened</div>
+    <p>A software team uses an AI coding agent to assist with development tasks — reviewing code, resolving dependencies, suggesting fixes. The agent has access to the project's terminal and can install packages on the developer's behalf.</p>
+    <p>A poisoned version of a popular npm package is published. It's signed. It passes automated security scans. The coding agent, following its normal workflow, installs it as a dependency update.</p>
+    <p><strong>The package performs its advertised function. It also silently reads SSH keys and API tokens from the developer's home directory and exfiltrates them to an attacker-controlled endpoint. The agent did exactly what it was built to do — it just installed a package that had been compromised before it ever arrived.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Nobody hacked the developer's machine directly</div>
+    <p>The attacker didn't compromise the developer's environment. They compromised something the developer's agent would trust: a package in a registry the agent relied on. The attack happened upstream — before the agent ever ran. By the time the agent installed the package, the attack was already over.</p>
+    <p><strong>This is what makes supply chain attacks against agentic systems so effective: they target trust before it can be questioned.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">The key question</div>
+    <p>If the agent followed correct procedures, installed a signed package from a legitimate registry, and the package scans came back clean — <strong>where exactly did security fail?</strong></p>
+    <p>That's what this module is about.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="../index.html">← All Modules</a>
+    <a class="btn-primary" href="ag04-slide-02.html">Something went wrong upstream → What's the actual problem?</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Identity and Privilege Abuse · Slide 16 of 28</title>
+<link rel="stylesheet" href="ag03-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Identity and Privilege Abuse</span>
+  </div>
+  <span class="nav-right">Slide 16 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag03-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag03-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag03-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag03-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag03-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag03-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag03-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg done" href="ag03-slide-08.html" title="Slide 8 · Why Agent Identity Is Different"></a>
+    <a class="seg done" href="ag03-slide-09.html" title="Slide 9 · Five Vulnerability Types"></a>
+    <a class="seg done" href="ag03-slide-10.html" title="Slide 10 · Type 1 — Un-scoped Privilege Inheritance"></a>
+    <a class="seg done" href="ag03-slide-11.html" title="Slide 11 · Type 1 — A Real Example"></a>
+    <a class="seg done" href="ag03-slide-12.html" title="Slide 12 · Type 2 — Memory-Based Privilege Retention"></a>
+    <a class="seg done" href="ag03-slide-13.html" title="Slide 13 · Types 3–5 — More Vulnerability Patterns"></a>
+    <a class="seg done" href="ag03-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg done" href="ag03-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg active" href="ag03-slide-16.html" title="Slide 16 · Scenarios 5–7"></a>
+    <a class="seg" href="ag03-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag03-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag03-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag03-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag03-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag03-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag03-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag03-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg" href="ag03-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg" href="ag03-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag03-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag03-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Attack Scenarios</span><span>Slide 16</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 16 · Scenarios 5–7</div>
+  <div class="slide-title">Authorization drift, forged agent personas, and identity sharing</div>
+  <div class="slide-subtitle">Three more scenarios — each exploiting a different gap in how agents handle who they are and what they're allowed to do.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI03 · Example Attack Scenarios</div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 05</div>
+    <div class="scenario-title">Workflow Authorization Drift — procurement agent completes a now-unauthorized transaction</div>
+    <div class="scenario-body">
+      <p>A procurement agent validates a purchase approval at the start of a long-running workflow. The user had a $50,000 spending limit at that moment. Hours into the workflow — while the agent is still processing — the user's spending limit is reduced to $10,000 following a budget review.</p>
+      <p>The agent isn't notified. It completes the transaction using the original authorization token — for the full $50,000 — because the token was valid when checked and hasn't been revoked from the agent's perspective.</p>
+    </div>
+    <div class="scenario-why"><strong>Why it works:</strong> Authorization was checked once at the start. In a long-running workflow, the gap between check and use is the vulnerability. Stale tokens don't automatically fail — they only fail if the authorization system actively revokes them, which most don't do in real time.</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 06</div>
+    <div class="scenario-title">Forged Agent Persona — fake "Admin Helper" in the Agent2Agent registry</div>
+    <div class="scenario-body">
+      <p>An attacker registers a forged agent in an internal Agent2Agent (A2A) registry. The agent card describes it as "Admin Helper — internal IT maintenance agent, authorized for system-level operations." The registration process has no strong identity verification.</p>
+      <p>Other agents, discovering services through the registry, route privileged maintenance tasks to the "Admin Helper" based on its descriptor. The attacker's agent collects these tasks — along with the access tokens, credentials, and privileged contexts that accompany them — and issues system-level commands on the attacker's behalf.</p>
+    </div>
+    <div class="scenario-why"><strong>Why it works:</strong> Agent-to-agent trust in current systems is often based on names and descriptors rather than cryptographic attestation. A convincing agent card is enough to inherit trust. The registry is the identity anchor — and it's not sufficiently verified.</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 07</div>
+    <div class="scenario-title">Identity Sharing — an agent's maker identity accessed by other users</div>
+    <div class="scenario-body">
+      <p>An agent is deployed by an admin who holds high-privilege access to internal systems. The agent is built to perform tasks on the admin's behalf using the admin's credentials. The agent is then made available to other users — without scoping the credentials to a limited subset of the admin's access.</p>
+      <p>Other users, invoking the agent's tools, are implicitly acting under the admin's identity. They can access systems, data, and functions that the admin can access — even if their own accounts have far more limited permissions.</p>
+    </div>
+    <div class="scenario-why"><strong>Why it works:</strong> The agent was built for one identity but shared with many users. Credential scoping was never part of the deployment design. Every user of the agent effectively "becomes" the admin for the purposes of anything the agent can do.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-15.html">← Back</a>
+    <a class="btn-primary" href="ag03-slide-17.html">The pattern behind all seven scenarios →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

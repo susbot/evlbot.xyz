@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 20 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 20 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg done" href="api02-slide-07.html"></a><a class="seg done" href="api02-slide-08.html"></a><a class="seg done" href="api02-slide-09.html"></a><a class="seg done" href="api02-slide-10.html"></a><a class="seg done" href="api02-slide-11.html"></a><a class="seg done" href="api02-slide-12.html"></a><a class="seg done" href="api02-slide-13.html"></a><a class="seg done" href="api02-slide-14.html"></a><a class="seg done" href="api02-slide-15.html"></a><a class="seg done" href="api02-slide-16.html"></a><a class="seg done" href="api02-slide-17.html"></a><a class="seg done" href="api02-slide-18.html"></a><a class="seg done" href="api02-slide-19.html"></a><a class="seg active" href="api02-slide-20.html"></a><a class="seg" href="api02-slide-21.html"></a><a class="seg" href="api02-slide-22.html"></a><a class="seg" href="api02-slide-23.html"></a><a class="seg" href="api02-slide-24.html"></a><a class="seg" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 20</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 20 · Mitigation 2</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 02</div>
+    <div class="mit-title">Rate limit and lock out on all authentication endpoints.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Apply rate limiting to <strong>every</strong> authentication endpoint: login, password reset, OTP verification, account recovery, and token refresh. Limit by IP address <em>and</em> by account. Implement exponential backoff after failed attempts.</p>
+      <p>For GraphQL: count <strong>operations inside a batch</strong>, not just HTTP requests. A batch of 100 login mutations counts as 100 attempts, not 1.</p>
+      <p>Add CAPTCHA or proof-of-work on repeated failures. Lock accounts temporarily after a threshold of failed attempts, and notify the account owner.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Plain English</div>
+      <p>Think of it like a bank vault with a 3-wrong-attempts-and-alarm-triggers rule. Every door into the vault — every auth endpoint — needs the same rule. Leaving one door unguarded means the others don't matter.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What this doesn't fix</div>
+      <p>Rate limiting by IP is bypassable by distributed attacks (botnets rotate IPs). Credential stuffing with correct passwords from leaked lists won't trigger lockouts because each attempt succeeds on the first try. Rate limiting slows attackers; it doesn't stop credential stuffing. MFA does.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask whether there is a limit on how long a logged-in session stays active. A token that works forever after a single login is a permanent credential for anyone who obtains it.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-19.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-21.html">MIT 03: Multi-factor authentication →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API5:2023 — Sources & References</title>
+<link rel="stylesheet" href="api05-shared.css">
+<style>
+body{padding-bottom:40px;}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent-bright);text-decoration:none;margin:24px 0 8px;}
+.back-link:hover{opacity:.8;}
+.src-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.src-title{font-size:clamp(20px,5vw,28px);font-weight:600;color:#fff;line-height:1.2;margin-bottom:24px;}
+.src-section{margin-bottom:28px;}
+.src-section-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:12px;}
+.src-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:8px;}
+.src-item-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.src-item-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;}
+.src-item-desc{font-size:12px;color:var(--subtle);line-height:1.6;}
+.src-note{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:12px;color:var(--muted);line-height:1.8;margin-top:24px;}
+</style>
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API5:2023</span><span class="nav-title">Sources &amp; References</span></div>
+  <a href="https://evlbot.xyz" style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:4px 10px;text-decoration:none;letter-spacing:.06em;">evlbot.xyz</a>
+</div>
+
+<div class="wrap">
+  <a class="back-link" href="api05-slide-01.html">&#x2190; Back to lesson</a>
+
+  <div class="src-eyebrow">References</div>
+  <div class="src-title">Sources for API5 &#x2014; Broken Function Level Authorization</div>
+
+  <div class="src-section">
+    <div class="src-section-label">Primary Source</div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP API Security Top 10 &#x2014; 2023 &#xb7; API5:2023 Broken Function Level Authorization</div>
+      <div class="src-item-meta">OWASP Foundation &#xb7; owasp.org &#xb7; 2023</div>
+      <div class="src-item-desc">The authoritative source for the definition, vulnerable patterns, example attack scenarios, and prevention guidance in this module. The three attack scenarios on slides 14&#x2013;16 are drawn directly from the OWASP API5 page (admin URL discovery, HTTP verb manipulation, workflow bypass). CWE reference: CWE-285 (Improper Authorization). This course is an independent study companion &#x2014; not affiliated with or endorsed by OWASP.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Real Incidents</div>
+    <div class="src-item">
+      <div class="src-item-title">Bumble &#x2014; Broken Function Level Authorization Across Premium and Admin Endpoints</div>
+      <div class="src-item-meta">Sanjana Sarda, Independent Security Evaluators &#xb7; Reported June 2020, Published November 2020</div>
+      <div class="src-item-desc">Security researcher Sanjana Sarda at Independent Security Evaluators discovered that Bumble&#x2019;s API checked for a valid session token on every request but did not verify whether the calling user&#x2019;s subscription tier or role authorized them to use specific functions. Free-tier users could access Bumble Boost premium features (see who swiped right, extend matches, re-match expired connections) and certain administrative functions by calling the API endpoints directly. The vulnerability affected Bumble&#x2019;s 100+ million registered users. Sarda reported the findings to Bumble in June 2020. After receiving no remediation timeline after five months, ISE published their findings publicly in November 2020. Referenced in slides 1, 10, 11, 20, 26.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">GitLab &#x2014; Unauthenticated User Enumeration via GraphQL API (CVE-2021-4191)</div>
+      <div class="src-item-meta">Nir Ohfeld, Rapid7 &#xb7; 2021 &#xb7; CVE-2021-4191</div>
+      <div class="src-item-desc">Security researcher Nir Ohfeld at Rapid7 discovered that a GraphQL query to GitLab&#x2019;s /api/graphql endpoint &#x2014; which enumerated registered users, usernames, and email addresses &#x2014; required no authentication and was not restricted to admin-role tokens. On GitLab.com, this exposed the personal details of millions of users to any unauthenticated caller. GitLab patched CVE-2021-4191 in versions 14.7.7, 14.8.5, and 14.9.2, adding authentication requirements and restricting user enumeration to administrator-role tokens. Self-hosted instances remained exposed until patched. Referenced in slides 13, 22, 26.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Technical References</div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP Authorization Cheat Sheet</div>
+      <div class="src-item-meta">OWASP Foundation &#xb7; owasp.org/cheatsheets</div>
+      <div class="src-item-desc">Implementation guidance on role-based access control, permission matrices, centralized authorization enforcement, and deny-by-default patterns. Directly informs MIT 01 through MIT 05 in this module.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Open Policy Agent (OPA) &#x2014; Policy-as-Code Authorization</div>
+      <div class="src-item-meta">CNCF &#xb7; openpolicyagent.org</div>
+      <div class="src-item-desc">OPA is a widely-used policy engine for centralizing authorization logic across microservices. Relevant to MIT 04 (centralized authorization): instead of embedding role checks in every handler, each service asks OPA &#x201C;is this token permitted to call this action?&#x201D; OPA evaluates the policy and returns allow/deny. This ensures authorization is consistent across all services.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">GraphQL Authorization Best Practices</div>
+      <div class="src-item-meta">Apollo GraphQL &#xb7; graphql.org</div>
+      <div class="src-item-desc">Technical guidance on implementing per-resolver authorization in GraphQL APIs. Covers the risk of unauthenticated introspection, the need to authorize each resolver individually (not just the top-level query), and patterns for centralized GraphQL authorization middleware. Directly relevant to the GitLab incident (slides 13, 22).</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Further Reading</div>
+    <div class="src-item">
+      <div class="src-item-title">ISE Research Report &#x2014; Bumble API Security Evaluation</div>
+      <div class="src-item-meta">Independent Security Evaluators &#xb7; November 2020</div>
+      <div class="src-item-desc">The full published report from Sanjana Sarda and ISE covering the Bumble API vulnerabilities in detail, including methodology, specific endpoints affected, and remediation recommendations. Search for &#x201C;ISE Bumble API security evaluation 2020&#x201D; to find the published report.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">PortSwigger Web Security Academy &#x2014; Access Control</div>
+      <div class="src-item-meta">PortSwigger &#xb7; portswigger.net/web-security/access-control</div>
+      <div class="src-item-desc">Interactive labs covering vertical privilege escalation (regular user accessing admin functions), horizontal privilege escalation (BOLA), and multi-step access control bypasses. Recommended hands-on practice for BFLA after completing this module.</div>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <strong>About this course:</strong> This is an independent, unofficial study companion built for educational purposes. Content is based on publicly available security research and the OWASP API Security Top 10 framework. This project is not affiliated with, endorsed by, or sponsored by the OWASP Foundation. All trademarks remain the property of their respective owners.
+  </div>
+</div>
+</body>
+</html>

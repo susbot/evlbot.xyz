@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 1 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 1 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg active" href="api10-slide-01.html"></a><a class="seg" href="api10-slide-02.html"></a><a class="seg" href="api10-slide-03.html"></a><a class="seg" href="api10-slide-04.html"></a><a class="seg" href="api10-slide-05.html"></a><a class="seg" href="api10-slide-06.html"></a><a class="seg" href="api10-slide-07.html"></a><a class="seg" href="api10-slide-08.html"></a><a class="seg" href="api10-slide-09.html"></a><a class="seg" href="api10-slide-10.html"></a><a class="seg" href="api10-slide-11.html"></a><a class="seg" href="api10-slide-12.html"></a><a class="seg" href="api10-slide-13.html"></a><a class="seg" href="api10-slide-14.html"></a><a class="seg" href="api10-slide-15.html"></a><a class="seg" href="api10-slide-16.html"></a><a class="seg" href="api10-slide-17.html"></a><a class="seg" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 1</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 1 &#xb7; The Breach That Defined the Category</div>
+  <div class="slide-title">Ticketmaster trusted a third-party script. That script stole 40,000 payment cards.</div>
+  <div class="slide-subtitle">Magecart / Inbenta &#x2014; 2018. The attack didn&#x2019;t target Ticketmaster&#x2019;s API. It targeted a vendor Ticketmaster trusted.</div>
+  <div class="source-tag">&#x1F4C4; UK ICO &#xb7; Inbenta Technologies &#xb7; Magecart Group 9 research &#xb7; 2018</div>
+  <div class="scenario-card">
+    <div class="scenario-num">THE INCIDENT</div>
+    <div class="scenario-title">Ticketmaster UK &#x2014; Magecart via Inbenta CDN &#x2014; February&#x2013;June 2018</div>
+    <div class="scenario-body">
+      <p>Ticketmaster UK integrated Inbenta&#x2019;s third-party customer support chatbot widget on their payment and checkout pages. The integration worked like most third-party JavaScript: Ticketmaster&#x2019;s pages loaded a script tag pointing to a file on Inbenta&#x2019;s CDN &#x2014; <code>&lt;script src="https://inbenta.ticketmaster.net/..."&gt;</code>. That script ran with full access to the page&#x2019;s DOM, including any payment card fields the user was typing into.</p>
+      <p>Attackers &#x2014; later attributed to Magecart Group 9 &#x2014; compromised Inbenta&#x2019;s CDN and modified the JavaScript file that Ticketmaster loaded. The modified script added a card-skimming payload that intercepted payment form submissions and exfiltrated card numbers, expiry dates, CVV codes, and billing addresses to an attacker-controlled server. The payload ran on Ticketmaster UK&#x2019;s payment pages from February to June 2018 &#x2014; four months.</p>
+    </div>
+    <div class="scenario-why"><strong>Discovery and impact:</strong> A bank flagged fraudulent card transactions where the common purchase point was Ticketmaster UK. Ticketmaster was notified in June 2018 and took Inbenta&#x2019;s script offline within hours. By then, approximately 40,000 UK customers and an unknown number of international customers had their payment card data stolen. Ticketmaster notified 9.4 million affected customers across Europe. The UK ICO fined Ticketmaster &#xA3;1.25 million for failing to put appropriate security measures in place to prevent the attack. Inbenta stated that the compromised JavaScript had been specifically customized for Ticketmaster and was not used by any other Inbenta client.</div>
+  </div>
+  <div class="callout red">
+    <div class="callout-label">The API10 lesson</div>
+    <p>Ticketmaster&#x2019;s own payment processing was secure. Their API was not vulnerable. But they loaded a third-party script on their payment page and trusted that script implicitly &#x2014; with no integrity verification, no monitoring for changes, and no sandboxing. The attacker didn&#x2019;t break into Ticketmaster. They broke into a vendor Ticketmaster trusted, and used that trust as their entry point.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="../index.html">&#x2190; All modules</a>
+    <a class="btn-primary" href="api10-slide-02.html">What is API10? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

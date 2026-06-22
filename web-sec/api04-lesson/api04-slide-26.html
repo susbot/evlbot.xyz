@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Unrestricted Resource Consumption · Slide 26 of 28</title>
+<link rel="stylesheet" href="api04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Unrestricted Resource Consumption</span></div>
+  <span class="nav-right">Slide 26 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api04-slide-01.html"></a><a class="seg done" href="api04-slide-02.html"></a><a class="seg done" href="api04-slide-03.html"></a><a class="seg done" href="api04-slide-04.html"></a><a class="seg done" href="api04-slide-05.html"></a><a class="seg done" href="api04-slide-06.html"></a><a class="seg done" href="api04-slide-07.html"></a><a class="seg done" href="api04-slide-08.html"></a><a class="seg done" href="api04-slide-09.html"></a><a class="seg done" href="api04-slide-10.html"></a><a class="seg done" href="api04-slide-11.html"></a><a class="seg done" href="api04-slide-12.html"></a><a class="seg done" href="api04-slide-13.html"></a><a class="seg done" href="api04-slide-14.html"></a><a class="seg done" href="api04-slide-15.html"></a><a class="seg done" href="api04-slide-16.html"></a><a class="seg done" href="api04-slide-17.html"></a><a class="seg done" href="api04-slide-18.html"></a><a class="seg done" href="api04-slide-19.html"></a><a class="seg done" href="api04-slide-20.html"></a><a class="seg done" href="api04-slide-21.html"></a><a class="seg done" href="api04-slide-22.html"></a><a class="seg done" href="api04-slide-23.html"></a><a class="seg done" href="api04-slide-24.html"></a><a class="seg done" href="api04-slide-25.html"></a><a class="seg active" href="api04-slide-26.html"></a><a class="seg" href="api04-slide-27.html"></a><a class="seg" href="api04-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 26</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 26 · The Matrix</div>
+  <div class="slide-title">Which mitigations stop which attacks?</div>
+  <div class="slide-subtitle">Real incidents and scenarios mapped to the defenses that would have stopped them.</div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">BREACH — Venmo (2019) · 207M records · Bulk Scraping</div>
+    <div class="scenario-title">Public transaction endpoint, no rate limit, scraped in 30 days</div>
+    <div class="scenario-body">
+      <p>A public API endpoint returned transaction data with no rate limit and no authentication requirement. One researcher's script ran for a month and downloaded 207 million records.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 01 (rate limit: a low req/min cap on the public feed would have made 207M records take years instead of months) + MIT 07 (anomaly: one IP/session consuming millions of records is detectable)</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">BREACH — Twitter (2022) · 5.4M accounts · Enumeration</div>
+    <div class="scenario-title">Phone-to-account lookup, no rate limit, iterated through phone number ranges</div>
+    <div class="scenario-body">
+      <p>A lookup API accepted phone numbers and returned Twitter accounts. With no rate limit, any authenticated user could map millions of phone numbers to accounts by iterating through number ranges.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 01 (rate limit per user: 10 lookups/min makes mass enumeration infeasible) + MIT 07 (anomaly: user performing millions of lookups is detectable)</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">OWASP — count=99999999 · DoS · Unbounded pagination</div>
+    <div class="scenario-title">One request with a giant page size saturated the database and crashed the server</div>
+    <div class="scenario-body">
+      <p>A paginated list endpoint accepted client-controlled page sizes. One request with count=99999999 triggered a full table scan and OOM-killed the server process.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 02 (max page size: server enforces max=100 regardless of what client requests) + MIT 04 (execution timeout: kill the query after 10s before it OOM-kills the process)</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">OWASP — AI inference abuse · Financial · Cost amplification</div>
+    <div class="scenario-title">Unlimited AI generation calls ran up thousands of dollars in third-party costs</div>
+    <div class="scenario-body">
+      <p>No per-user limit on AI inference calls. Attacker scripted 100,000 generation requests. Third-party bill: $2,000 overnight.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 06 (cost quota: 100 generations/day per free user) + MIT 01 (rate limit: max 10 requests/min prevents burst attacks even within the daily quota) + MIT 07 (alert: user crossing 50% of quota triggers review)</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api04-slide-25.html">← Back</a>
+    <a class="btn-primary" href="api04-slide-27.html">Ready to test yourself? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

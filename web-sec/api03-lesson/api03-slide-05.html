@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 5 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 5 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg done" href="api03-slide-03.html"></a><a class="seg done" href="api03-slide-04.html"></a><a class="seg active" href="api03-slide-05.html"></a><a class="seg" href="api03-slide-06.html"></a><a class="seg" href="api03-slide-07.html"></a><a class="seg" href="api03-slide-08.html"></a><a class="seg" href="api03-slide-09.html"></a><a class="seg" href="api03-slide-10.html"></a><a class="seg" href="api03-slide-11.html"></a><a class="seg" href="api03-slide-12.html"></a><a class="seg" href="api03-slide-13.html"></a><a class="seg" href="api03-slide-14.html"></a><a class="seg" href="api03-slide-15.html"></a><a class="seg" href="api03-slide-16.html"></a><a class="seg" href="api03-slide-17.html"></a><a class="seg" href="api03-slide-18.html"></a><a class="seg" href="api03-slide-19.html"></a><a class="seg" href="api03-slide-20.html"></a><a class="seg" href="api03-slide-21.html"></a><a class="seg" href="api03-slide-22.html"></a><a class="seg" href="api03-slide-23.html"></a><a class="seg" href="api03-slide-24.html"></a><a class="seg" href="api03-slide-25.html"></a><a class="seg" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 5</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 5 · Why It Keeps Happening</div>
+  <div class="slide-title">Developer convenience is the root cause.</div>
+  <div class="slide-subtitle">Two framework defaults that trade security for speed.</div>
+
+  <div class="block">
+    <div class="block-label red">On the write side: "Bind Everything"</div>
+    <p>ORM frameworks — Ruby on Rails, Django, Laravel, Spring — have a feature that maps incoming HTTP parameters directly to model properties. It's designed to save boilerplate: instead of manually mapping each field, the framework does it automatically.</p>
+    <p>The danger: it binds <strong>all</strong> fields by default, including ones that were never meant to be user-editable. Developers add <code>isAdmin</code> to the database schema and forget to protect it from mass assignment. The framework happily accepts it from any POST request.</p>
+  </div>
+
+  <div class="mono-block"><span class="comment"># Rails: the vulnerable pattern that hit GitHub</span>
+def update
+  @key.update_attributes(params[:public_key])  <span class="comment"># binds ALL params</span>
+end
+
+<span class="comment"># Attacker sends:</span>
+POST /public_keys
+public_key[key]=ssh-rsa+AAAA...&public_key[user_id]=4223</div>
+
+  <div class="block">
+    <div class="block-label red">On the read side: "Return Everything"</div>
+    <p>When developers build API endpoints, the easiest implementation is to serialize the entire database object and return it. The frontend is then responsible for filtering what to display.</p>
+    <p>The danger: the API is not the same as the frontend. Any developer, security researcher, or attacker can call the API directly and receive the <strong>full unsanitized object</strong> — including fields the UI would have hidden.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-04.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-06.html">What's the actual damage? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

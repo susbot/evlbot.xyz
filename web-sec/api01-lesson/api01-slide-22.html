@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 22 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 22 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg done" href="api01-slide-10.html"></a><a class="seg done" href="api01-slide-11.html"></a><a class="seg done" href="api01-slide-12.html"></a><a class="seg done" href="api01-slide-13.html"></a><a class="seg done" href="api01-slide-14.html"></a><a class="seg done" href="api01-slide-15.html"></a><a class="seg done" href="api01-slide-16.html"></a><a class="seg done" href="api01-slide-17.html"></a><a class="seg done" href="api01-slide-18.html"></a><a class="seg done" href="api01-slide-19.html"></a><a class="seg done" href="api01-slide-20.html"></a><a class="seg done" href="api01-slide-21.html"></a><a class="seg active" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 22</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 22 · Mitigation 4</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 04</div>
+    <div class="mit-title">Test BOLA specifically — it won't show up in normal tests.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Create two test accounts: <strong>User A</strong> and <strong>User B</strong>. Log in as User A. Using User A's token, try to access User B's objects — their orders, profile, documents, whatever your API exposes.</p>
+      <p>Every successful response is a BOLA vulnerability. The correct behavior is a 404 for every attempt. This test should be automated and run on every deployment.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Why normal tests miss this</div>
+      <p>Standard tests log in as User A and check that User A can see User A's data. That passes whether or not BOLA exists. You only find BOLA when you test <strong>User A trying to see User B's data.</strong> Most test suites never do this.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label yellow">Tools that help</div>
+      <p>Burp Suite's Autorize extension automates this — it replays every request with a different user's token and flags anything that returns data it shouldn't. OWASP ZAP has similar capabilities. Even a simple script that swaps tokens between two sessions catches most BOLA issues.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What this doesn't fix</div>
+      <p>Testing finds existing gaps — it doesn't prevent future ones. New endpoints need new tests. Testing without MIT 01 just documents the problem without solving it.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your security team: are we alerted when the same user account repeatedly receives &#x201C;access denied&#x201D; responses? That pattern is a strong signal of someone probing for BOLA and should trigger an investigation.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-21.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-23.html">Mitigation 5 →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

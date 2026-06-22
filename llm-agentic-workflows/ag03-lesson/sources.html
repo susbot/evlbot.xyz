@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Sources and References</title>
+<link rel="stylesheet" href="ag03-shared.css">
+<style>
+.sources-section{margin-bottom:28px;}
+.source-section-title{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.source-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px;}
+.source-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.source-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent-bright);margin-bottom:6px;}
+.source-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+.source-used{font-size:11px;color:var(--subtle);margin-top:6px;padding-top:6px;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Sources and References</span>
+  </div>
+  <span class="nav-right"><a href="ag03-slide-01.html" style="color:var(--accent-bright);text-decoration:none;">← Back to lesson</a></span>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Bibliography</div>
+  <div class="slide-title">Sources for AG03: Identity and Privilege Abuse</div>
+  <div class="slide-subtitle">All claims in this module are grounded in the sources below.</div>
+
+  <div class="sources-section">
+    <div class="source-section-title">Primary Source — OWASP Framework</div>
+
+    <div class="source-item">
+      <div class="source-title">OWASP Top 10 for Agentic Applications 2026</div>
+      <div class="source-meta">OWASP Gen AI Security Project · 2026 · ASI03: Identity and Privilege Abuse</div>
+      <div class="source-desc">The authoritative source for this module. ASI03 definition, five vulnerability types (Un-scoped Privilege Inheritance, Memory-Based Privilege Retention, Cross-Agent Trust Exploitation, TOCTOU Authorization Drift, Synthetic Identity Injection), seven attack scenarios, and nine mitigations are sourced directly from this document.</div>
+      <div class="source-used">Used in: Slides 3, 4, 5, 9, 10, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26</div>
+    </div>
+  </div>
+
+  <div class="sources-section">
+    <div class="source-section-title">Real Incidents and Research</div>
+
+    <div class="source-item">
+      <div class="source-title">15 Ways to Break Your Copilot — Black Hat USA 2024</div>
+      <div class="source-meta">Security Research · BHUSA 2024 · Microsoft Copilot</div>
+      <div class="source-desc">Presented at Black Hat USA 2024, this research systematically documented privilege abuse paths in Microsoft Copilot deployments, including un-scoped privilege inheritance where Copilot passed broad organizational access context to plugins and sub-agents rather than narrowly scoped delegations. Cited in the OWASP ASI03 references as a key real-world example of Type 1 vulnerability exploitation.</div>
+      <div class="source-used">Used in: Slides 5, 11</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-title">CVE-2025-31491 — Privilege Escalation via Agent Delegation</div>
+      <div class="source-meta">National Vulnerability Database · 2025</div>
+      <div class="source-desc">A published CVE documenting a privilege escalation path in an agentic system where task delegation did not enforce scope boundaries. A low-privilege principal could trigger a delegation chain that ultimately executed actions at a higher privilege level than the original requester was authorized for. Demonstrates that un-scoped privilege inheritance is now being formally tracked and assigned CVEs.</div>
+      <div class="source-used">Used in: Slide 11</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-title">MCP Horror Stories — GitHub Prompt Injection (Docker Blog)</div>
+      <div class="source-meta">Docker Engineering Blog · 2025 · MCP / GitHub integration</div>
+      <div class="source-desc">Documents real-world cases of prompt injection attacks against MCP-connected agents, including scenarios where injected instructions caused agents to relay commands across agent boundaries — illustrating the cross-agent trust exploitation (confused deputy) pattern covered in Scenario 03.</div>
+      <div class="source-used">Used in: Slides 6, 13, 15</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-title">The Confused Deputy Problem — Classic Security Reference</div>
+      <div class="source-meta">MIT 6.858 Readings · Hardy 1988 · Foundational security concept</div>
+      <div class="source-desc">The original description of the confused deputy problem: a high-privilege program (the "deputy") is tricked by a less-privileged program into misusing its authority. This foundational concept directly maps to AG03's cross-agent trust exploitation vulnerability type, where a high-privilege agent is manipulated by a lower-privilege or compromised agent to perform unauthorized actions.</div>
+      <div class="source-used">Used in: Slides 6, 13, 15, 17</div>
+    </div>
+  </div>
+
+  <div class="sources-section">
+    <div class="source-section-title">Background and Context</div>
+
+    <div class="source-item">
+      <div class="source-title">Agentic AI Cybersecurity Overview</div>
+      <div class="source-meta">AI Multiple Research · cited in OWASP ASI03</div>
+      <div class="source-desc">Overview of cybersecurity considerations specific to agentic AI systems, including identity management challenges and the architectural mismatch between user-centric IAM and agentic deployment models. Provides context for why the attribution gap exists and why it's difficult to close with existing tooling.</div>
+      <div class="source-used">Used in: Slides 4, 8 (context)</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-title">Microsoft Entra Workload Identity Federation / AWS IAM Roles for Service Accounts / Salesforce Agentforce</div>
+      <div class="source-meta">Platform Documentation · Microsoft, AWS, Salesforce · 2024–2025</div>
+      <div class="source-desc">Platform-level identity management solutions that treat agents as managed non-human identities. Referenced in OWASP ASI03 MIT 06 as examples of identity platforms that provide scoped credentials, audit trails, and lifecycle controls for agentic deployments.</div>
+      <div class="source-used">Used in: Slide 24 (MIT 06)</div>
+    </div>
+  </div>
+
+  <div class="sources-section">
+    <div class="source-section-title">Disclaimer</div>
+    <div class="source-item">
+      <div class="source-desc">This module is an independent educational resource. It is not affiliated with, endorsed by, or sponsored by OWASP or any of the organizations whose research is cited above. All trademarks and product names are the property of their respective owners. Real incident descriptions are based on publicly available security research disclosures and may not reflect the full technical details of the original findings.</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-01.html">← Back to Lesson</a>
+    <a class="btn-primary" href="../index.html">Course Home</a>
+  </div>
+
+</div>
+</body>
+</html>

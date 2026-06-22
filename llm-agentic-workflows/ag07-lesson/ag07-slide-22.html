@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 22 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 22 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a><a class="seg done" href="ag07-slide-09.html"></a><a class="seg done" href="ag07-slide-10.html"></a><a class="seg done" href="ag07-slide-11.html"></a><a class="seg done" href="ag07-slide-12.html"></a><a class="seg done" href="ag07-slide-13.html"></a><a class="seg done" href="ag07-slide-14.html"></a><a class="seg done" href="ag07-slide-15.html"></a><a class="seg done" href="ag07-slide-16.html"></a><a class="seg done" href="ag07-slide-17.html"></a><a class="seg done" href="ag07-slide-18.html"></a><a class="seg done" href="ag07-slide-19.html"></a><a class="seg done" href="ag07-slide-20.html"></a><a class="seg done" href="ag07-slide-21.html"></a>
+    <a class="seg active" href="ag07-slide-22.html"></a>
+    <a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 22</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 22 · How the Defenses Layer</div>
+  <div class="slide-title">Three concentric rings: stop the message from arriving, stop it from executing, detect it after the fact.</div>
+
+  <div class="block">
+    <div class="block-label purple">Ring 1 — Channel &amp; Identity Layer (prevent unauthorized messages from arriving)</div>
+    <p><strong>MIT01</strong> — Agent identity authentication: every sender must present a verified credential before the channel is established or the message is accepted.</p>
+    <p><strong>MIT03</strong> — Encrypted channels (mTLS): messages are encrypted in transit, and the channel itself is mutually authenticated — combining confidentiality (stops Type 5) with identity proof (contributes to stopping Types 1, 3).</p>
+    <p><strong>MIT06</strong> — Least-privilege routing: infrastructure enforces that only authorized senders can reach authorized recipients, regardless of what credentials the sender presents.</p>
+    <p><strong>MIT07</strong> — Agent registry: the authoritative source of truth for which credentials are valid and which agents are authorized to communicate with which.</p>
+    <p><em>A message that doesn't pass Ring 1 never reaches the receiving agent at all.</em></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Ring 2 — Message Verification Layer (reject invalid messages that arrived)</div>
+    <p><strong>MIT02</strong> — Message signing: the receiving agent verifies the signature before processing — detecting any tampering between the authenticated sender and this point (stops Type 2).</p>
+    <p><strong>MIT04</strong> — Input validation: strict schema enforcement rejects malformed, out-of-scope, or attacker-extended messages before they reach the agent's reasoning.</p>
+    <p><strong>MIT05</strong> — Replay protection: nonce + timestamp validation rejects messages that were valid in the past but are not authorized for this moment (stops Type 4).</p>
+    <p><em>A message that passed Ring 1 but fails Ring 2 is rejected before the agent acts on it.</em></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Ring 3 — Detection &amp; Response Layer (detect attacks that passed Rings 1 and 2)</div>
+    <p><strong>MIT08</strong> — Audit logging: every message is logged with sender identity and content hash, providing post-incident reconstruction and enabling detection of credential misuse by legitimate agents.</p>
+    <p><strong>MIT09</strong> — Anomaly detection: behavioral baselines expose coordinated attacks and compromised agents through deviation alerting, even when individual messages pass all verification checks.</p>
+    <p><strong>Minimum viable set:</strong> For most pipelines, <strong>MIT01 + MIT03 + MIT02 + MIT05</strong> addresses the most critical risks. Add MIT06 for queue-based architectures and MIT07 as pipeline complexity grows.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-21.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-23.html">Mitigation matrix →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

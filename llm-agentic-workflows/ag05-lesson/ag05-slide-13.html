@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG05:2026 — Unexpected Code Execution · Slide 13 of 28</title>
+<link rel="stylesheet" href="ag05-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG05:2026</span>
+    <span class="nav-title">Unexpected Code Execution</span>
+  </div>
+  <span class="nav-right">Slide 13 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag05-slide-01.html"></a><a class="seg done" href="ag05-slide-02.html"></a><a class="seg done" href="ag05-slide-03.html"></a><a class="seg done" href="ag05-slide-04.html"></a><a class="seg done" href="ag05-slide-05.html"></a><a class="seg done" href="ag05-slide-06.html"></a><a class="seg done" href="ag05-slide-07.html"></a><a class="seg done" href="ag05-slide-08.html"></a><a class="seg done" href="ag05-slide-09.html"></a><a class="seg done" href="ag05-slide-10.html"></a><a class="seg done" href="ag05-slide-11.html"></a><a class="seg done" href="ag05-slide-12.html"></a>
+    <a class="seg active" href="ag05-slide-13.html"></a>
+    <a class="seg" href="ag05-slide-14.html"></a><a class="seg" href="ag05-slide-15.html"></a><a class="seg" href="ag05-slide-16.html"></a><a class="seg" href="ag05-slide-17.html"></a><a class="seg" href="ag05-slide-18.html"></a><a class="seg" href="ag05-slide-19.html"></a><a class="seg" href="ag05-slide-20.html"></a><a class="seg" href="ag05-slide-21.html"></a><a class="seg" href="ag05-slide-22.html"></a><a class="seg" href="ag05-slide-23.html"></a><a class="seg" href="ag05-slide-24.html"></a><a class="seg" href="ag05-slide-25.html"></a><a class="seg" href="ag05-slide-26.html"></a><a class="seg" href="ag05-slide-27.html"></a><a class="seg" href="ag05-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Vulnerability Types</span><span>Slide 13</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 13 · Types 4–6 — Privilege Escalation, Backdoors, Resource Exhaustion</div>
+  <div class="slide-title">Three more ways code execution exceeds its intended scope — the last two are the hardest to detect.</div>
+
+  <div class="block">
+    <div class="block-label red">Type 4 — Privilege escalation via generated code</div>
+    <p>The agent's execution environment may include access to credentials, tokens, or capabilities that the agent's LLM-level permissions don't reflect. Generated code can exploit this gap — for example, reading a cloud metadata API endpoint (<code>http://169.254.169.254/</code>) to retrieve instance credentials, then using those credentials to call APIs the agent was never authorized to use at the application level.</p>
+    <p>This is particularly dangerous in cloud-hosted agent deployments where the execution environment runs with an IAM role that has broader permissions than the agent's application-level controls suggest.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Type 5 — Backdoor insertion in generated code</div>
+    <p>A coding agent asked to implement a feature, fix a bug, or generate boilerplate code may — if its input is manipulated — generate code that appears to fulfill the task while also containing hidden functionality: a hardcoded admin credential, a web shell endpoint, a scheduled task that phones home, or a dependency on a malicious package.</p>
+    <p><strong>Why this is subtle:</strong> The generated code compiles. It passes basic tests. It does what it was asked. The backdoor is hidden in logic that only activates under specific conditions, or in a dependency that looks legitimate. Without code review, it deploys to production and stays there.</p>
+    <p>This is the agentic version of a software supply chain attack — but instead of a compromised package, the attack enters through the agent's code generation output itself.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label blue">Type 6 — Resource exhaustion</div>
+    <p>Code that recursively calls itself, spawns unbounded subprocesses, writes to disk in an infinite loop, or makes unlimited API calls can exhaust host resources — CPU, RAM, disk, or API quota — until services fail. An agent with no resource limits on its interpreter is capable of self-inflicted denial of service, whether from malicious input or from a naive implementation of a resource-intensive task.</p>
+    <p><strong>Real pattern:</strong> Coding agents asked to "process all files" or "retry until successful" without explicit bounds have generated code that consumed available disk space or ran indefinitely — discovered only when the host became unresponsive.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag05-slide-12.html">← Back</a>
+    <a class="btn-primary" href="ag05-slide-14.html">Part 3: Attack Scenarios →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

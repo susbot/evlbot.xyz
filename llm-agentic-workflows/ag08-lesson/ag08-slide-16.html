@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 16 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 16 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a><a class="seg done" href="ag08-slide-11.html"></a><a class="seg done" href="ag08-slide-12.html"></a><a class="seg done" href="ag08-slide-13.html"></a><a class="seg done" href="ag08-slide-14.html"></a><a class="seg done" href="ag08-slide-15.html"></a>
+    <a class="seg active" href="ag08-slide-16.html"></a>
+    <a class="seg" href="ag08-slide-17.html"></a><a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Scenarios</span><span>Slide 16</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 16 · The Universal Pattern</div>
+  <div class="slide-title">All six patterns share one structural condition: a failure in one component crossed a boundary it should never have been allowed to cross.</div>
+
+  <div class="block">
+    <div class="block-label purple">The condition that enables every cascade</div>
+    <p>In every scenario, the failure propagated because the system had no mechanism to contain it at the point of origin. The failure crossed from one agent to the next because:</p>
+    <ol>
+      <li>The failing agent produced output in the correct format (so no format check caught it)</li>
+      <li>There was no output validation at the agent's boundary that checked content against expectations</li>
+      <li>There was no circuit breaker that stopped processing when the output looked anomalous</li>
+      <li>Downstream agents trusted the output because it came from an authorized source</li>
+      <li>Actions at the end of the pipeline had no rate limiting or human confirmation that could catch the accumulated error</li>
+    </ol>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Two categories of missing defense</div>
+    <p><strong>Category A — Failure detection:</strong> Mechanisms that notice something has gone wrong before it propagates. Output validation, anomaly detection on outputs, sanity checks against expected ranges, confidence thresholds below which output is quarantined. Detection turns a silent failure into an explicit one that can be handled.</p>
+    <p><strong>Category B — Failure containment:</strong> Mechanisms that limit how far a detected (or undetected) failure can travel. Circuit breakers that stop passing data from a failing agent. Blast radius limits on terminal actions (rate limiting, human confirmation for large-scale operations). Fallback behaviors that degrade gracefully instead of propagating errors. Isolation between agents that share dependencies.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">The irreversibility gradient</div>
+    <p>Cascading failures are particularly costly because downstream agents take real-world actions — emails sent, trades executed, files modified, customers charged. Unlike a database query that can be rolled back, many agentic actions are irreversible or expensive to reverse. The longer a cascade runs before detection, the larger the set of irreversible actions that must be recovered from manually. This is why detection speed and blast radius limits at the action-taking end of the pipeline are both essential — and why human confirmation for bulk irreversible actions is not overhead, but risk management.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-15.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-17.html">Part 4 — Prevention →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

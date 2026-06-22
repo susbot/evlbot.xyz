@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 — Sources &amp; References</title>
+<link rel="stylesheet" href="api06-shared.css">
+<style>
+body{padding-bottom:40px;}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent-bright);text-decoration:none;margin:24px 0 8px;}
+.back-link:hover{opacity:.8;}
+.src-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.src-title{font-size:clamp(20px,5vw,28px);font-weight:600;color:#fff;line-height:1.2;margin-bottom:24px;}
+.src-section{margin-bottom:28px;}
+.src-section-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:12px;}
+.src-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:8px;}
+.src-item-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.src-item-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;}
+.src-item-desc{font-size:12px;color:var(--subtle);line-height:1.6;}
+.src-note{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:12px;color:var(--muted);line-height:1.8;margin-top:24px;}
+</style>
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Sources &amp; References</span></div>
+  <a href="https://evlbot.xyz" style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:4px 10px;text-decoration:none;letter-spacing:.06em;">evlbot.xyz</a>
+</div>
+
+<div class="wrap">
+  <a class="back-link" href="api06-slide-01.html">&#x2190; Back to lesson</a>
+
+  <div class="src-eyebrow">References</div>
+  <div class="src-title">Sources for API6 &#x2014; Unrestricted Access to Sensitive Business Flows</div>
+
+  <div class="src-section">
+    <div class="src-section-label">Primary Source</div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP API Security Top 10 &#x2014; 2023 &#xb7; API6:2023 Unrestricted Access to Sensitive Business Flows</div>
+      <div class="src-item-meta">OWASP Foundation &#xb7; owasp.org &#xb7; 2023</div>
+      <div class="src-item-desc">The authoritative source for the definition, vulnerable patterns, example attack scenarios (ticket purchase flow, referral system farming, limited item purchase), and prevention guidance in this module. CWE references: CWE-799 (Improper Control of Interaction Frequency), CWE-770 (Allocation of Resources Without Limits or Throttling). This course is an independent study companion &#x2014; not affiliated with or endorsed by OWASP.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Real Incidents</div>
+    <div class="src-item">
+      <div class="src-item-title">Ticketmaster / Taylor Swift Eras Tour Presale Collapse &#x2014; November 2022</div>
+      <div class="src-item-meta">Multiple sources &#xb7; November 2022 &#x2013; January 2023</div>
+      <div class="src-item-desc">In November 2022, Ticketmaster opened a verified fan presale for Taylor Swift&#x2019;s Eras Tour. An estimated 14 million fans registered. Bots used simultaneous multi-account cart holds to monopolize ticket inventory. The presale system was overwhelmed and the general public sale was cancelled entirely. Subsequent Senate Judiciary Committee hearings in January 2023 examined ticketing monopolies and bot abuse. Resale prices reached $2,000&#x2013;$5,000 per ticket for face-value tickets priced at $49&#x2013;$449. Referenced in slides 1, 11, 26. Primary sources: Senate Judiciary Committee hearing transcripts (January 24, 2023), news coverage from The New York Times, Rolling Stone, and The Guardian.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Nike SNKRS &#x2014; Sneaker Bot Industry and Limited Release Abuse</div>
+      <div class="src-item-meta">Multiple industry reports &#xb7; 2020&#x2013;2023</div>
+      <div class="src-item-desc">Nike&#x2019;s SNKRS app for limited-edition sneaker releases has been a persistent target for commercial bot operations. Reports estimate that 40%+ of traffic on major release days is automated. Limited releases sell out in under 10 seconds. Commercial bot software (AIO Bots, Cybersole, Wrath AIO, Kodai) sells for $300&#x2013;$500 in license fees and has secondary markets where active licenses trade for $1,000+. Nike has implemented CAPTCHA, device fingerprinting, and randomized drop timing to counter bots &#x2014; with limited effectiveness. Referenced in slides 13, 26. Primary sources: Imperva Bot Traffic Report 2022, industry reporting from Highsnobiety and StockX market data.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Technical References</div>
+    <div class="src-item">
+      <div class="src-item-title">Imperva Bad Bot Report 2023</div>
+      <div class="src-item-meta">Imperva Research Labs &#xb7; imperva.com &#xb7; 2023</div>
+      <div class="src-item-desc">Annual industry report covering automated bot traffic volume, bot operator tactics (residential proxies, browser automation, CAPTCHA-solving services), and industry-specific impact. Includes data on bot traffic percentages in retail and ticketing. Relevant to the bot ecosystem discussion in slides 7, 13, 21.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP Automated Threats to Web Applications</div>
+      <div class="src-item-meta">OWASP Foundation &#xb7; owasp.org/www-project-automated-threats-to-web-applications</div>
+      <div class="src-item-desc">A companion OWASP project cataloguing automated threat types relevant to API6: OAT-005 (Scalping &#x2014; acquiring high-demand items), OAT-010 (Card Cracking), OAT-019 (Account Creation), OAT-021 (Denial of Inventory). The taxonomy directly supports the attack pattern classification in slides 9&#x2013;13.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">CAPTCHA-Solving Service Economics</div>
+      <div class="src-item-meta">Industry research &#xb7; 2captcha.com, anti-captcha.com published pricing</div>
+      <div class="src-item-desc">CAPTCHA-solving services using human workers publish their pricing publicly. As of 2023: image CAPTCHA solving at $0.50&#x2013;$1.00 per 1,000 solves, reCAPTCHA v2 at $1.00&#x2013;$3.00 per 1,000 solves. This pricing data underlies the CAPTCHA limitation discussion in slide 22 and quiz question 5.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Bot Management Solutions &#x2014; Cloudflare, DataDome, PerimeterX (Human)</div>
+      <div class="src-item-meta">Cloudflare &#xb7; DataDome &#xb7; Human Security (formerly PerimeterX) &#xb7; 2023</div>
+      <div class="src-item-desc">Commercial bot detection and management platforms referenced in MIT 03 (device fingerprinting and behavioral detection). These platforms continuously update their detection models as bot operators adapt. Published technical documentation and case studies from these vendors inform the fingerprinting signals described in slide 21.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Further Reading</div>
+    <div class="src-item">
+      <div class="src-item-title">U.S. Senate Judiciary Committee &#x2014; &#x201C;That&#x2019;s Me Trying to Get Tickets&#x201D; Hearing (January 24, 2023)</div>
+      <div class="src-item-meta">U.S. Senate Judiciary Committee &#xb7; January 2023</div>
+      <div class="src-item-desc">Congressional hearing examining the Ticketmaster/Taylor Swift presale collapse, ticketing industry monopoly, and bot abuse. Testimony from consumer advocates and ticketing industry representatives. The hearing title is a reference to a Taylor Swift lyric. Available in the Congressional Record and C-SPAN archives. Provides legislative context for the business and regulatory consequences of API6-class failures.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">BETTER ONLINE TICKET SALES (BOTS) Act of 2016</div>
+      <div class="src-item-meta">U.S. Federal Trade Commission &#xb7; Public Law 114-274 &#xb7; 2016</div>
+      <div class="src-item-desc">U.S. federal law prohibiting the use of bots to circumvent security measures on ticketing websites. Rarely enforced. The gap between the 2016 law and the 2022 Ticketmaster incident illustrates that legal prohibition without technical enforcement is insufficient &#x2014; the API itself must enforce the business constraint.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">PortSwigger Web Security Academy &#x2014; Business Logic Vulnerabilities</div>
+      <div class="src-item-meta">PortSwigger &#xb7; portswigger.net/web-security/logic-flaws</div>
+      <div class="src-item-desc">Interactive labs covering business logic vulnerabilities including quantity manipulation, workflow bypass, and trust-based flaws. The quantity bypass lab directly illustrates the API6 Scenario 3 failure (UI-only limits). Recommended hands-on practice after completing this module.</div>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <strong>About this course:</strong> This is an independent, unofficial study companion built for educational purposes. Content is based on publicly available security research, industry reports, and the OWASP API Security Top 10 framework. This project is not affiliated with, endorsed by, or sponsored by the OWASP Foundation. All trademarks remain the property of their respective owners.
+  </div>
+</div>
+</body>
+</html>

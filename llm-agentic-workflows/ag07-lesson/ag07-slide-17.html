@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 17 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a><a class="seg done" href="ag07-slide-09.html"></a><a class="seg done" href="ag07-slide-10.html"></a><a class="seg done" href="ag07-slide-11.html"></a><a class="seg done" href="ag07-slide-12.html"></a><a class="seg done" href="ag07-slide-13.html"></a><a class="seg done" href="ag07-slide-14.html"></a><a class="seg done" href="ag07-slide-15.html"></a><a class="seg done" href="ag07-slide-16.html"></a>
+    <a class="seg active" href="ag07-slide-17.html"></a>
+    <a class="seg" href="ag07-slide-18.html"></a><a class="seg" href="ag07-slide-19.html"></a><a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 17</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 17 · Prevention Overview</div>
+  <div class="slide-title">Nine mitigations that restore the four missing communication properties — across channel, message, identity, and monitoring layers.</div>
+
+  <div class="mit-overview-grid">
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT01</div>
+      <div class="mit-name">Agent Identity Authentication</div>
+      <div class="mit-desc">Every agent must prove its identity before its messages are accepted. Cryptographic credentials, not asserted role strings.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT02</div>
+      <div class="mit-name">Message Signing and Integrity</div>
+      <div class="mit-desc">Messages are cryptographically signed by the sender. Recipients verify the signature before processing — detecting any tampering in transit.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT03</div>
+      <div class="mit-name">Encrypted Channels (TLS)</div>
+      <div class="mit-desc">All inter-agent communication travels over mutually authenticated TLS. Eliminates passive eavesdropping and transport-level tampering.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT04</div>
+      <div class="mit-name">Input Validation on Agent Messages</div>
+      <div class="mit-desc">Every incoming inter-agent message is validated against a strict schema before the agent acts on it — rejecting malformed or out-of-scope instructions.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT05</div>
+      <div class="mit-name">Replay Protection (Nonces + Timestamps)</div>
+      <div class="mit-desc">Every message carries a unique nonce and a short-lived timestamp. Receiving agents track seen nonces and reject expired or duplicate messages.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT06</div>
+      <div class="mit-name">Least-Privilege Message Routing</div>
+      <div class="mit-desc">Agents only receive message types they are authorized to act on. Queue and channel access is scoped to specific sender/receiver pairs.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT07</div>
+      <div class="mit-name">Agent Registry with Verified Identities</div>
+      <div class="mit-desc">A central registry maps agent identities to their cryptographic credentials and authorized message types — the equivalent of a certificate authority for agents.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT08</div>
+      <div class="mit-name">Inter-Agent Communication Audit Logging</div>
+      <div class="mit-desc">All inter-agent messages — sent, received, and rejected — are logged with sender identity, content hash, and timestamp for post-incident investigation.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT09</div>
+      <div class="mit-name">Anomaly Detection on Message Patterns</div>
+      <div class="mit-desc">Behavioral baselines for message volume, source, type, and timing — alerting on deviations that indicate forgery, injection, or compromise.</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-16.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-18.html">MIT01 + MIT02 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 13 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 13 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg done" href="api01-slide-10.html"></a><a class="seg done" href="api01-slide-11.html"></a><a class="seg done" href="api01-slide-12.html"></a><a class="seg active" href="api01-slide-13.html"></a><a class="seg" href="api01-slide-14.html"></a><a class="seg" href="api01-slide-15.html"></a><a class="seg" href="api01-slide-16.html"></a><a class="seg" href="api01-slide-17.html"></a><a class="seg" href="api01-slide-18.html"></a><a class="seg" href="api01-slide-19.html"></a><a class="seg" href="api01-slide-20.html"></a><a class="seg" href="api01-slide-21.html"></a><a class="seg" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 · How It Works</span><span>Slide 13</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 13 · Vertical BOLA — Real Example</div>
+  <div class="slide-title">T-Mobile. 37 million customers. One API.</div>
+  <div class="slide-subtitle">A customer-facing API with no proper authorization check became a mass data breach.</div>
+
+  <div class="real-incident">
+    <div class="real-incident-tag">Real Incident · January 2023</div>
+    <div class="real-incident-title">T-Mobile API Breach — 37 Million Customers</div>
+    <div class="real-incident-body">
+      <p>T-Mobile disclosed that an attacker had been querying a customer-facing API <strong>since November 2022</strong> — undetected for about six weeks.</p>
+      <p>The API was designed to allow authorized systems to look up customer account information. But the authorization check wasn't working correctly. An attacker discovered they could query the API with any phone number and receive full account data: <strong>name, billing address, email, phone number, date of birth, T-Mobile account number, and plan details.</strong></p>
+      <p>No passwords or financial data were exposed — but the attacker pulled <strong>37 million customer records</strong> before T-Mobile detected the activity.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>What made it vertical:</strong> The API was meant for authorized internal or partner systems — not for regular users. A regular query pattern with no valid authorization still returned privileged data. The check existed in theory. It failed in practice.</div>
+  </div>
+
+  <div class="callout red">
+    <div class="callout-label">Six weeks undetected</div>
+    <p>The attacker wasn't smashing through a wall. They were <strong>walking through an unlocked door, calmly, 37 million times.</strong> No alarm went off. No rate limit stopped them. No anomaly was flagged — until T-Mobile found it themselves.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-12.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-14.html">Now show me real attack scenarios →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

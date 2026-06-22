@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 8 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 8 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg active" href="api10-slide-08.html"></a><a class="seg" href="api10-slide-09.html"></a><a class="seg" href="api10-slide-10.html"></a><a class="seg" href="api10-slide-11.html"></a><a class="seg" href="api10-slide-12.html"></a><a class="seg" href="api10-slide-13.html"></a><a class="seg" href="api10-slide-14.html"></a><a class="seg" href="api10-slide-15.html"></a><a class="seg" href="api10-slide-16.html"></a><a class="seg" href="api10-slide-17.html"></a><a class="seg" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 8</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 8 &#xb7; Context</div>
+  <div class="slide-title">API10 closes the loop: APIs aren&#x2019;t just servers. They&#x2019;re also clients &#x2014; and clients can be exploited too.</div>
+  <div class="slide-subtitle">Why this risk is at the end of the list &#x2014; and why that doesn&#x2019;t mean it&#x2019;s rare or minor.</div>
+  <div class="block">
+    <div class="block-label pink">Why it&#x2019;s #10</div>
+    <p>API10 requires a multi-step attack: compromise or impersonate a third-party, then leverage the consuming API&#x2019;s trust to deliver a payload. This is more complex than directly exploiting the target API &#x2014; hence its position at #10 in exploitability. But its impact is severe: the Magecart supply chain campaign compromised over 100 organizations between 2015 and 2020. The attack surface is also growing as APIs integrate more third-party services.</p>
+  </div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Direct API attack (API1&#x2013;API9)</div>
+      <div class="compare-item">Attacker sends malicious input to the target API</div>
+      <div class="compare-item">Target API has input validation at its boundary</div>
+      <div class="compare-item">Attack must bypass the API&#x2019;s own defenses</div>
+      <div class="compare-item">One target, one attack surface</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Supply chain attack (API10)</div>
+      <div class="compare-item">Attacker compromises a third-party the target trusts</div>
+      <div class="compare-item">Malicious data enters through a trusted channel</div>
+      <div class="compare-item">Bypasses input validation (applied to user input, not third-party input)</div>
+      <div class="compare-item">One compromise, many downstream targets</div>
+    </div>
+  </div>
+  <div class="callout orange">
+    <div class="callout-label">Scale advantage for attackers</div>
+    <p>Supply chain attacks scale in a way direct attacks don&#x2019;t. Compromising Inbenta&#x2019;s CDN reached all of Inbenta&#x2019;s clients simultaneously. Compromising a widely-used npm package, a popular analytics script, or a shared API gateway can deliver a malicious payload to hundreds or thousands of consuming APIs with a single compromise. This is why API10 is serious despite its lower exploitability score.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-07.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-09.html">How do attacks work? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

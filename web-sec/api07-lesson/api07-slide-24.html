@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 24 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 24 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg done" href="api07-slide-07.html"></a><a class="seg done" href="api07-slide-08.html"></a><a class="seg done" href="api07-slide-09.html"></a><a class="seg done" href="api07-slide-10.html"></a><a class="seg done" href="api07-slide-11.html"></a><a class="seg done" href="api07-slide-12.html"></a><a class="seg done" href="api07-slide-13.html"></a><a class="seg done" href="api07-slide-14.html"></a><a class="seg done" href="api07-slide-15.html"></a><a class="seg done" href="api07-slide-16.html"></a><a class="seg done" href="api07-slide-17.html"></a><a class="seg done" href="api07-slide-18.html"></a><a class="seg done" href="api07-slide-19.html"></a><a class="seg done" href="api07-slide-20.html"></a><a class="seg done" href="api07-slide-21.html"></a><a class="seg done" href="api07-slide-22.html"></a><a class="seg done" href="api07-slide-23.html"></a><a class="seg active" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 24</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 24 &#xb7; Mitigation 6</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 06</div>
+    <div class="mit-title">Run URL-fetching components in an isolated network segment with no internal access.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Separate the URL-fetching service from the rest of the infrastructure:</p>
+      <p>&#x2022; Deploy a dedicated &#x201C;fetch service&#x201D; in a subnet with egress-only internet access &#x2014; no routes to internal networks, no access to the VPC&#x2019;s private subnets</p>
+      <p>&#x2022; Block the metadata endpoint (169.254.169.254) at the subnet level or instance level (AWS IMDSv2 required, or metadata endpoint disabled entirely if the service doesn&#x2019;t need instance credentials)</p>
+      <p>&#x2022; Restrict outbound traffic from the fetch service to HTTPS on port 443 to the internet only &#x2014; block all other protocols and ports</p>
+      <p>&#x2022; The fetch service should have its own minimal IAM role with no permissions (or no IAM role at all)</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Why network isolation is a backstop</div>
+      <p>MIT 01&#x2013;05 are application-level defenses. Network isolation is an infrastructure-level backstop. If every application-level defense fails &#x2014; the allowlist is bypassed, the IP check has a bug, redirects are followed &#x2014; network isolation still limits the attacker. The fetch service can&#x2019;t reach <code>10.0.0.1</code> because there&#x2019;s no route. It can&#x2019;t reach the metadata endpoint because it&#x2019;s blocked at the network level.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label yellow">AWS-specific: disable IMDSv1, require IMDSv2</div>
+      <p>For EC2 instances that must have a metadata endpoint, require IMDSv2 (which needs a PUT request for a session token before making metadata requests). Simple GET-based SSRF (the most common form) cannot exploit IMDSv2. This is an AWS-level control, not an application-level one &#x2014; set it at the instance or account level.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your infrastructure team whether your API servers have any network restrictions on what they can reach. A server that can connect to your database console or cloud metadata endpoint is a serious SSRF risk.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-23.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-25.html">MIT 07: Monitoring &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

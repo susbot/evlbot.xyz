@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 18 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg done" href="api03-slide-03.html"></a><a class="seg done" href="api03-slide-04.html"></a><a class="seg done" href="api03-slide-05.html"></a><a class="seg done" href="api03-slide-06.html"></a><a class="seg done" href="api03-slide-07.html"></a><a class="seg done" href="api03-slide-08.html"></a><a class="seg done" href="api03-slide-09.html"></a><a class="seg done" href="api03-slide-10.html"></a><a class="seg done" href="api03-slide-11.html"></a><a class="seg done" href="api03-slide-12.html"></a><a class="seg done" href="api03-slide-13.html"></a><a class="seg done" href="api03-slide-14.html"></a><a class="seg done" href="api03-slide-15.html"></a><a class="seg done" href="api03-slide-16.html"></a><a class="seg done" href="api03-slide-17.html"></a><a class="seg active" href="api03-slide-18.html"></a><a class="seg" href="api03-slide-19.html"></a><a class="seg" href="api03-slide-20.html"></a><a class="seg" href="api03-slide-21.html"></a><a class="seg" href="api03-slide-22.html"></a><a class="seg" href="api03-slide-23.html"></a><a class="seg" href="api03-slide-24.html"></a><a class="seg" href="api03-slide-25.html"></a><a class="seg" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 18</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 4</span>
+    <div><div class="part-title">Prevention</div><div class="part-count">Slides 18–26 · Seven mitigations + the full picture</div></div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 18 · Prevention Overview</div>
+  <div class="slide-title">Seven ways to fix broken property-level authorization.</div>
+  <div class="slide-subtitle">Four for the write side. Three for the read side. All mandatory.</div>
+
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">📝</div>
+      <div><div class="outcome-title">MIT 01 — Allowlist Writable Properties</div><div class="outcome-desc">Explicitly declare which fields each endpoint is permitted to accept and write. Everything else is rejected.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🚫</div>
+      <div><div class="outcome-title">MIT 02 — Never Bind All Input to the Model</div><div class="outcome-desc">Disable framework auto-binding or configure it with a strict field allowlist. Never use bind-all in production.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">📦</div>
+      <div><div class="outcome-title">MIT 03 — Use DTOs / Separate Input &amp; Output Schemas</div><div class="outcome-desc">Define separate objects for what you accept (input) vs. what you return (output). Never use the database model directly in the API layer.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🔒</div>
+      <div><div class="outcome-title">MIT 04 — Server-Side Only Properties</div><div class="outcome-desc">Properties like isAdmin, role, verified, blocked must only be settable by server-side logic — never by client input.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">📊</div>
+      <div><div class="outcome-title">MIT 05 — Minimize Returned Data</div><div class="outcome-desc">Return only the fields the client actually needs for this operation. Default to returning less, not more.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🧾</div>
+      <div><div class="outcome-title">MIT 06 — Schema-Based Response Validation</div><div class="outcome-desc">Define and validate the exact shape of every API response. Catch accidental property exposure before it reaches the client.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🔍</div>
+      <div><div class="outcome-title">MIT 07 — Enforce at the API Layer, Not the UI</div><div class="outcome-desc">Property filtering must happen in the API response, not the frontend render. The UI can be bypassed. The API cannot.</div></div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-17.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-19.html">MIT 01: Allowlist writable properties →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

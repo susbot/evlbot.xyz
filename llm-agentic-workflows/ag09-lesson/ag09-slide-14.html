@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 14 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 14 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a><a class="seg done" href="ag09-slide-07.html"></a><a class="seg done" href="ag09-slide-08.html"></a><a class="seg done" href="ag09-slide-09.html"></a><a class="seg done" href="ag09-slide-10.html"></a><a class="seg done" href="ag09-slide-11.html"></a><a class="seg done" href="ag09-slide-12.html"></a><a class="seg done" href="ag09-slide-13.html"></a>
+    <a class="seg active" href="ag09-slide-14.html"></a>
+    <a class="seg" href="ag09-slide-15.html"></a><a class="seg" href="ag09-slide-16.html"></a><a class="seg" href="ag09-slide-17.html"></a><a class="seg" href="ag09-slide-18.html"></a><a class="seg" href="ag09-slide-19.html"></a><a class="seg" href="ag09-slide-20.html"></a><a class="seg" href="ag09-slide-21.html"></a><a class="seg" href="ag09-slide-22.html"></a><a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Scenarios</span><span>Slide 14</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 14 · Scenarios 3 & 4</div>
+  <div class="slide-title">Alert fatigue enabling a real attack — and the security system that urgency pressure bypassed.</div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Scenario 3 — The Noise Floor Attack</span>
+      <span class="scenario-tag yellow">Pattern 3: Alert Fatigue</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>Setup:</strong> A SOC uses an AI threat detection agent for network anomaly alerting. Over the past month, the agent has been generating approximately 340 alerts per day — of which historical validation shows about 2% are true positives. The SOC analysts have learned, reasonably, that the agent is very noisy. They have developed a pattern of rapidly triaging alerts: most are dismissed in under 30 seconds.</p>
+      <p><strong>Attack:</strong> An adversary, who spent three weeks probing the network in ways that generated alerts (without completing any intrusion), has observed the analysts' dismissal patterns. On day 22, they launch a real lateral movement campaign at 4:47 PM on a Friday. The alert the campaign generates is formatted identically to hundreds of the false positives from the preceding weeks — the same source subnet, the same alert type, the same severity label.</p>
+      <p><strong>What happens:</strong> The analyst on shift, having dismissed 280 alerts earlier that day, sees the alert at 4:47 PM and dismisses it in 18 seconds. The intrusion is not detected until Monday morning, when log analysis finds the lateral movement that began Friday. By then, the attacker has had 63 hours of undetected access.</p>
+      <p><strong>What was missing:</strong> Alert quality metrics and thresholds — if the agent's false positive rate exceeds a threshold, escalate to human review of the agent itself, not just its alerts. Pattern-of-life analysis to detect when real detections are being masked by noise. Minimum review times for alerts from specific high-value asset subnets.</p>
+    </div>
+  </div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Scenario 4 — The Urgent Approval Request</span>
+      <span class="scenario-tag orange">Pattern 6: Urgency Framing</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>Setup:</strong> An enterprise uses an AI security policy management agent that can propose firewall rule changes. Proposed changes go through a 48-hour review cycle involving the security architecture team. The agent can mark a change as "Emergency" to trigger a 4-hour expedited track with a single approver.</p>
+      <p><strong>Attack:</strong> An attacker who has compromised a low-privilege account uses that account to inject a configuration change request into the policy management system. The injected request is designed to open a specific outbound port used for data exfiltration. The injection also sets the change as "Emergency" with reason: "Critical production outage — service dependent on this port. Coordinated with NOC. 4-hour window required."</p>
+      <p><strong>What happens:</strong> The on-call security manager receives an emergency approval notification from the AI policy agent at 2:13 AM. The notification includes the urgency framing from the injected request, formatted as the agent's own assessment. He approves in the expedited track without consulting the architecture team. The port is opened. Data exfiltration begins 40 minutes later.</p>
+      <p><strong>What was missing:</strong> Only the agent (or the system) should be able to mark a change as Emergency — not content injected into the policy system. Emergency changes should require secondary approval, not fewer approvers. The 2 AM timing and the specific port should have flagged anomalous context that the single-approver track couldn't detect.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-13.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-15.html">Scenarios 5 & 6 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

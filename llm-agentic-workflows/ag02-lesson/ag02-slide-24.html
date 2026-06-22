@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG02:2026 — Tool Misuse and Exploitation · Slide 24 of 28</title>
+<link rel="stylesheet" href="ag02-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG02:2026</span>
+    <span class="nav-title">Tool Misuse and Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 24 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag02-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag02-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag02-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag02-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag02-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag02-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag02-slide-07.html" title="Slide 7 · Tool Misuse vs Other Risks"></a>
+    <a class="seg done" href="ag02-slide-08.html" title="Slide 8 · Why Tools Are the New Attack Surface"></a>
+    <a class="seg done" href="ag02-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag02-slide-10.html" title="Slide 10 · Type 1 — Over-Privileged Tools"></a>
+    <a class="seg done" href="ag02-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg done" href="ag02-slide-12.html" title="Slide 12 · Type 2 — Tool Chaining"></a>
+    <a class="seg done" href="ag02-slide-13.html" title="Slide 13 · Type 2 — Real Example"></a>
+    <a class="seg done" href="ag02-slide-14.html" title="Slide 14 · Scenarios 1–3"></a>
+    <a class="seg done" href="ag02-slide-15.html" title="Slide 15 · Scenarios 4–6"></a>
+    <a class="seg done" href="ag02-slide-16.html" title="Slide 16 · Scenarios 7–9"></a>
+    <a class="seg done" href="ag02-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg done" href="ag02-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg done" href="ag02-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg done" href="ag02-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg done" href="ag02-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg done" href="ag02-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg done" href="ag02-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg active" href="ag02-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag02-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag02-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag02-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag02-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 24</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 24 · Mitigation 6</div>
+  <div class="slide-title">Just-in-time access — credentials that exist only for the moment they're needed</div>
+  <div class="slide-subtitle">Standing API tokens are attack inventory. Ephemeral tokens reduce what an attacker can steal and reuse.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI02</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 06</div>
+    <div class="mit-title">Just-in-Time and Ephemeral Access</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Instead of giving an agent a long-lived API key or OAuth token at startup, issue <strong>short-lived credentials per task</strong> — valid for the duration of one tool invocation or one session, then automatically revoked.</p>
+      <p>Bind each credential to a specific user session, a specific tool, and a specific scope. A credential issued to invoke the refund API can only invoke the refund API — not the shipping API, not the admin API — and only during this session.</p>
+      <p>Revoke immediately on: task completion, session end, anomaly detection, or budget exceeded.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What this doesn't fix</div>
+      <p>JIT access limits the window of abuse, but within that window, a misuse can still occur. A just-in-time token for the refund API still allows an unauthorized refund if the tool is called with injected parameters during its valid period. JIT is a damage-limitation strategy, not a prevention strategy for intent-based attacks.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label yellow">Why most agents don't do this (and why that's a problem)</div>
+      <p>Setting up dynamic credential issuance is engineering work. Most teams take the shortcut of giving the agent a long-lived API key in a config file. That key then persists in the agent's environment, in logs, and in any memory system the agent uses — and it remains valid long after the task is complete.</p>
+      <p>The Amazon Q secrets-via-DNS attack specifically targeted long-lived credentials in the agent's environment. JIT access would have dramatically limited the blast radius.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Attacks this addresses</div>
+      <p>Any scenario where an attacker exfiltrates credentials for future use. Directly addresses the Amazon Q DNS exfil pattern. Also limits the blast radius of S04 (CRM + Email chain) — a per-session token for the email tool can only be used during this session.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag02-slide-23.html">← Back</a>
+    <a class="btn-primary" href="ag02-slide-25.html">Next → Mitigation 7: Semantic Validation + Monitoring</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

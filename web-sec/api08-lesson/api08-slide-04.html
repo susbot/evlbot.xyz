@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 4 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg active" href="api08-slide-04.html"></a><a class="seg" href="api08-slide-05.html"></a><a class="seg" href="api08-slide-06.html"></a><a class="seg" href="api08-slide-07.html"></a><a class="seg" href="api08-slide-08.html"></a><a class="seg" href="api08-slide-09.html"></a><a class="seg" href="api08-slide-10.html"></a><a class="seg" href="api08-slide-11.html"></a><a class="seg" href="api08-slide-12.html"></a><a class="seg" href="api08-slide-13.html"></a><a class="seg" href="api08-slide-14.html"></a><a class="seg" href="api08-slide-15.html"></a><a class="seg" href="api08-slide-16.html"></a><a class="seg" href="api08-slide-17.html"></a><a class="seg" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 4</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 4 &#xb7; The Dangerous One</div>
+  <div class="slide-title">CORS &#x2014; the misconfiguration that lets any website read your users&#x2019; data.</div>
+  <div class="slide-subtitle">Not <code>Access-Control-Allow-Origin: *</code>. The dangerous pattern is reflecting the caller&#x2019;s origin and allowing credentials.</div>
+  <div class="block">
+    <div class="block-label pink">What CORS is for</div>
+    <p>Browsers block JavaScript on one site from reading responses from a different site &#x2014; the Same-Origin Policy. CORS is the mechanism that allows an API to explicitly opt in to cross-origin access for trusted sites. The API responds with HTTP headers telling the browser which origins are permitted.</p>
+  </div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Safe (restrictive)</div>
+      <div class="compare-item"><code>Access-Control-Allow-Origin: https://app.yourcompany.com</code></div>
+      <div class="compare-item">Only your own frontend can make cross-origin requests to the API</div>
+      <div class="compare-item">Browser rejects requests from any other origin &#x2014; attacker&#x2019;s site included</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Dangerous (misconfigured)</div>
+      <div class="compare-item"><code>Access-Control-Allow-Origin: [reflects caller&#x2019;s Origin header]</code></div>
+      <div class="compare-item"><code>Access-Control-Allow-Credentials: true</code></div>
+      <div class="compare-item">Any site can make authenticated requests and read the response. Attacker&#x2019;s site included.</div>
+    </div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-num">WHY</div>
+    <div class="scenario-title">Why developers misconfigure CORS</div>
+    <div class="scenario-body">
+      <p>During development: the frontend is at localhost:3000, the API is at localhost:8000. The developer adds <code>Access-Control-Allow-Origin: *</code> to stop browser errors. It works, it ships to production, it stays.</p>
+      <p>A slightly more dangerous pattern: the developer wants to support multiple frontends, so they write code that reads the incoming <code>Origin</code> header and reflects it back in the response. Every origin is &#x201C;allowed&#x201D; &#x2014; including the attacker&#x2019;s. When combined with <code>Access-Control-Allow-Credentials: true</code>, this allows any website to make authenticated API calls and read the responses.</p>
+    </div>
+    <div class="scenario-why"><strong>The exploit:</strong> An attacker hosts a page at attacker.com. The page uses JavaScript to make a cross-origin request to api.yourcompany.com with the user&#x2019;s cookies. The API reflects the attacker&#x2019;s origin and allows credentials. The browser sends the request with the user&#x2019;s cookies. The attacker&#x2019;s page reads the full API response &#x2014; including the user&#x2019;s account data, session info, or any other authenticated resource.</div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-03.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-05.html">Verbose errors &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 28 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 28 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a><a class="seg done" href="ag07-slide-09.html"></a><a class="seg done" href="ag07-slide-10.html"></a><a class="seg done" href="ag07-slide-11.html"></a><a class="seg done" href="ag07-slide-12.html"></a><a class="seg done" href="ag07-slide-13.html"></a><a class="seg done" href="ag07-slide-14.html"></a><a class="seg done" href="ag07-slide-15.html"></a><a class="seg done" href="ag07-slide-16.html"></a><a class="seg done" href="ag07-slide-17.html"></a><a class="seg done" href="ag07-slide-18.html"></a><a class="seg done" href="ag07-slide-19.html"></a><a class="seg done" href="ag07-slide-20.html"></a><a class="seg done" href="ag07-slide-21.html"></a><a class="seg done" href="ag07-slide-22.html"></a><a class="seg done" href="ag07-slide-23.html"></a><a class="seg done" href="ag07-slide-24.html"></a><a class="seg done" href="ag07-slide-25.html"></a><a class="seg done" href="ag07-slide-26.html"></a><a class="seg done" href="ag07-slide-27.html"></a>
+    <a class="seg active" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Sources</span><span>Slide 28</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 28 · Sources &amp; Further Reading</div>
+  <div class="slide-title">References for the concepts, scenarios, and mitigations covered in this module.</div>
+
+  <div class="block">
+    <p>A full formatted sources page is available from the link below. It includes primary sources for the OWASP ASI07 specification, MCP and A2A protocol documentation, replay attack research, supply-chain attack patterns, and standards for inter-service authentication.</p>
+    <p style="margin-top:1rem;"><a href="sources.html" style="color:var(--accent);font-weight:600;">📄 View all sources for AG07 →</a></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">Key references covered in this module</div>
+    <ul>
+      <li><strong>OWASP Top 10 for LLM &amp; Generative AI Applications — ASI07:2026</strong> — Insecure Inter-Agent Communication. The primary specification this module is based on.</li>
+      <li><strong>Anthropic Model Context Protocol (MCP) specification</strong> — Defines the LLM-to-tool communication standard. Security properties depend on deployment implementation.</li>
+      <li><strong>Google Agent-to-Agent (A2A) Protocol</strong> — Agent task delegation specification. Same implementation-dependency caveat as MCP.</li>
+      <li><strong>Needham &amp; Schroeder (1978)</strong> — Foundational paper on authentication protocol design, including replay attack vulnerabilities and nonce-based defenses.</li>
+      <li><strong>RFC 7519 (JSON Web Tokens) / RFC 7515 (JSON Web Signatures)</strong> — Standards for signed tokens including the <code>jti</code> (JWT ID) claim for replay prevention.</li>
+      <li><strong>NIST SP 800-204C</strong> — Implementation of DevSecOps for microservices, including service-to-service authentication patterns (mTLS, JWT) applicable to agent pipelines.</li>
+      <li><strong>OWASP ASVS v4.0 — Section V6</strong> — Authentication and session management requirements applicable to service identity in agent pipelines.</li>
+    </ul>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-27.html">← Back</a>
+    <a class="btn-secondary" href="../index.html">← Course Home</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

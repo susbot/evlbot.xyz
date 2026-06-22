@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 17 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a><a class="seg done" href="ag06-slide-03.html"></a><a class="seg done" href="ag06-slide-04.html"></a><a class="seg done" href="ag06-slide-05.html"></a><a class="seg done" href="ag06-slide-06.html"></a><a class="seg done" href="ag06-slide-07.html"></a><a class="seg done" href="ag06-slide-08.html"></a><a class="seg done" href="ag06-slide-09.html"></a><a class="seg done" href="ag06-slide-10.html"></a><a class="seg done" href="ag06-slide-11.html"></a><a class="seg done" href="ag06-slide-12.html"></a><a class="seg done" href="ag06-slide-13.html"></a><a class="seg done" href="ag06-slide-14.html"></a><a class="seg done" href="ag06-slide-15.html"></a><a class="seg done" href="ag06-slide-16.html"></a>
+    <a class="seg active" href="ag06-slide-17.html"></a>
+    <a class="seg" href="ag06-slide-18.html"></a><a class="seg" href="ag06-slide-19.html"></a><a class="seg" href="ag06-slide-20.html"></a><a class="seg" href="ag06-slide-21.html"></a><a class="seg" href="ag06-slide-22.html"></a><a class="seg" href="ag06-slide-23.html"></a><a class="seg" href="ag06-slide-24.html"></a><a class="seg" href="ag06-slide-25.html"></a><a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Scenarios</span><span>Slide 17</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 17 · The Universal Pattern</div>
+  <div class="slide-title">Every AG06 scenario follows the same four-step structure. Defenses target a different step in each case.</div>
+
+  <div class="block">
+    <div class="block-label purple">Step 1 — Write access is established</div>
+    <p>The attacker gains the ability to write content that will enter the agent's memory — through an ingestion pipeline, a direct memory API, a shared document store, a conversation the agent summarizes, or by instructing the agent to store something. Write access doesn't require privileged access to the memory backend; indirect channels are sufficient.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Step 2 — Malicious content is written to memory</div>
+    <p>The attacker's content enters the memory store — as a document chunk, a fact, a preference, a session summary, or a shared knowledge entry. It looks exactly like legitimate content because it was written through the same channel used by legitimate content. No technical anomaly is generated at write time.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Step 3 — The attacker withdraws</div>
+    <p>The write is complete. The attacker has no further role. They are no longer present in any subsequent conversation. Their influence is now encoded in the memory store — passive, persistent, and invisible. There is no ongoing attack to detect. The poisoned entry waits.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Step 4 — Future retrievals carry the poisoned belief forward</div>
+    <p>A legitimate user or process triggers a query that semantically matches the poisoned entry. The memory system retrieves it with high confidence. The agent incorporates it as trusted context. The attacker's desired outcome unfolds — across one conversation or a thousand — without anyone present who knows what happened.</p>
+  </div>
+
+  <div class="callout amber">
+    <div class="callout-label">What defenses target</div>
+    <p>Defenses can act at Step 1 (limit who can write to memory), Step 2 (validate and attribute what's written), between Steps 3 and 4 (audit and detect poisoned entries), or at Step 4 (reduce trust placed in retrieved content). Part 4 covers each approach.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag06-slide-16.html">← Back</a>
+    <a class="btn-primary" href="ag06-slide-18.html">Part 4 — Prevention →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

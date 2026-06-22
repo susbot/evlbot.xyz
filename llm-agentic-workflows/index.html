@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agentic AI Top 10 · Interactive Security Course</title>
+<meta name="description" content="An interactive, slide-by-slide breakdown of the top 10 agentic AI security risks. Built for anyone who learns differently.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23EF9F27'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='30' font-weight='bold' fill='%23fff' text-anchor='middle' dominant-baseline='middle'%3EAG%3C/text%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Agentic AI Top 10 · Interactive Security Course">
+<meta property="og:description" content="An interactive, slide-by-slide breakdown of the top 10 agentic AI security risks. Built for anyone who learns differently.">
+<link rel="stylesheet" href="ag01-lesson/ag01-shared.css">
+<style>
+html{background:var(--bg);}
+body{padding-bottom:24px;}
+.heart{color:#f43f5e;}
+.hero{padding:40px 20px 32px;}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:3px 10px;margin-bottom:20px;}
+.hero-title{font-size:clamp(24px,6vw,36px);font-weight:600;color:#fff;line-height:1.2;margin-bottom:10px;}
+.hero-title span{color:var(--accent-bright);}
+.hero-sub{font-size:16px;color:var(--subtle);line-height:1.75;max-width:540px;margin-bottom:28px;}
+.hero-stats{display:flex;gap:24px;}
+.stat{text-align:center;}
+.stat-num{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:600;color:var(--accent-bright);}
+.stat-label{font-size:11px;color:var(--muted);margin-top:2px;}
+.section-header{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:24px 20px 12px;border-top:1px solid var(--border);}
+.card-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;padding:0 20px 24px;}
+@media(max-width:1024px){.card-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:640px){.card-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:400px){.card-grid{grid-template-columns:1fr;}}
+.module-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;transition:border-color .15s;display:flex;flex-direction:column;}
+.module-card.available{cursor:pointer;}
+.module-card.available:hover{border-color:var(--accent);}
+.module-card.available.active{border-color:var(--accent-bright);}
+.module-card.locked{opacity:.4;cursor:default;}
+.mod-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.mod-num{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.1em;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:2px 7px;}
+.mod-title{font-size:16px;font-weight:600;color:#fff;margin-bottom:4px;line-height:1.3;}
+.mod-desc{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:10px;flex:1;}
+.mod-footer{display:flex;align-items:center;justify-content:space-between;}
+.mod-slides{font-size:10px;color:var(--muted);font-family:'IBM Plex Mono',monospace;}
+.pill{font-size:9px;padding:2px 7px;border-radius:99px;font-weight:600;letter-spacing:.04em;}
+.pill-ready{background:rgba(16,185,129,.12);color:#10b981;border:1px solid rgba(16,185,129,.25);}
+.pill-soon{background:var(--surface2);color:var(--muted);border:1px solid var(--border);}
+.mod-link{display:block;width:100%;margin-top:10px;background:var(--accent);color:#fff;border:none;border-radius:6px;padding:9px;font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:500;cursor:pointer;text-align:center;text-decoration:none;transition:opacity .15s;}
+.mod-link:hover{opacity:.85;}
+.about-section{margin:0 20px 32px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;}
+.about-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.about-text{font-size:13px;color:var(--subtle);line-height:1.75;margin-bottom:12px;}
+.about-text strong{color:var(--text);}
+.about-link{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:4px 10px;text-decoration:none;transition:opacity .15s;}
+.about-link:hover{opacity:.8;}
+.page-footer{margin:32px 20px 0;padding:24px 0 32px;border-top:1px solid var(--border);text-align:left;}
+.footer-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px;}
+.footer-brand{display:flex;align-items:center;gap:10px;}
+.footer-mark{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:6px;padding:5px 10px;}
+.footer-tag{font-size:12px;color:var(--muted);line-height:1.5;}
+.footer-links{display:flex;flex-wrap:wrap;gap:8px;}
+.footer-links a{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--subtle);text-decoration:none;border:1px solid var(--border);border-radius:6px;padding:6px 12px;display:inline-flex;align-items:center;gap:6px;transition:all .15s;}
+.footer-links a:hover{border-color:var(--accent);color:var(--accent-bright);}
+.footer-bottom{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding-top:16px;border-top:1px solid var(--border);}
+.footer-copy{font-size:11px;color:var(--muted);line-height:1.6;}
+.footer-disclaimer{font-size:11.5px;color:var(--muted);line-height:1.8;max-width:760px;margin:14px auto 0;text-align:center;}
+.footer-disclaimer strong{color:var(--subtle);font-weight:600;}
+.footer-disclaimer a{color:var(--accent-bright);text-decoration:underline;text-underline-offset:2px;border:none;padding:0;border-radius:0;display:inline;}
+.footer-disclaimer a:hover{opacity:.8;}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">Agentic Top 10</span>
+    <span class="nav-title">Interactive Security Course</span>
+  </div>
+  <span class="nav-right" style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:4px 10px;letter-spacing:.06em;">evlbot.xyz</span>
+</div>
+
+<div class="hero">
+  <div class="hero-badge">&#x1F916; Security · AI · Agentic Systems</div>
+  <div class="hero-title">Learn the <span>Agentic Top 10</span><br>by actually doing it.</div>
+  <p class="hero-sub">An interactive, slide-by-slide breakdown of the top 10 agentic AI security risks. Built for anyone who learns differently.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">10<span style="color:var(--muted);font-size:14px;">/10</span></div><div class="stat-label">Modules live</div></div>
+    <div class="stat"><div class="stat-num">280</div><div class="stat-label">Slides</div></div>
+    <div class="stat"><div class="stat-num">10</div><div class="stat-label">Quizzes</div></div>
+  </div>
+</div>
+
+<div class="section-header">Course Modules</div>
+
+<div class="card-grid">
+
+  <div class="module-card available active">
+    <div class="mod-top"><span class="mod-num">AG01</span><span class="pill pill-ready">Live</span></div>
+    <div class="mod-title">Agent Goal Hijack</div>
+    <div class="mod-desc">When an attacker redirects your AI agent to serve their goals instead of yours — without you ever knowing it switched sides.</div>
+    <div class="mod-footer"><span class="mod-slides">28 slides</span></div>
+    <a class="mod-link" href="ag01-lesson/ag01-slide-01.html">Start &#x2192;</a>
+  </div>
+
+  <div class="module-card available">
+    <div class="mod-top"><span class="mod-num">AG02</span><span class="pill pill-ready">Live</span></div>
+    <div class="mod-title">Tool Misuse and Exploitation</div>
+    <div class="mod-desc">When agents are tricked into using their own tools in ways that cause harm — from data theft to unauthorized system changes.</div>
+    <div class="mod-footer"><span class="mod-slides">28 slides</span></div>
+    <a class="mod-link" href="ag02-lesson/ag02-slide-01.html">Start &#x2192;</a>
+  </div>
+
+  <div class="module-card available">
+    <div class="mod-top"><span class="mod-num">AG03</span><span class="pill pill-ready">Live</span></div>
+    <div class="mod-title">Identity and Privilege Abuse</div>
+    <div class="mod-desc">When agents act with more authority than they should — impersonating users, escalating permissions, or inheriting trust they haven't earned.</div>
+    <div class="mod-footer"><span class="mod-slides">28 slides</span></div>
+    <a class="mod-link" href="ag03-lesson/ag03-slide-01.html">Start &#x2192;</a>
+  </div>
+
+  <div class="module-card available active">
+    <div class="mod-top"><span class="mod-num">AG04</span><span class="pill pill-ready">Live</span></div>
+    <div class="mod-title">Agentic Supply Chain Vulnerabilities</div>
+    <div class="mod-desc">When the tools, models, plugins, or data sources an agent depends on are compromised before the agent ever runs.</div>
+    <div class="mod-footer"><span class="mod-slides">28 slides</span></div>
+    <a class="mod-link" href="ag04-lesson/ag04-slide-01.html">Start &#x2192;</a>
+  </div>
+
+  <div class="module-card available">
+    <div class="mod-top"><span class="mod-num">AG05</span><span class="pill pill-ready">Live</span></div>
+    <div class="mod-title">Unexpected Code Execution</div>
+    <div class="mod-desc">When an agent generates and runs code that does something its operators never intended — including remote code execution on host systems.</div>
+    <div class="mod-footer"><span class="mod-slides">28 slides</span></div>
+    <a class="mod-link" href="ag05-lesson/ag05-slide-01.html">Start Module →</a>
+  </div>
+
+  <div class="module-card available">
+    <div class="mod-top"><span class="mod-num">AG06</span><span class="pill pill-ready">Live</span></div>
+    <div class="mod-title">Memory &amp; Context Poisoning</div>
+    <div class="mod-desc">When an attacker corrupts what an agent remembers — planting false beliefs that persist across sessions and silently shape future decisions.</div>
+    <div class="mod-footer"><span class="mod-slides">28 slides</span></div>
+    <a class="mod-link" href="ag06-lesson/ag06-slide-01.html">Start Module →</a>
+  </div>
+
+  <div class="module-card available">
+    <div class="mod-top"><span class="mod-num">AG07</span><span class="pill pill-ready">Live</span></div>
+    <div class="mod-title">Insecure Inter-Agent Communication</div>
+    <div class="mod-desc">When messages between agents in a pipeline can be forged, intercepted, or manipulated — turning trusted orchestration into an attack vector.</div>
+    <div class="mod-footer"><span class="mod-slides">28 slides</span></div>
+    <a class="mod-link" href="ag07-lesson/ag07-slide-01.html">Start Module →</a>
+  </div>
+
+  <div class="module-card available">
+    <div class="mod-top"><span class="mod-num">AG08</span><span class="pill pill-ready">Live</span></div>
+    <div class="mod-title">Cascading Failures</div>
+    <div class="mod-desc">When one agent's error or compromise propagates through a multi-agent system, triggering failures across every connected component.</div>
+    <div class="mod-footer"><span class="mod-slides">28 slides</span></div>
+    <a class="mod-link" href="ag08-lesson/ag08-slide-01.html">Start Module →</a>
+  </div>
+
+  <div class="module-card available">
+    <div class="mod-top"><span class="mod-num">AG09</span><span class="pill pill-ready">Live</span></div>
+    <div class="mod-title">Human-Agent Trust Exploitation</div>
+    <div class="mod-desc">When users place too much — or too little — trust in an AI agent, and attackers exploit that gap to manipulate decisions or bypass oversight.</div>
+    <div class="mod-footer"><span class="mod-slides">28 slides</span></div>
+    <a class="mod-link" href="ag09-lesson/ag09-slide-01.html">Start Module →</a>
+  </div>
+
+  <div class="module-card available">
+    <div class="mod-top"><span class="mod-num">AG10</span><span class="pill pill-ready">Live</span></div>
+    <div class="mod-title">Rogue Agents</div>
+    <div class="mod-desc">When an agent develops misaligned behavior — pursuing goals that diverge from its principal hierarchy through optimization, goal injection, or emergent capability exploitation.</div>
+    <div class="mod-footer"><span class="mod-slides">28 slides</span></div>
+    <a class="mod-link" href="ag10-lesson/ag10-slide-01.html">Start Module →</a>
+  </div>
+
+</div>
+
+<div class="section-header">About</div>
+
+<div class="about-section">
+  <div class="about-label">Built by Susbot</div>
+  <p class="about-text">I'm a different kind of learner — let's learn together. Hope it helps you learn faster.</p>
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+    <a class="about-link" href="https://www.linkedin.com/in/julio-perez-b1062796/" target="_blank">&#x1F517; LinkedIn</a>
+  </div>
+</div>
+
+<div class="page-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <span class="footer-mark">evlbot.xyz</span>
+      <span class="footer-tag">Interactive lessons on securing<br>agentic AI applications.</span>
+    </div>
+    <div class="footer-links">
+      <a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/" target="_blank" rel="noopener">&#x1F4C4; View the official framework &#x2197;</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">&copy; 2026 Susbot &middot; Built for learning, free to use.</span>
+    <span class="footer-copy">Made with <span class="heart">&#x2665;</span> &amp; a lot of curiosity</span>
+  </div>
+  <p class="footer-disclaimer"><strong>Source &amp; attribution:</strong> This is an independent, unofficial study companion. The risk categories taught here are based on the <a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/" target="_blank" rel="noopener">OWASP Top 10 for Agentic Applications 2026</a>, a publicly available framework maintained by the OWASP Gen AI Security Project. This project is not affiliated with, endorsed by, or sponsored by OWASP, and all trademarks remain the property of their respective owners.</p>
+</div>
+
+</body>
+</html>

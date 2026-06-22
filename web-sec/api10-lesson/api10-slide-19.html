@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 19 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 19 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg done" href="api10-slide-11.html"></a><a class="seg done" href="api10-slide-12.html"></a><a class="seg done" href="api10-slide-13.html"></a><a class="seg done" href="api10-slide-14.html"></a><a class="seg done" href="api10-slide-15.html"></a><a class="seg done" href="api10-slide-16.html"></a><a class="seg done" href="api10-slide-17.html"></a><a class="seg done" href="api10-slide-18.html"></a><a class="seg active" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 19</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 19 &#xb7; MIT 01</div>
+  <div class="slide-title">Treat third-party API responses as untrusted input &#x2014; the same as user-submitted data.</div>
+  <div class="slide-subtitle">The source of data does not determine its trustworthiness for security controls. The context of use does.</div>
+  <div class="block">
+    <div class="block-label pink">The mental model shift</div>
+    <p>Current (vulnerable) mental model: &#x201C;This data came from Stripe / Google Maps / GitHub, so it&#x2019;s safe.&#x201D; Correct mental model: &#x201C;This data is going into a SQL query / HTML template / log statement. It must be treated as potentially malicious regardless of source.&#x201D; Security controls belong at the point of use, not at the point of trust.</p>
+  </div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Source-driven security (wrong)</div>
+      <div class="compare-item">User input &#x2192; validate &#x2192; parameterize &#x2192; escape</div>
+      <div class="compare-item">Third-party response &#x2192; skip validation &#x2192; use directly</div>
+      <div class="compare-item">&#x201C;It&#x2019;s from a trusted API&#x201D; = exempt from controls</div>
+      <div class="compare-item">Fails when the trusted API is compromised</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Context-driven security (correct)</div>
+      <div class="compare-item">Any value &#x2192; going into SQL? &#x2192; parameterize</div>
+      <div class="compare-item">Any value &#x2192; rendered as HTML? &#x2192; escape</div>
+      <div class="compare-item">Any value &#x2192; going to the logger? &#x2192; strip dangerous patterns</div>
+      <div class="compare-item">Source is irrelevant to the control applied at use</div>
+    </div>
+  </div>
+  <div class="callout orange">
+    <div class="callout-label">Practical implementation</div>
+    <p>The practical change is in code review and security testing. Threat models must include: &#x201C;What if this third-party API returns a malicious value in field X?&#x201D; Integration adapters must be reviewed with the same scrutiny as user-facing handlers. SAST rules that flag unparameterized queries or unescaped output must apply to all code paths &#x2014; including those fed by third-party API responses. Write integration tests that pass adversarial values (SQL injection strings, XSS payloads, JNDI strings) as mock third-party responses and confirm they are handled safely.</div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team: when data comes back from a third-party API you integrate with, does it go through the same validation as data submitted by your own users &#x2014; or does it skip that step because &#x201C;we trust the vendor&#x201D;? The Ticketmaster breach happened because the second assumption was wrong.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-18.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-20.html">MIT 02: Validate all fields &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

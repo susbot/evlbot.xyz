@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 1 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 1 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg active" href="api09-slide-01.html"></a><a class="seg" href="api09-slide-02.html"></a><a class="seg" href="api09-slide-03.html"></a><a class="seg" href="api09-slide-04.html"></a><a class="seg" href="api09-slide-05.html"></a><a class="seg" href="api09-slide-06.html"></a><a class="seg" href="api09-slide-07.html"></a><a class="seg" href="api09-slide-08.html"></a><a class="seg" href="api09-slide-09.html"></a><a class="seg" href="api09-slide-10.html"></a><a class="seg" href="api09-slide-11.html"></a><a class="seg" href="api09-slide-12.html"></a><a class="seg" href="api09-slide-13.html"></a><a class="seg" href="api09-slide-14.html"></a><a class="seg" href="api09-slide-15.html"></a><a class="seg" href="api09-slide-16.html"></a><a class="seg" href="api09-slide-17.html"></a><a class="seg" href="api09-slide-18.html"></a><a class="seg" href="api09-slide-19.html"></a><a class="seg" href="api09-slide-20.html"></a><a class="seg" href="api09-slide-21.html"></a><a class="seg" href="api09-slide-22.html"></a><a class="seg" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 1</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 1 &#xb7; The Breach That Defined the Category</div>
+  <div class="slide-title">87 million people&#x2019;s data. One deprecated API permission. Four years of overlap.</div>
+  <div class="slide-subtitle">Facebook Graph API v1 / Cambridge Analytica &#x2014; the privacy model was fixed in v2. v1 kept running.</div>
+  <div class="source-tag">&#x1F4C4; U.S. FTC &#xb7; U.S. Senate Judiciary Committee &#xb7; UK ICO &#xb7; 2018</div>
+  <div class="scenario-card">
+    <div class="scenario-num">THE INCIDENT</div>
+    <div class="scenario-title">Facebook Graph API v1 &#x2014; The Friends Permission</div>
+    <div class="scenario-body">
+      <p>Facebook&#x2019;s Graph API v1 included a feature called the &#x201C;friends permission.&#x201D; When a user installed an app and granted it access to their data, the app could also request access to all of that user&#x2019;s friends&#x2019; data &#x2014; without those friends ever being notified or consenting. The friend&#x2019;s profile, location, likes, and relationship status were all accessible through the installing user&#x2019;s permission grant.</p>
+      <p>In 2014, Facebook launched Graph API v2 and removed the friends permission. Apps requesting data through v2 could only access the data of users who had directly installed and consented. The fix was real &#x2014; but v1 remained operational for any app that had registered before April 30, 2014.</p>
+    </div>
+    <div class="scenario-why"><strong>What Cambridge Analytica did:</strong> The app &#x201C;This Is Your Digital Life&#x201D; (registered in 2013, before the v2 cutoff) used Graph API v1&#x2019;s friends permission. 270,000 users installed the app and consented to share their data. Through the friends permission, the app harvested the data of each installer&#x2019;s friends &#x2014; without those 87 million friends consenting or even knowing. Cambridge Analytica acquired this dataset and used it to build psychographic profiles for political advertising. The breach came to public attention in March 2018. Facebook was fined $5 billion by the FTC and &#xA3;500,000 by the UK ICO.</div>
+  </div>
+  <div class="callout red">
+    <div class="callout-label">The API9 lesson</div>
+    <p>The security fix existed &#x2014; in v2. But v1 remained operational long enough for Cambridge Analytica to exploit the old permission model at scale. The vulnerability was not in any single line of code. It was in the decision to let an old API version with a worse security model keep running while a better one existed alongside it.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="../index.html">&#x2190; All modules</a>
+    <a class="btn-primary" href="api09-slide-02.html">What is API9? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Unrestricted Resource Consumption · Slide 6 of 28</title>
+<link rel="stylesheet" href="api04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Unrestricted Resource Consumption</span></div>
+  <span class="nav-right">Slide 6 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api04-slide-01.html"></a><a class="seg done" href="api04-slide-02.html"></a><a class="seg done" href="api04-slide-03.html"></a><a class="seg done" href="api04-slide-04.html"></a><a class="seg done" href="api04-slide-05.html"></a><a class="seg active" href="api04-slide-06.html"></a><a class="seg" href="api04-slide-07.html"></a><a class="seg" href="api04-slide-08.html"></a><a class="seg" href="api04-slide-09.html"></a><a class="seg" href="api04-slide-10.html"></a><a class="seg" href="api04-slide-11.html"></a><a class="seg" href="api04-slide-12.html"></a><a class="seg" href="api04-slide-13.html"></a><a class="seg" href="api04-slide-14.html"></a><a class="seg" href="api04-slide-15.html"></a><a class="seg" href="api04-slide-16.html"></a><a class="seg" href="api04-slide-17.html"></a><a class="seg" href="api04-slide-18.html"></a><a class="seg" href="api04-slide-19.html"></a><a class="seg" href="api04-slide-20.html"></a><a class="seg" href="api04-slide-21.html"></a><a class="seg" href="api04-slide-22.html"></a><a class="seg" href="api04-slide-23.html"></a><a class="seg" href="api04-slide-24.html"></a><a class="seg" href="api04-slide-25.html"></a><a class="seg" href="api04-slide-26.html"></a><a class="seg" href="api04-slide-27.html"></a><a class="seg" href="api04-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 6</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 6 · The Outcomes</div>
+  <div class="slide-title">The damage comes in three flavors.</div>
+  <div class="slide-subtitle">Denial of service. Bulk data theft. Financial ruin.</div>
+
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">🚫</div>
+      <div>
+        <div class="outcome-title">Denial of Service (DoS)</div>
+        <div class="outcome-desc">Enough requests overwhelm the server — CPU maxes out, memory is exhausted, database connections are held open, or the connection pool fills. Legitimate users get timeouts and errors. The service goes down for everyone while the attacker was just "using the API."</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">📊</div>
+      <div>
+        <div class="outcome-title">Bulk Data Exfiltration / Scraping</div>
+        <div class="outcome-desc">Without rate limits, an attacker can enumerate the entire dataset in a matter of hours. Users, products, prices, transactions — anything the API returns can be extracted wholesale. Venmo (207M transactions), Twitter (5.4M account-phone pairs), and Peloton are all examples of this damage pattern.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">💸</div>
+      <div>
+        <div class="outcome-title">Cloud Cost Amplification</div>
+        <div class="outcome-desc">If the API triggers paid third-party operations — SMS sends, AI inference, email delivery, video transcoding, payment processor calls — an attacker can run up enormous bills. A $0.01-per-SMS endpoint called 1,000,000 times costs $10,000. Without limits, the API owner pays.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🔒</div>
+      <div>
+        <div class="outcome-title">Brute Force Enablement</div>
+        <div class="outcome-desc">Without rate limiting on authentication endpoints, credential stuffing and password brute force attacks become trivial. This is the bridge between API4 and API2 — rate limiting is one of the core defenses against authentication attacks.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api04-slide-05.html">← Back</a>
+    <a class="btn-primary" href="api04-slide-07.html">Who does this? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

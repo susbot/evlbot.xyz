@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Identity and Privilege Abuse · Slide 15 of 28</title>
+<link rel="stylesheet" href="ag03-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Identity and Privilege Abuse</span>
+  </div>
+  <span class="nav-right">Slide 15 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag03-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag03-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag03-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag03-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag03-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag03-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag03-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg done" href="ag03-slide-08.html" title="Slide 8 · Why Agent Identity Is Different"></a>
+    <a class="seg done" href="ag03-slide-09.html" title="Slide 9 · Five Vulnerability Types"></a>
+    <a class="seg done" href="ag03-slide-10.html" title="Slide 10 · Type 1 — Un-scoped Privilege Inheritance"></a>
+    <a class="seg done" href="ag03-slide-11.html" title="Slide 11 · Type 1 — A Real Example"></a>
+    <a class="seg done" href="ag03-slide-12.html" title="Slide 12 · Type 2 — Memory-Based Privilege Retention"></a>
+    <a class="seg done" href="ag03-slide-13.html" title="Slide 13 · Types 3–5 — More Vulnerability Patterns"></a>
+    <a class="seg done" href="ag03-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg active" href="ag03-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg" href="ag03-slide-16.html" title="Slide 16 · Scenarios 5–7"></a>
+    <a class="seg" href="ag03-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag03-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag03-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag03-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag03-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag03-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag03-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag03-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg" href="ag03-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg" href="ag03-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag03-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag03-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Attack Scenarios</span><span>Slide 15</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 15 · Scenarios 3–4</div>
+  <div class="slide-title">Cross-agent trust exploitation and device-code phishing across agents</div>
+  <div class="slide-subtitle">Two scenarios that exploit how agents trust each other — and how that trust can be weaponized.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI03 · Example Attack Scenarios</div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 03</div>
+    <div class="scenario-title">Cross-Agent Trust Exploitation — email agent relays fraudulent payment instruction</div>
+    <div class="scenario-body">
+      <p>An attacker crafts an email that appears to come from "IT Finance" with instructions to transfer funds to a specific account for an "emergency vendor payment." The email is routed to an email-sorting agent that processes incoming messages and forwards action items to relevant agents.</p>
+      <p>The sorting agent forwards the payment instruction to a finance agent. The finance agent — trusting messages from internal agents as internally verified — processes the payment without re-checking the original sender's authority or verifying the instruction against a human approver.</p>
+    </div>
+    <div class="scenario-why"><strong>Why it works:</strong> The finance agent's trust model was built for internal-agent-to-internal-agent communication. It had no mechanism to re-verify that the instruction originated from a legitimately authorized source. The email sorting agent was the confused deputy — it faithfully forwarded a malicious instruction as if it were legitimate.</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 04</div>
+    <div class="scenario-title">Device-Code Phishing Across Agents</div>
+    <div class="scenario-body">
+      <p>An attacker shares a link containing a device authorization code — the kind used in OAuth device-flow authentication. A browsing agent follows the link as part of processing a message or document. A separate "helper" agent, designed to assist with authentication flows, completes the device code challenge.</p>
+      <p>The result: the victim's Microsoft or Google tenant is bound to the attacker's application with scopes the victim never consciously granted. The attacker now has persistent access to the victim's organizational resources — through a legitimate OAuth flow completed by agents acting on the victim's behalf.</p>
+    </div>
+    <div class="scenario-why"><strong>Why it works:</strong> OAuth device-code flows were designed for humans using limited-input devices (TVs, consoles). They don't require the same authentication friction as standard flows. When agents complete these flows on behalf of users, the user has no visibility into what was authorized or what scopes were granted.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-14.html">← Back</a>
+    <a class="btn-primary" href="ag03-slide-16.html">Scenarios 5–7 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 2 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 2 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg active" href="api01-slide-02.html"></a><a class="seg" href="api01-slide-03.html"></a><a class="seg" href="api01-slide-04.html"></a><a class="seg" href="api01-slide-05.html"></a><a class="seg" href="api01-slide-06.html"></a><a class="seg" href="api01-slide-07.html"></a><a class="seg" href="api01-slide-08.html"></a><a class="seg" href="api01-slide-09.html"></a><a class="seg" href="api01-slide-10.html"></a><a class="seg" href="api01-slide-11.html"></a><a class="seg" href="api01-slide-12.html"></a><a class="seg" href="api01-slide-13.html"></a><a class="seg" href="api01-slide-14.html"></a><a class="seg" href="api01-slide-15.html"></a><a class="seg" href="api01-slide-16.html"></a><a class="seg" href="api01-slide-17.html"></a><a class="seg" href="api01-slide-18.html"></a><a class="seg" href="api01-slide-19.html"></a><a class="seg" href="api01-slide-20.html"></a><a class="seg" href="api01-slide-21.html"></a><a class="seg" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 2</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 2 · The Word</div>
+  <div class="slide-title">Let's break down the name.</div>
+  <div class="slide-subtitle">Four words. Each one matters.</div>
+
+  <div class="callout blue">
+    <div class="callout-label">Object</div>
+    <p>An <strong>object</strong> is any piece of data the API gives you access to. Your user profile is an object. Your order is an object. Your workout history is an object. Every object has an ID — a number or code that identifies it specifically.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">Level</div>
+    <p><strong>Level</strong> means the specific one. Not just "orders" in general — order number 1042. Not just "profiles" — profile number 8831. The level is the individual item, identified by its ID.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">Authorization</div>
+    <p><strong>Authorization</strong> is the check that asks: "Is this person allowed to access this specific thing?" It's different from authentication (which just asks "who are you?"). Authorization asks "what are you allowed to do?"</p>
+  </div>
+
+  <div class="callout red">
+    <div class="callout-label">Broken</div>
+    <p>The check <strong>isn't happening</strong>. The API knows who you are. It just doesn't check whether you're allowed to access the specific object you're requesting.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label pink">Put it together</div>
+    <p>Broken Object Level Authorization = <strong>the API doesn't check if you're allowed to access the specific item you asked for.</strong> It just gives it to you.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-01.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-03.html">Got it → What does OWASP say? →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 9 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 9 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a>
+    <a class="seg active" href="ag08-slide-09.html"></a>
+    <a class="seg" href="ag08-slide-10.html"></a><a class="seg" href="ag08-slide-11.html"></a><a class="seg" href="ag08-slide-12.html"></a><a class="seg" href="ag08-slide-13.html"></a><a class="seg" href="ag08-slide-14.html"></a><a class="seg" href="ag08-slide-15.html"></a><a class="seg" href="ag08-slide-16.html"></a><a class="seg" href="ag08-slide-17.html"></a><a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Failure Patterns</span><span>Slide 9</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 9 · Part 2 Overview</div>
+  <div class="slide-title">Six failure patterns — each a distinct mechanism by which a local failure becomes a system-wide event.</div>
+
+  <div class="mit-overview-grid">
+    <div class="mit-overview-item">
+      <div class="mit-num">Pattern 1</div>
+      <div class="mit-name">Silent Error Propagation</div>
+      <div class="mit-desc">A failure produces structurally valid but semantically wrong output. Downstream agents process it as if it were correct — no error signal is emitted at any hop.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Pattern 2</div>
+      <div class="mit-name">Error Amplification</div>
+      <div class="mit-desc">Each pipeline stage compounds the error from the previous stage. A small initial distortion becomes a large final distortion, because agents process and re-interpret bad input rather than simply passing it through.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Pattern 3</div>
+      <div class="mit-name">Runaway Feedback Loops</div>
+      <div class="mit-desc">An agent's output directly or indirectly feeds back into its own inputs, creating a self-reinforcing cycle. Without a circuit breaker, the loop runs until external intervention or resource exhaustion.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Pattern 4</div>
+      <div class="mit-name">Resource Exhaustion Cascade</div>
+      <div class="mit-desc">One overloaded or slow agent causes a queue of pending requests to build in dependent agents. Retries multiply the load. The overload spreads upstream and eventually brings down agents that were initially healthy.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Pattern 5</div>
+      <div class="mit-name">Dependency Chain Collapse</div>
+      <div class="mit-desc">A critical shared dependency fails, and all agents that depend on it fail in sequence. The more agents share the dependency, the larger the simultaneous failure footprint.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Pattern 6</div>
+      <div class="mit-name">Adversarial Cascade</div>
+      <div class="mit-desc">An attacker deliberately causes one agent to produce malicious output, using that agent as a stepping stone to reach other agents they couldn't attack directly.</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-08.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-10.html">Patterns 1 &amp; 2 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 7 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 7 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg done" href="api03-slide-03.html"></a><a class="seg done" href="api03-slide-04.html"></a><a class="seg done" href="api03-slide-05.html"></a><a class="seg done" href="api03-slide-06.html"></a><a class="seg active" href="api03-slide-07.html"></a><a class="seg" href="api03-slide-08.html"></a><a class="seg" href="api03-slide-09.html"></a><a class="seg" href="api03-slide-10.html"></a><a class="seg" href="api03-slide-11.html"></a><a class="seg" href="api03-slide-12.html"></a><a class="seg" href="api03-slide-13.html"></a><a class="seg" href="api03-slide-14.html"></a><a class="seg" href="api03-slide-15.html"></a><a class="seg" href="api03-slide-16.html"></a><a class="seg" href="api03-slide-17.html"></a><a class="seg" href="api03-slide-18.html"></a><a class="seg" href="api03-slide-19.html"></a><a class="seg" href="api03-slide-20.html"></a><a class="seg" href="api03-slide-21.html"></a><a class="seg" href="api03-slide-22.html"></a><a class="seg" href="api03-slide-23.html"></a><a class="seg" href="api03-slide-24.html"></a><a class="seg" href="api03-slide-25.html"></a><a class="seg" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 7</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 7 · The Attackers</div>
+  <div class="slide-title">You don't need special skills. You need curiosity.</div>
+  <div class="slide-subtitle">Three types of people who find these vulnerabilities — and how.</div>
+
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">🧑‍💻</div>
+      <div>
+        <div class="outcome-title">The Developer Exploring an API</div>
+        <div class="outcome-desc">Egor Homakov was a developer. He read the documentation, understood the data model, and noticed a field that shouldn't have been bindable. Most BOPLA discoveries start with someone curious about what the API actually accepts or returns.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🔍</div>
+      <div>
+        <div class="outcome-title">The Response Inspector</div>
+        <div class="outcome-desc">Opens browser dev tools or a proxy like Burp Suite. Looks at raw API responses instead of what the UI displays. Finds fields the frontend hides: password hashes, internal IDs, admin flags, tokens. No exploit needed — just reading what the server already sends.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🧪</div>
+      <div>
+        <div class="outcome-title">The Field Fuzzer</div>
+        <div class="outcome-desc">Takes a known API request body and adds extra fields — isAdmin, role, verified, balance, approved — one by one. Watches to see if the server returns a 200 and if the change actually took effect. Systematic and automatable.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">The uncomfortable truth</div>
+    <p>These vulnerabilities are often found by your own developers, security researchers doing responsible disclosure, or — if you're unlucky — by someone browsing your app out of curiosity. The attacker doesn't need to "hack" anything. They just need to read or send a JSON field.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-06.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-08.html">Why is this ranked #3? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

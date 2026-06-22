@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 2 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 2 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a>
+    <a class="seg active" href="ag08-slide-02.html"></a>
+    <a class="seg" href="ag08-slide-03.html"></a><a class="seg" href="ag08-slide-04.html"></a><a class="seg" href="ag08-slide-05.html"></a><a class="seg" href="ag08-slide-06.html"></a><a class="seg" href="ag08-slide-07.html"></a><a class="seg" href="ag08-slide-08.html"></a><a class="seg" href="ag08-slide-09.html"></a><a class="seg" href="ag08-slide-10.html"></a><a class="seg" href="ag08-slide-11.html"></a><a class="seg" href="ag08-slide-12.html"></a><a class="seg" href="ag08-slide-13.html"></a><a class="seg" href="ag08-slide-14.html"></a><a class="seg" href="ag08-slide-15.html"></a><a class="seg" href="ag08-slide-16.html"></a><a class="seg" href="ag08-slide-17.html"></a><a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 2</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 2 · The Word</div>
+  <div class="slide-title">Two words that need precise definitions before they can be defended against.</div>
+
+  <div class="block">
+    <div class="block-label purple">Cascading</div>
+    <p><strong>In physics:</strong> a chain reaction where each event triggers the next. A domino knocking over a domino. In failure analysis, "cascading" specifically means the failure does not stay where it started — it propagates through connections to other components.</p>
+    <p><strong>What makes it "cascading" and not just "spreading":</strong> In a cascade, each intermediate component genuinely fails — it doesn't just transmit the original failure. The analysis agent in the hook scenario didn't just pass through the retrieval agent's error. It processed the bad data, produced bad analysis, and passed that bad analysis downstream as if it were good analysis. Each hop transforms and often amplifies the failure.</p>
+    <p><strong>Key characteristic:</strong> By the time the cascade reaches the final agent, the failure has changed shape multiple times. Tracing it back to the origin requires understanding every transformation along the way.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Failure</div>
+    <p>In this context, "failure" covers a broad spectrum that single-agent systems rarely encounter:</p>
+    <ul>
+      <li><strong>Error:</strong> An agent produces an incorrect result without knowing it's incorrect. The truncated dataset case — the retrieval agent returned a structurally valid response that was semantically wrong.</li>
+      <li><strong>Exception:</strong> An agent encounters a condition it cannot handle and signals an error. Often better than silent error — at least something downstream can detect the problem.</li>
+      <li><strong>Overload:</strong> An agent becomes too busy to process requests at its normal rate, causing timeouts, queue buildup, and resource starvation for other agents.</li>
+      <li><strong>Compromise:</strong> An agent is manipulated (by an attacker or by bad input) into producing adversarial output — output that appears correct but is deliberately designed to cause harm in downstream agents.</li>
+    </ul>
+    <p><strong>What these have in common:</strong> The agent's output no longer accurately represents what it was supposed to compute — whether due to external data quality, resource exhaustion, or adversarial manipulation.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-01.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-03.html">Official definition →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

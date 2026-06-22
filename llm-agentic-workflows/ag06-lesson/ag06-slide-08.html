@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 8 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 8 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a><a class="seg done" href="ag06-slide-03.html"></a><a class="seg done" href="ag06-slide-04.html"></a><a class="seg done" href="ag06-slide-05.html"></a><a class="seg done" href="ag06-slide-06.html"></a><a class="seg done" href="ag06-slide-07.html"></a>
+    <a class="seg active" href="ag06-slide-08.html"></a>
+    <a class="seg" href="ag06-slide-09.html"></a><a class="seg" href="ag06-slide-10.html"></a><a class="seg" href="ag06-slide-11.html"></a><a class="seg" href="ag06-slide-12.html"></a><a class="seg" href="ag06-slide-13.html"></a><a class="seg" href="ag06-slide-14.html"></a><a class="seg" href="ag06-slide-15.html"></a><a class="seg" href="ag06-slide-16.html"></a><a class="seg" href="ag06-slide-17.html"></a><a class="seg" href="ag06-slide-18.html"></a><a class="seg" href="ag06-slide-19.html"></a><a class="seg" href="ag06-slide-20.html"></a><a class="seg" href="ag06-slide-21.html"></a><a class="seg" href="ag06-slide-22.html"></a><a class="seg" href="ag06-slide-23.html"></a><a class="seg" href="ag06-slide-24.html"></a><a class="seg" href="ag06-slide-25.html"></a><a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 8</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 8 · Part 1 Wrap-up</div>
+  <div class="slide-title">Why persistent memory creates a fundamentally new attack surface — one that didn't exist when AI was stateless.</div>
+
+  <div class="block">
+    <div class="block-label purple">The stateless baseline</div>
+    <p>Early AI systems were stateless: every conversation started fresh. An attacker could influence a single conversation, but the influence ended when the session closed. The attack surface was bounded by one interaction at a time. There was no accumulated state for an adversary to corrupt and benefit from later.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">What persistent memory changes</div>
+    <p>Agents with persistent memory accumulate state across sessions. They retrieve from growing knowledge bases. They remember past interactions. They apply learned preferences. This is what makes them genuinely useful for complex, ongoing work — but it also means a single write event can corrupt an arbitrarily large number of future interactions.</p>
+    <p><strong>The attack multiplier:</strong> In a stateless system, a successful attack affects 1 conversation. In an agent with persistent memory and many users, a successful memory write can silently affect every subsequent conversation that retrieves the poisoned entry — until the entry is discovered and removed.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">The detection problem</div>
+    <p>Because the attacker acts once (the write) and the effect unfolds later (the retrieval), the attack is difficult to detect in real time. The conversations that retrieve the poisoned entry look normal — the agent is behaving consistently with what it "knows." There's no live injection to detect, no unusual tool call, no anomalous input. The harm is in the invisible background context shaping every answer.</p>
+  </div>
+
+  <div class="callout amber">
+    <div class="callout-label">Part 2 preview</div>
+    <p>We'll look at the six specific vulnerability types that enable memory poisoning — each targeting a different tier of agent memory with a different attack path.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag06-slide-07.html">← Back</a>
+    <a class="btn-primary" href="ag06-slide-09.html">Part 2 — Vulnerability Types →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

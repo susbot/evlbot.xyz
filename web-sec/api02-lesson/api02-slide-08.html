@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 8 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 8 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg done" href="api02-slide-07.html"></a><a class="seg active" href="api02-slide-08.html"></a><a class="seg" href="api02-slide-09.html"></a><a class="seg" href="api02-slide-10.html"></a><a class="seg" href="api02-slide-11.html"></a><a class="seg" href="api02-slide-12.html"></a><a class="seg" href="api02-slide-13.html"></a><a class="seg" href="api02-slide-14.html"></a><a class="seg" href="api02-slide-15.html"></a><a class="seg" href="api02-slide-16.html"></a><a class="seg" href="api02-slide-17.html"></a><a class="seg" href="api02-slide-18.html"></a><a class="seg" href="api02-slide-19.html"></a><a class="seg" href="api02-slide-20.html"></a><a class="seg" href="api02-slide-21.html"></a><a class="seg" href="api02-slide-22.html"></a><a class="seg" href="api02-slide-23.html"></a><a class="seg" href="api02-slide-24.html"></a><a class="seg" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 8</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 8 · Why It's #2</div>
+  <div class="slide-title">Account takeover is the master key.</div>
+  <div class="slide-subtitle">Every other risk assumes authentication worked. This one breaks that assumption.</div>
+
+  <div class="callout red">
+    <div class="callout-label">The Threat Model</div>
+    <p>All of the other API risks — BOLA, mass assignment, rate limit abuse — assume the attacker is an authenticated user doing something they shouldn't. They assume the API knows who it's talking to.</p>
+    <p><strong>Broken authentication removes that assumption entirely.</strong> The attacker isn't a user doing something wrong — they're pretending to be a different user entirely. And the API can't tell the difference.</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">With broken auth</div>
+      <div class="compare-item">Attacker picks any victim account</div>
+      <div class="compare-item">Bypasses, steals, or forges their token</div>
+      <div class="compare-item">API thinks it's the victim</div>
+      <div class="compare-item">All of the victim's data and actions are available</div>
+      <div class="compare-item">Authorization, rate limits, audit logs — all point to the victim</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Why it's ranked #2 (not #1)</div>
+      <div class="compare-item">BOLA is more prevalent — easier to introduce accidentally</div>
+      <div class="compare-item">Broken auth is usually harder to exploit at scale</div>
+      <div class="compare-item">But when it works, the blast radius is total</div>
+      <div class="compare-item">Credential stuffing scaled to millions — that's automation at full blast</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-07.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-09.html">Show me how it's done →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

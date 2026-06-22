@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Identity and Privilege Abuse · Slide 13 of 28</title>
+<link rel="stylesheet" href="ag03-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Identity and Privilege Abuse</span>
+  </div>
+  <span class="nav-right">Slide 13 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag03-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag03-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag03-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag03-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag03-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag03-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag03-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg done" href="ag03-slide-08.html" title="Slide 8 · Why Agent Identity Is Different"></a>
+    <a class="seg done" href="ag03-slide-09.html" title="Slide 9 · Five Vulnerability Types"></a>
+    <a class="seg done" href="ag03-slide-10.html" title="Slide 10 · Type 1 — Un-scoped Privilege Inheritance"></a>
+    <a class="seg done" href="ag03-slide-11.html" title="Slide 11 · Type 1 — A Real Example"></a>
+    <a class="seg done" href="ag03-slide-12.html" title="Slide 12 · Type 2 — Memory-Based Privilege Retention"></a>
+    <a class="seg active" href="ag03-slide-13.html" title="Slide 13 · Types 3–5 — More Vulnerability Patterns"></a>
+    <a class="seg" href="ag03-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg" href="ag03-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg" href="ag03-slide-16.html" title="Slide 16 · Scenarios 5–7"></a>
+    <a class="seg" href="ag03-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag03-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag03-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag03-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag03-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag03-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag03-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag03-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg" href="ag03-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg" href="ag03-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag03-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag03-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — How It Works</span><span>Slide 13</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 13 · Types 3–5 — More Vulnerability Patterns</div>
+  <div class="slide-title">Cross-agent trust, authorization drift, and synthetic identity injection</div>
+  <div class="slide-subtitle">Three more ways that identity and privilege break down in multi-agent systems.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI03</div>
+
+  <div class="block">
+    <div class="block-label red">Type 3 — Cross-Agent Trust Exploitation (Confused Deputy)</div>
+    <p>In a multi-agent pipeline, agents often trust messages from other internal agents by default. A compromised or attacker-controlled low-privilege agent can relay valid-looking instructions to a high-privilege agent. The high-privilege agent executes them without re-verifying the original user's authority.</p>
+    <p>Classic example: a crafted email reaches an email-sorting agent. The email contains instructions to forward funds to a specific account. The sorting agent passes these instructions to a finance agent. The finance agent, trusting an internal agent's message as if it were internally verified, processes the transfer.</p>
+    <p><strong>The attacker never touched the finance system. They used the email agent as a relay — the confused deputy.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Type 4 — TOCTOU: Authorization Drift</div>
+    <p>TOCTOU stands for Time-of-Check to Time-of-Use. Permissions are validated at the start of a workflow. Hours pass. The user's authorization changes — a spending limit is reduced, a role is revoked, an approval expires.</p>
+    <p>The agent doesn't know this. It continues with the original, now-invalid authorization token and completes the workflow. The transaction is logged as authorized. The authorization used was stale.</p>
+    <p><strong>The gap between when permissions are checked and when they are used is the attack window — and long-running agentic workflows make that window very wide.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Type 5 — Synthetic Identity Injection</div>
+    <p>An attacker registers a fake agent in an internal agent directory under a trusted-sounding name: "Admin Helper", "IT Maintenance Bot", "HR Assist". The descriptor claims the agent is an authorized internal service with high-privilege capabilities.</p>
+    <p>Other agents — discovering tools and services through the registry — route privileged maintenance tasks to it based on its name and descriptor alone. No authentication. No verification. The attacker's agent collects those tasks, the credentials that accompany them, and the access they grant.</p>
+    <p><strong>Trust in agent registries is often implicit. If an agent says it's the "Admin Helper," it gets treated like one.</strong></p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-12.html">← Back</a>
+    <a class="btn-primary" href="ag03-slide-14.html">Part 3 → Real attack scenarios</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

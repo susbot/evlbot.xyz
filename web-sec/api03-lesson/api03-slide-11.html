@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 11 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 11 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg done" href="api03-slide-03.html"></a><a class="seg done" href="api03-slide-04.html"></a><a class="seg done" href="api03-slide-05.html"></a><a class="seg done" href="api03-slide-06.html"></a><a class="seg done" href="api03-slide-07.html"></a><a class="seg done" href="api03-slide-08.html"></a><a class="seg done" href="api03-slide-09.html"></a><a class="seg done" href="api03-slide-10.html"></a><a class="seg active" href="api03-slide-11.html"></a><a class="seg" href="api03-slide-12.html"></a><a class="seg" href="api03-slide-13.html"></a><a class="seg" href="api03-slide-14.html"></a><a class="seg" href="api03-slide-15.html"></a><a class="seg" href="api03-slide-16.html"></a><a class="seg" href="api03-slide-17.html"></a><a class="seg" href="api03-slide-18.html"></a><a class="seg" href="api03-slide-19.html"></a><a class="seg" href="api03-slide-20.html"></a><a class="seg" href="api03-slide-21.html"></a><a class="seg" href="api03-slide-22.html"></a><a class="seg" href="api03-slide-23.html"></a><a class="seg" href="api03-slide-24.html"></a><a class="seg" href="api03-slide-25.html"></a><a class="seg" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 · How It Works</span><span>Slide 11</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 11 · Real Incident: Excessive Data Exposure</div>
+  <div class="slide-title">Private accounts. Not-so-private data.</div>
+  <div class="slide-subtitle">Peloton, 2021 — the API returned far more than the UI showed.</div>
+
+  <div class="real-incident">
+    <div class="real-incident-tag">Real Incident · 2021</div>
+    <div class="real-incident-title">Peloton — Private Account Data Exposed via API</div>
+    <div class="real-incident-body">
+      <p>Peloton users could set their accounts to "private." The Peloton app respected this setting and hid personal details from other users. But the API did not.</p>
+      <p>Security researcher Jan Masters (Pen Test Partners) discovered that calling the Peloton API directly returned the full user profile object — including fields the privacy setting was supposed to restrict: <strong>age, gender, city, weight, birthday, and full workout statistics</strong>.</p>
+      <p>The privacy setting controlled what the frontend displayed. It did not control what the API returned. Any authenticated Peloton user could request any other user's profile endpoint and receive the complete unsanitized object.</p>
+      <p><strong>4+ million users had their private data exposed.</strong> Peloton was notified in January 2021. Their first fix — adding authentication to the endpoint — didn't solve the property-level exposure. The full fix took over 90 days.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Lesson:</strong> Privacy settings must be enforced at the API layer, not just the UI layer. The data model must know which properties are private and enforce that on every response — not just when accessed through the official app.</div>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">The fix that wasn't</div>
+    <p>Peloton's initial response was to add authentication to the endpoint (fixing a BOLA issue). But authenticated users could still retrieve the full profile object of any other user, including all the "private" fields. Property-level access control was still missing.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-10.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-12.html">Now: mass assignment →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

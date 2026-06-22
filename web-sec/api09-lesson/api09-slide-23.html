@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 23 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 23 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg done" href="api09-slide-05.html"></a><a class="seg done" href="api09-slide-06.html"></a><a class="seg done" href="api09-slide-07.html"></a><a class="seg done" href="api09-slide-08.html"></a><a class="seg done" href="api09-slide-09.html"></a><a class="seg done" href="api09-slide-10.html"></a><a class="seg done" href="api09-slide-11.html"></a><a class="seg done" href="api09-slide-12.html"></a><a class="seg done" href="api09-slide-13.html"></a><a class="seg done" href="api09-slide-14.html"></a><a class="seg done" href="api09-slide-15.html"></a><a class="seg done" href="api09-slide-16.html"></a><a class="seg done" href="api09-slide-17.html"></a><a class="seg done" href="api09-slide-18.html"></a><a class="seg done" href="api09-slide-19.html"></a><a class="seg done" href="api09-slide-20.html"></a><a class="seg done" href="api09-slide-21.html"></a><a class="seg done" href="api09-slide-22.html"></a><a class="seg active" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 23</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 23 &#xb7; MIT 05</div>
+  <div class="slide-title">Environment separation &#x2014; dev, staging, and QA must not be internet-accessible.</div>
+  <div class="slide-subtitle">Non-production environments belong on a private network. If they need external access, that access is explicit and monitored &#x2014; not accidental.</div>
+  <div class="block">
+    <div class="block-label pink">The rule</div>
+    <p>Development, staging, and QA environments must not be reachable from the public internet. This is a network control, not a configuration suggestion. Default posture: non-production environments have no public IP and are only accessible through VPN, bastion host, or direct network access. Any exception (demo access, vendor integration) requires explicit authorization, is time-limited, and is logged.</p>
+  </div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F5A7;&#xFE0F;</div>
+      <div><div class="outcome-title">Private network by default</div><div class="outcome-desc">Non-production environments deploy to a private network (VPC, VLAN) with no internet gateway or no public IP assignment. All access is through VPN or internal network. This is enforced at the infrastructure level &#x2014; not a configuration that developers can override without a change process.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4BE;</div>
+      <div><div class="outcome-title">Synthetic or anonymized test data only</div><div class="outcome-desc">Staging environments must use synthetic data or properly anonymized copies of production data. Never copy production PII/PHI to staging without anonymization. If staging needs realistic data for testing, invest in data masking tools. The risk of a staging breach is significantly lower if the data cannot be used to harm real users.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4CB;</div>
+      <div><div class="outcome-title">Audit cloud environments for accidental exposure</div><div class="outcome-desc">Cloud accounts accumulate environments over time. Run periodic audits: list all instances/services with public IPs, all load balancers with public listeners, all DNS records pointing to cloud resources. Flag any non-production environment with external accessibility for immediate review. Tools: AWS Trusted Advisor, GCP Security Command Center, Azure Security Center.</div></div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your infrastructure team whether any staging, development, or QA environment is accessible from the internet &#x2014; and whether it contains real user data. Both conditions together are a breach waiting to happen.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-22.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-24.html">MIT 06: Endpoint discovery scanning &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

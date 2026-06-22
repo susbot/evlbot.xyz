@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 11 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 11 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg done" href="api08-slide-05.html"></a><a class="seg done" href="api08-slide-06.html"></a><a class="seg done" href="api08-slide-07.html"></a><a class="seg done" href="api08-slide-08.html"></a><a class="seg done" href="api08-slide-09.html"></a><a class="seg done" href="api08-slide-10.html"></a><a class="seg active" href="api08-slide-11.html"></a><a class="seg" href="api08-slide-12.html"></a><a class="seg" href="api08-slide-13.html"></a><a class="seg" href="api08-slide-14.html"></a><a class="seg" href="api08-slide-15.html"></a><a class="seg" href="api08-slide-16.html"></a><a class="seg" href="api08-slide-17.html"></a><a class="seg" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 11</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 11 &#xb7; Real Incident</div>
+  <div class="slide-title">Tesla &#x2014; how Pattern 2 played out on a Kubernetes cluster.</div>
+  <div class="slide-subtitle">February 2018. No password. AWS credentials in plain sight. Cryptominer running for unknown time.</div>
+  <div class="source-tag">&#x1F4C4; RedLock Cloud Security Intelligence Report &#xb7; February 2018</div>
+  <div class="scenario-card">
+    <div class="scenario-num">TIMELINE</div>
+    <div class="scenario-title">Tesla Kubernetes Breach &#x2014; Discovered February 2018</div>
+    <div class="scenario-body">
+      <p><strong>The setup:</strong> Tesla operated a Kubernetes cluster on AWS for non-production workloads. The cluster had the Kubernetes web dashboard deployed &#x2014; a legitimate management UI. The dashboard was exposed on the public internet with no authentication. Anyone with the IP and port could access the full cluster management interface.</p>
+      <p><strong>What attackers saw in the dashboard:</strong></p>
+      <p>&#x2022; All running pods and their environment variables &#x2014; including <code>AWS_ACCESS_KEY_ID</code> and <code>AWS_SECRET_ACCESS_KEY</code></p>
+      <p>&#x2022; Container logs showing application activity</p>
+      <p>&#x2022; The ability to create new pods, exec into existing pods, and modify the cluster</p>
+      <p><strong>What attackers did:</strong> They deployed a cryptomining container &#x2014; a pod running a Monero miner connected to a mining pool via a proxy to mask traffic. The miner was configured to use minimal CPU to avoid detection. Tesla&#x2019;s AWS bill funded the mining operation for an unknown period before RedLock discovered it.</p>
+    </div>
+    <div class="scenario-why"><strong>How RedLock found it:</strong> Automated scanning of cloud environments looking for internet-exposed administrative interfaces. The Kubernetes dashboard was found at a public IP on a non-standard port. The discovery and disclosure to Tesla happened in February 2018. Tesla patched it the same day. The cryptominer had been running for an unknown duration before discovery.</div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">The Kubernetes dashboard default problem</div>
+    <p>In 2018, the Kubernetes dashboard was not the only instance &#x2014; RedLock found multiple companies with the same misconfiguration in the same report. The dashboard had been deployed without authentication because the Kubernetes documentation at the time made it easy to deploy without emphasizing that it needed to be secured before any internet exposure.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-10.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-12.html">Pattern 2 mechanics &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

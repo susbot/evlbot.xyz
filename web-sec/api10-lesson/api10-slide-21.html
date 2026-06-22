@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 21 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 21 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg done" href="api10-slide-11.html"></a><a class="seg done" href="api10-slide-12.html"></a><a class="seg done" href="api10-slide-13.html"></a><a class="seg done" href="api10-slide-14.html"></a><a class="seg done" href="api10-slide-15.html"></a><a class="seg done" href="api10-slide-16.html"></a><a class="seg done" href="api10-slide-17.html"></a><a class="seg done" href="api10-slide-18.html"></a><a class="seg done" href="api10-slide-19.html"></a><a class="seg done" href="api10-slide-20.html"></a><a class="seg active" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 21</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 21 &#xb7; MIT 03</div>
+  <div class="slide-title">Allowlist all outbound URLs &#x2014; including URLs from trusted third-party responses.</div>
+  <div class="slide-subtitle">SSRF protection must apply to where you go, not just who told you to go there.</div>
+  <div class="block">
+    <div class="block-label pink">The rule</div>
+    <p>Any URL fetched server-side &#x2014; regardless of whether it came from a user request, a third-party API response, or a configuration value &#x2014; must be validated before the fetch. This includes URLs returned in third-party JSON responses, redirect destinations returned by OAuth providers, and callback URLs registered by integrations.</p>
+  </div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x2705;</div>
+      <div><div class="outcome-title">Validate redirect destinations, not just redirect sources</div><div class="outcome-desc">When following HTTP redirects from a third-party API, validate the <em>destination URL</em> of the redirect against the allowlist &#x2014; not just the initial URL. An attacker who controls a redirect at the trusted domain can point it anywhere. The allowlist check must happen at every hop in the redirect chain, not just the first request.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F6AB;</div>
+      <div><div class="outcome-title">Disable redirect following where not needed</div><div class="outcome-desc">HTTP libraries follow redirects automatically by default. For API-to-API calls where a redirect is unexpected, disable automatic redirect following (<code>allow_redirects=False</code> in Python Requests, <code>followRedirects: false</code> in node-fetch). If the third-party legitimately uses redirects, follow them manually &#x2014; with validation at each step.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4CB;</div>
+      <div><div class="outcome-title">Check the resolved IP, not just the domain</div><div class="outcome-desc">After DNS resolution, validate that the resolved IP is not in a private or link-local range (10.x.x.x, 172.16.x.x&#x2013;172.31.x.x, 192.168.x.x, 169.254.x.x). This catches subdomain takeover attacks where an attacker-controlled subdomain resolves to an internal IP. Resolve once, validate, and connect to the resolved IP directly (bypass DNS rebinding).</div></div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">Same rule as API7 &#x2014; applied to a new context</div>
+    <p>The SSRF mitigation from API7 (URL allowlist + post-DNS IP validation + disable redirects) applies directly here. The difference is context: in API7, the URL came from a user. In API10, the URL comes from a third-party. The control is identical &#x2014; but it must be applied to all server-side fetches, not just those fed by user input.</p>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team: if a third-party API you integrate with was compromised and started returning internal URLs or server addresses in its responses, would your system follow those URLs? The answer should be no &#x2014; and there should be a technical control enforcing that, not just a policy.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-20.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-22.html">MIT 04: Vendor due diligence &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

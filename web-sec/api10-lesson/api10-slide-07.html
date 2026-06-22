@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 7 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 7 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg active" href="api10-slide-07.html"></a><a class="seg" href="api10-slide-08.html"></a><a class="seg" href="api10-slide-09.html"></a><a class="seg" href="api10-slide-10.html"></a><a class="seg" href="api10-slide-11.html"></a><a class="seg" href="api10-slide-12.html"></a><a class="seg" href="api10-slide-13.html"></a><a class="seg" href="api10-slide-14.html"></a><a class="seg" href="api10-slide-15.html"></a><a class="seg" href="api10-slide-16.html"></a><a class="seg" href="api10-slide-17.html"></a><a class="seg" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 7</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 7 &#xb7; Impact</div>
+  <div class="slide-title">What attackers achieve when a trusted third-party becomes their delivery mechanism.</div>
+  <div class="slide-subtitle">The impact mirrors what direct attacks achieve &#x2014; but through a vector the target didn&#x2019;t defend.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4B3;</div>
+      <div><div class="outcome-title">Payment card data theft (skimming)</div><div class="outcome-desc">A compromised CDN script on a payment page intercepts card data as users type it &#x2014; before it reaches the API. The API&#x2019;s payment processing is never touched. The skimmer operates entirely in the user&#x2019;s browser, leveraging the trust established by a script tag on the checkout page. Ticketmaster, British Airways, Newegg, and hundreds of other organizations experienced this between 2018 and 2020.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F5C4;&#xFE0F;</div>
+      <div><div class="outcome-title">Database compromise via injection</div><div class="outcome-desc">A third-party address, name, or description field containing SQL injection is stored directly in the database. The attacker then triggers the stored payload by making the application execute the stored SQL. Result: data exfiltration, row deletion, or privilege escalation &#x2014; originating from a trusted data source that bypassed parameterized query enforcement.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4BB;</div>
+      <div><div class="outcome-title">Remote code execution via Log4Shell pattern</div><div class="outcome-desc">A JNDI lookup string embedded in a third-party API response is passed to Log4j for logging. Log4j evaluates the string, initiates an outbound LDAP connection, and loads an attacker-controlled class &#x2014; executing arbitrary Java code on the server. The impact is full server compromise. The entry vector was a field in a geolocation enrichment response, not a user-submitted request.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F30E;</div>
+      <div><div class="outcome-title">Access to internal systems via SSRF redirect</div><div class="outcome-desc">A third-party API response contains a redirect to an internal URL. The consuming API follows it server-side, reaching the AWS metadata endpoint, an internal admin interface, or an internal database management console. The attacker gains cloud credentials or internal access &#x2014; through a redirect that came from a trusted source.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-06.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-08.html">Why is this #10? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

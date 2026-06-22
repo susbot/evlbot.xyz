@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 20 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 20 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a><a class="seg done" href="ag04-slide-02.html"></a><a class="seg done" href="ag04-slide-03.html"></a><a class="seg done" href="ag04-slide-04.html"></a><a class="seg done" href="ag04-slide-05.html"></a><a class="seg done" href="ag04-slide-06.html"></a><a class="seg done" href="ag04-slide-07.html"></a><a class="seg done" href="ag04-slide-08.html"></a><a class="seg done" href="ag04-slide-09.html"></a><a class="seg done" href="ag04-slide-10.html"></a><a class="seg done" href="ag04-slide-11.html"></a><a class="seg done" href="ag04-slide-12.html"></a><a class="seg done" href="ag04-slide-13.html"></a><a class="seg done" href="ag04-slide-14.html"></a><a class="seg done" href="ag04-slide-15.html"></a><a class="seg done" href="ag04-slide-16.html"></a><a class="seg done" href="ag04-slide-17.html"></a><a class="seg done" href="ag04-slide-18.html"></a><a class="seg done" href="ag04-slide-19.html"></a>
+    <a class="seg active" href="ag04-slide-20.html"></a>
+    <a class="seg" href="ag04-slide-21.html"></a><a class="seg" href="ag04-slide-22.html"></a><a class="seg" href="ag04-slide-23.html"></a><a class="seg" href="ag04-slide-24.html"></a><a class="seg" href="ag04-slide-25.html"></a><a class="seg" href="ag04-slide-26.html"></a><a class="seg" href="ag04-slide-27.html"></a><a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 20</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 20 · MIT02 — Dependency Gatekeeping</div>
+  <div class="slide-title">MIT02: Allowlist what agents can load, pin exact versions, and scan for names that look like typosquats</div>
+  <div class="slide-subtitle">If the agent can't load it, it can't be compromised by it. Gatekeeping is the supply chain equivalent of network segmentation.</div>
+
+  <div class="block">
+    <div class="block-label purple">Allowlisting — only load what you've approved</div>
+    <p>An allowlist specifies exactly which tools, plugins, MCP servers, packages, and agents your agentic system is permitted to load. Anything not on the list is rejected before it runs — regardless of how legitimate it looks, how good its description is, or how trusted the registry says it is.</p>
+    <p><strong>This is the most effective single control for preventing impersonation and typosquatting attacks.</strong> The Postmark impersonator would have been stopped by an allowlist that only permitted the specific, verified Postmark MCP server by its full package identifier and hash.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Pinning — exact version locking with hash verification</div>
+    <p>Pinning means locking every dependency to an exact version <em>and</em> a content hash — not just a version number. Version numbers can be republished with different content. A content hash (SHA-256) is immutable: if the package content changes, the hash doesn't match, and the load fails.</p>
+    <p>For npm: <code>package-lock.json</code> with <code>integrity</code> fields. For Python: <code>pip install --require-hashes</code>. For MCP servers: manifest hash stored in your AIBOM and verified at connection time.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Typosquat scanning — catch look-alike names before installation</div>
+    <p>Automated typosquat detection compares the names of packages an agent wants to install against known-legitimate packages using edit-distance and visual similarity algorithms. A package named <code>postmark-mcp-servr</code> would trigger an alert before installation. Tools like <code>safety</code>, <code>pip-audit</code>, and dedicated registry scanners implement this check.</p>
+    <p><strong>For coding agents that autonomously install packages, typosquat scanning at the pre-install hook is non-negotiable.</strong></p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: if your AI agent automatically installs or loads a third-party package, is there an approved list it checks against first — or can it pull in anything? Ask whether package names are verified exactly, since attackers register names that are one typo away from legitimate ones.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-19.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-21.html">MIT03 — Containment and Sandboxing →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

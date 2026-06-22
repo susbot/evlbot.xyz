@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM10:2025 — Unbounded Consumption · Slide 24 of 27</title>
+<link rel="stylesheet" href="llm10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM10:2025</span><span class="nav-title">Unbounded Consumption</span></div>
+  <span class="nav-right">Slide 24 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm10-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm10-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm10-slide-03.html" title="Slide 3 · The Definition"></a><a class="seg done" href="llm10-slide-04.html" title="Slide 4 · What Gets Consumed"></a><a class="seg done" href="llm10-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm10-slide-06.html" title="Slide 6 · Why It Happens"></a><a class="seg done" href="llm10-slide-07.html" title="Slide 7 · DoS vs Denial of Wallet"></a><a class="seg done" href="llm10-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm10-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg done" href="llm10-slide-10.html" title="Slide 10 · Context Window Flooding"></a><a class="seg done" href="llm10-slide-11.html" title="Slide 11 · Denial of Wallet"></a><a class="seg done" href="llm10-slide-12.html" title="Slide 12 · Reasoning Loop Exploitation"></a><a class="seg done" href="llm10-slide-13.html" title="Slide 13 · Model Extraction"></a><a class="seg done" href="llm10-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg done" href="llm10-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg done" href="llm10-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg done" href="llm10-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg done" href="llm10-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg done" href="llm10-slide-19.html" title="Slide 19 · Input Validation"></a><a class="seg done" href="llm10-slide-20.html" title="Slide 20 · Rate Limiting"></a><a class="seg done" href="llm10-slide-21.html" title="Slide 21 · Resource Quotas"></a><a class="seg done" href="llm10-slide-22.html" title="Slide 22 · API Gateway Controls"></a><a class="seg done" href="llm10-slide-23.html" title="Slide 23 · Monitoring &amp; Alerting"></a><a class="seg active" href="llm10-slide-24.html" title="Slide 24 · Agentic Safeguards"></a><a class="seg" href="llm10-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm10-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm10-slide-27.html" title="Slide 27 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 24</span></div>
+</div>
+<div class="slide active">
+<div class="slide-eyebrow">Slide 24 · Mitigation Category 6 of 6</div>
+<div class="slide-title">Agents need step limits and timeouts. Without them, one prompt runs forever.</div>
+<div class="source-tag">📄 OWASP LLM Top 10:2025 · LLM10 Prevention — Agentic Safeguards</div>
+<div class="mit-card"><div class="mit-num">M6 — Agentic Safeguards</div><div class="mit-title">Enforce maximum step counts, execution timeouts, and graceful termination in agentic pipelines</div><div class="mit-section"><div class="mit-section-label blue">What OWASP Says</div><p>"For agentic systems, implement maximum step counts and execution time limits to prevent runaway inference loops." "Agents must have a defined termination condition independent of the LLM’s own decision to stop."</p></div><div class="divider"></div><div class="mit-section"><div class="mit-section-label red">How Missing This Made a Real Incident Worse</div><p>The agentic loop attack (Slide 12 and Scenario 3, Slide 16) ran for 22 minutes and 847 LLM calls before the network layer timed it out. There was no application-level step counter, no task-level token budget, and no graceful termination when the agent appeared to be looping. The Nasr et al. research also demonstrates: sustained generation without a stop condition causes models to diverge from aligned behavior, compounding both the cost and the output risk.</p></div><div class="divider"></div><div class="mit-section"><div class="mit-section-label green">How to Do This Right</div><p>→ Set a hard maximum step count per task (e.g., 20 tool calls). Terminate and return a partial result if hit.<br>→ Set a wall-clock timeout per task (e.g., 60 seconds). Kill the task if exceeded.<br>→ Track cumulative tokens across all steps in a single task. If a task exceeds its token budget, stop it.<br>→ Detect loop signatures: if the agent’s last 3 tool calls are identical, terminate.<br>→ Log every agent step — step count, tokens used, tool called, result — for post-incident analysis.</p></div><div class="divider"></div><div class="mit-section"><div class="mit-section-label yellow">How to Validate</div><p>Ask your agent a question specifically designed to make it uncertain and keep searching: "Find the most authoritative source on X, verify it is correct, and if you're not 100% sure, search again." Count how many steps it takes. If it exceeds 15, your step limit is either absent or set too high.</p></div></div>
+<div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team whether your AI agents have a maximum number of steps they're allowed to take before a human must confirm they should continue. An agent caught in a loop — or deliberately manipulated into one — can run indefinitely without a hard stop.</p>
+  </div>
+  <div class="btn-row"><a class="btn-secondary" href="llm10-slide-23.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm10-slide-25.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → The Matrix</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

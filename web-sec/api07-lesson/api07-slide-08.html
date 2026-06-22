@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 8 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 8 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg done" href="api07-slide-07.html"></a><a class="seg active" href="api07-slide-08.html"></a><a class="seg" href="api07-slide-09.html"></a><a class="seg" href="api07-slide-10.html"></a><a class="seg" href="api07-slide-11.html"></a><a class="seg" href="api07-slide-12.html"></a><a class="seg" href="api07-slide-13.html"></a><a class="seg" href="api07-slide-14.html"></a><a class="seg" href="api07-slide-15.html"></a><a class="seg" href="api07-slide-16.html"></a><a class="seg" href="api07-slide-17.html"></a><a class="seg" href="api07-slide-18.html"></a><a class="seg" href="api07-slide-19.html"></a><a class="seg" href="api07-slide-20.html"></a><a class="seg" href="api07-slide-21.html"></a><a class="seg" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 8</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 8 &#xb7; Context</div>
+  <div class="slide-title">New to the 2023 list. Cloud-native APIs made it unavoidable.</div>
+  <div class="slide-subtitle">SSRF existed in web apps for years &#x2014; the cloud metadata endpoint made the stakes catastrophically high.</div>
+  <div class="block">
+    <div class="block-label pink">Why it&#x2019;s a 2023 addition</div>
+    <p>SSRF was not in the 2019 OWASP API Security Top 10. It was added in 2023 &#x2014; a direct response to the proliferation of cloud-hosted APIs and the pattern of cloud metadata endpoint exploitation. The Capital One breach (2019), and similar incidents at other companies, demonstrated that SSRF in a cloud environment is categorically more dangerous than in on-premises deployments.</p>
+  </div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">On-premises SSRF (pre-cloud)</div>
+      <div class="compare-item">Attacker reaches internal network services</div>
+      <div class="compare-item">Impact: internal data exposure, lateral movement</div>
+      <div class="compare-item">Requires knowing internal topology</div>
+      <div class="compare-item">Each target requires discovery</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Cloud SSRF (today)</div>
+      <div class="compare-item">Attacker reaches 169.254.169.254 &#x2014; always at the same IP, always returns credentials</div>
+      <div class="compare-item">Impact: full cloud account access, all data in all buckets with that role</div>
+      <div class="compare-item">No topology discovery needed &#x2014; metadata endpoint is always the same address</div>
+      <div class="compare-item">One SSRF request can yield AWS/GCP/Azure account compromise</div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">The relationship to other API risks</div>
+    <p>SSRF often combines with other failures. A misconfigured IAM role (Security Misconfiguration &#x2014; API8) makes SSRF credentials more powerful. An internal service with no auth (BFLA &#x2014; API5 in the internal network) makes internal pivot more dangerous. SSRF is often the entry point; other weaknesses determine how far the attacker gets.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-07.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-09.html">How do attacks work? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

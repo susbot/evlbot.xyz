@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 6 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 6 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a><a class="seg done" href="ag06-slide-03.html"></a><a class="seg done" href="ag06-slide-04.html"></a><a class="seg done" href="ag06-slide-05.html"></a>
+    <a class="seg active" href="ag06-slide-06.html"></a>
+    <a class="seg" href="ag06-slide-07.html"></a><a class="seg" href="ag06-slide-08.html"></a><a class="seg" href="ag06-slide-09.html"></a><a class="seg" href="ag06-slide-10.html"></a><a class="seg" href="ag06-slide-11.html"></a><a class="seg" href="ag06-slide-12.html"></a><a class="seg" href="ag06-slide-13.html"></a><a class="seg" href="ag06-slide-14.html"></a><a class="seg" href="ag06-slide-15.html"></a><a class="seg" href="ag06-slide-16.html"></a><a class="seg" href="ag06-slide-17.html"></a><a class="seg" href="ag06-slide-18.html"></a><a class="seg" href="ag06-slide-19.html"></a><a class="seg" href="ag06-slide-20.html"></a><a class="seg" href="ag06-slide-21.html"></a><a class="seg" href="ag06-slide-22.html"></a><a class="seg" href="ag06-slide-23.html"></a><a class="seg" href="ag06-slide-24.html"></a><a class="seg" href="ag06-slide-25.html"></a><a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 6</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 6 · Attackers</div>
+  <div class="slide-title">Who poisons agent memory — and how each attacker type gains write access to the memory store.</div>
+
+  <div class="block">
+    <div class="block-label red">External attackers via indirect write channels</div>
+    <p>The most common attack path is indirect: the attacker doesn't need direct access to the memory system. They need access to something the agent ingests and stores. This includes: documents that the agent indexes into a RAG system (uploaded files, web pages the agent crawls, emails the agent processes), content that the agent's ingestion pipeline automatically imports, or API responses from external sources that the agent stores as learned facts.</p>
+    <p>The attacker controls the content. The agent's ingestion pipeline writes it to memory. The attacker never touches the memory store directly.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Malicious or compromised insiders</div>
+    <p>Users with legitimate write access to the knowledge base, document store, or vector database can directly insert poisoned entries. This includes: administrators of the RAG pipeline who can inject documents, employees who can upload files the agent indexes, or anyone with API-level access to the memory backend. Insider attacks via memory are particularly dangerous because the poisoned entries look exactly like legitimate entries — they were written through the same channels.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">The agent itself — via prompt injection chaining</div>
+    <p>A multi-step attack: an attacker first injects a prompt into the agent's current conversation (via live injection), instructing the agent to write something specific to its persistent memory. The agent, following the injected instruction, performs the memory write — and the poisoned belief persists after the conversation ends. The attacker used the agent as the write mechanism, bypassing whatever input validation was applied to the memory store directly.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag06-slide-05.html">← Back</a>
+    <a class="btn-primary" href="ag06-slide-07.html">What AG06 is and isn't →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

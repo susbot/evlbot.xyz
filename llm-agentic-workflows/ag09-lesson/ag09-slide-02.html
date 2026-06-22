@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 2 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 2 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a>
+    <a class="seg active" href="ag09-slide-02.html"></a>
+    <a class="seg" href="ag09-slide-03.html"></a><a class="seg" href="ag09-slide-04.html"></a><a class="seg" href="ag09-slide-05.html"></a><a class="seg" href="ag09-slide-06.html"></a><a class="seg" href="ag09-slide-07.html"></a><a class="seg" href="ag09-slide-08.html"></a><a class="seg" href="ag09-slide-09.html"></a><a class="seg" href="ag09-slide-10.html"></a><a class="seg" href="ag09-slide-11.html"></a><a class="seg" href="ag09-slide-12.html"></a><a class="seg" href="ag09-slide-13.html"></a><a class="seg" href="ag09-slide-14.html"></a><a class="seg" href="ag09-slide-15.html"></a><a class="seg" href="ag09-slide-16.html"></a><a class="seg" href="ag09-slide-17.html"></a><a class="seg" href="ag09-slide-18.html"></a><a class="seg" href="ag09-slide-19.html"></a><a class="seg" href="ag09-slide-20.html"></a><a class="seg" href="ag09-slide-21.html"></a><a class="seg" href="ag09-slide-22.html"></a><a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 2</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 2 · The Word</div>
+  <div class="slide-title">Three concepts that have to be precise before they can be secured.</div>
+
+  <div class="block">
+    <div class="block-label purple">Trust</div>
+    <p>In this context, trust is the degree to which a human reduces their own verification effort based on an agent's output. High trust means the human acts on the agent's recommendation without independent checking. Low trust means the human treats the agent's output as one input among many, verifying before acting.</p>
+    <p><strong>Trust exists on a spectrum.</strong> The goal is not zero trust (which makes AI useless) or unconditional trust (which removes humans from the loop). The goal is <em>calibrated trust</em> — trust that is proportional to the agent's demonstrated reliability in the specific situation at hand, accounting for its known limitations.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Exploitation</div>
+    <p>Exploitation, here, means one of two things:</p>
+    <ul>
+      <li><strong>External attacker exploiting trust:</strong> An adversary who understands the trust relationship between humans and the agent deliberately crafts their attack to fall within the agent's blind spots — knowing that the human's trust will cause them to accept the agent's (incorrect) low-risk verdict without independent investigation.</li>
+      <li><strong>Agent design exploiting trust:</strong> An agent that presents outputs in a way that amplifies human trust beyond what is warranted — suppressing uncertainty, projecting false confidence, using authoritative framing — effectively social engineering the human into over-reliance.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">The gap</div>
+    <p>AG09 is specifically about the gap between how much a human trusts an agent and how much they should. The gap can run in either direction:</p>
+    <ul>
+      <li><strong>Over-trust:</strong> The human trusts more than is warranted. They skip verification they should perform. Attackers exploit this by targeting the agent's blind spots.</li>
+      <li><strong>Under-trust:</strong> The human trusts less than is warranted, creating alert fatigue, unnecessary friction, or psychological pressure to deviate from AI-recommended safeguards — which attackers can exploit through social engineering that bypasses the AI entirely.</li>
+    </ul>
+    <p>Both directions create exploitable conditions. The hook scenario was over-trust. Both matter for defense.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-01.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-03.html">Official definition →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

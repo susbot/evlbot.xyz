@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 16 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 16 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a><a class="seg done" href="ag09-slide-07.html"></a><a class="seg done" href="ag09-slide-08.html"></a><a class="seg done" href="ag09-slide-09.html"></a><a class="seg done" href="ag09-slide-10.html"></a><a class="seg done" href="ag09-slide-11.html"></a><a class="seg done" href="ag09-slide-12.html"></a><a class="seg done" href="ag09-slide-13.html"></a><a class="seg done" href="ag09-slide-14.html"></a><a class="seg done" href="ag09-slide-15.html"></a>
+    <a class="seg active" href="ag09-slide-16.html"></a>
+    <a class="seg" href="ag09-slide-17.html"></a><a class="seg" href="ag09-slide-18.html"></a><a class="seg" href="ag09-slide-19.html"></a><a class="seg" href="ag09-slide-20.html"></a><a class="seg" href="ag09-slide-21.html"></a><a class="seg" href="ag09-slide-22.html"></a><a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Universal Pattern</span><span>Slide 16</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 16 · The Universal Pattern</div>
+  <div class="slide-title">Every scenario shares the same underlying structure: the human's oversight function was degraded before it was needed.</div>
+
+  <div class="block">
+    <div class="block-label purple">The shared structure across all 6 scenarios</div>
+    <p>The surface details vary — fraud scores, wire transfers, compliance advisories, firewall rules — but each scenario has identical underlying structure:</p>
+    <ol>
+      <li><strong>A trust relationship exists:</strong> The human has learned to rely on the agent's output as a primary input to their decision.</li>
+      <li><strong>The trust relationship degrades oversight capacity:</strong> The human's independent verification is reduced — through deliberate efficiency design, rational adaptation to a reliable tool, or conscious process redesign to move decisions through a human-AI loop rather than human-only review.</li>
+      <li><strong>A condition arises that falls outside the trust's valid scope:</strong> The agent encounters a case it handles poorly (blind spot attack), receives manipulated input (credibility relay, urgency injection), or the accumulated weight of reliance has eroded the human's independent capacity (dependency erosion).</li>
+      <li><strong>The human's degraded oversight function fails to catch it:</strong> The human is in a trust-extended mode at exactly the moment when independent verification is most needed.</li>
+    </ol>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Three missing properties — one per defense category</div>
+    <p><strong>Missing: Calibrated uncertainty communication.</strong> In every scenario, the agent presented its output with more confidence than the situation warranted. None of the agents said "this case falls near the boundary of my training data" or "I encountered content I cannot verify." Human oversight was not triggered because the agent did not signal that it was warranted.</p>
+    <p><strong>Missing: Mandatory oversight gates.</strong> Human oversight in every scenario was discretionary — the human could invoke it, but the system did not require it. The trust relationship provided an implicit path to skip oversight. No scenario had a hard enforcement gate that the agent's verdict could not bypass.</p>
+    <p><strong>Missing: Human independence maintenance.</strong> In every scenario, the human was operating in "AI-assisted" mode, meaning their own independent judgment capacity was partially or fully suppressed. Even where they were nominally "reviewing" the AI's output, they were not engaging their independent evaluation capability. The system design had converted the human from an evaluator into a confirmer.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">The oversight gap irreversibility problem</div>
+    <p>Unlike many security failures that can be contained after detection, trust exploitation failures are often irreversible at the moment of discovery: the wire has been sent, the firewall rule is live, the 2FA has been disabled across the organization, the contract has been signed. The human oversight function that was supposed to prevent these outcomes failed at the decision point — and the decision was made. Detecting the failure after the fact is damage assessment, not defense.</p>
+    <p>This makes prevention — specifically, maintaining human oversight capacity before it's needed — the only effective defense. Detection is too late.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-15.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-17.html">Part 3 — Prevention →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

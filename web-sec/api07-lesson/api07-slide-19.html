@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 19 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 19 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg done" href="api07-slide-07.html"></a><a class="seg done" href="api07-slide-08.html"></a><a class="seg done" href="api07-slide-09.html"></a><a class="seg done" href="api07-slide-10.html"></a><a class="seg done" href="api07-slide-11.html"></a><a class="seg done" href="api07-slide-12.html"></a><a class="seg done" href="api07-slide-13.html"></a><a class="seg done" href="api07-slide-14.html"></a><a class="seg done" href="api07-slide-15.html"></a><a class="seg done" href="api07-slide-16.html"></a><a class="seg done" href="api07-slide-17.html"></a><a class="seg done" href="api07-slide-18.html"></a><a class="seg active" href="api07-slide-19.html"></a><a class="seg" href="api07-slide-20.html"></a><a class="seg" href="api07-slide-21.html"></a><a class="seg" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 19</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 19 &#xb7; Mitigation 1</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 01</div>
+    <div class="mit-title">Use an allowlist of permitted domains &#x2014; not a blocklist of forbidden patterns.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Define the exact set of external domains your URL-fetching feature needs to reach. Reject any URL that isn&#x2019;t on that list &#x2014; regardless of whether it looks &#x201C;safe.&#x201D;</p>
+      <p>&#x2022; <strong>File import feature:</strong> allowlist = [&#x201C;supplier-a.com&#x201D;, &#x201C;supplier-b.com&#x201D;]. Any other domain &#x2192; 400 error.</p>
+      <p>&#x2022; <strong>Webhook feature:</strong> allowlist = customer-configurable, but must resolve to a non-private IP. OR require customers to pre-register and verify their webhook domain.</p>
+      <p>&#x2022; <strong>Link preview:</strong> allowlist = all public HTTPS URLs, but with IP validation after resolution (MIT 02).</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">Why blocklists fail</div>
+      <p>A blocklist tries to enumerate every possible internal address and dangerous URL pattern. Attackers bypass blocklists with: decimal IP notation (<code>2130706433</code> = <code>127.0.0.1</code>), URL encoding (<code>%31%32%37%2E%30%2E%30%2E%31</code>), IPv6 loopback (<code>::1</code>), octal notation (<code>0177.0.0.1</code>), and DNS rebinding (hostname resolves to internal IP after the check). Allowlists don&#x2019;t try to enumerate bad inputs &#x2014; they enumerate good ones. Everything else fails closed.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">When the feature requires arbitrary URLs</div>
+      <p>Some features (link preview, general webhook) genuinely need to accept arbitrary URLs. In this case, combine MIT 02 (IP validation after DNS resolution), MIT 03 (no redirects), and MIT 06 (network isolation) &#x2014; the allowlist is relaxed, but the other defenses contain the damage.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team: anywhere your API fetches a URL on a user&#x2019;s behalf &#x2014; webhooks, file imports, link previews &#x2014; is there a strict list of allowed destinations? If the user can supply any URL, that is an SSRF risk.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-18.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-20.html">MIT 02: IP validation &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

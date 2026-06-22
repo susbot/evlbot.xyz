@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 23 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 23 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a><a class="seg done" href="ag04-slide-02.html"></a><a class="seg done" href="ag04-slide-03.html"></a><a class="seg done" href="ag04-slide-04.html"></a><a class="seg done" href="ag04-slide-05.html"></a><a class="seg done" href="ag04-slide-06.html"></a><a class="seg done" href="ag04-slide-07.html"></a><a class="seg done" href="ag04-slide-08.html"></a><a class="seg done" href="ag04-slide-09.html"></a><a class="seg done" href="ag04-slide-10.html"></a><a class="seg done" href="ag04-slide-11.html"></a><a class="seg done" href="ag04-slide-12.html"></a><a class="seg done" href="ag04-slide-13.html"></a><a class="seg done" href="ag04-slide-14.html"></a><a class="seg done" href="ag04-slide-15.html"></a><a class="seg done" href="ag04-slide-16.html"></a><a class="seg done" href="ag04-slide-17.html"></a><a class="seg done" href="ag04-slide-18.html"></a><a class="seg done" href="ag04-slide-19.html"></a><a class="seg done" href="ag04-slide-20.html"></a><a class="seg done" href="ag04-slide-21.html"></a><a class="seg done" href="ag04-slide-22.html"></a>
+    <a class="seg active" href="ag04-slide-23.html"></a>
+    <a class="seg" href="ag04-slide-24.html"></a><a class="seg" href="ag04-slide-25.html"></a><a class="seg" href="ag04-slide-26.html"></a><a class="seg" href="ag04-slide-27.html"></a><a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 23</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 23 · MIT05 — Inter-Agent Security with mTLS and PKI</div>
+  <div class="slide-title">MIT05: When agents communicate with each other, both sides must prove their identity — and the channel must be encrypted.</div>
+  <div class="slide-subtitle">Agent-in-the-Middle attacks are only possible because agent-to-agent communication often lacks mutual authentication.</div>
+
+  <div class="block">
+    <div class="block-label purple">The problem: agents trust what calls them</div>
+    <p>In a multi-agent pipeline, an orchestrator sends tasks to sub-agents and processes their responses. Most current implementations authenticate the orchestrator to the sub-agent (proving the caller has the right API key) — but don't authenticate the sub-agent back to the orchestrator.</p>
+    <p>This one-directional trust means an attacker who can intercept or impersonate a sub-agent's response can inject malicious data into the orchestrator's context. The orchestrator has no way to verify the response came from the real sub-agent.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Mutual TLS (mTLS)</div>
+    <p>Mutual TLS requires both sides of a connection to present valid certificates. The orchestrator proves its identity to the sub-agent, and the sub-agent proves its identity to the orchestrator. A forged or intercepted response from a different server will fail certificate verification.</p>
+    <p>mTLS is already used in service mesh architectures (Istio, Envoy) for microservice-to-microservice authentication. The same pattern applies to agent-to-agent communication — the agent infrastructure needs to treat every A2A connection as a service-to-service connection with mutual authentication requirements.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Public Key Infrastructure (PKI) for agent cards</div>
+    <p>Agent cards — the metadata documents agents use to discover and connect to each other — should be signed with a private key whose public key is published in a trusted PKI. An agent receiving a card verifies the signature before using the card's endpoint information.</p>
+    <p>A forged agent card without the legitimate agent's private key will fail signature verification, blocking the agent-in-the-middle scenario (Scenario 6).</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-22.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-24.html">MIT06 — Continuous Validation →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

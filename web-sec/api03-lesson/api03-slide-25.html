@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 25 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 25 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg done" href="api03-slide-03.html"></a><a class="seg done" href="api03-slide-04.html"></a><a class="seg done" href="api03-slide-05.html"></a><a class="seg done" href="api03-slide-06.html"></a><a class="seg done" href="api03-slide-07.html"></a><a class="seg done" href="api03-slide-08.html"></a><a class="seg done" href="api03-slide-09.html"></a><a class="seg done" href="api03-slide-10.html"></a><a class="seg done" href="api03-slide-11.html"></a><a class="seg done" href="api03-slide-12.html"></a><a class="seg done" href="api03-slide-13.html"></a><a class="seg done" href="api03-slide-14.html"></a><a class="seg done" href="api03-slide-15.html"></a><a class="seg done" href="api03-slide-16.html"></a><a class="seg done" href="api03-slide-17.html"></a><a class="seg done" href="api03-slide-18.html"></a><a class="seg done" href="api03-slide-19.html"></a><a class="seg done" href="api03-slide-20.html"></a><a class="seg done" href="api03-slide-21.html"></a><a class="seg done" href="api03-slide-22.html"></a><a class="seg done" href="api03-slide-23.html"></a><a class="seg done" href="api03-slide-24.html"></a><a class="seg active" href="api03-slide-25.html"></a><a class="seg" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 25</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 25 · Mitigation 7</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 07</div>
+    <div class="mit-title">Enforce property-level access at the API — never rely on the UI to filter.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Any filtering, hiding, or masking of sensitive data must happen in the API layer — in the server-side code that builds the response — before the data leaves the server.</p>
+      <p>The API layer is the <strong>only</strong> enforcement point that applies to all clients: web app, mobile app, direct API calls, third-party integrations, curl in a terminal, Burp Suite in a pentest. Everything calls the same endpoint.</p>
+      <p>If filtering only happens in the frontend JavaScript, any client that doesn't use that JavaScript — which is any client the developer didn't build — gets the unfiltered data.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">The common mistake</div>
+      <p>The Peloton "privacy" setting controlled what the app displayed. It did not control what the API returned. From the API's perspective, private accounts and public accounts were identical — both returned the full profile object. <strong>Enforcement in the UI is not enforcement.</strong></p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">The mental model</div>
+      <p>Imagine the API as a border crossing. Every piece of data that leaves your server must be checked at the border. The UI is a tour guide inside the country — useful, but the border check doesn't happen there. Sensitive data must be stopped at the API layer, not hidden in the app.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Any time a new field is added to a database object, ask your team whether that field needs to be protected from user writes. Schema changes are when this vulnerability most commonly gets introduced.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-24.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-26.html">See the full picture →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

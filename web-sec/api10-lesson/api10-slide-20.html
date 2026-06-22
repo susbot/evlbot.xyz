@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 20 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 20 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg done" href="api10-slide-11.html"></a><a class="seg done" href="api10-slide-12.html"></a><a class="seg done" href="api10-slide-13.html"></a><a class="seg done" href="api10-slide-14.html"></a><a class="seg done" href="api10-slide-15.html"></a><a class="seg done" href="api10-slide-16.html"></a><a class="seg done" href="api10-slide-17.html"></a><a class="seg done" href="api10-slide-18.html"></a><a class="seg done" href="api10-slide-19.html"></a><a class="seg active" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 20</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 20 &#xb7; MIT 02</div>
+  <div class="slide-title">Validate, sanitize, and encode every field from every third-party response.</div>
+  <div class="slide-subtitle">Field-level controls applied at the point of use &#x2014; not at the integration boundary.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F5C4;&#xFE0F;</div>
+      <div><div class="outcome-title">SQL: always use parameterized queries &#x2014; for all data</div><div class="outcome-desc">Parameterized queries (prepared statements) separate SQL code from data, making injection impossible regardless of data content. This must apply to values from third-party API responses inserted into SQL, not just user-submitted values. There is no safe shortcut: &#x201C;this came from a trusted API&#x201D; does not make string concatenation safe.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F5A5;&#xFE0F;</div>
+      <div><div class="outcome-title">HTML output: escape all dynamic content regardless of source</div><div class="outcome-desc">HTML escaping (converting <code>&lt;</code> to <code>&amp;lt;</code>, <code>&gt;</code> to <code>&amp;gt;</code>, etc.) must be applied whenever any dynamic value &#x2014; including values from third-party APIs &#x2014; is rendered in HTML. Use a templating engine with auto-escaping enabled (Jinja2, Handlebars, React JSX) and never bypass escaping for &#x201C;trusted&#x201D; sources.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4DD;</div>
+      <div><div class="outcome-title">Logging: strip or encode JNDI/template injection patterns</div><div class="outcome-desc">Before passing any external value &#x2014; including third-party API response fields &#x2014; to a logging call, strip or encode JNDI lookup patterns (<code>${</code>, <code>#{</code>, <code>%{</code>). Update logging libraries to versions with lookup evaluation disabled (Log4j 2.17.1+ disables JNDI by default). Apply <code>-Dlog4j2.formatMsgNoLookups=true</code> or equivalent as an additional layer.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F50D;</div>
+      <div><div class="outcome-title">Schema validation: reject unexpected shapes</div><div class="outcome-desc">Define an expected schema for each third-party API response (field names, types, lengths, formats). Reject responses that don&#x2019;t match. A compromised API that injects SQL in an address field will likely produce a value that doesn&#x2019;t match the expected format for a street address. Schema validation is the first line of defense before field-level controls.</div></div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team to walk through what happens to a value returned by your most critical third-party integration. Does it go into a database? Get shown to users? Get logged? Each of those paths needs its own protection, regardless of where the data came from.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-19.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-21.html">MIT 03: Allowlist outbound URLs &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Unrestricted Resource Consumption · Slide 4 of 28</title>
+<link rel="stylesheet" href="api04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Unrestricted Resource Consumption</span></div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api04-slide-01.html"></a><a class="seg done" href="api04-slide-02.html"></a><a class="seg done" href="api04-slide-03.html"></a><a class="seg active" href="api04-slide-04.html"></a><a class="seg" href="api04-slide-05.html"></a><a class="seg" href="api04-slide-06.html"></a><a class="seg" href="api04-slide-07.html"></a><a class="seg" href="api04-slide-08.html"></a><a class="seg" href="api04-slide-09.html"></a><a class="seg" href="api04-slide-10.html"></a><a class="seg" href="api04-slide-11.html"></a><a class="seg" href="api04-slide-12.html"></a><a class="seg" href="api04-slide-13.html"></a><a class="seg" href="api04-slide-14.html"></a><a class="seg" href="api04-slide-15.html"></a><a class="seg" href="api04-slide-16.html"></a><a class="seg" href="api04-slide-17.html"></a><a class="seg" href="api04-slide-18.html"></a><a class="seg" href="api04-slide-19.html"></a><a class="seg" href="api04-slide-20.html"></a><a class="seg" href="api04-slide-21.html"></a><a class="seg" href="api04-slide-22.html"></a><a class="seg" href="api04-slide-23.html"></a><a class="seg" href="api04-slide-24.html"></a><a class="seg" href="api04-slide-25.html"></a><a class="seg" href="api04-slide-26.html"></a><a class="seg" href="api04-slide-27.html"></a><a class="seg" href="api04-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 4</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 4 · API4 vs. a DDoS</div>
+  <div class="slide-title">This isn't a flood from outside. It's the API doing it to itself.</div>
+  <div class="slide-subtitle">The attack is legitimate usage — just too much of it.</div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Traditional DDoS</div>
+      <div class="compare-item">Thousands of compromised machines sending junk traffic</div>
+      <div class="compare-item">Goal: saturate the network layer</div>
+      <div class="compare-item">Requests are often malformed or repeated identically</div>
+      <div class="compare-item">Blocked at the network edge (firewall, CDN)</div>
+      <div class="compare-item">Detected by traffic volume anomalies</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Unrestricted Resource Consumption</div>
+      <div class="compare-item">Often <em>one</em> client making legitimate API calls</div>
+      <div class="compare-item">Goal: drain compute, storage, or third-party cost</div>
+      <div class="compare-item">Requests are valid — the API was designed to handle them</div>
+      <div class="compare-item">Passes through the network layer undetected</div>
+      <div class="compare-item">Indistinguishable from a very enthusiastic legitimate user</div>
+    </div>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">The key difference</div>
+    <p>In a classic DDoS, the attacker sends garbage. In an API resource consumption attack, the attacker sends <em>exactly what the API was built to process</em> — just more of it than the server can sustainably handle. The API's own functionality is the weapon.</p>
+    <p>This is why network-layer DDoS mitigations don't solve API4. The requests look legitimate to every filter — because they are legitimate. The defense must live at the application layer: rate limits, quotas, and size caps built into the API itself.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api04-slide-03.html">← Back</a>
+    <a class="btn-primary" href="api04-slide-05.html">Why does this keep happening? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

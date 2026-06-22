@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 25 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 25 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a><a class="seg done" href="ag09-slide-07.html"></a><a class="seg done" href="ag09-slide-08.html"></a><a class="seg done" href="ag09-slide-09.html"></a><a class="seg done" href="ag09-slide-10.html"></a><a class="seg done" href="ag09-slide-11.html"></a><a class="seg done" href="ag09-slide-12.html"></a><a class="seg done" href="ag09-slide-13.html"></a><a class="seg done" href="ag09-slide-14.html"></a><a class="seg done" href="ag09-slide-15.html"></a><a class="seg done" href="ag09-slide-16.html"></a><a class="seg done" href="ag09-slide-17.html"></a><a class="seg done" href="ag09-slide-18.html"></a><a class="seg done" href="ag09-slide-19.html"></a><a class="seg done" href="ag09-slide-20.html"></a><a class="seg done" href="ag09-slide-21.html"></a><a class="seg done" href="ag09-slide-22.html"></a><a class="seg done" href="ag09-slide-23.html"></a><a class="seg done" href="ag09-slide-24.html"></a>
+    <a class="seg active" href="ag09-slide-25.html"></a>
+    <a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Quiz</span><span>Slide 25</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 25 · Quiz — Questions 3, 4 & 5</div>
+  <div class="slide-title">Three more questions on the lesson's core ideas.</div>
+
+  <div class="block">
+    <div class="block-label purple">Question 3</div>
+    <p>A SOC team is experiencing alert fatigue — their AI detection system generates ~340 alerts per day with a 2% true positive rate. The security manager proposes raising the alert threshold to reduce volume. A security architect proposes implementing override logging and running adversarial spot-checks. Which approach better addresses the security risk, and why?</p>
+    <details>
+      <summary style="cursor:pointer;color:var(--accent);font-weight:600;margin-top:0.5rem;">Show answer</summary>
+      <div style="margin-top:0.8rem;padding:0.8rem;background:var(--surface2);border-radius:6px;border-left:3px solid var(--accent);">
+        <p><strong>The architect's approach (override logging + spot-checks) better addresses the security risk.</strong></p>
+        <p>Raising the detection threshold reduces alert volume, but it also reduces the true positive rate — the system will now miss some real threats it would have previously flagged. The manager is treating the symptom (too many alerts) at the cost of reducing detection coverage. This is a risk trade-off, not a risk mitigation.</p>
+        <p>Override logging (MIT06) lets the team measure what happens when analysts dismiss alerts — revealing whether real threats are being missed, and detecting anomalous probing patterns. Adversarial spot-checks (MIT04) directly test whether the human-agent pair is catching what it should under realistic conditions, without requiring changes to the detection threshold. Together, these improve the quality of review without reducing the agent's detection sensitivity.</p>
+        <p>The deeper point: alert fatigue is a process problem as much as a signal problem. The goal is not fewer alerts — it is higher-quality human engagement with the alerts that exist. The architect's approach addresses the engagement problem; the manager's approach trades coverage for engagement.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Question 4</div>
+    <p>A product team argues that adding uncertainty language to their AI recommendation system — phrases like "confidence: LOW" or "this case has features outside my training data" — will make the product look unreliable and reduce user trust in the system overall. Is this argument valid from a security perspective? What would you say in response?</p>
+    <details>
+      <summary style="cursor:pointer;color:var(--accent);font-weight:600;margin-top:0.5rem;">Show answer</summary>
+      <div style="margin-top:0.8rem;padding:0.8rem;background:var(--surface2);border-radius:6px;border-left:3px solid var(--accent);">
+        <p><strong>The argument conflates product perception with security calibration, and the conclusion is backwards for security contexts.</strong></p>
+        <p>From a security standpoint, the purpose of uncertainty communication is precisely to reduce user trust in the agent's output — at the specific moments when that trust is unwarranted. "Reducing user trust" in those moments is not a side effect; it is the intended function. The product team's concern about "looking unreliable" is about maintaining unconditional trust across all outputs. Security requires calibrated trust — high when confidence is high, appropriately reduced when confidence is low.</p>
+        <p>The actual risk is the inverse of what the product team fears: an AI system that always presents confident recommendations trains users to apply unconditional trust. That unconditional trust is the attack surface that adversaries exploit. An AI system that accurately signals its own uncertainty protects users from exactly the scenarios in this lesson.</p>
+        <p>A useful reframe: transparency about uncertainty is not a sign the system is unreliable — it is a sign the system is honest. Users who understand this will trust the system more, not less, because they know when to rely on it and when to independently verify.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Question 5</div>
+    <p>Your organization is building a new AI-assisted security decision system from scratch. Resources are limited and you can implement only a minimum viable set of mitigations from this lesson. Which four mitigations would you prioritize, and what is your reasoning?</p>
+    <details>
+      <summary style="cursor:pointer;color:var(--accent);font-weight:600;margin-top:0.5rem;">Show answer</summary>
+      <div style="margin-top:0.8rem;padding:0.8rem;background:var(--surface2);border-radius:6px;border-left:3px solid var(--accent);">
+        <p><strong>MIT01 + MIT02 + MIT08 + MIT07.</strong></p>
+        <p><strong>MIT01 (uncertainty communication):</strong> Addresses Patterns 1 and 3 directly, and is the foundation for all trust calibration. Without it, humans have no signal for when independent verification is warranted — they're flying blind regardless of what other mitigations are in place.</p>
+        <p><strong>MIT02 (mandatory checkpoints):</strong> The single highest-impact mitigation. It is primary for three of six patterns and cannot be bypassed by agent confidence or attacker manipulation. No technical sophistication required — it is a procedural enforcement gate. Implement this first, especially for high-value irreversible decisions.</p>
+        <p><strong>MIT08 (content provenance labeling):</strong> Addresses the credibility relay attack at its root — prevents attacker-controlled content from being presented with AI credibility. Without it, any agent that processes external content is a potential relay path for social engineering.</p>
+        <p><strong>MIT07 (separation of duties):</strong> Provides redundant independent review for the highest-impact decisions. Even if MIT01 fails (agent doesn't signal uncertainty), MIT02 fails (human doesn't apply mandatory review), and MIT08 fails (human misses provenance signals), a second independent reviewer provides a final backstop. Scales oversight to impact level.</p>
+        <p>What to add next: MIT04 (spot-checks) for ongoing calibration monitoring, MIT06 (override logging) for detection of adversarial probing patterns.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-24.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-26.html">Completion →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

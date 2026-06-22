@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 11 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 11 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a>
+    <a class="seg active" href="ag08-slide-11.html"></a>
+    <a class="seg" href="ag08-slide-12.html"></a><a class="seg" href="ag08-slide-13.html"></a><a class="seg" href="ag08-slide-14.html"></a><a class="seg" href="ag08-slide-15.html"></a><a class="seg" href="ag08-slide-16.html"></a><a class="seg" href="ag08-slide-17.html"></a><a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Failure Patterns</span><span>Slide 11</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 11 · Patterns 3 &amp; 4</div>
+  <div class="slide-title">Feedback loops create runaway behavior with no natural stopping point. Resource cascades spread overload to healthy components.</div>
+
+  <div class="block">
+    <div class="block-label orange">Pattern 3 — Runaway Feedback Loops</div>
+    <p>A feedback loop occurs when agent A's output influences the inputs that agent A (or a peer it coordinates with) receives in subsequent cycles. When the loop is functioning normally, this is a feature — iterative refinement, self-correcting recommendations. When the loop encounters a failure, it can become a self-reinforcing cycle driving behavior to an extreme.</p>
+    <p><strong>Classic example — pricing feedback:</strong> A pricing agent raises prices based on detected high demand. A demand analysis agent observes the higher prices and interprets them as a signal of increased desirability, increasing its demand estimate. The pricing agent raises prices again. Without a circuit breaker, the loop continues until prices reach an absurd level — the loop has no mechanism to detect that it has crossed from "responsive pricing" to "runaway behavior."</p>
+    <p><strong>Classic example — alert storms:</strong> A monitoring agent detects a problem and sends an alert. The alert causes downstream agents to take recovery actions that generate events. Those events trigger more alerts. The monitoring agent, now overloaded with alerts, cannot distinguish the original problem from the noise it created. The alert storm consumes all available alert-processing capacity, masking the original issue.</p>
+    <p><strong>Why agent loops are harder to break:</strong> In traditional systems, loops are often prevented by design (idempotency, change-detection guards). In agent pipelines, the loop may emerge from the natural language reasoning: the agent has no instruction telling it that its last action contributed to the current state, so it reasons about the current state as if its action hadn't occurred.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Pattern 4 — Resource Exhaustion Cascade</div>
+    <p>A slow or failing agent causes pending requests to queue at dependent agents. As the queue grows, the dependent agents increase memory usage. When dependent agents begin timing out, they retry — multiplying the load on the already-struggling upstream agent. The additional load causes more failures, which cause more retries, which cause more load.</p>
+    <p><strong>The thundering herd:</strong> When the slow agent partially recovers and becomes available, all queued retries arrive simultaneously — "thundering herd" — potentially causing the agent to fail again under the sudden load spike. Exponential backoff with jitter (randomized retry timing) is the standard defense; without it, retry storms reliably extend outages.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-10.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-12.html">Patterns 5 &amp; 6 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 24 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 24 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg done" href="api06-slide-09.html"></a><a class="seg done" href="api06-slide-10.html"></a><a class="seg done" href="api06-slide-11.html"></a><a class="seg done" href="api06-slide-12.html"></a><a class="seg done" href="api06-slide-13.html"></a><a class="seg done" href="api06-slide-14.html"></a><a class="seg done" href="api06-slide-15.html"></a><a class="seg done" href="api06-slide-16.html"></a><a class="seg done" href="api06-slide-17.html"></a><a class="seg done" href="api06-slide-18.html"></a><a class="seg done" href="api06-slide-19.html"></a><a class="seg done" href="api06-slide-20.html"></a><a class="seg done" href="api06-slide-21.html"></a><a class="seg done" href="api06-slide-22.html"></a><a class="seg done" href="api06-slide-23.html"></a><a class="seg active" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 24</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 24 &#xb7; Mitigation 6</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 06</div>
+    <div class="mit-title">Require phone or email verification before high-value business flows.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Real people have a finite number of verified identities. Bots can create unlimited email addresses (disposable email services) but have a harder time with phone numbers at scale. Phone numbers require real SIM cards or purchased virtual numbers &#x2014; each with a cost. Require phone verification before:</p>
+      <p>&#x2022; Participating in limited-release sales or ticket presales</p>
+      <p>&#x2022; Receiving referral rewards (verify both referrer and referred)</p>
+      <p>&#x2022; Booking appointments or reservations</p>
+      <p>&#x2022; Creating accounts that will be used for competitive or high-value actions</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Why phone verification helps</div>
+      <p>Virtual phone numbers for SMS verification exist but cost $0.10&#x2013;$2.00 each. At scale (1,000 accounts), that&#x2019;s $100&#x2013;$2,000 just for phone numbers &#x2014; before any other bot infrastructure cost. This raises the floor for referral fraud. If each fake referral costs $2 to set up and pays out $20, the fraud margin is still positive &#x2014; but block those virtual number prefixes and the economics change.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label yellow">Limit one phone number per high-value action</div>
+      <p>Enforce: one phone number = one verified account = one presale slot. If the same phone number attempts to register more than one presale account, reject the second registration. This is the strongest per-identity control available without requiring government ID.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">The friction trade-off</div>
+      <p>Every verification step adds friction for legitimate users. Some percentage of real users will abandon the flow when asked to verify their phone number. This is a real cost that must be weighed against the fraud cost. High-value, scarce-inventory flows justify high friction; low-value flows may not.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team whether high-value actions &#x2014; purchase completion, referral credit &#x2014; require the user to complete prior steps in sequence, or whether those final steps can be called directly. Skipping the funnel is a common abuse pattern.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-23.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-25.html">MIT 07: Business metric monitoring &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

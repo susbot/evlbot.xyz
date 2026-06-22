@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Identity and Privilege Abuse · Slide 26 of 28</title>
+<link rel="stylesheet" href="ag03-shared.css">
+<style>
+.matrix{width:100%;border-collapse:collapse;font-size:11px;margin-bottom:16px;}
+.matrix th{background:var(--surface2);color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:8px 6px;text-align:center;border:1px solid var(--border);}
+.matrix th.row-head{text-align:left;width:32%;}
+.matrix td{padding:7px 6px;border:1px solid var(--border);text-align:center;vertical-align:middle;color:var(--muted);font-size:10px;}
+.matrix td.label{text-align:left;color:var(--subtle);font-size:11px;line-height:1.4;}
+.matrix td.label span{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);margin-top:2px;}
+.hit{color:var(--accent-bright);font-size:14px;font-weight:600;}
+.partial{color:var(--yellow);font-size:14px;}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Identity and Privilege Abuse</span>
+  </div>
+  <span class="nav-right">Slide 26 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag03-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag03-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag03-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag03-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag03-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag03-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag03-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg done" href="ag03-slide-08.html" title="Slide 8 · Why Agent Identity Is Different"></a>
+    <a class="seg done" href="ag03-slide-09.html" title="Slide 9 · Five Vulnerability Types"></a>
+    <a class="seg done" href="ag03-slide-10.html" title="Slide 10 · Type 1 — Un-scoped Privilege Inheritance"></a>
+    <a class="seg done" href="ag03-slide-11.html" title="Slide 11 · Type 1 — A Real Example"></a>
+    <a class="seg done" href="ag03-slide-12.html" title="Slide 12 · Type 2 — Memory-Based Privilege Retention"></a>
+    <a class="seg done" href="ag03-slide-13.html" title="Slide 13 · Types 3–5 — More Vulnerability Patterns"></a>
+    <a class="seg done" href="ag03-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg done" href="ag03-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg done" href="ag03-slide-16.html" title="Slide 16 · Scenarios 5–7"></a>
+    <a class="seg done" href="ag03-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg done" href="ag03-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg done" href="ag03-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg done" href="ag03-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg done" href="ag03-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg done" href="ag03-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg done" href="ag03-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg done" href="ag03-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg done" href="ag03-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg active" href="ag03-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag03-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag03-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 26</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 26 · The Matrix</div>
+  <div class="slide-title">Which mitigations stop which attacks</div>
+  <div class="slide-subtitle">Seven attack scenarios on the left, nine mitigations across the top. Your practitioner coverage map.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI03</div>
+
+  <div style="overflow-x:auto;margin-bottom:14px;">
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th class="row-head">Attack / Scenario</th>
+          <th>M1<br>Scoped<br>tokens</th>
+          <th>M2<br>Isolate<br>context</th>
+          <th>M3<br>Per-action<br>authz</th>
+          <th>M4<br>Human<br>loop</th>
+          <th>M5<br>Intent<br>binding</th>
+          <th>M6<br>Managed<br>identity</th>
+          <th>M7<br>Bind<br>perms</th>
+          <th>M8<br>Detect<br>delegation</th>
+          <th>M9<br>Detect<br>elevation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">S01 — Delegated Privilege Abuse<span>Finance agent passes full scope to DB query sub-agent</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td><span class="partial">~</span></td>
+          <td></td>
+          <td></td>
+          <td><span class="partial">~</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="label">S02 — Memory-Based Escalation<span>SSH creds cached from admin session, reused for non-admin</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="partial">~</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="partial">~</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><span class="partial">~</span></td>
+        </tr>
+        <tr>
+          <td class="label">S03 — Cross-Agent Trust Exploit<span>Email agent relays fraudulent payment to finance agent</span></td>
+          <td></td>
+          <td></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><span class="hit">✓</span></td>
+        </tr>
+        <tr>
+          <td class="label">S04 — Device-Code Phishing<span>Browsing agent completes OAuth flow binding attacker scopes</span></td>
+          <td><span class="partial">~</span></td>
+          <td></td>
+          <td><span class="partial">~</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><span class="hit">✓</span></td>
+        </tr>
+        <tr>
+          <td class="label">S05 — Workflow Authorization Drift<span>Procurement agent completes purchase after spending limit reduced</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="partial">~</span></td>
+          <td></td>
+          <td></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="label">S06 — Forged Agent Persona<span>Fake "Admin Helper" harvests privileged tasks from registry</span></td>
+          <td></td>
+          <td></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td><span class="partial">~</span></td>
+          <td><span class="hit">✓</span></td>
+        </tr>
+        <tr>
+          <td class="label">S07 — Identity Sharing<span>Agent built for admin's identity used by lower-privilege users</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">How to read this</div>
+    <p><strong>✓</strong> = this mitigation directly addresses the attack vector. <strong>~</strong> = partial coverage or dependent on implementation details. Empty = does not address this path.</p>
+    <p><strong>MIT 01 (Scoped tokens) and MIT 07 (Bind permissions) cover the most attack types.</strong> If you can only implement two, start there. MIT 03 (Per-action authorization) is the best single control against confused-deputy and trust exploitation attacks. MIT 08 + MIT 09 are your detection layer — they catch what prevention misses.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-25.html">← Back</a>
+    <a class="btn-primary" href="ag03-slide-27.html">Test what you know → Quiz</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

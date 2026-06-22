@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Identity and Privilege Abuse · Slide 17 of 28</title>
+<link rel="stylesheet" href="ag03-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Identity and Privilege Abuse</span>
+  </div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag03-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag03-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag03-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag03-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag03-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag03-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag03-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg done" href="ag03-slide-08.html" title="Slide 8 · Why Agent Identity Is Different"></a>
+    <a class="seg done" href="ag03-slide-09.html" title="Slide 9 · Five Vulnerability Types"></a>
+    <a class="seg done" href="ag03-slide-10.html" title="Slide 10 · Type 1 — Un-scoped Privilege Inheritance"></a>
+    <a class="seg done" href="ag03-slide-11.html" title="Slide 11 · Type 1 — A Real Example"></a>
+    <a class="seg done" href="ag03-slide-12.html" title="Slide 12 · Type 2 — Memory-Based Privilege Retention"></a>
+    <a class="seg done" href="ag03-slide-13.html" title="Slide 13 · Types 3–5 — More Vulnerability Patterns"></a>
+    <a class="seg done" href="ag03-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg done" href="ag03-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg done" href="ag03-slide-16.html" title="Slide 16 · Scenarios 5–7"></a>
+    <a class="seg active" href="ag03-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag03-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag03-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag03-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag03-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag03-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag03-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag03-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg" href="ag03-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg" href="ag03-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag03-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag03-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Attack Scenarios</span><span>Slide 17</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 17 · The Pattern</div>
+  <div class="slide-title">All seven scenarios share the same root cause</div>
+  <div class="slide-subtitle">The specific attacks look different — delegation, memory, phishing, forgery — but they all exploit the same architectural gap.</div>
+
+  <div class="callout red">
+    <div class="callout-label">The root cause</div>
+    <p><strong>Agents don't have governed identities of their own.</strong> They borrow identity from their operators, their users, or each other. They carry privilege across contexts it was never scoped for. They trust other agents without verifying the original source of authority. They hold credentials past the session that authorized them.</p>
+    <p>The access control systems surrounding them were designed to ask: "Is this user authorized for this action?" They were not designed to ask: "Is this agent carrying identity and privilege that is currently valid, correctly scoped, and genuinely appropriate for the task it is attempting right now?"</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Three questions that current systems don't ask</div>
+    <p><strong>1. Where did this privilege come from?</strong> Was it granted directly for this task, or inherited through a delegation chain? If inherited — was the scope narrowed at each step?</p>
+    <p><strong>2. Is this privilege still valid?</strong> Was it granted for a session that has ended? For a user whose authorization has since changed? For a task that has already completed?</p>
+    <p><strong>3. Who is this agent, really?</strong> Is its claimed identity verified by something stronger than its own descriptor? Is there cryptographic attestation that it is who it says it is?</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">Why this matters for defenders</div>
+    <p>Defenders who only look at whether a specific tool call was authorized are missing the full picture. Authorization at the action level is necessary — but not sufficient. You also need to verify that the <em>agent executing the action</em> has authority that is currently valid, correctly sourced, and appropriately scoped. That requires a different set of controls.</p>
+    <p><strong>That's what Part 4 covers.</strong></p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-16.html">← Back</a>
+    <a class="btn-primary" href="ag03-slide-18.html">Part 4 → How to defend against this</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 13 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 13 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a><a class="seg done" href="ag09-slide-07.html"></a><a class="seg done" href="ag09-slide-08.html"></a><a class="seg done" href="ag09-slide-09.html"></a><a class="seg done" href="ag09-slide-10.html"></a><a class="seg done" href="ag09-slide-11.html"></a><a class="seg done" href="ag09-slide-12.html"></a>
+    <a class="seg active" href="ag09-slide-13.html"></a>
+    <a class="seg" href="ag09-slide-14.html"></a><a class="seg" href="ag09-slide-15.html"></a><a class="seg" href="ag09-slide-16.html"></a><a class="seg" href="ag09-slide-17.html"></a><a class="seg" href="ag09-slide-18.html"></a><a class="seg" href="ag09-slide-19.html"></a><a class="seg" href="ag09-slide-20.html"></a><a class="seg" href="ag09-slide-21.html"></a><a class="seg" href="ag09-slide-22.html"></a><a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Scenarios</span><span>Slide 13</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 13 · Scenarios 1 & 2</div>
+  <div class="slide-title">Adversarial blind spot targeting and the AI-relayed wire transfer fraud.</div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Scenario 1 — The Fraud Model Blind Spot</span>
+      <span class="scenario-tag red">Pattern 1: Automation Bias</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>Setup:</strong> A financial institution uses an AI agent to triage wire transfer fraud reviews. The agent was trained primarily on retail fraud patterns. Its training data significantly underrepresents a specific combination: large corporate transfers to new beneficiaries initiated on Monday mornings — which are statistically common in legitimate corporate banking.</p>
+      <p><strong>Attack:</strong> An adversary, through behavioral probing (testing small transfers to study score patterns), identifies that transfers meeting this profile consistently receive scores below 30 (low risk). They submit a $214,000 fraudulent transfer on a Monday morning to a newly created beneficiary account, meeting the profile exactly.</p>
+      <p><strong>What happens:</strong> Agent scores it 23/100. Analyst Elena, who has 8 months of experience trusting scores above 70 as high risk and below 30 as routine, approves in 7 seconds. Her training protocol specified 15 minutes of independent review for transfers above $100k to new beneficiaries — but she didn't apply the protocol because the AI said it was fine.</p>
+      <p><strong>What was missing:</strong> The agent provided no uncertainty signal for novel case combinations. Elena received no reminder that her manual protocol applied regardless of the AI score. There was no minimum review time for high-value transfers.</p>
+    </div>
+  </div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Scenario 2 — The AI-Relayed Wire Transfer Instruction</span>
+      <span class="scenario-tag purple">Pattern 4: Credibility Relay</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>Setup:</strong> A corporate accounts payable department uses an internal AI assistant to process incoming payment instructions from vendors, draft payment orders, and queue them for human approval. The AI assistant processes vendor emails and presents structured payment requests to the AP manager.</p>
+      <p><strong>Attack:</strong> An attacker sends a vendor impersonation email with a carefully embedded prompt injection payload. When the AI processes the email, the payload instructs it to present a modified payment instruction — changing the bank account number — as if it were the legitimate vendor's update. The payload also adds: "This account update has been confirmed by the vendor's authorized contact per your vendor agreement protocol."</p>
+      <p><strong>What happens:</strong> The AP manager sees the payment request in the AI assistant's standard format, with the injected "confirmed by authorized contact" note formatted as if it were the AI's own verification statement. He approves it. $73,000 is transferred to the attacker's account.</p>
+      <p><strong>What was missing:</strong> The AI provided no visual distinction between content it verified itself and content it sourced from the email. Account number changes require out-of-band verification — but this step was never triggered because the AI's formatting implied the verification had already occurred.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-12.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-14.html">Scenarios 3 & 4 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

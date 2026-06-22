@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 21 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 21 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a><a class="seg done" href="ag04-slide-02.html"></a><a class="seg done" href="ag04-slide-03.html"></a><a class="seg done" href="ag04-slide-04.html"></a><a class="seg done" href="ag04-slide-05.html"></a><a class="seg done" href="ag04-slide-06.html"></a><a class="seg done" href="ag04-slide-07.html"></a><a class="seg done" href="ag04-slide-08.html"></a><a class="seg done" href="ag04-slide-09.html"></a><a class="seg done" href="ag04-slide-10.html"></a><a class="seg done" href="ag04-slide-11.html"></a><a class="seg done" href="ag04-slide-12.html"></a><a class="seg done" href="ag04-slide-13.html"></a><a class="seg done" href="ag04-slide-14.html"></a><a class="seg done" href="ag04-slide-15.html"></a><a class="seg done" href="ag04-slide-16.html"></a><a class="seg done" href="ag04-slide-17.html"></a><a class="seg done" href="ag04-slide-18.html"></a><a class="seg done" href="ag04-slide-19.html"></a><a class="seg done" href="ag04-slide-20.html"></a>
+    <a class="seg active" href="ag04-slide-21.html"></a>
+    <a class="seg" href="ag04-slide-22.html"></a><a class="seg" href="ag04-slide-23.html"></a><a class="seg" href="ag04-slide-24.html"></a><a class="seg" href="ag04-slide-25.html"></a><a class="seg" href="ag04-slide-26.html"></a><a class="seg" href="ag04-slide-27.html"></a><a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 21</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 21 · MIT03 — Containment and Sandboxed Builds</div>
+  <div class="slide-title">MIT03: Assume a component will be malicious. Build the environment so that even a malicious component can't cause much damage.</div>
+  <div class="slide-subtitle">Defense in depth for the supply chain — containment limits the blast radius when a compromised component gets through.</div>
+
+  <div class="block">
+    <div class="block-label purple">The containment principle</div>
+    <p>Provenance verification and allowlisting aim to stop malicious components from being loaded. Containment accepts that some will get through — and builds the execution environment so they can't escape the sandbox.</p>
+    <p>A poisoned package that reads SSH keys is devastating when it runs in a developer's full environment. The same package running in a sandboxed container with no access to the home directory, no network egress, and no mounted credentials can't exfiltrate anything.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">What sandboxed execution looks like</div>
+    <p><strong>For package execution:</strong> Run all agent-installed packages in ephemeral containers or VMs with minimal permissions — no host filesystem access, no network access to anything outside the declared API endpoints, no credential store access.</p>
+    <p><strong>For tool calls:</strong> Each tool invocation runs with only the permissions it needs for that specific call. A tool that sends emails doesn't need filesystem access. A tool that reads documents doesn't need network access. Apply least-privilege at the tool-call level, not just at the agent level.</p>
+    <p><strong>For builds:</strong> Use reproducible, hermetic build environments where the entire dependency set is resolved and locked before the agent runs — preventing runtime resolution from introducing new, unvetted components.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">What this stops</div>
+    <p>MIT03 directly limits the impact of Scenarios 5 (poisoned npm, SSH key exfiltration) and 6 (agent-in-the-middle). A sandboxed agent that installs a malicious package gets no access to credentials. A compromised sub-agent that's isolated from the main orchestrator can't cascade its payload through the pipeline.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: if a compromised component were loaded by your AI agent, what could it actually reach — your production database, your API keys, your internal network? Ask whether agent components run in an isolated environment where a bad actor getting in would still find nothing of value to take.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-20.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-22.html">MIT04 — Secure Prompts and Versioned Memory →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

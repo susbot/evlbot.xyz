@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 25 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 25 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg done" href="api07-slide-07.html"></a><a class="seg done" href="api07-slide-08.html"></a><a class="seg done" href="api07-slide-09.html"></a><a class="seg done" href="api07-slide-10.html"></a><a class="seg done" href="api07-slide-11.html"></a><a class="seg done" href="api07-slide-12.html"></a><a class="seg done" href="api07-slide-13.html"></a><a class="seg done" href="api07-slide-14.html"></a><a class="seg done" href="api07-slide-15.html"></a><a class="seg done" href="api07-slide-16.html"></a><a class="seg done" href="api07-slide-17.html"></a><a class="seg done" href="api07-slide-18.html"></a><a class="seg done" href="api07-slide-19.html"></a><a class="seg done" href="api07-slide-20.html"></a><a class="seg done" href="api07-slide-21.html"></a><a class="seg done" href="api07-slide-22.html"></a><a class="seg done" href="api07-slide-23.html"></a><a class="seg done" href="api07-slide-24.html"></a><a class="seg active" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 25</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 25 &#xb7; Mitigation 7</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 07</div>
+    <div class="mit-title">Monitor and alert on outbound requests to private IP ranges and the metadata endpoint.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Log all outbound HTTP requests made by your URL-fetching services. Alert immediately on:</p>
+      <p>&#x2022; <strong>Any request to 169.254.169.254</strong> &#x2014; this is a high-confidence SSRF indicator. No legitimate application request should go to the metadata endpoint after deployment.</p>
+      <p>&#x2022; <strong>Any request to RFC 1918 IP ranges</strong> (10.x, 172.16-31.x, 192.168.x) &#x2014; fetching internal IPs from a URL-fetching service is anomalous.</p>
+      <p>&#x2022; <strong>Any request using file:// protocol</strong> &#x2014; should never appear in application logs from a URL-fetching service.</p>
+      <p>&#x2022; <strong>Unusual DNS resolution patterns</strong> &#x2014; domains that resolve to private IPs after passing checks (DNS rebinding indicator).</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Cloud-level monitoring</div>
+      <p>AWS CloudTrail logs API calls made with the EC2 instance&#x2019;s credentials. If SSRF successfully steals IAM credentials, the subsequent S3 API calls (from a different IP) will appear in CloudTrail as calls made by the EC2 role. Anomaly: the EC2 role is making API calls from an IP outside your infrastructure. Enable CloudTrail and alert on geographic or IP anomalies for role-based API calls.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">Detection is not prevention</div>
+      <p>Monitoring detects SSRF after it has occurred. In the Capital One breach, the attacker had access for nearly four months before discovery. Detection matters &#x2014; but pair it with prevention (MIT 01&#x2013;06) so that by the time monitoring alerts fire, the attacker was already blocked at an earlier layer.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your security team whether there are alerts for any server making requests to 169.254.169.254 &#x2014; the cloud metadata endpoint. A request to that address from an API server is a high-confidence signal of SSRF exploitation.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-24.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-26.html">See the full picture &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

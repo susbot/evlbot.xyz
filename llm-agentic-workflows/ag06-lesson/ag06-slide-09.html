@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 9 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 9 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a><a class="seg done" href="ag06-slide-03.html"></a><a class="seg done" href="ag06-slide-04.html"></a><a class="seg done" href="ag06-slide-05.html"></a><a class="seg done" href="ag06-slide-06.html"></a><a class="seg done" href="ag06-slide-07.html"></a><a class="seg done" href="ag06-slide-08.html"></a>
+    <a class="seg active" href="ag06-slide-09.html"></a>
+    <a class="seg" href="ag06-slide-10.html"></a><a class="seg" href="ag06-slide-11.html"></a><a class="seg" href="ag06-slide-12.html"></a><a class="seg" href="ag06-slide-13.html"></a><a class="seg" href="ag06-slide-14.html"></a><a class="seg" href="ag06-slide-15.html"></a><a class="seg" href="ag06-slide-16.html"></a><a class="seg" href="ag06-slide-17.html"></a><a class="seg" href="ag06-slide-18.html"></a><a class="seg" href="ag06-slide-19.html"></a><a class="seg" href="ag06-slide-20.html"></a><a class="seg" href="ag06-slide-21.html"></a><a class="seg" href="ag06-slide-22.html"></a><a class="seg" href="ag06-slide-23.html"></a><a class="seg" href="ag06-slide-24.html"></a><a class="seg" href="ag06-slide-25.html"></a><a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Vulnerability Types</span><span>Slide 9</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 9 · Part 2 Overview</div>
+  <div class="slide-title">Six ways attackers write false content into agent memory — each targeting a different tier.</div>
+
+  <div class="mit-overview-grid">
+    <div class="mit-overview-item">
+      <div class="mit-num">Type 1</div>
+      <div class="mit-name">RAG / Knowledge Base Poisoning</div>
+      <div class="mit-desc">Malicious content injected into the document store the agent retrieves from — affecting all users who query similar topics.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Type 2</div>
+      <div class="mit-name">Session Memory Manipulation</div>
+      <div class="mit-desc">Attacker writes false beliefs into the agent's episodic memory store during a live interaction, planting precedents that survive session end.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Type 3</div>
+      <div class="mit-name">Preference / Profile Poisoning</div>
+      <div class="mit-desc">False persistent facts written into the agent's user or account model — stored explicitly for retrieval in every future session.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Type 4</div>
+      <div class="mit-name">Indirect Ingestion Poisoning</div>
+      <div class="mit-desc">Attacker controls content in a source the agent automatically ingests (emails, web pages, uploaded docs) and embeds memory-targeting instructions in that content.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Type 5</div>
+      <div class="mit-name">Multi-Agent Memory Contamination</div>
+      <div class="mit-desc">A compromised or poisoned sub-agent writes false data to a shared memory store, propagating the corruption to every other agent in the pipeline that reads from it.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Type 6</div>
+      <div class="mit-name">Memory Extraction</div>
+      <div class="mit-desc">Crafted queries cause the agent to retrieve and surface memory entries belonging to other users — turning the memory system into a data exfiltration channel.</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag06-slide-08.html">← Back</a>
+    <a class="btn-primary" href="ag06-slide-10.html">Type 1 — RAG Poisoning →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

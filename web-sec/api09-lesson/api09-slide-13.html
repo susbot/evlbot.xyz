@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 13 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 13 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg done" href="api09-slide-05.html"></a><a class="seg done" href="api09-slide-06.html"></a><a class="seg done" href="api09-slide-07.html"></a><a class="seg done" href="api09-slide-08.html"></a><a class="seg done" href="api09-slide-09.html"></a><a class="seg done" href="api09-slide-10.html"></a><a class="seg done" href="api09-slide-11.html"></a><a class="seg done" href="api09-slide-12.html"></a><a class="seg active" href="api09-slide-13.html"></a><a class="seg" href="api09-slide-14.html"></a><a class="seg" href="api09-slide-15.html"></a><a class="seg" href="api09-slide-16.html"></a><a class="seg" href="api09-slide-17.html"></a><a class="seg" href="api09-slide-18.html"></a><a class="seg" href="api09-slide-19.html"></a><a class="seg" href="api09-slide-20.html"></a><a class="seg" href="api09-slide-21.html"></a><a class="seg" href="api09-slide-22.html"></a><a class="seg" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 13</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 13 &#xb7; Real Incident</div>
+  <div class="slide-title">USPS Informed Delivery &#x2014; an undocumented API exposed 60 million accounts.</div>
+  <div class="slide-subtitle">November 2018. An API endpoint not in any documentation let authenticated users query any other user&#x2019;s data.</div>
+  <div class="source-tag">&#x1F4C4; KrebsOnSecurity &#xb7; November 2018</div>
+  <div class="scenario-card">
+    <div class="scenario-num">THE VULNERABILITY</div>
+    <div class="scenario-title">USPS Informed Delivery &#x2014; Undocumented API with No Authorization Check</div>
+    <div class="scenario-body">
+      <p>The United States Postal Service&#x2019;s Informed Delivery service allows users to see scans of their incoming mail. The service has an API that partners and internal systems use. Security researcher Brian Krebs reported in November 2018 that the API contained an endpoint that allowed any authenticated user to request data for any other account.</p>
+      <p>The endpoint was not in any public documentation. It was part of an internal/partner API that was accessible to all authenticated users &#x2014; even those who should not have had access to other users&#x2019; data.</p>
+      <p>The API accepted queries for account data using parameters like email address or phone number, and returned: name, address, email address, phone number, mailing campaign data, and other account details for the queried user &#x2014; regardless of whether the requesting user had any authorization to view that data.</p>
+    </div>
+    <div class="scenario-why"><strong>Scale and impact:</strong> With approximately 60 million USPS.com accounts at the time, the undocumented API provided a mechanism to query personal information for any of those accounts. The vulnerability had been present for approximately a year before Krebs reported it. USPS had been notified by a researcher but did not act promptly &#x2014; the issue was only fixed after Krebs published his report. <strong>The API9 aspect:</strong> The endpoint was not part of the documented, audited API surface. It was an undocumented endpoint that received none of the access control review applied to documented endpoints &#x2014; a classic inventory management failure.</div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">The undocumented endpoint problem</div>
+    <p>Undocumented endpoints are invisible to security reviews, penetration tests, and access control audits. They exist &#x2014; but they&#x2019;re not in scope for any security process because no one documented that they existed. Automated endpoint discovery and comprehensive API inventory are the only ways to bring them into scope.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-12.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-14.html">Attack Scenarios &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

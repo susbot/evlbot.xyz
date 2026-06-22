@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 6 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 6 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a>
+    <a class="seg active" href="ag07-slide-06.html"></a>
+    <a class="seg" href="ag07-slide-07.html"></a><a class="seg" href="ag07-slide-08.html"></a><a class="seg" href="ag07-slide-09.html"></a><a class="seg" href="ag07-slide-10.html"></a><a class="seg" href="ag07-slide-11.html"></a><a class="seg" href="ag07-slide-12.html"></a><a class="seg" href="ag07-slide-13.html"></a><a class="seg" href="ag07-slide-14.html"></a><a class="seg" href="ag07-slide-15.html"></a><a class="seg" href="ag07-slide-16.html"></a><a class="seg" href="ag07-slide-17.html"></a><a class="seg" href="ag07-slide-18.html"></a><a class="seg" href="ag07-slide-19.html"></a><a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 6</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 6 · Attackers</div>
+  <div class="slide-title">Who exploits insecure inter-agent communication — and what access they need to do it.</div>
+
+  <div class="block">
+    <div class="block-label red">External attackers with network access to the message channel</div>
+    <p>If inter-agent messages travel over an unencrypted or unauthenticated network channel — even an internal network — any attacker with network-level access can observe, intercept, or inject messages. This includes attackers who have already compromised another system on the internal network (lateral movement), attackers exploiting misconfigured network boundaries, or attackers who have gained access to shared infrastructure like message brokers, load balancers, or service meshes.</p>
+    <p>The key requirement is network-level access to the channel — not application-level access to any specific agent. The vulnerability is in the channel, not the endpoint.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Compromised components in the pipeline</div>
+    <p>A compromised agent, tool, plugin, or external dependency that sits inside the multi-agent system can read and write to the communication channels it has legitimate access to. If a monitoring sidecar, logging service, or shared utility has queue access — and is compromised — it can forge, replay, or tamper with messages between agents without ever touching the agents themselves. The attack surface includes every component that touches the message transport layer, not just the agents themselves.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">Insiders with infrastructure access</div>
+    <p>Anyone with access to the message broker (Kafka topic, RabbitMQ exchange, Redis queue), the shared database, or the API gateway that routes inter-agent traffic can manipulate messages without agent-level credentials. Infrastructure access is often broader than application access — a database administrator may be able to modify queued messages even without any agent-specific authorization.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Agents instructed via prompt injection to relay false messages</div>
+    <p>A live prompt injection attack on one agent can instruct that agent to send a fabricated message to another agent in the pipeline — using its own legitimate communication channel. The injected instruction travels on an authenticated channel (because the agent is authenticated) but carries attacker-controlled content. The receiving agent has no way to distinguish between a legitimate task and an injected one sent through the same authenticated pipe.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-05.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-07.html">What AG07 is and isn't →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

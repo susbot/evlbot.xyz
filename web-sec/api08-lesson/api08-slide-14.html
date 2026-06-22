@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 14 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 14 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg done" href="api08-slide-05.html"></a><a class="seg done" href="api08-slide-06.html"></a><a class="seg done" href="api08-slide-07.html"></a><a class="seg done" href="api08-slide-08.html"></a><a class="seg done" href="api08-slide-09.html"></a><a class="seg done" href="api08-slide-10.html"></a><a class="seg done" href="api08-slide-11.html"></a><a class="seg done" href="api08-slide-12.html"></a><a class="seg done" href="api08-slide-13.html"></a><a class="seg active" href="api08-slide-14.html"></a><a class="seg" href="api08-slide-15.html"></a><a class="seg" href="api08-slide-16.html"></a><a class="seg" href="api08-slide-17.html"></a><a class="seg" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 &#xb7; Attack Scenarios</span><span>Slide 14</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 3</span>
+    <div><div class="part-title">Attack Scenarios</div><div class="part-count">Slides 14&#x2013;17 &#xb7; OWASP examples in plain English</div></div>
+  </div>
+  <div class="slide-eyebrow">Slide 14 &#xb7; Scenario 1</div>
+  <div class="slide-title">Any website can read your users&#x2019; API data. The CORS config made it so.</div>
+  <div class="slide-subtitle">OWASP Scenario #1 &#x2014; CORS misconfiguration allowing any origin with credentials.</div>
+  <div class="source-tag">&#x1F4C4; OWASP API Security Top 10 &#xb7; 2023 &#xb7; API8 &#xb7; Scenario 1</div>
+  <div class="scenario-card">
+    <div class="scenario-num">SETUP</div>
+    <div class="scenario-title">A banking API with a misconfigured CORS policy.</div>
+    <div class="scenario-body">
+      <p>A banking application&#x2019;s API is used by a web frontend at <code>https://bank.example.com</code>. The API uses session cookies for authentication. To handle requests from the frontend, the API needs CORS headers.</p>
+      <p>A developer configured the CORS policy to read the <code>Origin</code> header from every request and reflect it back in the response &#x2014; a pattern intended to support multiple frontends. The configuration also sets <code>Access-Control-Allow-Credentials: true</code> to allow cookies to be sent.</p>
+      <p>Result: every origin is permitted to make authenticated cross-origin requests to the API.</p>
+    </div>
+    <div class="scenario-why"><strong>The exploit:</strong> An attacker registers <code>attackersite.com</code> and hosts a page with JavaScript that fetches <code>https://api.bank.example.com/account/balance</code> with credentials included. They send the link to victims via email or social media. Any victim who is logged into the banking app and clicks the link will have their account balance, transaction history, and other sensitive data silently sent to the attacker&#x2019;s server. The victim sees a blank page or a redirect. The data theft is invisible.</div>
+  </div>
+  <div class="callout red">
+    <div class="callout-label">The null origin bypass</div>
+    <p>Some implementations also grant access to <code>Origin: null</code> &#x2014; a value sent by sandboxed iframes, local HTML files, and certain redirect scenarios. An attacker can trigger a <code>null</code> origin by embedding an iframe with <code>sandbox</code> attribute. If the API grants access to <code>null</code> origins, this is an additional bypass that often gets overlooked.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-13.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-15.html">Scenario 2 &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

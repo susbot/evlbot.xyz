@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API5:2023 â Broken Function Level Authorization Â· Slide 28 of 28</title>
+<link rel="stylesheet" href="api05-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API5:2023</span><span class="nav-title">Broken Function Level Authorization</span></div>
+  <span class="nav-right">Slide 28 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api05-slide-01.html"></a><a class="seg done" href="api05-slide-02.html"></a><a class="seg done" href="api05-slide-03.html"></a><a class="seg done" href="api05-slide-04.html"></a><a class="seg done" href="api05-slide-05.html"></a><a class="seg done" href="api05-slide-06.html"></a><a class="seg done" href="api05-slide-07.html"></a><a class="seg done" href="api05-slide-08.html"></a><a class="seg done" href="api05-slide-09.html"></a><a class="seg done" href="api05-slide-10.html"></a><a class="seg done" href="api05-slide-11.html"></a><a class="seg done" href="api05-slide-12.html"></a><a class="seg done" href="api05-slide-13.html"></a><a class="seg done" href="api05-slide-14.html"></a><a class="seg done" href="api05-slide-15.html"></a><a class="seg done" href="api05-slide-16.html"></a><a class="seg done" href="api05-slide-17.html"></a><a class="seg done" href="api05-slide-18.html"></a><a class="seg done" href="api05-slide-19.html"></a><a class="seg done" href="api05-slide-20.html"></a><a class="seg done" href="api05-slide-21.html"></a><a class="seg done" href="api05-slide-22.html"></a><a class="seg done" href="api05-slide-23.html"></a><a class="seg done" href="api05-slide-24.html"></a><a class="seg done" href="api05-slide-25.html"></a><a class="seg done" href="api05-slide-26.html"></a><a class="seg done" href="api05-slide-27.html"></a><a class="seg active" href="api05-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Complete</span><span>Slide 28</span></div>
+</div>
+<div class="slide active">
+
+  <div class="complete-wrap">
+    <div class="complete-icon">&#x2705;</div>
+    <div class="complete-title">Module Complete</div>
+    <div class="complete-sub">You finished API5 &#x2014; Broken Function Level Authorization. Here&#x2019;s what you now understand:</div>
+    <div class="checklist">
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">What BFLA is &#x2014; authorization failures at the function level, not the object or property level</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">How it differs from API1 and API3 &#x2014; wrong function entirely vs. wrong object or wrong fields</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Two attack patterns: role bypass (regular user calls admin function) and HTTP verb manipulation (change GET to DELETE)</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Real incidents &#x2014; Bumble 2020 (free users accessed premium and admin endpoints for 100M+ accounts) and GitLab CVE-2021-4191 (unauthenticated GraphQL query enumerated all users)</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">OWASP scenarios &#x2014; admin URL discovery, HTTP verb manipulation, workflow bypass via self-approval</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Seven mitigations: deny by default, RBAC at API layer, method+path authorization, centralized logic, permissions matrix, negative auth testing, and 403 monitoring</span></div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-label pink">The one thing to carry forward</div>
+    <p>Authentication answers &#x201C;who are you?&#x201D; Authorization answers &#x201C;are you allowed to do this?&#x201D; <strong>Every API function must ask both questions &#x2014; not just the first one.</strong> A valid token is proof of identity, not proof of entitlement. The function check must happen on the server, every request, before the handler runs.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api05-slide-27.html">&#x2190; Back to Quiz</a>
+    <a class="btn-primary" href="../api06-lesson/api06-slide-01.html">Next: API6 &#x2014; Unrestricted Access to Business Flows &#x2192;</a>
+  </div>
+
+</div>
+
+</body>
+</html>

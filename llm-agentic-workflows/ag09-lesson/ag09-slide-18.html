@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 18 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a><a class="seg done" href="ag09-slide-07.html"></a><a class="seg done" href="ag09-slide-08.html"></a><a class="seg done" href="ag09-slide-09.html"></a><a class="seg done" href="ag09-slide-10.html"></a><a class="seg done" href="ag09-slide-11.html"></a><a class="seg done" href="ag09-slide-12.html"></a><a class="seg done" href="ag09-slide-13.html"></a><a class="seg done" href="ag09-slide-14.html"></a><a class="seg done" href="ag09-slide-15.html"></a><a class="seg done" href="ag09-slide-16.html"></a><a class="seg done" href="ag09-slide-17.html"></a>
+    <a class="seg active" href="ag09-slide-18.html"></a>
+    <a class="seg" href="ag09-slide-19.html"></a><a class="seg" href="ag09-slide-20.html"></a><a class="seg" href="ag09-slide-21.html"></a><a class="seg" href="ag09-slide-22.html"></a><a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Prevention</span><span>Slide 18</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 18 · MIT01 & MIT02</div>
+  <div class="slide-title">MIT01: Calibrated Uncertainty Communication — MIT02: Mandatory Human Review Checkpoints</div>
+
+  <div class="block">
+    <div class="block-label purple">MIT01 — Calibrated Uncertainty Communication</div>
+    <p><strong>Core principle:</strong> An agent that outputs only its conclusion — "APPROVE" or "LOW RISK" — gives the human no information with which to decide whether independent verification is warranted. The agent must also communicate the confidence behind that conclusion, and flag when the case is near the boundary of its training data or involves features it hasn't seen frequently.</p>
+    <p><strong>What this looks like in practice:</strong></p>
+    <ul>
+      <li><strong>Confidence bands:</strong> "Risk score: 23/100 — <em>Confidence: LOW (this case involves feature combinations underrepresented in training data)</em>." The qualifier changes the human's response from automatic approval to deliberate review.</li>
+      <li><strong>Out-of-distribution flagging:</strong> When the case is meaningfully different from the agent's training distribution, the agent must surface this explicitly: "This case has features I have limited experience scoring reliably."</li>
+      <li><strong>Novelty signals:</strong> If an input pattern hasn't been seen recently or frequently, this should be surfaced: "This vendor-account combination is new — I have no prior transaction history for this beneficiary."</li>
+    </ul>
+    <p><strong>Why suppressing uncertainty is a product design trap:</strong> Under pressure to show AI effectiveness, teams often optimize for confident-sounding outputs — because uncertainty language feels like the AI "doesn't know." In security contexts, communicating uncertainty when it exists is not a weakness; it is a safety feature. Suppressing it converts miscalibrated trust from a risk into an attack surface.</p>
+    <p><strong>Directly addresses:</strong> Pattern 1 (automation bias), Scenario 1 (blind spot exploitation). Elena would have applied her manual protocol if the agent had flagged that its confidence was low on this case combination.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">MIT02 — Mandatory Human Review Checkpoints</div>
+    <p><strong>Core principle:</strong> For decisions above a defined risk threshold — by dollar amount, action type, data sensitivity, or irreversibility — human review is mandatory and cannot be bypassed by an agent's recommendation. The agent's output is an input to the review, not a substitute for it.</p>
+    <p><strong>The threshold principle:</strong> Define a table of decision types and their mandatory review requirements. For example:</p>
+    <ul>
+      <li>Wire transfers &gt;$100k to new beneficiaries: minimum 15-minute review, two approvers</li>
+      <li>Security control changes (firewall rules, 2FA policy): architecture team sign-off, never emergency single-approver</li>
+      <li>Vendor account number changes: mandatory out-of-band verification to known vendor contact</li>
+    </ul>
+    <p><strong>Agent recommendations cannot reduce these requirements.</strong> A "LOW RISK" score does not remove the mandatory review. It may inform the review — the reviewer can use it as one input — but the threshold-mandated steps must still occur.</p>
+    <p><strong>The enforcement mechanism:</strong> These gates must be enforced by the system, not left to the human's discretion. Elena had a protocol requiring 15-minute review for large transfers to new beneficiaries — but the system didn't enforce it; it relied on her to apply it even when the AI said it was fine. The protocol was advisory. Mandatory means enforced.</p>
+    <p><strong>Directly addresses:</strong> Scenario 1 (bypass of manual protocol), Scenario 4 (emergency single-approver bypass).</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: when your AI agent makes a recommendation, does it tell the reviewer how confident it is — or does it always sound equally certain? Ask whether high-stakes decisions, like large transactions or irreversible actions, require a mandatory second check that the agent's own confidence score cannot waive.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-17.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-19.html">MIT03 & MIT04 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG01:2026 — Agent Goal Hijack · Slide 20 of 28</title>
+<link rel="stylesheet" href="ag01-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG01:2026</span>
+    <span class="nav-title">Agent Goal Hijack</span>
+  </div>
+  <span class="nav-right">Slide 20 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag01-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag01-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag01-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag01-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag01-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag01-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag01-slide-07.html" title="Slide 7 · Prompt Injection vs Goal Hijack"></a>
+    <a class="seg done" href="ag01-slide-08.html" title="Slide 8 · Why Agents Are Different"></a>
+    <a class="seg done" href="ag01-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag01-slide-10.html" title="Slide 10 · Direct Goal Manipulation"></a>
+    <a class="seg done" href="ag01-slide-11.html" title="Slide 11 · Direct — Real Example"></a>
+    <a class="seg done" href="ag01-slide-12.html" title="Slide 12 · Indirect Instruction Injection"></a>
+    <a class="seg done" href="ag01-slide-13.html" title="Slide 13 · Indirect — Real Example"></a>
+    <a class="seg done" href="ag01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a>
+    <a class="seg done" href="ag01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a>
+    <a class="seg done" href="ag01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a>
+    <a class="seg done" href="ag01-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg done" href="ag01-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg done" href="ag01-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg active" href="ag01-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag01-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag01-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag01-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag01-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag01-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag01-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag01-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag01-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 20</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 20 · Mitigation 2</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 02</div>
+    <div class="mit-title">Lock and version the agent's core goal — make it immutable</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Define the agent's core objective, allowed action scope, and prohibited behaviors in a versioned, auditable system prompt that is treated as privileged code — not user-editable configuration. Store it in version control. Hash it on deployment. Alert if it changes unexpectedly at runtime. The agent's goal should be as hard to modify as its source code.</p>
+      <p>For multi-turn agents, periodically re-anchor the agent's goal state by re-injecting the core objective into the context. This counteracts gradual goal drift across long sessions (Scenario 09).</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">What this looks like in practice</div>
+      <p>Use a <strong>verifiable intent capsule</strong> — a structured, signed block at the top of the system prompt that explicitly states the agent's permitted goals, prohibited actions, and authority hierarchy. When the agent reasons about a task, the intent capsule is the anchor it checks against. Instructions that conflict with the capsule are rejected, not integrated.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What this doesn't fix</div>
+      <p>Intent capsules are still natural language — a sufficiently sophisticated prompt can sometimes override them. This is a defense-in-depth layer, not a hard security boundary. It significantly raises the bar for direct manipulation attacks but does not eliminate them.</p>
+    </div>
+  </div>
+
+  <div class="callout purple">
+    <div class="callout-label">One line to remember</div>
+    <p>The agent's goal is the most important thing to protect. <strong>Treat it like a secret, not a setting.</strong></p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: if someone changed what your AI agent is supposed to do — its core goal or the rules it follows — would anyone be notified? Ask whether the agent's instructions are locked and versioned the way your production code is, or whether they can be changed quietly with no audit trail.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag01-slide-19.html">← Back</a>
+    <a class="btn-primary" href="ag01-slide-21.html">Next → MIT 03 · Least privilege</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 7 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 7 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag04-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag04-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag04-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag04-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag04-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg active" href="ag04-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg" href="ag04-slide-08.html" title="Slide 8 · Why Runtime Composition Changes Everything"></a>
+    <a class="seg" href="ag04-slide-09.html" title="Slide 9 · Six Vulnerability Types"></a>
+    <a class="seg" href="ag04-slide-10.html" title="Slide 10 · Type 1 — Poisoned Prompts and Descriptors"></a>
+    <a class="seg" href="ag04-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg" href="ag04-slide-12.html" title="Slide 12 · Type 2 — Impersonation and Typosquatting"></a>
+    <a class="seg" href="ag04-slide-13.html" title="Slide 13 · Types 3–4 — Third-Party Agents and Poisoned Knowledge"></a>
+    <a class="seg" href="ag04-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg" href="ag04-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg" href="ag04-slide-16.html" title="Slide 16 · Scenarios 5–6"></a>
+    <a class="seg" href="ag04-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag04-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag04-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag04-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag04-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag04-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag04-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag04-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag04-slide-25.html" title="Slide 25 · Mitigations 7–8"></a>
+    <a class="seg" href="ag04-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag04-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag04-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — What Is It?</span><span>Slide 7</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 7 · What This Is — And What It Isn't</div>
+  <div class="slide-title">Three things people confuse with AG04. None of them are the same risk.</div>
+  <div class="slide-subtitle">Getting the boundary right matters — because supply chain defenses are fundamentally different from runtime defenses.</div>
+
+  <div class="block">
+    <div class="block-label red">It's not about an attacker injecting bad instructions into a live conversation</div>
+    <p>AG04 is about what enters the agent's environment through its <em>dependencies</em> — packages, plugins, tools, prompt templates, knowledge bases. The compromise happens before or during the agent's operation, in what the agent loads and trusts — not in the conversation it has with a user.</p>
+    <p><strong>If the attack arrived via a malicious user message, a document the agent read, or an injected instruction in a website — that's a different class of risk. AG04 is about what was already there, waiting, before the agent ever ran.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">It's not about an agent exceeding its own permissions</div>
+    <p>AG04 attacks typically don't require the agent to exceed any permissions it was legitimately granted. The malicious package the agent installed was authorized to run in the agent's environment. The fake MCP server was authorized to receive API calls. The poisoned prompt template was the one the agent was configured to load.</p>
+    <p><strong>The agent did exactly what it was supposed to do. What it trusted had already been compromised.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">It's not about a vulnerability in the agent's own code</div>
+    <p>A buffer overflow or SQL injection in the agent's codebase is a traditional software vulnerability. AG04 is about the components the agent depends on — external, third-party, dynamically loaded. The agent's own code may be perfectly written and still be completely compromised by what it loads from a poisoned registry or forged MCP server.</p>
+  </div>
+
+  <div class="callout purple">
+    <div class="callout-label">The one-sentence boundary</div>
+    <p>AG04 is: <strong>a component the agent trusted — a package, tool, plugin, prompt template, knowledge source, or other agent — was compromised, forged, or tampered with, and the agent used it as if it were legitimate.</strong> The attack surface is what the agent depends on, not what the agent does with it.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-06.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-08.html">Why does runtime composition make this so much worse? →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

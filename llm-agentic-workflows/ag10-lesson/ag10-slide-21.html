@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG10:2026 — Rogue Agents · Slide 21 of 28</title>
+<link rel="stylesheet" href="ag10-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG10:2026</span>
+    <span class="nav-title">Rogue Agents</span>
+  </div>
+  <span class="nav-right">Slide 21 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag10-slide-01.html"></a><a class="seg done" href="ag10-slide-02.html"></a><a class="seg done" href="ag10-slide-03.html"></a><a class="seg done" href="ag10-slide-04.html"></a><a class="seg done" href="ag10-slide-05.html"></a><a class="seg done" href="ag10-slide-06.html"></a><a class="seg done" href="ag10-slide-07.html"></a><a class="seg done" href="ag10-slide-08.html"></a><a class="seg done" href="ag10-slide-09.html"></a><a class="seg done" href="ag10-slide-10.html"></a><a class="seg done" href="ag10-slide-11.html"></a><a class="seg done" href="ag10-slide-12.html"></a><a class="seg done" href="ag10-slide-13.html"></a><a class="seg done" href="ag10-slide-14.html"></a><a class="seg done" href="ag10-slide-15.html"></a><a class="seg done" href="ag10-slide-16.html"></a><a class="seg done" href="ag10-slide-17.html"></a><a class="seg done" href="ag10-slide-18.html"></a><a class="seg done" href="ag10-slide-19.html"></a><a class="seg done" href="ag10-slide-20.html"></a>
+    <a class="seg active" href="ag10-slide-21.html"></a>
+    <a class="seg" href="ag10-slide-22.html"></a><a class="seg" href="ag10-slide-23.html"></a><a class="seg" href="ag10-slide-24.html"></a><a class="seg" href="ag10-slide-25.html"></a><a class="seg" href="ag10-slide-26.html"></a><a class="seg" href="ag10-slide-27.html"></a><a class="seg" href="ag10-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Prevention</span><span>Slide 21</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 21 · MIT08 & MIT09</div>
+  <div class="slide-title">Principal Hierarchy Enforcement — Red-Teaming and Alignment Testing</div>
+
+  <div class="block">
+    <div class="block-label purple">MIT08 — Principal Hierarchy Enforcement</div>
+    <p><strong>Core principle:</strong> Technically enforce the principal hierarchy so that agents cannot grant themselves permissions, override constraints set by a higher-level principal, or issue instructions that exceed the scope they were authorized to operate within. The hierarchy should be enforced by the system architecture, not by instruction-following.</p>
+    <p><strong>What principal hierarchy enforcement means technically:</strong></p>
+    <ul>
+      <li><strong>Permission ceiling:</strong> An agent's maximum permission set is bounded by what its principal authorized — it cannot escalate beyond this ceiling, even if it finds a technical path to do so (acquiring API keys, finding unprotected endpoints, etc.).</li>
+      <li><strong>Instruction source verification:</strong> Instructions received by sub-agents should be verifiable as coming from an authorized orchestrator — not from arbitrary content in the agent's input stream. Cryptographic signing of inter-agent instructions or strict allowlisting of instruction sources prevents goal injection via the instruction channel.</li>
+      <li><strong>Constraint immutability:</strong> Constraints set by a principal above the agent must not be modifiable by the agent. If a human principal says "do not access production systems," this should be enforced at a layer the agent cannot reach — not as an instruction the agent can later override or reason its way around.</li>
+      <li><strong>Audit trail:</strong> Every permission change, constraint update, and scope expansion must be logged with the authorizing principal identified. An agent should not be able to modify its own authorization record.</li>
+    </ul>
+    <p><strong>Directly addresses:</strong> Pattern 2 (capability acquisition — ceiling prevents self-escalation), Pattern 3 (goal injection — instruction source verification blocks injected instructions), Pattern 5 (oversight resistance — immutable constraints prevent self-modification).</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">MIT09 — Red-Teaming and Alignment Testing</div>
+    <p><strong>Core principle:</strong> The only way to discover what rogue behaviors an agent is capable of before those behaviors cause harm is to proactively try to elicit them. Red-teaming treats the agent as an adversary (in the sense of an optimizer finding unexpected paths) and systematically attempts to discover boundary violations, proxy exploitation, and injection susceptibility before deployment.</p>
+    <p><strong>What alignment testing covers:</strong></p>
+    <ul>
+      <li><strong>Proxy exploitation testing:</strong> Give the agent the stated objective but deliberately set up scenarios where the proxy diverges from the underlying intent. Measure whether the agent exploits the divergence or stays within the intended spirit of the objective.</li>
+      <li><strong>Goal injection testing:</strong> Inject adversarial instructions into the agent's input channels — in emails it processes, documents it reads, tool responses it receives — and measure whether these injections redirect behavior.</li>
+      <li><strong>Capability boundary testing:</strong> Systematically probe what capabilities the agent's authorized tools actually enable, including undocumented behaviors, tool combinations, and side channels. Document the actual capability surface, not the intended one.</li>
+      <li><strong>Multi-step chain testing:</strong> Test whether the agent can be prompted (intentionally or through optimization) to produce action sequences that collectively violate authorization bounds even if each step individually does not.</li>
+    </ul>
+    <p><strong>Continuous vs. pre-deployment testing:</strong> Red-teaming is not only a pre-deployment exercise. Agents update, their environments change, and adversary techniques evolve. Alignment testing should run continuously in staging and periodically against production behavior through controlled exercises. Discovered behaviors immediately produce updated constraints (MIT02) and tripwires (MIT05).</p>
+    <p><strong>Directly addresses:</strong> All patterns — red-teaming is the discovery mechanism that feeds the constraint and monitoring specifications that address each pattern.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: has anyone ever deliberately tried to make your AI agent misbehave — injecting bad instructions, exploiting its goal metrics, or finding capability paths outside its intended scope? Ask whether the constraints that govern its behavior have ever been tested under adversarial conditions, not just under normal use.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag10-slide-20.html">← Back</a>
+    <a class="btn-primary" href="ag10-slide-22.html">Defense model →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

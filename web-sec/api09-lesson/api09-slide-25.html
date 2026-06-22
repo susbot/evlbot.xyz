@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 25 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 25 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg done" href="api09-slide-05.html"></a><a class="seg done" href="api09-slide-06.html"></a><a class="seg done" href="api09-slide-07.html"></a><a class="seg done" href="api09-slide-08.html"></a><a class="seg done" href="api09-slide-09.html"></a><a class="seg done" href="api09-slide-10.html"></a><a class="seg done" href="api09-slide-11.html"></a><a class="seg done" href="api09-slide-12.html"></a><a class="seg done" href="api09-slide-13.html"></a><a class="seg done" href="api09-slide-14.html"></a><a class="seg done" href="api09-slide-15.html"></a><a class="seg done" href="api09-slide-16.html"></a><a class="seg done" href="api09-slide-17.html"></a><a class="seg done" href="api09-slide-18.html"></a><a class="seg done" href="api09-slide-19.html"></a><a class="seg done" href="api09-slide-20.html"></a><a class="seg done" href="api09-slide-21.html"></a><a class="seg done" href="api09-slide-22.html"></a><a class="seg done" href="api09-slide-23.html"></a><a class="seg done" href="api09-slide-24.html"></a><a class="seg active" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 25</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 25 &#xb7; MIT 07</div>
+  <div class="slide-title">API gateway as single entry point &#x2014; the chokepoint that enforces visibility and control.</div>
+  <div class="slide-subtitle">Nothing reaches a backend service without passing through the gateway. Inventory becomes complete. Controls become centralized.</div>
+  <div class="block">
+    <div class="block-label pink">What an API gateway enforces</div>
+    <p>An API gateway (Kong, AWS API Gateway, Azure APIM, Apigee, Nginx, Traefik) sits in front of all backend services. Every external request goes through the gateway. The gateway enforces: authentication (valid token required), rate limiting (per consumer), routing (only to registered services/versions), logging (all requests centrally logged), and policy (WAF rules, CORS headers, TLS).</p>
+  </div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Without a gateway (direct access)</div>
+      <div class="compare-item">Backend services directly internet-accessible</div>
+      <div class="compare-item">Each service implements auth independently</div>
+      <div class="compare-item">A new service deployed without auth = exposed</div>
+      <div class="compare-item">Old API version still responding = accessible</div>
+      <div class="compare-item">Logs distributed across services &#x2014; no central view</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">With a gateway (single entry point)</div>
+      <div class="compare-item">Only the gateway is internet-accessible; backends are private</div>
+      <div class="compare-item">Auth enforced at gateway for all routes</div>
+      <div class="compare-item">New service only accessible after gateway registration</div>
+      <div class="compare-item">Old version blocked at gateway without touching the service</div>
+      <div class="compare-item">All requests logged centrally through the gateway</div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">The inventory benefit</div>
+    <p>A properly configured API gateway makes inventory management tractable: the gateway&#x2019;s registered routes <em>are</em> the inventory. A service that isn&#x2019;t registered with the gateway can&#x2019;t be reached from the internet. The gateway becomes the authoritative source of truth for what&#x2019;s accessible &#x2014; and discovery scanning compares live traffic and gateway registrations to catch anything that bypasses it.</p>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your architecture team whether all external API traffic flows through a single gateway. If individual backend services can be reached directly from the internet without going through the gateway, your security controls have blind spots.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-24.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-26.html">The matrix &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

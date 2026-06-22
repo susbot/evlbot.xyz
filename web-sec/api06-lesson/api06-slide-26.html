@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 26 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 26 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg done" href="api06-slide-09.html"></a><a class="seg done" href="api06-slide-10.html"></a><a class="seg done" href="api06-slide-11.html"></a><a class="seg done" href="api06-slide-12.html"></a><a class="seg done" href="api06-slide-13.html"></a><a class="seg done" href="api06-slide-14.html"></a><a class="seg done" href="api06-slide-15.html"></a><a class="seg done" href="api06-slide-16.html"></a><a class="seg done" href="api06-slide-17.html"></a><a class="seg done" href="api06-slide-18.html"></a><a class="seg done" href="api06-slide-19.html"></a><a class="seg done" href="api06-slide-20.html"></a><a class="seg done" href="api06-slide-21.html"></a><a class="seg done" href="api06-slide-22.html"></a><a class="seg done" href="api06-slide-23.html"></a><a class="seg done" href="api06-slide-24.html"></a><a class="seg done" href="api06-slide-25.html"></a><a class="seg active" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 26</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 26 &#xb7; The Matrix</div>
+  <div class="slide-title">Which mitigations stop which attacks?</div>
+  <div class="slide-subtitle">Real incidents and scenarios mapped to the defenses that would have stopped them.</div>
+  <div class="scenario-card">
+    <div class="scenario-num">BREACH &#x2014; Ticketmaster (2022) &#xb7; Millions of fans excluded &#xb7; Inventory Monopolization</div>
+    <div class="scenario-title">Bots held millions of tickets simultaneously in carts; presale collapsed</div>
+    <div class="scenario-body">
+      <p>No per-account ticket limit, no short cart timeout, no bot detection capable of stopping coordinated multi-account operations at scale.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 01 (limit: max 4 tickets per verified account) + MIT 02 (timeout: cart items released after 8 minutes if not purchased) + MIT 03 (fingerprinting: detect parallel sessions from same operator) + MIT 06 (phone verification: presale requires verified phone number)</div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-num">INCIDENT &#x2014; Sneaker Bots &#xb7; Ongoing &#xb7; Machine-Speed Checkout</div>
+    <div class="scenario-title">Limited releases sell out in under 10 seconds; 40% of traffic is bots</div>
+    <div class="scenario-body">
+      <p>Bots complete checkout flows in milliseconds. No minimum completion time check. No bot detection that keeps pace with stealth browser automation.</p>
+    </div>
+    <div class="scenario-why"><strong>Partially stopped by:</strong> MIT 04 (CAPTCHA on checkout &#x2014; raises cost but not a complete block) + MIT 05 (human-speed check: checkout in 300ms is flagged) + MIT 03 (fingerprinting: headless browser detection) + MIT 02 (short reservation windows)</div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-num">OWASP &#x2014; Referral Farming &#xb7; Financial loss &#xb7; Reward Abuse</div>
+    <div class="scenario-title">Thousands of fake accounts, each triggering a referral payout</div>
+    <div class="scenario-body">
+      <p>No phone verification. Disposable emails accepted. No referral velocity limits. No anomaly detection on reward issuance rate.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 06 (phone verify: one phone = one referral account) + MIT 01 (limit: max referral rewards per account per period) + MIT 07 (monitor: 500 referrals in one hour from one campaign triggers alert)</div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-num">OWASP &#x2014; Quantity Bypass &#xb7; Inventory manipulation &#xb7; UI Limit Only</div>
+    <div class="scenario-title">Bot sent quantity=500 directly to the purchase API, bypassing the UI&#x2019;s limit of 1</div>
+    <div class="scenario-body">
+      <p>Quantity limit only enforced in the UI dropdown. API accepted any quantity value. One request purchased 500 units.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 01 (server-enforced: if quantity &gt; 1, reject with 422 before processing) &#x2014; this is the most direct fix and the only required one for this specific failure</div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-25.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-27.html">Ready to test yourself? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

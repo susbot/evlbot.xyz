@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 2 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 2 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a>
+    <a class="seg active" href="ag07-slide-02.html"></a>
+    <a class="seg" href="ag07-slide-03.html"></a><a class="seg" href="ag07-slide-04.html"></a><a class="seg" href="ag07-slide-05.html"></a><a class="seg" href="ag07-slide-06.html"></a><a class="seg" href="ag07-slide-07.html"></a><a class="seg" href="ag07-slide-08.html"></a><a class="seg" href="ag07-slide-09.html"></a><a class="seg" href="ag07-slide-10.html"></a><a class="seg" href="ag07-slide-11.html"></a><a class="seg" href="ag07-slide-12.html"></a><a class="seg" href="ag07-slide-13.html"></a><a class="seg" href="ag07-slide-14.html"></a><a class="seg" href="ag07-slide-15.html"></a><a class="seg" href="ag07-slide-16.html"></a><a class="seg" href="ag07-slide-17.html"></a><a class="seg" href="ag07-slide-18.html"></a><a class="seg" href="ag07-slide-19.html"></a><a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 2</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 2 · The Word</div>
+  <div class="slide-title">Three words, unpacked: "Inter-agent" is the space between agents. "Communication" is everything that space carries. "Insecure" means that space offers no guarantees.</div>
+
+  <div class="block">
+    <div class="block-label purple">Inter-agent</div>
+    <p>Modern agentic systems rarely consist of a single agent. They are pipelines: an orchestrator delegates subtasks to specialist agents; those agents may spawn further sub-agents; results flow back up the chain. <strong>Inter-agent</strong> refers to all the communication that crosses the boundary between two agents — task assignments, tool results, status updates, shared context, and coordination messages.</p>
+    <p>This communication can travel through: direct API calls from one agent to another, shared message queues or event buses, shared databases or memory stores, structured API protocols (like Anthropic's Model Context Protocol or Google's Agent-to-Agent protocol), or plain HTTP calls between agent services.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Communication</div>
+    <p>Every piece of information an agent sends to another is a communication. This includes: task instructions, capability requests, tool call results, status reports, delegation of sub-tasks, negotiation of scope, sharing of retrieved data, and confirmation of actions. Each of these represents a message that one agent trusts because it appears to come from another agent in the system.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Insecure</div>
+    <p>A communication channel is insecure when it cannot guarantee <strong>authenticity</strong> (the message is really from who it claims), <strong>integrity</strong> (the message hasn't been changed in transit), or <strong>confidentiality</strong> (the message hasn't been read by someone it wasn't intended for). When any of these guarantees are absent, the channel becomes an attack surface — an attacker who can touch the channel can impersonate any agent or alter any message.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-01.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-03.html">The OWASP definition →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

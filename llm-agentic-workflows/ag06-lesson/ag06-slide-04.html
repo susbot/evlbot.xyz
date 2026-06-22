@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 4 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a><a class="seg done" href="ag06-slide-03.html"></a>
+    <a class="seg active" href="ag06-slide-04.html"></a>
+    <a class="seg" href="ag06-slide-05.html"></a><a class="seg" href="ag06-slide-06.html"></a><a class="seg" href="ag06-slide-07.html"></a><a class="seg" href="ag06-slide-08.html"></a><a class="seg" href="ag06-slide-09.html"></a><a class="seg" href="ag06-slide-10.html"></a><a class="seg" href="ag06-slide-11.html"></a><a class="seg" href="ag06-slide-12.html"></a><a class="seg" href="ag06-slide-13.html"></a><a class="seg" href="ag06-slide-14.html"></a><a class="seg" href="ag06-slide-15.html"></a><a class="seg" href="ag06-slide-16.html"></a><a class="seg" href="ag06-slide-17.html"></a><a class="seg" href="ag06-slide-18.html"></a><a class="seg" href="ag06-slide-19.html"></a><a class="seg" href="ag06-slide-20.html"></a><a class="seg" href="ag06-slide-21.html"></a><a class="seg" href="ag06-slide-22.html"></a><a class="seg" href="ag06-slide-23.html"></a><a class="seg" href="ag06-slide-24.html"></a><a class="seg" href="ag06-slide-25.html"></a><a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 4</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 4 · Definition Part 2</div>
+  <div class="slide-title">The four memory tiers every agent system has — and what makes each one a poisoning target.</div>
+
+  <div class="block">
+    <div class="block-label purple">Tier 1 — In-context / working memory</div>
+    <p>The agent's active conversation window: everything currently in the prompt. This is what most people think of when they think of "the conversation." It disappears at the end of the session. Poisoning this tier affects only the current interaction — but it's the easiest tier to write to, because anything in the conversation goes into context. This is the foundation for live prompt injection, which can serve as a stepping stone to write into persistent tiers.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Tier 2 — External / retrieval memory (RAG, vector stores)</div>
+    <p>Documents, facts, and entries stored in an external database that the agent queries using semantic similarity. When the agent is asked a question, it retrieves the most relevant stored entries and includes them in its context. <strong>This is the highest-impact poisoning target</strong> — because a single malicious entry, once written, can be retrieved into every future conversation where it matches semantically.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Tier 3 — Episodic memory (session logs, interaction history)</div>
+    <p>A record of past conversations the agent can look back on. Used by agents that need continuity — "last time you asked me about X, you said Y." Poisoning this tier plants false precedents: the agent "remembers" things that never happened or decisions that were never made.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Tier 4 — Semantic / preference memory (learned facts, user profiles)</div>
+    <p>Persistent facts the agent has accumulated about a user, organization, or domain — stored explicitly for future use. "User prefers metric units." "This account has admin privileges." Poisoning this tier is the most targeted attack: it places false persistent facts directly into the agent's model of the world.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag06-slide-03.html">← Back</a>
+    <a class="btn-primary" href="ag06-slide-05.html">What can go wrong →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

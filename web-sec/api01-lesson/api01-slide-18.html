@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 18 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg done" href="api01-slide-10.html"></a><a class="seg done" href="api01-slide-11.html"></a><a class="seg done" href="api01-slide-12.html"></a><a class="seg done" href="api01-slide-13.html"></a><a class="seg done" href="api01-slide-14.html"></a><a class="seg done" href="api01-slide-15.html"></a><a class="seg done" href="api01-slide-16.html"></a><a class="seg done" href="api01-slide-17.html"></a><a class="seg active" href="api01-slide-18.html"></a><a class="seg" href="api01-slide-19.html"></a><a class="seg" href="api01-slide-20.html"></a><a class="seg" href="api01-slide-21.html"></a><a class="seg" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 18</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 4</span>
+    <div>
+      <div class="part-title">Prevention</div>
+      <div class="part-count">Slides 18–28 · 7 mitigations, the matrix, quiz, done</div>
+    </div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 18 · Prevention Overview</div>
+  <div class="slide-title">The fix sounds simple. The hard part is discipline.</div>
+  <div class="slide-subtitle">Fixing BOLA doesn't require new technology — it requires remembering to ask one question.</div>
+
+  <div class="callout green">
+    <div class="callout-label">The core fix — one sentence</div>
+    <p>Every time an API receives an object ID from a client, it must verify that the requesting user is authorized to access that specific object. <strong>Every time. Every endpoint. No exceptions.</strong></p>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">Why it's hard in practice</div>
+    <p><strong>Scale.</strong> A large API can have hundreds of endpoints. Every single one that accepts an ID needs this check. Miss one and that endpoint is exposed.</p>
+    <p><strong>Assumption.</strong> Many developers assume "if they have the ID, they're allowed." IDs are treated as secrets — but they're not. Sequential integers are trivially guessable.</p>
+    <p><strong>Testing gaps.</strong> Standard unit tests don't catch BOLA because they test your data with your credentials. BOLA only appears when you test someone else's data with your credentials.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label pink">Seven mitigations coming up</div>
+    <p>The next 7 slides cover each prevention strategy. They layer on top of each other — <strong>no single one is enough on its own.</strong> Real security comes from applying several together.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-17.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-19.html">Let's start → Mitigation 1 →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

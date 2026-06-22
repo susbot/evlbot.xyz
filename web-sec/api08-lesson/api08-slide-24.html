@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 24 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 24 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg done" href="api08-slide-05.html"></a><a class="seg done" href="api08-slide-06.html"></a><a class="seg done" href="api08-slide-07.html"></a><a class="seg done" href="api08-slide-08.html"></a><a class="seg done" href="api08-slide-09.html"></a><a class="seg done" href="api08-slide-10.html"></a><a class="seg done" href="api08-slide-11.html"></a><a class="seg done" href="api08-slide-12.html"></a><a class="seg done" href="api08-slide-13.html"></a><a class="seg done" href="api08-slide-14.html"></a><a class="seg done" href="api08-slide-15.html"></a><a class="seg done" href="api08-slide-16.html"></a><a class="seg done" href="api08-slide-17.html"></a><a class="seg done" href="api08-slide-18.html"></a><a class="seg done" href="api08-slide-19.html"></a><a class="seg done" href="api08-slide-20.html"></a><a class="seg done" href="api08-slide-21.html"></a><a class="seg done" href="api08-slide-22.html"></a><a class="seg done" href="api08-slide-23.html"></a><a class="seg active" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 24</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 24 &#xb7; Mitigation 6</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 06</div>
+    <div class="mit-title">Remove debug endpoints before production. Require strong auth on all admin interfaces. Restrict by network where possible.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>&#x2022; <strong>Remove dev-only endpoints:</strong> <code>/debug</code>, test utilities, seed endpoints, and any handler that exists only for development must be disabled or removed in production builds. Feature flags or environment checks are acceptable but deployment validation must verify they&#x2019;re off.</p>
+      <p>&#x2022; <strong>Protect actuator/management endpoints:</strong> Spring Boot Actuator, Laravel Telescope, Rails /rails/info, Node.js /metrics &#x2014; all should require strong authentication in production. Limit exposed sub-endpoints to only what ops teams actually need (usually <code>/health</code> and <code>/metrics</code> only).</p>
+      <p>&#x2022; <strong>Admin dashboards:</strong> Never expose admin UIs (Kubernetes dashboard, database admin panels, monitoring consoles) directly to the internet. Place behind a VPN or require authentication before the UI is accessible. Kubernetes: disable the dashboard or deploy it on a port not exposed externally.</p>
+      <p>&#x2022; <strong>IP restriction:</strong> Admin and management endpoints should accept connections only from known internal IPs or VPN subnets. At the network layer, not just in application code &#x2014; a misconfigured application can still bypass application-layer IP checks, but a firewall rule cannot.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">The Tesla lesson</div>
+      <p>The Kubernetes dashboard was a legitimate operational tool that was deployed without authentication and exposed to the internet &#x2014; a config decision, not a code bug. The fix is either: (a) add authentication before deployment, or (b) don&#x2019;t expose it externally at all. Kubernetes dashboard on a non-routable internal port with VPN access is not a vulnerability.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team whether any debug, admin, or framework management interfaces are accessible from the internet &#x2014; Kubernetes dashboards, Spring Actuator endpoints, Django admin. If they are, ask what authentication protects them.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-23.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-25.html">MIT 07: Automated scanning &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

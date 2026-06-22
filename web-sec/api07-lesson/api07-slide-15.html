@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 15 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 15 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg done" href="api07-slide-07.html"></a><a class="seg done" href="api07-slide-08.html"></a><a class="seg done" href="api07-slide-09.html"></a><a class="seg done" href="api07-slide-10.html"></a><a class="seg done" href="api07-slide-11.html"></a><a class="seg done" href="api07-slide-12.html"></a><a class="seg done" href="api07-slide-13.html"></a><a class="seg done" href="api07-slide-14.html"></a><a class="seg active" href="api07-slide-15.html"></a><a class="seg" href="api07-slide-16.html"></a><a class="seg" href="api07-slide-17.html"></a><a class="seg" href="api07-slide-18.html"></a><a class="seg" href="api07-slide-19.html"></a><a class="seg" href="api07-slide-20.html"></a><a class="seg" href="api07-slide-21.html"></a><a class="seg" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 &#xb7; Attack Scenarios</span><span>Slide 15</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 15 &#xb7; Scenario 2</div>
+  <div class="slide-title">Import from URL. The URL is the cloud metadata endpoint.</div>
+  <div class="slide-subtitle">OWASP Scenario #2 &#x2014; file import feature running on a cloud instance with no URL validation.</div>
+  <div class="source-tag">&#x1F4C4; OWASP API Security Top 10 &#xb7; 2023 &#xb7; API7 &#xb7; Scenario 2</div>
+  <div class="scenario-card">
+    <div class="scenario-num">SETUP</div>
+    <div class="scenario-title">A SaaS API with &#x201C;import data from URL&#x201D; feature, running on AWS.</div>
+    <div class="scenario-body">
+      <p>A SaaS platform allows users to import product data: <code>POST /api/products/import { "source_url": "https://supplier.com/catalog.json" }</code>. The server fetches the URL, parses the JSON, and imports the products.</p>
+      <p>The server is an EC2 instance with an IAM role: <code>app-role</code> with permissions including <code>s3:GetObject</code> on <code>arn:aws:s3:::*</code> (overly broad &#x2014; grants access to all company buckets). No URL validation on the <code>source_url</code> field.</p>
+    </div>
+    <div class="scenario-why"><strong>The exploit:</strong> Attacker sends: <code>POST /api/products/import { "source_url": "http://169.254.169.254/latest/meta-data/iam/security-credentials/" }</code>. The server fetches the metadata endpoint, receives the role name, returns an import error that includes the response body (&#x201C;Failed to parse JSON: app-role&#x201D;). Attacker now knows the role name. Second request with the full credentials URL. Import error returns: AccessKeyId, SecretAccessKey, Token. Attacker has temporary credentials for <code>app-role</code> &#x2014; and access to all company S3 buckets.</div>
+  </div>
+  <div class="callout orange">
+    <div class="callout-label">Error messages as data exfiltration</div>
+    <p>The attacker doesn&#x2019;t need the import to succeed &#x2014; they need the response body to be returned in an error message. Many APIs helpfully include the server&#x2019;s response in error messages: &#x201C;Failed to parse response: [response body here].&#x201D; This turns SSRF into data exfiltration even when the feature doesn&#x2019;t work as intended.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-14.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-16.html">Scenario 3 &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

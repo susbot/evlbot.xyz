@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 11 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 11 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg done" href="api01-slide-10.html"></a><a class="seg active" href="api01-slide-11.html"></a><a class="seg" href="api01-slide-12.html"></a><a class="seg" href="api01-slide-13.html"></a><a class="seg" href="api01-slide-14.html"></a><a class="seg" href="api01-slide-15.html"></a><a class="seg" href="api01-slide-16.html"></a><a class="seg" href="api01-slide-17.html"></a><a class="seg" href="api01-slide-18.html"></a><a class="seg" href="api01-slide-19.html"></a><a class="seg" href="api01-slide-20.html"></a><a class="seg" href="api01-slide-21.html"></a><a class="seg" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 · How It Works</span><span>Slide 11</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 11 · Horizontal BOLA — Real Example</div>
+  <div class="slide-title">Peloton. 4 million users. No authentication required.</div>
+  <div class="slide-subtitle">This is horizontal BOLA at scale.</div>
+
+  <div class="real-incident">
+    <div class="real-incident-tag">Real Incident · May 2021</div>
+    <div class="real-incident-title">Peloton API — Unauthenticated User Data Exposure</div>
+    <div class="real-incident-body">
+      <p>Security researcher Jan Masters discovered that Peloton's API endpoint <strong>/api/user/{userId}/workout_list</strong> returned private user data with no authentication required at all — not even a valid login.</p>
+      <p>By simply changing the userId in the URL, anyone could retrieve any Peloton user's: <strong>age, gender, city, weight, workout history, and fitness statistics.</strong></p>
+      <p>Masters reported the vulnerability to Peloton in January 2021. Peloton acknowledged it — then took <strong>three months</strong> to fix it, only after TechCrunch published the story.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>What made it horizontal:</strong> Every account was the same type — regular Peloton user. There was no privilege difference. You just accessed another user at the same level by changing their ID.</div>
+  </div>
+
+  <div class="callout red">
+    <div class="callout-label">The human cost</div>
+    <p>Weight. Fitness level. City. Workout habits. For 4 million people. <strong>Someone's health data is deeply personal.</strong> It can affect their insurance, their employment, their relationships. They had no idea it was sitting in the open.</p>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">What Peloton got wrong</div>
+    <p>Two failures layered on top of each other: no authentication check at all, and no object-level authorization. The endpoint was wide open. Any HTTP request with a userId returned data. No token, no session, nothing.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-10.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-12.html">Now show me vertical BOLA →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

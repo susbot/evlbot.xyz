@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 7 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 7 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg active" href="api02-slide-07.html"></a><a class="seg" href="api02-slide-08.html"></a><a class="seg" href="api02-slide-09.html"></a><a class="seg" href="api02-slide-10.html"></a><a class="seg" href="api02-slide-11.html"></a><a class="seg" href="api02-slide-12.html"></a><a class="seg" href="api02-slide-13.html"></a><a class="seg" href="api02-slide-14.html"></a><a class="seg" href="api02-slide-15.html"></a><a class="seg" href="api02-slide-16.html"></a><a class="seg" href="api02-slide-17.html"></a><a class="seg" href="api02-slide-18.html"></a><a class="seg" href="api02-slide-19.html"></a><a class="seg" href="api02-slide-20.html"></a><a class="seg" href="api02-slide-21.html"></a><a class="seg" href="api02-slide-22.html"></a><a class="seg" href="api02-slide-23.html"></a><a class="seg" href="api02-slide-24.html"></a><a class="seg" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 7</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 7 · Why APIs Are Different</div>
+  <div class="slide-title">APIs make authentication harder to get right.</div>
+  <div class="slide-subtitle">Four reasons APIs are more exposed than traditional web apps.</div>
+
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">🌐</div>
+      <div>
+        <div class="outcome-title">Auth endpoints are public by design</div>
+        <div class="outcome-desc">The login endpoint has to be reachable by everyone — that's its job. Unlike a database or admin panel, you can't firewall it. Every attacker in the world can reach it directly.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">📱</div>
+      <div>
+        <div class="outcome-title">Multiple clients share one auth layer</div>
+        <div class="outcome-desc">Mobile app, web app, third-party integrations, partner APIs — all authenticate through the same endpoints. A bug in any one auth path affects all of them.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🩸</div>
+      <div>
+        <div class="outcome-title">No human in the loop</div>
+        <div class="outcome-desc">A traditional web login might show a CAPTCHA. An API endpoint is pure automation — exactly what a credential-stuffing script needs. There's no friction, no review, no delay.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🔗</div>
+      <div>
+        <div class="outcome-title">Microservices often skip auth internally</div>
+        <div class="outcome-desc">In a microservices architecture, internal services often trust each other without authentication. If an attacker reaches one internal service — via SSRF or a misconfigured endpoint — they may reach all of them without any credential check.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-06.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-08.html">Why is this ranked #2? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

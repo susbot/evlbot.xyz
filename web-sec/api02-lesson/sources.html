@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Sources & References</title>
+<link rel="stylesheet" href="api02-shared.css">
+<style>
+body{padding-bottom:40px;}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent-bright);text-decoration:none;margin:24px 0 8px;}
+.back-link:hover{opacity:.8;}
+.src-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.src-title{font-size:clamp(20px,5vw,28px);font-weight:600;color:#fff;line-height:1.2;margin-bottom:24px;}
+.src-section{margin-bottom:28px;}
+.src-section-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:12px;}
+.src-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:8px;}
+.src-item-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.src-item-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;}
+.src-item-desc{font-size:12px;color:var(--subtle);line-height:1.6;}
+.src-note{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:12px;color:var(--muted);line-height:1.8;margin-top:24px;}
+</style>
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Sources & References</span></div>
+  <a href="https://evlbot.xyz" style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:4px 10px;text-decoration:none;letter-spacing:.06em;">evlbot.xyz</a>
+</div>
+
+<div class="wrap">
+  <a class="back-link" href="api02-slide-01.html">← Back to lesson</a>
+
+  <div class="src-eyebrow">References</div>
+  <div class="src-title">Sources for API2 — Broken Authentication</div>
+
+  <div class="src-section">
+    <div class="src-section-label">Primary Source</div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP API Security Top 10 — 2023 · API2:2023 Broken Authentication</div>
+      <div class="src-item-meta">OWASP Foundation · owasp.org · 2023</div>
+      <div class="src-item-desc">The authoritative source for the definition, vulnerable patterns, example attack scenarios, and prevention guidance in this module. Attack scenarios on slides 14–15 are drawn directly from the OWASP API2 page. CWE references: CWE-204 (Observable Response Discrepancy), CWE-307 (Improper Restriction of Excessive Authentication Attempts). This course is an independent study companion — not affiliated with or endorsed by OWASP.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Real Incidents</div>
+    <div class="src-item">
+      <div class="src-item-title">Fortnite Account Takeover Vulnerability — Epic Games</div>
+      <div class="src-item-meta">Check Point Research · January 2019</div>
+      <div class="src-item-desc">Check Point Research disclosed a multi-step vulnerability combining an XSS flaw on an abandoned Epic Games SSO subdomain with an insecure OAuth token redirect. An attacker could send a crafted link; when clicked, the victim's auth token was silently forwarded to the attacker without any login prompt. Over 200 million Fortnite accounts were potentially affected. Epic Games patched the issue approximately two months after disclosure. Referenced in slides 1, 5, 6, 26.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Spotify Credential Stuffing Attack</div>
+      <div class="src-item-meta">vpnMentor Research / Spotify disclosure · 2020</div>
+      <div class="src-item-desc">A database of approximately 380 million username/password pairs assembled from third-party breaches was used in a credential stuffing campaign targeting Spotify accounts. The Spotify login API had insufficient rate limiting for distributed attacks. Thousands of accounts were compromised. Spotify reset passwords for affected users and notified them via email. Referenced in slides 10, 26.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Parler API Data Scrape — 70TB of User Data</div>
+      <div class="src-item-meta">Independent researcher disclosure · January 2021</div>
+      <div class="src-item-desc">Before Amazon Web Services suspended Parler's hosting in January 2021, researchers discovered that Parler's API endpoints returned user content — posts, profiles, images, and videos — without requiring any authentication token. Combined with sequential integer post IDs and no rate limiting, this allowed automated bulk downloading of all content. Approximately 70 terabytes of data was archived before the platform went offline, including GPS metadata from videos. Referenced in slides 16, 26.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Technical References</div>
+    <div class="src-item">
+      <div class="src-item-title">JWT Security Best Practices — jwt.io</div>
+      <div class="src-item-meta">Auth0 / Okta · jwt.io</div>
+      <div class="src-item-desc">Authoritative reference on JWT structure, signing algorithms, and known vulnerabilities including the alg:none attack (discussed in slide 12), weak secret brute-forcing, and token expiry failures. Includes links to the JWT specification (RFC 7519).</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP Authentication Cheat Sheet</div>
+      <div class="src-item-meta">OWASP Foundation · owasp.org/cheatsheets</div>
+      <div class="src-item-desc">Comprehensive implementation guidance on authentication flows, password storage (recommending Argon2id, bcrypt, scrypt), session management, MFA, and account lockout policies. Directly informs mitigations MIT 02 through MIT 07 in this module.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Password Hashing Competition — Argon2 Specification</div>
+      <div class="src-item-meta">phc.hypercrux.com · 2015</div>
+      <div class="src-item-desc">Background on why Argon2id is the current recommended password hashing algorithm, as referenced in MIT 05. Argon2id was the winner of the Password Hashing Competition and is memory-hard, making GPU-based cracking significantly more expensive than MD5 or SHA-based approaches.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Further Reading</div>
+    <div class="src-item">
+      <div class="src-item-title">PortSwigger Web Security Academy — Authentication</div>
+      <div class="src-item-meta">PortSwigger · portswigger.net/web-security/authentication</div>
+      <div class="src-item-desc">Free interactive labs for practicing authentication vulnerabilities including brute force, credential stuffing simulation, JWT attacks, and OAuth misconfiguration. Excellent hands-on practice after completing this module.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Have I Been Pwned — Breach Data Reference</div>
+      <div class="src-item-meta">Troy Hunt · haveibeenpwned.com</div>
+      <div class="src-item-desc">The reference database for breach data that powers credential stuffing attacks. Useful for understanding the scale of leaked credential pairs that attackers use. Also provides a free API for checking whether user credentials appear in known breach datasets — useful for building "is your password known to attackers?" warnings.</div>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <strong>About this course:</strong> This is an independent, unofficial study companion built for educational purposes. Content is based on publicly available security research and the OWASP API Security Top 10 framework. This project is not affiliated with, endorsed by, or sponsored by the OWASP Foundation. All trademarks remain the property of their respective owners.
+  </div>
+</div>
+</body>
+</html>

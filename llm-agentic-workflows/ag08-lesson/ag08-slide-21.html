@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 21 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 21 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a><a class="seg done" href="ag08-slide-11.html"></a><a class="seg done" href="ag08-slide-12.html"></a><a class="seg done" href="ag08-slide-13.html"></a><a class="seg done" href="ag08-slide-14.html"></a><a class="seg done" href="ag08-slide-15.html"></a><a class="seg done" href="ag08-slide-16.html"></a><a class="seg done" href="ag08-slide-17.html"></a><a class="seg done" href="ag08-slide-18.html"></a><a class="seg done" href="ag08-slide-19.html"></a><a class="seg done" href="ag08-slide-20.html"></a>
+    <a class="seg active" href="ag08-slide-21.html"></a>
+    <a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 21</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 21 · MIT07 + MIT08 + MIT09</div>
+  <div class="slide-title">Idempotency makes retries safe. Monitoring catches cascades early. Chaos testing verifies the defenses actually work.</div>
+
+  <div class="block">
+    <div class="block-label purple">MIT07 — Idempotent Operations</div>
+    <p><strong>What it does:</strong> Actions are designed so that executing them multiple times is safe — the outcome is the same whether the action ran once or ten times. A unique idempotency key per request allows the receiving system to detect and ignore duplicate requests.</p>
+    <p><strong>Why agent pipelines need this:</strong> Retries, circuit breaker recovery, and thundering herd patterns all cause duplicate requests. Without idempotency, a recovered pipeline sends duplicate emails, double-charges customers, or creates duplicate database records. With idempotency keys, the second and third execution of the same logical action are recognized as duplicates and discarded.</p>
+    <p><strong>Implementation:</strong> Generate a unique UUID per logical operation at the orchestrator level. Pass it through every agent as a request ID. At the terminal action agent, check the idempotency key against a seen-keys store before executing. If the key has been seen, return the cached result without executing again.</p>
+    <p><strong>Directly fixes Scenario 5's duplicate email problem:</strong> When the customer service pipeline recovered and all 6 agents resumed, without idempotency they sent duplicate responses to every ticket. With idempotency keys, each ticket's response could only be sent once — the second attempt would be recognized as a duplicate and discarded.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">MIT08 — Pipeline Health Monitoring and Alerting</div>
+    <p><strong>What it monitors:</strong> Per-agent output volume (deviation from baseline), output quality metrics (validation pass rate, field completeness scores), latency (P99 response time), error rates, and downstream action volume (emails sent per hour, transactions per hour).</p>
+    <p><strong>Key principle:</strong> The monitoring system must be independent of the shared dependencies it monitors. A monitoring agent that calls the same LLM API as the pipeline it watches will be unavailable during exactly the outage it's supposed to detect — as occurred in Scenario 5.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">MIT09 — Chaos Engineering and Failure Mode Testing</div>
+    <p><strong>What it does:</strong> In a controlled environment, deliberate failures are injected into the pipeline: an agent is made to return truncated data, a dependency is made temporarily unavailable, a circuit breaker is tripped intentionally. The test verifies that the fallback behaviors, circuit breakers, and isolation mechanisms engage as designed — and measures the actual blast radius of each failure mode before it occurs in production.</p>
+    <p><strong>Why testing is non-negotiable:</strong> Resilience mechanisms that have never been tested under realistic load often fail in ways their designers didn't anticipate. The circuit breaker configuration may be too sensitive (trips on normal load variation) or too lenient (never trips on real failures). Chaos testing is the only way to know.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: has your AI pipeline ever been deliberately tested by intentionally breaking one component to see what happens to the rest? Ask whether the resilience mechanisms your team built have been proven to work under failure — or just assumed to work because they were designed to.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-20.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-22.html">Defense layers →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

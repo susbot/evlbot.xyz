@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 27 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a><a class="seg done" href="ag09-slide-07.html"></a><a class="seg done" href="ag09-slide-08.html"></a><a class="seg done" href="ag09-slide-09.html"></a><a class="seg done" href="ag09-slide-10.html"></a><a class="seg done" href="ag09-slide-11.html"></a><a class="seg done" href="ag09-slide-12.html"></a><a class="seg done" href="ag09-slide-13.html"></a><a class="seg done" href="ag09-slide-14.html"></a><a class="seg done" href="ag09-slide-15.html"></a><a class="seg done" href="ag09-slide-16.html"></a><a class="seg done" href="ag09-slide-17.html"></a><a class="seg done" href="ag09-slide-18.html"></a><a class="seg done" href="ag09-slide-19.html"></a><a class="seg done" href="ag09-slide-20.html"></a><a class="seg done" href="ag09-slide-21.html"></a><a class="seg done" href="ag09-slide-22.html"></a><a class="seg done" href="ag09-slide-23.html"></a><a class="seg done" href="ag09-slide-24.html"></a><a class="seg done" href="ag09-slide-25.html"></a><a class="seg done" href="ag09-slide-26.html"></a>
+    <a class="seg active" href="ag09-slide-27.html"></a>
+    <a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Appendix</span><span>Slide 27</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 27 · Appendix — Research Context</div>
+  <div class="slide-title">The science behind the patterns: automation bias research, AI social engineering, and the history of human factors in security.</div>
+
+  <div class="block">
+    <div class="block-label purple">Automation Bias — the foundational research</div>
+    <p>The term "automation bias" was introduced by Mosier and Skitka (1996) in aviation research, describing the tendency of operators to defer to automated systems — accepting automated recommendations without independent verification, and failing to monitor for automated errors. The original research context was EFIS (electronic flight instrument systems) cockpits, where pilots were found to trust automation even when it was producing incorrect outputs.</p>
+    <p>Parasuraman and Riley (1997) formalized the framework: automation bias is a form of complacency that occurs when automation achieves high accuracy — paradoxically, the more reliable the automation, the stronger the bias it induces. The trust is rational on average; the exploitation potential lies in the tail cases the automation handles poorly.</p>
+    <p>More recent work (Skitka et al. 2000, Goddard et al. 2012) extends this to clinical decision support systems, where automation bias has been documented in drug dosing alerts, diagnostic support systems, and imaging analysis. Clinicians with more experience with a specific automated system show stronger automation bias than less experienced users — the "expert paradox" directly paralleling Slide 4's Property 3.</p>
+    <p>For AI-specific systems, the "AI oracle effect" (the increase in automation bias when the recommendation source is an AI vs. a rule system) has been studied by Dietvorst et al. (2015) (algorithm aversion) and Logg et al. (2019) (algorithm appreciation), showing a complex relationship: some users show higher trust in AI than human experts (algorithm appreciation), which amplifies bias; others reject AI recommendations even when superior (algorithm aversion), which creates under-trust. Both miscalibrations are relevant to AG09.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">AI-mediated social engineering — the emerging threat model</div>
+    <p>Traditional social engineering research (Cialdini 1984, Hadnagy 2010) identifies the psychological principles attackers use: authority, urgency, scarcity, social proof, liking, and reciprocity. Each of these can be amplified when delivered through an AI agent rather than directly by an attacker:</p>
+    <ul>
+      <li><strong>Authority:</strong> AI agents carry institutional authority by virtue of being organizational systems. Content from a trusted internal AI assistant has organizational authority even when the content originated outside the organization.</li>
+      <li><strong>Urgency:</strong> AI agents can generate urgency signals (emergency flags, time-remaining timers, critical priority labels) that are indistinguishable from legitimate system urgency. An attacker who can influence an agent's urgency output can use it as a social engineering lever.</li>
+      <li><strong>Social proof:</strong> "This action has been approved by 3 other reviewers" is a social proof signal that an AI agent can generate, whether or not it accurately reflects the system's state. Injecting false social proof through an AI relay amplifies compliance beyond what direct claim would achieve.</li>
+    </ul>
+    <p>The use of AI to conduct social engineering at scale (synthetic voice calls, personalized phishing, adaptive pretexting) is documented in the threat intelligence literature as of 2024–2025. The convergence of prompt injection vulnerabilities with social engineering delivery creates the specific risk pattern described in Pattern 4.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Human factors in security oversight — the policy dimension</div>
+    <p>The EU AI Act (Regulation (EU) 2024/1689) mandates "human oversight" for high-risk AI systems — but defines this primarily as the technical ability to interrupt, override, or shut down an AI system, not as the human's cognitive capacity to exercise meaningful oversight. This definition addresses the formal existence of oversight but not the quality of oversight under automation bias conditions.</p>
+    <p>NIST AI RMF (2023) takes a broader view, recognizing that human oversight capacity must be actively maintained: the framework's "Govern" function includes requirements for ongoing monitoring of human-AI team performance, which implicitly addresses the oversight quality problem. The RMF's emphasis on "explainability" (NIST AI RMF 2.1) aligns with MIT03 in this lesson.</p>
+    <p>The intersection of human factors research (automation bias, skill atrophy) and security engineering (mandatory controls, separation of duties) represents a relatively new research area. Academic work from Hancock et al. (2011, 2013) on trust in automation, and from Sarter et al. (1997) on "automation surprises" in aviation, provides the theoretical underpinning for MIT09 (human independence maintenance) — the insight that skill atrophy from automation use is a documented, measurable phenomenon that can be mitigated by deliberate practice requirements.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-26.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-28.html">Sources →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 8 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 8 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg done" href="api03-slide-03.html"></a><a class="seg done" href="api03-slide-04.html"></a><a class="seg done" href="api03-slide-05.html"></a><a class="seg done" href="api03-slide-06.html"></a><a class="seg done" href="api03-slide-07.html"></a><a class="seg active" href="api03-slide-08.html"></a><a class="seg" href="api03-slide-09.html"></a><a class="seg" href="api03-slide-10.html"></a><a class="seg" href="api03-slide-11.html"></a><a class="seg" href="api03-slide-12.html"></a><a class="seg" href="api03-slide-13.html"></a><a class="seg" href="api03-slide-14.html"></a><a class="seg" href="api03-slide-15.html"></a><a class="seg" href="api03-slide-16.html"></a><a class="seg" href="api03-slide-17.html"></a><a class="seg" href="api03-slide-18.html"></a><a class="seg" href="api03-slide-19.html"></a><a class="seg" href="api03-slide-20.html"></a><a class="seg" href="api03-slide-21.html"></a><a class="seg" href="api03-slide-22.html"></a><a class="seg" href="api03-slide-23.html"></a><a class="seg" href="api03-slide-24.html"></a><a class="seg" href="api03-slide-25.html"></a><a class="seg" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 8</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 8 · Why It's #3</div>
+  <div class="slide-title">It's everywhere. And it's invisible from the outside.</div>
+  <div class="slide-subtitle">The risk is in the data model, not the access control list.</div>
+
+  <div class="callout red">
+    <div class="callout-label">The Scope Problem</div>
+    <p>BOPLA affects every API endpoint that creates, reads, updates, or deletes data — which is most of them. The vulnerability isn't in who can call the endpoint; it's in <strong>which fields are exposed or accepted</strong> within that call.</p>
+    <p>A well-designed authorization system that correctly checks object ownership (no BOLA) can still be completely vulnerable to BOPLA if it doesn't also check property-level access within each object.</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Why it's hard to catch</div>
+      <div class="compare-item">No suspicious traffic — same endpoints, same users</div>
+      <div class="compare-item">Excessive data exposure looks like a normal API response</div>
+      <div class="compare-item">Mass assignment looks like a normal update request</div>
+      <div class="compare-item">Authorization logs show the correct user — just the wrong fields</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Why it's easy to introduce</div>
+      <div class="compare-item">Framework defaults favor convenience over security</div>
+      <div class="compare-item">New properties added to the model are automatically exposed</div>
+      <div class="compare-item">"We'll filter it in the frontend" is a common and wrong assumption</div>
+      <div class="compare-item">No obvious error when it works — the attacker's request succeeds silently</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-07.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-09.html">Show me how it works →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

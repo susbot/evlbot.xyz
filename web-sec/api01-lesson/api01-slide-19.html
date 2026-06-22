@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 19 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 19 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg done" href="api01-slide-10.html"></a><a class="seg done" href="api01-slide-11.html"></a><a class="seg done" href="api01-slide-12.html"></a><a class="seg done" href="api01-slide-13.html"></a><a class="seg done" href="api01-slide-14.html"></a><a class="seg done" href="api01-slide-15.html"></a><a class="seg done" href="api01-slide-16.html"></a><a class="seg done" href="api01-slide-17.html"></a><a class="seg done" href="api01-slide-18.html"></a><a class="seg active" href="api01-slide-19.html"></a><a class="seg" href="api01-slide-20.html"></a><a class="seg" href="api01-slide-21.html"></a><a class="seg" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 19</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 19 · Mitigation 1</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 01</div>
+    <div class="mit-title">Check ownership on every request, not just login.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Every API endpoint that accepts an object ID must verify two things: <strong>(1) the user is authenticated</strong> (valid token/session) and <strong>(2) the user is authorized to access that specific object</strong> (they own it or have explicit permission).</p>
+      <p>The check must happen in the server-side code for every request. Not just at login. Not just sometimes. Every single time an ID comes in from a client.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">What this looks like in plain English</div>
+      <p>When user 1042 requests order 1041 — the server should ask: "Does user 1042 own order 1041?" If the answer is no, return a 404 (not 403 — don't confirm the record exists). Denied.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What this doesn't fix</div>
+      <p>This only works if developers apply it consistently to every endpoint. One missed endpoint is all an attacker needs. You still need testing (MIT 04) to verify coverage.</p>
+    </div>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">Return 404, not 403</div>
+    <p>When denying access to an object a user doesn't own, return <strong>404 Not Found</strong> instead of <strong>403 Forbidden</strong>. A 403 confirms the record exists — which tells an attacker they found a valid ID. A 404 reveals nothing.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team: when a user requests a record, does the system verify that they own it &#x2014; or just that it exists? Those are two different checks, and only one of them prevents BOLA.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-18.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-20.html">Mitigation 2 →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

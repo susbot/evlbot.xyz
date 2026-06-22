@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 12 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 12 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg done" href="api09-slide-05.html"></a><a class="seg done" href="api09-slide-06.html"></a><a class="seg done" href="api09-slide-07.html"></a><a class="seg done" href="api09-slide-08.html"></a><a class="seg done" href="api09-slide-09.html"></a><a class="seg done" href="api09-slide-10.html"></a><a class="seg done" href="api09-slide-11.html"></a><a class="seg active" href="api09-slide-12.html"></a><a class="seg" href="api09-slide-13.html"></a><a class="seg" href="api09-slide-14.html"></a><a class="seg" href="api09-slide-15.html"></a><a class="seg" href="api09-slide-16.html"></a><a class="seg" href="api09-slide-17.html"></a><a class="seg" href="api09-slide-18.html"></a><a class="seg" href="api09-slide-19.html"></a><a class="seg" href="api09-slide-20.html"></a><a class="seg" href="api09-slide-21.html"></a><a class="seg" href="api09-slide-22.html"></a><a class="seg" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 12</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 12 &#xb7; Pattern 2 Mechanics</div>
+  <div class="slide-title">Subdomain enumeration &#x2192; Staging with real data &#x2192; Direct access or production roadmap</div>
+  <div class="slide-subtitle">How attackers find non-production environments and what they do once inside.</div>
+  <div class="scenario-card">
+    <div class="scenario-num">THE SETUP</div>
+    <div class="scenario-title">A healthcare API with a staging environment that was given a public IP for a demo.</div>
+    <div class="scenario-body">
+      <p><code>api.healthapp.com</code> &#x2014; production, fully secured, HIPAA-compliant</p>
+      <p><code>staging-api.healthapp.com</code> &#x2014; created six months ago for a demo with a potential enterprise client. Given a public IP. Demo completed. Public IP never removed. Uses a copy of production data from three months ago. Auth configured as &#x201C;accept any token&#x201D; for demo convenience. Debug mode on.</p>
+    </div>
+  </div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">1&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Attacker enumerates subdomains</div><div class="outcome-desc">Certificate transparency logs (crt.sh) show all SSL certificates ever issued for *.healthapp.com &#x2014; including <code>staging-api.healthapp.com</code>. Alternatively: DNS brute force tries <code>staging</code>, <code>dev</code>, <code>test</code>, <code>qa</code>, <code>demo</code>, <code>api-staging</code> as subdomain prefixes.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">2&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Attacker discovers the auth accepts any token</div><div class="outcome-desc">Sends <code>Authorization: Bearer test123</code>. Gets HTTP 200 with patient data. Staging was configured to accept any token for demo purposes &#x2014; never changed. Full read access to three months of real patient records with no valid credential.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">3&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Attacker uses staging errors to map production</div><div class="outcome-desc">Debug mode on staging returns full stack traces. Attacker learns: the framework, internal service names, database table structure, and API endpoints not exposed in the public docs. This reconnaissance informs attacks against the production API.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-11.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-13.html">Real incident: USPS API &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

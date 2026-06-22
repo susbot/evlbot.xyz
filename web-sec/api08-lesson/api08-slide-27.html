@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 27 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg done" href="api08-slide-05.html"></a><a class="seg done" href="api08-slide-06.html"></a><a class="seg done" href="api08-slide-07.html"></a><a class="seg done" href="api08-slide-08.html"></a><a class="seg done" href="api08-slide-09.html"></a><a class="seg done" href="api08-slide-10.html"></a><a class="seg done" href="api08-slide-11.html"></a><a class="seg done" href="api08-slide-12.html"></a><a class="seg done" href="api08-slide-13.html"></a><a class="seg done" href="api08-slide-14.html"></a><a class="seg done" href="api08-slide-15.html"></a><a class="seg done" href="api08-slide-16.html"></a><a class="seg done" href="api08-slide-17.html"></a><a class="seg done" href="api08-slide-18.html"></a><a class="seg done" href="api08-slide-19.html"></a><a class="seg done" href="api08-slide-20.html"></a><a class="seg done" href="api08-slide-21.html"></a><a class="seg done" href="api08-slide-22.html"></a><a class="seg done" href="api08-slide-23.html"></a><a class="seg done" href="api08-slide-24.html"></a><a class="seg done" href="api08-slide-25.html"></a><a class="seg done" href="api08-slide-26.html"></a><a class="seg active" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention &#xb7; Quiz</span><span>Slide 27</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 27 &#xb7; Quiz</div>
+  <div class="slide-title">Five questions. No pressure.</div>
+  <div class="slide-subtitle">Test what you understood &#x2014; not what you memorized.</div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 01 OF 05</div>
+    <div class="question-text">What is the key difference between API8 Security Misconfiguration and the other nine OWASP API risks?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">API8 only applies to authentication systems, while the others cover all API endpoints</button>
+      <button class="option" onclick="answer(this,false)">API8 requires a more advanced attacker; the other risks are exploitable by script kiddies</button>
+      <button class="option" onclick="answer(this,true)">API8 is a configuration failure &#x2014; the code may be correct but the deployment settings are wrong. The other risks are typically code or logic bugs that require changing the application. API8 fixes are configuration changes, not code changes.</button>
+      <button class="option" onclick="answer(this,false)">API8 only affects cloud deployments; the other risks apply to all infrastructure</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; this distinction matters for where you look for the fix. If a BOLA vulnerability exists, you fix the authorization check in the code. If a CORS misconfiguration exists, you fix the CORS policy in the server config &#x2014; no code change needed. API8 is the category that lives in environment variables, web server configs, framework settings, and infrastructure configuration &#x2014; not in application code. This is why it&#x2019;s often missed: code review doesn&#x2019;t catch it, and it requires dedicated configuration review and automated scanning.</div>
+    <div class="feedback wrong">Not quite &#x2014; the key distinction is where the fix lives. API8 misconfigurations are fixed by changing configuration: CORS headers, debug mode flags, TLS settings, endpoint exposure. The other OWASP risks require fixing application code: authorization logic, authentication implementation, input validation. This means API8 requires different detection methods (configuration scanning, header analysis) rather than code review alone.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 02 OF 05</div>
+    <div class="question-text">An API sets <code>Access-Control-Allow-Origin</code> to whatever value is in the incoming <code>Origin</code> header, and also sets <code>Access-Control-Allow-Credentials: true</code>. Why is this dangerous?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">It causes the browser to send the user&#x2019;s password with every cross-origin request</button>
+      <button class="option" onclick="answer(this,false)">It disables TLS for cross-origin requests, allowing traffic interception</button>
+      <button class="option" onclick="answer(this,true)">Any website can make authenticated cross-origin requests to the API and read the response. JavaScript on attacker.com can fetch api.yourapp.com with the victim&#x2019;s session cookie, and the browser will allow the attacker&#x2019;s JavaScript to read the response because the CORS headers say the origin is permitted.</button>
+      <button class="option" onclick="answer(this,false)">It allows the API to read cookies from all other websites, exposing user data from third-party sites</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; the browser&#x2019;s Same-Origin Policy normally blocks JavaScript on attacker.com from reading responses from api.yourapp.com. CORS headers are how the API grants exceptions to this rule. When the API reflects any origin and allows credentials, it grants the exception to every origin &#x2014; including the attacker&#x2019;s. The browser sees: &#x201C;The API said attacker.com is allowed, and credentials are permitted.&#x201D; So it sends the session cookie and allows the attacker&#x2019;s JavaScript to read the response. This is why the fix must be a strict allowlist &#x2014; only explicitly permitted origins should receive the CORS grant.</div>
+    <div class="feedback wrong">Not quite &#x2014; the browser&#x2019;s Same-Origin Policy blocks cross-origin JavaScript responses by default. CORS headers are the exception mechanism. When the API reflects the caller&#x2019;s Origin header, it grants the exception to every caller &#x2014; the attacker&#x2019;s JavaScript on attacker.com sends the victim&#x2019;s cookie, gets the API response, and reads it. <code>Allow-Credentials: true</code> enables cookies to be sent cross-origin. Together: attacker&#x2019;s site + victim&#x2019;s cookie + any API response &#x2014; complete cross-origin account access.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 03 OF 05</div>
+    <div class="question-text">A production API returns a 500 error that includes: <code>SELECT * FROM user_accounts WHERE email = &#x2019;test&#x2019; AND active = 1</code>. Beyond exposing the table name, what additional risk does this create?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">It allows the attacker to download the entire database through the error message</button>
+      <button class="option" onclick="answer(this,true)">It confirms the SQL query structure, making SQL injection trivial to craft. The attacker can see exactly where user input is inserted into the query and what the surrounding SQL looks like &#x2014; reducing SQL injection from blind probing to a known-structure exploit.</button>
+      <button class="option" onclick="answer(this,false)">It exposes all user email addresses since they are referenced in the query</button>
+      <button class="option" onclick="answer(this,false)">It grants the attacker database admin credentials because the query is exposed</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; verbose SQL errors are SQL injection roadmaps. Without the error, an attacker must blindly probe: try various payloads, infer from response times (blind SQLi), and slowly reconstruct the query structure. With the error message, the attacker already knows the table name, column names, query structure, and exactly where their input is inserted. They can craft a working injection payload in the first or second attempt instead of spending hours on blind enumeration. The verbose error doesn&#x2019;t create the SQL injection &#x2014; it makes the existing SQL injection trivially exploitable.</div>
+    <div class="feedback wrong">Not quite &#x2014; the immediate risk is accelerated SQL injection. The error reveals the query structure, table name, and column names. An attacker who suspected SQL injection now has a map: they know what the query looks like around their input, so they can craft a working injection payload immediately instead of spending hours on blind probing. The verbose error turns a potential vulnerability into a confirmed, easily exploitable one.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 04 OF 05</div>
+    <div class="question-text">In the Tesla 2018 incident, what was the primary misconfiguration that enabled the breach?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Tesla&#x2019;s API had a SQL injection vulnerability that attackers used to access the Kubernetes cluster</button>
+      <button class="option" onclick="answer(this,false)">Tesla used default AWS credentials (admin/admin) that attackers guessed</button>
+      <button class="option" onclick="answer(this,true)">The Kubernetes admin dashboard was deployed and exposed to the public internet with no authentication required &#x2014; anyone who found the URL had full admin access to the cluster and could see environment variables including AWS credentials.</button>
+      <button class="option" onclick="answer(this,false)">Tesla&#x2019;s TLS certificate had expired, allowing traffic interception and credential theft</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; the root cause was a single deployment configuration decision: the Kubernetes dashboard was accessible from the internet without authentication. This is a textbook API8 failure &#x2014; no code bug, no exploit chain. The dashboard worked exactly as designed &#x2014; it was just deployed with no access control. Once inside the dashboard, the AWS credentials were visible as environment variables in the pod configuration &#x2014; a second misconfiguration (credentials in environment variables visible to anyone with dashboard access). Two configuration failures, compounded.</div>
+    <div class="feedback wrong">Not quite &#x2014; no SQL injection, no brute-forced credentials, no expired certificate. The Kubernetes dashboard was simply deployed with no authentication and exposed on the internet. Anyone who found the URL had full admin access. This is the purest form of API8: the software worked correctly, but the deployment configuration omitted the authentication control entirely. The AWS credentials were a secondary issue &#x2014; they were visible through the unauthenticated dashboard.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 05 OF 05</div>
+    <div class="question-text">Why is automated configuration scanning in CI/CD (MIT 07) more effective than manual configuration review?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Automated tools can detect vulnerabilities that humans can&#x2019;t, including zero-days</button>
+      <button class="option" onclick="answer(this,false)">Manual review is not permitted by compliance frameworks; automation is required</button>
+      <button class="option" onclick="answer(this,true)">Manual review catches issues at a point in time; automation catches regressions. A developer who temporarily enables debug mode to troubleshoot a production issue, then forgets to disable it, passes a manual review that happened last month but is caught by an automated scan that runs on every deployment.</button>
+      <button class="option" onclick="answer(this,false)">Automated tools are cheaper than security engineers, so they scale better from a cost perspective</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; the core value of automated scanning is catching regressions in real time. Configuration drift happens: someone changes a CORS policy to debug a complaint, someone enables verbose errors on a staging server that later becomes production, someone deploys a new endpoint without setting security headers. Manual reviews are point-in-time; they can&#x2019;t catch changes made after the review. An automated scan that runs on every deployment catches these changes the moment they occur &#x2014; before they reach production users. This is the same principle that makes automated testing valuable for code &#x2014; applied to configuration.</div>
+    <div class="feedback wrong">Not quite &#x2014; the primary value is catching regressions continuously, not capability beyond human ability. Security configuration can be correctly set in a manual review on Monday, then accidentally changed by a debugging session on Tuesday, and be wrong when it ships on Wednesday. A manual reviewer checking monthly would miss this entirely. An automated scan running on every deployment catches it in the deployment that introduced the change. Automation makes configuration review continuous rather than periodic.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-26.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-28.html">Done &#x2192; See what you learned</a>
+  </div>
+
+<script>
+function answer(btn, correct) {
+  const card = btn.closest('.question-card');
+  card.querySelectorAll('.option').forEach(o => o.disabled = true);
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  card.querySelector('.feedback.' + (correct ? 'correct' : 'wrong')).classList.add('show');
+}
+</script>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

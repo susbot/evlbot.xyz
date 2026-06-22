@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG02:2026 — Tool Misuse and Exploitation · Slide 17 of 28</title>
+<link rel="stylesheet" href="ag02-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG02:2026</span>
+    <span class="nav-title">Tool Misuse and Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag02-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag02-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag02-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag02-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag02-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag02-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag02-slide-07.html" title="Slide 7 · Tool Misuse vs Other Risks"></a>
+    <a class="seg done" href="ag02-slide-08.html" title="Slide 8 · Why Tools Are the New Attack Surface"></a>
+    <a class="seg done" href="ag02-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag02-slide-10.html" title="Slide 10 · Type 1 — Over-Privileged Tools"></a>
+    <a class="seg done" href="ag02-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg done" href="ag02-slide-12.html" title="Slide 12 · Type 2 — Tool Chaining"></a>
+    <a class="seg done" href="ag02-slide-13.html" title="Slide 13 · Type 2 — Real Example"></a>
+    <a class="seg done" href="ag02-slide-14.html" title="Slide 14 · Scenarios 1–3"></a>
+    <a class="seg done" href="ag02-slide-15.html" title="Slide 15 · Scenarios 4–6"></a>
+    <a class="seg done" href="ag02-slide-16.html" title="Slide 16 · Scenarios 7–9"></a>
+    <a class="seg active" href="ag02-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag02-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag02-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag02-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag02-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag02-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag02-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag02-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag02-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag02-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag02-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag02-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Attack Scenarios</span><span>Slide 17</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 17 · The Pattern</div>
+  <div class="slide-title">Every ASI02 scenario has the same root cause</div>
+  <div class="slide-subtitle">Nine different scenarios. One underlying failure. Fix the root cause and you address all of them.</div>
+
+  <div class="callout purple">
+    <div class="callout-label">The root cause</div>
+    <p><strong>Authorization and intent are separated.</strong> A tool is authorized once — at setup time — for a purpose. But the agent can invoke it for any purpose it can conceive. There is no per-invocation check asking: "Does this use of this tool match the intent the tool was authorized for?"</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label blue">In every scenario, the same failure appears</div>
+    <p><strong>Scenario 01–02 (injection and pivot):</strong> The tool was authorized. The authorizing developer never considered that the tool could be invoked in response to content the agent reads — not just user requests.</p>
+    <p><strong>Scenario 03–04 (over-privileged APIs):</strong> The tool's scope was set to "everything it can do," not "everything this agent needs." No one asked: what is the minimum the agent needs to accomplish its task?</p>
+    <p><strong>Scenarios 05–06 (typosquatting, DNS):</strong> The tool was approved based on its name or category, not its full behavior profile. No validation of what the tool actually does at invocation time.</p>
+    <p><strong>Scenarios 07–09 (misalignment, loops):</strong> There was no ceiling — no budget, no scope limit, no human gate before irreversible actions were taken at scale.</p>
+  </div>
+
+  <div class="callout red">
+    <div class="callout-label">The thing that makes ASI02 uniquely hard to stop</div>
+    <p>Traditional security controls (firewalls, access control lists, IAM policies) check <strong>who</strong> is calling and <strong>what</strong> they're allowed to call. They cannot check <strong>why</strong> the call is being made. Intent validation is the missing control in agentic AI, and it doesn't exist in most current deployments.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">One line to remember</div>
+    <p>Every ASI02 attack exploits the gap between <strong>what the tool is authorized to do</strong> and <strong>what this agent should be doing right now</strong>. Close that gap and you address the entire category.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag02-slide-16.html">← Back</a>
+    <a class="btn-primary" href="ag02-slide-18.html">Now I get it → How do we defend against this?</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

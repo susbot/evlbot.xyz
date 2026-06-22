@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 1 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 1 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg active" href="api06-slide-01.html"></a><a class="seg" href="api06-slide-02.html"></a><a class="seg" href="api06-slide-03.html"></a><a class="seg" href="api06-slide-04.html"></a><a class="seg" href="api06-slide-05.html"></a><a class="seg" href="api06-slide-06.html"></a><a class="seg" href="api06-slide-07.html"></a><a class="seg" href="api06-slide-08.html"></a><a class="seg" href="api06-slide-09.html"></a><a class="seg" href="api06-slide-10.html"></a><a class="seg" href="api06-slide-11.html"></a><a class="seg" href="api06-slide-12.html"></a><a class="seg" href="api06-slide-13.html"></a><a class="seg" href="api06-slide-14.html"></a><a class="seg" href="api06-slide-15.html"></a><a class="seg" href="api06-slide-16.html"></a><a class="seg" href="api06-slide-17.html"></a><a class="seg" href="api06-slide-18.html"></a><a class="seg" href="api06-slide-19.html"></a><a class="seg" href="api06-slide-20.html"></a><a class="seg" href="api06-slide-21.html"></a><a class="seg" href="api06-slide-22.html"></a><a class="seg" href="api06-slide-23.html"></a><a class="seg" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 1</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 1</span>
+    <div><div class="part-title">What Is It?</div><div class="part-count">Slides 1&#x2013;8 &#xb7; From story to definition</div></div>
+  </div>
+  <div class="slide-eyebrow">Slide 1 &#xb7; The Setup</div>
+  <div class="slide-title">14 million people queued. Bots got the tickets first.</div>
+  <div class="slide-subtitle">No exploit. No stolen data. Just an automated client completing the checkout flow faster than any human could.</div>
+  <div class="callout yellow">
+    <div class="callout-label">The Scenario</div>
+    <p>November 2022. Taylor Swift announces the Eras Tour &#x2014; her first concert tour in five years. Ticketmaster runs a &#x201C;Verified Fan&#x201D; presale designed to prioritize real fans over scalpers. 14 million people register. 3.5 million receive presale codes.</p>
+    <p>On sale day, Ticketmaster&#x2019;s systems are overwhelmed &#x2014; not by fake traffic, but by bots completing the legitimate ticket purchase flow. <strong>Bots held millions of tickets simultaneously in shopping carts</strong>, preventing real fans from accessing inventory. Ticketmaster&#x2019;s queue system collapsed. Millions of verified fans waited hours in queue only to find no tickets available.</p>
+    <p>The sale was cancelled for general public. Tickets that did reach the market appeared on resale platforms for thousands of dollars above face value within hours.</p>
+  </div>
+  <div class="callout red">
+    <div class="callout-label">The Congressional response</div>
+    <p>The scale of the failure was large enough that the US Senate Judiciary Committee held hearings on bot abuse, ticket monopolization, and Live Nation&#x2019;s market position. Ticketmaster&#x2019;s CEO testified. <strong>Multiple pieces of anti-bot legislation were introduced.</strong></p>
+    <p>The bots didn&#x2019;t hack Ticketmaster. They used the ticket purchase API exactly as designed &#x2014; they just did it thousands of times per second, with no limit on how many carts any session could hold simultaneously.</p>
+  </div>
+  <div class="block">
+    <div class="block-label pink">Before we name it</div>
+    <p>No credential theft. No SQL injection. No unauthorized endpoint. The bots called the exact same API every fan used &#x2014; just faster, from more sessions, holding more inventory than any business rule prevented. The API had no concept of &#x201C;too much business activity.&#x201D;</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-primary" href="api06-slide-02.html">What do we call this? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

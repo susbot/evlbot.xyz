@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG02:2026 — Tool Misuse and Exploitation · Slide 26 of 28</title>
+<link rel="stylesheet" href="ag02-shared.css">
+<style>
+.matrix{width:100%;border-collapse:collapse;font-size:11px;margin-bottom:16px;}
+.matrix th{background:var(--surface2);color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;padding:8px 6px;text-align:center;border:1px solid var(--border);}
+.matrix th.row-head{text-align:left;width:30%;}
+.matrix td{padding:7px 6px;border:1px solid var(--border);text-align:center;vertical-align:middle;color:var(--muted);font-size:10px;}
+.matrix td.label{text-align:left;color:var(--subtle);font-size:11px;line-height:1.4;}
+.matrix td.label span{display:block;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--muted);margin-top:2px;}
+.hit{color:var(--accent-bright);font-size:14px;font-weight:600;}
+.partial{color:var(--yellow);font-size:14px;}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG02:2026</span>
+    <span class="nav-title">Tool Misuse and Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 26 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag02-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag02-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag02-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag02-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag02-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag02-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag02-slide-07.html" title="Slide 7 · Tool Misuse vs Other Risks"></a>
+    <a class="seg done" href="ag02-slide-08.html" title="Slide 8 · Why Tools Are the New Attack Surface"></a>
+    <a class="seg done" href="ag02-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag02-slide-10.html" title="Slide 10 · Type 1 — Over-Privileged Tools"></a>
+    <a class="seg done" href="ag02-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg done" href="ag02-slide-12.html" title="Slide 12 · Type 2 — Tool Chaining"></a>
+    <a class="seg done" href="ag02-slide-13.html" title="Slide 13 · Type 2 — Real Example"></a>
+    <a class="seg done" href="ag02-slide-14.html" title="Slide 14 · Scenarios 1–3"></a>
+    <a class="seg done" href="ag02-slide-15.html" title="Slide 15 · Scenarios 4–6"></a>
+    <a class="seg done" href="ag02-slide-16.html" title="Slide 16 · Scenarios 7–9"></a>
+    <a class="seg done" href="ag02-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg done" href="ag02-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg done" href="ag02-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg done" href="ag02-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg done" href="ag02-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg done" href="ag02-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg done" href="ag02-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg done" href="ag02-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg done" href="ag02-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg active" href="ag02-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag02-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag02-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 26</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 26 · The Matrix</div>
+  <div class="slide-title">Which mitigations stop which attacks</div>
+  <div class="slide-subtitle">A practitioner map — real attacks on the left, the controls that address them across the top.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI02</div>
+
+  <div style="overflow-x:auto;margin-bottom:14px;">
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th class="row-head">Attack / Scenario</th>
+          <th>M1<br>Least priv.</th>
+          <th>M2<br>Action auth.</th>
+          <th>M3<br>Sandbox</th>
+          <th>M4<br>Intent gate</th>
+          <th>M5<br>Budget</th>
+          <th>M6<br>JIT access</th>
+          <th>M7<br>Semantic+log</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="label">AgentFlayer — 0-click Copilot Studio exfil<span>Over-broad tool defaults → data forwarded</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="partial">~</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td><span class="partial">~</span></td>
+          <td><span class="hit">✓</span></td>
+        </tr>
+        <tr>
+          <td class="label">Amazon Q — Secrets via DNS<span>Prompt injection → secrets encoded in DNS queries</span></td>
+          <td><span class="partial">~</span></td>
+          <td></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="partial">~</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+        </tr>
+        <tr>
+          <td class="label">MCP Tool Descriptor Poisoning — GitHub<span>Malicious descriptor metadata → private repo exfil</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="partial">~</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td></td>
+          <td><span class="hit">✓</span></td>
+        </tr>
+        <tr>
+          <td class="label">EDR Bypass — Tool Chain (PowerShell + cURL)<span>Injected instruction → legitimate tools exfil logs</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="partial">~</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td><span class="partial">~</span></td>
+          <td><span class="hit">✓</span></td>
+        </tr>
+        <tr>
+          <td class="label">DNS Ping Exfil — Approved tool as covert channel<span>Agent pings hostnames encoding stolen data</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td><span class="hit">✓</span></td>
+        </tr>
+        <tr>
+          <td class="label">CRM + Email Chain (S04)<span>CRM query chained with external email → data exfil</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="partial">~</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td><span class="hit">✓</span></td>
+          <td><span class="hit">✓</span></td>
+        </tr>
+        <tr>
+          <td class="label">Loop Amplification (S09)<span>Agent calls costly API in unbounded loop → DoS/bill</span></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><span class="partial">~</span></td>
+          <td><span class="hit">✓</span></td>
+          <td></td>
+          <td><span class="hit">✓</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">How to read this</div>
+    <p><strong>✓</strong> = this mitigation directly addresses the attack vector or limits its impact. <strong>~</strong> = partial coverage. Empty = does not address this path.</p>
+    <p><strong>MIT 01 (Least Privilege) and MIT 04 (Intent Gate) cover the most attacks.</strong> If you can only implement two, start there. MIT 03 (Sandbox) + MIT 07 (Monitoring) form the best detection and containment layer. MIT 05 (Budget) is the only control that reliably stops loop amplification.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag02-slide-25.html">← Back</a>
+    <a class="btn-primary" href="ag02-slide-27.html">Test what you know → Quiz</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

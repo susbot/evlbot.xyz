@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 17 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg done" href="api08-slide-05.html"></a><a class="seg done" href="api08-slide-06.html"></a><a class="seg done" href="api08-slide-07.html"></a><a class="seg done" href="api08-slide-08.html"></a><a class="seg done" href="api08-slide-09.html"></a><a class="seg done" href="api08-slide-10.html"></a><a class="seg done" href="api08-slide-11.html"></a><a class="seg done" href="api08-slide-12.html"></a><a class="seg done" href="api08-slide-13.html"></a><a class="seg done" href="api08-slide-14.html"></a><a class="seg done" href="api08-slide-15.html"></a><a class="seg done" href="api08-slide-16.html"></a><a class="seg active" href="api08-slide-17.html"></a><a class="seg" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 &#xb7; Attack Scenarios</span><span>Slide 17</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 17 &#xb7; The Pattern</div>
+  <div class="slide-title">Every scenario had a control that existed but wasn&#x2019;t applied correctly.</div>
+  <div class="slide-subtitle">CORS, error handling, method restrictions &#x2014; all available in the framework. All misconfigured.</div>
+  <div class="block">
+    <div class="block-label pink">The Missing Question</div>
+    <p>Every API8 failure omitted: <strong>&#x201C;Does this configuration represent the minimum necessary access, with all debug features off, and all controls explicitly set &#x2014; not just left at defaults?&#x201D;</strong></p>
+    <p>Not &#x201C;does the feature work?&#x201D; &#x2014; it did. Not &#x201C;is the code correct?&#x201D; &#x2014; it was. Specifically: <em>is this configuration appropriate for a production system that faces the internet?</em></p>
+  </div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Failure in each scenario</div>
+      <div class="compare-item">CORS &#x2014; <strong>reflected any origin</strong> instead of validating against a fixed allowlist</div>
+      <div class="compare-item">Verbose errors &#x2014; <strong>debug mode left on</strong> in production; framework default exposed internals</div>
+      <div class="compare-item">DELETE method &#x2014; <strong>no method restriction</strong>; framework routed to a dev-only handler in production</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">The fix pattern</div>
+      <div class="compare-item">Set configuration explicitly for production &#x2014; never rely on defaults</div>
+      <div class="compare-item">Disable debug mode and verbose errors in all non-development environments</div>
+      <div class="compare-item">Allowlist permitted HTTP methods per endpoint &#x2014; block everything else at the framework or routing layer</div>
+      <div class="compare-item">Validate configuration as part of deployment &#x2014; not just code</div>
+      <div class="compare-item">Treat configuration as a security control, not an operational detail</div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-16.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-18.html">How do we fix it? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

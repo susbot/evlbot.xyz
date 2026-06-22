@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 27 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg done" href="api01-slide-10.html"></a><a class="seg done" href="api01-slide-11.html"></a><a class="seg done" href="api01-slide-12.html"></a><a class="seg done" href="api01-slide-13.html"></a><a class="seg done" href="api01-slide-14.html"></a><a class="seg done" href="api01-slide-15.html"></a><a class="seg done" href="api01-slide-16.html"></a><a class="seg done" href="api01-slide-17.html"></a><a class="seg done" href="api01-slide-18.html"></a><a class="seg done" href="api01-slide-19.html"></a><a class="seg done" href="api01-slide-20.html"></a><a class="seg done" href="api01-slide-21.html"></a><a class="seg done" href="api01-slide-22.html"></a><a class="seg done" href="api01-slide-23.html"></a><a class="seg done" href="api01-slide-24.html"></a><a class="seg done" href="api01-slide-25.html"></a><a class="seg done" href="api01-slide-26.html"></a><a class="seg active" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 · Quiz</span><span>Slide 27</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 27 · Quiz</div>
+  <div class="slide-title">Five questions. No pressure.</div>
+  <div class="slide-subtitle">Test what you understood — not what you memorized.</div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 01 OF 05</div>
+    <div class="question-text">You're logged into a shopping app. Your order is at /api/orders/5021. You change the URL to /api/orders/5020 and see a different customer's order. What type of vulnerability is this?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Broken Authentication — someone else's session was used</button>
+      <button class="option" onclick="answer(this,true)">Broken Object Level Authorization — you accessed an object you don't own</button>
+      <button class="option" onclick="answer(this,false)">SQL Injection — the database query was manipulated</button>
+      <button class="option" onclick="answer(this,false)">Security Misconfiguration — the server was set up wrong</button>
+    </div>
+    <div class="feedback correct">Correct — you were authenticated (logged in), but the API didn't check whether order 5020 was yours. That's an authorization failure — specifically BOLA.</div>
+    <div class="feedback wrong">Not quite — you didn't use anyone else's session, manipulate a query, or misconfigure anything. You just changed a number. The API never checked if that number's data belonged to you. That's BOLA.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 02 OF 05</div>
+    <div class="question-text">What is the core difference between authentication and authorization?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Authentication is for admins; authorization is for regular users</button>
+      <button class="option" onclick="answer(this,false)">Authentication uses passwords; authorization uses tokens</button>
+      <button class="option" onclick="answer(this,true)">Authentication proves who you are; authorization determines what you're allowed to access</button>
+      <button class="option" onclick="answer(this,false)">They mean the same thing — both verify your identity</button>
+    </div>
+    <div class="feedback correct">Correct — authentication is identity ("who are you?"). Authorization is permission ("what are you allowed to do?"). BOLA is always an authorization failure — the API knew who you were, it just didn't check what you were allowed to access.</div>
+    <div class="feedback wrong">Not quite — authentication and authorization are two different checks. Authentication = "who are you?" Authorization = "what are you allowed to access?" BOLA happens when the second check is skipped.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 03 OF 05</div>
+    <div class="question-text">The Peloton breach exposed 4 million users' private data. What made it especially easy to exploit?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">The attacker used stolen admin credentials to access the system</button>
+      <button class="option" onclick="answer(this,false)">The data was stored unencrypted in a public cloud bucket</button>
+      <button class="option" onclick="answer(this,true)">The endpoint required no authentication at all — anyone could request any user's data by changing the user ID</button>
+      <button class="option" onclick="answer(this,false)">The attacker injected malicious code into Peloton's database</button>
+    </div>
+    <div class="feedback correct">Correct — no token, no session, no login required. Just a URL with a user ID. Change the ID, get the data. No hacking skill needed whatsoever.</div>
+    <div class="feedback wrong">Not quite — the Peloton breach required no credentials, no exploits, and no injection. The API endpoint was wide open — unauthenticated. Anyone who knew the URL pattern could access any account.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 04 OF 05</div>
+    <div class="question-text">When an API denies access to an object a user doesn't own, which HTTP status code should it return — and why?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">403 Forbidden — to clearly tell the user they're not allowed</button>
+      <button class="option" onclick="answer(this,true)">404 Not Found — so the attacker doesn't know the object exists at all</button>
+      <button class="option" onclick="answer(this,false)">401 Unauthorized — because the user isn't logged in</button>
+      <button class="option" onclick="answer(this,false)">200 OK with an empty response — to avoid revealing anything</button>
+    </div>
+    <div class="feedback correct">Correct — a 403 confirms "this thing exists but you can't have it." A 404 reveals nothing. If an attacker is enumerating IDs, 404s give them no information about which IDs are valid. Don't help them narrow it down.</div>
+    <div class="feedback wrong">Not quite — a 403 tells the attacker "this record exists, you just can't see it." That confirms the ID is valid — useful intel for enumeration. A 404 is safer: it reveals nothing about whether the object exists.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 05 OF 05</div>
+    <div class="question-text">T-Mobile's 2023 breach exposed 37 million customer records over 6 weeks undetected. Which mitigation would have been most likely to catch it early?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Using UUIDs instead of sequential IDs</button>
+      <button class="option" onclick="answer(this,false)">Enforcing HTTPS on all API endpoints</button>
+      <button class="option" onclick="answer(this,true)">Monitoring for unusual query patterns — millions of requests from an unexpected source should have triggered an alert</button>
+      <button class="option" onclick="answer(this,false)">Requiring users to re-authenticate every hour</button>
+    </div>
+    <div class="feedback correct">Correct — the attacker queried the API millions of times over six weeks. That volume and pattern is anomalous. A monitoring system watching for unusual API access patterns would have flagged this on day one — or hour one.</div>
+    <div class="feedback wrong">Not quite — UUIDs and HTTPS wouldn't have helped here (the API already accepted authorized queries). Re-auth doesn't stop mass enumeration either. The breach ran for 6 weeks because nobody was watching the query patterns. Monitoring (MIT 07) is what catches this.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-26.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-28.html">Done → See what you learned →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+
+<script>
+function answer(btn, correct) {
+  const card = btn.closest('.question-card');
+  card.querySelectorAll('.option').forEach(o => o.disabled = true);
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  card.querySelector('.feedback.' + (correct ? 'correct' : 'wrong')).classList.add('show');
+}
+</script>
+</body>
+</html>

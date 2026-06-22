@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 26 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 26 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg done" href="api09-slide-05.html"></a><a class="seg done" href="api09-slide-06.html"></a><a class="seg done" href="api09-slide-07.html"></a><a class="seg done" href="api09-slide-08.html"></a><a class="seg done" href="api09-slide-09.html"></a><a class="seg done" href="api09-slide-10.html"></a><a class="seg done" href="api09-slide-11.html"></a><a class="seg done" href="api09-slide-12.html"></a><a class="seg done" href="api09-slide-13.html"></a><a class="seg done" href="api09-slide-14.html"></a><a class="seg done" href="api09-slide-15.html"></a><a class="seg done" href="api09-slide-16.html"></a><a class="seg done" href="api09-slide-17.html"></a><a class="seg done" href="api09-slide-18.html"></a><a class="seg done" href="api09-slide-19.html"></a><a class="seg done" href="api09-slide-20.html"></a><a class="seg done" href="api09-slide-21.html"></a><a class="seg done" href="api09-slide-22.html"></a><a class="seg done" href="api09-slide-23.html"></a><a class="seg done" href="api09-slide-24.html"></a><a class="seg done" href="api09-slide-25.html"></a><a class="seg active" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 26</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 26 &#xb7; Prevention Matrix</div>
+  <div class="slide-title">Seven controls, three failure modes. Which mitigation addresses which problem.</div>
+  <div class="slide-subtitle">Match each mitigation to the scenario it prevents.</div>
+  <table class="matrix-table">
+    <thead>
+      <tr>
+        <th>Mitigation</th>
+        <th>Version Sprawl</th>
+        <th>Environment Exposure</th>
+        <th>Undocumented Endpoints</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>MIT 01</strong> Complete inventory</td>
+        <td class="cell-yes">&#x2713; Reveals all versions</td>
+        <td class="cell-yes">&#x2713; Lists all environments</td>
+        <td class="cell-yes">&#x2713; Surfaces undocumented</td>
+      </tr>
+      <tr>
+        <td><strong>MIT 02</strong> Deprecation process</td>
+        <td class="cell-yes">&#x2713; Enforces version shutdown</td>
+        <td class="cell-partial">&#x2014; Not directly</td>
+        <td class="cell-partial">&#x2014; Not directly</td>
+      </tr>
+      <tr>
+        <td><strong>MIT 03</strong> Network restriction</td>
+        <td class="cell-yes">&#x2713; Blocks old versions immediately</td>
+        <td class="cell-yes">&#x2713; Blocks staging from internet</td>
+        <td class="cell-yes">&#x2713; Blocks undiscovered paths</td>
+      </tr>
+      <tr>
+        <td><strong>MIT 04</strong> Same controls all versions</td>
+        <td class="cell-yes">&#x2713; v1 gets v2&#x2019;s security controls</td>
+        <td class="cell-partial">&#x2014; Environment-level issue</td>
+        <td class="cell-yes">&#x2713; Undoc endpoints get auth</td>
+      </tr>
+      <tr>
+        <td><strong>MIT 05</strong> Environment separation</td>
+        <td class="cell-partial">&#x2014; Not directly</td>
+        <td class="cell-yes">&#x2713; Removes staging from internet</td>
+        <td class="cell-partial">&#x2014; Not directly</td>
+      </tr>
+      <tr>
+        <td><strong>MIT 06</strong> Discovery scanning</td>
+        <td class="cell-yes">&#x2713; Finds forgotten versions</td>
+        <td class="cell-yes">&#x2713; Finds exposed environments</td>
+        <td class="cell-yes">&#x2713; Finds undocumented paths</td>
+      </tr>
+      <tr>
+        <td><strong>MIT 07</strong> API gateway</td>
+        <td class="cell-yes">&#x2713; Old versions blocked at gateway</td>
+        <td class="cell-yes">&#x2713; Backends inaccessible directly</td>
+        <td class="cell-yes">&#x2713; Only registered routes allowed</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="callout blue">
+    <div class="callout-label">The minimum viable set</div>
+    <p>If you can only implement three: <strong>MIT 01</strong> (inventory &#x2014; you need to know what exists), <strong>MIT 03</strong> (network restriction &#x2014; immediate attack surface reduction), and <strong>MIT 07</strong> (API gateway &#x2014; structural enforcement of visibility). Discovery scanning (MIT 06) should follow closely as the feedback loop that keeps MIT 01 accurate.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-25.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-27.html">Quiz &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

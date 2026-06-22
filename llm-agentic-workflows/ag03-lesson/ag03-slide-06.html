@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Identity and Privilege Abuse · Slide 6 of 28</title>
+<link rel="stylesheet" href="ag03-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Identity and Privilege Abuse</span>
+  </div>
+  <span class="nav-right">Slide 6 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag03-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag03-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag03-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag03-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag03-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg active" href="ag03-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg" href="ag03-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg" href="ag03-slide-08.html" title="Slide 8 · Why Agent Identity Is Different"></a>
+    <a class="seg" href="ag03-slide-09.html" title="Slide 9 · Five Vulnerability Types"></a>
+    <a class="seg" href="ag03-slide-10.html" title="Slide 10 · Type 1 — Un-scoped Privilege Inheritance"></a>
+    <a class="seg" href="ag03-slide-11.html" title="Slide 11 · Type 1 — A Real Example"></a>
+    <a class="seg" href="ag03-slide-12.html" title="Slide 12 · Type 2 — Memory-Based Privilege Retention"></a>
+    <a class="seg" href="ag03-slide-13.html" title="Slide 13 · Types 3–5 — More Vulnerability Patterns"></a>
+    <a class="seg" href="ag03-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg" href="ag03-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg" href="ag03-slide-16.html" title="Slide 16 · Scenarios 5–7"></a>
+    <a class="seg" href="ag03-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag03-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag03-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag03-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag03-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag03-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag03-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag03-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg" href="ag03-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg" href="ag03-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag03-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag03-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — What Is It?</span><span>Slide 6</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 6 · The Attackers</div>
+  <div class="slide-title">Who triggers AG03 attacks — and it's not always who you expect</div>
+  <div class="slide-subtitle">Some attackers are external. Some are legitimate users who discovered a privilege gap. Some aren't attackers at all — just misconfiguration.</div>
+
+  <div class="block">
+    <div class="block-label red">External adversaries</div>
+    <p>The clearest case: an outside attacker injects instructions into the agent's input stream (via a malicious email, a poisoned document, a crafted web page) that cause the agent to relay commands to a higher-privileged agent. They never touched the admin system directly — they used a trusted internal agent as their proxy.</p>
+    <p><strong>The confused deputy attack</strong> — where a high-privilege system is tricked into acting on behalf of a low-privilege attacker — is a classic security pattern. Agents are exceptionally good confused deputies.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Insider threat — legitimate users discovering privilege gaps</div>
+    <p>A support engineer realizes that an IT automation agent they have access to still holds SSH credentials from a previous admin session. They ask the agent to "give me access to the server." The agent complies. No malware, no hacking — just a user who found a gap and used it.</p>
+    <p>This is especially common in organizations where agents are shared across teams with different privilege levels, and memory is not segmented between sessions.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label blue">Misconfigured systems — no human attacker required</div>
+    <p>Sometimes there's no attacker at all. A low-privilege worker agent is granted the full permission set of its orchestrator "for simplicity" at deployment time. A developer uses a low-code platform that defaults to unrestricted internet access. The over-privilege is baked in from day one — it just waits for the right prompt to exploit it.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Forged internal agents</div>
+    <p>An attacker registers a fake agent in an internal agent registry under a trusted-sounding name ("Admin Helper", "IT Maintenance Bot"). Other agents route privileged tasks to it based on its descriptor. The attacker's agent collects those tasks — and the credentials that come with them.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-05.html">← Back</a>
+    <a class="btn-primary" href="ag03-slide-07.html">Let's be precise about what AG03 is — and isn't →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

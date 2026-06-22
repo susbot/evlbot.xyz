@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 8 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 8 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a>
+    <a class="seg active" href="ag08-slide-08.html"></a>
+    <a class="seg" href="ag08-slide-09.html"></a><a class="seg" href="ag08-slide-10.html"></a><a class="seg" href="ag08-slide-11.html"></a><a class="seg" href="ag08-slide-12.html"></a><a class="seg" href="ag08-slide-13.html"></a><a class="seg" href="ag08-slide-14.html"></a><a class="seg" href="ag08-slide-15.html"></a><a class="seg" href="ag08-slide-16.html"></a><a class="seg" href="ag08-slide-17.html"></a><a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 8</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 8 · Why This Is a New Problem</div>
+  <div class="slide-title">Traditional distributed systems have decades of failure-isolation engineering. Why don't agent pipelines inherit it?</div>
+
+  <div class="block">
+    <div class="block-label purple">Traditional microservices had well-typed interfaces</div>
+    <p>A microservice calling another microservice receives data in a precisely specified schema. If the response doesn't conform, the caller gets a deserialization error or a validation failure — a hard signal that something is wrong. The failure is detected at the type boundary before it can propagate.</p>
+    <p>Agent-to-agent communication uses natural language instructions and semi-structured JSON. The "schema" is effectively the agent's system prompt interpretation of what the message should contain. There is no compile-time or even runtime type enforcement. A response can be structurally valid, semantically plausible — and entirely wrong. No exception is raised. The failure enters the pipeline undetected.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Traditional systems could define "done correctly"</div>
+    <p>A database query either returns the right rows or it doesn't. A payment API either charges the right amount or returns an error. The definition of "correct" was machine-verifiable against a schema or a checksum or a business rule.</p>
+    <p>For LLM agents, "correct" is often semantically defined — did the summary capture the important points? did the analysis identify the right risks? These are not machine-verifiable properties. No automated check can confirm that an analysis of 4,200 records would have been different if it had seen 82,000. The failure goes undetected because the detector would need to understand the content, not just its format.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Agent pipelines are built with optimism; microservices were built with skepticism</div>
+    <p>Decades of distributed systems engineering produced practices like circuit breakers (Hystrix, Resilience4j), bulkhead patterns, retry with exponential backoff, and health checks — all because engineers learned from outages that "the other service will always be available and correct" is a dangerous assumption.</p>
+    <p>Agent orchestration frameworks, as of 2025, largely lack equivalent primitives. The default pattern is: call the agent, trust the result, pass it forward. The engineering culture is optimistic — focused on what the pipeline does when everything works, not on what it does when something doesn't. This gap is what makes cascading failures a new and distinct risk in agentic systems.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-07.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-09.html">Part 2 — Failure Patterns →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

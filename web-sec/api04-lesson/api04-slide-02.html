@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Unrestricted Resource Consumption · Slide 2 of 28</title>
+<link rel="stylesheet" href="api04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Unrestricted Resource Consumption</span></div>
+  <span class="nav-right">Slide 2 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api04-slide-01.html"></a><a class="seg active" href="api04-slide-02.html"></a><a class="seg" href="api04-slide-03.html"></a><a class="seg" href="api04-slide-04.html"></a><a class="seg" href="api04-slide-05.html"></a><a class="seg" href="api04-slide-06.html"></a><a class="seg" href="api04-slide-07.html"></a><a class="seg" href="api04-slide-08.html"></a><a class="seg" href="api04-slide-09.html"></a><a class="seg" href="api04-slide-10.html"></a><a class="seg" href="api04-slide-11.html"></a><a class="seg" href="api04-slide-12.html"></a><a class="seg" href="api04-slide-13.html"></a><a class="seg" href="api04-slide-14.html"></a><a class="seg" href="api04-slide-15.html"></a><a class="seg" href="api04-slide-16.html"></a><a class="seg" href="api04-slide-17.html"></a><a class="seg" href="api04-slide-18.html"></a><a class="seg" href="api04-slide-19.html"></a><a class="seg" href="api04-slide-20.html"></a><a class="seg" href="api04-slide-21.html"></a><a class="seg" href="api04-slide-22.html"></a><a class="seg" href="api04-slide-23.html"></a><a class="seg" href="api04-slide-24.html"></a><a class="seg" href="api04-slide-25.html"></a><a class="seg" href="api04-slide-26.html"></a><a class="seg" href="api04-slide-27.html"></a><a class="seg" href="api04-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 2</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 2 · The Word</div>
+  <div class="slide-title">Unrestricted Resource Consumption.</div>
+  <div class="slide-subtitle">When an API sets no limits on what any single client can use.</div>
+
+  <div class="block">
+    <div class="block-label pink">What "resources" means</div>
+    <p>In the context of APIs, resources aren't just data. They include anything the API consumes when processing a request:</p>
+  </div>
+
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">📡</div>
+      <div><div class="outcome-title">Network Bandwidth</div><div class="outcome-desc">Large responses, file downloads, media streams — each byte sent costs bandwidth.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">⚙️</div>
+      <div><div class="outcome-title">CPU &amp; Memory</div><div class="outcome-desc">Complex queries, deep nested calls, large payload parsing — processing each request uses server resources.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">💾</div>
+      <div><div class="outcome-title">Database Connections &amp; Queries</div><div class="outcome-desc">Every API call typically triggers a database query. Unlimited requests = unlimited DB load.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">💸</div>
+      <div><div class="outcome-title">Third-Party API Costs</div><div class="outcome-desc">SMS sends, email sends, AI inference, payment processing — each has a per-unit cost. Unlimited calls = unbounded bill.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">⌛</div>
+      <div><div class="outcome-title">Storage</div><div class="outcome-desc">File uploads, generated content, logs — unlimited storage consumption inflates cloud bills and fills disks.</div></div>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">The core problem</div>
+    <p>Without limits, a single malicious (or just careless) client can consume resources intended for thousands of users. The result is degraded service for everyone else, unexpected infrastructure costs, or complete outages.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api04-slide-01.html">← Back</a>
+    <a class="btn-primary" href="api04-slide-03.html">See the official definition →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

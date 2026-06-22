@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 5 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 5 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a><a class="seg done" href="ag06-slide-03.html"></a><a class="seg done" href="ag06-slide-04.html"></a>
+    <a class="seg active" href="ag06-slide-05.html"></a>
+    <a class="seg" href="ag06-slide-06.html"></a><a class="seg" href="ag06-slide-07.html"></a><a class="seg" href="ag06-slide-08.html"></a><a class="seg" href="ag06-slide-09.html"></a><a class="seg" href="ag06-slide-10.html"></a><a class="seg" href="ag06-slide-11.html"></a><a class="seg" href="ag06-slide-12.html"></a><a class="seg" href="ag06-slide-13.html"></a><a class="seg" href="ag06-slide-14.html"></a><a class="seg" href="ag06-slide-15.html"></a><a class="seg" href="ag06-slide-16.html"></a><a class="seg" href="ag06-slide-17.html"></a><a class="seg" href="ag06-slide-18.html"></a><a class="seg" href="ag06-slide-19.html"></a><a class="seg" href="ag06-slide-20.html"></a><a class="seg" href="ag06-slide-21.html"></a><a class="seg" href="ag06-slide-22.html"></a><a class="seg" href="ag06-slide-23.html"></a><a class="seg" href="ag06-slide-24.html"></a><a class="seg" href="ag06-slide-25.html"></a><a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 5</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 5 · Outcomes</div>
+  <div class="slide-title">Six categories of harm — all caused by the agent faithfully acting on what it was made to remember.</div>
+
+  <div class="vuln-grid">
+    <div class="vuln-card">
+      <div class="vuln-card-title">Persistent false authorization</div>
+      <p>The agent "remembers" that certain actions, users, or accounts are pre-authorized. It applies this belief to every future request that triggers the memory — bypassing verification, approval flows, and access controls.</p>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-card-title">Instruction persistence</div>
+      <p>Attacker-placed instructions ("always do X", "never flag Y") survive across sessions and apply to all future users of the agent — not just the attacker's own interactions. The agent follows standing orders it doesn't know came from an adversary.</p>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-card-title">Knowledge base corruption</div>
+      <p>A RAG system returns poisoned entries to legitimate user queries. The agent answers questions based on false "facts" in its knowledge base — providing misinformation at scale to everyone who uses the system.</p>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-card-title">Cross-user data leakage</div>
+      <p>Memory from one user's session is retrieved and surfaced in another user's conversation. In shared or multi-tenant deployments, personal data, preferences, and sensitive details can bleed across user boundaries through the memory layer.</p>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-card-title">False precedent establishment</div>
+      <p>The episodic memory is poisoned with fake records of past decisions: "We previously agreed that security reviews are optional for this project type." The agent cites these false precedents as grounds for its future decisions.</p>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-card-title">Multi-agent belief propagation</div>
+      <p>One poisoned agent writes false information to a shared memory system. Other agents in the same environment retrieve and act on it. A single poisoning event cascades across an entire multi-agent pipeline.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag06-slide-04.html">← Back</a>
+    <a class="btn-primary" href="ag06-slide-06.html">Who does this →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

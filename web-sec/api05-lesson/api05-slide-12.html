@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API5:2023 â Broken Function Level Authorization Â· Slide 12 of 28</title>
+<link rel="stylesheet" href="api05-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API5:2023</span><span class="nav-title">Broken Function Level Authorization</span></div>
+  <span class="nav-right">Slide 12 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api05-slide-01.html"></a><a class="seg done" href="api05-slide-02.html"></a><a class="seg done" href="api05-slide-03.html"></a><a class="seg done" href="api05-slide-04.html"></a><a class="seg done" href="api05-slide-05.html"></a><a class="seg done" href="api05-slide-06.html"></a><a class="seg done" href="api05-slide-07.html"></a><a class="seg done" href="api05-slide-08.html"></a><a class="seg done" href="api05-slide-09.html"></a><a class="seg done" href="api05-slide-10.html"></a><a class="seg done" href="api05-slide-11.html"></a><a class="seg active" href="api05-slide-12.html"></a><a class="seg" href="api05-slide-13.html"></a><a class="seg" href="api05-slide-14.html"></a><a class="seg" href="api05-slide-15.html"></a><a class="seg" href="api05-slide-16.html"></a><a class="seg" href="api05-slide-17.html"></a><a class="seg" href="api05-slide-18.html"></a><a class="seg" href="api05-slide-19.html"></a><a class="seg" href="api05-slide-20.html"></a><a class="seg" href="api05-slide-21.html"></a><a class="seg" href="api05-slide-22.html"></a><a class="seg" href="api05-slide-23.html"></a><a class="seg" href="api05-slide-24.html"></a><a class="seg" href="api05-slide-25.html"></a><a class="seg" href="api05-slide-26.html"></a><a class="seg" href="api05-slide-27.html"></a><a class="seg" href="api05-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 Â· How It Works</span><span>Slide 12</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 12 &#xb7; HTTP Verb Manipulation</div>
+  <div class="slide-title">One URL. Multiple methods. Only some are protected.</div>
+  <div class="slide-subtitle">Change GET to DELETE. The authorization checked the URL, not the action.</div>
+  <div class="callout yellow">
+    <div class="callout-label">How it works</div>
+    <p>REST APIs often handle multiple operations on the same resource URL using different HTTP methods. Authorization checks are sometimes implemented per URL, not per URL + method combination. A regular user authorized to GET a resource can DELETE it if the method check is missing.</p>
+  </div>
+  <div class="mono-block"><span class="comment"># The auth middleware checks URL path but not method</span>
+ALLOWED_USER_PATHS = ["/api/posts/", "/api/users/", "/api/comments/"]
+
+def auth_middleware(request):
+    token = validate(request.headers["Authorization"])
+    if any(request.path.startswith(p) for p in ALLOWED_USER_PATHS):
+        return True   <span class="comment"># path allowed &#x2014; but ANY method passes!</span>
+    return check_admin_role(token)
+
+<span class="comment"># Result:</span>
+GET  /api/posts/123 &#x2192; 200 OK  (reads post &#x2014; correct)
+DELETE /api/posts/123 &#x2192; 200 OK  (deletes post &#x2014; should require admin)</div>
+  <div class="block">
+    <div class="block-label red">Why this specific failure is common</div>
+    <p>Developers often add authorization checks when they add a new endpoint. When they later add a new HTTP method to an existing endpoint, the authorization check for the new method is easily forgotten &#x2014; the route already exists and &#x201C;has authorization.&#x201D; The new method inherits the URL&#x2019;s routing but not necessarily its authorization requirements.</p>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">The fix: authorize on method + path, not just path</div>
+    <p>Authorization checks must be specific to the HTTP method being called, not just the URL being accessed. A role check for GET /api/users is not a role check for DELETE /api/users. Each method on each endpoint is a different function and requires its own authorization decision.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api05-slide-11.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api05-slide-13.html">Real incident: GitLab &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

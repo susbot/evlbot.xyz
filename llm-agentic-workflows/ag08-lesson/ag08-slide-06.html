@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 6 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 6 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a>
+    <a class="seg active" href="ag08-slide-06.html"></a>
+    <a class="seg" href="ag08-slide-07.html"></a><a class="seg" href="ag08-slide-08.html"></a><a class="seg" href="ag08-slide-09.html"></a><a class="seg" href="ag08-slide-10.html"></a><a class="seg" href="ag08-slide-11.html"></a><a class="seg" href="ag08-slide-12.html"></a><a class="seg" href="ag08-slide-13.html"></a><a class="seg" href="ag08-slide-14.html"></a><a class="seg" href="ag08-slide-15.html"></a><a class="seg" href="ag08-slide-16.html"></a><a class="seg" href="ag08-slide-17.html"></a><a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 6</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 6 · Trigger Sources</div>
+  <div class="slide-title">Cascading failures have three categories of trigger — accidental, environmental, and adversarial. Defenses must address all three.</div>
+
+  <div class="block">
+    <div class="block-label yellow">Trigger 1: Accidental failure in an upstream agent</div>
+    <p>The most common cause. An agent encounters unexpected input — a malformed API response, an empty dataset, a timeout that produces a partial result — and produces incorrect output as a result. No attacker involved. The pipeline simply wasn't designed to detect and isolate the bad output before propagating it.</p>
+    <p><strong>Examples:</strong> External API returns partial data during a high-traffic period. Upstream agent's underlying model hallucinates a data field. An agent processes input from a source that changed its schema without notice.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Trigger 2: Environmental overload and resource contention</div>
+    <p>A spike in demand, a slow external dependency, or memory pressure causes one agent to become a bottleneck. Requests queue up. Timeouts propagate. Downstream agents that depend on the bottlenecked agent either receive stale data, no data, or trigger their own overload as they retry.</p>
+    <p><strong>The thundering herd variant:</strong> All downstream agents detect the failure simultaneously, retry simultaneously, and the combined retry load overwhelms the recovering agent — extending the outage far beyond the original cause.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Trigger 3: Adversarial manipulation of one agent</div>
+    <p>An attacker who can control one agent's output — through prompt injection, a compromised data source, or a supply-chain attack on a tool the agent uses — can craft output that is specifically designed to cause harmful behavior in downstream agents. This converts a single-agent compromise into a pipeline-wide attack.</p>
+    <p><strong>Why this is more dangerous than direct attack:</strong> Each downstream agent is a legitimate, trusted component executing its designed function. Defenders see authorized actions being taken by authorized agents. The attacker's instructions are laundered through multiple legitimate steps before producing visible harm — making attribution and detection much harder than a direct attack on the terminal agent.</p>
+    <p><strong>Note on scope:</strong> The cascade mechanism is the vulnerability here. The initial compromise of the upstream agent is covered by other entries in the top 10. AG08 focuses on what happens after a failure originates — regardless of how it started.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-05.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-07.html">What AG08 is and isn't →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

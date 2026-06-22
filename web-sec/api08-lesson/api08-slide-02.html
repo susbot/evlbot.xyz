@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 2 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 2 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg active" href="api08-slide-02.html"></a><a class="seg" href="api08-slide-03.html"></a><a class="seg" href="api08-slide-04.html"></a><a class="seg" href="api08-slide-05.html"></a><a class="seg" href="api08-slide-06.html"></a><a class="seg" href="api08-slide-07.html"></a><a class="seg" href="api08-slide-08.html"></a><a class="seg" href="api08-slide-09.html"></a><a class="seg" href="api08-slide-10.html"></a><a class="seg" href="api08-slide-11.html"></a><a class="seg" href="api08-slide-12.html"></a><a class="seg" href="api08-slide-13.html"></a><a class="seg" href="api08-slide-14.html"></a><a class="seg" href="api08-slide-15.html"></a><a class="seg" href="api08-slide-16.html"></a><a class="seg" href="api08-slide-17.html"></a><a class="seg" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 2</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 2 &#xb7; Definition</div>
+  <div class="slide-title">Security Misconfiguration &#x2014; the right feature, the wrong settings.</div>
+  <div class="slide-subtitle">Not a code bug. Not a logic flaw. The code works as intended &#x2014; but the intent was wrong.</div>
+  <div class="block">
+    <div class="block-label pink">One-sentence definition</div>
+    <p>Security Misconfiguration occurs when an API or its supporting infrastructure is deployed with insecure default settings, missing hardening, unnecessary features enabled, or improperly configured access controls &#x2014; creating exploitable security gaps that no amount of correct application code can fix.</p>
+  </div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">The other 9 API risks</div>
+      <div class="compare-item">BOLA &#x2014; code doesn&#x2019;t check ownership</div>
+      <div class="compare-item">Broken Auth &#x2014; code implements authentication incorrectly</div>
+      <div class="compare-item">BFLA &#x2014; code doesn&#x2019;t check function permissions</div>
+      <div class="compare-item">SSRF &#x2014; code trusts user-supplied URLs</div>
+      <div class="compare-item">Each of these: fix the code and the risk is gone</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">API8 &#x2014; Security Misconfiguration</div>
+      <div class="compare-item">CORS &#x2014; the HTTP header is set incorrectly</div>
+      <div class="compare-item">Error messages &#x2014; the debug mode is left on in production</div>
+      <div class="compare-item">Open admin &#x2014; the dashboard is deployed without auth</div>
+      <div class="compare-item">Weak TLS &#x2014; the server accepts deprecated protocol versions</div>
+      <div class="compare-item">Each of these: fix the configuration and the risk is gone. No code change needed.</div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">Why &#x201C;misconfiguration&#x201D; is a category, not a single vulnerability</div>
+    <p>API8 is the broadest OWASP API risk. It covers everything from a single missing HTTP header to an entire admin console left open on the internet. The common thread: a security control exists, is available, and is not applied &#x2014; or is applied incorrectly. The vulnerability is in the deployment, not the software.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-01.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-03.html">Six surfaces where misconfiguration lives &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

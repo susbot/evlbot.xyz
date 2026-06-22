@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 10 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 10 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg done" href="api06-slide-09.html"></a><a class="seg active" href="api06-slide-10.html"></a><a class="seg" href="api06-slide-11.html"></a><a class="seg" href="api06-slide-12.html"></a><a class="seg" href="api06-slide-13.html"></a><a class="seg" href="api06-slide-14.html"></a><a class="seg" href="api06-slide-15.html"></a><a class="seg" href="api06-slide-16.html"></a><a class="seg" href="api06-slide-17.html"></a><a class="seg" href="api06-slide-18.html"></a><a class="seg" href="api06-slide-19.html"></a><a class="seg" href="api06-slide-20.html"></a><a class="seg" href="api06-slide-21.html"></a><a class="seg" href="api06-slide-22.html"></a><a class="seg" href="api06-slide-23.html"></a><a class="seg" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 10</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 10 &#xb7; Inventory Monopolization</div>
+  <div class="slide-title">Hundreds of carts. All full. No inventory left for real buyers.</div>
+  <div class="slide-subtitle">How bots drain scarce inventory through the legitimate purchase flow.</div>
+  <div class="callout yellow">
+    <div class="callout-label">The Mechanics</div>
+    <p>A limited-release product goes on sale. The API supports: browse inventory &#x2192; add to cart &#x2192; enter payment &#x2192; confirm order. A bot operator prepares hundreds of accounts with saved payment methods, logged-in sessions, and pre-selected sizes. The moment inventory becomes available, the bot sends hundreds of simultaneous checkout requests.</p>
+    <p>Human users &#x2014; clicking through the flow manually &#x2014; complete checkout in 3&#x2013;5 minutes. The bot completes it in under a second. By the time the first human user clicks &#x201C;Add to Cart,&#x201D; <strong>all available inventory is either purchased or held in active bot carts.</strong></p>
+  </div>
+  <div class="block">
+    <div class="block-label red">The cart-holding technique</div>
+    <p>Even if the bot can&#x2019;t complete checkout instantly, holding inventory in a cart blocks it from other buyers. If there&#x2019;s no cart timeout (or a long one), a bot can reserve inventory indefinitely without purchasing it &#x2014; then decide whether to complete the purchase or let it expire and re-acquire it from another session.</p>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">What controls stop this</div>
+    <p>Per-account purchase limits (max 2 tickets per verified account), short cart timeouts (items released after 10 minutes if checkout isn&#x2019;t completed), queue fairness systems (randomized order instead of first-come-first-served), and device fingerprinting to detect parallel sessions from the same operator.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-09.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-11.html">Real incident: Ticketmaster &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

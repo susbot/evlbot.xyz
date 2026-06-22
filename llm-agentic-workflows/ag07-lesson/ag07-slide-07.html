@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 7 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 7 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a>
+    <a class="seg active" href="ag07-slide-07.html"></a>
+    <a class="seg" href="ag07-slide-08.html"></a><a class="seg" href="ag07-slide-09.html"></a><a class="seg" href="ag07-slide-10.html"></a><a class="seg" href="ag07-slide-11.html"></a><a class="seg" href="ag07-slide-12.html"></a><a class="seg" href="ag07-slide-13.html"></a><a class="seg" href="ag07-slide-14.html"></a><a class="seg" href="ag07-slide-15.html"></a><a class="seg" href="ag07-slide-16.html"></a><a class="seg" href="ag07-slide-17.html"></a><a class="seg" href="ag07-slide-18.html"></a><a class="seg" href="ag07-slide-19.html"></a><a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 7</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 7 · Boundaries</div>
+  <div class="slide-title">AG07 is specifically about the communication channel between agents. Three things it is not about.</div>
+
+  <div class="block">
+    <div class="block-label red">Not about manipulating an agent through its input from a user or external source</div>
+    <p>If an attacker sends a malicious prompt directly to an agent — through a chat interface, an API, or any channel the agent exposes to the outside world — that is direct input manipulation. AG07 is about the messages agents send to each other inside the pipeline. The attack surface is the channel between agents, not the channel between a user and an agent.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Not about an agent having too many permissions or taking unauthorized actions on its own</div>
+    <p>If an agent exceeds its intended scope because of how it was configured — because it was given write access to production when it should only have staging access, for example — that is an authorization or permission scoping issue. AG07 is about the communication that coordinates agents, not about what individual agents are permitted to do when they operate correctly.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Not about an agent failing due to incorrect logic or a bug in its code</div>
+    <p>If an agent misinterprets a legitimate message because of a logic error or software bug, that is a reliability or quality issue. AG07 requires that the communication channel itself was exploited — that a message was forged, tampered with, intercepted, or replayed by an attacker or compromised component.</p>
+  </div>
+
+  <div class="callout amber">
+    <div class="callout-label">AG07 is:</div>
+    <p>An attacker (or compromised component) exploited a weakness in the channel, protocol, or message format that agents use to communicate with each other — forging agent identity, tampering with message content, intercepting sensitive data in transit, or replaying previously valid messages — causing one or more agents to perform actions that the legitimate orchestrator never authorized.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-06.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-08.html">Why this is new →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

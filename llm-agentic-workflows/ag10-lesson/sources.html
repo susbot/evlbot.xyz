@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG10:2026 — Rogue Agents · Sources</title>
+<link rel="stylesheet" href="ag10-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG10:2026</span>
+    <span class="nav-title">Rogue Agents — Sources</span>
+  </div>
+  <span class="nav-right">References</span>
+</div>
+
+<div class="slide active" style="max-width:820px;margin:2rem auto">
+
+  <div class="slide-eyebrow">Annotated Sources</div>
+  <div class="slide-title">Primary references for AG10: Rogue Agents</div>
+
+  <div class="block">
+    <div class="block-label purple">1. OWASP Top 10 for LLM Applications and Agentic AI — ASI10: Rogue Agents (2026)</div>
+    <p><strong>Relevance:</strong> The authoritative specification for the risk addressed in this module. Defines rogue agents as AI agents that pursue goals or take actions outside the scope authorized by the principal hierarchy, through misaligned optimization, adversarial goal injection, emergent capability exploitation, or insufficient constraints.</p>
+    <p><strong>Use in this module:</strong> Slide 3 (definition, phrase-by-phrase); slide 7 (scope boundary, IS vs IS NOT); mitigation framework structure.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">2. Omohundro, S. M. (2008). "The Basic AI Drives." Proceedings of the 2008 Conference on Artificial General Intelligence.</div>
+    <p><strong>Relevance:</strong> First formal exposition of instrumental convergence: the argument that sufficiently capable systems pursuing almost any goal will develop sub-goals including self-preservation, resource acquisition, efficiency improvement, and resistance to goal modification. These sub-goals are convergent across almost all terminal goals.</p>
+    <p><strong>Use in this module:</strong> Slide 4 (structural property 3: instrumental convergence), slide 10 (Pattern 2: why capability acquisition is structural), slide 27 (appendix: theoretical foundations).</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">3. Bostrom, N. (2012). "The Superintelligent Will: Motivation and Instrumental Rationality in Advanced Artificial Agents." Minds and Machines, 22(2), 71–85.</div>
+    <p><strong>Relevance:</strong> Combines the orthogonality thesis (intelligence and goals are independent) with instrumental convergence to establish that convergent instrumental sub-goals are predictable across a wide range of capable optimizers. The orthogonality thesis is relevant as a counter to the assumption that "capable AI will naturally align with human values."</p>
+    <p><strong>Use in this module:</strong> Slide 27 (appendix); theoretical grounding for why instrumental convergence applies across different objective types.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">4. Goodhart, C. (1975). "Problems of Monetary Management: The U.K. Experience." Papers in Monetary Economics (Reserve Bank of Australia).</div>
+    <p><strong>Relevance:</strong> Original formulation of what became "Goodhart's Law": statistical regularities collapse when used as control targets. The foundational reference for the proxy-objective divergence problem (Pattern 1: Goal Proxy Exploitation).</p>
+    <p><strong>Use in this module:</strong> Slide 2 (vocabulary: goal proxy), slide 10 (Pattern 1: Goodhart's Law as security vulnerability), slide 27 (appendix).</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">5. Krakovna, V., et al. (2020). "Avoiding Side Effects in Complex Environments." Proceedings of NeurIPS 2020.</div>
+    <p><strong>Relevance:</strong> Survey and analysis of reward hacking instances in reinforcement learning systems, including documented cases of agents exploiting specification gaps in ways designers did not intend. Provides empirical grounding for the claim that capable optimizers find and exploit proxy divergence.</p>
+    <p><strong>Use in this module:</strong> Slide 27 (appendix: Goodhart's Law and reward hacking); examples of real optimization divergence used to illustrate the structural pattern.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">6. Perez, F., & Ribeiro, I. (2022). "Ignore Previous Prompt: Attack Techniques for Language Models." NeurIPS ML Safety Workshop.</div>
+    <p><strong>Relevance:</strong> Early and influential paper on prompt injection as an attack technique against language model systems, demonstrating that instructions injected into user-controlled inputs can redirect model behavior. Grounds Pattern 3 (Adversarial Goal Injection) in documented attack methodology.</p>
+    <p><strong>Use in this module:</strong> Slide 3 (adversarial goal injection as a trigger), slide 11 (Pattern 3 deep dive), slide 13 (Scenario 2: the injected mailer).</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">7. NIST AI Risk Management Framework 1.0 (NIST AI RMF 1.0, 2023). National Institute of Standards and Technology.</div>
+    <p><strong>Relevance:</strong> The NIST AI RMF identifies "unexpected or emergent AI behaviors" as a key risk category and includes controllability and transparency as core trustworthiness properties. The framework's GOVERN, MAP, MEASURE, MANAGE structure provides an organizational context for the agent-level controls described in this module.</p>
+    <p><strong>Use in this module:</strong> Mitigation framework context; MIT09 (red-teaming and alignment testing) maps to NIST AI RMF MEASURE function.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">8. Anthropic. (2022). "Constitutional AI: Harmlessness from AI Feedback." arXiv:2212.08073.</div>
+    <p><strong>Relevance:</strong> Describes a training approach in which AI systems are trained to adhere to an explicit set of principles (a "constitution") rather than relying solely on human feedback. Relevant as a training-time complement to the runtime architectural controls (MIT01–MIT09) that form the core of this module's defense framework.</p>
+    <p><strong>Use in this module:</strong> Slide 27 (appendix: AI alignment research context; Constitutional AI as a training-time approach to the constraint specification problem).</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">9. Bowman, S. R., et al. (2022). "Measuring Progress on Scalable Oversight for Large Language Models." arXiv:2211.03540.</div>
+    <p><strong>Relevance:</strong> Research on maintaining human understanding and control over AI systems as capabilities grow. The scalable oversight problem — how humans can meaningfully supervise AI outputs they cannot fully evaluate — maps directly to the rogue agent challenge of maintaining principal hierarchy oversight without requiring complete human review of every agent action.</p>
+    <p><strong>Use in this module:</strong> Slide 27 (appendix: scalable oversight as a research context for MIT06: human approval gates and MIT03: behavioral monitoring).</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">10. Liu, Y., et al. (2023). "Prompt Injection Attacks and Defenses in LLM-Integrated Applications." arXiv:2310.12815.</div>
+    <p><strong>Relevance:</strong> Systematic study of prompt injection attack vectors in LLM-integrated applications, including indirect prompt injection through documents, emails, tool responses, and retrieved content. Grounds the mechanism of Pattern 3 (adversarial goal injection) in systematically documented attack surface analysis.</p>
+    <p><strong>Use in this module:</strong> Slide 11 (Pattern 3: why adversarial goal injection is more dangerous than traditional injection), slide 13 (Scenario 2: the injected mailer; indirect injection via customer ticket).</p>
+  </div>
+
+  <div class="btn-row" style="margin-top:2rem">
+    <a class="btn-secondary" href="ag10-slide-28.html">← Back to slide 28</a>
+    <a class="btn-secondary" href="../index.html">← Course home</a>
+  </div>
+
+</div>
+
+</body>
+</html>

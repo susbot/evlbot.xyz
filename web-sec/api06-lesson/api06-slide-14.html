@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 14 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 14 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg done" href="api06-slide-09.html"></a><a class="seg done" href="api06-slide-10.html"></a><a class="seg done" href="api06-slide-11.html"></a><a class="seg done" href="api06-slide-12.html"></a><a class="seg done" href="api06-slide-13.html"></a><a class="seg active" href="api06-slide-14.html"></a><a class="seg" href="api06-slide-15.html"></a><a class="seg" href="api06-slide-16.html"></a><a class="seg" href="api06-slide-17.html"></a><a class="seg" href="api06-slide-18.html"></a><a class="seg" href="api06-slide-19.html"></a><a class="seg" href="api06-slide-20.html"></a><a class="seg" href="api06-slide-21.html"></a><a class="seg" href="api06-slide-22.html"></a><a class="seg" href="api06-slide-23.html"></a><a class="seg" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 &#xb7; Attack Scenarios</span><span>Slide 14</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 3</span>
+    <div><div class="part-title">Attack Scenarios</div><div class="part-count">Slides 14&#x2013;17 &#xb7; OWASP examples in plain English</div></div>
+  </div>
+  <div class="slide-eyebrow">Slide 14 &#xb7; Scenario 1</div>
+  <div class="slide-title">Bots hold all the tickets. Fans get nothing.</div>
+  <div class="slide-subtitle">OWASP Scenario #1 &#x2014; no purchase limit, no cart timeout, no bot detection.</div>
+  <div class="source-tag">&#x1F4C4; OWASP API Security Top 10 &#xb7; 2023 &#xb7; API6 &#xb7; Scenario 1</div>
+  <div class="scenario-card">
+    <div class="scenario-num">SETUP</div>
+    <div class="scenario-title">A ticketing platform&#x2019;s purchase flow.</div>
+    <div class="scenario-body">
+      <p>A ticketing platform allows: browse events &#x2192; select seats &#x2192; add to cart &#x2192; enter payment &#x2192; confirm purchase. Tickets are scarce &#x2014; a sold-out venue with 10,000 seats.</p>
+      <p>The API has no per-account ticket limit, no minimum time between add-to-cart and purchase, no limit on simultaneous cart holds per session, and no CAPTCHA or human verification step.</p>
+    </div>
+    <div class="scenario-why"><strong>The exploit:</strong> A bot operator prepares 500 accounts with saved payment methods. The instant the sale opens, all 500 accounts simultaneously add maximum-quantity tickets to cart. Within 3 seconds, 5,000 of the 10,000 tickets are held in bot carts. Within 30 seconds, all 10,000 are either purchased or held. The first human user to reach the purchase screen sees: <em>Sorry, no tickets available.</em> All remaining inventory appears on resale platforms within the hour at 3&#x2013;5x face value.</div>
+  </div>
+  <div class="callout red">
+    <div class="callout-label">What the server saw</div>
+    <p>Valid accounts. Valid tokens. Valid requests. No rate limit violated. No authentication failure. From a pure security perspective, nothing was wrong. From a business perspective, 10,000 real fans were excluded from a purchase they had every right to make.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-13.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-15.html">Scenario 2 &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

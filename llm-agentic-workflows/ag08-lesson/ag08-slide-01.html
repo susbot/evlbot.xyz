@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 1 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 1 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg active" href="ag08-slide-01.html"></a>
+    <a class="seg" href="ag08-slide-02.html"></a><a class="seg" href="ag08-slide-03.html"></a><a class="seg" href="ag08-slide-04.html"></a><a class="seg" href="ag08-slide-05.html"></a><a class="seg" href="ag08-slide-06.html"></a><a class="seg" href="ag08-slide-07.html"></a><a class="seg" href="ag08-slide-08.html"></a><a class="seg" href="ag08-slide-09.html"></a><a class="seg" href="ag08-slide-10.html"></a><a class="seg" href="ag08-slide-11.html"></a><a class="seg" href="ag08-slide-12.html"></a><a class="seg" href="ag08-slide-13.html"></a><a class="seg" href="ag08-slide-14.html"></a><a class="seg" href="ag08-slide-15.html"></a><a class="seg" href="ag08-slide-16.html"></a><a class="seg" href="ag08-slide-17.html"></a><a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 1</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 1 · Hook</div>
+  <div class="slide-title">Everything is working. Then one agent gets a bad result — and three minutes later, the entire pipeline has shut down.</div>
+
+  <div class="block">
+    <div class="block-label red">09:14:03 — Data retrieval agent returns a malformed response</div>
+    <p>The retrieval agent queries an external data source. The source is temporarily overloaded and returns a partial result instead of an error — 4,200 records instead of the expected 82,000. The retrieval agent, seeing a valid-looking response, marks the task complete and passes the result downstream.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">09:14:07 — Analysis agent begins processing 4,200 records</div>
+    <p>The analysis agent receives the truncated dataset and begins processing. It completes in 3 seconds instead of the usual 47 — which looks like a performance improvement, not a problem. It produces confident-looking output: summaries, rankings, recommendations. All based on 5% of the data it should have seen.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">09:14:11 — Decision agent acts on the analysis</div>
+    <p>The decision agent receives the analysis — which has the format and confidence scores it expects. It generates 14 outbound actions: pricing adjustments, inventory reorders, customer communications. The decision agent does not know the analysis was based on corrupted input. It has no mechanism to check.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">09:17:22 — Notification agent triggers 11,000 customer emails</div>
+    <p>The notification agent receives 11,000 send instructions — the volume looks normal for a Tuesday campaign. It executes. Only when a customer replies asking about a discount they didn't request does a human investigate. By that time, three downstream agents have already acted on poisoned data. The original failure was 3 minutes and 19 seconds ago.</p>
+  </div>
+
+  <p style="color:var(--text-muted);font-size:0.88rem;margin-top:1rem;"><strong style="color:var(--accent);">The root cause:</strong> One retrieval agent produced bad output. The pipeline had no isolation between agents — so the failure didn't stay in the retrieval agent. It cascaded, invisibly, through every downstream component.</p>
+
+  <div class="btn-row">
+    <a class="btn-primary" href="ag08-slide-02.html">What exactly happened? →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

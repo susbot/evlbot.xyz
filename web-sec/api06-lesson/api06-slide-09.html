@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 9 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 9 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg active" href="api06-slide-09.html"></a><a class="seg" href="api06-slide-10.html"></a><a class="seg" href="api06-slide-11.html"></a><a class="seg" href="api06-slide-12.html"></a><a class="seg" href="api06-slide-13.html"></a><a class="seg" href="api06-slide-14.html"></a><a class="seg" href="api06-slide-15.html"></a><a class="seg" href="api06-slide-16.html"></a><a class="seg" href="api06-slide-17.html"></a><a class="seg" href="api06-slide-18.html"></a><a class="seg" href="api06-slide-19.html"></a><a class="seg" href="api06-slide-20.html"></a><a class="seg" href="api06-slide-21.html"></a><a class="seg" href="api06-slide-22.html"></a><a class="seg" href="api06-slide-23.html"></a><a class="seg" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 9</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 2</span>
+    <div><div class="part-title">How It Works</div><div class="part-count">Slides 9&#x2013;13 &#xb7; Two attack patterns with real examples</div></div>
+  </div>
+  <div class="slide-eyebrow">Slide 9 &#xb7; Two Attack Patterns</div>
+  <div class="slide-title">Monopolize the inventory. Farm the rewards.</div>
+  <div class="slide-subtitle">Two dominant patterns &#x2014; same missing business controls.</div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Pattern 1: Inventory Monopolization</div>
+      <div class="compare-item"><strong>Acquire all of a scarce resource before real users can</strong></div>
+      <div class="compare-item">Bot opens hundreds of parallel sessions</div>
+      <div class="compare-item">Each session completes the purchase or reservation flow</div>
+      <div class="compare-item">No per-account purchase limit enforced at the API</div>
+      <div class="compare-item">Inventory depletes; real users see &#x201C;sold out&#x201D;</div>
+      <div class="compare-item">Acquired inventory resold at a markup</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Pattern 2: Reward / Referral Farming</div>
+      <div class="compare-item"><strong>Extract monetary value from incentive programs at scale</strong></div>
+      <div class="compare-item">Bot creates thousands of accounts automatically</div>
+      <div class="compare-item">Each account uses a referral code from another bot account</div>
+      <div class="compare-item">Each registration triggers a referral reward payout</div>
+      <div class="compare-item">No verification distinguishes real users from bot accounts</div>
+      <div class="compare-item">Business pays out real money; no real customers acquired</div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">What makes both possible</div>
+    <p>Both patterns exploit the same gap: <strong>the API implements the flow correctly but has no business-level controls</strong> &#x2014; no purchase cap, no minimum completion time, no account verification gate, no anomaly detection for machine-speed activity. The API does exactly what it&#x2019;s supposed to do; the business rules never said &#x201C;not this fast, not this many times.&#x201D;</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-08.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-10.html">Pattern 1: Inventory monopolization &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

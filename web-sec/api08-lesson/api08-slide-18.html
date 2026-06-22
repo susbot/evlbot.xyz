@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 18 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg done" href="api08-slide-05.html"></a><a class="seg done" href="api08-slide-06.html"></a><a class="seg done" href="api08-slide-07.html"></a><a class="seg done" href="api08-slide-08.html"></a><a class="seg done" href="api08-slide-09.html"></a><a class="seg done" href="api08-slide-10.html"></a><a class="seg done" href="api08-slide-11.html"></a><a class="seg done" href="api08-slide-12.html"></a><a class="seg done" href="api08-slide-13.html"></a><a class="seg done" href="api08-slide-14.html"></a><a class="seg done" href="api08-slide-15.html"></a><a class="seg done" href="api08-slide-16.html"></a><a class="seg done" href="api08-slide-17.html"></a><a class="seg active" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 18</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 4</span>
+    <div><div class="part-title">Prevention</div><div class="part-count">Slides 18&#x2013;26 &#xb7; Seven mitigations + the full picture</div></div>
+  </div>
+  <div class="slide-eyebrow">Slide 18 &#xb7; Prevention Overview</div>
+  <div class="slide-title">Seven configuration controls that harden an API against this category.</div>
+  <div class="slide-subtitle">CORS allowlists. Sanitized errors. Security headers. Method restrictions. TLS. Admin endpoint protection. Automated scanning.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F310;</div>
+      <div><div class="outcome-title">MIT 01 &#x2014; CORS Strict Allowlist</div><div class="outcome-desc">Define an explicit list of permitted origins. Never reflect the incoming Origin header. Reject all origins not on the list.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F910;</div>
+      <div><div class="outcome-title">MIT 02 &#x2014; Sanitize Error Messages</div><div class="outcome-desc">Return generic error messages to clients. Log detailed errors internally. Disable debug mode and stack trace exposure in all non-development environments.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4CB;</div>
+      <div><div class="outcome-title">MIT 03 &#x2014; Required Security Headers</div><div class="outcome-desc">Set HSTS, Content-Security-Policy, X-Content-Type-Options, X-Frame-Options, and Referrer-Policy on all API responses. Each header removes a browser-exploitable attack surface.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F527;</div>
+      <div><div class="outcome-title">MIT 04 &#x2014; Disable Unnecessary HTTP Methods</div><div class="outcome-desc">Each endpoint should only accept the HTTP methods it intentionally implements. Return 405 Method Not Allowed for all others. Configure at the routing or middleware layer.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F512;</div>
+      <div><div class="outcome-title">MIT 05 &#x2014; Enforce HTTPS and Modern TLS</div><div class="outcome-desc">Serve the API over HTTPS only. Reject HTTP requests or redirect them. Require TLS 1.2+ &#x2014; disable TLS 1.0 and 1.1. Validate and renew certificates automatically.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F6E0;&#xFE0F;</div>
+      <div><div class="outcome-title">MIT 06 &#x2014; Protect or Remove Debug and Admin Endpoints</div><div class="outcome-desc">Remove development-only endpoints before production deployment. Require strong authentication on all admin interfaces. Restrict by IP where possible. Never expose management UIs to the internet without auth.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F916;</div>
+      <div><div class="outcome-title">MIT 07 &#x2014; Automated Security Configuration Scanning</div><div class="outcome-desc">Integrate configuration validation into CI/CD. Tools like OWASP ZAP, Mozilla Observatory, or custom scripts can verify headers, CORS, TLS, and endpoint exposure automatically on every deployment.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-17.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-19.html">MIT 01: CORS allowlist &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

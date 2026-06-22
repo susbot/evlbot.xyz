@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 13 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 13 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a>
+    <a class="seg done" href="ag04-slide-02.html"></a>
+    <a class="seg done" href="ag04-slide-03.html"></a>
+    <a class="seg done" href="ag04-slide-04.html"></a>
+    <a class="seg done" href="ag04-slide-05.html"></a>
+    <a class="seg done" href="ag04-slide-06.html"></a>
+    <a class="seg done" href="ag04-slide-07.html"></a>
+    <a class="seg done" href="ag04-slide-08.html"></a>
+    <a class="seg done" href="ag04-slide-09.html"></a>
+    <a class="seg done" href="ag04-slide-10.html"></a>
+    <a class="seg done" href="ag04-slide-11.html"></a>
+    <a class="seg done" href="ag04-slide-12.html"></a>
+    <a class="seg active" href="ag04-slide-13.html"></a>
+    <a class="seg" href="ag04-slide-14.html"></a>
+    <a class="seg" href="ag04-slide-15.html"></a>
+    <a class="seg" href="ag04-slide-16.html"></a>
+    <a class="seg" href="ag04-slide-17.html"></a>
+    <a class="seg" href="ag04-slide-18.html"></a>
+    <a class="seg" href="ag04-slide-19.html"></a>
+    <a class="seg" href="ag04-slide-20.html"></a>
+    <a class="seg" href="ag04-slide-21.html"></a>
+    <a class="seg" href="ag04-slide-22.html"></a>
+    <a class="seg" href="ag04-slide-23.html"></a>
+    <a class="seg" href="ag04-slide-24.html"></a>
+    <a class="seg" href="ag04-slide-25.html"></a>
+    <a class="seg" href="ag04-slide-26.html"></a>
+    <a class="seg" href="ag04-slide-27.html"></a>
+    <a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Vulnerability Types</span><span>Slide 13</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 13 · Types 3–5 — Third-Party Agents, Compromised Infrastructure, Poisoned Knowledge</div>
+  <div class="slide-title">Three more ways the supply chain fails — and why each one is harder to detect than the last</div>
+
+  <div class="block">
+    <div class="block-label red">Type 3 — Vulnerable or compromised third-party agents (A2A)</div>
+    <p>Multi-agent systems delegate subtasks to specialized sub-agents. If a sub-agent is compromised — either by an attacker taking over its deployment, or because it was built with its own vulnerabilities — its outputs enter the orchestrating agent's context as trusted data.</p>
+    <p>The orchestrating agent treats a sub-agent's output the same way it treats its own reasoning. A compromised sub-agent can inject false information, manipulate the orchestrator's decisions, or plant hidden instructions that propagate through the pipeline.</p>
+    <p><strong>Real example: AgentSmith Prompt-Hub Proxy Attack (Scenario 4) — a compromised proxy layer between agents exfiltrated data from every request that passed through it.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Type 4 — Compromised MCP or registry servers</div>
+    <p>MCP servers and package registries are shared infrastructure. A single compromised registry doesn't affect one agent — it affects every agent that trusts that source. Attackers who can push to a widely-used registry or hijack a popular MCP server get immediate scale: every download, every connection, every agent that uses the server becomes a victim simultaneously.</p>
+    <p><strong>Real example: The Amazon Q VS Code extension incident (v1.84.0) — a compromised update channel pushed a malicious version that exfiltrated API keys and tokens from developers using the extension.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label blue">Type 5 — Poisoned knowledge plugins and RAG sources</div>
+    <p>Agents that use retrieval-augmented generation pull context from external knowledge bases at query time. If an attacker can seed entries into that knowledge base — or compromise the indexing pipeline that builds it — they can influence what context the agent retrieves and uses.</p>
+    <p>This is the slowest and most insidious attack type. Individual poisoned entries look like legitimate data. The bias accumulates gradually. By the time the effect is noticed, hundreds or thousands of responses may have been shaped by the attacker's planted content.</p>
+    <p>Type 6 (Agent-in-the-Middle via Agent Cards) is covered in Scenario 6.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-12.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-14.html">Part 3: Attack Scenarios →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

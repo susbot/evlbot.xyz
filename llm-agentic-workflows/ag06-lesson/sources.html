@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Sources</title>
+<link rel="stylesheet" href="ag06-shared.css">
+<style>
+.src-entry { background:#111118; border:1px solid #2a2a3a; border-radius:10px; padding:1rem 1.2rem; margin-bottom:0.9rem; }
+.src-tag { display:inline-block; font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; border-radius:4px; padding:0.15rem 0.5rem; margin-bottom:0.4rem; }
+.src-tag.primary { background:rgba(239,159,39,0.15); color:var(--accent); }
+.src-tag.research { background:rgba(99,102,241,0.15); color:#a5b4fc; }
+.src-tag.incident { background:rgba(239,68,68,0.12); color:#f87171; }
+.src-tag.standard { background:rgba(34,197,94,0.12); color:#4ade80; }
+.src-title { font-size:0.95rem; font-weight:600; color:var(--fg); margin-bottom:0.25rem; }
+.src-meta { font-size:0.78rem; color:var(--fg-dim); margin-bottom:0.4rem; }
+.src-usage { font-size:0.8rem; color:var(--fg-dim); line-height:1.5; }
+.src-usage strong { color:var(--fg); }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Sources — Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right"><a href="ag06-slide-01.html" style="color:var(--accent)">← Back to lesson</a></span>
+</div>
+
+<div style="max-width:800px; margin:2rem auto; padding:0 1.5rem;">
+
+  <h2 style="font-size:1.3rem; color:var(--fg); margin-bottom:1.5rem;">Primary and Supporting Sources</h2>
+
+  <div class="src-entry">
+    <div class="src-tag primary">Primary — OWASP</div>
+    <div class="src-title">OWASP Top 10 for LLM &amp; Generative AI Applications — ASI06: Memory &amp; Context Poisoning</div>
+    <div class="src-meta">OWASP Foundation · 2026 Edition</div>
+    <div class="src-usage"><strong>Used in:</strong> Definition slides (02–04), vulnerability framework (09–13), mitigation framework (18–23). The authoritative source for the AG06 definition, root causes, memory tier taxonomy, and mitigation recommendations.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag research">Foundational Research</div>
+    <div class="src-title">Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injections</div>
+    <div class="src-meta">Greshake, Abdelnabi, Micheli, Cinà, Fritz, Backes · arXiv:2302.12173 · 2023</div>
+    <div class="src-usage"><strong>Used in:</strong> Slides 10, 27 (RAG poisoning via crawled web content, indirect prompt injection framework). The foundational paper establishing indirect prompt injection as a distinct attack class. Included demonstrations against production systems (Bing Chat/Copilot) where web-retrieved content poisoned the model's context to exfiltrate user data. Directly established the theoretical basis for Type 1 and Type 4 AG06 vulnerability categories.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag incident">Documented Incident</div>
+    <div class="src-title">Persistent Memory Injection via ChatGPT Long-Term Memory Feature</div>
+    <div class="src-meta">Johann Rehberger · embrace-the-red.com · 2024</div>
+    <div class="src-usage"><strong>Used in:</strong> Slides 11, 27 (Type 3 — preference/profile poisoning real example). Researcher demonstrated that ChatGPT's persistent memory feature could be abused via indirect prompt injection — malicious content in processed documents caused the model to write false persistent facts that survived across all future sessions. OpenAI partially patched the issue. This is the first documented instance of cross-session memory persistence attack against a production AI assistant.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag research">Security Research</div>
+    <div class="src-title">Indirect Prompt Injection via Retrieved Documents in RAG Systems</div>
+    <div class="src-meta">Multiple researchers · 2024–2025</div>
+    <div class="src-usage"><strong>Used in:</strong> Slides 10, 12, 14 (RAG poisoning and indirect ingestion patterns). Multiple independent research groups demonstrated that enterprise RAG systems with automated document ingestion are vulnerable to poisoning via carefully crafted documents that score high semantic similarity for target queries. Demonstrated against enterprise knowledge base deployments, customer support RAG systems, and automated email processing pipelines.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag research">Security Research</div>
+    <div class="src-title">Cross-Tenant Data Leakage in Shared Vector Database Deployments</div>
+    <div class="src-meta">Security research and penetration testing reports · 2024–2025</div>
+    <div class="src-usage"><strong>Used in:</strong> Slides 13, 15 (Type 6 — memory extraction, Scenario 3). Documented finding pattern from security assessments of multi-tenant RAG deployments: application-layer tenant filtering in shared vector stores can be bypassed by prompt injection that instructs the agent to perform unscoped queries. Demonstrated data leakage across tenant namespaces without any privileged access. Primary mitigation is database-level namespace isolation rather than application-layer filtering.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag research">Security Research</div>
+    <div class="src-title">Multi-Agent Memory Contamination — Shared Memory Store Attack Patterns</div>
+    <div class="src-meta">Security research on agentic pipelines · 2024–2025</div>
+    <div class="src-usage"><strong>Used in:</strong> Slides 12, 15 (Type 5 — multi-agent contamination, Scenario 4). Documented attack pattern in multi-agent systems where a poisoned write to a shared memory or knowledge store propagates across all agents that read from it. Particularly relevant for agent orchestration frameworks that use a common memory bus or shared vector store for inter-agent coordination.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag standard">Standard</div>
+    <div class="src-title">OWASP Application Security Verification Standard (ASVS) — V8 Data Protection</div>
+    <div class="src-meta">OWASP Foundation</div>
+    <div class="src-usage"><strong>Used in:</strong> Mitigation framework (slides 18–23). V8 requirements for sensitive data protection, data classification, and access control inform MIT03 (memory access controls) and MIT06 (tier separation). V1 (Architecture) requirements for security by design inform the memory tier architecture recommendations.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag standard">Framework</div>
+    <div class="src-title">NIST AI Risk Management Framework (AI RMF)</div>
+    <div class="src-meta">NIST · 2023</div>
+    <div class="src-usage"><strong>Used in:</strong> Mitigation framework structure. The Govern, Map, Measure, and Manage functions of the NIST AI RMF provide the organizational context for memory system risk management. The "Manage" function's emphasis on monitoring and response aligns with MIT08 (audit logging) and MIT09 (periodic integrity review).</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag standard">Academic Context</div>
+    <div class="src-title">Poisoning Web-Scale Training Data is Practical</div>
+    <div class="src-meta">Carlini, Jagielski, Choquette-Choo et al. · arXiv:2302.10149 · 2023</div>
+    <div class="src-usage"><strong>Used in:</strong> Slide 27 (research context). Background on data poisoning at scale — establishes that even small poisoning rates in large datasets can have meaningful effects on model behavior. The same scalability principle applies to RAG systems: a small number of poisoned documents can dominate retrieval for specific queries if crafted to score high semantic similarity.</div>
+  </div>
+
+</div>
+
+<div style="text-align:center; padding:2rem; color:var(--fg-dim); font-size:0.8rem;">
+  <a href="ag06-slide-28.html" style="color:var(--accent)">← Back to lesson end</a>
+  &nbsp;·&nbsp;
+  <a href="../index.html" style="color:var(--accent)">All Modules</a>
+</div>
+
+</body>
+</html>

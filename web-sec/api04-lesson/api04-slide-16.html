@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Unrestricted Resource Consumption · Slide 16 of 28</title>
+<link rel="stylesheet" href="api04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Unrestricted Resource Consumption</span></div>
+  <span class="nav-right">Slide 16 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api04-slide-01.html"></a><a class="seg done" href="api04-slide-02.html"></a><a class="seg done" href="api04-slide-03.html"></a><a class="seg done" href="api04-slide-04.html"></a><a class="seg done" href="api04-slide-05.html"></a><a class="seg done" href="api04-slide-06.html"></a><a class="seg done" href="api04-slide-07.html"></a><a class="seg done" href="api04-slide-08.html"></a><a class="seg done" href="api04-slide-09.html"></a><a class="seg done" href="api04-slide-10.html"></a><a class="seg done" href="api04-slide-11.html"></a><a class="seg done" href="api04-slide-12.html"></a><a class="seg done" href="api04-slide-13.html"></a><a class="seg done" href="api04-slide-14.html"></a><a class="seg done" href="api04-slide-15.html"></a><a class="seg active" href="api04-slide-16.html"></a><a class="seg" href="api04-slide-17.html"></a><a class="seg" href="api04-slide-18.html"></a><a class="seg" href="api04-slide-19.html"></a><a class="seg" href="api04-slide-20.html"></a><a class="seg" href="api04-slide-21.html"></a><a class="seg" href="api04-slide-22.html"></a><a class="seg" href="api04-slide-23.html"></a><a class="seg" href="api04-slide-24.html"></a><a class="seg" href="api04-slide-25.html"></a><a class="seg" href="api04-slide-26.html"></a><a class="seg" href="api04-slide-27.html"></a><a class="seg" href="api04-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 · Attack Scenarios</span><span>Slide 16</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 16 · Scenario 3</div>
+  <div class="slide-title">One user. One million OTP texts. One giant SMS bill.</div>
+  <div class="slide-subtitle">OWASP Scenario #3 — no rate limit on OTP delivery lets an attacker invoice you for SMS.</div>
+
+  <div class="source-tag">📄 OWASP API Security Top 10 · 2023 · API4 · Scenario 3</div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SETUP</div>
+    <div class="scenario-title">A login API that sends SMS one-time passwords.</div>
+    <div class="scenario-body">
+      <p>A web application uses SMS-based OTP for login verification. The endpoint <code>POST /api/auth/send-otp</code> accepts a phone number and sends a verification code. Each SMS costs the company approximately $0.01 through their SMS provider.</p>
+      <p>The endpoint has no rate limiting per phone number and no rate limiting per IP address.</p>
+    </div>
+    <div class="scenario-why"><strong>The exploit — financial attack:</strong> An attacker sends 100,000 requests to this endpoint with the same phone number (or a rotating list of real numbers). The company's SMS provider bills 100,000 sends at $0.01 each — $1,000 overnight. At 1,000,000 requests: $10,000. The attacker spent nothing. The company's SMS account may also be suspended for unusual volume, breaking OTP delivery for legitimate users.</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SECONDARY EFFECT</div>
+    <div class="scenario-title">SMS flooding as harassment.</div>
+    <div class="scenario-body">
+      <p>The attacker supplies a victim's phone number. The victim receives hundreds of OTP texts per hour — effectively a denial of service against their phone. If the company has no rate limit per phone number, there is no technical barrier to this.</p>
+    </div>
+    <div class="scenario-why"><strong>Two fixes required:</strong> Rate limit per requesting IP (stop bulk submissions) AND rate limit per phone number (stop a target from being flooded regardless of how many IPs the attacker uses).</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api04-slide-15.html">← Back</a>
+    <a class="btn-primary" href="api04-slide-17.html">What do all these have in common? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

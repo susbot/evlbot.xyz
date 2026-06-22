@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Identity and Privilege Abuse · Slide 23 of 28</title>
+<link rel="stylesheet" href="ag03-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Identity and Privilege Abuse</span>
+  </div>
+  <span class="nav-right">Slide 23 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag03-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag03-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag03-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag03-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag03-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag03-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag03-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg done" href="ag03-slide-08.html" title="Slide 8 · Why Agent Identity Is Different"></a>
+    <a class="seg done" href="ag03-slide-09.html" title="Slide 9 · Five Vulnerability Types"></a>
+    <a class="seg done" href="ag03-slide-10.html" title="Slide 10 · Type 1 — Un-scoped Privilege Inheritance"></a>
+    <a class="seg done" href="ag03-slide-11.html" title="Slide 11 · Type 1 — A Real Example"></a>
+    <a class="seg done" href="ag03-slide-12.html" title="Slide 12 · Type 2 — Memory-Based Privilege Retention"></a>
+    <a class="seg done" href="ag03-slide-13.html" title="Slide 13 · Types 3–5 — More Vulnerability Patterns"></a>
+    <a class="seg done" href="ag03-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg done" href="ag03-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg done" href="ag03-slide-16.html" title="Slide 16 · Scenarios 5–7"></a>
+    <a class="seg done" href="ag03-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg done" href="ag03-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg done" href="ag03-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg done" href="ag03-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg done" href="ag03-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg done" href="ag03-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg active" href="ag03-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag03-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg" href="ag03-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg" href="ag03-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag03-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag03-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 23</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 23 · Mitigation 5</div>
+  <div class="slide-title">Define intent — bind tokens to a signed purpose that travels with the credential</div>
+  <div class="slide-subtitle">A credential that can be used for any purpose is a credential waiting to be abused. Locking tokens to their original intent makes delegation abuse and context-switching attacks structurally impossible.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI03</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 05</div>
+    <div class="mit-title">Define Intent: Bind OAuth Tokens to Signed Purpose</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>When issuing a token for an agent to use, bind it to a <strong>signed intent object</strong> that travels with the token. The intent object specifies: <strong>subject</strong> (who is the original requesting user), <strong>audience</strong> (which system or service this token is for), <strong>purpose</strong> (what task this token was issued to accomplish), and <strong>session</strong> (the specific session context this token belongs to).</p>
+      <p>When an agent attempts to use the token, the policy engine verifies that the current request matches the bound intent. If the agent is attempting a different action, for a different resource, or in a different context than specified in the intent object, the token is rejected — even if it hasn't expired.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What this addresses</div>
+      <p>Directly stops Scenario 04 (device-code phishing — the agent completes an OAuth flow that binds the victim's tenant to attacker-controlled scopes, but the token's bound intent doesn't match any legitimate task so it can't be reused). Also closes the cross-agent relay path (Scenario 03) — the forwarded instruction produces a token with an intent that doesn't match the finance agent's expected context, so it's rejected.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label yellow">Why standard OAuth isn't enough</div>
+      <p>Standard OAuth tokens carry scope (what the token can do) but not intent (why it was issued or what specific task it's for). An OAuth token with "read:files write:email" scope can be used for any action within those scopes, by any agent that receives it, for any reason. Intent binding adds the missing dimension: <em>this token was issued for this specific task, for this specific user, for this specific purpose.</em></p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-22.html">← Back</a>
+    <a class="btn-primary" href="ag03-slide-24.html">Next → Mitigations 6–7</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

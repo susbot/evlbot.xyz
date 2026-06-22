@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 4 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a>
+    <a class="seg active" href="ag09-slide-04.html"></a>
+    <a class="seg" href="ag09-slide-05.html"></a><a class="seg" href="ag09-slide-06.html"></a><a class="seg" href="ag09-slide-07.html"></a><a class="seg" href="ag09-slide-08.html"></a><a class="seg" href="ag09-slide-09.html"></a><a class="seg" href="ag09-slide-10.html"></a><a class="seg" href="ag09-slide-11.html"></a><a class="seg" href="ag09-slide-12.html"></a><a class="seg" href="ag09-slide-13.html"></a><a class="seg" href="ag09-slide-14.html"></a><a class="seg" href="ag09-slide-15.html"></a><a class="seg" href="ag09-slide-16.html"></a><a class="seg" href="ag09-slide-17.html"></a><a class="seg" href="ag09-slide-18.html"></a><a class="seg" href="ag09-slide-19.html"></a><a class="seg" href="ag09-slide-20.html"></a><a class="seg" href="ag09-slide-21.html"></a><a class="seg" href="ag09-slide-22.html"></a><a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 4</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 4 · Why AI Agents Create This Risk</div>
+  <div class="slide-title">Three properties specific to AI agents — not present in traditional software tools — that make the human-agent trust relationship exploitable.</div>
+
+  <div class="block">
+    <div class="block-label red">Property 1: AI outputs carry a credibility halo that traditional software outputs don't</div>
+    <p>When a rule-based system flags a transaction as low-risk, an analyst understands it because they understand the rule. They can mentally trace the logic. They know the rule's limits. When an AI agent outputs "LOW risk — APPROVE," the reasoning is opaque. The human cannot trace it. This opacity, paradoxically, increases trust — the system seems to "know something" the human can't access.</p>
+    <p>This "AI oracle" effect is documented in automation bias research: humans defer more to recommendations from opaque AI systems than from transparent rule systems — even when the opaque system is less reliable. Attackers exploit the credibility halo by making sure their crafted attack falls within the AI's blind spots, knowing the human's deference will finish the job.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Property 2: AI agents communicate in natural language, which carries social cues</div>
+    <p>Traditional software outputs are numerical or categorical — a risk score, a flag, a code. Human brains process these as data. AI agents output natural language: "This transaction appears consistent with the customer's normal behavior pattern and does not exhibit the characteristics typically associated with fraudulent activity."</p>
+    <p>Natural language is the medium of human social interaction. Human brains process natural language with the same neural machinery used to evaluate claims from other humans — including the social cues embedded in tone, confidence, and framing. An AI agent that writes with high confidence and no hedging triggers the same cognitive deference response as a confident human expert. This is exploitable both by attackers (crafting language that triggers deference) and by poorly designed agents (that project false confidence).</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Property 3: Repeated interaction builds calibrated trust that becomes miscalibrated over time</div>
+    <p>A human using an AI agent for 8 months at 97.3% accuracy has correctly learned to trust it most of the time. This is rational. The problem is that this learned trust doesn't automatically adjust when the agent encounters a case outside its competence. The human's trust was calibrated on the average case; the attacker crafts the edge case.</p>
+    <p>Skilled analysts who have worked with an AI tool for years are often <em>more</em> susceptible to automation bias than new users — because their trust is deeper and more automatic. The efficiency gains from working with an AI system build a habit of deference that is hardest to interrupt at exactly the moment when interrupting it matters most.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-03.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-05.html">What goes wrong →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

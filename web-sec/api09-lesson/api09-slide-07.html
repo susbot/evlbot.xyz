@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 7 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 7 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg done" href="api09-slide-05.html"></a><a class="seg done" href="api09-slide-06.html"></a><a class="seg active" href="api09-slide-07.html"></a><a class="seg" href="api09-slide-08.html"></a><a class="seg" href="api09-slide-09.html"></a><a class="seg" href="api09-slide-10.html"></a><a class="seg" href="api09-slide-11.html"></a><a class="seg" href="api09-slide-12.html"></a><a class="seg" href="api09-slide-13.html"></a><a class="seg" href="api09-slide-14.html"></a><a class="seg" href="api09-slide-15.html"></a><a class="seg" href="api09-slide-16.html"></a><a class="seg" href="api09-slide-17.html"></a><a class="seg" href="api09-slide-18.html"></a><a class="seg" href="api09-slide-19.html"></a><a class="seg" href="api09-slide-20.html"></a><a class="seg" href="api09-slide-21.html"></a><a class="seg" href="api09-slide-22.html"></a><a class="seg" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 7</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 7 &#xb7; Impact</div>
+  <div class="slide-title">What attackers gain when they find what you forgot was running.</div>
+  <div class="slide-subtitle">Old versions and forgotten environments are entry points to data and capabilities the current API wouldn&#x2019;t allow.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F513;</div>
+      <div><div class="outcome-title">Auth bypass via version downgrade</div><div class="outcome-desc">v1 predates the authentication system introduced in v2. An attacker calls the same endpoint on v1 without authentication and gets the same data. The v2 auth check is irrelevant &#x2014; they never went through v2.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4E4;</div>
+      <div><div class="outcome-title">Data access through unretired endpoints</div><div class="outcome-desc">Old API versions may expose data that was intentionally removed from newer versions &#x2014; like Facebook v1&#x2019;s friends permission. The data is still in the database; the old API version still has the query; the access control was only removed from v2.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F527;</div>
+      <div><div class="outcome-title">Operations that newer versions restricted</div><div class="outcome-desc">Bulk export, mass deletion, admin operations, or data modification features that were removed or restricted in v2 may still be available in v1. An attacker calls v1 to perform operations that v2 would refuse.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F50D;</div>
+      <div><div class="outcome-title">Staging environment as a reconnaissance platform</div><div class="outcome-desc">Staging environments often run identical code to production but with debug mode on, verbose errors, and relaxed auth. An attacker who finds staging gets a map of the production API: its endpoints, data structures, error behavior, and internal architecture.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4A5;</div>
+      <div><div class="outcome-title">Unpatched vulnerabilities in old versions</div><div class="outcome-desc">Security patches applied to v2 leave v1 permanently vulnerable. If a critical vulnerability like SQL injection or SSRF existed in v1 and was patched in v2, the v1 endpoint is a permanent exploit entry point &#x2014; forever, until v1 is decommissioned.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-06.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-08.html">Why is this #9? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

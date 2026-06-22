@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 18 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a><a class="seg done" href="ag07-slide-09.html"></a><a class="seg done" href="ag07-slide-10.html"></a><a class="seg done" href="ag07-slide-11.html"></a><a class="seg done" href="ag07-slide-12.html"></a><a class="seg done" href="ag07-slide-13.html"></a><a class="seg done" href="ag07-slide-14.html"></a><a class="seg done" href="ag07-slide-15.html"></a><a class="seg done" href="ag07-slide-16.html"></a><a class="seg done" href="ag07-slide-17.html"></a>
+    <a class="seg active" href="ag07-slide-18.html"></a>
+    <a class="seg" href="ag07-slide-19.html"></a><a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 18</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 18 · MIT01 + MIT02</div>
+  <div class="slide-title">Agent identity authentication and message signing are the two highest-leverage controls. Together they close Types 1, 2, and 3.</div>
+
+  <div class="block">
+    <div class="block-label purple">MIT01 — Agent Identity Authentication</div>
+    <p><strong>What it does:</strong> Every agent must cryptographically prove its identity before another agent processes its messages. Instead of trusting a <code>"role": "orchestrator"</code> field in a JSON body, the receiving agent verifies a credential — a client certificate, a signed JWT, or an API key bound to a specific agent identity in the registry.</p>
+    <p><strong>Implementation options:</strong></p>
+    <ul>
+      <li><strong>mTLS (mutual TLS):</strong> Each agent holds a certificate issued by a shared certificate authority. During the TLS handshake, both sides present and verify each other's certificates. The identity is proven at the transport layer before any application data is exchanged.</li>
+      <li><strong>Signed JWTs:</strong> The sending agent issues a JWT signed with its private key. The receiving agent verifies the signature against the sending agent's public key (retrieved from the registry). The JWT can include identity claims, authorization scope, and expiry.</li>
+      <li><strong>API keys with identity binding:</strong> Lower-assurance option — a shared secret mapped to a specific agent identity. Acceptable for low-risk pipelines; insufficient where impersonation has high impact.</li>
+    </ul>
+    <p><strong>Threat closed:</strong> Type 1 (forgery), Type 3 (orchestrator impersonation), Type 6 (queue injection) — all of which require the attacker to claim an identity they do not possess.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">MIT02 — Message Signing and Integrity Verification</div>
+    <p><strong>What it does:</strong> The sending agent signs the message body with its private key. The receiving agent verifies the signature before processing. If any byte of the message body was changed in transit, the signature verification fails and the message is rejected.</p>
+    <p><strong>Why this is separate from MIT01:</strong> Authentication (MIT01) proves the message came from a specific agent at connection time. Signing (MIT02) proves the message content is unchanged — binding the exact content to the sender's identity. A message can be authenticated but still tampered with in transit (by a man-in-the-middle who has channel access) unless the content itself is signed.</p>
+    <p><strong>Practical implementation:</strong> JSON Web Signatures (JWS) or HMAC-based message authentication codes on the message body. The signature covers a canonical serialization of the message content so that field ordering doesn't affect verification.</p>
+    <p><strong>Threat closed:</strong> Type 2 (tampering in transit) — the primary type that MIT01 alone does not address.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: when one AI agent sends instructions to another, does the receiving agent verify who sent it — or does it accept any message that arrives? Ask whether an attacker who gets access to your network could send fake instructions to your agents and have them acted on.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-17.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-19.html">MIT03 + MIT04 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

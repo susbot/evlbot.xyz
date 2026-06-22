@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 4 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg active" href="api07-slide-04.html"></a><a class="seg" href="api07-slide-05.html"></a><a class="seg" href="api07-slide-06.html"></a><a class="seg" href="api07-slide-07.html"></a><a class="seg" href="api07-slide-08.html"></a><a class="seg" href="api07-slide-09.html"></a><a class="seg" href="api07-slide-10.html"></a><a class="seg" href="api07-slide-11.html"></a><a class="seg" href="api07-slide-12.html"></a><a class="seg" href="api07-slide-13.html"></a><a class="seg" href="api07-slide-14.html"></a><a class="seg" href="api07-slide-15.html"></a><a class="seg" href="api07-slide-16.html"></a><a class="seg" href="api07-slide-17.html"></a><a class="seg" href="api07-slide-18.html"></a><a class="seg" href="api07-slide-19.html"></a><a class="seg" href="api07-slide-20.html"></a><a class="seg" href="api07-slide-21.html"></a><a class="seg" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 4</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 4 &#xb7; The Attack Surface</div>
+  <div class="slide-title">Three protocol vectors. Each reaches something different.</div>
+  <div class="slide-subtitle">HTTP to internal hosts. File to read local files. Cloud metadata for credentials.</div>
+  <div class="scenario-card">
+    <div class="scenario-num">VECTOR 1</div>
+    <div class="scenario-title">HTTP/HTTPS to internal network addresses</div>
+    <div class="scenario-body">
+      <p>The attacker provides an internal IP or hostname. The server fetches it from inside the network, where internal services trust each other.</p>
+      <p>&#x2022; <code>http://10.0.0.1/admin</code> &#x2014; internal admin panel, no auth required from inside</p>
+      <p>&#x2022; <code>http://192.168.1.1/</code> &#x2014; internal router management interface</p>
+      <p>&#x2022; <code>http://internal-db:5432/</code> &#x2014; port probe on database host</p>
+      <p>&#x2022; <code>http://kubernetes.default.svc/api/v1/</code> &#x2014; Kubernetes API server (if running in K8s)</p>
+    </div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-num">VECTOR 2</div>
+    <div class="scenario-title">Cloud metadata endpoints (link-local 169.254.x.x)</div>
+    <div class="scenario-body">
+      <p>Every major cloud provider exposes a metadata endpoint at a fixed link-local IP. Only accessible from within the instance &#x2014; but SSRF makes the server fetch it.</p>
+      <p>&#x2022; <strong>AWS:</strong> <code>http://169.254.169.254/latest/meta-data/iam/security-credentials/</code> &#x2014; returns temporary IAM credentials</p>
+      <p>&#x2022; <strong>GCP:</strong> <code>http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token</code> &#x2014; returns OAuth2 access token</p>
+      <p>&#x2022; <strong>Azure:</strong> <code>http://169.254.169.254/metadata/identity/oauth2/token</code> &#x2014; returns managed identity token</p>
+    </div>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-num">VECTOR 3</div>
+    <div class="scenario-title">file:// protocol &#x2014; local file read</div>
+    <div class="scenario-body">
+      <p>If the server uses a URL-fetching library that supports <code>file://</code> URLs, the attacker can read files from the server&#x2019;s local filesystem.</p>
+      <p>&#x2022; <code>file:///etc/passwd</code> &#x2014; user account list on Linux</p>
+      <p>&#x2022; <code>file:///etc/shadow</code> &#x2014; password hashes (if permissions allow)</p>
+      <p>&#x2022; <code>file:///app/config.yml</code> &#x2014; application configuration, database credentials</p>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-03.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-05.html">Cloud metadata deep dive &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

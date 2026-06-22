@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 11 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 11 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg done" href="api06-slide-09.html"></a><a class="seg done" href="api06-slide-10.html"></a><a class="seg active" href="api06-slide-11.html"></a><a class="seg" href="api06-slide-12.html"></a><a class="seg" href="api06-slide-13.html"></a><a class="seg" href="api06-slide-14.html"></a><a class="seg" href="api06-slide-15.html"></a><a class="seg" href="api06-slide-16.html"></a><a class="seg" href="api06-slide-17.html"></a><a class="seg" href="api06-slide-18.html"></a><a class="seg" href="api06-slide-19.html"></a><a class="seg" href="api06-slide-20.html"></a><a class="seg" href="api06-slide-21.html"></a><a class="seg" href="api06-slide-22.html"></a><a class="seg" href="api06-slide-23.html"></a><a class="seg" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 11</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 11 &#xb7; Real Incident: Inventory Monopolization</div>
+  <div class="slide-title">14 million fans registered. Bots got the tickets.</div>
+  <div class="slide-subtitle">Ticketmaster, 2022 &#x2014; Congressional hearings on a business flow vulnerability.</div>
+  <div class="real-incident">
+    <div class="real-incident-tag">Real Incident &#xb7; November 2022</div>
+    <div class="real-incident-title">Ticketmaster &#x2014; Taylor Swift Eras Tour Bot Collapse</div>
+    <div class="real-incident-body">
+      <p>Taylor Swift&#x2019;s Eras Tour was the most anticipated concert event in years. Ticketmaster ran a &#x201C;Verified Fan&#x201D; presale &#x2014; a system designed to filter out bots by requiring fans to pre-register and receive a presale code. 14 million people registered; 3.5 million received codes.</p>
+      <p>On November 15, 2022, the presale opened. Within minutes, Ticketmaster&#x2019;s systems were overwhelmed. The stated cause: bots. Specifically, bots using Ticketmaster&#x2019;s ticket purchase API to hold millions of tickets in shopping carts simultaneously &#x2014; far beyond what the infrastructure was designed to handle for that volume of concurrent cart holds.</p>
+      <p>Verified fans who had waited in queue for hours arrived at the purchase screen to find no tickets available. Ticketmaster cancelled the planned general public sale entirely, citing insufficient inventory. Tickets that did sell appeared on resale platforms for $2,000&#x2013;$5,000 for face-value tickets originally priced at $49&#x2013;$449.</p>
+      <p><strong>In January 2023, the US Senate Judiciary Committee held a hearing titled &#x201C;That&#x2019;s the Ticket: Promoting Competition and Protecting Consumers in Live Entertainment.&#x201D;</strong> Ticketmaster&#x2019;s CEO testified. Senators cited bot abuse, monopolistic practices, and the failure of Verified Fan as specific harms. Multiple pieces of anti-bot legislation were introduced or re-introduced following the hearing.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Lesson:</strong> Business flow controls &#x2014; per-account inventory limits, queue systems, cart timeouts &#x2014; are not optional infrastructure. When they&#x2019;re absent or insufficient, the failure is visible not just to users but to regulators. The harm of API6 is measured in public trust, not server metrics.</div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-10.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-12.html">Pattern 2: Reward farming &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

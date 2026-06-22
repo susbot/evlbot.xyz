@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 7 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 7 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg done" href="api08-slide-05.html"></a><a class="seg done" href="api08-slide-06.html"></a><a class="seg active" href="api08-slide-07.html"></a><a class="seg" href="api08-slide-08.html"></a><a class="seg" href="api08-slide-09.html"></a><a class="seg" href="api08-slide-10.html"></a><a class="seg" href="api08-slide-11.html"></a><a class="seg" href="api08-slide-12.html"></a><a class="seg" href="api08-slide-13.html"></a><a class="seg" href="api08-slide-14.html"></a><a class="seg" href="api08-slide-15.html"></a><a class="seg" href="api08-slide-16.html"></a><a class="seg" href="api08-slide-17.html"></a><a class="seg" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 7</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 7 &#xb7; Impact</div>
+  <div class="slide-title">What&#x2019;s at stake when misconfiguration is exploited.</div>
+  <div class="slide-subtitle">The damage varies by which surface is misconfigured &#x2014; but each can be severe independently.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F310;</div>
+      <div><div class="outcome-title">CORS &#x2192; Account data theft from any user who visits attacker&#x2019;s site</div><div class="outcome-desc">Exploitable CORS allows attacker-controlled pages to read authenticated API responses on behalf of any victim who visits the page while logged in. No phishing needed &#x2014; just a link that any logged-in user clicks.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4AC;</div>
+      <div><div class="outcome-title">Verbose errors &#x2192; Reconnaissance roadmap</div><div class="outcome-desc">Stack traces accelerate every other attack. SQL queries confirm injection points. Framework versions map to known CVEs. File paths reveal code structure. Each piece of exposed information reduces the attacker&#x2019;s work for the next attack.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F6E0;&#xFE0F;</div>
+      <div><div class="outcome-title">Exposed admin endpoints &#x2192; Full system access</div><div class="outcome-desc">An unauthenticated admin endpoint can expose all user data, allow account takeover, or provide RCE (e.g., Spring Boot Actuator /actuator/restart, Kubernetes dashboard pod exec). Tesla: cryptomining. In worse cases: data exfiltration, ransomware deployment.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F512;</div>
+      <div><div class="outcome-title">Missing TLS &#x2192; Traffic interception</div><div class="outcome-desc">APIs served over HTTP expose all traffic to network-level interception on the same network (coffee shop, corporate network, ISP). Authentication tokens, session cookies, and API responses are readable by any on-path observer.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F527;</div>
+      <div><div class="outcome-title">Unnecessary HTTP methods &#x2192; Unintended operations</div><div class="outcome-desc">A read-only endpoint that also responds to DELETE or PUT allows modification or deletion of data without any authorization check &#x2014; because the developer never implemented those methods (they &#x201C;shouldn&#x2019;t&#x201D; be called). The framework routes them anyway.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-06.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-08.html">Why is this #8? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

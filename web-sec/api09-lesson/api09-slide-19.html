@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 19 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 19 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg done" href="api09-slide-05.html"></a><a class="seg done" href="api09-slide-06.html"></a><a class="seg done" href="api09-slide-07.html"></a><a class="seg done" href="api09-slide-08.html"></a><a class="seg done" href="api09-slide-09.html"></a><a class="seg done" href="api09-slide-10.html"></a><a class="seg done" href="api09-slide-11.html"></a><a class="seg done" href="api09-slide-12.html"></a><a class="seg done" href="api09-slide-13.html"></a><a class="seg done" href="api09-slide-14.html"></a><a class="seg done" href="api09-slide-15.html"></a><a class="seg done" href="api09-slide-16.html"></a><a class="seg done" href="api09-slide-17.html"></a><a class="seg done" href="api09-slide-18.html"></a><a class="seg active" href="api09-slide-19.html"></a><a class="seg" href="api09-slide-20.html"></a><a class="seg" href="api09-slide-21.html"></a><a class="seg" href="api09-slide-22.html"></a><a class="seg" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 19</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 19 &#xb7; MIT 01</div>
+  <div class="slide-title">Maintain a complete API inventory &#x2014; every version, every environment, every endpoint.</div>
+  <div class="slide-subtitle">You can only secure what you know exists. The inventory is the foundation for all other controls.</div>
+  <div class="block">
+    <div class="block-label pink">What belongs in the inventory</div>
+    <p>For each API: service name, base URL, all active versions (v1, v2, v3), all environments (prod, staging, dev, QA), all endpoints with their HTTP methods, authentication requirements per endpoint, owning team, last reviewed date, deprecation status and planned sunset date.</p>
+  </div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x2699;&#xFE0F;</div>
+      <div><div class="outcome-title">Generate inventory from code, not documentation</div><div class="outcome-desc">Documentation goes stale. Generate the API inventory automatically from the running service &#x2014; OpenAPI/Swagger spec generation from code annotations (Springdoc, FastAPI auto-docs, NestJS Swagger), route enumeration from framework metadata. The inventory reflects what&#x2019;s actually deployed, not what was planned.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F504;</div>
+      <div><div class="outcome-title">Update inventory as part of deployment</div><div class="outcome-desc">Every deployment that adds, modifies, or removes an endpoint should update the inventory. CI/CD pipeline step: after deploy, update the API inventory registry. No manual step, no human to forget. If a route is added to the codebase, it appears in the inventory automatically.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4CB;</div>
+      <div><div class="outcome-title">Include all environments in the inventory</div><div class="outcome-desc">The inventory must include production, staging, dev, and QA &#x2014; not just production. Each environment entry includes its accessibility (internet-facing or internal-only) and data classification (production data, synthetic data, anonymized copy). This is the prerequisite for MIT 05 (environment separation) &#x2014; you can&#x2019;t control what you haven&#x2019;t listed.</div></div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">Tools: API catalog / service mesh</div>
+    <p>API management platforms (Apigee, AWS API Gateway, Kong, Tyk) maintain a registry of all registered APIs and versions. Service mesh solutions (Istio, Consul) automatically discover all services and their endpoints. Either approach generates the inventory from infrastructure state rather than relying on manual documentation. Whatever the tooling, the inventory must be <em>authoritative and current</em> &#x2014; a stale inventory is worse than none, because it creates false confidence.</p>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team for a list of every API version currently running and responding to requests. If that answer takes more than five minutes to produce, you probably do not have a complete inventory &#x2014; and neither does your security team.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-18.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-20.html">MIT 02: Deprecation process &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

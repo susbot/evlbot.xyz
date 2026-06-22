@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 4 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg done" href="api03-slide-03.html"></a><a class="seg active" href="api03-slide-04.html"></a><a class="seg" href="api03-slide-05.html"></a><a class="seg" href="api03-slide-06.html"></a><a class="seg" href="api03-slide-07.html"></a><a class="seg" href="api03-slide-08.html"></a><a class="seg" href="api03-slide-09.html"></a><a class="seg" href="api03-slide-10.html"></a><a class="seg" href="api03-slide-11.html"></a><a class="seg" href="api03-slide-12.html"></a><a class="seg" href="api03-slide-13.html"></a><a class="seg" href="api03-slide-14.html"></a><a class="seg" href="api03-slide-15.html"></a><a class="seg" href="api03-slide-16.html"></a><a class="seg" href="api03-slide-17.html"></a><a class="seg" href="api03-slide-18.html"></a><a class="seg" href="api03-slide-19.html"></a><a class="seg" href="api03-slide-20.html"></a><a class="seg" href="api03-slide-21.html"></a><a class="seg" href="api03-slide-22.html"></a><a class="seg" href="api03-slide-23.html"></a><a class="seg" href="api03-slide-24.html"></a><a class="seg" href="api03-slide-25.html"></a><a class="seg" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 4</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 4 · API3 vs. API1</div>
+  <div class="slide-title">Not the wrong object. The wrong fields.</div>
+  <div class="slide-subtitle">API1 and API3 look similar but break at different levels.</div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">API1 — Broken Object Level Auth</div>
+      <div class="compare-item"><strong>Wrong object entirely</strong></div>
+      <div class="compare-item">You access <em>someone else's</em> user object</div>
+      <div class="compare-item">You change the ID in the request</div>
+      <div class="compare-item">GET /users/<strong>1042</strong> → you own user 1041</div>
+      <div class="compare-item">Fix: check ownership before returning any data</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">API3 — Broken Object Property Level Auth</div>
+      <div class="compare-item"><strong>Wrong fields of your own object</strong></div>
+      <div class="compare-item">You access properties <em>within</em> your user object you shouldn't see or change</div>
+      <div class="compare-item">You add extra fields to the request body</div>
+      <div class="compare-item">PUT /users/1041 + body: {"isAdmin": true}</div>
+      <div class="compare-item">Fix: check property-level permissions, not just object access</div>
+    </div>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">They can combine</div>
+    <p>A single API endpoint can fail both. BOLA lets you reach the wrong user's object. BOPLA lets you read or set sensitive fields within any object you can reach. An attacker who chains both can reach any user's object <em>and</em> modify their role, balance, or status.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-03.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-05.html">Why does this keep happening? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

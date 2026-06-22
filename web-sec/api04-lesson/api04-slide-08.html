@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Unrestricted Resource Consumption · Slide 8 of 28</title>
+<link rel="stylesheet" href="api04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Unrestricted Resource Consumption</span></div>
+  <span class="nav-right">Slide 8 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api04-slide-01.html"></a><a class="seg done" href="api04-slide-02.html"></a><a class="seg done" href="api04-slide-03.html"></a><a class="seg done" href="api04-slide-04.html"></a><a class="seg done" href="api04-slide-05.html"></a><a class="seg done" href="api04-slide-06.html"></a><a class="seg done" href="api04-slide-07.html"></a><a class="seg active" href="api04-slide-08.html"></a><a class="seg" href="api04-slide-09.html"></a><a class="seg" href="api04-slide-10.html"></a><a class="seg" href="api04-slide-11.html"></a><a class="seg" href="api04-slide-12.html"></a><a class="seg" href="api04-slide-13.html"></a><a class="seg" href="api04-slide-14.html"></a><a class="seg" href="api04-slide-15.html"></a><a class="seg" href="api04-slide-16.html"></a><a class="seg" href="api04-slide-17.html"></a><a class="seg" href="api04-slide-18.html"></a><a class="seg" href="api04-slide-19.html"></a><a class="seg" href="api04-slide-20.html"></a><a class="seg" href="api04-slide-21.html"></a><a class="seg" href="api04-slide-22.html"></a><a class="seg" href="api04-slide-23.html"></a><a class="seg" href="api04-slide-24.html"></a><a class="seg" href="api04-slide-25.html"></a><a class="seg" href="api04-slide-26.html"></a><a class="seg" href="api04-slide-27.html"></a><a class="seg" href="api04-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 8</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 8 · Why It's #4</div>
+  <div class="slide-title">It applies to every endpoint, not just sensitive ones.</div>
+  <div class="slide-subtitle">Missing limits have no minimum severity — they scale with the attacker's ambition.</div>
+
+  <div class="callout red">
+    <div class="callout-label">The Scope Problem</div>
+    <p>API1 through API3 affect specific endpoints — the ones that expose or modify data based on identity or authorization. API4 applies to <strong>every single endpoint in your API</strong>. A public search endpoint with no rate limit is as dangerous as an authenticated endpoint with no rate limit. Any operation the server performs on behalf of a client can be weaponized by calling it at volume.</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Why it's pervasive</div>
+      <div class="compare-item">Rate limiting is infrastructure — often treated as an ops concern, not a dev concern</div>
+      <div class="compare-item">Most frameworks don't include rate limiting by default</div>
+      <div class="compare-item">Teams add it after the first incident, not before</div>
+      <div class="compare-item">Different limits needed per endpoint — one-size-fits-all fails</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Why severity is unbounded</div>
+      <div class="compare-item">Scraping: damage scales with dataset size — can affect millions of records</div>
+      <div class="compare-item">Cost amplification: bill scales with attacker's script runtime</div>
+      <div class="compare-item">DoS: can take the entire API offline for all users</div>
+      <div class="compare-item">Brute force: unlimited attempts make any credential breakable</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api04-slide-07.html">← Back</a>
+    <a class="btn-primary" href="api04-slide-09.html">Show me how it works →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

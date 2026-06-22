@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 8 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 8 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a>
+    <a class="seg active" href="ag07-slide-08.html"></a>
+    <a class="seg" href="ag07-slide-09.html"></a><a class="seg" href="ag07-slide-10.html"></a><a class="seg" href="ag07-slide-11.html"></a><a class="seg" href="ag07-slide-12.html"></a><a class="seg" href="ag07-slide-13.html"></a><a class="seg" href="ag07-slide-14.html"></a><a class="seg" href="ag07-slide-15.html"></a><a class="seg" href="ag07-slide-16.html"></a><a class="seg" href="ag07-slide-17.html"></a><a class="seg" href="ag07-slide-18.html"></a><a class="seg" href="ag07-slide-19.html"></a><a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 8</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 8 · Part 1 Wrap-up</div>
+  <div class="slide-title">Why multi-agent orchestration creates a new class of communication attack surface — one that didn't exist in single-agent or traditional software systems.</div>
+
+  <div class="block">
+    <div class="block-label purple">Traditional software: messages between services carry explicit auth</div>
+    <p>In a traditional microservices architecture, service-to-service communication is typically secured with mutual TLS, API keys, JWT tokens, or service mesh sidecar authentication. The receiving service validates the caller's identity before executing any logic. A forged request fails authentication and is rejected before causing harm.</p>
+    <p>This wasn't achieved automatically — it required deliberate design and investment. But the requirement was well-understood and the tooling was mature.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Multi-agent systems: the message content is the instruction</div>
+    <p>In a multi-agent system, the situation is different in a key way: the agent doesn't just receive a request to execute a fixed function — it receives <em>natural language instructions</em> that determine what it will do. The content of the message is the behavior. This means that integrity of message content matters more, not less, than in traditional service calls — but the ecosystem for securing it is far less mature.</p>
+    <p>A tampered service call might change a parameter value. A tampered agent message might change the entire set of actions the agent takes — because the instructions themselves determine the behavior.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">The new standards gap</div>
+    <p>Protocols like Anthropic's Model Context Protocol (MCP) and Google's Agent-to-Agent (A2A) protocol are addressing inter-agent communication — but security properties like message signing and mutual authentication are either optional, not yet standardized, or not yet widely implemented in practice. Many real-world multi-agent deployments use ad-hoc message formats over HTTP or queues with no authentication beyond the network-layer access control.</p>
+  </div>
+
+  <div class="callout amber">
+    <div class="callout-label">Part 2 preview</div>
+    <p>Six specific vulnerability types show exactly how insecure channels are exploited — from simple message forgery to sophisticated replay and orchestrator impersonation attacks.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-07.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-09.html">Part 2 — Vulnerability Types →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

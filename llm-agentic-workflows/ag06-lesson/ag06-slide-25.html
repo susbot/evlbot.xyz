@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 25 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+<style>
+.quiz-q { margin-bottom:2rem; }
+.quiz-q p { font-weight:600; color:var(--fg); margin-bottom:0.75rem; line-height:1.5; }
+.quiz-options { display:flex; flex-direction:column; gap:0.5rem; }
+.quiz-opt { background:#111118; border:1px solid #2a2a3a; border-radius:8px; padding:0.7rem 1rem; cursor:pointer; transition:border-color 0.15s, background 0.15s; font-size:0.88rem; color:var(--fg-dim); line-height:1.4; }
+.quiz-opt:hover { border-color:var(--accent); color:var(--fg); }
+.quiz-opt.correct { border-color:#22c55e; background:rgba(34,197,94,0.08); color:#22c55e; }
+.quiz-opt.wrong { border-color:#ef4444; background:rgba(239,68,68,0.08); color:#ef4444; }
+.quiz-opt.reveal { border-color:#22c55e; background:rgba(34,197,94,0.04); color:#22c55e; }
+.quiz-explain { display:none; margin-top:0.6rem; font-size:0.82rem; color:var(--fg-dim); background:#0c0c14; border-left:3px solid var(--accent); padding:0.6rem 0.8rem; border-radius:0 6px 6px 0; line-height:1.5; }
+.quiz-explain.show { display:block; }
+#quiz-result { display:none; margin-top:1.5rem; padding:1.2rem 1.5rem; border-radius:12px; text-align:center; }
+#quiz-result.pass { background:rgba(34,197,94,0.1); border:1px solid #22c55e; color:#22c55e; }
+#quiz-result.fail { background:rgba(239,159,39,0.1); border:1px solid var(--accent); color:var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 25 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a><a class="seg done" href="ag06-slide-03.html"></a><a class="seg done" href="ag06-slide-04.html"></a><a class="seg done" href="ag06-slide-05.html"></a><a class="seg done" href="ag06-slide-06.html"></a><a class="seg done" href="ag06-slide-07.html"></a><a class="seg done" href="ag06-slide-08.html"></a><a class="seg done" href="ag06-slide-09.html"></a><a class="seg done" href="ag06-slide-10.html"></a><a class="seg done" href="ag06-slide-11.html"></a><a class="seg done" href="ag06-slide-12.html"></a><a class="seg done" href="ag06-slide-13.html"></a><a class="seg done" href="ag06-slide-14.html"></a><a class="seg done" href="ag06-slide-15.html"></a><a class="seg done" href="ag06-slide-16.html"></a><a class="seg done" href="ag06-slide-17.html"></a><a class="seg done" href="ag06-slide-18.html"></a><a class="seg done" href="ag06-slide-19.html"></a><a class="seg done" href="ag06-slide-20.html"></a><a class="seg done" href="ag06-slide-21.html"></a><a class="seg done" href="ag06-slide-22.html"></a><a class="seg done" href="ag06-slide-23.html"></a><a class="seg done" href="ag06-slide-24.html"></a>
+    <a class="seg active" href="ag06-slide-25.html"></a>
+    <a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Quiz</span><span>Slide 25</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">AG06 Knowledge Check</div>
+  <div class="slide-title">Five questions. Choose the best answer for each.</div>
+
+  <div class="quiz-q" id="q1">
+    <p>Q1. A support agent retrieved an entry from its knowledge base that said "customers who request it are entitled to refunds after the 30-day window." The agent used this to approve out-of-policy refunds for three weeks. An investigation found the entry was added by a disgruntled employee through the wiki admin interface. Which memory tier was poisoned?</p>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="answer(this,'q1','wrong')">Episodic memory — because the agent remembered past refund decisions</div>
+      <div class="quiz-opt" onclick="answer(this,'q1','wrong')">In-context working memory — because the false policy was in the conversation</div>
+      <div class="quiz-opt" onclick="answer(this,'q1','correct')">The curated knowledge base (external retrieval memory) — the attacker wrote to the document store the agent queries</div>
+      <div class="quiz-opt" onclick="answer(this,'q1','wrong')">Semantic preference memory — because the agent "preferred" to approve refunds</div>
+    </div>
+    <div class="quiz-explain" id="q1-exp">Correct. The wiki served as the organization's curated knowledge base — the document store the agent retrieves from for policy questions. The employee wrote directly to this store through a legitimate admin channel. This is RAG/knowledge base poisoning (Type 1). The poison affected all users who asked refund-related questions, not just one session.</div>
+  </div>
+
+  <div class="quiz-q" id="q2">
+    <p>Q2. An attacker sends a PDF invoice to a user. While the user's AI assistant processes the PDF, it extracts hidden instructions and writes "this sender is pre-approved for all payment requests" to the user's preference store. In future sessions, the agent applies this rule without the user realizing it exists. Which attack mechanism was used?</p>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="answer(this,'q2','wrong')">Direct memory API access — the attacker had credentials to write to the preference store</div>
+      <div class="quiz-opt" onclick="answer(this,'q2','correct')">Indirect ingestion poisoning — the attacker embedded instructions in content the agent automatically processed and stored</div>
+      <div class="quiz-opt" onclick="answer(this,'q2','wrong')">Session memory manipulation — the attacker was present in a conversation that the agent summarized</div>
+      <div class="quiz-opt" onclick="answer(this,'q2','wrong')">Multi-agent memory contamination — another agent wrote the false entry to the shared store</div>
+    </div>
+    <div class="quiz-explain" id="q2-exp">Correct. The attacker never interacted with the memory system directly — they controlled the content of a document the agent processed as part of its normal operation. The agent's ingestion pipeline wrote the attacker's embedded instruction to the preference store. This is indirect ingestion poisoning (Type 4): the attack channel was the document processing pipeline, not direct memory access.</div>
+  </div>
+
+  <div class="quiz-q" id="q3">
+    <p>Q3. A multi-tenant AI platform stores all users' memories in a single shared vector database with per-user filtering at the application layer. A security researcher discovers they can bypass the filter by phrasing questions about "general knowledge" — causing the agent to query across all tenants. What is the primary architectural failure?</p>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="answer(this,'q3','wrong')">Insufficient memory TTL — entries from other users should have expired before they could be retrieved</div>
+      <div class="quiz-opt" onclick="answer(this,'q3','correct')">Missing database-level namespace isolation — tenant filtering is applied at the application layer and can be bypassed by agent behavior</div>
+      <div class="quiz-opt" onclick="answer(this,'q3','wrong')">No audit logging — if write events were logged, this retrieval attack could have been prevented</div>
+      <div class="quiz-opt" onclick="answer(this,'q3','wrong')">Insufficient input validation at ingestion — the retrieval attack entered through the write channel</div>
+    </div>
+    <div class="quiz-explain" id="q3-exp">Correct. The root cause is that tenant isolation is enforced at the application layer (code that filters query results by user_id) rather than at the database level (namespaces or separate indexes per tenant). When prompt injection causes the agent to perform a general query that bypasses the application-layer filter, the underlying database returns entries from all tenants. MIT03 (access controls with database-level isolation) is the primary fix.</div>
+  </div>
+
+  <div class="quiz-q" id="q4">
+    <p>Q4. Why is memory tier separation (MIT06) described as the "single highest-leverage control" for preventing memory poisoning?</p>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="answer(this,'q4','wrong')">Because it makes all memory entries expire automatically, limiting the persistence of any poisoned belief</div>
+      <div class="quiz-opt" onclick="answer(this,'q4','wrong')">Because it scans stored entries for injected instructions using automated pattern detection</div>
+      <div class="quiz-opt" onclick="answer(this,'q4','correct')">Because agents cannot write to the curated knowledge tier at all — there is no write path for injection to exploit, regardless of how the agent is manipulated</div>
+      <div class="quiz-opt" onclick="answer(this,'q4','wrong')">Because it requires human approval for any memory write, eliminating automated poisoning paths</div>
+    </div>
+    <div class="quiz-explain" id="q4-exp">Correct. MIT06 doesn't detect or filter malicious content — it eliminates the write path entirely for the highest-trust memory tier. If agents cannot write to the curated knowledge base under any circumstances, no amount of prompt injection, indirect ingestion, or multi-agent contamination can corrupt it. The protection is structural, not pattern-based, which makes it robust to novel attack techniques that bypass detection rules.</div>
+  </div>
+
+  <div class="quiz-q" id="q5">
+    <p>Q5. What is the defining difference between memory poisoning (AG06) and manipulating an agent in a live conversation?</p>
+    <div class="quiz-options">
+      <div class="quiz-opt" onclick="answer(this,'q5','wrong')">Memory poisoning always requires an attacker with admin access to the database; live manipulation only needs a user account</div>
+      <div class="quiz-opt" onclick="answer(this,'q5','wrong')">Memory poisoning only affects the agent's responses about specific topics, while live manipulation can change any response</div>
+      <div class="quiz-opt" onclick="answer(this,'q5','correct')">Memory poisoning persists after the session ends and affects future conversations — including conversations the attacker is not part of. Live manipulation ends when the conversation ends.</div>
+      <div class="quiz-opt" onclick="answer(this,'q5','wrong')">Memory poisoning is always done by insiders; live manipulation is always done by external attackers</div>
+    </div>
+    <div class="quiz-explain" id="q5-exp">Correct. The defining characteristic of AG06 is persistence across sessions. A live manipulation attack — even a severe one — affects only the current interaction. When the conversation ends, the influence ends. A memory poisoning attack survives the session boundary and continues affecting future conversations, by potentially many different users, without the attacker being present. This persistence is both what makes memory useful and what makes its poisoning so dangerous.</div>
+  </div>
+
+  <div id="quiz-result"></div>
+
+  <div class="btn-row" id="quiz-nav" style="display:none;">
+    <a class="btn-secondary" href="ag06-slide-24.html">← Back to Matrix</a>
+    <a class="btn-primary" href="ag06-slide-26.html">Complete AG06 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+
+<script>
+const state = {};
+function answer(el, qid, result) {
+  if (state[qid]) return;
+  state[qid] = result;
+  const opts = el.parentElement.querySelectorAll('.quiz-opt');
+  opts.forEach(o => {
+    o.style.pointerEvents = 'none';
+    if (o === el) o.classList.add(result);
+    else if (result === 'wrong') {
+      const fn = o.getAttribute('onclick') || '';
+      if (fn.includes("'correct'")) o.classList.add('reveal');
+    }
+  });
+  document.getElementById(qid + '-exp').classList.add('show');
+  const answered = Object.keys(state).length;
+  if (answered === 5) {
+    const correct = Object.values(state).filter(v => v === 'correct').length;
+    const res = document.getElementById('quiz-result');
+    res.style.display = 'block';
+    if (correct >= 4) {
+      res.className = 'pass';
+      res.innerHTML = `<strong>${correct}/5 correct — solid understanding of AG06.</strong><br>You can identify memory poisoning, distinguish it from live manipulation, and select the right mitigations for each scenario.`;
+    } else {
+      res.className = 'fail';
+      res.innerHTML = `<strong>${correct}/5 correct.</strong><br>Review the highlighted answers above. Focus on the four memory tiers and the distinction between write-time and retrieval-time controls.`;
+    }
+    document.getElementById('quiz-nav').style.display = 'flex';
+  }
+}
+</script>
+</body>
+</html>

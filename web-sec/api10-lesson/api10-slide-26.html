@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 26 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 26 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg done" href="api10-slide-11.html"></a><a class="seg done" href="api10-slide-12.html"></a><a class="seg done" href="api10-slide-13.html"></a><a class="seg done" href="api10-slide-14.html"></a><a class="seg done" href="api10-slide-15.html"></a><a class="seg done" href="api10-slide-16.html"></a><a class="seg done" href="api10-slide-17.html"></a><a class="seg done" href="api10-slide-18.html"></a><a class="seg done" href="api10-slide-19.html"></a><a class="seg done" href="api10-slide-20.html"></a><a class="seg done" href="api10-slide-21.html"></a><a class="seg done" href="api10-slide-22.html"></a><a class="seg done" href="api10-slide-23.html"></a><a class="seg done" href="api10-slide-24.html"></a><a class="seg done" href="api10-slide-25.html"></a><a class="seg active" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 26</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 26 &#xb7; Prevention Matrix</div>
+  <div class="slide-title">Seven controls, four threat types. Which mitigation addresses which attack.</div>
+  <div class="slide-subtitle">Match each mitigation to the scenario it prevents.</div>
+  <table class="matrix-table">
+    <thead>
+      <tr>
+        <th>Mitigation</th>
+        <th>CDN Script Compromise</th>
+        <th>Injection via Response</th>
+        <th>SSRF via Redirect</th>
+        <th>Supply Chain Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>MIT 01</strong> Treat as untrusted</td>
+        <td class="cell-partial">&#x2014; Architecture</td>
+        <td class="cell-yes">&#x2713; Changes mindset</td>
+        <td class="cell-yes">&#x2713; Validates all URLs</td>
+        <td class="cell-yes">&#x2713; Validates all fields</td>
+      </tr>
+      <tr>
+        <td><strong>MIT 02</strong> Validate all fields</td>
+        <td class="cell-partial">&#x2014; Not applicable</td>
+        <td class="cell-yes">&#x2713; Parameterize / escape</td>
+        <td class="cell-partial">&#x2014; See MIT 03</td>
+        <td class="cell-yes">&#x2713; Strips JNDI / XSS</td>
+      </tr>
+      <tr>
+        <td><strong>MIT 03</strong> Allowlist outbound URLs</td>
+        <td class="cell-partial">&#x2014; Server-side only</td>
+        <td class="cell-partial">&#x2014; Not directly</td>
+        <td class="cell-yes">&#x2713; Blocks redirect to internal</td>
+        <td class="cell-partial">&#x2014; Not directly</td>
+      </tr>
+      <tr>
+        <td><strong>MIT 04</strong> Vendor due diligence</td>
+        <td class="cell-yes">&#x2713; Screens weak CDN practices</td>
+        <td class="cell-yes">&#x2713; Evaluates data handling</td>
+        <td class="cell-yes">&#x2713; Evaluates redirect security</td>
+        <td class="cell-yes">&#x2713; Filters poor-security vendors</td>
+      </tr>
+      <tr>
+        <td><strong>MIT 05</strong> Subresource Integrity</td>
+        <td class="cell-yes">&#x2713; Blocks tampered scripts</td>
+        <td class="cell-partial">&#x2014; Script-only</td>
+        <td class="cell-partial">&#x2014; Script-only</td>
+        <td class="cell-partial">&#x2014; Script-only</td>
+      </tr>
+      <tr>
+        <td><strong>MIT 06</strong> Minimum privilege</td>
+        <td class="cell-yes">&#x2713; Limits blast radius</td>
+        <td class="cell-yes">&#x2713; Limits blast radius</td>
+        <td class="cell-yes">&#x2713; Limits blast radius</td>
+        <td class="cell-yes">&#x2713; Limits blast radius</td>
+      </tr>
+      <tr>
+        <td><strong>MIT 07</strong> Isolate integrations</td>
+        <td class="cell-partial">&#x2014; Browser-layer attack</td>
+        <td class="cell-yes">&#x2713; Adapter validates before core</td>
+        <td class="cell-yes">&#x2713; Adapter handles fetches</td>
+        <td class="cell-yes">&#x2713; Adapter normalizes data</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="callout blue">
+    <div class="callout-label">The minimum viable set</div>
+    <p><strong>MIT 02</strong> (validate all fields &#x2014; parameterize, escape, sanitize) and <strong>MIT 03</strong> (allowlist outbound URLs) close the highest-impact injection and SSRF vectors. <strong>MIT 05</strong> (SRI) is the direct defense against Magecart-style CDN compromise. Together, these three address the three most common API10 attack patterns.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-25.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-27.html">Quiz &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 20 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 20 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a><a class="seg done" href="ag08-slide-11.html"></a><a class="seg done" href="ag08-slide-12.html"></a><a class="seg done" href="ag08-slide-13.html"></a><a class="seg done" href="ag08-slide-14.html"></a><a class="seg done" href="ag08-slide-15.html"></a><a class="seg done" href="ag08-slide-16.html"></a><a class="seg done" href="ag08-slide-17.html"></a><a class="seg done" href="ag08-slide-18.html"></a><a class="seg done" href="ag08-slide-19.html"></a>
+    <a class="seg active" href="ag08-slide-20.html"></a>
+    <a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 20</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 20 · MIT05 + MIT06</div>
+  <div class="slide-title">Bulkheads prevent one agent's failure from starving others. Rate limits and confirmation gates stop cascaded errors from executing at full scale.</div>
+
+  <div class="block">
+    <div class="block-label blue">MIT05 — Bulkhead Isolation</div>
+    <p><strong>What it does:</strong> Resource pools are partitioned by agent. Each agent has its own bounded pool of connections, threads, tokens, and memory. One agent exhausting its pool cannot borrow from another agent's pool — isolating the resource failure to the agent that caused it.</p>
+    <p><strong>The shipping bulkhead analogy:</strong> A bulkhead on a ship divides the hull into compartments. If one compartment floods, the bulkheads prevent the water from flowing to other compartments — keeping the ship afloat even though one section is flooded. Applied to agents: if the retrieval agent's database connection pool is exhausted, it doesn't starve the synthesis agent's connections — each has its own bounded pool.</p>
+    <p><strong>What to partition:</strong> LLM API connections (per-agent token budgets and rate limit allocations), vector database connections (connection pools scoped per agent type), task queue consumers (separate consumer groups for different agent types, so one type's slowdown doesn't starve another type's queue), and memory limits (agent processes have memory caps so one memory-hungry agent doesn't cause OOM kills on co-located agents).</p>
+    <p><strong>Addresses Scenario 3 directly:</strong> With bulkhead isolation, all 4 retrieval agents sharing the same vector database would each have their own connection pool. One agent's retry storm can only exhaust its own pool — it cannot consume connections belonging to the synthesis agents or the orchestrator.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">MIT06 — Rate Limiting and Human Confirmation Gates</div>
+    <p><strong>What it does:</strong> Terminal action agents — those that take real-world irreversible actions — are constrained by rate limits and batch size caps. Requests above the threshold require human confirmation before execution.</p>
+    <p><strong>The blast radius principle:</strong> The damage from a cascaded error is proportional to the number of actions executed before detection. Rate limiting reduces the per-minute action volume, giving monitoring systems time to detect an anomaly and trigger intervention before the full batch executes. Human confirmation for bulk actions ensures that a cascaded error producing 11,000 send instructions is reviewed by a human before 11,000 emails go out.</p>
+    <p><strong>What to gate:</strong> Email/notification campaigns above N recipients. Financial transfers above threshold amount. Bulk record modifications or deletions. External API calls above a rate that exceeds normal operating parameters by more than 2×. Any irreversible action targeting >100 external entities simultaneously.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: is there a hard cap on how many emails, notifications, or records your AI agents can act on in a single operation — enforced by the system, not just by the agent's instructions? Ask whether a misbehaving agent could trigger bulk actions affecting thousands of customers before anyone could intervene.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-19.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-21.html">MIT07 + MIT08 + MIT09 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

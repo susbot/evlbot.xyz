@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 28 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 28 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg done" href="api09-slide-05.html"></a><a class="seg done" href="api09-slide-06.html"></a><a class="seg done" href="api09-slide-07.html"></a><a class="seg done" href="api09-slide-08.html"></a><a class="seg done" href="api09-slide-09.html"></a><a class="seg done" href="api09-slide-10.html"></a><a class="seg done" href="api09-slide-11.html"></a><a class="seg done" href="api09-slide-12.html"></a><a class="seg done" href="api09-slide-13.html"></a><a class="seg done" href="api09-slide-14.html"></a><a class="seg done" href="api09-slide-15.html"></a><a class="seg done" href="api09-slide-16.html"></a><a class="seg done" href="api09-slide-17.html"></a><a class="seg done" href="api09-slide-18.html"></a><a class="seg done" href="api09-slide-19.html"></a><a class="seg done" href="api09-slide-20.html"></a><a class="seg done" href="api09-slide-21.html"></a><a class="seg done" href="api09-slide-22.html"></a><a class="seg done" href="api09-slide-23.html"></a><a class="seg done" href="api09-slide-24.html"></a><a class="seg done" href="api09-slide-25.html"></a><a class="seg done" href="api09-slide-26.html"></a><a class="seg done" href="api09-slide-27.html"></a><a class="seg active" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Complete</span><span>Slide 28</span></div>
+</div>
+<div class="slide active">
+
+  <div class="complete-wrap">
+    <div class="complete-icon">&#x2705;</div>
+    <div class="complete-title">Module Complete</div>
+    <div class="complete-sub">You finished API9 &#x2014; Improper Inventory Management. Here&#x2019;s what you now understand:</div>
+    <div class="checklist">
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Three failure types: version sprawl (old versions still live), environment exposure (staging on the internet), and undocumented endpoints (never in the docs, never in scope for security)</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Why version sprawl happens &#x2014; no inventory, no deprecation process, security patches applied only to current versions, cloud makes spinning up environments trivially easy</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Two attack patterns: version downgrade (call v1 to bypass v2&#x2019;s security) and environment pivot (find staging via cert transparency, access real data through weak auth)</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Facebook Graph API v1 / Cambridge Analytica &#x2014; the friends permission was removed in v2, but v1 kept running; 87 million profiles harvested from 270,000 installs</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">USPS undocumented API (2018) &#x2014; an undocumented endpoint let any authenticated user query any other user&#x2019;s data; 60M accounts exposed</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">API9 amplifies every other risk &#x2014; a BOLA patch in v2 is irrelevant if v1 still runs with the original BOLA; inventory management is infrastructure for all other security work</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Seven mitigations: complete inventory, formal deprecation with sunset dates, network restriction of old versions, same controls on all versions, environment separation, automated discovery scanning, API gateway as single entry point</span></div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-label pink">The one thing to carry forward</div>
+    <p>Security controls are applied to what the team knows about. If your attack surface includes API versions, environments, or endpoints that aren&#x2019;t in the inventory, those surfaces receive none of your security investment. <strong>The boundary of your security is exactly the boundary of your inventory &#x2014; expand the inventory, expand the protection.</strong></p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-27.html">&#x2190; Back to Quiz</a>
+    <a class="btn-primary" href="../api10-lesson/api10-slide-01.html">Next: API10 &#x2014; Unsafe Consumption of APIs &#x2192;</a>
+  </div>
+
+</div>
+
+</body>
+</html>

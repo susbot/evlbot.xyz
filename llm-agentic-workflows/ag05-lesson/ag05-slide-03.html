@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG05:2026 — Unexpected Code Execution · Slide 3 of 28</title>
+<link rel="stylesheet" href="ag05-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG05:2026</span>
+    <span class="nav-title">Unexpected Code Execution</span>
+  </div>
+  <span class="nav-right">Slide 3 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag05-slide-01.html"></a><a class="seg done" href="ag05-slide-02.html"></a>
+    <a class="seg active" href="ag05-slide-03.html"></a>
+    <a class="seg" href="ag05-slide-04.html"></a><a class="seg" href="ag05-slide-05.html"></a><a class="seg" href="ag05-slide-06.html"></a><a class="seg" href="ag05-slide-07.html"></a><a class="seg" href="ag05-slide-08.html"></a><a class="seg" href="ag05-slide-09.html"></a><a class="seg" href="ag05-slide-10.html"></a><a class="seg" href="ag05-slide-11.html"></a><a class="seg" href="ag05-slide-12.html"></a><a class="seg" href="ag05-slide-13.html"></a><a class="seg" href="ag05-slide-14.html"></a><a class="seg" href="ag05-slide-15.html"></a><a class="seg" href="ag05-slide-16.html"></a><a class="seg" href="ag05-slide-17.html"></a><a class="seg" href="ag05-slide-18.html"></a><a class="seg" href="ag05-slide-19.html"></a><a class="seg" href="ag05-slide-20.html"></a><a class="seg" href="ag05-slide-21.html"></a><a class="seg" href="ag05-slide-22.html"></a><a class="seg" href="ag05-slide-23.html"></a><a class="seg" href="ag05-slide-24.html"></a><a class="seg" href="ag05-slide-25.html"></a><a class="seg" href="ag05-slide-26.html"></a><a class="seg" href="ag05-slide-27.html"></a><a class="seg" href="ag05-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — What Is It?</span><span>Slide 3</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 3 · The Definition Part 1</div>
+  <div class="slide-title">The official definition — what OWASP means by unexpected code execution in agentic systems</div>
+  <div class="slide-subtitle">Three conditions make this a distinct security risk: the agent generates the code, it executes it without pre-approval, and the effects reach real systems.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI05</div>
+
+  <div class="mono-block">"Unexpected Code Execution arises when an agent generates and
+executes code — in a code interpreter, shell, or other runtime
+environment — that performs actions beyond the intended scope,
+including remote code execution on host systems, exfiltration of
+sensitive data, or modification of critical resources, often triggered
+by malicious inputs or insufficient sandboxing."</div>
+
+  <div class="block">
+    <div class="block-label purple">Three parts of the definition</div>
+    <p><strong>1. The agent generates and executes code.</strong> This is not about code in the agent's own codebase. It's about code the agent writes at runtime — in response to instructions, queries, or goals — and then runs in an interpreter, shell, REPL, or similar environment.</p>
+    <p><strong>2. The code performs actions beyond intended scope.</strong> "Scope" here means the boundaries the operator and user intended: which systems, which data, which operations, which scale. Unexpected execution crosses those boundaries — sometimes through attacker manipulation, sometimes through ambiguous instructions, sometimes through the agent inferring too aggressively.</p>
+    <p><strong>3. The effects reach real systems.</strong> The code runs against live infrastructure — production databases, file systems, cloud APIs, operating system processes, network endpoints. The consequences are real, immediate, and often irreversible.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Two root causes OWASP identifies</div>
+    <p><strong>Malicious inputs:</strong> an attacker crafts input that drives the agent to generate and run harmful code — a form of code injection through natural language.</p>
+    <p><strong>Insufficient sandboxing:</strong> the agent's code execution environment has access to more than it should — no resource limits, no network isolation, no filesystem restrictions — so when code runs unexpectedly, the blast radius is large.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag05-slide-02.html">← Back</a>
+    <a class="btn-primary" href="ag05-slide-04.html">Why agentic code execution is fundamentally different →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

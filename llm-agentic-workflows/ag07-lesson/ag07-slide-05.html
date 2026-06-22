@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 5 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 5 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a>
+    <a class="seg active" href="ag07-slide-05.html"></a>
+    <a class="seg" href="ag07-slide-06.html"></a><a class="seg" href="ag07-slide-07.html"></a><a class="seg" href="ag07-slide-08.html"></a><a class="seg" href="ag07-slide-09.html"></a><a class="seg" href="ag07-slide-10.html"></a><a class="seg" href="ag07-slide-11.html"></a><a class="seg" href="ag07-slide-12.html"></a><a class="seg" href="ag07-slide-13.html"></a><a class="seg" href="ag07-slide-14.html"></a><a class="seg" href="ag07-slide-15.html"></a><a class="seg" href="ag07-slide-16.html"></a><a class="seg" href="ag07-slide-17.html"></a><a class="seg" href="ag07-slide-18.html"></a><a class="seg" href="ag07-slide-19.html"></a><a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 5</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 5 · Outcomes</div>
+  <div class="slide-title">Six categories of harm that result from compromised inter-agent communication.</div>
+
+  <div class="vuln-grid">
+    <div class="vuln-card">
+      <div class="vuln-card-title">Unauthorized action execution</div>
+      <p>A forged or tampered message causes an agent to perform an action it would not have performed had the message been authentic. The action appears legitimate — it was issued through the right channel, in the right format, from what appeared to be the right source.</p>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-card-title">Privilege escalation via orchestrator impersonation</div>
+      <p>An attacker who can impersonate the orchestrator can direct any sub-agent in the pipeline to perform any action the sub-agent is capable of — including actions the real orchestrator would never authorize. The impersonator inherits the orchestrator's authority over the entire downstream fleet.</p>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-card-title">Pipeline integrity collapse</div>
+      <p>Tampered responses from one agent cause the orchestrator to make incorrect decisions for all subsequent steps. A pipeline that expects a "safe to proceed" signal and receives a forged one will proceed — potentially through a sequence of compounding errors, each step trusting the falsified output of the previous one.</p>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-card-title">Sensitive data interception</div>
+      <p>Agents routinely pass sensitive information between each other: API keys, user data, access tokens, query results, and retrieved documents. An attacker with read access to an unencrypted inter-agent channel can harvest this data without ever touching either agent directly.</p>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-card-title">Replay attacks</div>
+      <p>A previously valid message — a legitimate "approve this transaction," a "grant access," or a "deploy to production" — is re-sent at an unauthorized time. Without replay protection (message nonces, timestamps, or sequence numbers), the receiving agent cannot distinguish the replayed message from a fresh legitimate one.</p>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-card-title">Coordinated multi-agent compromise</div>
+      <p>By controlling the messages flowing between agents, an attacker can coordinate multiple agents simultaneously — instructing Agent A to create a resource while instructing Agent B to grant permissions on it, achieving a compound goal that neither agent would have enabled if properly overseen by the legitimate orchestrator.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-04.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-06.html">Who exploits this →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

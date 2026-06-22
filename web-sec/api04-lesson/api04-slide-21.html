@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Unrestricted Resource Consumption · Slide 21 of 28</title>
+<link rel="stylesheet" href="api04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Unrestricted Resource Consumption</span></div>
+  <span class="nav-right">Slide 21 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api04-slide-01.html"></a><a class="seg done" href="api04-slide-02.html"></a><a class="seg done" href="api04-slide-03.html"></a><a class="seg done" href="api04-slide-04.html"></a><a class="seg done" href="api04-slide-05.html"></a><a class="seg done" href="api04-slide-06.html"></a><a class="seg done" href="api04-slide-07.html"></a><a class="seg done" href="api04-slide-08.html"></a><a class="seg done" href="api04-slide-09.html"></a><a class="seg done" href="api04-slide-10.html"></a><a class="seg done" href="api04-slide-11.html"></a><a class="seg done" href="api04-slide-12.html"></a><a class="seg done" href="api04-slide-13.html"></a><a class="seg done" href="api04-slide-14.html"></a><a class="seg done" href="api04-slide-15.html"></a><a class="seg done" href="api04-slide-16.html"></a><a class="seg done" href="api04-slide-17.html"></a><a class="seg done" href="api04-slide-18.html"></a><a class="seg done" href="api04-slide-19.html"></a><a class="seg done" href="api04-slide-20.html"></a><a class="seg active" href="api04-slide-21.html"></a><a class="seg" href="api04-slide-22.html"></a><a class="seg" href="api04-slide-23.html"></a><a class="seg" href="api04-slide-24.html"></a><a class="seg" href="api04-slide-25.html"></a><a class="seg" href="api04-slide-26.html"></a><a class="seg" href="api04-slide-27.html"></a><a class="seg" href="api04-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 21</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 21 · Mitigation 3</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 03</div>
+    <div class="mit-title">Reject request bodies and file uploads above a defined size limit.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Every endpoint that accepts a request body or file upload must have a maximum size limit, enforced before the body is parsed or processed. An unlimited file upload endpoint can be used to fill disk space, exhaust memory during parsing, or saturate upload bandwidth.</p>
+      <p>• JSON request bodies: typically 1MB–10MB depending on the use case. Most CRUD endpoints don't need more than 1MB.</p>
+      <p>• File uploads: define per-type limits (profile photo: 5MB, document: 10MB, video: 500MB) and enforce them before writing to disk or triggering processing.</p>
+      <p>• GraphQL mutation inputs: same rule as JSON bodies.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Where to enforce it</div>
+      <p>At the web server or API gateway layer — before the request reaches application code. In nginx: <code>client_max_body_size 10m;</code>. In Express: <code>express.json({ limit: '1mb' })</code>. In Django: <code>DATA_UPLOAD_MAX_MEMORY_SIZE</code>. Enforcing at the framework layer prevents the application from spending CPU parsing a 100GB body.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label yellow">Return 413 Payload Too Large</div>
+      <p>When a request exceeds the size limit, return <code>HTTP 413 Payload Too Large</code> with a clear error message indicating the maximum allowed size. This is a standard HTTP response that legitimate clients can handle gracefully.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team whether any API endpoint can return an unlimited number of records in a single response. Every list or search endpoint should have a hard maximum on how many results it returns at once.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api04-slide-20.html">← Back</a>
+    <a class="btn-primary" href="api04-slide-22.html">MIT 04: Execution timeouts →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

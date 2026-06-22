@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 10 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 10 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg done" href="api02-slide-07.html"></a><a class="seg done" href="api02-slide-08.html"></a><a class="seg done" href="api02-slide-09.html"></a><a class="seg active" href="api02-slide-10.html"></a><a class="seg" href="api02-slide-11.html"></a><a class="seg" href="api02-slide-12.html"></a><a class="seg" href="api02-slide-13.html"></a><a class="seg" href="api02-slide-14.html"></a><a class="seg" href="api02-slide-15.html"></a><a class="seg" href="api02-slide-16.html"></a><a class="seg" href="api02-slide-17.html"></a><a class="seg" href="api02-slide-18.html"></a><a class="seg" href="api02-slide-19.html"></a><a class="seg" href="api02-slide-20.html"></a><a class="seg" href="api02-slide-21.html"></a><a class="seg" href="api02-slide-22.html"></a><a class="seg" href="api02-slide-23.html"></a><a class="seg" href="api02-slide-24.html"></a><a class="seg" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 · How It Works</span><span>Slide 10</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 10 · Credential Stuffing</div>
+  <div class="slide-title">Your users reuse passwords. Attackers know this.</div>
+  <div class="slide-subtitle">No guessing required. The credentials come from someone else's breach.</div>
+
+  <div class="callout yellow">
+    <div class="callout-label">How It Works</div>
+    <p>Data breaches happen constantly. When a site is breached, the leaked username/password pairs are assembled into "combo lists." These lists are shared, sold, and merged. The biggest ones contain hundreds of millions of credentials.</p>
+    <p>An attacker downloads a combo list and writes a script that fires POST requests to your login API — one per credential pair. <strong>No password guessing. They're using real passwords that worked somewhere else.</strong></p>
+  </div>
+
+  <div class="real-incident">
+    <div class="real-incident-tag">Real Incident · 2020</div>
+    <div class="real-incident-title">Spotify — 380 Million Credential Pairs Tested</div>
+    <div class="real-incident-body">
+      <p>In 2020, a database containing 380 million username/password pairs assembled from third-party breaches was used to test Spotify accounts. Spotify's login API had no effective rate limiting for distributed attacks. <strong>Thousands of accounts were successfully taken over.</strong> Spotify was forced to reset passwords for affected users.</p>
+      <p>The credentials weren't stolen from Spotify — they were leaked from other sites. Users who reused passwords paid the price.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Lesson:</strong> Your API inherits the risk of every breach that ever happened to your users' passwords. Rate limiting and MFA are the only defenses that work at scale.</div>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">The scale problem</div>
+    <p>A 1-in-100 success rate sounds low. Against a list of 380 million credentials, that's 3.8 million taken accounts. Even a 1-in-1,000 rate means 380,000 compromised accounts from a single attack run.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-09.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-11.html">Brute force without lockout →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

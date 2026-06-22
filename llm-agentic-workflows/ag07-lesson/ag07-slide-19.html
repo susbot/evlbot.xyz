@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 19 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 19 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a><a class="seg done" href="ag07-slide-09.html"></a><a class="seg done" href="ag07-slide-10.html"></a><a class="seg done" href="ag07-slide-11.html"></a><a class="seg done" href="ag07-slide-12.html"></a><a class="seg done" href="ag07-slide-13.html"></a><a class="seg done" href="ag07-slide-14.html"></a><a class="seg done" href="ag07-slide-15.html"></a><a class="seg done" href="ag07-slide-16.html"></a><a class="seg done" href="ag07-slide-17.html"></a><a class="seg done" href="ag07-slide-18.html"></a>
+    <a class="seg active" href="ag07-slide-19.html"></a>
+    <a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 19</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 19 · MIT03 + MIT04</div>
+  <div class="slide-title">Encrypted channels stop eavesdropping. Strict input validation catches malformed or unexpected instructions before they reach the agent's reasoning.</div>
+
+  <div class="block">
+    <div class="block-label red">MIT03 — Encrypted Channels (TLS)</div>
+    <p><strong>What it does:</strong> All inter-agent communication is encrypted in transit using TLS 1.2 or later. Passive eavesdroppers who can read network traffic see only ciphertext. Transport-level tampering is also detected (TLS includes a MAC on each record).</p>
+    <p><strong>Mutual TLS vs. one-way TLS:</strong> One-way TLS (the default in most HTTPS) authenticates the server to the client. Mutual TLS (mTLS) authenticates both sides — the server verifies the client certificate as well. For inter-agent communication, mTLS is strongly preferred because it provides both encryption (MIT03) and identity authentication (MIT01) in a single mechanism.</p>
+    <p><strong>The "internal network" correction:</strong> TLS is often omitted on internal channels with the reasoning that the internal network is trusted. This assumption is incorrect in cloud environments where internal network segments may be shared with other tenants or accessible to compromised internal services. The rule should be: TLS everywhere, regardless of network topology.</p>
+    <p><strong>Threat closed:</strong> Type 5 (eavesdropping). Also provides transport-level integrity that limits Type 2 (tampering) to attackers who can terminate the TLS connection, not merely observe network traffic.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">MIT04 — Input Validation on All Inter-Agent Messages</div>
+    <p><strong>What it does:</strong> Every inter-agent message is validated against a strict schema before the receiving agent acts on it. Validation includes: message structure (required fields present, no unexpected fields), field types and value ranges, action names (whitelist of valid operations), and parameter values (within expected bounds).</p>
+    <p><strong>Defense in depth against forgery and injection:</strong> Even if an attacker successfully forges a message that passes authentication checks (e.g., because a legitimate agent was compromised and is now sending attacker-controlled content), schema validation limits the damage by rejecting instructions that fall outside the expected operation set. An agent that validates input cannot be instructed to run arbitrary actions that weren't anticipated in its schema.</p>
+    <p><strong>Example validation check:</strong> A deployment agent's schema says the <code>"target"</code> field must be one of <code>["staging", "canary", "dev"]</code>. A tampered message that sets <code>"target": "production"</code> is rejected before it reaches the deployment logic — even if the message passed signature verification.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: when agents pass instructions between each other, are those messages checked for tampering — or just assumed to be intact? Ask whether a message that had its destination or action changed in transit would still be accepted and acted on.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-18.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-20.html">MIT05 + MIT06 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

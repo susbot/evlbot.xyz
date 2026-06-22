@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 21 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 21 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg done" href="api08-slide-05.html"></a><a class="seg done" href="api08-slide-06.html"></a><a class="seg done" href="api08-slide-07.html"></a><a class="seg done" href="api08-slide-08.html"></a><a class="seg done" href="api08-slide-09.html"></a><a class="seg done" href="api08-slide-10.html"></a><a class="seg done" href="api08-slide-11.html"></a><a class="seg done" href="api08-slide-12.html"></a><a class="seg done" href="api08-slide-13.html"></a><a class="seg done" href="api08-slide-14.html"></a><a class="seg done" href="api08-slide-15.html"></a><a class="seg done" href="api08-slide-16.html"></a><a class="seg done" href="api08-slide-17.html"></a><a class="seg done" href="api08-slide-18.html"></a><a class="seg done" href="api08-slide-19.html"></a><a class="seg done" href="api08-slide-20.html"></a><a class="seg active" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 21</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 21 &#xb7; Mitigation 3</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 03</div>
+    <div class="mit-title">Set required security headers on all API responses.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">The five headers every API should set</div>
+      <p><strong>1. Strict-Transport-Security (HSTS)</strong></p>
+      <p><code>Strict-Transport-Security: max-age=31536000; includeSubDomains</code></p>
+      <p>Tells browsers to only connect via HTTPS for one year, even if the user types HTTP. Prevents SSL stripping attacks.</p>
+      <p><strong>2. X-Content-Type-Options</strong></p>
+      <p><code>X-Content-Type-Options: nosniff</code></p>
+      <p>Prevents browsers from MIME-type sniffing &#x2014; treating a response as a different content type than declared. Mitigates content injection attacks.</p>
+      <p><strong>3. X-Frame-Options</strong></p>
+      <p><code>X-Frame-Options: DENY</code></p>
+      <p>Prevents the API&#x2019;s responses from being loaded in iframes &#x2014; blocks clickjacking attacks on web-facing API endpoints.</p>
+      <p><strong>4. Content-Security-Policy (for APIs that serve HTML)</strong></p>
+      <p><code>Content-Security-Policy: default-src &#x2019;none&#x2019;</code></p>
+      <p>For pure JSON APIs, this prevents any unexpected HTML responses from executing scripts.</p>
+      <p><strong>5. Referrer-Policy</strong></p>
+      <p><code>Referrer-Policy: strict-origin-when-cross-origin</code></p>
+      <p>Controls what URL information is sent in the <code>Referer</code> header. Prevents sensitive URL parameters from leaking to third parties.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Set at the API gateway or middleware layer</div>
+      <p>Security headers should be set at the API gateway, reverse proxy (nginx, Caddy), or in global middleware &#x2014; not in individual endpoint handlers. This ensures they are applied consistently to all responses, including error responses and redirects that individual handlers might miss.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team to run your API or website through Mozilla Observatory at observatory.mozilla.org &#x2014; it is free, takes 30 seconds, gives a letter grade, and lists specific security headers that are missing.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-20.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-22.html">MIT 04: Restrict HTTP methods &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

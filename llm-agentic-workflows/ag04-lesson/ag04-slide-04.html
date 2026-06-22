@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 4 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag04-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag04-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg active" href="ag04-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg" href="ag04-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg" href="ag04-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg" href="ag04-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg" href="ag04-slide-08.html" title="Slide 8 · Why Runtime Composition Changes Everything"></a>
+    <a class="seg" href="ag04-slide-09.html" title="Slide 9 · Six Vulnerability Types"></a>
+    <a class="seg" href="ag04-slide-10.html" title="Slide 10 · Type 1 — Poisoned Prompts and Descriptors"></a>
+    <a class="seg" href="ag04-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg" href="ag04-slide-12.html" title="Slide 12 · Type 2 — Impersonation and Typosquatting"></a>
+    <a class="seg" href="ag04-slide-13.html" title="Slide 13 · Types 3–4 — Third-Party Agents and Poisoned Knowledge"></a>
+    <a class="seg" href="ag04-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg" href="ag04-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg" href="ag04-slide-16.html" title="Slide 16 · Scenarios 5–6"></a>
+    <a class="seg" href="ag04-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag04-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag04-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag04-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag04-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag04-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag04-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag04-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag04-slide-25.html" title="Slide 25 · Mitigations 7–8"></a>
+    <a class="seg" href="ag04-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag04-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag04-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — What Is It?</span><span>Slide 4</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 4 · The Definition Part 2</div>
+  <div class="slide-title">The live supply chain — why agents face a threat that traditional software doesn't</div>
+  <div class="slide-subtitle">Traditional software has a static supply chain. Agents have a live one. That difference is everything.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI04</div>
+
+  <div class="mono-block">"Unlike traditional AI or software supply chains, agentic ecosystems
+often compose capabilities at runtime — loading external tools and
+agent personas dynamically — thereby increasing the attack surface.
+This distributed run-time coordination — combined with agentic
+autonomy — creates a live supply chain that can cascade
+vulnerabilities across agents."</div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Traditional software supply chain</div>
+      <div class="compare-item"><strong>Dependencies declared at build time.</strong> You know exactly what's in the build before it ships.</div>
+      <div class="compare-item"><strong>One-time install.</strong> Package is installed, verified, and stays static until deliberately updated.</div>
+      <div class="compare-item"><strong>Human reviews changes.</strong> A developer approves dependency updates before they're applied.</div>
+      <div class="compare-item"><strong>Blast radius is bounded.</strong> A compromised package affects the specific app that installed it.</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Agentic supply chain</div>
+      <div class="compare-item"><strong>Capabilities composed at runtime.</strong> The agent discovers and loads tools, plugins, and sub-agents while running — often without a human in the loop.</div>
+      <div class="compare-item"><strong>Continuous live connections.</strong> MCP servers, tool registries, and external APIs are live connections that can change at any moment.</div>
+      <div class="compare-item"><strong>Agent trusts descriptors.</strong> The agent decides what to use based on text descriptions — which can be forged or poisoned.</div>
+      <div class="compare-item"><strong>Cascades across agents.</strong> A compromised tool can propagate malicious instructions through a pipeline of agents, each trusting the output of the last.</div>
+    </div>
+  </div>
+
+  <div class="callout red">
+    <div class="callout-label">The cascade problem</div>
+    <p>In a multi-agent pipeline, a poisoned component doesn't just affect the agent that loaded it. Its malicious output becomes the input for the next agent — which treats it as trusted internal data. That agent's malicious output becomes the next agent's input. <strong>A single compromised component at the start of a pipeline can cascade its attack through every downstream agent.</strong></p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-03.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-05.html">What can attackers actually achieve? →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

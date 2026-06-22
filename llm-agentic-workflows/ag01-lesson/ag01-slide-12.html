@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG01:2026 — Agent Goal Hijack · Slide 12 of 28</title>
+<link rel="stylesheet" href="ag01-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG01:2026</span>
+    <span class="nav-title">Agent Goal Hijack</span>
+  </div>
+  <span class="nav-right">Slide 12 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag01-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag01-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag01-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag01-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag01-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag01-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag01-slide-07.html" title="Slide 7 · Prompt Injection vs Goal Hijack"></a>
+    <a class="seg done" href="ag01-slide-08.html" title="Slide 8 · Why Agents Are Different"></a>
+    <a class="seg done" href="ag01-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag01-slide-10.html" title="Slide 10 · Direct Goal Manipulation"></a>
+    <a class="seg done" href="ag01-slide-11.html" title="Slide 11 · Direct — Real Example"></a>
+    <a class="seg active" href="ag01-slide-12.html" title="Slide 12 · Indirect Instruction Injection"></a>
+    <a class="seg" href="ag01-slide-13.html" title="Slide 13 · Indirect — Real Example"></a>
+    <a class="seg" href="ag01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a>
+    <a class="seg" href="ag01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a>
+    <a class="seg" href="ag01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a>
+    <a class="seg" href="ag01-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag01-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag01-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag01-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag01-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag01-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag01-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag01-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag01-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag01-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag01-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag01-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — How It Works</span><span>Slide 12</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 12 · Type 2 — Indirect Instruction Injection</div>
+  <div class="slide-title">The attack that requires no access at all</div>
+  <div class="slide-subtitle">How malicious instructions reach an agent through the content it reads — without the attacker ever touching the agent directly.</div>
+
+  <div class="block">
+    <div class="block-label blue">The key difference from Type 1</div>
+    <p>In Type 1, the attacker has some form of access to the agent's interface. In Type 2, <strong>the attacker never interacts with the agent at all.</strong> They place malicious content somewhere the agent will eventually read — and wait. The agent retrieves the content on its own, processes it as data, and executes the embedded instructions without realizing they were planted there by an adversary.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label blue">How it works — step by step</div>
+    <p><strong>Step 1 — Poisoning the source.</strong> The attacker embeds hijack instructions into content the agent is likely to retrieve: an email sent to the victim, a document shared to a shared drive, a webpage the agent will search and fetch, an API response the agent will call, or data in a RAG knowledge base the agent queries.</p>
+    <p><strong>Step 2 — The agent retrieves it.</strong> The victim asks the agent to do something legitimate. The agent, doing its job, fetches the poisoned content as part of its normal workflow. From the agent's perspective, this is just data to process.</p>
+    <p><strong>Step 3 — Instructions are executed.</strong> The agent's reasoning integrates the hidden instructions alongside the legitimate task. It cannot distinguish between "data I should summarize" and "instructions I should follow." The attacker's goal becomes the agent's goal.</p>
+    <p><strong>Step 4 — Silent exfiltration.</strong> The agent completes the attacker's objective — reading files, sending data, modifying records — while also returning normal-looking output to the user. The victim sees exactly what they asked for. The theft is invisible.</p>
+  </div>
+
+  <div class="callout red">
+    <div class="callout-label">Why this is the more dangerous variant</div>
+    <p>Type 2 requires no credentials, no session access, no social engineering of an administrator. The attacker only needs to answer one question: <strong>"What content will this agent read?"</strong> Then they put their instructions there. One poisoned source can silently redirect every agent that reads it — at scale, indefinitely, until the content is removed.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag01-slide-11.html">← Back</a>
+    <a class="btn-primary" href="ag01-slide-13.html">Show me the real example → EchoLeak</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 26 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+<style>
+.complete-hero { text-align: center; padding: 2rem 0 1.5rem; }
+.complete-badge { display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent-bright)); color: #000; font-weight: 700; font-size: 1rem; padding: 0.5rem 1.4rem; border-radius: 20px; letter-spacing: 0.04em; margin-bottom: 1rem; }
+.complete-title { font-size: 1.6rem; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 0.4rem; }
+.complete-sub { color: var(--text-muted); font-size: 0.95rem; }
+.takeaway-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin: 1.5rem 0; }
+.takeaway-item { background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 0.9rem 1rem; }
+.takeaway-num { font-size: 0.75rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+.takeaway-text { font-size: 0.88rem; color: var(--text); line-height: 1.5; }
+.complete-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+.btn-restart { padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); color: var(--text-muted); font-size: 0.9rem; text-decoration: none; }
+.btn-home { padding: 0.6rem 1.4rem; border-radius: 8px; background: var(--accent); color: #000; font-weight: 700; font-size: 0.9rem; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 26 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a><a class="seg done" href="ag07-slide-09.html"></a><a class="seg done" href="ag07-slide-10.html"></a><a class="seg done" href="ag07-slide-11.html"></a><a class="seg done" href="ag07-slide-12.html"></a><a class="seg done" href="ag07-slide-13.html"></a><a class="seg done" href="ag07-slide-14.html"></a><a class="seg done" href="ag07-slide-15.html"></a><a class="seg done" href="ag07-slide-16.html"></a><a class="seg done" href="ag07-slide-17.html"></a><a class="seg done" href="ag07-slide-18.html"></a><a class="seg done" href="ag07-slide-19.html"></a><a class="seg done" href="ag07-slide-20.html"></a><a class="seg done" href="ag07-slide-21.html"></a><a class="seg done" href="ag07-slide-22.html"></a><a class="seg done" href="ag07-slide-23.html"></a><a class="seg done" href="ag07-slide-24.html"></a><a class="seg done" href="ag07-slide-25.html"></a>
+    <a class="seg active" href="ag07-slide-26.html"></a>
+    <a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Complete</span><span>Slide 26</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="complete-hero">
+    <div class="complete-badge">AG07:2026 — Complete</div>
+    <div class="complete-title">Insecure Inter-Agent Communication</div>
+    <div class="complete-sub">You've completed all 26 content slides. Here are the six things to carry forward.</div>
+  </div>
+
+  <div class="takeaway-grid">
+    <div class="takeaway-item">
+      <div class="takeaway-num">Takeaway 1</div>
+      <div class="takeaway-text">Agents extend trust to the channel, not the sender. Without cryptographic authentication, any party that can write to the channel can impersonate any agent on it.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">Takeaway 2</div>
+      <div class="takeaway-text">Authentication and integrity are separate requirements. mTLS proves who sent a message at connection time; message signing proves the content wasn't changed between sender and receiver.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">Takeaway 3</div>
+      <div class="takeaway-text">Orchestrator impersonation is the highest-impact attack type. The orchestrator has authority over the entire downstream pipeline — impersonating it gives the attacker control of all sub-agents simultaneously.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">Takeaway 4</div>
+      <div class="takeaway-text">Internal traffic is not inherently trusted. In cloud and containerized environments, "internal" traffic may be readable by compromised services, overpermissioned tools, or shared VPC segments. TLS everywhere.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">Takeaway 5</div>
+      <div class="takeaway-text">Replay attacks exploit message validity without tampering. A captured genuine message is a reusable attack token unless nonces and timestamps enforce freshness on every received message.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">Takeaway 6</div>
+      <div class="takeaway-text">MCP and A2A protocols are emerging standards for inter-agent communication. Their security depends entirely on implementation: protocols that don't enforce mutual authentication and signed messages remain vulnerable regardless of the protocol name.</div>
+    </div>
+  </div>
+
+  <div class="complete-actions">
+    <a class="btn-restart" href="ag07-slide-01.html">← Restart AG07</a>
+    <a class="btn-home" href="../index.html">← Back to Course Home</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

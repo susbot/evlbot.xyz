@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 7 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 7 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg active" href="api01-slide-07.html"></a><a class="seg" href="api01-slide-08.html"></a><a class="seg" href="api01-slide-09.html"></a><a class="seg" href="api01-slide-10.html"></a><a class="seg" href="api01-slide-11.html"></a><a class="seg" href="api01-slide-12.html"></a><a class="seg" href="api01-slide-13.html"></a><a class="seg" href="api01-slide-14.html"></a><a class="seg" href="api01-slide-15.html"></a><a class="seg" href="api01-slide-16.html"></a><a class="seg" href="api01-slide-17.html"></a><a class="seg" href="api01-slide-18.html"></a><a class="seg" href="api01-slide-19.html"></a><a class="seg" href="api01-slide-20.html"></a><a class="seg" href="api01-slide-21.html"></a><a class="seg" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 7</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 7 · BOLA vs BFLA</div>
+  <div class="slide-title">There's a similar one. Here's the difference.</div>
+  <div class="slide-subtitle">BOLA and BFLA are cousins — easy to confuse, important to keep separate.</div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">BOLA · API1</div>
+      <div class="compare-item"><strong>Broken Object Level Authorization</strong></div>
+      <div class="compare-item">You access the wrong <strong>object</strong></div>
+      <div class="compare-item">Same role, different user's data</div>
+      <div class="compare-item">Example: You're user 1042. You see user 1041's order.</div>
+      <div class="compare-item">Both users are regular customers — you just got their stuff</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">BFLA · API5</div>
+      <div class="compare-item"><strong>Broken Function Level Authorization</strong></div>
+      <div class="compare-item">You access the wrong <strong>function</strong></div>
+      <div class="compare-item">Lower role accesses higher-privilege actions</div>
+      <div class="compare-item">Example: You're a regular user. You call the admin endpoint.</div>
+      <div class="compare-item">You shouldn't have that power at all — it's a role violation</div>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">The easy way to remember it</div>
+    <p><strong>BOLA</strong> = accessing someone else's <strong>stuff</strong> (wrong object, same level)</p>
+    <p><strong>BFLA</strong> = accessing actions you <strong>shouldn't have</strong> (wrong function, wrong level)</p>
+    <p>BOLA is about what you can <em>see</em>. BFLA is about what you can <em>do</em>.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label pink">Why it matters</div>
+    <p>BOLA is API1 — the most common. BFLA is API5. Both are authorization failures. This module covers BOLA. You'll see BFLA in a later module.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-06.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-08.html">Got it → Why are APIs especially vulnerable? →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM03:2025 — Supply Chain · Slide 27 of 29</title>
+<link rel="stylesheet" href="llm03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM03:2025</span><span class="nav-title">Supply Chain</span></div>
+  <span class="nav-right">Slide 27 of 29</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm03-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm03-slide-02.html" title="Slide 2 · The Twist"></a><a class="seg done" href="llm03-slide-03.html" title="Slide 3 · The Definition"></a><a class="seg done" href="llm03-slide-04.html" title="Slide 4 · Your Supply Chain"></a><a class="seg done" href="llm03-slide-05.html" title="Slide 5 · The Component Map"></a><a class="seg done" href="llm03-slide-06.html" title="Slide 6 · The Outcomes"></a><a class="seg done" href="llm03-slide-07.html" title="Slide 7 · Who Attacks"></a><a class="seg done" href="llm03-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm03-slide-09.html" title="Slide 9 · Dependency Confusion"></a><a class="seg done" href="llm03-slide-10.html" title="Slide 10 · Poisoned Build Pipeline"></a><a class="seg done" href="llm03-slide-11.html" title="Slide 11 · Malicious Model File"></a><a class="seg done" href="llm03-slide-12.html" title="Slide 12 · Scanner Bypass"></a><a class="seg done" href="llm03-slide-13.html" title="Slide 13 · Vulnerable LoRA Adapter"></a><a class="seg done" href="llm03-slide-14.html" title="Slide 14 · Fake & Abandoned Models"></a><a class="seg done" href="llm03-slide-15.html" title="Slide 15 · Scenario: PoisonGPT"></a><a class="seg done" href="llm03-slide-16.html" title="Slide 16 · Scenario: LeftoverLocals"></a><a class="seg done" href="llm03-slide-17.html" title="Slide 17 · Scenario: On-Device Swap"></a><a class="seg done" href="llm03-slide-18.html" title="Slide 18 · Scenario: T&Cs Change"></a><a class="seg done" href="llm03-slide-19.html" title="Slide 19 · Vet Suppliers"></a><a class="seg done" href="llm03-slide-20.html" title="Slide 20 · SBOM / AIBOM"></a><a class="seg done" href="llm03-slide-21.html" title="Slide 21 · Patch & Scan"></a><a class="seg done" href="llm03-slide-22.html" title="Slide 22 · Sign & Verify"></a><a class="seg done" href="llm03-slide-23.html" title="Slide 23 · Red-Team First"></a><a class="seg done" href="llm03-slide-24.html" title="Slide 24 · Demand Provenance"></a><a class="seg done" href="llm03-slide-25.html" title="Slide 25 · Monitor Collaboration"></a><a class="seg done" href="llm03-slide-26.html" title="Slide 26 · Anomaly Testing"></a><a class="seg active" href="llm03-slide-27.html" title="Slide 27 · Protect the Edge"></a><a class="seg" href="llm03-slide-28.html" title="Slide 28 · Quiz"></a><a class="seg" href="llm03-slide-29.html" title="Slide 29 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 27</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 27 · Mitigation 9 of 9 — Protect the Edge</div>
+  <div class="slide-title">When the model leaves your servers, lock the file down.</div>
+  <div class="source-tag">📄 OWASP LLM Top 10:2025 · LLM03 Prevention #10</div>
+
+  <div class="mit-card">
+    <div class="mit-num">OWASP — Edge Integrity &amp; Attestation</div>
+    <div class="mit-title">Encrypt edge-deployed models with integrity checks and use vendor attestation APIs</div>
+    <div class="mit-section"><div class="mit-section-label blue">What OWASP Says</div><p>&ldquo;For models deployed at the edge, use integrity checks&hellip; and employ encryption to prevent tampering. Use vendor attestation APIs to prevent compromised applications and models, and to remove apps of known malicious tampering.&rdquo;</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label red">The Gap This Closes</div><p>The on-device swap (Slide 17, DeepPayload across 116 apps) works precisely because the model sits unprotected inside the app on a device the attacker controls. Encryption + integrity checks mean a swapped model fails verification; attestation lets you detect and pull tampered apps.</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label green">How to Do This Right</div><p>&rarr; Encrypt bundled models and verify their integrity at load time on-device<br>&rarr; Use platform/vendor attestation APIs to confirm the app and model are untampered<br>&rarr; Have a kill path: detect tampered installs and revoke or remove them</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label yellow">How to Validate</div><p>Try swapping the model file inside your own app build and re-running it. If it loads and works, an attacker's swapped model would too.</p></div>
+  </div>
+  <div class="callout green"><div class="callout-label">That's All 9 Mitigations</div><p>No single control is enough &mdash; the PickleScan bypass (Slide 12) proved that. Defense in depth: <strong>vet, inventory, patch, sign, red-team, trace provenance, monitor, detect, and protect the edge.</strong> Ready to test it?</p></div>
+<div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team whether AI model files deployed on customer devices — phones, laptops, edge servers — are encrypted at rest. A model file on a device is accessible to anyone with physical access to that device.</p>
+  </div>
+  <div class="btn-row"><a class="btn-secondary" href="llm03-slide-26.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm03-slide-28.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Start Part 5 → Test yourself</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

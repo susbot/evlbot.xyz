@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 16 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 16 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg done" href="api07-slide-07.html"></a><a class="seg done" href="api07-slide-08.html"></a><a class="seg done" href="api07-slide-09.html"></a><a class="seg done" href="api07-slide-10.html"></a><a class="seg done" href="api07-slide-11.html"></a><a class="seg done" href="api07-slide-12.html"></a><a class="seg done" href="api07-slide-13.html"></a><a class="seg done" href="api07-slide-14.html"></a><a class="seg done" href="api07-slide-15.html"></a><a class="seg active" href="api07-slide-16.html"></a><a class="seg" href="api07-slide-17.html"></a><a class="seg" href="api07-slide-18.html"></a><a class="seg" href="api07-slide-19.html"></a><a class="seg" href="api07-slide-20.html"></a><a class="seg" href="api07-slide-21.html"></a><a class="seg" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 &#xb7; Attack Scenarios</span><span>Slide 16</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 16 &#xb7; Scenario 3</div>
+  <div class="slide-title">Link preview. The link is <code>file:///etc/passwd</code>.</div>
+  <div class="slide-subtitle">OWASP Scenario #3 &#x2014; URL preview feature with no protocol restriction.</div>
+  <div class="source-tag">&#x1F4C4; OWASP API Security Top 10 &#xb7; 2023 &#xb7; API7 &#xb7; Scenario 3</div>
+  <div class="scenario-card">
+    <div class="scenario-num">SETUP</div>
+    <div class="scenario-title">A collaboration platform API that generates link previews.</div>
+    <div class="scenario-body">
+      <p>A collaboration tool allows users to paste links into messages. The API generates a preview: <code>POST /api/preview { "url": "https://news.example.com/article/123" }</code>. The server fetches the URL, extracts the title, description, and image, and returns them.</p>
+      <p>The API uses a URL-fetching library that supports <code>http://</code>, <code>https://</code>, and <code>file://</code> protocols. The developer only intended HTTPS links &#x2014; but never restricted which protocols are allowed.</p>
+    </div>
+    <div class="scenario-why"><strong>The exploit:</strong> Attacker sends: <code>POST /api/preview { "url": "file:///etc/passwd" }</code>. The server&#x2019;s URL-fetching library reads the local file <code>/etc/passwd</code> and returns its contents as the &#x201C;preview&#x201D; response. The attacker now has the server&#x2019;s user list. They follow up with: <code>file:///etc/environment</code> (environment variables), <code>file:///app/.env</code> (application secrets), <code>file:///home/ubuntu/.ssh/id_rsa</code> (SSH private key). Each returns the file contents as a &#x201C;preview.&#x201D;</div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">The protocol allowlist fix</div>
+    <p>The correct fix is a protocol allowlist: only permit <code>https://</code> URLs (and <code>http://</code> if specifically required). Block <code>file://</code>, <code>dict://</code>, <code>gopher://</code>, <code>ftp://</code>, and any other protocol the feature doesn&#x2019;t need. This is one line in most URL-fetching library configurations &#x2014; but it has to be explicitly set.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-15.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-17.html">The common pattern &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

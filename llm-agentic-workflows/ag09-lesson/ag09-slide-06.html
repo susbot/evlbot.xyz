@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 6 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 6 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a>
+    <a class="seg active" href="ag09-slide-06.html"></a>
+    <a class="seg" href="ag09-slide-07.html"></a><a class="seg" href="ag09-slide-08.html"></a><a class="seg" href="ag09-slide-09.html"></a><a class="seg" href="ag09-slide-10.html"></a><a class="seg" href="ag09-slide-11.html"></a><a class="seg" href="ag09-slide-12.html"></a><a class="seg" href="ag09-slide-13.html"></a><a class="seg" href="ag09-slide-14.html"></a><a class="seg" href="ag09-slide-15.html"></a><a class="seg" href="ag09-slide-16.html"></a><a class="seg" href="ag09-slide-17.html"></a><a class="seg" href="ag09-slide-18.html"></a><a class="seg" href="ag09-slide-19.html"></a><a class="seg" href="ag09-slide-20.html"></a><a class="seg" href="ag09-slide-21.html"></a><a class="seg" href="ag09-slide-22.html"></a><a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 6</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 6 · Who Exploits This</div>
+  <div class="slide-title">Three distinct actor types — two external, one structural. Each exploits a different facet of the human-agent trust relationship.</div>
+
+  <div class="block">
+    <div class="block-label red">Actor 1: External adversary exploiting the agent's blind spots</div>
+    <p>This attacker does not compromise the agent. They study it — its training data, known limitations, the decision boundaries where it consistently under-scores risk. They craft their attack to land precisely in those blind spots. The agent renders a low-risk verdict. The human, trusting the agent, approves. The attacker has exploited the trust relationship without touching the AI system itself.</p>
+    <p><strong>Requirements:</strong> Knowledge of the agent's limitations (often publicly inferable from behavioral testing or from the vendor's documentation of training data scope). The ability to craft an attack that fits within those limitations. No privileged access required.</p>
+    <p><strong>This is novel:</strong> Before AI agents, an attacker had to convince the human directly. Now they can bypass the human by convincing the AI — which then presents a clean verdict to the human. The AI becomes an unwitting accomplice.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Actor 2: Attacker using the agent as a social engineering relay</div>
+    <p>This attacker can influence what content the agent processes and presents to the human. Through prompt injection, a compromised data source, or a supply-chain attack on the agent's tools, they insert manipulative content that the agent then delivers to the human — with the agent's implicit credibility attached.</p>
+    <p><strong>Why routing through the agent helps:</strong> A phishing email from an unknown sender triggers skepticism. The same content presented by a trusted internal AI assistant, summarized and formatted as if it were legitimate information, triggers deference. The attacker has borrowed the agent's credibility to deliver their message.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Actor 3: System design itself — the miscalibration problem</div>
+    <p>No external attacker is required for this class of harm. An AI system designed to suppress uncertainty, project confidence beyond what is warranted, or create efficiency incentives that punish deliberate review will naturally produce a human population that is over-trusting — and therefore exploitable.</p>
+    <p>Product teams under pressure to show that their AI system "works" have incentives to design outputs that feel authoritative. Users under pressure to process high volumes of cases have incentives to rely on AI recommendations without independent checking. These structural incentives create the exploitable trust gap before any attacker arrives.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-05.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-07.html">What AG09 is and isn't →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

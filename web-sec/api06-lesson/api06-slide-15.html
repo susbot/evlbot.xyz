@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 15 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 15 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg done" href="api06-slide-09.html"></a><a class="seg done" href="api06-slide-10.html"></a><a class="seg done" href="api06-slide-11.html"></a><a class="seg done" href="api06-slide-12.html"></a><a class="seg done" href="api06-slide-13.html"></a><a class="seg done" href="api06-slide-14.html"></a><a class="seg active" href="api06-slide-15.html"></a><a class="seg" href="api06-slide-16.html"></a><a class="seg" href="api06-slide-17.html"></a><a class="seg" href="api06-slide-18.html"></a><a class="seg" href="api06-slide-19.html"></a><a class="seg" href="api06-slide-20.html"></a><a class="seg" href="api06-slide-21.html"></a><a class="seg" href="api06-slide-22.html"></a><a class="seg" href="api06-slide-23.html"></a><a class="seg" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 &#xb7; Attack Scenarios</span><span>Slide 15</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 15 &#xb7; Scenario 2</div>
+  <div class="slide-title">Thousands of fake accounts. Thousands of real payouts.</div>
+  <div class="slide-subtitle">OWASP Scenario #2 &#x2014; referral program with no account verification gate.</div>
+  <div class="source-tag">&#x1F4C4; OWASP API Security Top 10 &#xb7; 2023 &#xb7; API6 &#xb7; Scenario 2</div>
+  <div class="scenario-card">
+    <div class="scenario-num">SETUP</div>
+    <div class="scenario-title">A fintech app&#x2019;s referral program.</div>
+    <div class="scenario-body">
+      <p>A fintech platform offers: refer a friend using your code &#x2192; they sign up and make a $10 deposit &#x2192; you receive $20 cash bonus. The API supports account creation with an optional referral code field. Email verification is required &#x2014; but disposable email services are not blocked.</p>
+    </div>
+    <div class="scenario-why"><strong>The exploit:</strong> A bot operator writes a script: create account A (uses disposable email, verifies via the disposable inbox API), generate A&#x2019;s referral code, create account B (another disposable email), sign up B with A&#x2019;s referral code, fund B with $10 using a prepaid card, trigger referral reward to A. Repeat 1,000 times. <strong>Net: operator receives $20,000 in referral bonuses. Platform cost: $20,000 + $10,000 in minimum deposits that are immediately withdrawn. Net loss: $20,000+.</strong></div>
+  </div>
+  <div class="callout orange">
+    <div class="callout-label">The velocity signal</div>
+    <p>1,000 referral redemptions in one day from one IP range is detectable. 1,000 referral redemptions spread over a week from residential proxies across 50 countries is much harder to catch. Bot operators optimize for staying below anomaly detection thresholds.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-14.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-16.html">Scenario 3 &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

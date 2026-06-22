@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Sources &amp; References</title>
+<link rel="stylesheet" href="ag07-shared.css">
+<style>
+.sources-header { margin-bottom: 1.5rem; }
+.sources-header h1 { font-size: 1.4rem; font-weight: 700; color: var(--text); }
+.sources-header p { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem; }
+.source-group { margin-bottom: 1.4rem; }
+.source-group-label { font-size: 0.75rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.6rem; }
+.source-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1rem; margin-bottom: 0.6rem; }
+.source-title { font-weight: 600; color: var(--text); font-size: 0.92rem; margin-bottom: 0.2rem; }
+.source-meta { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.35rem; }
+.source-note { color: var(--text-muted); font-size: 0.83rem; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication — Sources</span>
+  </div>
+  <a href="ag07-slide-01.html" style="color:var(--accent);font-size:0.85rem;text-decoration:none;">← Back to lesson</a>
+</div>
+
+<div style="max-width:800px;margin:2rem auto;padding:0 1.5rem 3rem;">
+
+  <div class="sources-header">
+    <h1>Sources &amp; References — AG07:2026</h1>
+    <p>Primary sources for the OWASP specification, protocol documentation, cryptographic standards, and inter-service security research cited in this module.</p>
+  </div>
+
+  <div class="source-group">
+    <div class="source-group-label">Primary OWASP Source</div>
+    <div class="source-item">
+      <div class="source-title">OWASP Top 10 for LLM &amp; Generative AI Applications — ASI07:2026: Insecure Inter-Agent Communication</div>
+      <div class="source-meta">OWASP Foundation · 2026 · owasp.org/www-project-top-10-for-large-language-model-applications/</div>
+      <div class="source-note">The primary specification for this vulnerability. Defines inter-agent communication attacks, describes attack vectors (forgery, interception, replay, manipulation), and lists prevention strategies including mutual authentication, message signing, and encrypted channels. All module content is based on this specification.</div>
+    </div>
+  </div>
+
+  <div class="source-group">
+    <div class="source-group-label">Inter-Agent Protocol Standards</div>
+    <div class="source-item">
+      <div class="source-title">Model Context Protocol (MCP) Specification</div>
+      <div class="source-meta">Anthropic · 2024 · modelcontextprotocol.io</div>
+      <div class="source-note">Defines the standard for LLM-to-tool communication. Security properties (authentication, message integrity) depend on deployment choices not mandated by the protocol specification itself. Security researchers in 2024 demonstrated that MCP tool responses could be tampered with when transport lacked integrity protection.</div>
+    </div>
+    <div class="source-item">
+      <div class="source-title">Agent-to-Agent (A2A) Protocol</div>
+      <div class="source-meta">Google · 2025 · google-a2a.github.io</div>
+      <div class="source-note">Defines a protocol for agent task delegation and capability discovery. Like MCP, security guarantees depend on implementation: mutual authentication and signed messages are not baseline requirements in the protocol specification.</div>
+    </div>
+  </div>
+
+  <div class="source-group">
+    <div class="source-group-label">Cryptographic Foundations</div>
+    <div class="source-item">
+      <div class="source-title">Needham, R. M. &amp; Schroeder, M. D. — Using Encryption for Authentication in Large Networks of Computers</div>
+      <div class="source-meta">Communications of the ACM, 21(12):993–999 · December 1978</div>
+      <div class="source-note">Foundational paper on authentication protocol design. Introduced replay attack vulnerabilities and nonce-based defenses that underpin all modern authentication protocols. The replay protection mechanisms described in MIT05 are direct applications of this work.</div>
+    </div>
+    <div class="source-item">
+      <div class="source-title">RFC 7519 — JSON Web Token (JWT)</div>
+      <div class="source-meta">IETF · M. Jones, J. Bradley, N. Sakimura · May 2015</div>
+      <div class="source-note">Defines the JWT standard including the <code>jti</code> (JWT ID) claim for replay prevention and <code>exp</code> (expiration) for freshness enforcement. The basis for agent identity tokens and signed message implementations described in MIT01 and MIT02.</div>
+    </div>
+    <div class="source-item">
+      <div class="source-title">RFC 7515 — JSON Web Signature (JWS)</div>
+      <div class="source-meta">IETF · M. Jones, J. Bradley, N. Sakimura · May 2015</div>
+      <div class="source-note">Defines the JSON Web Signature standard used for message-level signing (MIT02). Specifies how messages are canonicalized and signed to allow integrity verification at the receiving agent.</div>
+    </div>
+  </div>
+
+  <div class="source-group">
+    <div class="source-group-label">Service-to-Service Security Standards</div>
+    <div class="source-item">
+      <div class="source-title">NIST SP 800-204C — Implementation of DevSecOps for a Microservices-based Application with Service Mesh</div>
+      <div class="source-meta">NIST · 2022 · doi.org/10.6028/NIST.SP.800-204C</div>
+      <div class="source-note">Covers service-to-service authentication patterns including mTLS and JWT-based service identity, directly applicable to agent-to-agent authentication in multi-agent pipelines (MIT01, MIT03). The security principles for microservices apply directly to agent architectures.</div>
+    </div>
+    <div class="source-item">
+      <div class="source-title">OWASP Application Security Verification Standard (ASVS) v4.0 — Section V6: Authentication</div>
+      <div class="source-meta">OWASP Foundation · 2019 · owasp.org/www-project-application-security-verification-standard/</div>
+      <div class="source-note">Authentication and session management requirements. Section V6 requirements on mutual authentication and replay prevention apply directly to inter-agent communication channel security.</div>
+    </div>
+  </div>
+
+  <div class="source-group">
+    <div class="source-group-label">Supply-Chain and Infrastructure Attack Context</div>
+    <div class="source-item">
+      <div class="source-title">CISA — Supply Chain Attacks: SolarWinds and Beyond</div>
+      <div class="source-meta">Cybersecurity and Infrastructure Security Agency · 2021 · cisa.gov</div>
+      <div class="source-note">Documents the supply-chain attack pattern where a trusted third-party component (monitoring software) is compromised and used to access systems that trust it. The Scenario 1 pattern (compromised monitoring tool with queue write access) is a direct application of this attack class to agent pipelines.</div>
+    </div>
+    <div class="source-item">
+      <div class="source-title">AWS — Security Best Practices for Amazon SQS</div>
+      <div class="source-meta">Amazon Web Services · docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-security-best-practices.html</div>
+      <div class="source-note">Covers SQS resource-based access policies and IAM permission scoping for queue access — directly applicable to preventing queue injection (Type 6) and implementing MIT06 (least-privilege message routing) in AWS-based agent pipelines.</div>
+    </div>
+  </div>
+
+  <div class="source-group">
+    <div class="source-group-label">Regulatory Context</div>
+    <div class="source-item">
+      <div class="source-title">HHS — HIPAA Security Rule — §164.312(e)(1): Transmission Security</div>
+      <div class="source-meta">U.S. Department of Health and Human Services · hhs.gov/hipaa</div>
+      <div class="source-note">Requires covered entities to implement technical security measures to guard against unauthorized access to PHI transmitted over electronic communications networks. Applies to Scenario 5 (healthcare agent pipeline with unencrypted internal channel): unencrypted transmission of PHI is a reportable breach regardless of whether active exploitation occurred.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);">
+    <a href="ag07-slide-01.html" style="color:var(--accent);font-size:0.9rem;text-decoration:none;">← Back to AG07 lesson</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="../index.html" style="color:var(--accent);font-size:0.9rem;text-decoration:none;">← Course Home</a>
+  </div>
+
+</div>
+</body>
+</html>

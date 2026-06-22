@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 25 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 25 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg done" href="api02-slide-07.html"></a><a class="seg done" href="api02-slide-08.html"></a><a class="seg done" href="api02-slide-09.html"></a><a class="seg done" href="api02-slide-10.html"></a><a class="seg done" href="api02-slide-11.html"></a><a class="seg done" href="api02-slide-12.html"></a><a class="seg done" href="api02-slide-13.html"></a><a class="seg done" href="api02-slide-14.html"></a><a class="seg done" href="api02-slide-15.html"></a><a class="seg done" href="api02-slide-16.html"></a><a class="seg done" href="api02-slide-17.html"></a><a class="seg done" href="api02-slide-18.html"></a><a class="seg done" href="api02-slide-19.html"></a><a class="seg done" href="api02-slide-20.html"></a><a class="seg done" href="api02-slide-21.html"></a><a class="seg done" href="api02-slide-22.html"></a><a class="seg done" href="api02-slide-23.html"></a><a class="seg done" href="api02-slide-24.html"></a><a class="seg active" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 25</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 25 · Mitigation 7</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 07</div>
+    <div class="mit-title">Never put authentication tokens in URLs.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Transmit all authentication credentials and tokens in <strong>HTTP headers</strong>, not URL query parameters:</p>
+      <p>• Use <strong>Authorization: Bearer &lt;token&gt;</strong> for API authentication</p>
+      <p>• Use <strong>HttpOnly, Secure, SameSite=Strict cookies</strong> for session management</p>
+      <p>• Never pass tokens, API keys, or session IDs in URL paths or query strings</p>
+      <p>Also review your logging configuration: ensure your access logs <strong>redact</strong> Authorization headers (avoid logging tokens) while still capturing necessary audit information.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">Where URL tokens leak</div>
+      <p>• <strong>Server access logs</strong> — full URL logged for every request, stored for months</p>
+      <p>• <strong>Browser history</strong> — URL saved locally and synced across devices</p>
+      <p>• <strong>Referrer headers</strong> — full URL sent to any third-party resource on the next page</p>
+      <p>• <strong>CDN and proxy logs</strong> — caching infrastructure logs full URLs</p>
+      <p>• <strong>Shared screens and screenshots</strong> — URL bar visible, token visible</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">The one exception</div>
+      <p>Single-use, short-lived email verification links (e.g., password reset links) legitimately need tokens in the URL because email clients can't add HTTP headers. These tokens must expire quickly (under 15 minutes) and be single-use.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask when your API signing keys and secrets were last rotated &#x2014; and whether there is a documented process to rotate them immediately after a suspected breach.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-24.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-26.html">See the full picture →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

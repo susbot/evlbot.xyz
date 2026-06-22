@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 3 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 3 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg active" href="api07-slide-03.html"></a><a class="seg" href="api07-slide-04.html"></a><a class="seg" href="api07-slide-05.html"></a><a class="seg" href="api07-slide-06.html"></a><a class="seg" href="api07-slide-07.html"></a><a class="seg" href="api07-slide-08.html"></a><a class="seg" href="api07-slide-09.html"></a><a class="seg" href="api07-slide-10.html"></a><a class="seg" href="api07-slide-11.html"></a><a class="seg" href="api07-slide-12.html"></a><a class="seg" href="api07-slide-13.html"></a><a class="seg" href="api07-slide-14.html"></a><a class="seg" href="api07-slide-15.html"></a><a class="seg" href="api07-slide-16.html"></a><a class="seg" href="api07-slide-17.html"></a><a class="seg" href="api07-slide-18.html"></a><a class="seg" href="api07-slide-19.html"></a><a class="seg" href="api07-slide-20.html"></a><a class="seg" href="api07-slide-21.html"></a><a class="seg" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 3</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 3 &#xb7; Why APIs</div>
+  <div class="slide-title">URL-fetching is a core API pattern. That&#x2019;s why APIs are exposed.</div>
+  <div class="slide-subtitle">Webhooks, file imports, link previews &#x2014; all legitimate features, all potential SSRF vectors.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F517;</div>
+      <div><div class="outcome-title">Webhooks</div><div class="outcome-desc">The API calls a URL you provide when an event occurs. &#x201C;Call this URL when a payment succeeds.&#x201D; Attacker provides an internal URL instead of an external callback.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4E5;</div>
+      <div><div class="outcome-title">File / data import from URL</div><div class="outcome-desc">&#x201C;Import your product catalog from this CSV URL.&#x201D; &#x201C;Import your profile picture from this image URL.&#x201D; The server fetches and processes whatever URL the user supplies.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4F0;</div>
+      <div><div class="outcome-title">Link preview / metadata fetch</div><div class="outcome-desc">&#x201C;Paste a URL and we&#x2019;ll show a preview.&#x201D; The server fetches the URL to extract title, description, and thumbnail. Social platforms, CMS tools, and chat APIs all do this.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F504;</div>
+      <div><div class="outcome-title">Third-party integrations / API chaining</div><div class="outcome-desc">&#x201C;Connect your Slack workspace at this endpoint.&#x201D; &#x201C;Pull data from your supplier&#x2019;s API at this URL.&#x201D; The server makes outbound requests to URLs the user configured.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F3D7;&#xFE0F;</div>
+      <div><div class="outcome-title">PDF / screenshot rendering</div><div class="outcome-desc">&#x201C;Render this URL as a PDF.&#x201D; Headless browser rendering services fetch the URL the user provides. The browser (running server-side) has full network access.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x2699;&#xFE0F;</div>
+      <div><div class="outcome-title">Health checks and monitoring endpoints</div><div class="outcome-desc">Internal monitoring systems that check URLs provided in configuration. If config is user-editable, this is an SSRF vector.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-02.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-04.html">What can an attacker reach? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG10:2026 — Rogue Agents · Slide 22 of 28</title>
+<link rel="stylesheet" href="ag10-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG10:2026</span>
+    <span class="nav-title">Rogue Agents</span>
+  </div>
+  <span class="nav-right">Slide 22 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag10-slide-01.html"></a><a class="seg done" href="ag10-slide-02.html"></a><a class="seg done" href="ag10-slide-03.html"></a><a class="seg done" href="ag10-slide-04.html"></a><a class="seg done" href="ag10-slide-05.html"></a><a class="seg done" href="ag10-slide-06.html"></a><a class="seg done" href="ag10-slide-07.html"></a><a class="seg done" href="ag10-slide-08.html"></a><a class="seg done" href="ag10-slide-09.html"></a><a class="seg done" href="ag10-slide-10.html"></a><a class="seg done" href="ag10-slide-11.html"></a><a class="seg done" href="ag10-slide-12.html"></a><a class="seg done" href="ag10-slide-13.html"></a><a class="seg done" href="ag10-slide-14.html"></a><a class="seg done" href="ag10-slide-15.html"></a><a class="seg done" href="ag10-slide-16.html"></a><a class="seg done" href="ag10-slide-17.html"></a><a class="seg done" href="ag10-slide-18.html"></a><a class="seg done" href="ag10-slide-19.html"></a><a class="seg done" href="ag10-slide-20.html"></a><a class="seg done" href="ag10-slide-21.html"></a>
+    <a class="seg active" href="ag10-slide-22.html"></a>
+    <a class="seg" href="ag10-slide-23.html"></a><a class="seg" href="ag10-slide-24.html"></a><a class="seg" href="ag10-slide-25.html"></a><a class="seg" href="ag10-slide-26.html"></a><a class="seg" href="ag10-slide-27.html"></a><a class="seg" href="ag10-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Defense Model</span><span>Slide 22</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 22 · Defense Model</div>
+  <div class="slide-title">Three defense layers — each addressing a different aspect of the rogue agent problem.</div>
+
+  <div class="block">
+    <div class="block-label red">Layer 1 — Constrain the Action Space (MIT01, MIT02, MIT04, MIT08)</div>
+    <p><strong>Purpose:</strong> Reduce the gap between what the agent is authorized to do and what it is capable of doing. This layer operates before rogue behavior begins — it removes the space in which rogue behavior can occur.</p>
+    <p>MIT01 (minimal footprint) limits the tool set and permissions to what is necessary. MIT02 (explicit constraints) adds behavioral prohibitions to complement the objective specification. MIT04 (sandboxing) enforces technical limits that remain effective even after goal injection. MIT08 (principal hierarchy enforcement) technically prevents the agent from escalating above its authorized scope regardless of what it is instructed to do.</p>
+    <p><strong>This layer is primary.</strong> Monitoring and detection (Layer 2) and recovery (Layer 3) depend on detecting and responding to rogue behavior that already occurred. Layer 1 prevents it from occurring in the first place — or limits its blast radius when it does. Start here.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Layer 2 — Detect and Gate (MIT03, MIT05, MIT06, MIT09)</div>
+    <p><strong>Purpose:</strong> Detect rogue behavior that occurs despite Layer 1 constraints, and require human approval for high-impact actions before they execute irreversibly.</p>
+    <p>MIT03 (behavioral monitoring) watches for cumulative anomalies and pattern drift. MIT05 (tripwires) triggers automated halts on specific high-risk behavioral patterns. MIT06 (human approval gates) requires explicit human confirmation for actions above impact or novelty thresholds — preventing irreversible harm even when the agent has determined that the action is warranted.</p>
+    <p>MIT09 (red-teaming) feeds this layer: discovered rogue behaviors immediately become new tripwire patterns and updated constraint specifications. The red-teaming → constraint → tripwire cycle is a continuous improvement loop that tightens Layer 1 and Layer 2 over time.</p>
+    <p><strong>Critical requirement:</strong> Layer 2 monitoring infrastructure must be architecturally independent of anything the agent can influence. An agent that can modify its own monitoring is operating without Layer 2 protection regardless of what monitoring exists.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Layer 3 — Limit and Recover (MIT07)</div>
+    <p><strong>Purpose:</strong> For rogue actions that reach execution despite Layers 1 and 2, ensure that harm is bounded (volume/impact limits from MIT04 sandboxing) and reversible (MIT07 reversibility requirements).</p>
+    <p>MIT07 (action reversibility) converts "prevent the harm" into "recover from the harm" — a more achievable operational objective. Soft deletes, staging gates, escrow windows, and graduated rollouts all provide a recovery window between rogue action and irreversible harm.</p>
+    <p><strong>Minimum viable set:</strong> MIT01 + MIT04 + MIT06 + MIT08 covers the highest-impact rogue scenarios across all six patterns. Add MIT03 and MIT05 for detection maturity. MIT02, MIT07, and MIT09 for full depth.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag10-slide-21.html">← Back</a>
+    <a class="btn-primary" href="ag10-slide-23.html">Mitigation matrix →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 17 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg done" href="api02-slide-07.html"></a><a class="seg done" href="api02-slide-08.html"></a><a class="seg done" href="api02-slide-09.html"></a><a class="seg done" href="api02-slide-10.html"></a><a class="seg done" href="api02-slide-11.html"></a><a class="seg done" href="api02-slide-12.html"></a><a class="seg done" href="api02-slide-13.html"></a><a class="seg done" href="api02-slide-14.html"></a><a class="seg done" href="api02-slide-15.html"></a><a class="seg done" href="api02-slide-16.html"></a><a class="seg active" href="api02-slide-17.html"></a><a class="seg" href="api02-slide-18.html"></a><a class="seg" href="api02-slide-19.html"></a><a class="seg" href="api02-slide-20.html"></a><a class="seg" href="api02-slide-21.html"></a><a class="seg" href="api02-slide-22.html"></a><a class="seg" href="api02-slide-23.html"></a><a class="seg" href="api02-slide-24.html"></a><a class="seg" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 · Attack Scenarios</span><span>Slide 17</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 17 · The Pattern</div>
+  <div class="slide-title">It's always the same three failures.</div>
+  <div class="slide-subtitle">Across every scenario, authentication broke in one of three ways.</div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">The Three Failure Modes</div>
+      <div class="compare-item"><strong>1. The credential check was bypassable</strong> — rate limits evaded, lockout missing, batching exploited</div>
+      <div class="compare-item"><strong>2. The token was stealable or forgeable</strong> — OAuth redirect flaws, tokens in URLs, JWT signature not verified</div>
+      <div class="compare-item"><strong>3. No credential required at all</strong> — endpoint open with no auth, internal service trusted without verification</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Matched to the Scenarios</div>
+      <div class="compare-item">GraphQL batching → <strong>credential check bypassable</strong></div>
+      <div class="compare-item">Email change without re-auth → <strong>token stealable + no re-verification</strong></div>
+      <div class="compare-item">Parler → <strong>no credential required at all</strong></div>
+      <div class="compare-item">Fortnite → <strong>token stealable via OAuth redirect flaw</strong></div>
+      <div class="compare-item">Spotify → <strong>credential check bypassable (no rate limit)</strong></div>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">The Root Cause</div>
+    <p>In every case, authentication was treated as a one-time gate rather than a continuous guarantee. The system checked identity once — at login — and assumed the result would stay valid forever, under all conditions, for all operations.</p>
+    <p><strong>Secure authentication isn't a gate. It's a continuous contract that must be enforced at every layer.</strong></p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-16.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-18.html">How do we fix it? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

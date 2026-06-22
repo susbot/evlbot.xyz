@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 24 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 24 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a><a class="seg done" href="ag09-slide-07.html"></a><a class="seg done" href="ag09-slide-08.html"></a><a class="seg done" href="ag09-slide-09.html"></a><a class="seg done" href="ag09-slide-10.html"></a><a class="seg done" href="ag09-slide-11.html"></a><a class="seg done" href="ag09-slide-12.html"></a><a class="seg done" href="ag09-slide-13.html"></a><a class="seg done" href="ag09-slide-14.html"></a><a class="seg done" href="ag09-slide-15.html"></a><a class="seg done" href="ag09-slide-16.html"></a><a class="seg done" href="ag09-slide-17.html"></a><a class="seg done" href="ag09-slide-18.html"></a><a class="seg done" href="ag09-slide-19.html"></a><a class="seg done" href="ag09-slide-20.html"></a><a class="seg done" href="ag09-slide-21.html"></a><a class="seg done" href="ag09-slide-22.html"></a><a class="seg done" href="ag09-slide-23.html"></a>
+    <a class="seg active" href="ag09-slide-24.html"></a>
+    <a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Quiz</span><span>Slide 24</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 24 · Quiz — Questions 1 & 2</div>
+  <div class="slide-title">Check your understanding — think through each question before reading the answer.</div>
+
+  <div class="block">
+    <div class="block-label purple">Question 1</div>
+    <p>An AI fraud detection system has been operating at 97% accuracy for 18 months. A new analyst joins the team and is skeptical of the AI — she independently reviews cases even when the system scores them as low risk. An experienced analyst on the same team rarely does independent reviews. Which analyst is more exposed to the risk described in this lesson, and why?</p>
+    <details>
+      <summary style="cursor:pointer;color:var(--accent);font-weight:600;margin-top:0.5rem;">Show answer</summary>
+      <div style="margin-top:0.8rem;padding:0.8rem;background:var(--surface2);border-radius:6px;border-left:3px solid var(--accent);">
+        <p><strong>The experienced analyst is more exposed.</strong> This is a counterintuitive but important finding from automation bias research. Eighteen months of high-accuracy experience has trained the experienced analyst to trust the system's verdicts — correctly, most of the time. This learned trust is rational, but it becomes miscalibrated at the edge cases the attacker is specifically crafting to exploit. The new analyst's skepticism — precisely the trait that efficiency-focused teams often try to train away — is actually the more secure posture. The experienced analyst's trust, by contrast, is most automatic exactly when an attacker targeting the system's blind spots needs it to be.</p>
+        <p>The insight: in systems where AI assistance is the norm, <em>longer experience often increases automation bias rather than decreasing it</em>. The experienced analyst's high override rate should not be a target for "improvement" — it is the oversight function working as intended.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Question 2</div>
+    <p>An internal AI assistant processes incoming emails and presents structured summaries to an accounts payable manager. The manager has worked with the assistant for a year and trusts its output. An attacker sends a vendor impersonation email containing a prompt injection that causes the AI to present a modified bank account number with the label "verified by vendor agreement." The manager approves the payment without calling the vendor. Which two mitigations most directly address the specific mechanism that allowed this attack to succeed?</p>
+    <details>
+      <summary style="cursor:pointer;color:var(--accent);font-weight:600;margin-top:0.5rem;">Show answer</summary>
+      <div style="margin-top:0.8rem;padding:0.8rem;background:var(--surface2);border-radius:6px;border-left:3px solid var(--accent);">
+        <p><strong>MIT08 (content provenance labeling) and MIT02 (mandatory human review checkpoints).</strong></p>
+        <p><strong>MIT08</strong> addresses the specific mechanism that made the attack succeed: the AI presented attacker-controlled content (from the email) as if it were the AI's own verified output. If the AI had clearly labeled "this account number and verification note came from the vendor email — I did not independently verify this claim," the manager would have known the "verification" was sourced from the email itself, not from an independent check. The credibility relay path requires that the human cannot tell the difference between AI-generated content and external-sourced content. MIT08 removes that ambiguity.</p>
+        <p><strong>MIT02</strong> addresses the procedural gap: account number changes on payment instructions are a category that should require mandatory out-of-band verification to a known vendor contact, regardless of what any system says. A hard gate requiring a phone call to the vendor's known number before processing any account number change would have blocked the attack even if MIT08 was absent.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-23.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-25.html">Questions 3, 4 & 5 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

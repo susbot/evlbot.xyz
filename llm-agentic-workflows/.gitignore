@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Node (if any tooling added later)
+node_modules/
+npm-debug.log*
+
+# Temp
+*.tmp
+*.bak
+
+# Planning and authoring docs (not part of the course)
+AGENTIC-COURSE-AUTHORING.md
+business-takeaway-spec.md
+design-system-spec.md
+
+# Raw extract files
+*.txt
+*.pdf

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 26 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+<style>
+.complete-hero { text-align: center; padding: 2rem 0 1.5rem; }
+.complete-badge { display: inline-block; background: linear-gradient(135deg, var(--accent), var(--accent-bright)); color: #000; font-weight: 700; font-size: 1rem; padding: 0.5rem 1.4rem; border-radius: 20px; letter-spacing: 0.04em; margin-bottom: 1rem; }
+.complete-title { font-size: 1.6rem; font-weight: 700; color: var(--text); line-height: 1.3; margin-bottom: 0.4rem; }
+.complete-sub { color: var(--text-muted); font-size: 0.95rem; }
+.takeaway-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.85rem; margin: 1.5rem 0; }
+.takeaway-item { background: var(--surface2); border: 1px solid var(--border); border-left: 3px solid var(--accent); border-radius: 8px; padding: 0.9rem 1rem; }
+.takeaway-num { font-size: 0.75rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.3rem; }
+.takeaway-text { font-size: 0.88rem; color: var(--text); line-height: 1.5; }
+.complete-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+.btn-restart { padding: 0.6rem 1.2rem; border-radius: 8px; border: 1px solid var(--border); background: var(--surface2); color: var(--text-muted); font-size: 0.9rem; text-decoration: none; }
+.btn-home { padding: 0.6rem 1.4rem; border-radius: 8px; background: var(--accent); color: #000; font-weight: 700; font-size: 0.9rem; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 26 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a><a class="seg done" href="ag08-slide-11.html"></a><a class="seg done" href="ag08-slide-12.html"></a><a class="seg done" href="ag08-slide-13.html"></a><a class="seg done" href="ag08-slide-14.html"></a><a class="seg done" href="ag08-slide-15.html"></a><a class="seg done" href="ag08-slide-16.html"></a><a class="seg done" href="ag08-slide-17.html"></a><a class="seg done" href="ag08-slide-18.html"></a><a class="seg done" href="ag08-slide-19.html"></a><a class="seg done" href="ag08-slide-20.html"></a><a class="seg done" href="ag08-slide-21.html"></a><a class="seg done" href="ag08-slide-22.html"></a><a class="seg done" href="ag08-slide-23.html"></a><a class="seg done" href="ag08-slide-24.html"></a><a class="seg done" href="ag08-slide-25.html"></a>
+    <a class="seg active" href="ag08-slide-26.html"></a>
+    <a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Complete</span><span>Slide 26</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="complete-hero">
+    <div class="complete-badge">AG08:2026 — Complete</div>
+    <div class="complete-title">Cascading Failures</div>
+    <div class="complete-sub">You've completed all 26 content slides. Six things to carry forward.</div>
+  </div>
+
+  <div class="takeaway-grid">
+    <div class="takeaway-item">
+      <div class="takeaway-num">Takeaway 1</div>
+      <div class="takeaway-text">AG08 is an architectural vulnerability — not a bug in any individual agent. Each agent can work correctly while the system still lacks the isolation mechanisms that prevent failure propagation.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">Takeaway 2</div>
+      <div class="takeaway-text">Silent failures are the hardest to defend against. A structurally valid output with wrong content passes every format check and enters the pipeline undetected — only content validation or semantic sanity checks catch it.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">Takeaway 3</div>
+      <div class="takeaway-text">Circuit breakers are the most broadly applicable control. They appear as a primary mitigation for 4 of 6 failure patterns — they are the architectural pressure relief valve that every multi-agent pipeline needs.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">Takeaway 4</div>
+      <div class="takeaway-text">Fixed-interval retry without jitter reliably extends outages. The thundering herd pattern means that simultaneous retries from multiple agents repeatedly overwhelm recovering dependencies — exponential backoff with jitter is non-negotiable.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">Takeaway 5</div>
+      <div class="takeaway-text">The blast radius of a cascading failure grows linearly with time-to-detection. Rate limiting and human confirmation gates for bulk terminal actions are not overhead — they limit how much irreversible harm accumulates before detection.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">Takeaway 6</div>
+      <div class="takeaway-text">Monitoring must be independent of what it monitors. A monitoring agent that shares its LLM API provider with the pipeline it watches will be unavailable during exactly the outage it's supposed to detect.</div>
+    </div>
+  </div>
+
+  <div class="complete-actions">
+    <a class="btn-restart" href="ag08-slide-01.html">← Restart AG08</a>
+    <a class="btn-home" href="../index.html">← Back to Course Home</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

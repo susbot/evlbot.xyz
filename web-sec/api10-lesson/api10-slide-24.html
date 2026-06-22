@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 24 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 24 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg done" href="api10-slide-11.html"></a><a class="seg done" href="api10-slide-12.html"></a><a class="seg done" href="api10-slide-13.html"></a><a class="seg done" href="api10-slide-14.html"></a><a class="seg done" href="api10-slide-15.html"></a><a class="seg done" href="api10-slide-16.html"></a><a class="seg done" href="api10-slide-17.html"></a><a class="seg done" href="api10-slide-18.html"></a><a class="seg done" href="api10-slide-19.html"></a><a class="seg done" href="api10-slide-20.html"></a><a class="seg done" href="api10-slide-21.html"></a><a class="seg done" href="api10-slide-22.html"></a><a class="seg done" href="api10-slide-23.html"></a><a class="seg active" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 24</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 24 &#xb7; MIT 06</div>
+  <div class="slide-title">Minimum-privilege third-party integrations &#x2014; limit what a compromised vendor can affect.</div>
+  <div class="slide-subtitle">If the third-party is breached, what can they do with the access you gave them?</div>
+  <div class="block">
+    <div class="block-label pink">The principle</div>
+    <p>Every third-party integration should be scoped to the minimum access required for its function. Excess permissions &#x2014; granted for convenience or &#x201C;just in case&#x201D; &#x2014; expand the blast radius of a vendor compromise. Minimum-privilege doesn&#x2019;t prevent the compromise; it limits what the attacker can do with the compromised integration.</p>
+  </div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F511;</div>
+      <div><div class="outcome-title">Scope OAuth tokens to minimum required permissions</div><div class="outcome-desc">When integrating via OAuth, request only the scopes your integration needs. Don&#x2019;t request <code>write:all</code> if your integration only needs <code>read:profile</code>. A compromised OAuth token with <code>read:profile</code> scope can only read profile data. The same token with <code>write:all</code> can modify data, delete resources, and exfiltrate everything accessible to that scope.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F5AA;&#xFE0F;</div>
+      <div><div class="outcome-title">Use separate API keys per integration</div><div class="outcome-desc">Don&#x2019;t share a single API key across multiple third-party integrations. Separate keys allow: precise revocation (revoke only the affected key when a vendor is breached), per-integration rate limiting and logging, and minimal-scope issuance (each key carries only the permissions its integration needs). Key rotation is also easier when integrations are independently keyed.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F6A8;</div>
+      <div><div class="outcome-title">Monitor third-party API usage for anomalies</div><div class="outcome-desc">Log all third-party API calls: endpoint, response code, response time, response size. Alert on anomalous patterns: sudden increases in response size (data exfiltration in responses), new fields appearing in responses (schema change &#x2014; possible injection), or unexpected redirects. A compromised CDN script or API will exhibit behavioral changes that deviate from the baseline &#x2014; but only if you&#x2019;ve established a baseline.</div></div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team to list what permissions each third-party integration currently has. If a chatbot widget, analytics tool, or support system has write access to your database or customer data, ask why &#x2014; and reduce it to the minimum required for the integration to function.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-23.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-25.html">MIT 07: Isolate integrations &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

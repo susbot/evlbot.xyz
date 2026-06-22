@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 9 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 9 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg done" href="api03-slide-03.html"></a><a class="seg done" href="api03-slide-04.html"></a><a class="seg done" href="api03-slide-05.html"></a><a class="seg done" href="api03-slide-06.html"></a><a class="seg done" href="api03-slide-07.html"></a><a class="seg done" href="api03-slide-08.html"></a><a class="seg active" href="api03-slide-09.html"></a><a class="seg" href="api03-slide-10.html"></a><a class="seg" href="api03-slide-11.html"></a><a class="seg" href="api03-slide-12.html"></a><a class="seg" href="api03-slide-13.html"></a><a class="seg" href="api03-slide-14.html"></a><a class="seg" href="api03-slide-15.html"></a><a class="seg" href="api03-slide-16.html"></a><a class="seg" href="api03-slide-17.html"></a><a class="seg" href="api03-slide-18.html"></a><a class="seg" href="api03-slide-19.html"></a><a class="seg" href="api03-slide-20.html"></a><a class="seg" href="api03-slide-21.html"></a><a class="seg" href="api03-slide-22.html"></a><a class="seg" href="api03-slide-23.html"></a><a class="seg" href="api03-slide-24.html"></a><a class="seg" href="api03-slide-25.html"></a><a class="seg" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 · How It Works</span><span>Slide 9</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 2</span>
+    <div><div class="part-title">How It Works</div><div class="part-count">Slides 9–13 · Two attack patterns with real examples</div></div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 9 · Two Patterns</div>
+  <div class="slide-title">Same root cause. Two attack directions.</div>
+  <div class="slide-subtitle">Read too much. Accept too much. Both break at the property level.</div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Excessive Data Exposure (Read)</div>
+      <div class="compare-item"><strong>The API sends more than the user should see</strong></div>
+      <div class="compare-item">Full object serialized and returned</div>
+      <div class="compare-item">Frontend filters what it displays — API doesn't</div>
+      <div class="compare-item">Attacker reads raw response: sees every field</div>
+      <div class="compare-item">No exploit needed — just an HTTP client</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Mass Assignment (Write)</div>
+      <div class="compare-item"><strong>The API accepts more than the user should set</strong></div>
+      <div class="compare-item">Framework binds all incoming JSON to the model</div>
+      <div class="compare-item">Developer protects some fields — but not all</div>
+      <div class="compare-item">Attacker adds extra fields to request body</div>
+      <div class="compare-item">Server writes them to database silently</div>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">Which is more dangerous?</div>
+    <p>Both. Excessive data exposure can leak password reset tokens that lead to account takeover. Mass assignment can make an attacker an admin in one request. Depending on what properties are exposed or accepted, either one can be catastrophic. OWASP merged them into one risk for exactly this reason.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-08.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-10.html">Excessive data exposure in detail →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

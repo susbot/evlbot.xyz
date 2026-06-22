@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 18 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a><a class="seg done" href="ag08-slide-11.html"></a><a class="seg done" href="ag08-slide-12.html"></a><a class="seg done" href="ag08-slide-13.html"></a><a class="seg done" href="ag08-slide-14.html"></a><a class="seg done" href="ag08-slide-15.html"></a><a class="seg done" href="ag08-slide-16.html"></a><a class="seg done" href="ag08-slide-17.html"></a>
+    <a class="seg active" href="ag08-slide-18.html"></a>
+    <a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 18</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 18 · MIT01 + MIT02</div>
+  <div class="slide-title">Output validation catches failures at the boundary where they originate. Circuit breakers stop them from propagating further once detected.</div>
+
+  <div class="block">
+    <div class="block-label purple">MIT01 — Output Validation at Agent Boundaries</div>
+    <p><strong>What it does:</strong> Every agent's output is validated against a defined contract before being passed downstream. The contract specifies: required fields, allowed field values and types, expected output size ranges, schema version, and any domain-specific sanity checks.</p>
+    <p><strong>What "output validation" means for agents:</strong> It's more than JSON schema validation. Effective output validation for agents includes:</p>
+    <ul>
+      <li><strong>Size/volume checks:</strong> If the agent is expected to return 80,000+ records, receiving 4,200 should trip a validation alert before the data is passed to the analysis agent.</li>
+      <li><strong>Unknown field rejection:</strong> Fields not in the expected schema (like the <code>"override"</code> key in Scenario 6) are stripped or cause the output to be quarantined for human review.</li>
+      <li><strong>Value range checks:</strong> Numeric fields outside expected ranges (a confidence score of 2.7 when the range is 0.0–1.0) trigger rejection.</li>
+      <li><strong>Semantic sanity checks:</strong> For high-stakes pipelines, a lightweight second model (or rule-based checks) verifies that the output's semantic content is plausible given the input.</li>
+    </ul>
+    <p><strong>Placement:</strong> Validation runs at the output of the producing agent, before the data is committed to any queue or shared state that downstream agents read from. "Validate before you publish" is the principle.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">MIT02 — Circuit Breakers</div>
+    <p><strong>What it does:</strong> A circuit breaker monitors the health and output quality of an agent. When failure signals exceed a threshold, the circuit "opens" — stopping requests to the failing agent and routing to a fallback (a cached result, a simplified response, a human escalation, or a graceful "unavailable" message).</p>
+    <p><strong>Three states:</strong> Closed (normal operation — requests pass through), Open (circuit has tripped — requests route to fallback; the failing agent is not called), Half-open (after a recovery window, one test request is sent; if it succeeds, the circuit closes; if it fails, it reopens).</p>
+    <p><strong>What trips the breaker for agents:</strong> Error rate above threshold (>20% outputs fail validation), response latency above threshold (consistently slow → likely degraded), consecutive validation failures (3+ consecutive bad outputs), resource metrics (memory or token usage spiking).</p>
+    <p><strong>Eliminates retry storms:</strong> When a circuit is open, dependent agents don't retry the failing agent — they immediately use the fallback. This breaks the thundering herd pattern that caused Scenario 3's 4-minute outage from a 12-second database hiccup.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: if one AI agent in your pipeline starts producing bad outputs, does the next agent in line keep using them — or does it stop and fall back to a safe default? Ask whether there is an automatic mechanism that detects a failing agent and reroutes around it before the damage spreads.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-17.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-19.html">MIT03 + MIT04 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

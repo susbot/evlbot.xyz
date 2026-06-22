@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Identity and Privilege Abuse · Slide 18 of 28</title>
+<link rel="stylesheet" href="ag03-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Identity and Privilege Abuse</span>
+  </div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag03-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag03-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag03-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag03-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag03-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag03-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag03-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg done" href="ag03-slide-08.html" title="Slide 8 · Why Agent Identity Is Different"></a>
+    <a class="seg done" href="ag03-slide-09.html" title="Slide 9 · Five Vulnerability Types"></a>
+    <a class="seg done" href="ag03-slide-10.html" title="Slide 10 · Type 1 — Un-scoped Privilege Inheritance"></a>
+    <a class="seg done" href="ag03-slide-11.html" title="Slide 11 · Type 1 — A Real Example"></a>
+    <a class="seg done" href="ag03-slide-12.html" title="Slide 12 · Type 2 — Memory-Based Privilege Retention"></a>
+    <a class="seg done" href="ag03-slide-13.html" title="Slide 13 · Types 3–5 — More Vulnerability Patterns"></a>
+    <a class="seg done" href="ag03-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg done" href="ag03-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg done" href="ag03-slide-16.html" title="Slide 16 · Scenarios 5–7"></a>
+    <a class="seg done" href="ag03-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg active" href="ag03-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag03-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag03-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag03-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag03-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag03-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag03-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg" href="ag03-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg" href="ag03-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag03-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag03-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 18</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 4</span>
+    <div>
+      <div class="part-title">Prevention</div>
+      <div class="part-count">Slides 18–28 · Nine mitigations, a coverage matrix, and a quiz</div>
+    </div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 18 · Prevention Overview</div>
+  <div class="slide-title">Nine mitigations — each one closes a specific gap in agent identity and privilege</div>
+  <div class="slide-subtitle">These aren't generic security advice. Each one targets a specific failure mode we covered in Parts 2 and 3.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI03</div>
+
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">🎯</div>
+      <div>
+        <div class="outcome-title">MIT 01 — Task-Scoped, Time-Bound Permissions</div>
+        <div class="outcome-desc">Issue short-lived, narrowly scoped tokens per task. Cap rights with permission boundaries. Limits blast radius and blocks delegated abuse.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🏝️</div>
+      <div>
+        <div class="outcome-title">MIT 02 — Isolate Agent Identities and Contexts</div>
+        <div class="outcome-desc">Run per-session sandboxes with separated permissions and memory. Wipe state between tasks to prevent memory-based escalation.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🔐</div>
+      <div>
+        <div class="outcome-title">MIT 03 — Mandate Per-Action Authorization</div>
+        <div class="outcome-desc">Re-verify each privileged step with a centralized policy engine that checks current authority — not just session-start authority.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">👩‍💼</div>
+      <div>
+        <div class="outcome-title">MIT 04 — Human-in-the-Loop for Privilege Escalation</div>
+        <div class="outcome-desc">Require human approval for high-privilege or irreversible actions. The safety net that catches what automated controls miss.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">📜</div>
+      <div>
+        <div class="outcome-title">MIT 05 — Define Intent: Bind Tokens to Signed Purpose</div>
+        <div class="outcome-desc">Bind OAuth tokens to a signed intent including subject, audience, purpose, and session. Reject use where bound intent doesn't match current request.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🏢</div>
+      <div>
+        <div class="outcome-title">MIT 06 — Agentic Identity Management Platforms</div>
+        <div class="outcome-desc">Treat agents as managed non-human identities with scoped credentials, audit trails, and lifecycle controls. Major platforms now support this.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🔒</div>
+      <div>
+        <div class="outcome-title">MIT 07 — Bind Permissions to Context, Require Re-auth on Switch</div>
+        <div class="outcome-desc">Bind permissions to subject, resource, purpose, and duration. Re-authenticate on context switch. Auto-revoke on idle or anomaly.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">📡</div>
+      <div>
+        <div class="outcome-title">MIT 08 — Detect Delegated and Transitive Permissions</div>
+        <div class="outcome-desc">Monitor when agents gain permissions indirectly through delegation chains. Flag low-privilege agents inheriting high-privilege scopes.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🚨</div>
+      <div>
+        <div class="outcome-title">MIT 09 — Detect Abnormal Cross-Agent Elevation and Device-Code Phishing</div>
+        <div class="outcome-desc">Monitor agents requesting new scopes or reusing tokens outside their original signed intent. Alert on device-code style flows initiated by agents.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-17.html">← Back</a>
+    <a class="btn-primary" href="ag03-slide-19.html">Start with MIT 01 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

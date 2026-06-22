@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG01:2026 — Agent Goal Hijack · Sources</title>
+<link rel="stylesheet" href="ag01-shared.css">
+<style>
+.source-group{margin-bottom:24px;}
+.source-group-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.source-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:8px;}
+.source-item-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.source-item-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;}
+.source-item-desc{font-size:12px;color:var(--subtle);line-height:1.6;}
+.source-item a{color:var(--accent-bright);text-decoration:none;font-size:11px;font-family:'IBM Plex Mono',monospace;word-break:break-all;}
+.source-item a:hover{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG01:2026</span>
+    <span class="nav-title">Agent Goal Hijack</span>
+  </div>
+  <span class="nav-right">Sources</span>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Sources · AG01</div>
+  <div class="slide-title">Every claim in this module is anchored here</div>
+  <div class="slide-subtitle">Primary sources, real incidents, and official documentation.</div>
+
+  <div class="source-group">
+    <div class="source-group-label">Official OWASP Source</div>
+    <div class="source-item">
+      <div class="source-item-title">OWASP Top 10 for Agentic Applications 2026</div>
+      <div class="source-item-meta">OWASP Gen AI Security Project · December 2025</div>
+      <div class="source-item-desc">The primary source for the AG01 definition, attack categories, and mitigation framework used throughout this module. Peer-reviewed by NIST, Microsoft AI Red Team, and AWS.</div>
+      <a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/">genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/</a>
+    </div>
+  </div>
+
+  <div class="source-group">
+    <div class="source-group-label">Real Incidents &amp; CVEs</div>
+    <div class="source-item">
+      <div class="source-item-title">EchoLeak — CVE-2025-32711</div>
+      <div class="source-item-meta">Aim Security · June 2025 · CVSS 9.3</div>
+      <div class="source-item-desc">First documented zero-click prompt injection exploit in a production agentic AI system. Microsoft 365 Copilot hijacked via a single crafted email, chaining four bypass techniques to exfiltrate mailbox data. Used in slides 01, 05, 13, 19, 26, 27.</div>
+      <a href="https://www.hackthebox.com/blog/cve-2025-32711-echoleak-copilot-vulnerability">hackthebox.com/blog/cve-2025-32711-echoleak-copilot-vulnerability</a>
+    </div>
+    <div class="source-item">
+      <div class="source-item-title">PerplexedBrowser / PleaseFix — Perplexity Comet</div>
+      <div class="source-item-meta">Zenity Labs · March 2026</div>
+      <div class="source-item-desc">Two zero-click exploit paths in Perplexity Comet agentic browser. Calendar invite triggers local file exfiltration and 1Password credential theft via indirect prompt injection using Hebrew/English obfuscation to evade guardrails. Used in slides 05, 15, 23, 26, 27.</div>
+      <a href="https://labs.zenity.io/p/perplexedbrowser-how-attackers-can-weaponize-comet-to-takeover-your-1password-vault">labs.zenity.io — PerplexedBrowser disclosure</a>
+    </div>
+    <div class="source-item">
+      <div class="source-item-title">McKinsey "Lilli" Red Team Exercise</div>
+      <div class="source-item-meta">2025 · Controlled security exercise</div>
+      <div class="source-item-desc">Red team demonstration showing direct agent manipulation achieving broad platform access across McKinsey's internal AI platform in under two hours. Used in slides 05, 11, 26.</div>
+      <a href="https://genai.owasp.org/2026/04/14/owasp-genai-exploit-round-up-report-q1-2026/">genai.owasp.org — OWASP GenAI Exploit Round-up Q1 2026</a>
+    </div>
+  </div>
+
+  <div class="source-group">
+    <div class="source-group-label">Technical Analysis &amp; Research</div>
+    <div class="source-item">
+      <div class="source-item-title">ASI01: Agent Goal Hijack — Full Technical Guide</div>
+      <div class="source-item-meta">Adversa AI · 2026</div>
+      <div class="source-item-desc">Detailed technical breakdown of the ASI01 attack surface, variant taxonomy, and defensive controls. Used in the research phase for slides 07, 09, 10, 12, 17.</div>
+      <a href="https://adversa.ai/blog/asi01-agent-goal-hijack-a-practical-security-guide/">adversa.ai/blog/asi01-agent-goal-hijack-a-practical-security-guide/</a>
+    </div>
+    <div class="source-item">
+      <div class="source-item-title">Attacking &amp; Threat Modeling The Agentic Top Ten: ASI01</div>
+      <div class="source-item-meta">Disesdi · Substack · 2026</div>
+      <div class="source-item-desc">Threat modeling walkthrough for ASI01, covering attack paths and the distinction between goal hijack and traditional prompt injection. Used for slides 07, 10.</div>
+      <a href="https://disesdi.substack.com/p/attacking-and-threat-modeling-the">disesdi.substack.com — Attacking the Agentic Top Ten</a>
+    </div>
+    <div class="source-item">
+      <div class="source-item-title">EchoLeak: The First Real-World Zero-Click Prompt Injection Exploit</div>
+      <div class="source-item-meta">arXiv · 2025</div>
+      <div class="source-item-desc">Academic paper detailing the EchoLeak attack mechanism, bypass chain, and implications for production agentic AI security.</div>
+      <a href="https://arxiv.org/html/2509.10540v1">arxiv.org/html/2509.10540v1</a>
+    </div>
+    <div class="source-item">
+      <div class="source-item-title">Inside CVE-2025-32711: Prompt Injection Meets AI Exfiltration</div>
+      <div class="source-item-meta">HackTheBox · 2025</div>
+      <div class="source-item-desc">Technical breakdown of EchoLeak's four-stage bypass chain and the architectural implications for agent security design.</div>
+      <a href="https://www.hackthebox.com/blog/cve-2025-32711-echoleak-copilot-vulnerability">hackthebox.com/blog/cve-2025-32711-echoleak-copilot-vulnerability</a>
+    </div>
+  </div>
+
+  <div class="source-group">
+    <div class="source-group-label">Mitigation Framework References</div>
+    <div class="source-item">
+      <div class="source-item-title">Allowed Is Not Aligned: Why Retrofitted Tools Can't Secure Agents</div>
+      <div class="source-item-meta">Zenity · 2026</div>
+      <div class="source-item-desc">Analysis of why purpose-built agent security architecture is required — including the case for authenticated inter-agent messaging and behavioral monitoring. Used for MIT 04, MIT 06.</div>
+      <a href="https://zenity.io/blog/security/purpose-built-ai-agent-security-architecture">zenity.io — Purpose-built AI agent security architecture</a>
+    </div>
+    <div class="source-item">
+      <div class="source-item-title">What Is Goal Hijacking? A Guide to ASI01</div>
+      <div class="source-item-meta">JumpCloud · 2026</div>
+      <div class="source-item-desc">Practitioner overview of goal hijacking threat model, including least privilege and human-in-the-loop controls. Used for MIT 03, MIT 05.</div>
+      <a href="https://jumpcloud.com/it-index/what-is-goal-hijacking">jumpcloud.com/it-index/what-is-goal-hijacking</a>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-primary" href="ag01-slide-01.html">← Back to module</a>
+  </div>
+
+</div>
+
+</body>
+</html>

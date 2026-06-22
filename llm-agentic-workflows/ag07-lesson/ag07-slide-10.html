@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 10 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 10 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a><a class="seg done" href="ag07-slide-09.html"></a>
+    <a class="seg active" href="ag07-slide-10.html"></a>
+    <a class="seg" href="ag07-slide-11.html"></a><a class="seg" href="ag07-slide-12.html"></a><a class="seg" href="ag07-slide-13.html"></a><a class="seg" href="ag07-slide-14.html"></a><a class="seg" href="ag07-slide-15.html"></a><a class="seg" href="ag07-slide-16.html"></a><a class="seg" href="ag07-slide-17.html"></a><a class="seg" href="ag07-slide-18.html"></a><a class="seg" href="ag07-slide-19.html"></a><a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Vulnerability Types</span><span>Slide 10</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 10 · Types 1 &amp; 2</div>
+  <div class="slide-title">Type 1: Creating fake agent messages. Type 2: Altering real messages in flight.</div>
+
+  <div class="block">
+    <div class="block-label purple">Type 1 — Message forgery</div>
+    <p>Message forgery requires knowing the message format used by the pipeline. In many current implementations this is trivial — inter-agent messages are plain JSON or natural language text with no cryptographic binding to the sender. An attacker who observes a few legitimate messages learns the schema, then constructs a fake one.</p>
+    <p><strong>What makes this easy in practice:</strong> Agent orchestration frameworks often use simple message formats like <code>{"role": "orchestrator", "content": "deploy to production"}</code>. The role field is just a string — any party that can write to the channel can set it to "orchestrator." There is no signed token, no certificate, no proof that the claimed role is genuine.</p>
+    <p><strong>The agent's perspective:</strong> A forged message looks identical to a legitimate one. The agent has no mechanism to distinguish them. It acts on the content because the content arrived through a channel it trusts — the channel, not the sender, is what the agent is actually trusting.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Type 2 — Message tampering in transit</div>
+    <p>Tampering differs from forgery: the attacker doesn't create a new message — they intercept a real one and modify it before forwarding it to the intended recipient. The message has genuine origin (it was really sent by the claimed sender) but compromised content.</p>
+    <p><strong>Why integrity checks are separate from authentication:</strong> A message can be authenticated (the sender is verified) but not integrity-protected (the content can be changed between sender and receiver). Without a message authentication code (MAC) or digital signature covering the message body, an intermediary — any hop between agents — can modify content undetected.</p>
+    <p><strong>Real example pattern:</strong> In 2024, security researchers demonstrated that MCP (Model Context Protocol) tool responses — returned by tool servers to an orchestrating LLM — could be tampered with in transit when the channel lacked TLS or integrity checking, causing the LLM to act on falsified tool outputs.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-09.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-11.html">Types 3 &amp; 4 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 28 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 28 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg done" href="api10-slide-11.html"></a><a class="seg done" href="api10-slide-12.html"></a><a class="seg done" href="api10-slide-13.html"></a><a class="seg done" href="api10-slide-14.html"></a><a class="seg done" href="api10-slide-15.html"></a><a class="seg done" href="api10-slide-16.html"></a><a class="seg done" href="api10-slide-17.html"></a><a class="seg done" href="api10-slide-18.html"></a><a class="seg done" href="api10-slide-19.html"></a><a class="seg done" href="api10-slide-20.html"></a><a class="seg done" href="api10-slide-21.html"></a><a class="seg done" href="api10-slide-22.html"></a><a class="seg done" href="api10-slide-23.html"></a><a class="seg done" href="api10-slide-24.html"></a><a class="seg done" href="api10-slide-25.html"></a><a class="seg done" href="api10-slide-26.html"></a><a class="seg done" href="api10-slide-27.html"></a><a class="seg active" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Complete</span><span>Slide 28</span></div>
+</div>
+<div class="slide active">
+
+  <div class="complete-wrap">
+    <div class="complete-icon">&#x2705;</div>
+    <div class="complete-title">Course Complete</div>
+    <div class="complete-sub">You&#x2019;ve finished all 10 modules of the OWASP API Security Top 10. Here&#x2019;s what you learned in API10:</div>
+    <div class="checklist">
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">What API10 is: treating third-party API responses as inherently trustworthy &#x2014; skipping the input validation, SQL parameterization, and output escaping applied to user data</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Three failure types: CDN script compromise (Magecart), injection via third-party response fields (SQL, XSS, JNDI), and SSRF via redirect from a trusted third-party</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Ticketmaster / Magecart / Inbenta (2018) &#x2014; Inbenta&#x2019;s CDN was compromised; the modified script ran on Ticketmaster&#x2019;s payment pages for four months and stole 40,000 cards</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Log4Shell (CVE-2021-44228) via third-party data &#x2014; JNDI payloads in third-party API responses (geolocation, enrichment) triggered RCE in applications that logged the data without sanitization</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">The core insight: security controls belong at the point of use, not at the point of trust &#x2014; parameterize SQL and escape HTML for all data, regardless of whether it came from a user or a vendor</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Subresource Integrity (SRI) &#x2014; the <code>integrity</code> attribute on script tags lets the browser verify CDN file hashes and block tampered scripts before they execute</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Seven mitigations: treat responses as untrusted, validate all fields, allowlist outbound URLs, vendor due diligence, SRI for scripts, minimum-privilege integrations, isolate integration points</span></div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-label pink">You&#x2019;ve completed the OWASP API Security Top 10</div>
+    <p>From Broken Object Level Authorization (API1) to Unsafe Consumption of APIs (API10) &#x2014; you&#x2019;ve covered every major category of API security risk with real incidents, attack mechanics, and concrete mitigations. The goal wasn&#x2019;t memorization. It was building a mental model for how APIs break, so you can recognize these patterns in the wild &#x2014; in code you read, systems you design, and decisions you make. <strong>Every API you build or work with is more secure because you understand why it might not be.</strong></p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-27.html">&#x2190; Back to Quiz</a>
+    <a class="btn-primary" href="../index.html">&#x2190; Back to all modules</a>
+  </div>
+
+</div>
+
+</body>
+</html>

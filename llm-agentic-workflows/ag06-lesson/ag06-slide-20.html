@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 20 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 20 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a><a class="seg done" href="ag06-slide-03.html"></a><a class="seg done" href="ag06-slide-04.html"></a><a class="seg done" href="ag06-slide-05.html"></a><a class="seg done" href="ag06-slide-06.html"></a><a class="seg done" href="ag06-slide-07.html"></a><a class="seg done" href="ag06-slide-08.html"></a><a class="seg done" href="ag06-slide-09.html"></a><a class="seg done" href="ag06-slide-10.html"></a><a class="seg done" href="ag06-slide-11.html"></a><a class="seg done" href="ag06-slide-12.html"></a><a class="seg done" href="ag06-slide-13.html"></a><a class="seg done" href="ag06-slide-14.html"></a><a class="seg done" href="ag06-slide-15.html"></a><a class="seg done" href="ag06-slide-16.html"></a><a class="seg done" href="ag06-slide-17.html"></a><a class="seg done" href="ag06-slide-18.html"></a><a class="seg done" href="ag06-slide-19.html"></a>
+    <a class="seg active" href="ag06-slide-20.html"></a>
+    <a class="seg" href="ag06-slide-21.html"></a><a class="seg" href="ag06-slide-22.html"></a><a class="seg" href="ag06-slide-23.html"></a><a class="seg" href="ag06-slide-24.html"></a><a class="seg" href="ag06-slide-25.html"></a><a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 20</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 20 · MIT03 + MIT04 — Memory Access Controls and TTL</div>
+  <div class="slide-title">MIT03: Enforce strict isolation between users and tenants in the memory layer. MIT04: Every memory entry expires — limiting how long a poisoned belief can persist.</div>
+
+  <div class="block">
+    <div class="block-label purple">MIT03 — Memory access controls and isolation</div>
+    <p>The most direct defense against cross-user memory leakage (Type 6) and multi-agent contamination (Type 5) is strict namespace isolation in the memory store — enforced at the data layer, not just the application layer.</p>
+    <p><strong>True namespace isolation:</strong> Each user, session, or tenant should have a dedicated namespace in the vector store. Retrieval queries are scoped to the namespace at the database level — the filter cannot be bypassed by application-layer prompt injection because the query never touches other namespaces.</p>
+    <p><strong>Write permission controls:</strong> Specify explicitly which identities can write to which namespaces. An agent processing inbound email should only be able to write to a designated "inbound-derived" namespace — not to the curated knowledge namespace or another user's preference store. Write permissions should be as restrictive as read permissions.</p>
+    <p><strong>Multi-agent memory boundaries:</strong> In multi-agent pipelines, shared memory should be structured as a message-passing store with explicit write attribution — not as a common-pool store where any agent can write anywhere. Agents should be able to read from shared memory but write only to their own designated output namespace.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">MIT04 — Memory TTL and expiration policies</div>
+    <p>Poisoned memories persist until they are explicitly removed. If memory entries never expire, a successful poisoning event has an unlimited persistence window. TTL policies limit this window automatically.</p>
+    <p><strong>Tier-specific TTL:</strong> In-context memory is ephemeral by definition. Session episodic memory might persist for weeks to months. Long-term preference entries should have the longest TTL but still expire and require re-confirmation — not persist forever. Curated knowledge base entries should have explicit version dates and be replaced on update, not indefinitely accumulated.</p>
+    <p><strong>Confirmation-required renewal:</strong> High-trust entries (behavioral rules, authorizations, policies) should require an explicit human confirmation action to renew their TTL — not auto-renew. If no human confirms the entry is still valid, it expires and must be re-established through a validated channel.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: can your AI agent's memory from one customer's session ever influence another customer's session? Also ask whether memories your agents store have an expiry date — or whether they accumulate indefinitely, including potentially poisoned ones.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag06-slide-19.html">← Back</a>
+    <a class="btn-primary" href="ag06-slide-21.html">MIT05 + MIT06 — Human Review and Tier Separation →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

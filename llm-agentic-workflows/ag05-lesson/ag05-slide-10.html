@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG05:2026 — Unexpected Code Execution · Slide 10 of 28</title>
+<link rel="stylesheet" href="ag05-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG05:2026</span>
+    <span class="nav-title">Unexpected Code Execution</span>
+  </div>
+  <span class="nav-right">Slide 10 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag05-slide-01.html"></a><a class="seg done" href="ag05-slide-02.html"></a><a class="seg done" href="ag05-slide-03.html"></a><a class="seg done" href="ag05-slide-04.html"></a><a class="seg done" href="ag05-slide-05.html"></a><a class="seg done" href="ag05-slide-06.html"></a><a class="seg done" href="ag05-slide-07.html"></a><a class="seg done" href="ag05-slide-08.html"></a><a class="seg done" href="ag05-slide-09.html"></a>
+    <a class="seg active" href="ag05-slide-10.html"></a>
+    <a class="seg" href="ag05-slide-11.html"></a><a class="seg" href="ag05-slide-12.html"></a><a class="seg" href="ag05-slide-13.html"></a><a class="seg" href="ag05-slide-14.html"></a><a class="seg" href="ag05-slide-15.html"></a><a class="seg" href="ag05-slide-16.html"></a><a class="seg" href="ag05-slide-17.html"></a><a class="seg" href="ag05-slide-18.html"></a><a class="seg" href="ag05-slide-19.html"></a><a class="seg" href="ag05-slide-20.html"></a><a class="seg" href="ag05-slide-21.html"></a><a class="seg" href="ag05-slide-22.html"></a><a class="seg" href="ag05-slide-23.html"></a><a class="seg" href="ag05-slide-24.html"></a><a class="seg" href="ag05-slide-25.html"></a><a class="seg" href="ag05-slide-26.html"></a><a class="seg" href="ag05-slide-27.html"></a><a class="seg" href="ag05-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Vulnerability Types</span><span>Slide 10</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 10 · Type 1 — Sandbox Escape</div>
+  <div class="slide-title">The sandbox is supposed to be the boundary. But sandboxes are software — and software can be broken out of.</div>
+  <div class="slide-subtitle">A code interpreter sandbox limits what agent-generated code can do. A sandbox escape removes that limit entirely.</div>
+
+  <div class="block">
+    <div class="block-label purple">What a sandbox is supposed to do</div>
+    <p>When an AI agent runs code in a Python interpreter, Jupyter kernel, or similar environment, that environment is ideally sandboxed — isolated from the host operating system, with restricted filesystem access, no outbound network, and no ability to spawn system processes.</p>
+    <p>The sandbox is the primary technical control that prevents code execution from becoming host compromise. If it works correctly, even malicious code running inside the sandbox can't reach outside it.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">How sandboxes fail</div>
+    <p><strong>Insufficient isolation:</strong> Many code interpreters used by AI agents are not true sandboxes — they're subprocess calls with limited restrictions. Python running in a subprocess on the host can still read environment variables, access mounted filesystems, and make system calls.</p>
+    <p><strong>OS-level escape via system calls:</strong> Code that invokes <code>os.system()</code>, <code>subprocess.run()</code>, or direct syscalls can reach outside the Python runtime into the underlying OS. If the agent's container shares the host's kernel, kernel exploits can escalate further.</p>
+    <p><strong>Container escape:</strong> Containerized sandboxes (Docker, similar) are stronger than bare process isolation but still have documented escape paths — privileged container flags, mounted Docker sockets, kernel vulnerabilities, and misconfigured volume mounts.</p>
+    <p><strong>Dependency vulnerabilities:</strong> Libraries loaded inside the sandbox may have vulnerabilities that, when triggered by agent-generated code, escalate out of the sandbox through the library's host-level access.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Why this is the highest-severity AG05 vulnerability</div>
+    <p>Every other AG05 type operates within the agent's intended execution environment. Sandbox escape reaches the host — from which an attacker can access other containers, internal network services, cloud metadata APIs, or the hypervisor. A single sandbox escape can convert a limited code execution capability into full host compromise.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag05-slide-09.html">← Back</a>
+    <a class="btn-primary" href="ag05-slide-11.html">A real sandbox escape in a production AI system →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

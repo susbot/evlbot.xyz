@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 14 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 14 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a><a class="seg done" href="ag08-slide-11.html"></a><a class="seg done" href="ag08-slide-12.html"></a><a class="seg done" href="ag08-slide-13.html"></a>
+    <a class="seg active" href="ag08-slide-14.html"></a>
+    <a class="seg" href="ag08-slide-15.html"></a><a class="seg" href="ag08-slide-16.html"></a><a class="seg" href="ag08-slide-17.html"></a><a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Scenarios</span><span>Slide 14</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 14 · Scenarios 3 &amp; 4</div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Scenario 3 — Retry storm shuts down 9 agents in 4 minutes</span>
+      <span class="scenario-tag red">Pattern 4 — Resource exhaustion cascade</span>
+    </div>
+    <div class="scenario-body">
+      <p>A research pipeline has 9 agents: 1 orchestrator, 4 retrieval agents (different data sources), 3 synthesis agents, 1 output formatter. All 4 retrieval agents share a vector database. The vector database experienced a 12-second maintenance window at 11:03 AM.</p>
+      <p>All 4 retrieval agents received timeouts simultaneously. Each was configured to retry 3 times with a 2-second delay — no exponential backoff, no jitter. At 11:03:12, all 4 agents sent retry requests simultaneously. The vector database, now back online, was hit with 4× normal load during its recovery. It timed out again. All 4 agents retried again. The thundering herd pattern repeated. By 11:07, all 9 agents had stopped processing. The vector database was healthy; what was unhealthy was the retry pattern overwhelming its recovery.</p>
+      <p><strong>Fix:</strong> Exponential backoff with jitter (each agent waits a random interval before retrying, increasing with each attempt). Circuit breaker on each retrieval agent (stop retrying after 3 consecutive failures; only attempt again after a recovery window). Bulkhead isolation (database connection pools per agent, so one agent's retry storm can't consume connections belonging to another agent).</p>
+    </div>
+  </div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Scenario 4 — Hallucinated field propagates to 3 downstream agents</span>
+      <span class="scenario-tag purple">Pattern 2 — Error amplification</span>
+    </div>
+    <div class="scenario-body">
+      <p>A compliance pipeline uses a document analysis agent to extract structured fields from contracts. One document caused the LLM to hallucinate a field: <code>"exclusivity_period": "unlimited"</code> — a field the contract did not contain. The extraction agent returned this with full confidence alongside real extracted fields.</p>
+      <p>Three downstream agents acted on it: a risk scoring agent treated "unlimited exclusivity" as extreme risk, elevating the contract to manual review. A summary agent included the non-existent clause in its summary, which was sent to the client. A comparison agent flagged it as a material deviation from the standard template — triggering an escalation email to legal. All three agents processed a hallucination as fact because there was no validation layer between extraction and reasoning.</p>
+      <p><strong>What was missing:</strong> Output validation that checked extracted fields against the known contract schema (fields that don't exist in the template should be flagged for human review). A confidence threshold below which extraction outputs are routed to human review before downstream processing. Idempotent downstream actions (escalation emails should require human confirmation before sending).</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-13.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-15.html">Scenarios 5 &amp; 6 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

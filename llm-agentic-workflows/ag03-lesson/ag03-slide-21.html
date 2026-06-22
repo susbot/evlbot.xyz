@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Identity and Privilege Abuse · Slide 21 of 28</title>
+<link rel="stylesheet" href="ag03-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Identity and Privilege Abuse</span>
+  </div>
+  <span class="nav-right">Slide 21 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag03-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag03-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag03-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag03-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag03-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag03-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag03-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg done" href="ag03-slide-08.html" title="Slide 8 · Why Agent Identity Is Different"></a>
+    <a class="seg done" href="ag03-slide-09.html" title="Slide 9 · Five Vulnerability Types"></a>
+    <a class="seg done" href="ag03-slide-10.html" title="Slide 10 · Type 1 — Un-scoped Privilege Inheritance"></a>
+    <a class="seg done" href="ag03-slide-11.html" title="Slide 11 · Type 1 — A Real Example"></a>
+    <a class="seg done" href="ag03-slide-12.html" title="Slide 12 · Type 2 — Memory-Based Privilege Retention"></a>
+    <a class="seg done" href="ag03-slide-13.html" title="Slide 13 · Types 3–5 — More Vulnerability Patterns"></a>
+    <a class="seg done" href="ag03-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg done" href="ag03-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg done" href="ag03-slide-16.html" title="Slide 16 · Scenarios 5–7"></a>
+    <a class="seg done" href="ag03-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg done" href="ag03-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg done" href="ag03-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg done" href="ag03-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg active" href="ag03-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag03-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag03-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag03-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg" href="ag03-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg" href="ag03-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag03-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag03-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 21</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 21 · Mitigation 3</div>
+  <div class="slide-title">Per-action authorization — re-verify at every privileged step, not just at session start</div>
+  <div class="slide-subtitle">Session-start authorization is necessary but insufficient. The confused deputy attack depends on authorization not being re-checked at the point of action.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI03</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 03</div>
+    <div class="mit-title">Mandate Per-Action Authorization</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>For every privileged action an agent attempts — not just at session start — route the request through a <strong>centralized policy engine</strong> that evaluates current authority. The policy engine checks: Who is the original requesting user? What is the current state of their permissions? Is this specific action within their current authorization? Is the agent presenting a valid, non-stale credential for this action?</p>
+      <p>This is a Policy Enforcement Point (PEP) / Policy Decision Point (PDP) architecture applied to agentic actions. Every sensitive action is a runtime authorization decision — not a stored permission lookup.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What this addresses</div>
+      <p>Directly stops cross-agent trust exploitation (Scenario 03) — the finance agent can no longer blindly trust the email agent's forwarded instruction without a re-verified authorization check. Also stops workflow authorization drift (Scenario 05) — by re-checking authority at the point of the transaction, not just at the start of the workflow.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label yellow">The performance tradeoff</div>
+      <p>Per-action authorization adds latency to every privileged action. For high-frequency, low-privilege actions this overhead may be unacceptable. A practical implementation tiers authorization: low-risk actions use session-cached tokens, medium-risk actions use per-task tokens, high-risk or irreversible actions require real-time policy evaluation. Define "high-risk" explicitly — don't leave it to judgment.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: when your AI agent takes an action on behalf of a user, does it check that user's current permissions at the moment it acts — or does it rely on permissions that were granted when the session started? Ask whether a user whose access was revoked mid-session could still have actions carried out in their name.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-20.html">← Back</a>
+    <a class="btn-primary" href="ag03-slide-22.html">Next → MIT 04: Human-in-the-Loop</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

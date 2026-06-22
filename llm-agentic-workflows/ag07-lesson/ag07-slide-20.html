@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 20 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 20 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a><a class="seg done" href="ag07-slide-09.html"></a><a class="seg done" href="ag07-slide-10.html"></a><a class="seg done" href="ag07-slide-11.html"></a><a class="seg done" href="ag07-slide-12.html"></a><a class="seg done" href="ag07-slide-13.html"></a><a class="seg done" href="ag07-slide-14.html"></a><a class="seg done" href="ag07-slide-15.html"></a><a class="seg done" href="ag07-slide-16.html"></a><a class="seg done" href="ag07-slide-17.html"></a><a class="seg done" href="ag07-slide-18.html"></a><a class="seg done" href="ag07-slide-19.html"></a>
+    <a class="seg active" href="ag07-slide-20.html"></a>
+    <a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 20</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 20 · MIT05 + MIT06</div>
+  <div class="slide-title">Replay protection makes captured messages one-time-use. Least-privilege routing limits what each agent can be told to do, and by whom.</div>
+
+  <div class="block">
+    <div class="block-label blue">MIT05 — Replay Protection (Nonces + Timestamps)</div>
+    <p><strong>What it does:</strong> Every message carries two replay-prevention mechanisms:</p>
+    <ul>
+      <li><strong>Nonce (number used once):</strong> A unique random identifier generated per message. The receiving agent maintains a nonce cache and rejects any message whose nonce has been seen before. This prevents exact replay of any past message.</li>
+      <li><strong>Timestamp with validity window:</strong> The message includes a generation timestamp. The receiving agent rejects messages outside a narrow validity window (typically 30 seconds to 5 minutes). This limits the attack window even if the nonce cache is cleared.</li>
+    </ul>
+    <p><strong>Why both mechanisms are needed:</strong> Nonces alone require indefinitely growing caches. Timestamps alone are exploitable if the attacker replays within the validity window. Together they provide strong replay protection with bounded cache size: the nonce cache only needs to cover the validity window, not all-time history.</p>
+    <p><strong>Threat closed:</strong> Type 4 (replay attacks). The month-old access-grant message in Scenario 3 would have a nonce already seen and a timestamp outside the validity window — both checks reject it.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">MIT06 — Least-Privilege Message Routing</div>
+    <p><strong>What it does:</strong> The communication topology is enforced at the infrastructure level. Each agent is only authorized to send specific message types to specific recipient agents, and to receive messages only from specific authorized senders. Unauthorized sender/recipient combinations are rejected at the infrastructure layer — before the receiving agent ever sees the message.</p>
+    <p><strong>Implementation patterns:</strong></p>
+    <ul>
+      <li><strong>Queue-level access policies:</strong> AWS SQS resource policies, Kafka ACLs, or RabbitMQ permissions that restrict which identities can publish to which queues. Only the classification agent's identity can publish to the moderation queue.</li>
+      <li><strong>API gateway routing rules:</strong> The gateway enforces that <code>POST /deployment-agent/deploy</code> can only be called by the orchestrator service identity — not by any authenticated agent.</li>
+      <li><strong>Network policies:</strong> Kubernetes NetworkPolicy or AWS security groups that restrict which services can initiate connections to which other services.</li>
+    </ul>
+    <p><strong>Threat closed:</strong> Type 6 (queue injection), and significantly raises the bar for Types 1 and 3 by requiring the attacker to compromise a specifically authorized sender identity.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: if an attacker captured a valid instruction sent between two of your agents and replayed it an hour later, would the receiving agent act on it again? Ask whether your agents are allowed to communicate with any other agent, or only with specific ones they're designed to work with.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-19.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-21.html">MIT07 + MIT08 + MIT09 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

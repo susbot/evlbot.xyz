@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 15 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 15 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a><a class="seg done" href="ag09-slide-07.html"></a><a class="seg done" href="ag09-slide-08.html"></a><a class="seg done" href="ag09-slide-09.html"></a><a class="seg done" href="ag09-slide-10.html"></a><a class="seg done" href="ag09-slide-11.html"></a><a class="seg done" href="ag09-slide-12.html"></a><a class="seg done" href="ag09-slide-13.html"></a><a class="seg done" href="ag09-slide-14.html"></a>
+    <a class="seg active" href="ag09-slide-15.html"></a>
+    <a class="seg" href="ag09-slide-16.html"></a><a class="seg" href="ag09-slide-17.html"></a><a class="seg" href="ag09-slide-18.html"></a><a class="seg" href="ag09-slide-19.html"></a><a class="seg" href="ag09-slide-20.html"></a><a class="seg" href="ag09-slide-21.html"></a><a class="seg" href="ag09-slide-22.html"></a><a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Scenarios</span><span>Slide 15</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 15 · Scenarios 5 & 6</div>
+  <div class="slide-title">The AI compliance assistant that became an attacker's mouthpiece — and the junior analyst who lost the skill to catch it.</div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Scenario 5 — The Compliance Relay</span>
+      <span class="scenario-tag purple">Patterns 4 & 2: Credibility Relay + Authority Spoofing</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>Setup:</strong> A healthcare organization uses an AI compliance assistant that monitors regulatory updates, summarizes them, and flags policy changes required for compliance. Clinicians and compliance staff rely on it for regulatory guidance. The assistant processes regulatory feeds from multiple external sources.</p>
+      <p><strong>Attack:</strong> An attacker compromises one of the external regulatory data feeds that the AI compliance assistant ingests. They inject a fake "regulatory update" containing a prompt injection payload. The payload instructs the AI assistant to tell users that a specific authentication requirement has been temporarily waived by the regulator pending system updates, and to advise staff to bypass two-factor authentication for the next 30 days to "ensure continuity of care during the transition period."</p>
+      <p><strong>What happens:</strong> The AI assistant, having processed the injected update, begins advising compliance staff and clinical IT that 2FA can be bypassed for 30 days per the regulatory update. Because the AI assistant's compliance advisories are trusted by default — it has been accurate on dozens of prior updates — several staff members disable 2FA for their accounts. The attacker uses compromised credentials to access patient records over the following weeks.</p>
+      <p><strong>What was missing:</strong> No distinction between "regulatory information I derived from official sources I have direct access to" vs "regulatory information from a third-party feed." Any advice to disable security controls should trigger mandatory out-of-band verification, regardless of the source, regardless of how authoritative the framing.</p>
+    </div>
+  </div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Scenario 6 — The Analyst Who Forgot How</span>
+      <span class="scenario-tag blue">Pattern 5: Dependency Erosion</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>Setup:</strong> A financial institution onboarded an AI contract analysis agent two years ago. Before the agent, junior analysts reviewed all incoming vendor contracts, flagging unusual clauses, non-standard liability caps, and IP ownership terms for senior review. After the agent was deployed, junior analysts primarily validated the agent's flags and occasionally spot-checked its summaries — but rarely performed independent, systematic clause-by-clause review.</p>
+      <p><strong>What happens (no attacker required):</strong> A vendor submits a contract with an unusual automatic renewal clause that extends the initial 1-year term to 5 years if not cancelled within 30 days of signing. The AI contract agent misses the clause — it is written in a non-standard format the agent's training data underrepresents. The junior analyst validates the agent's summary, which covers the main terms but omits the renewal clause. The senior attorney spot-checks a different section. The contract is signed. The automatic renewal clause is discovered 13 months later when the vendor refuses to renegotiate.</p>
+      <p><strong>What was missing:</strong> The junior analyst — two years into their role — no longer had the practiced systematic review skill that would have caught the unusual clause on an independent read. The agent had effectively handled that function so reliably that the skill had atrophied. No adversary was required; the AI system had simply been too good for too long at handling a task the human needed to remain able to perform independently.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-14.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-16.html">The universal pattern →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

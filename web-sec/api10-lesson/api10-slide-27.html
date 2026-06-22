@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 27 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg done" href="api10-slide-11.html"></a><a class="seg done" href="api10-slide-12.html"></a><a class="seg done" href="api10-slide-13.html"></a><a class="seg done" href="api10-slide-14.html"></a><a class="seg done" href="api10-slide-15.html"></a><a class="seg done" href="api10-slide-16.html"></a><a class="seg done" href="api10-slide-17.html"></a><a class="seg done" href="api10-slide-18.html"></a><a class="seg done" href="api10-slide-19.html"></a><a class="seg done" href="api10-slide-20.html"></a><a class="seg done" href="api10-slide-21.html"></a><a class="seg done" href="api10-slide-22.html"></a><a class="seg done" href="api10-slide-23.html"></a><a class="seg done" href="api10-slide-24.html"></a><a class="seg done" href="api10-slide-25.html"></a><a class="seg done" href="api10-slide-26.html"></a><a class="seg active" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Quiz</span><span>Slide 27</span></div>
+</div>
+<div class="slide active">
+
+<script>
+function answer(btn, correct) {
+  const card = btn.closest('.question-card');
+  card.querySelectorAll('.option').forEach(o => o.disabled = true);
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  card.querySelector('.feedback.' + (correct ? 'correct' : 'wrong')).classList.add('show');
+}
+</script>
+
+  <div class="slide-eyebrow">Slide 27 &#xb7; Quiz</div>
+  <div class="slide-title">Five questions on Unsafe Consumption of APIs.</div>
+  <div class="quiz-wrap">
+
+    <div class="question-card">
+      <div class="question-text">1. In the Ticketmaster / Magecart / Inbenta incident (2018), how did the attackers steal payment card data from Ticketmaster customers?</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false)">They exploited a SQL injection vulnerability in Ticketmaster&#x2019;s payment API</button>
+        <button class="option" onclick="answer(this,false)">They obtained Ticketmaster&#x2019;s database through a phishing attack on an employee</button>
+        <button class="option" onclick="answer(this,true)">They compromised Inbenta&#x2019;s CDN and modified a JavaScript file that Ticketmaster loaded on its payment pages</button>
+        <button class="option" onclick="answer(this,false)">They intercepted TLS traffic between customers and Ticketmaster&#x2019;s servers</button>
+      </div>
+      <div class="feedback correct">Correct. Attackers compromised Inbenta&#x2019;s CDN and injected a Magecart card-skimming payload into the JavaScript file Ticketmaster loaded on its checkout pages. The skimmer ran in users&#x2019; browsers and exfiltrated card data before it ever reached Ticketmaster&#x2019;s API. Ticketmaster&#x2019;s own systems were never directly compromised.</div>
+      <div class="feedback wrong">The attack didn&#x2019;t target Ticketmaster&#x2019;s API or database directly. Attackers compromised Inbenta&#x2019;s CDN &#x2014; a third-party chatbot vendor Ticketmaster trusted &#x2014; and modified the JavaScript file Ticketmaster loaded on payment pages. The skimmer ran in customers&#x2019; browsers, intercepting card data before it reached any server.</div>
+    </div>
+
+    <div class="question-card">
+      <div class="question-text">2. An API consumes a third-party address validation service. The service returns the canonical address as a string. The API inserts this string into a SQL query using string concatenation rather than parameterized queries. A compromised third-party returns SQL injection in the address field. What API10 mitigation would have prevented this?</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false)">Rate limit the address validation API calls</button>
+        <button class="option" onclick="answer(this,true)">Use parameterized queries for all database insertions, regardless of data source</button>
+        <button class="option" onclick="answer(this,false)">Validate user-submitted addresses more strictly before sending them to the third-party</button>
+        <button class="option" onclick="answer(this,false)">Use HTTPS for the third-party API call</button>
+      </div>
+      <div class="feedback correct">Correct. MIT 02 requires using parameterized queries for all SQL statements regardless of where the data came from. Parameterization separates SQL code from data, making injection impossible even if the data contains SQL injection payloads. The source of the data (third-party vs. user) is irrelevant &#x2014; the control belongs at the point of SQL use.</div>
+      <div class="feedback wrong">HTTPS provides transport security &#x2014; it ensures the response came from the expected server without modification in transit. But if the third-party server itself is compromised, HTTPS doesn&#x2019;t help. The fix is parameterized queries on all SQL statements, applied at the point of use regardless of data source.</div>
+    </div>
+
+    <div class="question-card">
+      <div class="question-text">3. Which HTML attribute on a script tag allows a browser to verify the integrity of a third-party CDN script before executing it?</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false)"><code>crossorigin="anonymous"</code></button>
+        <button class="option" onclick="answer(this,false)"><code>sandbox</code></button>
+        <button class="option" onclick="answer(this,true)"><code>integrity="sha384-..."</code></button>
+        <button class="option" onclick="answer(this,false)"><code>nonce="random-value"</code></button>
+      </div>
+      <div class="feedback correct">Correct. The <code>integrity</code> attribute (part of the Subresource Integrity / SRI standard) specifies a cryptographic hash of the expected script content. The browser hashes the downloaded file and compares it to the expected value. If they don&#x2019;t match &#x2014; because the file was tampered with &#x2014; the browser refuses to execute the script. This is the direct technical defense against Magecart-style CDN compromise.</div>
+      <div class="feedback wrong">The <code>integrity</code> attribute (Subresource Integrity / SRI) is what allows browsers to verify third-party script content before execution. It contains a cryptographic hash of the expected file. If the CDN file is modified, the hash won&#x2019;t match and the browser blocks execution. This would have prevented the Ticketmaster incident.</div>
+    </div>
+
+    <div class="question-card">
+      <div class="question-text">4. An API follows all redirects returned by a trusted OAuth identity provider. An attacker compromises a subdomain of the identity provider and returns a redirect to <code>http://169.254.169.254/latest/meta-data/</code>. The API follows the redirect and retrieves IAM credentials. Which mitigation addresses this?</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false)">Use HTTPS for all requests to the identity provider</button>
+        <button class="option" onclick="answer(this,false)">Verify the identity provider&#x2019;s SSL certificate</button>
+        <button class="option" onclick="answer(this,true)">Validate redirect destination URLs against an allowlist, blocking private IP ranges &#x2014; regardless of where the redirect came from</button>
+        <button class="option" onclick="answer(this,false)">Use a different OAuth provider</button>
+      </div>
+      <div class="feedback correct">Correct. MIT 03 requires validating the destination of all redirects &#x2014; including those from trusted third parties &#x2014; against an allowlist that blocks private IP ranges. The source of the redirect doesn&#x2019;t determine whether the destination is safe. SSRF via redirect works precisely because the consuming API trusted the redirect source and skipped destination validation.</div>
+      <div class="feedback wrong">SSL certificate verification only confirms the redirect came from the expected domain &#x2014; but if that domain (or its subdomain) is compromised or taken over, certificate verification passes. The fix is to validate where the redirect goes: check the destination URL against an allowlist that blocks private IP ranges, cloud metadata endpoints, and internal addresses.</div>
+    </div>
+
+    <div class="question-card">
+      <div class="question-text">5. What is the fundamental difference between input validation applied to user data vs. third-party API responses in most API implementations &#x2014; and what does OWASP API10 say about this?</div>
+      <div class="options">
+        <button class="option" onclick="answer(this,false)">User data is more dangerous; third-party data can be trusted once TLS is verified</button>
+        <button class="option" onclick="answer(this,false)">Third-party data needs more validation since vendors make mistakes</button>
+        <button class="option" onclick="answer(this,true)">User data is validated; third-party data is typically trusted and skips validation &#x2014; API10 says this asymmetry is the vulnerability, and all data should be validated at the point of use regardless of source</button>
+        <button class="option" onclick="answer(this,false)">There is no difference; both are treated the same in well-designed APIs</button>
+      </div>
+      <div class="feedback correct">Correct. API10&#x2019;s core finding is that developers apply strict validation to user input but treat third-party API responses as inherently trustworthy &#x2014; skipping the same controls. OWASP says this asymmetry is the vulnerability: security controls (parameterization, escaping, URL validation) should be applied based on how the data is used, not based on where it came from.</div>
+      <div class="feedback wrong">In practice, most APIs apply much stricter validation to user input than to third-party responses. API10 identifies this as the problem &#x2014; not the solution. The correct approach: apply the same validation, parameterization, and escaping to all external data regardless of source, based on how the data will be used, not who sent it.</div>
+    </div>
+
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-26.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-28.html">Finish module &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

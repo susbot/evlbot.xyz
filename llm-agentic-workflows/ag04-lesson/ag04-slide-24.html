@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 24 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 24 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a><a class="seg done" href="ag04-slide-02.html"></a><a class="seg done" href="ag04-slide-03.html"></a><a class="seg done" href="ag04-slide-04.html"></a><a class="seg done" href="ag04-slide-05.html"></a><a class="seg done" href="ag04-slide-06.html"></a><a class="seg done" href="ag04-slide-07.html"></a><a class="seg done" href="ag04-slide-08.html"></a><a class="seg done" href="ag04-slide-09.html"></a><a class="seg done" href="ag04-slide-10.html"></a><a class="seg done" href="ag04-slide-11.html"></a><a class="seg done" href="ag04-slide-12.html"></a><a class="seg done" href="ag04-slide-13.html"></a><a class="seg done" href="ag04-slide-14.html"></a><a class="seg done" href="ag04-slide-15.html"></a><a class="seg done" href="ag04-slide-16.html"></a><a class="seg done" href="ag04-slide-17.html"></a><a class="seg done" href="ag04-slide-18.html"></a><a class="seg done" href="ag04-slide-19.html"></a><a class="seg done" href="ag04-slide-20.html"></a><a class="seg done" href="ag04-slide-21.html"></a><a class="seg done" href="ag04-slide-22.html"></a><a class="seg done" href="ag04-slide-23.html"></a>
+    <a class="seg active" href="ag04-slide-24.html"></a>
+    <a class="seg" href="ag04-slide-25.html"></a><a class="seg" href="ag04-slide-26.html"></a><a class="seg" href="ag04-slide-27.html"></a><a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 24</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 24 · MIT06 + MIT07 — Continuous Validation and Content Hash Pinning</div>
+  <div class="slide-title">MIT06: Keep checking after deployment. MIT07: Pin to content, not version numbers.</div>
+  <div class="slide-subtitle">Both controls address the fact that a component can be legitimate when first loaded and malicious later.</div>
+
+  <div class="block">
+    <div class="block-label purple">MIT06 — Continuous validation and monitoring</div>
+    <p>Supply chain attacks often succeed because the compromise happens gradually or after the initial security check. A package is scanned at install time and passes. Three weeks later, the registry entry is hijacked and a malicious update is pushed. If you only check at install time, you don't know the running version is now compromised.</p>
+    <p><strong>Continuous validation</strong> means periodically re-checking every loaded component against known-good hashes, scanning tool descriptors for unexpected changes, monitoring agent behavior for anomalies that suggest a poisoned component, and alerting when the running environment diverges from the approved inventory (AIBOM).</p>
+    <p>Tools: SBOM drift detection, agent behavioral baselines, anomaly alerting on unexpected network calls, tool call frequency monitoring.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">MIT07 — Content hash pinning</div>
+    <p>Version numbers are mutable labels. A package at version 2.3.1 today can have different content than the same version number tomorrow if the registry is compromised or the maintainer republishes.</p>
+    <p><strong>Content hash pinning</strong> means every dependency is locked to a specific SHA-256 hash of its actual bytes — not its version number. If the bytes change, the hash changes, and the load fails. The attacker can't substitute a malicious package without changing its hash, which breaks the pinned reference.</p>
+    <p>For prompt templates: store a hash of the approved template and verify it at load time. For MCP servers: store a hash of the approved server manifest. For agent cards: store the expected public key fingerprint and verify the signature.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-23.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-25.html">MIT08 + MIT09 — Kill Switch and Zero Trust →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

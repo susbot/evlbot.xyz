@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Identity and Privilege Abuse · Slide 5 of 28</title>
+<link rel="stylesheet" href="ag03-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Identity and Privilege Abuse</span>
+  </div>
+  <span class="nav-right">Slide 5 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag03-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag03-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag03-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag03-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg active" href="ag03-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg" href="ag03-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg" href="ag03-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg" href="ag03-slide-08.html" title="Slide 8 · Why Agent Identity Is Different"></a>
+    <a class="seg" href="ag03-slide-09.html" title="Slide 9 · Five Vulnerability Types"></a>
+    <a class="seg" href="ag03-slide-10.html" title="Slide 10 · Type 1 — Un-scoped Privilege Inheritance"></a>
+    <a class="seg" href="ag03-slide-11.html" title="Slide 11 · Type 1 — A Real Example"></a>
+    <a class="seg" href="ag03-slide-12.html" title="Slide 12 · Type 2 — Memory-Based Privilege Retention"></a>
+    <a class="seg" href="ag03-slide-13.html" title="Slide 13 · Types 3–5 — More Vulnerability Patterns"></a>
+    <a class="seg" href="ag03-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg" href="ag03-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg" href="ag03-slide-16.html" title="Slide 16 · Scenarios 5–7"></a>
+    <a class="seg" href="ag03-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag03-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag03-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag03-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag03-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag03-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag03-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag03-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg" href="ag03-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg" href="ag03-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag03-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag03-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — What Is It?</span><span>Slide 5</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 5 · The Outcomes</div>
+  <div class="slide-title">What AG03 attacks actually do — concrete, real consequences</div>
+  <div class="slide-subtitle">When identity and privilege are abused in agentic systems, the damage goes well beyond what traditional privilege escalation looks like.</div>
+
+  <div class="outcome-list">
+
+    <div class="outcome-item">
+      <div class="outcome-icon">💸</div>
+      <div>
+        <div class="outcome-title">Unauthorized financial transactions</div>
+        <div class="outcome-desc">A finance agent processes payments it was never authorized to make — because it trusted a message from another internal agent that was compromised or forged. The authorization chain looked valid. The money left.</div>
+      </div>
+    </div>
+
+    <div class="outcome-item">
+      <div class="outcome-icon">🔑</div>
+      <div>
+        <div class="outcome-title">Credential theft across sessions</div>
+        <div class="outcome-desc">An agent caches credentials during a high-privilege task. A later, lower-privilege user in the same session prompts the agent to reuse them — giving that user access they were never supposed to have. No password was stolen. The agent handed it over.</div>
+      </div>
+    </div>
+
+    <div class="outcome-item">
+      <div class="outcome-icon">📂</div>
+      <div>
+        <div class="outcome-title">Data exfiltration at elevated scope</div>
+        <div class="outcome-desc">A sub-agent inherits the full permissions of its orchestrator instead of a narrowly scoped subset. An attacker who can steer the sub-agent can now access HR records, legal files, and financial data — far beyond what the original task required.</div>
+      </div>
+    </div>
+
+    <div class="outcome-item">
+      <div class="outcome-icon">👤</div>
+      <div>
+        <div class="outcome-title">Unauthorized account creation</div>
+        <div class="outcome-desc">An agent with admin credentials is tricked into creating new user accounts with elevated privileges. No attacker touched the admin console directly. They just prompted the agent.</div>
+      </div>
+    </div>
+
+    <div class="outcome-item">
+      <div class="outcome-icon">🏛️</div>
+      <div>
+        <div class="outcome-title">Vendor or partner impersonation</div>
+        <div class="outcome-desc">A forged "Admin Helper" agent registers itself in an internal agent registry. Other agents route privileged maintenance tasks to it. The attacker's agent issues system-level commands under assumed internal trust.</div>
+      </div>
+    </div>
+
+    <div class="outcome-item">
+      <div class="outcome-icon">⏰</div>
+      <div>
+        <div class="outcome-title">Stale authorization exploitation</div>
+        <div class="outcome-desc">An agent validates a user's spending limit at the start of a workflow. Hours later the limit is reduced, but the agent completes the purchase using the old, now-invalid authorization. The transaction is both logged and wrong.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-04.html">← Back</a>
+    <a class="btn-primary" href="ag03-slide-06.html">Who triggers these attacks? →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

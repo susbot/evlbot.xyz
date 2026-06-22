@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG05:2026 — Sources</title>
+<link rel="stylesheet" href="ag05-shared.css">
+<style>
+.src-entry { background:#111118; border:1px solid #2a2a3a; border-radius:10px; padding:1rem 1.2rem; margin-bottom:0.9rem; }
+.src-tag { display:inline-block; font-size:0.68rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; border-radius:4px; padding:0.15rem 0.5rem; margin-bottom:0.4rem; }
+.src-tag.primary { background:rgba(239,159,39,0.15); color:var(--accent); }
+.src-tag.incident { background:rgba(239,68,68,0.12); color:#f87171; }
+.src-tag.research { background:rgba(99,102,241,0.15); color:#a5b4fc; }
+.src-tag.standard { background:rgba(34,197,94,0.12); color:#4ade80; }
+.src-tag.framework { background:rgba(56,189,248,0.12); color:#7dd3fc; }
+.src-title { font-size:0.95rem; font-weight:600; color:var(--fg); margin-bottom:0.25rem; }
+.src-meta { font-size:0.78rem; color:var(--fg-dim); margin-bottom:0.4rem; }
+.src-usage { font-size:0.8rem; color:var(--fg-dim); line-height:1.5; }
+.src-usage strong { color:var(--fg); }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG05:2026</span>
+    <span class="nav-title">Sources — Unexpected Code Execution</span>
+  </div>
+  <span class="nav-right"><a href="ag05-slide-01.html" style="color:var(--accent)">← Back to lesson</a></span>
+</div>
+
+<div style="max-width:800px; margin:2rem auto; padding:0 1.5rem;">
+
+  <h2 style="font-size:1.3rem; color:var(--fg); margin-bottom:1.5rem;">Primary and Supporting Sources</h2>
+
+  <div class="src-entry">
+    <div class="src-tag primary">Primary — OWASP</div>
+    <div class="src-title">OWASP Top 10 for LLM & Generative AI Applications — ASI05: Unexpected Code Execution</div>
+    <div class="src-meta">OWASP Foundation · 2026 Edition</div>
+    <div class="src-usage"><strong>Used in:</strong> Definition slides (03–04), vulnerability framework (09–13), mitigation framework (18–25). The primary authoritative source for the ASI05 definition, root causes (malicious inputs and insufficient sandboxing), and the distinction between intended and unintended code execution scope.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag research">Security Research</div>
+    <div class="src-title">ChatGPT Code Interpreter / Advanced Data Analysis — Sandbox Research (2023–2024)</div>
+    <div class="src-meta">Multiple independent security researchers · 2023–2024</div>
+    <div class="src-usage"><strong>Used in:</strong> Slide 11 (Type 1 real example). Researchers documented that ChatGPT's code execution environment exposed environment variables, accessible filesystem portions, and subprocess execution capabilities that were assumed to be restricted. Demonstrates that assumption of sandbox isolation is not the same as verified sandbox isolation.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag incident">Incident Pattern</div>
+    <div class="src-title">White-text / Hidden-instruction Prompt Injection via Documents</div>
+    <div class="src-meta">Documented by Johann Rehberger and others · 2023–2025</div>
+    <div class="src-usage"><strong>Used in:</strong> Slide 14 (Scenario 1). Documented attack pattern in which instructions hidden in documents (white text on white background, zero-font characters, or metadata fields) cause LLM agents to execute attacker-defined actions including data exfiltration through generated code. Multiple real-world demonstrations against document-processing agents.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag incident">Incident Pattern</div>
+    <div class="src-title">Coding Agent Scope Creep — Build Artifact Deletion Incidents</div>
+    <div class="src-meta">Industry-reported incidents · 2024–2025</div>
+    <div class="src-usage"><strong>Used in:</strong> Slide 14 (Scenario 2). Multiple reported incidents in which coding agents asked to "clean up build artifacts" or similar ambiguous instructions interpreted the scope broadly and deleted source directories, git history, or project configuration. No attacker involved — pure scope ambiguity in autonomous execution without confirmation gates.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag research">Security Research</div>
+    <div class="src-title">Cloud Metadata Service Credential Exfiltration via LLM Agents</div>
+    <div class="src-meta">Security research and red-team exercises · 2024–2025</div>
+    <div class="src-usage"><strong>Used in:</strong> Slides 13, 15 (Type 4 / Scenario 3). Documented attack pattern: crafted inputs cause an agent to generate code that calls the cloud metadata service (169.254.169.254) and exfiltrates the resulting IAM credentials. The attack exploits the fact that the metadata service returns credentials to any process that can reach it — including agent-generated code running in the cloud execution environment.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag research">Security Research</div>
+    <div class="src-title">Backdoor Insertion via Plausible-Legitimate Generated Code</div>
+    <div class="src-meta">Security research on AI coding assistants · 2024–2025</div>
+    <div class="src-usage"><strong>Used in:</strong> Slides 13, 15 (Type 5 / Scenario 4). Research demonstrating that LLM coding agents can be induced via crafted task specifications or prompt injection to insert backdoor code (such as authentication bypasses and diagnostic endpoints that exfiltrate headers) disguised as legitimate functionality. The "health check bypass" pattern is a documented category of AI-generated backdoor insertion.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag framework">Infrastructure Reference</div>
+    <div class="src-title">gVisor — Container Security: User-Space Kernel Sandbox</div>
+    <div class="src-meta">Google · open source</div>
+    <div class="src-usage"><strong>Used in:</strong> Slide 19 (MIT01 implementation options). gVisor provides kernel-level isolation for containers by intercepting syscalls via a user-space kernel, making it one of the strongest available sandbox implementations for agent code execution environments.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag framework">Infrastructure Reference</div>
+    <div class="src-title">Firecracker MicroVM</div>
+    <div class="src-meta">Amazon Web Services · open source</div>
+    <div class="src-usage"><strong>Used in:</strong> Slide 19 (MIT01 implementation options). Firecracker provides hardware-virtualization-based isolation for workloads, used by AWS Lambda and AWS Fargate for production code execution isolation. Cited as a production-grade sandbox implementation option for agent code execution.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag standard">Security Standard</div>
+    <div class="src-title">OWASP Application Security Verification Standard (ASVS) — Code Execution and Sandbox Requirements</div>
+    <div class="src-meta">OWASP Foundation</div>
+    <div class="src-usage"><strong>Used in:</strong> Mitigation framework (slides 18–25). ASVS requirements for code isolation, secret management, and logging inform the nine-mitigation framework. Particularly relevant: V1 (Architecture), V8 (Data Protection), and V10 (Malicious Code) requirements as applied to agent-generated code execution.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag standard">Security Standard</div>
+    <div class="src-title">NIST SP 800-204 — Security Strategies for Microservices-based Application Systems</div>
+    <div class="src-meta">NIST · 2019</div>
+    <div class="src-usage"><strong>Used in:</strong> MIT04 (least-privilege execution) and MIT07 (secrets isolation) design principles. Least-privilege container execution, non-root process identity, and secrets management via external stores are established microservices security practices applied here to agent sandbox environments.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag framework">Tool Reference</div>
+    <div class="src-title">TruffleHog / git-secrets — Credential Scanning Tools</div>
+    <div class="src-meta">Trufflesecurity · open source</div>
+    <div class="src-usage"><strong>Used in:</strong> Slide 24 (MIT09 — generated code scanning). Referenced as examples of secret scanning tools that can detect hardcoded credentials in generated code before it reaches a repository. Part of the generated code scanning layer for the deployment pipeline.</div>
+  </div>
+
+  <div class="src-entry">
+    <div class="src-tag framework">Tool Reference</div>
+    <div class="src-title">Semgrep / CodeQL / Bandit — Static Application Security Testing (SAST)</div>
+    <div class="src-meta">Semgrep, GitHub, PyCQA · open source</div>
+    <div class="src-usage"><strong>Used in:</strong> Slides 22, 24 (MIT05 and MIT09). Referenced as SAST tools that can detect dangerous function calls, backdoor patterns, and injection vulnerabilities in generated code using the same rulesets applied to human-written code. Core tooling for the automated pre-execution and pre-deployment code review layers.</div>
+  </div>
+
+</div>
+
+<div style="text-align:center; padding:2rem; color:var(--fg-dim); font-size:0.8rem;">
+  <a href="ag05-slide-28.html" style="color:var(--accent)">← Back to lesson complete</a>
+  &nbsp;·&nbsp;
+  <a href="../index.html" style="color:var(--accent)">All Modules</a>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 6 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 6 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg done" href="api03-slide-03.html"></a><a class="seg done" href="api03-slide-04.html"></a><a class="seg done" href="api03-slide-05.html"></a><a class="seg active" href="api03-slide-06.html"></a><a class="seg" href="api03-slide-07.html"></a><a class="seg" href="api03-slide-08.html"></a><a class="seg" href="api03-slide-09.html"></a><a class="seg" href="api03-slide-10.html"></a><a class="seg" href="api03-slide-11.html"></a><a class="seg" href="api03-slide-12.html"></a><a class="seg" href="api03-slide-13.html"></a><a class="seg" href="api03-slide-14.html"></a><a class="seg" href="api03-slide-15.html"></a><a class="seg" href="api03-slide-16.html"></a><a class="seg" href="api03-slide-17.html"></a><a class="seg" href="api03-slide-18.html"></a><a class="seg" href="api03-slide-19.html"></a><a class="seg" href="api03-slide-20.html"></a><a class="seg" href="api03-slide-21.html"></a><a class="seg" href="api03-slide-22.html"></a><a class="seg" href="api03-slide-23.html"></a><a class="seg" href="api03-slide-24.html"></a><a class="seg" href="api03-slide-25.html"></a><a class="seg" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 6</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 6 · The Outcomes</div>
+  <div class="slide-title">What happens when property-level auth breaks.</div>
+  <div class="slide-subtitle">Both read and write failures have serious consequences.</div>
+
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">👑</div>
+      <div>
+        <div class="outcome-title">Privilege Escalation</div>
+        <div class="outcome-desc">An attacker sets isAdmin=true or role=superuser on their own account. Suddenly a regular user has administrator access to the entire platform.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">💰</div>
+      <div>
+        <div class="outcome-title">Financial Manipulation</div>
+        <div class="outcome-desc">An attacker changes price=0, discount=100, or balance=999999 on a purchase or account. They pay nothing for paid goods, or inflate a wallet balance.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">📋</div>
+      <div>
+        <div class="outcome-title">PII Exposure</div>
+        <div class="outcome-desc">The API returns a user object containing passwordHash, resetToken, socialSecurityNumber, or dateOfBirth — fields that should never leave the server. Attackers read these from the raw API response.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🔓</div>
+      <div>
+        <div class="outcome-title">Account Takeover via Token Exposure</div>
+        <div class="outcome-desc">If the API returns a password reset token or email verification token in the response, an attacker who reads it can trigger a reset and take the account — without ever requesting a reset themselves.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🚫</div>
+      <div>
+        <div class="outcome-title">Content Moderation Bypass</div>
+        <div class="outcome-desc">An attacker sets blocked=false, reviewed=false, or approved=true on their content, bypassing moderation queues and publishing content that should have been held.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-05.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-07.html">Who does this? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 12 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 12 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg done" href="api02-slide-07.html"></a><a class="seg done" href="api02-slide-08.html"></a><a class="seg done" href="api02-slide-09.html"></a><a class="seg done" href="api02-slide-10.html"></a><a class="seg done" href="api02-slide-11.html"></a><a class="seg active" href="api02-slide-12.html"></a><a class="seg" href="api02-slide-13.html"></a><a class="seg" href="api02-slide-14.html"></a><a class="seg" href="api02-slide-15.html"></a><a class="seg" href="api02-slide-16.html"></a><a class="seg" href="api02-slide-17.html"></a><a class="seg" href="api02-slide-18.html"></a><a class="seg" href="api02-slide-19.html"></a><a class="seg" href="api02-slide-20.html"></a><a class="seg" href="api02-slide-21.html"></a><a class="seg" href="api02-slide-22.html"></a><a class="seg" href="api02-slide-23.html"></a><a class="seg" href="api02-slide-24.html"></a><a class="seg" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 · How It Works</span><span>Slide 12</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 12 · Broken Token Validation</div>
+  <div class="slide-title">The API trusted a token it never verified.</div>
+  <div class="slide-subtitle">JWT vulnerabilities: when the signature is optional, the token is meaningless.</div>
+
+  <div class="callout blue">
+    <div class="callout-label">How JWT Tokens Work</div>
+    <p>A JSON Web Token (JWT) has three parts: <strong>header</strong> (algorithm + type), <strong>payload</strong> (user data, claims, expiry), and <strong>signature</strong> (cryptographic proof the server issued it).</p>
+    <p>The signature is what makes the token trustworthy. If the server verifies it, you can't tamper with the payload without invalidating the token.</p>
+    <p><strong>If the server doesn't verify it, or accepts any algorithm the client specifies, the signature is worthless.</strong></p>
+  </div>
+
+  <div class="mono-block"><span class="comment"># Attacker crafts a JWT with alg:none</span>
+Header:  {"alg": "none", "typ": "JWT"}
+Payload: {"user_id": 1, "role": "admin", "exp": 9999999999}
+Signature: <span class="comment">(empty — no signature at all)</span>
+
+<span class="comment"># Encoded: header.payload. (trailing dot, no sig)</span>
+eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJ1c2VyX2lkIjoxLCJyb2xlIjoiYWRtaW4ifQ.</div>
+
+  <div class="callout red">
+    <div class="callout-label">The "alg:none" Attack</div>
+    <p>The JWT specification allows an algorithm value of "none" — meaning no signature. Poorly implemented libraries that respect the client-supplied algorithm will accept a token with alg:none and skip signature verification entirely.</p>
+    <p><strong>An attacker sets any user ID and role they want in the payload, signs with nothing, and the API accepts it as legitimate.</strong> This has affected dozens of libraries and platforms.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Other token failures</div>
+    <p>• <strong>Tokens that never expire</strong> — a stolen token works forever</p>
+    <p>• <strong>Weak signing secrets</strong> — brute-forceable "secret123" keys</p>
+    <p>• <strong>Not checking the exp claim</strong> — validating signature but ignoring expiry</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-11.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-13.html">Tokens in URLs + missing re-auth →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

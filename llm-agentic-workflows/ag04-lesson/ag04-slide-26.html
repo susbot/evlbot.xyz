@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 26 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+<style>
+.matrix-wrap { overflow-x: auto; margin: 18px 0; }
+.matrix-table { border-collapse: collapse; min-width: 700px; width: 100%; font-size: 0.78rem; }
+.matrix-table th, .matrix-table td { border: 1px solid var(--border); padding: 7px 9px; text-align: center; }
+.matrix-table th { background: var(--bg-card); font-weight: 600; font-size: 0.72rem; }
+.matrix-table td:first-child { text-align: left; font-weight: 600; min-width: 180px; }
+.matrix-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+.dot-yes { color: #22c55e; font-size: 1.1rem; }
+.dot-partial { color: var(--accent); font-size: 1.1rem; }
+.dot-no { color: var(--fg-dim); font-size: 0.9rem; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 26 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a><a class="seg done" href="ag04-slide-02.html"></a><a class="seg done" href="ag04-slide-03.html"></a><a class="seg done" href="ag04-slide-04.html"></a><a class="seg done" href="ag04-slide-05.html"></a><a class="seg done" href="ag04-slide-06.html"></a><a class="seg done" href="ag04-slide-07.html"></a><a class="seg done" href="ag04-slide-08.html"></a><a class="seg done" href="ag04-slide-09.html"></a><a class="seg done" href="ag04-slide-10.html"></a><a class="seg done" href="ag04-slide-11.html"></a><a class="seg done" href="ag04-slide-12.html"></a><a class="seg done" href="ag04-slide-13.html"></a><a class="seg done" href="ag04-slide-14.html"></a><a class="seg done" href="ag04-slide-15.html"></a><a class="seg done" href="ag04-slide-16.html"></a><a class="seg done" href="ag04-slide-17.html"></a><a class="seg done" href="ag04-slide-18.html"></a><a class="seg done" href="ag04-slide-19.html"></a><a class="seg done" href="ag04-slide-20.html"></a><a class="seg done" href="ag04-slide-21.html"></a><a class="seg done" href="ag04-slide-22.html"></a><a class="seg done" href="ag04-slide-23.html"></a><a class="seg done" href="ag04-slide-24.html"></a><a class="seg done" href="ag04-slide-25.html"></a>
+    <a class="seg active" href="ag04-slide-26.html"></a>
+    <a class="seg" href="ag04-slide-27.html"></a><a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 26</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 26 · The Mitigation Matrix</div>
+  <div class="slide-title">Which mitigation stops which scenario — and which ones provide the widest coverage</div>
+
+  <div class="matrix-wrap">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>MIT01<br>Provenance/SBOM</th>
+          <th>MIT02<br>Allowlist/Pin</th>
+          <th>MIT03<br>Sandbox</th>
+          <th>MIT04<br>Secure Prompts</th>
+          <th>MIT05<br>mTLS/PKI</th>
+          <th>MIT06<br>Continuous Val.</th>
+          <th>MIT07<br>Hash Pin</th>
+          <th>MIT08<br>Kill Switch</th>
+          <th>MIT09<br>Zero Trust</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>S1: Amazon Q VS Code — Compromised update</td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◐</span></td>
+          <td><span class="dot-no">–</span></td>
+          <td><span class="dot-no">–</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◐</span></td>
+        </tr>
+        <tr>
+          <td>S2: GitHub MCP tool descriptor poisoning</td>
+          <td><span class="dot-partial">◐</span></td>
+          <td><span class="dot-partial">◐</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-no">–</span></td>
+          <td><span class="dot-no">–</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◐</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+        </tr>
+        <tr>
+          <td>S3: Postmark MCP impersonator on npm</td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◐</span></td>
+          <td><span class="dot-no">–</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+        </tr>
+        <tr>
+          <td>S4: AgentSmith prompt-hub proxy</td>
+          <td><span class="dot-partial">◐</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+        </tr>
+        <tr>
+          <td>S5: Poisoned nx/debug npm — coding agent</td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-no">–</span></td>
+          <td><span class="dot-no">–</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-partial">◐</span></td>
+        </tr>
+        <tr>
+          <td>S6: Agent-in-the-Middle via agent cards</td>
+          <td><span class="dot-partial">◐</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-no">–</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+          <td><span class="dot-yes">●</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout yellow" style="margin-top:14px">
+    <div class="callout-label">Legend — <span class="dot-yes">●</span> Directly addresses  <span class="dot-partial">◐</span> Partially mitigates  <span class="dot-no">–</span> Not applicable</div>
+    <p><strong>MIT02 (Allowlist/Pin) and MIT08 (Kill Switch) cover all six scenarios</strong> — together they form the core of agentic supply chain defense. MIT06 (Continuous Validation) and MIT07 (Hash Pinning) are the next-widest controls. MIT05 (mTLS/PKI) addresses the four scenarios involving agent-to-agent trust. MIT03 (Sandbox) limits blast radius across all runtime execution scenarios.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-25.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-27.html">Quiz — test what you know →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

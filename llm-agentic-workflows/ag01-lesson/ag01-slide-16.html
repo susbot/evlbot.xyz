@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG01:2026 — Agent Goal Hijack · Slide 16 of 28</title>
+<link rel="stylesheet" href="ag01-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG01:2026</span>
+    <span class="nav-title">Agent Goal Hijack</span>
+  </div>
+  <span class="nav-right">Slide 16 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag01-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag01-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag01-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag01-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag01-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag01-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag01-slide-07.html" title="Slide 7 · Prompt Injection vs Goal Hijack"></a>
+    <a class="seg done" href="ag01-slide-08.html" title="Slide 8 · Why Agents Are Different"></a>
+    <a class="seg done" href="ag01-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag01-slide-10.html" title="Slide 10 · Direct Goal Manipulation"></a>
+    <a class="seg done" href="ag01-slide-11.html" title="Slide 11 · Direct — Real Example"></a>
+    <a class="seg done" href="ag01-slide-12.html" title="Slide 12 · Indirect Instruction Injection"></a>
+    <a class="seg done" href="ag01-slide-13.html" title="Slide 13 · Indirect — Real Example"></a>
+    <a class="seg done" href="ag01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a>
+    <a class="seg done" href="ag01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a>
+    <a class="seg active" href="ag01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a>
+    <a class="seg" href="ag01-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag01-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag01-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag01-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag01-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag01-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag01-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag01-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag01-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag01-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag01-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag01-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Attack Scenarios</span><span>Slide 16</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 16 · Scenarios 7–9</div>
+  <div class="slide-title">The payment redirect, the insider doc, and the slow drift</div>
+  <div class="slide-subtitle">Three final scenarios — financial fraud, supply chain poisoning, and an attack that takes weeks.</div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 07 · Indirect · Financial Agent</div>
+    <div class="scenario-title">The invoice that reroutes the payment</div>
+    <div class="scenario-body">
+      <p>A finance team uses an AI agent to process vendor invoices — reading PDFs, matching to purchase orders, and initiating payment approvals. An attacker sends a legitimate-looking invoice PDF. Embedded in the PDF metadata and footer text are instructions telling the agent to update the payment destination for this vendor to a new account number before processing. The agent updates the routing and queues the payment. The approval workflow triggers normally.</p>
+      <p><strong>The payment processes. It goes to the wrong account. The real vendor never gets paid.</strong></p>
+    </div>
+    <div class="scenario-why"><strong>Why this matters:</strong> Agents with financial access are the highest-value targets. Any document they process — invoices, contracts, receipts — is a potential injection vector. The attack doesn't require compromising banking systems; it only requires compromising what the agent reads.</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 08 · Indirect · Internal Knowledge Base / Supply Chain</div>
+    <div class="scenario-title">The insider who left a trap</div>
+    <div class="scenario-body">
+      <p>A departing employee — or a compromised contractor — embeds hijack instructions in an internal wiki page, policy document, or shared template that agents are configured to query as a trusted knowledge source. Months later, an agent retrieves the document during a routine task and executes the embedded instructions — exfiltrating current employee data, API keys, or system configurations to an external endpoint the attacker still controls.</p>
+      <p><strong>The attacker left the company. Their attack stayed behind.</strong></p>
+    </div>
+    <div class="scenario-why"><strong>Why this matters:</strong> Internal sources are treated as high-trust by most agent configurations. Poisoning a trusted source is more effective than poisoning an external one — and far harder to detect because the source itself is considered safe.</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 09 · Direct · Gradual Goal Drift</div>
+    <div class="scenario-title">The goal that moved so slowly no one noticed</div>
+    <div class="scenario-body">
+      <p>Rather than issuing a single obvious override, an attacker interacts with an agent over dozens of sessions — each time subtly reframing its role, expanding its perceived permissions, or reinforcing a slightly altered objective. No single message is alarming. But across weeks of interaction, the agent's behavior drifts: it becomes more willing to share information it previously declined, more likely to interpret ambiguous requests in the attacker's favor, more helpful to the wrong person.</p>
+      <p><strong>There is no moment of compromise. The goal just slowly became something else.</strong></p>
+    </div>
+    <div class="scenario-why"><strong>Why this matters:</strong> Behavioral anomaly detection looks for sudden changes. Gradual drift evades it entirely. Agents with persistent memory or long context windows are especially vulnerable — their past interactions become the attack surface.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag01-slide-15.html">← Back</a>
+    <a class="btn-primary" href="ag01-slide-17.html">What do all of these have in common? → The Pattern</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">View sources for this lesson</a></div>
+</body>
+</html>

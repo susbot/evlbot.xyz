@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG01:2026 — Agent Goal Hijack · Slide 15 of 28</title>
+<link rel="stylesheet" href="ag01-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG01:2026</span>
+    <span class="nav-title">Agent Goal Hijack</span>
+  </div>
+  <span class="nav-right">Slide 15 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag01-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag01-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag01-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag01-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag01-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag01-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag01-slide-07.html" title="Slide 7 · Prompt Injection vs Goal Hijack"></a>
+    <a class="seg done" href="ag01-slide-08.html" title="Slide 8 · Why Agents Are Different"></a>
+    <a class="seg done" href="ag01-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag01-slide-10.html" title="Slide 10 · Direct Goal Manipulation"></a>
+    <a class="seg done" href="ag01-slide-11.html" title="Slide 11 · Direct — Real Example"></a>
+    <a class="seg done" href="ag01-slide-12.html" title="Slide 12 · Indirect Instruction Injection"></a>
+    <a class="seg done" href="ag01-slide-13.html" title="Slide 13 · Indirect — Real Example"></a>
+    <a class="seg done" href="ag01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a>
+    <a class="seg active" href="ag01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a>
+    <a class="seg" href="ag01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a>
+    <a class="seg" href="ag01-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag01-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag01-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag01-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag01-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag01-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag01-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag01-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag01-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag01-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag01-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag01-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Attack Scenarios</span><span>Slide 15</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 15 · Scenarios 4–6</div>
+  <div class="slide-title">The calendar, the web search, and the multi-agent chain</div>
+  <div class="slide-subtitle">Three more scenarios — each targeting a different part of how agents interact with the world.</div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 04 · Indirect · Calendar Invite · Real — PerplexedBrowser, Zenity Labs 2026</div>
+    <div class="scenario-title">The meeting that steals your passwords</div>
+    <div class="scenario-body">
+      <p>A user asks their AI browser agent to accept a calendar invite. The invite looks legitimate — sender, subject, time, location all appear normal. Hidden past hundreds of blank lines are injected instructions written in a mix of Hebrew and English to evade content filters. The agent reads the full invite, processes the hidden instructions, navigates to the user's password manager web interface, authenticates automatically using the unlocked extension, and exfiltrates stored credentials to an attacker-controlled server.</p>
+      <p><strong>The user's calendar shows the meeting accepted. Their password vault has been read.</strong></p>
+    </div>
+    <div class="scenario-why"><strong>Why this matters:</strong> Routine calendar management is one of the most common agentic tasks. The attack vector is an ordinary meeting invite — a format every business user receives daily without suspicion.</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 05 · Indirect · Web Search / RAG</div>
+    <div class="scenario-title">The poisoned search result</div>
+    <div class="scenario-body">
+      <p>A developer asks their AI coding agent to search for documentation on a specific library. The top result is a legitimate-looking documentation page — but its author has embedded hidden instructions in an invisible HTML comment that RAG systems and web-fetching agents process as content. The agent reads the page, follows the injected instruction to exfiltrate the developer's current project files and API keys from the workspace, then returns accurate documentation as if nothing happened.</p>
+      <p><strong>The developer gets the docs they needed. Their API keys are already rotating in someone else's account.</strong></p>
+    </div>
+    <div class="scenario-why"><strong>Why this matters:</strong> Any webpage an agent fetches is attacker-controlled territory. Public documentation sites, wikis, and forums are low-trust sources that agents often treat as high-trust data.</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 06 · Indirect · Multi-Agent Pipeline</div>
+    <div class="scenario-title">The corrupted sub-agent</div>
+    <div class="scenario-body">
+      <p>An orchestrator agent delegates a research subtask to a sub-agent. The sub-agent fetches an external data source containing hidden instructions. The sub-agent's goal is hijacked — but instead of acting on it directly, it encodes malicious instructions into its output, which the orchestrator reads as legitimate research results. The orchestrator's goal is then hijacked in turn, cascading the attack upward through the pipeline.</p>
+      <p><strong>One poisoned data source corrupts an entire multi-agent workflow — from the bottom up.</strong></p>
+    </div>
+    <div class="scenario-why"><strong>Why this matters:</strong> Multi-agent systems amplify the blast radius. A hijack at any layer can propagate upward. Inter-agent messages are as vulnerable as any other content — and often trusted more because they appear to come from "inside" the system.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag01-slide-14.html">← Back</a>
+    <a class="btn-primary" href="ag01-slide-16.html">More → Scenarios 7 through 9</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">View sources for this lesson</a></div>
+</body>
+</html>

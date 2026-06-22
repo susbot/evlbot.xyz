@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 12 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 12 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg done" href="api01-slide-10.html"></a><a class="seg done" href="api01-slide-11.html"></a><a class="seg active" href="api01-slide-12.html"></a><a class="seg" href="api01-slide-13.html"></a><a class="seg" href="api01-slide-14.html"></a><a class="seg" href="api01-slide-15.html"></a><a class="seg" href="api01-slide-16.html"></a><a class="seg" href="api01-slide-17.html"></a><a class="seg" href="api01-slide-18.html"></a><a class="seg" href="api01-slide-19.html"></a><a class="seg" href="api01-slide-20.html"></a><a class="seg" href="api01-slide-21.html"></a><a class="seg" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 · How It Works</span><span>Slide 12</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 12 · Vertical BOLA</div>
+  <div class="slide-title">Lower role. Higher-privilege data.</div>
+  <div class="slide-subtitle">You're a regular user. But the admin data has no lock on it.</div>
+
+  <div class="callout yellow">
+    <div class="callout-label">Step by step</div>
+    <p><strong>Step 1.</strong> You sign up as a regular user. You can see your own account data.</p>
+    <p><strong>Step 2.</strong> You explore the API — maybe by watching network requests or reading the app's documentation. You notice an endpoint: <code style="color:var(--accent-bright);background:#0d0d14;padding:1px 5px;border-radius:3px;">/api/reports/revenue/monthly</code></p>
+    <p><strong>Step 3.</strong> You send a request to that endpoint using your regular user token.</p>
+    <p><strong>Step 4.</strong> The API returns the company's monthly revenue data. It checked that you were logged in — but not that you were an admin.</p>
+  </div>
+
+  <div class="mono-block"><span class="comment">// Regular user token</span>
+GET /api/reports/revenue/monthly
+Authorization: Bearer regular-user-token
+
+<span class="comment">// Server checks: is the token valid? ✓
+// Server checks: is this user an admin? ✗ (never asked)
+// Response: full revenue report returned</span></div>
+
+  <div class="callout red">
+    <div class="callout-label">Why vertical hits harder</div>
+    <p>Admin-level data is more sensitive by design. Revenue figures, all user records, internal metrics, audit logs. <strong>Vertical BOLA turns a regular account into an intelligence goldmine.</strong> A competitor, a journalist, or a criminal with a free account can access data that should only exist for executives.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label pink">Same root cause as horizontal</div>
+    <p>The API checked authentication (valid token) but skipped authorization (is this token allowed to access this specific object?). The object just happens to be an admin-level resource this time.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-11.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-13.html">Show me a real vertical example →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

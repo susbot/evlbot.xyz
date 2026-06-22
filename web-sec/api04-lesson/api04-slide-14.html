@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Unrestricted Resource Consumption · Slide 14 of 28</title>
+<link rel="stylesheet" href="api04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Unrestricted Resource Consumption</span></div>
+  <span class="nav-right">Slide 14 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api04-slide-01.html"></a><a class="seg done" href="api04-slide-02.html"></a><a class="seg done" href="api04-slide-03.html"></a><a class="seg done" href="api04-slide-04.html"></a><a class="seg done" href="api04-slide-05.html"></a><a class="seg done" href="api04-slide-06.html"></a><a class="seg done" href="api04-slide-07.html"></a><a class="seg done" href="api04-slide-08.html"></a><a class="seg done" href="api04-slide-09.html"></a><a class="seg done" href="api04-slide-10.html"></a><a class="seg done" href="api04-slide-11.html"></a><a class="seg done" href="api04-slide-12.html"></a><a class="seg done" href="api04-slide-13.html"></a><a class="seg active" href="api04-slide-14.html"></a><a class="seg" href="api04-slide-15.html"></a><a class="seg" href="api04-slide-16.html"></a><a class="seg" href="api04-slide-17.html"></a><a class="seg" href="api04-slide-18.html"></a><a class="seg" href="api04-slide-19.html"></a><a class="seg" href="api04-slide-20.html"></a><a class="seg" href="api04-slide-21.html"></a><a class="seg" href="api04-slide-22.html"></a><a class="seg" href="api04-slide-23.html"></a><a class="seg" href="api04-slide-24.html"></a><a class="seg" href="api04-slide-25.html"></a><a class="seg" href="api04-slide-26.html"></a><a class="seg" href="api04-slide-27.html"></a><a class="seg" href="api04-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 · Attack Scenarios</span><span>Slide 14</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 3</span>
+    <div><div class="part-title">Attack Scenarios</div><div class="part-count">Slides 14–17 · OWASP examples in plain English</div></div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 14 · Scenario 1</div>
+  <div class="slide-title">One request. Millions of records returned.</div>
+  <div class="slide-subtitle">OWASP Scenario #1 — no maximum page size on a paginated list endpoint.</div>
+
+  <div class="source-tag">📄 OWASP API Security Top 10 · 2023 · API4 · Scenario 1</div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SETUP</div>
+    <div class="scenario-title">A social network's "followers" list endpoint.</div>
+    <div class="scenario-body">
+      <p>A social network exposes an endpoint to retrieve a user's followers: <code>GET /api/users/{id}/followers?count=10</code>. The <code>count</code> parameter is documented as defaulting to 10 and is intended to limit the results per page.</p>
+      <p>The developer implemented the parameter but forgot to set a maximum. The endpoint accepts any value for <code>count</code> — including very large numbers.</p>
+    </div>
+    <div class="scenario-why"><strong>The exploit:</strong> An attacker calls <code>GET /api/users/1/followers?count=99999999</code>. The API queries the database for up to 99,999,999 follower records. The database runs a full table scan. The API tries to serialize millions of objects into a single JSON response. The server's memory spikes. The database is saturated. The response takes minutes to return — or the server crashes. Every other user's request fails during this time.</div>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">One request. Site down.</div>
+    <p>This scenario requires exactly one attacker making one request. No botnet. No coordination. No special tooling. Just a number in a URL parameter. The absence of a max page size turns a single API call into a denial-of-service weapon.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api04-slide-13.html">← Back</a>
+    <a class="btn-primary" href="api04-slide-15.html">Scenario 2 →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

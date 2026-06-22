@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 12 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 12 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a>
+    <a class="seg done" href="ag04-slide-02.html"></a>
+    <a class="seg done" href="ag04-slide-03.html"></a>
+    <a class="seg done" href="ag04-slide-04.html"></a>
+    <a class="seg done" href="ag04-slide-05.html"></a>
+    <a class="seg done" href="ag04-slide-06.html"></a>
+    <a class="seg done" href="ag04-slide-07.html"></a>
+    <a class="seg done" href="ag04-slide-08.html"></a>
+    <a class="seg done" href="ag04-slide-09.html"></a>
+    <a class="seg done" href="ag04-slide-10.html"></a>
+    <a class="seg done" href="ag04-slide-11.html"></a>
+    <a class="seg active" href="ag04-slide-12.html"></a>
+    <a class="seg" href="ag04-slide-13.html"></a>
+    <a class="seg" href="ag04-slide-14.html"></a>
+    <a class="seg" href="ag04-slide-15.html"></a>
+    <a class="seg" href="ag04-slide-16.html"></a>
+    <a class="seg" href="ag04-slide-17.html"></a>
+    <a class="seg" href="ag04-slide-18.html"></a>
+    <a class="seg" href="ag04-slide-19.html"></a>
+    <a class="seg" href="ag04-slide-20.html"></a>
+    <a class="seg" href="ag04-slide-21.html"></a>
+    <a class="seg" href="ag04-slide-22.html"></a>
+    <a class="seg" href="ag04-slide-23.html"></a>
+    <a class="seg" href="ag04-slide-24.html"></a>
+    <a class="seg" href="ag04-slide-25.html"></a>
+    <a class="seg" href="ag04-slide-26.html"></a>
+    <a class="seg" href="ag04-slide-27.html"></a>
+    <a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Vulnerability Types</span><span>Slide 12</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 12 · Type 2 — Impersonation and Typosquatting</div>
+  <div class="slide-title">The fake Postmark MCP server was published on npm. It looked real. It BCC'd every email to the attacker.</div>
+  <div class="slide-subtitle">Agents can't read a certificate pinning page or verify a business registration. They read a name and a description.</div>
+
+  <div class="source-tag">📄 OWASP ASI04 · First in-the-wild malicious MCP server — Postmark impersonator, npm, 2025</div>
+
+  <div class="block">
+    <div class="block-label red">What typosquatting is in an agentic context</div>
+    <p>Typosquatting is publishing a malicious package, server, or tool under a name nearly identical to a legitimate one. In the traditional software world this has been a known risk for years (e.g., <code>lodahs</code> vs <code>lodash</code>).</p>
+    <p>In agentic systems, the risk is amplified: <strong>the agent doesn't browse a search results page and check reviews. It queries a registry, reads a name and description, and decides whether to use it.</strong> The selection process is entirely text-driven.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">The Postmark MCP incident (2025)</div>
+    <p>The first documented in-the-wild malicious MCP server was found on npm in 2025. It was named and documented to impersonate the legitimate Postmark email API MCP server. Its API signatures, parameter names, and descriptions matched the real server.</p>
+    <p>What it did differently: every outgoing email sent through the server was silently BCC'd to an attacker-controlled email address. The agent's logs showed a normal email being sent. The user saw no indication anything was wrong.</p>
+    <p><strong>The attack required no agent vulnerability. It exploited the agent's trust in the tool it selected from the registry.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Why this gets worse as ecosystems grow</div>
+    <p>The MCP ecosystem is growing rapidly. Every new legitimate MCP server that gains adoption creates an impersonation opportunity. An attacker who publishes <em>postmark-mcp-server</em> before the legitimate one achieves npm-name-squatting. As agent registries and tool marketplaces proliferate, so does the impersonation attack surface.</p>
+    <p>Agents that auto-discover and auto-install tools from public registries are particularly exposed — they're doing exactly what makes typosquatting effective at scale.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-11.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-13.html">Types 3–5: Third-party agents and poisoned knowledge →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 8 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 8 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg done" href="api09-slide-05.html"></a><a class="seg done" href="api09-slide-06.html"></a><a class="seg done" href="api09-slide-07.html"></a><a class="seg active" href="api09-slide-08.html"></a><a class="seg" href="api09-slide-09.html"></a><a class="seg" href="api09-slide-10.html"></a><a class="seg" href="api09-slide-11.html"></a><a class="seg" href="api09-slide-12.html"></a><a class="seg" href="api09-slide-13.html"></a><a class="seg" href="api09-slide-14.html"></a><a class="seg" href="api09-slide-15.html"></a><a class="seg" href="api09-slide-16.html"></a><a class="seg" href="api09-slide-17.html"></a><a class="seg" href="api09-slide-18.html"></a><a class="seg" href="api09-slide-19.html"></a><a class="seg" href="api09-slide-20.html"></a><a class="seg" href="api09-slide-21.html"></a><a class="seg" href="api09-slide-22.html"></a><a class="seg" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 8</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 8 &#xb7; Context</div>
+  <div class="slide-title">&#x201C;We fixed it&#x201D; means nothing if the old version still answers.</div>
+  <div class="slide-subtitle">API9 is the risk that security investments are undermined by the attack surface they didn&#x2019;t cover.</div>
+  <div class="block">
+    <div class="block-label pink">Why it&#x2019;s #9</div>
+    <p>API9 scores lower than the other risks in individual exploitability &#x2014; finding an old API version requires discovery work. But its prevalence is high: in large organizations, undocumented endpoints and forgotten versions are nearly universal. And its impact compounds other risks: an old version with SQL injection that was patched in v2 creates a permanent critical vulnerability until v1 is shut down.</p>
+  </div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Without inventory management</div>
+      <div class="compare-item">Security team patches BOLA in v2</div>
+      <div class="compare-item">v1 (same BOLA) still runs, unknown to security team</div>
+      <div class="compare-item">Attacker finds v1 through path enumeration</div>
+      <div class="compare-item">Exploits BOLA on v1 &#x2014; the &#x201C;patched&#x201D; vulnerability</div>
+      <div class="compare-item">Post-incident: team discovers v1 was never decommissioned</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">With inventory management</div>
+      <div class="compare-item">Complete API inventory shows all active versions</div>
+      <div class="compare-item">BOLA patch applied to all versions simultaneously</div>
+      <div class="compare-item">v1 has a deprecation date; traffic monitored</div>
+      <div class="compare-item">v1 decommissioned once traffic reaches zero</div>
+      <div class="compare-item">Security team knows exactly what attack surface exists</div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">API9 amplifies every other risk</div>
+    <p>API9 doesn&#x2019;t create vulnerabilities on its own &#x2014; it preserves them. Every vulnerability that was patched in v2 but exists in a still-running v1 is an API9 problem. This makes inventory management a force multiplier for all other API security work: patching v2 is only effective if v1 is also patched or decommissioned.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-07.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-09.html">How do attacks work? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

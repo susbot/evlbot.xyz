@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 20 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 20 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg done" href="api09-slide-05.html"></a><a class="seg done" href="api09-slide-06.html"></a><a class="seg done" href="api09-slide-07.html"></a><a class="seg done" href="api09-slide-08.html"></a><a class="seg done" href="api09-slide-09.html"></a><a class="seg done" href="api09-slide-10.html"></a><a class="seg done" href="api09-slide-11.html"></a><a class="seg done" href="api09-slide-12.html"></a><a class="seg done" href="api09-slide-13.html"></a><a class="seg done" href="api09-slide-14.html"></a><a class="seg done" href="api09-slide-15.html"></a><a class="seg done" href="api09-slide-16.html"></a><a class="seg done" href="api09-slide-17.html"></a><a class="seg done" href="api09-slide-18.html"></a><a class="seg done" href="api09-slide-19.html"></a><a class="seg active" href="api09-slide-20.html"></a><a class="seg" href="api09-slide-21.html"></a><a class="seg" href="api09-slide-22.html"></a><a class="seg" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 20</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 20 &#xb7; MIT 02</div>
+  <div class="slide-title">Formal deprecation process &#x2014; a schedule with deadlines, not just a label.</div>
+  <div class="slide-subtitle">&#x201C;Deprecated&#x201D; without a shutdown date is &#x201C;runs forever.&#x201D; Deprecation is a process, not an announcement.</div>
+  <div class="block">
+    <div class="block-label pink">The deprecation process</div>
+    <p>A deprecated API version must go through a structured process with defined gates. The goal: zero traffic on the old version by a specific date, after which the endpoint is blocked at the network layer and eventually removed from the codebase.</p>
+  </div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">1&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Announce with a sunset date</div><div class="outcome-desc">Deprecation announcement includes a specific shutdown date (e.g., 6 months out). Publish the date in API docs, send notifications to all registered consumers via email/webhook, add a <code>Deprecation</code> and <code>Sunset</code> HTTP header to every response from the old version so API clients can detect it programmatically. The sunset date is a commitment, not a suggestion.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">2&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Monitor traffic to the old version</div><div class="outcome-desc">Track requests to the deprecated version per consumer/IP/API key. Report weekly. As consumers migrate, traffic should decline. Consumers still sending traffic at two weeks before sunset get a direct outreach. If traffic is not trending to zero by sunset, the team must decide: enforce the shutdown (breaking those consumers) or extend the deadline. Both decisions require explicit sign-off.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">3&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Block at sunset date &#x2014; apply patches until then</div><div class="outcome-desc">On the sunset date, block the old version at the API gateway or firewall. Do not wait for traffic to reach zero if the date passes &#x2014; enforce it. Until the sunset date, the deprecated version must receive the same security patches as the current version. &#x201C;It&#x2019;s deprecated, no one should be using it&#x201D; is not a substitute for applying security patches.</div></div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team when any deprecated API version is scheduled to actually be shut down. &#x201C;Deprecated&#x201D; without a shutdown date means it runs indefinitely and stops receiving security patches &#x2014; the worst of both worlds.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-19.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-21.html">MIT 03: Restrict old versions &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

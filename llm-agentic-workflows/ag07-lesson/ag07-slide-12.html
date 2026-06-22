@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 12 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 12 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a><a class="seg done" href="ag07-slide-09.html"></a><a class="seg done" href="ag07-slide-10.html"></a><a class="seg done" href="ag07-slide-11.html"></a>
+    <a class="seg active" href="ag07-slide-12.html"></a>
+    <a class="seg" href="ag07-slide-13.html"></a><a class="seg" href="ag07-slide-14.html"></a><a class="seg" href="ag07-slide-15.html"></a><a class="seg" href="ag07-slide-16.html"></a><a class="seg" href="ag07-slide-17.html"></a><a class="seg" href="ag07-slide-18.html"></a><a class="seg" href="ag07-slide-19.html"></a><a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Vulnerability Types</span><span>Slide 12</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 12 · Types 5 &amp; 6</div>
+  <div class="slide-title">Type 5: Reading sensitive data from unencrypted channels. Type 6: Inserting unauthorized tasks into a shared queue agents pull from.</div>
+
+  <div class="block">
+    <div class="block-label orange">Type 5 — Channel eavesdropping</div>
+    <p>Agents routinely pass sensitive information between each other as part of normal operation. An orchestrator delegates a task that includes user PII. A data agent returns query results containing account information. A security agent passes retrieved credentials to a deployment agent. All of this data is in transit between agents.</p>
+    <p><strong>What's at risk on an unencrypted channel:</strong> API keys and service credentials passed as task parameters. User personal data included in retrieved context. Internal system topology exposed in routing messages. Security scan results that reveal vulnerability details. Authentication tokens included in tool call parameters.</p>
+    <p><strong>The "internal network" false comfort:</strong> Many organizations treat internal network traffic as implicitly confidential. In cloud and containerized environments, "internal" often spans multiple availability zones, shared VPCs, and multi-tenant infrastructure. Traffic that seems internal may traverse segments accessible to other tenants or to compromised internal services. Encryption in transit should not be treated as optional just because traffic stays inside a VPC.</p>
+    <p><strong>Passive vs. active eavesdropping:</strong> Type 5 alone is passive — the attacker reads without interfering. But eavesdropped messages enable Types 1, 2, and 4: by learning the message format and content, the attacker can then forge, tamper with, or replay messages they've observed.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">Type 6 — Task queue injection</div>
+    <p>Many agent architectures use a shared task queue: the orchestrator publishes tasks, and specialized agents consume them. If an attacker gains write access to the queue — through compromised infrastructure credentials, a misconfigured IAM policy, or a supply-chain attack on a component with queue access — they can inject arbitrary tasks.</p>
+    <p>The consuming agent has no way to distinguish a legitimately queued task from an injected one. The task arrived on the correct queue; that's the only verification the agent performs. Injected tasks execute with the full authority of the consuming agent, subject only to that agent's own scope limitations.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-11.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-13.html">Part 3 — Scenarios →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

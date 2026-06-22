@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 27 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg done" href="api06-slide-09.html"></a><a class="seg done" href="api06-slide-10.html"></a><a class="seg done" href="api06-slide-11.html"></a><a class="seg done" href="api06-slide-12.html"></a><a class="seg done" href="api06-slide-13.html"></a><a class="seg done" href="api06-slide-14.html"></a><a class="seg done" href="api06-slide-15.html"></a><a class="seg done" href="api06-slide-16.html"></a><a class="seg done" href="api06-slide-17.html"></a><a class="seg done" href="api06-slide-18.html"></a><a class="seg done" href="api06-slide-19.html"></a><a class="seg done" href="api06-slide-20.html"></a><a class="seg done" href="api06-slide-21.html"></a><a class="seg done" href="api06-slide-22.html"></a><a class="seg done" href="api06-slide-23.html"></a><a class="seg done" href="api06-slide-24.html"></a><a class="seg done" href="api06-slide-25.html"></a><a class="seg done" href="api06-slide-26.html"></a><a class="seg active" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention &#xb7; Quiz</span><span>Slide 27</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 27 &#xb7; Quiz</div>
+  <div class="slide-title">Five questions. No pressure.</div>
+  <div class="slide-subtitle">Test what you understood &#x2014; not what you memorized.</div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 01 OF 05</div>
+    <div class="question-text">What is the key difference between API4 (Unrestricted Resource Consumption) and API6 (Unrestricted Business Flow Access)?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">API4 requires authentication; API6 does not</button>
+      <button class="option" onclick="answer(this,false)">API4 only affects public endpoints; API6 only affects authenticated endpoints</button>
+      <button class="option" onclick="answer(this,true)">API4 harms the server (DoS, cost, scraping). API6 harms the business and real users (inventory monopolization, fraud) while the server remains healthy</button>
+      <button class="option" onclick="answer(this,false)">API4 involves automated clients; API6 only involves human users who misuse the platform</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; API4&#x2019;s damage is measured in server metrics: CPU, memory, cloud costs, downtime. API6&#x2019;s damage is measured in business outcomes: revenue lost to scalpers, fraudulent referral payouts, real users excluded from purchases. The server can be perfectly healthy while API6 abuse is destroying the business. The defenses are also different: API4 needs infrastructure-level rate limits; API6 needs business-level rules and verification.</div>
+    <div class="feedback wrong">Not quite &#x2014; both risks can involve authenticated or unauthenticated clients, and both affect REST APIs. The core difference is where the damage lands. API4: the server suffers (goes down, costs spike, data is scraped). API6: the business suffers while the server is fine (bots got all the tickets; the infrastructure handled it perfectly).</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 02 OF 05</div>
+    <div class="question-text">In the Ticketmaster/Taylor Swift incident, why didn&#x2019;t traditional security controls (rate limiting, authentication) stop the bots?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">The bots bypassed authentication entirely by exploiting a vulnerability in the login API</button>
+      <button class="option" onclick="answer(this,true)">The bots used valid accounts, valid tokens, and valid requests &#x2014; exactly what authentication and rate limiting are designed to allow. The problem was the absence of business-level controls (per-account ticket limits, cart timeouts)</button>
+      <button class="option" onclick="answer(this,false)">Ticketmaster had no rate limiting or authentication on their ticket purchase API</button>
+      <button class="option" onclick="answer(this,false)">The bots were operating from inside Ticketmaster&#x2019;s own network, bypassing external security controls</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; the bots were doing exactly what authentication and rate limiting are designed to permit: authenticated users making valid requests at a reasonable rate. Traditional security controls passed all of their requests because the requests were legitimate. The missing controls were business-level: how many tickets per account, how many carts per identity, how long can inventory be held before it&#x2019;s released.</div>
+    <div class="feedback wrong">Not quite &#x2014; the bots did have valid accounts and valid authentication. The security controls worked as designed. The gap was in business-level controls: no per-account ticket limit meant bots could hold unlimited inventory; no cart timeout meant they could hold it indefinitely. These are business rules, not security rules &#x2014; and that&#x2019;s what makes API6 distinct.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 03 OF 05</div>
+    <div class="question-text">A retail site shows &#x201C;Limit: 1 per customer&#x201D; on the product page. A bot purchases 500 units by calling the checkout API directly with quantity=500. What was the root cause?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">The authentication system failed to verify the bot&#x2019;s identity before allowing the purchase</button>
+      <button class="option" onclick="answer(this,false)">The API had no rate limiting, allowing the bot to make too many requests</button>
+      <button class="option" onclick="answer(this,true)">The quantity limit was only enforced in the UI (by disabling the quantity selector). The API itself accepted any quantity value &#x2014; it had no server-side check for the business rule</button>
+      <button class="option" onclick="answer(this,false)">The bot exploited a SQL injection vulnerability to modify the quantity field in the database</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; this is a clean example of a UI limit that is not an API limit. The checkout API accepted the request with quantity=500 because the server had no business rule rejecting it. The fix is one line in the API handler: if quantity &gt; MAX_PER_ORDER, return 422. Business rules must live in the API, not the frontend &#x2014; this principle appears in both API3 (mass assignment) and API6 (business flow limits).</div>
+    <div class="feedback wrong">Not quite &#x2014; no exploit, no injection, no rate limit violation. The bot called the API directly with a valid account and a valid request body &#x2014; just with quantity=500 instead of 1. The API accepted it because there was no server-side check for the quantity limit. The limit only existed in the UI, which the bot bypassed entirely by calling the API endpoint directly.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 04 OF 05</div>
+    <div class="question-text">Why can&#x2019;t security logs alone detect an API6 attack in progress?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,true)">API6 attacks produce no security error signals &#x2014; no 401s, 403s, or 429s. The requests are valid and succeed. The signal appears only in business metrics: inventory depletion rate, referral velocity, account creation spikes</button>
+      <button class="option" onclick="answer(this,false)">Security logs are encrypted and can&#x2019;t be read in real time during an attack</button>
+      <button class="option" onclick="answer(this,false)">API6 attacks only affect the database layer, which security logs don&#x2019;t monitor</button>
+      <button class="option" onclick="answer(this,false)">Security logs capture too much data &#x2014; the relevant signals are buried and require manual review to find</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; because API6 attacks use valid accounts, valid tokens, and valid requests, they generate no authentication failures, no authorization errors, and no rate limit violations. The security logs look completely normal. The only observable signal is in business data: tickets selling out in 3 seconds instead of 45 minutes, 500 referrals processed in one hour, inventory depletion at 100x the normal rate. Detecting API6 requires monitoring business metrics &#x2014; which is typically owned by product or fraud teams, not security.</div>
+    <div class="feedback wrong">Not quite &#x2014; the issue is that API6 attacks produce no security signals at all. Valid accounts, valid tokens, valid requests, successful responses. Security logs only see what went wrong at the security layer &#x2014; and nothing did. The attack shows up in inventory levels, referral counts, and account creation rates &#x2014; business metrics that security dashboards typically don&#x2019;t display.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 05 OF 05</div>
+    <div class="question-text">Why is CAPTCHA alone insufficient to stop sophisticated sneaker bots?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">CAPTCHAs can be bypassed by exploiting a vulnerability in the reCAPTCHA API itself</button>
+      <button class="option" onclick="answer(this,false)">Modern browsers block CAPTCHA challenges from loading on bot-operated devices</button>
+      <button class="option" onclick="answer(this,true)">CAPTCHA-solving services (using human workers) solve challenges for $1&#x2013;$3 per 1,000 solves. On a $200 sneaker with $500 resale value, paying $0.003 per CAPTCHA is trivially affordable &#x2014; it raises costs but doesn&#x2019;t make bot operations economically unfeasible</button>
+      <button class="option" onclick="answer(this,false)">CAPTCHAs add too much friction for real users, so companies don&#x2019;t implement them properly</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; CAPTCHA raises the cost of bot operations but doesn&#x2019;t eliminate them. When the value of what the bot is acquiring exceeds the cost of solving the CAPTCHA (which is almost always true for sneakers, tickets, or referral bonuses), bots remain profitable. CAPTCHA is one layer of defense that should be combined with device fingerprinting, per-account quantity limits, and phone verification for meaningful protection.</div>
+    <div class="feedback wrong">Not quite &#x2014; CAPTCHAs aren&#x2019;t bypassed by API exploits or browser blocks. They&#x2019;re solved by CAPTCHA-solving services that use human workers to complete the challenges for $1&#x2013;$3 per 1,000 solves. A bot that profits $300 per sneaker pair can afford to pay $0.003 per CAPTCHA hundreds of times over. CAPTCHA adds friction and cost &#x2014; but when the economics still work for the bot operator, it doesn&#x2019;t stop them.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-26.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-28.html">Done &#x2192; See what you learned</a>
+  </div>
+
+<script>
+function answer(btn, correct) {
+  const card = btn.closest('.question-card');
+  card.querySelectorAll('.option').forEach(o => o.disabled = true);
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  card.querySelector('.feedback.' + (correct ? 'correct' : 'wrong')).classList.add('show');
+}
+</script>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

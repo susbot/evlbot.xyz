@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG02:2026 — Tool Misuse and Exploitation · Slide 18 of 28</title>
+<link rel="stylesheet" href="ag02-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG02:2026</span>
+    <span class="nav-title">Tool Misuse and Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag02-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag02-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag02-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag02-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag02-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag02-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag02-slide-07.html" title="Slide 7 · Tool Misuse vs Other Risks"></a>
+    <a class="seg done" href="ag02-slide-08.html" title="Slide 8 · Why Tools Are the New Attack Surface"></a>
+    <a class="seg done" href="ag02-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag02-slide-10.html" title="Slide 10 · Type 1 — Over-Privileged Tools"></a>
+    <a class="seg done" href="ag02-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg done" href="ag02-slide-12.html" title="Slide 12 · Type 2 — Tool Chaining"></a>
+    <a class="seg done" href="ag02-slide-13.html" title="Slide 13 · Type 2 — Real Example"></a>
+    <a class="seg done" href="ag02-slide-14.html" title="Slide 14 · Scenarios 1–3"></a>
+    <a class="seg done" href="ag02-slide-15.html" title="Slide 15 · Scenarios 4–6"></a>
+    <a class="seg done" href="ag02-slide-16.html" title="Slide 16 · Scenarios 7–9"></a>
+    <a class="seg done" href="ag02-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg active" href="ag02-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag02-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag02-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag02-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag02-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag02-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag02-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag02-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag02-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag02-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag02-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 18</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 4</span>
+    <div>
+      <div class="part-title">Prevention</div>
+      <div class="part-count">Slides 18–28 · Seven mitigations, a matrix, a quiz, and what to do next</div>
+    </div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 18 · Prevention Overview</div>
+  <div class="slide-title">Why defense is hard — and why it's still very possible</div>
+  <div class="slide-subtitle">The bad news first. Then the strategy.</div>
+
+  <div class="callout red">
+    <div class="callout-label">Why traditional defenses don't work here</div>
+    <p>Firewalls check source and destination. IAM policies check who is calling. EDR looks for known-bad binaries and behaviors. <strong>None of these check whether the agent's intent behind a tool call matches what it was supposed to be doing.</strong> You can have perfect network security and still have a complete tool misuse attack succeed.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label green">The seven-layer defense strategy</div>
+    <p><strong>MIT 01 — Least Privilege for Tools:</strong> Every tool gets only the access it needs for its specific purpose. Not the full API — just the scope this agent, for this task, legitimately requires.</p>
+    <p><strong>MIT 02 — Action-Level Authentication:</strong> High-impact tool calls require explicit confirmation — either from a human or from a policy engine that verifies intent at invocation time.</p>
+    <p><strong>MIT 03 — Execution Sandboxes:</strong> Tool calls that generate code or make external requests run in isolated environments with outbound allowlists.</p>
+    <p><strong>MIT 04 — Intent Gate (Policy Enforcement):</strong> A middleware layer that validates the intent behind a tool call before it executes. Does this call make sense in context?</p>
+    <p><strong>MIT 05 — Tool Budgeting:</strong> Usage ceilings — rate limits, call counts, cost caps — that automatically halt the agent when something looks like a loop or runaway invocation.</p>
+    <p><strong>MIT 06 — Just-in-Time Access:</strong> Credentials and API tokens issued per-task and revoked immediately after use, so there's no standing access for attackers to abuse.</p>
+    <p><strong>MIT 07 — Semantic Validation + Monitoring:</strong> Enforcing fully qualified tool names, detecting anomalous sequences, and logging everything with enough context to reconstruct intent post-incident.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">If you can only implement two</div>
+    <p>Start with <strong>MIT 01 (Least Privilege)</strong> and <strong>MIT 02 (Action-Level Authentication)</strong>. Together they address the most common root cause (over-privileged tools) and the highest-impact scenarios (destructive or financial actions). The others add depth.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag02-slide-17.html">← Back</a>
+    <a class="btn-primary" href="ag02-slide-19.html">Let's go → Mitigation 1: Least Privilege for Tools</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

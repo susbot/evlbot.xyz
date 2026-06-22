@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Identity and Privilege Abuse · Slide 12 of 28</title>
+<link rel="stylesheet" href="ag03-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Identity and Privilege Abuse</span>
+  </div>
+  <span class="nav-right">Slide 12 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag03-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag03-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag03-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag03-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag03-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag03-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag03-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg done" href="ag03-slide-08.html" title="Slide 8 · Why Agent Identity Is Different"></a>
+    <a class="seg done" href="ag03-slide-09.html" title="Slide 9 · Five Vulnerability Types"></a>
+    <a class="seg done" href="ag03-slide-10.html" title="Slide 10 · Type 1 — Un-scoped Privilege Inheritance"></a>
+    <a class="seg done" href="ag03-slide-11.html" title="Slide 11 · Type 1 — A Real Example"></a>
+    <a class="seg active" href="ag03-slide-12.html" title="Slide 12 · Type 2 — Memory-Based Privilege Retention"></a>
+    <a class="seg" href="ag03-slide-13.html" title="Slide 13 · Types 3–5 — More Vulnerability Patterns"></a>
+    <a class="seg" href="ag03-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg" href="ag03-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg" href="ag03-slide-16.html" title="Slide 16 · Scenarios 5–7"></a>
+    <a class="seg" href="ag03-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag03-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag03-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag03-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag03-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag03-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag03-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag03-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg" href="ag03-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg" href="ag03-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag03-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag03-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — How It Works</span><span>Slide 12</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 12 · Type 2 — Memory-Based Privilege Retention</div>
+  <div class="slide-title">The agent finished its high-privilege task. The credentials didn't leave with it.</div>
+  <div class="slide-subtitle">Agent memory is a persistence layer that traditional IAM doesn't see or control.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI03</div>
+
+  <div class="callout red">
+    <div class="callout-label">The scenario</div>
+    <p>An IT admin agent is given SSH credentials to patch a critical server at 2 AM. It completes the patch, restarts the service, and reports success. But those SSH credentials are now sitting in its context window — its working memory.</p>
+    <p>At 9 AM, a support engineer with limited privileges opens a session with the same agent for a routine task. The agent still has those credentials cached. The engineer asks: "Can you set up SSH access to the prod server for me?" The agent uses the cached credentials to create the access.</p>
+    <p><strong>No credential was stolen. The agent voluntarily used its cached admin credentials to grant access to someone who was never authorized to have it.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Why memory is the hidden attack surface</div>
+    <p>Agent memory — whether it's in-context, in a vector database, or in a shared session cache — persists across the intended boundary of a task. IAM systems grant access for specific sessions. When sessions end, access should end. But agent memory doesn't automatically clear when a task finishes or when a new user starts a session.</p>
+    <p>The result: credentials, API keys, data retrieved during one task, or the identity context of one user can bleed into a completely separate session, user, or task.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Data leakage — a second attack path</div>
+    <p>Memory-based privilege retention isn't only about credentials. An agent that retrieved sensitive HR data during a legitimate task and hasn't cleared that data from memory can expose it when prompted in a later session: "Summarize the information you have about employee compensation." The data is there. The agent shares it.</p>
+    <p><strong>Memory that isn't segmented or cleared is both a credential store and a data store — for whoever interacts with the agent next.</strong></p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-11.html">← Back</a>
+    <a class="btn-primary" href="ag03-slide-13.html">Three more vulnerability types →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

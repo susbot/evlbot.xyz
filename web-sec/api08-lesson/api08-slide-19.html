@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 19 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 19 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg done" href="api08-slide-05.html"></a><a class="seg done" href="api08-slide-06.html"></a><a class="seg done" href="api08-slide-07.html"></a><a class="seg done" href="api08-slide-08.html"></a><a class="seg done" href="api08-slide-09.html"></a><a class="seg done" href="api08-slide-10.html"></a><a class="seg done" href="api08-slide-11.html"></a><a class="seg done" href="api08-slide-12.html"></a><a class="seg done" href="api08-slide-13.html"></a><a class="seg done" href="api08-slide-14.html"></a><a class="seg done" href="api08-slide-15.html"></a><a class="seg done" href="api08-slide-16.html"></a><a class="seg done" href="api08-slide-17.html"></a><a class="seg done" href="api08-slide-18.html"></a><a class="seg active" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 19</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 19 &#xb7; Mitigation 1</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 01</div>
+    <div class="mit-title">CORS: define an explicit origin allowlist. Never reflect the incoming Origin header.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Define a fixed list of origins that are permitted to make cross-origin requests to your API. For each incoming request, check the <code>Origin</code> header against that list. If the origin matches, respond with that specific origin in <code>Access-Control-Allow-Origin</code>. If it doesn&#x2019;t match, omit the CORS headers entirely &#x2014; the browser will block the cross-origin access.</p>
+      <p>&#x2022; <strong>One frontend:</strong> <code>Access-Control-Allow-Origin: https://app.yourcompany.com</code> (static, hardcoded)</p>
+      <p>&#x2022; <strong>Multiple frontends:</strong> Check the <code>Origin</code> header against an allowlist: [&#x201C;https://app.yourcompany.com&#x201D;, &#x201C;https://admin.yourcompany.com&#x201D;]. Respond with the matched origin &#x2014; not a wildcard, not a reflection.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">The patterns to avoid</div>
+      <p>&#x2022; <code>Access-Control-Allow-Origin: *</code> with <code>Access-Control-Allow-Credentials: true</code> &#x2014; browsers reject this combination, but it indicates confused CORS thinking</p>
+      <p>&#x2022; Reflecting the <code>Origin</code> header directly: <code>response.setHeader(&#x2019;Access-Control-Allow-Origin&#x2019;, request.getHeader(&#x2019;Origin&#x2019;))</code> &#x2014; this allows every origin, including attacker-controlled ones</p>
+      <p>&#x2022; Trusting <code>Origin: null</code> &#x2014; sandbox iframes and attacker-controlled redirects can send a null origin</p>
+      <p>&#x2022; Substring matching: allowing any origin that <em>contains</em> &#x201C;yourcompany.com&#x201D; &#x2014; attacker registers &#x201C;evil-yourcompany.com&#x201D; and bypasses the check</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">When you need a public API (no credentials)</div>
+      <p>If your API is genuinely public and doesn&#x2019;t use cookie-based auth, <code>Access-Control-Allow-Origin: *</code> without credentials is safe &#x2014; the wildcard only grants access when credentials are not included. Public data APIs (weather, maps) commonly use this.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team what origins your API allows via CORS &#x2014; if the answer is &#x201C;all origins&#x201D; or &#x201C;whatever the caller says,&#x201D; any website on the internet can make authenticated requests to your API on behalf of your logged-in users.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-18.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-20.html">MIT 02: Sanitize errors &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

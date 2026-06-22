@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 25 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 25 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg done" href="api06-slide-09.html"></a><a class="seg done" href="api06-slide-10.html"></a><a class="seg done" href="api06-slide-11.html"></a><a class="seg done" href="api06-slide-12.html"></a><a class="seg done" href="api06-slide-13.html"></a><a class="seg done" href="api06-slide-14.html"></a><a class="seg done" href="api06-slide-15.html"></a><a class="seg done" href="api06-slide-16.html"></a><a class="seg done" href="api06-slide-17.html"></a><a class="seg done" href="api06-slide-18.html"></a><a class="seg done" href="api06-slide-19.html"></a><a class="seg done" href="api06-slide-20.html"></a><a class="seg done" href="api06-slide-21.html"></a><a class="seg done" href="api06-slide-22.html"></a><a class="seg done" href="api06-slide-23.html"></a><a class="seg done" href="api06-slide-24.html"></a><a class="seg active" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 25</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 25 &#xb7; Mitigation 7</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 07</div>
+    <div class="mit-title">Monitor business metrics &#x2014; not just security logs &#x2014; for API6 signals.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>API6 attacks are invisible in security logs (no 401s, 403s, or 429s). The signal lives in business data:</p>
+      <p>&#x2022; <strong>Inventory depletion rate:</strong> 10,000 tickets selling out in 15 seconds on a normal-traffic day. Historical baseline: 45 minutes. Anomaly.</p>
+      <p>&#x2022; <strong>Referral redemption velocity:</strong> 500 referral signups in one hour from a campaign that normally generates 50/day. Anomaly.</p>
+      <p>&#x2022; <strong>Account creation spike:</strong> 2,000 new accounts registered in 10 minutes before a presale. Anomaly.</p>
+      <p>&#x2022; <strong>Cart abandonment pattern:</strong> 80% of carts abandoned within 30 seconds of item addition during a limited sale. Anomaly (bots holding and then abandoning).</p>
+      <p>&#x2022; <strong>Geographic concentration:</strong> 70% of presale registrations from one city. Anomaly (proxy farm).</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Who needs to see these alerts</div>
+      <p>API6 monitoring bridges security, product, and fraud teams. Security teams monitor server metrics. Product teams own business metrics. Fraud teams own financial impact metrics. Someone needs to own the combination. Ideally: real-time dashboards that all three teams can see, with alerts that fire when business metrics deviate from baseline during sensitive events.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team what the process is when a bot attack is detected in progress. Is there an on-call response? Can IP ranges or accounts be blocked in real time? Or does the attack run until someone manually intervenes?</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-24.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-26.html">See the full picture &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

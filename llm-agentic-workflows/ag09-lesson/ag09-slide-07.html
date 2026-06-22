@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 7 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 7 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a>
+    <a class="seg active" href="ag09-slide-07.html"></a>
+    <a class="seg" href="ag09-slide-08.html"></a><a class="seg" href="ag09-slide-09.html"></a><a class="seg" href="ag09-slide-10.html"></a><a class="seg" href="ag09-slide-11.html"></a><a class="seg" href="ag09-slide-12.html"></a><a class="seg" href="ag09-slide-13.html"></a><a class="seg" href="ag09-slide-14.html"></a><a class="seg" href="ag09-slide-15.html"></a><a class="seg" href="ag09-slide-16.html"></a><a class="seg" href="ag09-slide-17.html"></a><a class="seg" href="ag09-slide-18.html"></a><a class="seg" href="ag09-slide-19.html"></a><a class="seg" href="ag09-slide-20.html"></a><a class="seg" href="ag09-slide-21.html"></a><a class="seg" href="ag09-slide-22.html"></a><a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 7</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 7 · Where AG09 Begins and Ends</div>
+  <div class="slide-title">AG09 is specifically about the human-agent trust relationship as an attack surface — not about individual agent errors or AI safety in the broad sense.</div>
+
+  <div class="block">
+    <div class="block-label purple">What AG09 IS</div>
+    <p>AG09 describes vulnerabilities that arise because humans and AI agents exist in a trust relationship, and that relationship can be exploited. The attack surface is the gap between how much trust a human places in an agent's output and how much trust that output warrants in a specific situation.</p>
+    <p>AG09 applies when:</p>
+    <ul>
+      <li>An attacker crafts their approach to receive a favorable AI verdict, then relies on human deference to that verdict to avoid manual scrutiny.</li>
+      <li>An attacker uses an agent as a relay to deliver social engineering content to a human with the agent's credibility attached.</li>
+      <li>An agent's design creates miscalibrated trust (over-trust or under-trust) that impairs the human's ability to provide effective oversight.</li>
+      <li>Urgency framing, false confidence, or alert fatigue from an agent suppresses human deliberation at critical decision points.</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">What AG09 is NOT</div>
+    <p><strong>Not: The agent making an error independently of human trust.</strong> If an agent produces a wrong answer and no human is involved in the decision, that is an agent quality or reliability problem — not an AG09 trust exploitation scenario. AG09 requires the human's miscalibrated trust to be part of the harm mechanism.</p>
+    <p><strong>Not: General AI safety concerns about misalignment.</strong> AG09 is about the human-agent interaction as an attack surface in a security context. It is not about the broad question of whether AI systems have misaligned goals.</p>
+    <p><strong>Not: The initial manipulation of the agent's output.</strong> How an attacker causes the agent to produce a favorable verdict (prompt injection, training data poisoning) is covered elsewhere. AG09 begins at the moment when the agent's output reaches a human who will act on it.</p>
+    <p><strong>Not: All automation bias occurrences.</strong> Automation bias is a cognitive phenomenon that exists across all automated systems. AG09 is specifically about automation bias and related dynamics being deliberately exploited as a security attack vector, or being present as a structural vulnerability in an agentic system design.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-06.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-08.html">Why this is new →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

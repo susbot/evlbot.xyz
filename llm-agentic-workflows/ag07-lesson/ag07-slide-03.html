@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 3 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 3 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a>
+    <a class="seg active" href="ag07-slide-03.html"></a>
+    <a class="seg" href="ag07-slide-04.html"></a><a class="seg" href="ag07-slide-05.html"></a><a class="seg" href="ag07-slide-06.html"></a><a class="seg" href="ag07-slide-07.html"></a><a class="seg" href="ag07-slide-08.html"></a><a class="seg" href="ag07-slide-09.html"></a><a class="seg" href="ag07-slide-10.html"></a><a class="seg" href="ag07-slide-11.html"></a><a class="seg" href="ag07-slide-12.html"></a><a class="seg" href="ag07-slide-13.html"></a><a class="seg" href="ag07-slide-14.html"></a><a class="seg" href="ag07-slide-15.html"></a><a class="seg" href="ag07-slide-16.html"></a><a class="seg" href="ag07-slide-17.html"></a><a class="seg" href="ag07-slide-18.html"></a><a class="seg" href="ag07-slide-19.html"></a><a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 3</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 3 · Definition Part 1</div>
+  <div class="slide-title">The OWASP definition, broken into its three essential parts.</div>
+
+  <div class="callout amber">
+    <div class="callout-label">OWASP ASI07:2026 — Insecure Inter-Agent Communication</div>
+    <p><em>"Insecure Inter-Agent Communication occurs when the channels, protocols, or message formats used by agents to communicate with each other lack sufficient authentication, integrity verification, or access controls — allowing attackers to forge, intercept, replay, or manipulate messages to cause agents to perform unauthorized actions."</em></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">Part 1: "channels, protocols, or message formats … lack sufficient authentication"</div>
+    <p>Authentication answers: is this message really from the agent it claims to be from? Without authentication, any party that can write to the channel — or knows the message format — can send a message that an agent will treat as legitimate. In many current multi-agent implementations, agents authenticate to external APIs using credentials but apply no authentication between agents in the same pipeline. Internal trust is assumed, not verified.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Part 2: "integrity verification" — the message hasn't been altered in transit</div>
+    <p>Integrity verification answers: is this message the same one that was sent? Without integrity checks (cryptographic signatures, MACs, checksums), a message can be modified between send and receive without detection. Authentication alone isn't enough — a signed envelope can contain a tampered letter if only the envelope is verified.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Part 3: "forge, intercept, replay, or manipulate messages to cause agents to perform unauthorized actions"</div>
+    <p>The attacker's goal is to make an agent do something it wouldn't do if it knew the true origin or content of the message. <strong>Forging</strong> = creating a new fake message. <strong>Intercepting</strong> = reading messages in transit. <strong>Replaying</strong> = re-sending a previously valid message at an unauthorized time. <strong>Manipulating</strong> = altering a message in flight. All four exploit the same underlying gap: the receiving agent has no way to verify what it received.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-02.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-04.html">Why agents trust each other by default →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

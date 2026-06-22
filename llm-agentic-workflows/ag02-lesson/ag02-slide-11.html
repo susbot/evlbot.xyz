@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG02:2026 — Tool Misuse and Exploitation · Slide 11 of 28</title>
+<link rel="stylesheet" href="ag02-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG02:2026</span>
+    <span class="nav-title">Tool Misuse and Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 11 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag02-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag02-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag02-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag02-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag02-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag02-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag02-slide-07.html" title="Slide 7 · Tool Misuse vs Other Risks"></a>
+    <a class="seg done" href="ag02-slide-08.html" title="Slide 8 · Why Tools Are the New Attack Surface"></a>
+    <a class="seg done" href="ag02-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag02-slide-10.html" title="Slide 10 · Type 1 — Over-Privileged Tools"></a>
+    <a class="seg active" href="ag02-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg" href="ag02-slide-12.html" title="Slide 12 · Type 2 — Tool Chaining"></a>
+    <a class="seg" href="ag02-slide-13.html" title="Slide 13 · Type 2 — Real Example"></a>
+    <a class="seg" href="ag02-slide-14.html" title="Slide 14 · Scenarios 1–3"></a>
+    <a class="seg" href="ag02-slide-15.html" title="Slide 15 · Scenarios 4–6"></a>
+    <a class="seg" href="ag02-slide-16.html" title="Slide 16 · Scenarios 7–9"></a>
+    <a class="seg" href="ag02-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag02-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag02-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag02-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag02-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag02-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag02-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag02-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag02-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag02-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag02-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag02-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — How It Works</span><span>Slide 11</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 11 · Type 1 — Real Example</div>
+  <div class="slide-title">AgentFlayer: 0-click data exfiltration from Microsoft Copilot Studio</div>
+  <div class="slide-subtitle">A real documented attack — no user interaction required, tools did all the work.</div>
+
+  <div class="real-incident">
+    <div class="real-incident-tag">Real Incident · 2024</div>
+    <div class="real-incident-title">AgentFlayer — Microsoft Copilot Studio</div>
+    <div class="real-incident-body">
+      <p>Security researchers demonstrated a "0-click" exploit against Microsoft Copilot Studio — an enterprise AI agent-building platform. The attack required no interaction from the victim beyond having the agent active.</p>
+      <p><strong>How it worked:</strong> The attack exploited the fact that Copilot Studio agents had access to overly broad tool permissions by default. The agent could access and forward documents, emails, and files it was never intended to exfiltrate. A specially crafted input caused the agent to invoke these tools in a sequence that exfiltrated sensitive user data to the attacker.</p>
+      <p><strong>No vulnerability in the tools themselves.</strong> No privilege escalation. The tools were doing exactly what they were designed to do — just being called in a sequence and for a purpose that wasn't intended.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Lesson:</strong> When enterprise AI agents ship with over-broad tool defaults, every user who deploys that agent inherits the attack surface. The blast radius isn't one deployment — it's every organization using the platform.</div>
+  </div>
+
+  <div class="real-incident">
+    <div class="real-incident-tag">Real Incident · 2025</div>
+    <div class="real-incident-title">Amazon Q Developer — Secrets Leaked via DNS</div>
+    <div class="real-incident-body">
+      <p>Amazon Q Developer, an AI coding assistant, was demonstrated to be vulnerable to prompt injection attacks that caused it to use its network access tools to exfiltrate secrets. The agent had access to networking tools (legitimate — it needs them for code-related tasks) and those tools were used to encode and transmit secrets via DNS queries to attacker-controlled infrastructure.</p>
+      <p><strong>The tool worked correctly.</strong> DNS resolution is a normal, authorized action. The misuse was in <em>what</em> was being resolved — a hostname encoding the secret as data.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Lesson:</strong> "Legitimate tool, normal output" is exactly the cover an attacker wants. Egress monitoring that validates <em>content</em> — not just <em>destination</em> — is required to catch this.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag02-slide-10.html">← Back</a>
+    <a class="btn-primary" href="ag02-slide-12.html">Now show me Type 2 → Tool Chaining attacks</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

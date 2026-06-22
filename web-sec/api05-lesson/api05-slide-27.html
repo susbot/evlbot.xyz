@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API5:2023 â Broken Function Level Authorization Â· Slide 27 of 28</title>
+<link rel="stylesheet" href="api05-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API5:2023</span><span class="nav-title">Broken Function Level Authorization</span></div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api05-slide-01.html"></a><a class="seg done" href="api05-slide-02.html"></a><a class="seg done" href="api05-slide-03.html"></a><a class="seg done" href="api05-slide-04.html"></a><a class="seg done" href="api05-slide-05.html"></a><a class="seg done" href="api05-slide-06.html"></a><a class="seg done" href="api05-slide-07.html"></a><a class="seg done" href="api05-slide-08.html"></a><a class="seg done" href="api05-slide-09.html"></a><a class="seg done" href="api05-slide-10.html"></a><a class="seg done" href="api05-slide-11.html"></a><a class="seg done" href="api05-slide-12.html"></a><a class="seg done" href="api05-slide-13.html"></a><a class="seg done" href="api05-slide-14.html"></a><a class="seg done" href="api05-slide-15.html"></a><a class="seg done" href="api05-slide-16.html"></a><a class="seg done" href="api05-slide-17.html"></a><a class="seg done" href="api05-slide-18.html"></a><a class="seg done" href="api05-slide-19.html"></a><a class="seg done" href="api05-slide-20.html"></a><a class="seg done" href="api05-slide-21.html"></a><a class="seg done" href="api05-slide-22.html"></a><a class="seg done" href="api05-slide-23.html"></a><a class="seg done" href="api05-slide-24.html"></a><a class="seg done" href="api05-slide-25.html"></a><a class="seg done" href="api05-slide-26.html"></a><a class="seg active" href="api05-slide-27.html"></a><a class="seg" href="api05-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 Â· Prevention Â· Quiz</span><span>Slide 27</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 27 &#xb7; Quiz</div>
+  <div class="slide-title">Five questions. No pressure.</div>
+  <div class="slide-subtitle">Test what you understood &#x2014; not what you memorized.</div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 01 OF 05</div>
+    <div class="question-text">What is the core difference between BOLA (API1) and BFLA (API5)?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">BOLA affects unauthenticated users; BFLA only affects authenticated users</button>
+      <button class="option" onclick="answer(this,true)">BOLA is about accessing the wrong object (changing an ID). BFLA is about calling the wrong function entirely &#x2014; an endpoint the caller&#x2019;s role has no entitlement to use</button>
+      <button class="option" onclick="answer(this,false)">BOLA is a read-only vulnerability; BFLA only affects write operations</button>
+      <button class="option" onclick="answer(this,false)">BOLA affects REST APIs; BFLA only affects GraphQL APIs</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; BOLA is horizontal: same type of function, wrong object. BFLA is vertical: wrong function entirely, regardless of the object. BOLA asks &#x201C;can this user access this specific record?&#x201D; BFLA asks &#x201C;can this user call this type of action at all?&#x201D;</div>
+    <div class="feedback wrong">Not quite &#x2014; the difference is about what&#x2019;s being checked. BOLA = wrong object (you changed an ID to access someone else&#x2019;s data). BFLA = wrong function (you called an endpoint your role isn&#x2019;t allowed to use at all). Both apply to authenticated users. Both affect REST and GraphQL.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 02 OF 05</div>
+    <div class="question-text">In the Bumble vulnerability, what made it possible for a free-tier user to access premium features?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">The premium feature endpoints were at guessable URLs that free users could discover by trial and error</button>
+      <button class="option" onclick="answer(this,false)">The authentication tokens for premium users were predictable and could be brute forced by free users</button>
+      <button class="option" onclick="answer(this,true)">The API validated the session token (confirming the user was logged in) but never checked whether the user&#x2019;s subscription tier permitted them to call premium endpoints</button>
+      <button class="option" onclick="answer(this,false)">Free users could upgrade themselves by adding a premium flag to their JWT token</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; the Bumble API checked authentication (is this a valid session?) but not authorization (does this session&#x2019;s subscription tier permit this function?). A free-tier user had a valid session. The session passed the auth check. But there was no second check asking &#x201C;is this subscription level allowed to call this premium endpoint?&#x201D;</div>
+    <div class="feedback wrong">Not quite &#x2014; the paths were findable (by watching app traffic in a proxy), but that&#x2019;s only how the attacker discovers the endpoints. The root cause was that the API itself had no subscription-tier check. A free user calling the endpoint got the same response as a paying user &#x2014; because the server never asked &#x201C;does this user&#x2019;s tier permit this function?&#x201D;</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 03 OF 05</div>
+    <div class="question-text">Why does &#x201C;the button is hidden from regular users&#x201D; not prevent BFLA?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,true)">The API endpoint the button calls is still accessible to anyone who knows the URL and sends an HTTP request directly &#x2014; the UI only controls what buttons are shown, not what the API accepts</button>
+      <button class="option" onclick="answer(this,false)">Modern browsers prevent users from sending HTTP requests to URLs not linked in the visible UI</button>
+      <button class="option" onclick="answer(this,false)">Hiding the button changes the API&#x2019;s response &#x2014; hidden UI elements correspond to protected API paths</button>
+      <button class="option" onclick="answer(this,false)">Admins have special session tokens that regular users can&#x2019;t replicate, so the endpoint rejects non-admin requests anyway</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; the UI and the API are separate systems. The UI decides what to render. The API decides what to accept. Hiding a button from the UI is a UI decision &#x2014; it has no effect on the API. An attacker uses curl, Burp Suite, a Python script, or any HTTP client to call the API directly, bypassing the UI entirely. The API must enforce its own authorization.</div>
+    <div class="feedback wrong">Not quite &#x2014; UI hiding is purely a display decision. It has absolutely no effect on what the API accepts. Any user can call an API endpoint directly using any HTTP client &#x2014; no browser required. The API must check whether the request is authorized, independently of whether any UI exposed the action to the user.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 04 OF 05</div>
+    <div class="question-text">An API has GET /api/posts/{id} available to all users and DELETE /api/posts/{id} restricted to admins. A developer adds an authorization check to GET but forgets DELETE. What attack does this enable?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">BOLA &#x2014; the attacker can access other users&#x2019; posts by changing the ID</button>
+      <button class="option" onclick="answer(this,false)">BOPLA &#x2014; the attacker can modify sensitive fields within the post object</button>
+      <button class="option" onclick="answer(this,true)">BFLA via HTTP verb manipulation &#x2014; a regular user can delete any post by sending DELETE instead of GET, since the role check was only added to GET</button>
+      <button class="option" onclick="answer(this,false)">API4 &#x2014; the attacker can call DELETE thousands of times to exhaust database resources</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; this is the HTTP verb manipulation pattern. The authorization check on GET is irrelevant to DELETE. The attacker changes their HTTP method from GET to DELETE. The URL is the same. If the route handler for DELETE has no role check (or inherits the weaker check from the path), the delete executes. This is why authorization must be defined per method + path, not just per path.</div>
+    <div class="feedback wrong">Not quite &#x2014; this is a function-level failure, not an object-level one. The attacker isn&#x2019;t changing the ID (BOLA) or modifying fields (BOPLA) &#x2014; they&#x2019;re changing the HTTP method from GET to DELETE. The authorization check for GET doesn&#x2019;t protect DELETE. This is HTTP verb manipulation, a common BFLA pattern.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 05 OF 05</div>
+    <div class="question-text">Why is &#x201C;deny by default&#x201D; more secure than &#x201C;block specific admin endpoints&#x201D; when protecting API functions?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Deny by default is faster to implement because it requires less code</button>
+      <button class="option" onclick="answer(this,true)">With deny by default, new endpoints are inaccessible until explicitly permitted. With a blocklist, new endpoints are accessible until explicitly blocked &#x2014; meaning newly added admin functions are exposed by default until someone remembers to protect them</button>
+      <button class="option" onclick="answer(this,false)">Deny by default prevents all authenticated users from accessing any API endpoint</button>
+      <button class="option" onclick="answer(this,false)">Blocklists require more maintenance because new roles must be added to the deny list each time</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; this is the classic allowlist vs. blocklist security principle applied to functions. With a blocklist, every new admin endpoint is accessible by default until someone adds it to the block list &#x2014; which they may forget, especially under deadline pressure. With deny by default, every new endpoint returns 403 until the developer actively permits specific roles. The more dangerous state (accessible) requires deliberate action; the safer state (blocked) is the automatic default.</div>
+    <div class="feedback wrong">Not quite &#x2014; the key is the default state for new endpoints. With a blocklist approach, a new admin endpoint that ships without being added to the blocklist is accessible to everyone. With deny by default, the same endpoint returns 403 automatically until someone permits it. The failure mode matters: deny-by-default fails safe (inaccessible). Blocklists fail open (accessible).</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api05-slide-26.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api05-slide-28.html">Done &#x2192; See what you learned</a>
+  </div>
+
+<script>
+function answer(btn, correct) {
+  const card = btn.closest('.question-card');
+  card.querySelectorAll('.option').forEach(o => o.disabled = true);
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  card.querySelector('.feedback.' + (correct ? 'correct' : 'wrong')).classList.add('show');
+}
+</script>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

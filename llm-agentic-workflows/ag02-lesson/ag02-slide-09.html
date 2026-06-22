@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG02:2026 — Tool Misuse and Exploitation · Slide 9 of 28</title>
+<link rel="stylesheet" href="ag02-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG02:2026</span>
+    <span class="nav-title">Tool Misuse and Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 9 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag02-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag02-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag02-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag02-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag02-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag02-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag02-slide-07.html" title="Slide 7 · Tool Misuse vs Other Risks"></a>
+    <a class="seg done" href="ag02-slide-08.html" title="Slide 8 · Why Tools Are the New Attack Surface"></a>
+    <a class="seg active" href="ag02-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg" href="ag02-slide-10.html" title="Slide 10 · Type 1 — Over-Privileged Tools"></a>
+    <a class="seg" href="ag02-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg" href="ag02-slide-12.html" title="Slide 12 · Type 2 — Tool Chaining"></a>
+    <a class="seg" href="ag02-slide-13.html" title="Slide 13 · Type 2 — Real Example"></a>
+    <a class="seg" href="ag02-slide-14.html" title="Slide 14 · Scenarios 1–3"></a>
+    <a class="seg" href="ag02-slide-15.html" title="Slide 15 · Scenarios 4–6"></a>
+    <a class="seg" href="ag02-slide-16.html" title="Slide 16 · Scenarios 7–9"></a>
+    <a class="seg" href="ag02-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag02-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag02-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag02-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag02-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag02-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag02-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag02-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag02-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag02-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag02-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag02-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — How It Works</span><span>Slide 9</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 2</span>
+    <div>
+      <div class="part-title">How It Works</div>
+      <div class="part-count">Slides 9–13 · The two attack paths and real examples of each</div>
+    </div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 9 · Two Types Overview</div>
+  <div class="slide-title">Two paths to the same outcome — tools doing things they shouldn't</div>
+  <div class="slide-subtitle">ASI02 exploits show up in two distinct forms. The defenses are different for each.</div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Type 1 — Over-Privileged Tools</div>
+      <div class="compare-item"><strong>What it is:</strong> The tool has more capability than the agent's task actually requires</div>
+      <div class="compare-item"><strong>How it's exploited:</strong> Attacker triggers the tool for any reason — the excess capability does the damage</div>
+      <div class="compare-item"><strong>Example:</strong> Email summarizer can also send and delete mail</div>
+      <div class="compare-item"><strong>Root cause:</strong> Tool was scoped to what it <em>can</em> do, not what this agent <em>should</em> do</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Type 2 — Tool Chaining and Injection</div>
+      <div class="compare-item"><strong>What it is:</strong> An attacker sequences multiple legitimate tools into an unintended attack chain</div>
+      <div class="compare-item"><strong>How it's exploited:</strong> Each individual tool call looks normal; the sequence is the attack</div>
+      <div class="compare-item"><strong>Example:</strong> DB read → external email → customer data exfiltrated</div>
+      <div class="compare-item"><strong>Root cause:</strong> No policy validates whether this sequence of tool calls makes sense together</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">Why both matter</div>
+    <p>Type 1 attacks are easier to defend against — reduce tool permissions. Type 2 attacks are harder — you need to understand <em>sequences</em> of calls, not just individual calls. Most mature deployments focus on Type 1 and underestimate Type 2.</p>
+    <p>Real attacks often combine both: an over-privileged tool is chained with another tool to create a path the developer never considered.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag02-slide-08.html">← Back</a>
+    <a class="btn-primary" href="ag02-slide-10.html">Let's go deeper → Type 1 first: Over-Privileged Tools</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

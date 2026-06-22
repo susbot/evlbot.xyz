@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 27 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg done" href="api02-slide-07.html"></a><a class="seg done" href="api02-slide-08.html"></a><a class="seg done" href="api02-slide-09.html"></a><a class="seg done" href="api02-slide-10.html"></a><a class="seg done" href="api02-slide-11.html"></a><a class="seg done" href="api02-slide-12.html"></a><a class="seg done" href="api02-slide-13.html"></a><a class="seg done" href="api02-slide-14.html"></a><a class="seg done" href="api02-slide-15.html"></a><a class="seg done" href="api02-slide-16.html"></a><a class="seg done" href="api02-slide-17.html"></a><a class="seg done" href="api02-slide-18.html"></a><a class="seg done" href="api02-slide-19.html"></a><a class="seg done" href="api02-slide-20.html"></a><a class="seg done" href="api02-slide-21.html"></a><a class="seg done" href="api02-slide-22.html"></a><a class="seg done" href="api02-slide-23.html"></a><a class="seg done" href="api02-slide-24.html"></a><a class="seg done" href="api02-slide-25.html"></a><a class="seg done" href="api02-slide-26.html"></a><a class="seg active" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Quiz</span><span>Slide 27</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 27 · Quiz</div>
+  <div class="slide-title">Five questions. No pressure.</div>
+  <div class="slide-subtitle">Test what you understood — not what you memorized.</div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 01 OF 05</div>
+    <div class="question-text">In the 2019 Fortnite incident, how did the attacker steal authentication tokens without the victim entering their password?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">They used a list of leaked passwords and tried each one against the login API</button>
+      <button class="option" onclick="answer(this,true)">They sent a crafted link that triggered an old OAuth redirect, causing the victim's browser to send their token silently</button>
+      <button class="option" onclick="answer(this,false)">They forged a JWT token with alg:none and used it to impersonate any account</button>
+      <button class="option" onclick="answer(this,false)">They exploited a SQL injection in the login form to bypass authentication</button>
+    </div>
+    <div class="feedback correct">Correct — a forgotten SSO page with an XSS-vulnerable redirect allowed an attacker to craft a link. When a victim clicked it, their browser was redirected through Epic's own OAuth flow, and the auth token was sent to the attacker. No password required.</div>
+    <div class="feedback wrong">Not quite — the Fortnite attack didn't need passwords or forged tokens. It exploited an abandoned OAuth redirect page combined with XSS. The victim clicked a link, their browser silently sent their existing auth token, and it was captured — all without any login form.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 02 OF 05</div>
+    <div class="question-text">A GraphQL API limits login attempts to 5 per minute. An attacker sends a single POST containing 50 login mutations in an array. How many attempts does the rate limiter see?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">50 — the rate limiter counts each mutation individually</button>
+      <button class="option" onclick="answer(this,true)">1 — the rate limiter counts HTTP requests, not individual mutations inside a batch</button>
+      <button class="option" onclick="answer(this,false)">0 — GraphQL requests bypass rate limiting entirely by design</button>
+      <button class="option" onclick="answer(this,false)">5 — it caps at the configured limit and discards the rest</button>
+    </div>
+    <div class="feedback correct">Correct — this is the GraphQL batching bypass. Rate limiting is typically applied at the HTTP request level. A batch of 50 mutations is still 1 HTTP request. The limiter sees 1. The login resolver processes 50. The fix: count operations inside a batch, not just the outer request.</div>
+    <div class="feedback wrong">Not quite — the issue is exactly that most rate limiters count HTTP requests, not inner GraphQL operations. One batched POST = 1 request to the limiter, but 50 login attempts to the resolver. This is the batching bypass and it's documented in the OWASP API2 scenarios.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 03 OF 05</div>
+    <div class="question-text">What does a JWT with {"alg":"none"} in the header allow an attacker to do?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Force the API to use a weaker encryption algorithm for the payload</button>
+      <button class="option" onclick="answer(this,false)">Extend the token's expiry time without the server noticing</button>
+      <button class="option" onclick="answer(this,true)">Craft a token with any user ID or role they want, with no signature, and have vulnerable APIs accept it as legitimate</button>
+      <button class="option" onclick="answer(this,false)">Decrypt the token payload to read other users' private claims</button>
+    </div>
+    <div class="feedback correct">Correct — if an API respects the algorithm specified in the token header and allows "none", it skips signature verification entirely. The attacker can write any user_id or role into the payload, omit the signature, and the API accepts it as a legitimate token issued by the server.</div>
+    <div class="feedback wrong">Not quite — the alg:none attack is about skipping signature verification, not about encryption or expiry. When a library respects the client-supplied algorithm and accepts "none", there's no signature check. The attacker writes whatever they want into the payload and the API believes it.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 04 OF 05</div>
+    <div class="question-text">Why does multi-factor authentication (MFA) stop credential stuffing, even when the attacker has the correct username and password?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">MFA rate-limits login attempts so the attacker can't try enough credentials</button>
+      <button class="option" onclick="answer(this,false)">MFA encrypts the password so the attacker can't use a plaintext credential list</button>
+      <button class="option" onclick="answer(this,true)">MFA requires a second factor — a physical device or time-based code — that the attacker doesn't have, even with the correct password</button>
+      <button class="option" onclick="answer(this,false)">MFA invalidates reused passwords, so credentials from other breaches won't work</button>
+    </div>
+    <div class="feedback correct">Correct — credential stuffing succeeds because the attacker has a real, working password. But the second factor — a TOTP code from an authenticator app, a hardware key, a push notification to the owner's phone — is something the attacker doesn't have. The correct password is no longer enough.</div>
+    <div class="feedback wrong">Not quite — MFA doesn't rate-limit or encrypt anything. What it does is add a second proof of identity that the attacker physically doesn't have. A correct password from a breach list is useless if the next step requires a code from the victim's phone.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 05 OF 05</div>
+    <div class="question-text">An API passes auth tokens as URL query parameters: GET /export?token=abc123. Which of the following is a direct security consequence?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">The token can be brute-forced more easily because it's in plain text</button>
+      <button class="option" onclick="answer(this,true)">The token appears in server access logs, browser history, and HTTP Referer headers, persisting long after the session should have ended</button>
+      <button class="option" onclick="answer(this,false)">The token bypasses TLS encryption because it's in the URL</button>
+      <button class="option" onclick="answer(this,false)">The token gets blocked by CORS policies when used cross-origin</button>
+    </div>
+    <div class="feedback correct">Correct — URL query parameters are logged by web servers, saved in browser history, and included in Referer headers when the user navigates to any third-party resource. A token that should last 1 hour can live in server logs for years. Tokens belong in Authorization headers, not URLs.</div>
+    <div class="feedback wrong">Not quite — the problem isn't brute force, encryption, or CORS. URLs are a persistence problem: they're saved in browser history, written to server access logs, and sent as Referer headers to any third-party site on the page. A short-lived token becomes a long-lived log entry.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-26.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-28.html">Done → See what you learned</a>
+  </div>
+
+<script>
+function answer(btn, correct) {
+  const card = btn.closest('.question-card');
+  card.querySelectorAll('.option').forEach(o => o.disabled = true);
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  card.querySelector('.feedback.' + (correct ? 'correct' : 'wrong')).classList.add('show');
+}
+</script>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

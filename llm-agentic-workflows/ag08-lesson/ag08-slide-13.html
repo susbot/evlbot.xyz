@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 13 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 13 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a><a class="seg done" href="ag08-slide-11.html"></a><a class="seg done" href="ag08-slide-12.html"></a>
+    <a class="seg active" href="ag08-slide-13.html"></a>
+    <a class="seg" href="ag08-slide-14.html"></a><a class="seg" href="ag08-slide-15.html"></a><a class="seg" href="ag08-slide-16.html"></a><a class="seg" href="ag08-slide-17.html"></a><a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Scenarios</span><span>Slide 13</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 13 · Scenarios 1 &amp; 2</div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Scenario 1 — Truncated data triggers 11,000 wrong customer emails</span>
+      <span class="scenario-tag yellow">Pattern 1 — Silent error propagation</span>
+    </div>
+    <div class="scenario-body">
+      <p>The hook scenario in full: a data retrieval agent returns 5% of expected records due to a temporary API overload that returned a partial success response. The analysis agent processed the data as complete, produced confident recommendations. The decision agent acted on the recommendations. The notification agent sent 11,000 emails.</p>
+      <p><strong>No agent failed.</strong> Each agent received valid-format input and produced valid-format output. The failure was silent at every hop. The detection trigger was an inbound customer reply — 3 minutes and 19 seconds after the original data truncation.</p>
+      <p><strong>What the missing mitigations were:</strong> Output size validation on the retrieval agent (expected 80,000+ records; received 4,200 — should have flagged). Rate limiting on the notification agent (11,000 emails in a single batch should have required human confirmation). A circuit breaker between retrieval and analysis that validates response completeness before passing data downstream.</p>
+    </div>
+  </div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Scenario 2 — Pricing agent feedback loop drives 847% price increase</span>
+      <span class="scenario-tag orange">Pattern 3 — Runaway feedback loop</span>
+    </div>
+    <div class="scenario-body">
+      <p>An e-commerce platform uses a pricing agent (adjusts prices based on demand signals) and a demand analysis agent (interprets sales velocity and signals). Both agents share a real-time events database and run on 30-second cycles.</p>
+      <p>A brief spike in cart additions (caused by a social media mention) caused the pricing agent to raise prices by 8%. The higher prices caused fewer conversions — which the demand analysis agent interpreted as a signal that the product was becoming scarce and desired (a known bias in its training data). It raised its demand score. The pricing agent saw the higher demand score and raised prices again. After 14 cycles (7 minutes), prices had increased by 847%. No human saw the loop starting — monitoring dashboards updated every 15 minutes.</p>
+      <p><strong>What was missing:</strong> A maximum price change rate per cycle. A circuit breaker that triggers when price change velocity exceeds a threshold. A feedback loop detection mechanism that flags when price-changes and demand-scores are both increasing simultaneously.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-12.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-14.html">Scenarios 3 &amp; 4 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 16 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 16 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a><a class="seg done" href="ag07-slide-09.html"></a><a class="seg done" href="ag07-slide-10.html"></a><a class="seg done" href="ag07-slide-11.html"></a><a class="seg done" href="ag07-slide-12.html"></a><a class="seg done" href="ag07-slide-13.html"></a><a class="seg done" href="ag07-slide-14.html"></a><a class="seg done" href="ag07-slide-15.html"></a>
+    <a class="seg active" href="ag07-slide-16.html"></a>
+    <a class="seg" href="ag07-slide-17.html"></a><a class="seg" href="ag07-slide-18.html"></a><a class="seg" href="ag07-slide-19.html"></a><a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Scenarios</span><span>Slide 16</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 16 · The Universal Pattern</div>
+  <div class="slide-title">Every AG07 scenario exploits one of three missing properties. Defenses restore exactly those properties.</div>
+
+  <div class="block">
+    <div class="block-label purple">Missing property 1: Authenticity</div>
+    <p>The receiving agent cannot verify that the message actually came from the claimed sender. The sender's identity is asserted in a field the attacker controls — not proven by a cryptographic credential. Without authenticity guarantees, anyone who can write to the channel can impersonate any agent.</p>
+    <p><strong>Exploited by:</strong> Type 1 (forgery), Type 3 (orchestrator impersonation), Type 6 (queue injection).</p>
+    <p><strong>Restored by:</strong> Agent identity authentication (MIT01), mutual TLS (MIT03), signed messages (MIT02).</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Missing property 2: Integrity</div>
+    <p>The receiving agent cannot verify that the message content is unchanged from what the sender sent. There is no cryptographic binding between the message body and the sender's identity. Any intermediary can modify the content without leaving a detectable trace.</p>
+    <p><strong>Exploited by:</strong> Type 2 (tampering in transit).</p>
+    <p><strong>Restored by:</strong> Message signing (MIT02), integrity verification on all received messages (MIT04).</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Missing property 3: Freshness</div>
+    <p>The receiving agent cannot verify that the message is new — that it hasn't been sent before and captured for re-use. Messages have no unique identifier the receiver can check against previously processed messages, and no timestamp with a narrow validity window.</p>
+    <p><strong>Exploited by:</strong> Type 4 (replay attacks).</p>
+    <p><strong>Restored by:</strong> Nonce tracking and/or timestamp validation on all received messages (MIT05).</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Bonus missing property: Confidentiality (for Type 5)</div>
+    <p>Inter-agent messages travel over channels readable by parties they weren't intended for. No encryption on the transport layer means passive eavesdroppers harvest everything that flows between agents.</p>
+    <p><strong>Restored by:</strong> TLS on all inter-agent channels (MIT03), or payload encryption at the message level (MIT06).</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-15.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-17.html">Part 4 — Prevention →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

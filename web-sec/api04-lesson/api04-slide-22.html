@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Unrestricted Resource Consumption · Slide 22 of 28</title>
+<link rel="stylesheet" href="api04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Unrestricted Resource Consumption</span></div>
+  <span class="nav-right">Slide 22 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api04-slide-01.html"></a><a class="seg done" href="api04-slide-02.html"></a><a class="seg done" href="api04-slide-03.html"></a><a class="seg done" href="api04-slide-04.html"></a><a class="seg done" href="api04-slide-05.html"></a><a class="seg done" href="api04-slide-06.html"></a><a class="seg done" href="api04-slide-07.html"></a><a class="seg done" href="api04-slide-08.html"></a><a class="seg done" href="api04-slide-09.html"></a><a class="seg done" href="api04-slide-10.html"></a><a class="seg done" href="api04-slide-11.html"></a><a class="seg done" href="api04-slide-12.html"></a><a class="seg done" href="api04-slide-13.html"></a><a class="seg done" href="api04-slide-14.html"></a><a class="seg done" href="api04-slide-15.html"></a><a class="seg done" href="api04-slide-16.html"></a><a class="seg done" href="api04-slide-17.html"></a><a class="seg done" href="api04-slide-18.html"></a><a class="seg done" href="api04-slide-19.html"></a><a class="seg done" href="api04-slide-20.html"></a><a class="seg done" href="api04-slide-21.html"></a><a class="seg active" href="api04-slide-22.html"></a><a class="seg" href="api04-slide-23.html"></a><a class="seg" href="api04-slide-24.html"></a><a class="seg" href="api04-slide-25.html"></a><a class="seg" href="api04-slide-26.html"></a><a class="seg" href="api04-slide-27.html"></a><a class="seg" href="api04-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 22</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 22 · Mitigation 4</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 04</div>
+    <div class="mit-title">Kill requests that run too long — set execution timeouts everywhere.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Every API request should have a maximum execution time. If the operation doesn't complete within that time, the server terminates it, releases the resources, and returns an error. Without timeouts, slow or malicious requests hold database connections, threads, and memory indefinitely.</p>
+      <p>Timeouts to set:</p>
+      <p>• <strong>HTTP request timeout:</strong> How long the server waits for the complete request body. 30–60 seconds for most endpoints.</p>
+      <p>• <strong>Database query timeout:</strong> How long a single SQL query is allowed to run. 5–30 seconds for user-facing queries.</p>
+      <p>• <strong>Third-party API timeout:</strong> How long to wait for external services to respond. 3–10 seconds with retry logic.</p>
+      <p>• <strong>Background job timeout:</strong> Long-running jobs should have a max runtime and be killed/retried if exceeded.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Why this matters for resource consumption</div>
+      <p>A GraphQL query with deep nesting, or a search endpoint with a poorly optimized query, can run for minutes — holding a database connection the entire time. If an attacker sends 100 such requests simultaneously, 100 database connections are held. Most connection pools have a limit of 20–100. The pool exhausts; all other requests fail with "no connection available."</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">Return 504 Gateway Timeout or 408 Request Timeout</div>
+      <p>When a request is killed by a timeout, return the appropriate HTTP status code. Log the event with enough context to investigate whether it was a legitimate slow query or an attack pattern.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team to identify your three most resource-intensive API operations &#x2014; report generation, bulk exports, AI calls &#x2014; then ask whether those specific operations have tighter rate limits than general API traffic.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api04-slide-21.html">← Back</a>
+    <a class="btn-primary" href="api04-slide-23.html">MIT 05: GraphQL complexity limits →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

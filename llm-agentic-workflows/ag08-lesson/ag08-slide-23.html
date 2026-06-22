@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 23 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+<style>
+.matrix-wrap { overflow-x: auto; margin: 1rem 0; }
+.matrix-table { border-collapse: collapse; width: 100%; font-size: 0.78rem; }
+.matrix-table th, .matrix-table td { border: 1px solid var(--border); padding: 6px 8px; text-align: center; }
+.matrix-table th { background: var(--surface2); color: var(--text-muted); font-weight: 600; }
+.matrix-table td:first-child { text-align: left; font-weight: 500; color: var(--text); white-space: nowrap; }
+.dot-primary { color: #22c55e; font-size: 1.1rem; }
+.dot-contrib { color: var(--accent); font-size: 1.1rem; }
+.matrix-legend { display: flex; gap: 1.5rem; margin-top: 0.5rem; font-size: 0.8rem; color: var(--text-muted); }
+.matrix-legend span { display: flex; align-items: center; gap: 0.4rem; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 23 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a><a class="seg done" href="ag08-slide-11.html"></a><a class="seg done" href="ag08-slide-12.html"></a><a class="seg done" href="ag08-slide-13.html"></a><a class="seg done" href="ag08-slide-14.html"></a><a class="seg done" href="ag08-slide-15.html"></a><a class="seg done" href="ag08-slide-16.html"></a><a class="seg done" href="ag08-slide-17.html"></a><a class="seg done" href="ag08-slide-18.html"></a><a class="seg done" href="ag08-slide-19.html"></a><a class="seg done" href="ag08-slide-20.html"></a><a class="seg done" href="ag08-slide-21.html"></a><a class="seg done" href="ag08-slide-22.html"></a>
+    <a class="seg active" href="ag08-slide-23.html"></a>
+    <a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 23</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 23 · Mitigation Matrix</div>
+  <div class="slide-title">Which mitigations address which failure patterns and scenarios.</div>
+
+  <div class="matrix-wrap">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Pattern / Scenario</th>
+          <th>MIT01<br>Validation</th>
+          <th>MIT02<br>Circuit<br>Breaker</th>
+          <th>MIT03<br>Degrade</th>
+          <th>MIT04<br>Backoff</th>
+          <th>MIT05<br>Bulkhead</th>
+          <th>MIT06<br>Rate Limit</th>
+          <th>MIT07<br>Idempotent</th>
+          <th>MIT08<br>Monitor</th>
+          <th>MIT09<br>Chaos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>P1 — Silent error propagation</td>
+          <td class="dot-primary">●</td>
+          <td class="dot-contrib">◉</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="dot-primary">●</td>
+          <td></td>
+          <td class="dot-primary">●</td>
+          <td class="dot-contrib">◉</td>
+        </tr>
+        <tr>
+          <td>P2 — Error amplification</td>
+          <td class="dot-primary">●</td>
+          <td class="dot-primary">●</td>
+          <td class="dot-contrib">◉</td>
+          <td></td>
+          <td></td>
+          <td class="dot-contrib">◉</td>
+          <td></td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-contrib">◉</td>
+        </tr>
+        <tr>
+          <td>P3 — Feedback loops</td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-primary">●</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="dot-primary">●</td>
+          <td></td>
+          <td class="dot-primary">●</td>
+          <td class="dot-contrib">◉</td>
+        </tr>
+        <tr>
+          <td>P4 — Resource exhaustion</td>
+          <td></td>
+          <td class="dot-primary">●</td>
+          <td class="dot-primary">●</td>
+          <td class="dot-primary">●</td>
+          <td class="dot-primary">●</td>
+          <td></td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-primary">●</td>
+        </tr>
+        <tr>
+          <td>P5 — Dependency chain collapse</td>
+          <td></td>
+          <td class="dot-primary">●</td>
+          <td class="dot-primary">●</td>
+          <td class="dot-primary">●</td>
+          <td class="dot-primary">●</td>
+          <td></td>
+          <td class="dot-primary">●</td>
+          <td class="dot-primary">●</td>
+          <td class="dot-contrib">◉</td>
+        </tr>
+        <tr>
+          <td>P6 — Adversarial cascade</td>
+          <td class="dot-primary">●</td>
+          <td class="dot-contrib">◉</td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="dot-primary">●</td>
+          <td></td>
+          <td class="dot-contrib">◉</td>
+          <td class="dot-contrib">◉</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="matrix-legend">
+    <span><span class="dot-primary">●</span> Primary mitigation — directly prevents or breaks this pattern</span>
+    <span><span class="dot-contrib">◉</span> Contributing mitigation — reduces severity or aids detection</span>
+  </div>
+
+  <div class="block" style="margin-top:1rem;">
+    <div class="block-label purple">Key insight from the matrix</div>
+    <p><strong>MIT02 (circuit breakers) is the most broadly applicable control</strong> — it appears as a primary mitigation for 4 of the 6 failure patterns. It is the architectural equivalent of a pressure relief valve: when failure pressure builds up in one part of the system, the circuit opens and prevents it from spreading.</p>
+    <p><strong>MIT01 (output validation) and MIT06 (rate limiting + confirmation) together cover both ends of the cascade</strong> — detection at the source and blast radius limitation at the terminal. Patterns 1 and 6 (silent propagation and adversarial stepping stone) have no circuit breaker as a primary control because the malicious/bad data isn't an availability failure — it's a content failure. Only content validation (MIT01) and action gating (MIT06) directly address content-based cascades.</p>
+    <p><strong>Pattern 4 (resource exhaustion) requires the deepest set of controls:</strong> bulkhead isolation, circuit breaking, graceful degradation, exponential backoff with jitter, and chaos testing — all five are primary controls. Resource exhaustion cascades have the most self-reinforcing dynamics, requiring the most layered defense.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-22.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-24.html">Quiz →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 18 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a><a class="seg done" href="ag06-slide-03.html"></a><a class="seg done" href="ag06-slide-04.html"></a><a class="seg done" href="ag06-slide-05.html"></a><a class="seg done" href="ag06-slide-06.html"></a><a class="seg done" href="ag06-slide-07.html"></a><a class="seg done" href="ag06-slide-08.html"></a><a class="seg done" href="ag06-slide-09.html"></a><a class="seg done" href="ag06-slide-10.html"></a><a class="seg done" href="ag06-slide-11.html"></a><a class="seg done" href="ag06-slide-12.html"></a><a class="seg done" href="ag06-slide-13.html"></a><a class="seg done" href="ag06-slide-14.html"></a><a class="seg done" href="ag06-slide-15.html"></a><a class="seg done" href="ag06-slide-16.html"></a><a class="seg done" href="ag06-slide-17.html"></a>
+    <a class="seg active" href="ag06-slide-18.html"></a>
+    <a class="seg" href="ag06-slide-19.html"></a><a class="seg" href="ag06-slide-20.html"></a><a class="seg" href="ag06-slide-21.html"></a><a class="seg" href="ag06-slide-22.html"></a><a class="seg" href="ag06-slide-23.html"></a><a class="seg" href="ag06-slide-24.html"></a><a class="seg" href="ag06-slide-25.html"></a><a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 18</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 18 · Prevention Overview</div>
+  <div class="slide-title">Nine mitigations across three layers: control who can write, validate what gets stored, and limit what retrieved content can influence.</div>
+
+  <div class="mit-overview-grid">
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT01</div>
+      <div class="mit-name">Input Validation at Ingestion</div>
+      <div class="mit-desc">Sanitize and filter all content entering the memory store — blocking instruction-like patterns before they're written.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT02</div>
+      <div class="mit-name">Source Provenance &amp; Attribution</div>
+      <div class="mit-desc">Tag every memory entry with its source, author, timestamp, and trust level. Retrieved entries surface this metadata to the agent.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT03</div>
+      <div class="mit-name">Memory Access Controls &amp; Isolation</div>
+      <div class="mit-desc">Enforce strict per-user and per-tenant namespace isolation. No cross-user or cross-tenant retrieval without explicit permission.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT04</div>
+      <div class="mit-name">Memory TTL &amp; Expiration</div>
+      <div class="mit-desc">Every memory entry has a time-to-live. Older entries expire automatically — limiting the persistence window of any poisoned belief.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT05</div>
+      <div class="mit-name">Human Review for High-Stakes Writes</div>
+      <div class="mit-desc">Memory writes that encode policies, authorizations, or behavioral rules require human approval before being stored.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT06</div>
+      <div class="mit-name">Memory Tier Separation</div>
+      <div class="mit-desc">Read-only curated knowledge is separated from writeable episodic memory. Agents cannot write to the curated knowledge tier directly.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT07</div>
+      <div class="mit-name">Reduced Trust for Retrieved Content</div>
+      <div class="mit-desc">Retrieved memory is not treated as ground truth. The agent applies epistemic skepticism and can be prompted to verify high-stakes retrieved claims before acting.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT08</div>
+      <div class="mit-name">Memory Write Audit Logging</div>
+      <div class="mit-desc">All writes to the memory store are logged with full context. Anomalous write patterns — unusual sources, instruction-like content — generate alerts.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT09</div>
+      <div class="mit-name">Periodic Memory Integrity Review</div>
+      <div class="mit-desc">Scheduled review of memory store contents — automated scanning for injected instructions, plus periodic human review of high-trust entries.</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag06-slide-17.html">← Back</a>
+    <a class="btn-primary" href="ag06-slide-19.html">MIT01 — Input Validation →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

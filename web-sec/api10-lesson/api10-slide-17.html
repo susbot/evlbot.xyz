@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 17 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg done" href="api10-slide-11.html"></a><a class="seg done" href="api10-slide-12.html"></a><a class="seg done" href="api10-slide-13.html"></a><a class="seg done" href="api10-slide-14.html"></a><a class="seg done" href="api10-slide-15.html"></a><a class="seg done" href="api10-slide-16.html"></a><a class="seg active" href="api10-slide-17.html"></a><a class="seg" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 &#xb7; Attack Scenarios</span><span>Slide 17</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 17 &#xb7; The Pattern</div>
+  <div class="slide-title">Three scenarios, one failure: security controls were scoped to user input &#x2014; not all untrusted data.</div>
+  <div class="slide-subtitle">The common thread across every API10 scenario.</div>
+  <div class="block">
+    <div class="block-label pink">The API10 pattern</div>
+    <p>In every API10 scenario, a security control existed &#x2014; parameterized queries, SSRF validation, XSS escaping &#x2014; but was applied only at the user-facing boundary. Data entering the system through a third-party integration took a different code path that was exempt from these controls. When a third-party was compromised or returned unexpected data, the exemption became the vulnerability.</p>
+  </div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F6E1;&#xFE0F;</div>
+      <div><div class="outcome-title">Security controls are applied at the wrong boundary</div><div class="outcome-desc">The correct mental model: security controls should be applied at the point where data is <em>used</em>, not at the point where it <em>enters</em> the system. Parameterization belongs in every SQL query &#x2014; regardless of where the value came from. Output encoding belongs in every HTML template &#x2014; regardless of whether the data came from a user or a third-party.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F517;</div>
+      <div><div class="outcome-title">Third parties extend the trust boundary &#x2014; but not the security perimeter</div><div class="outcome-desc">Integrating a third-party means trusting their service to do what it advertises. It does not mean trusting that their output will always be safe for SQL queries, HTML rendering, or log processing. Vendor security incidents, CDN compromises, and supply chain attacks are real and recurring. The security perimeter must extend to include all data, regardless of source.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4CB;</div>
+      <div><div class="outcome-title">The fix is context-driven, not source-driven</div><div class="outcome-desc">Whether to escape HTML should depend on whether the data is being rendered as HTML &#x2014; not on where the data came from. Whether to use parameterized queries should depend on whether the data is going into a SQL statement. Treat third-party data exactly as you treat user input: validate at ingestion, sanitize at use, escape at output.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-16.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-18.html">Prevention &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

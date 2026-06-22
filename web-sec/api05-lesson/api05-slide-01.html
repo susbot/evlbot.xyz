@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API5:2023 â Broken Function Level Authorization Â· Slide 1 of 28</title>
+<link rel="stylesheet" href="api05-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API5:2023</span><span class="nav-title">Broken Function Level Authorization</span></div>
+  <span class="nav-right">Slide 1 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg active" href="api05-slide-01.html"></a><a class="seg" href="api05-slide-02.html"></a><a class="seg" href="api05-slide-03.html"></a><a class="seg" href="api05-slide-04.html"></a><a class="seg" href="api05-slide-05.html"></a><a class="seg" href="api05-slide-06.html"></a><a class="seg" href="api05-slide-07.html"></a><a class="seg" href="api05-slide-08.html"></a><a class="seg" href="api05-slide-09.html"></a><a class="seg" href="api05-slide-10.html"></a><a class="seg" href="api05-slide-11.html"></a><a class="seg" href="api05-slide-12.html"></a><a class="seg" href="api05-slide-13.html"></a><a class="seg" href="api05-slide-14.html"></a><a class="seg" href="api05-slide-15.html"></a><a class="seg" href="api05-slide-16.html"></a><a class="seg" href="api05-slide-17.html"></a><a class="seg" href="api05-slide-18.html"></a><a class="seg" href="api05-slide-19.html"></a><a class="seg" href="api05-slide-20.html"></a><a class="seg" href="api05-slide-21.html"></a><a class="seg" href="api05-slide-22.html"></a><a class="seg" href="api05-slide-23.html"></a><a class="seg" href="api05-slide-24.html"></a><a class="seg" href="api05-slide-25.html"></a><a class="seg" href="api05-slide-26.html"></a><a class="seg" href="api05-slide-27.html"></a><a class="seg" href="api05-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 Â· What Is It?</span><span>Slide 1</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 1</span>
+    <div><div class="part-title">What Is It?</div><div class="part-count">Slides 1&#x2013;8 &#xb7; From story to definition</div></div>
+  </div>
+  <div class="slide-eyebrow">Slide 1 &#xb7; The Setup</div>
+  <div class="slide-title">She paid $0 for premium. She just called the right endpoint.</div>
+  <div class="slide-subtitle">No exploit. No stolen credential. Just an API that checked who you were, not what you were allowed to do.</div>
+  <div class="callout yellow">
+    <div class="callout-label">The Scenario</div>
+    <p>It&#x2019;s 2020. Security researcher Sanjana Sarda at Independent Security Evaluators is testing the Bumble dating app. Bumble has a premium tier called &#x201C;Bumble Boost&#x201D; that costs money and unlocks features: seeing who swiped right on you, extending matches, re-matching with expired connections.</p>
+    <p>Sarda opened a proxy to inspect the API calls the app made. She noticed that the premium features called specific API endpoints. She tried calling those endpoints with her free-tier account token.</p>
+    <p><strong>The API accepted them. Every premium feature worked.</strong> The server never checked whether her account had a Bumble Boost subscription &#x2014; it only checked that she was logged in.</p>
+  </div>
+  <div class="callout red">
+    <div class="callout-label">What she found</div>
+    <p>Beyond free premium access, Sarda found that certain API endpoints intended for administrative use were reachable by regular users. She could demote other users&#x2019; accounts, access internal user data, and call moderation functions &#x2014; all using a regular user token.</p>
+    <p>The Bumble API checked authentication on every request. It did not check whether the authenticated user&#x2019;s role entitled them to call each specific function.</p>
+    <p><strong>Bumble has over 100 million registered users. Every one of them could have bypassed the paywall and called admin functions.</strong></p>
+  </div>
+  <div class="block">
+    <div class="block-label pink">Before we name it</div>
+    <p>Sarda didn&#x2019;t steal a token, guess a password, or enumerate object IDs. She called the exact endpoints that premium and admin users were supposed to call &#x2014; using a free user account. The API stopped at &#x201C;is this a valid session?&#x201D; and never asked &#x201C;does this session have the right to call this function?&#x201D;</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-primary" href="api05-slide-02.html">What do we call this? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

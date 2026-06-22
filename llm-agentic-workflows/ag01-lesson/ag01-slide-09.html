@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG01:2026 — Agent Goal Hijack · Slide 9 of 28</title>
+<link rel="stylesheet" href="ag01-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG01:2026</span>
+    <span class="nav-title">Agent Goal Hijack</span>
+  </div>
+  <span class="nav-right">Slide 9 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag01-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag01-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag01-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag01-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag01-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag01-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag01-slide-07.html" title="Slide 7 · Prompt Injection vs Goal Hijack"></a>
+    <a class="seg done" href="ag01-slide-08.html" title="Slide 8 · Why Agents Are Different"></a>
+    <a class="seg active" href="ag01-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg" href="ag01-slide-10.html" title="Slide 10 · Direct Goal Manipulation"></a>
+    <a class="seg" href="ag01-slide-11.html" title="Slide 11 · Direct — Real Example"></a>
+    <a class="seg" href="ag01-slide-12.html" title="Slide 12 · Indirect Instruction Injection"></a>
+    <a class="seg" href="ag01-slide-13.html" title="Slide 13 · Indirect — Real Example"></a>
+    <a class="seg" href="ag01-slide-14.html" title="Slide 14 · Scenarios 1–3"></a>
+    <a class="seg" href="ag01-slide-15.html" title="Slide 15 · Scenarios 4–6"></a>
+    <a class="seg" href="ag01-slide-16.html" title="Slide 16 · Scenarios 7–9"></a>
+    <a class="seg" href="ag01-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag01-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag01-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag01-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag01-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag01-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag01-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag01-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag01-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag01-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag01-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag01-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — How It Works</span><span>Slide 9</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 2</span>
+    <div>
+      <div class="part-title">How It Works</div>
+      <div class="part-count">Slides 9–13 · The two attack paths, explained and demonstrated</div>
+    </div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 9 · Two Types Overview</div>
+  <div class="slide-title">Two ways to hijack a goal — same outcome, different entry points</div>
+  <div class="slide-subtitle">Every agent goal hijack attack follows one of two paths.</div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Type 1 · Direct Goal Manipulation</div>
+      <div class="compare-item"><strong>Entry point:</strong> The agent's own input — the user prompt, system prompt, or conversation context</div>
+      <div class="compare-item"><strong>Who does it:</strong> Someone with direct access to the interface — a user, an insider, or someone who has compromised the session</div>
+      <div class="compare-item"><strong>How it looks:</strong> Explicit override instructions — "ignore your previous goal, instead do X"</div>
+      <div class="compare-item"><strong>Detectability:</strong> Easier to detect — the malicious instruction is visible in the input</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Type 2 · Indirect Instruction Injection</div>
+      <div class="compare-item"><strong>Entry point:</strong> External content the agent retrieves — emails, documents, web pages, API responses, RAG results</div>
+      <div class="compare-item"><strong>Who does it:</strong> Anyone who can place content in a location the agent will read — no direct access required</div>
+      <div class="compare-item"><strong>How it looks:</strong> Hidden instructions embedded in otherwise normal content, often invisible to the human reader</div>
+      <div class="compare-item"><strong>Detectability:</strong> Much harder — the malicious content looks like ordinary data</div>
+    </div>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">Which is more dangerous?</div>
+    <p>Type 2 is far more dangerous at scale. Type 1 requires access to the agent interface — it's limited to insiders and session hijackers. Type 2 requires only the ability to put content somewhere an agent might read it. <strong>A single poisoned webpage can silently redirect every agent that fetches it.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">Both types share one root mechanism</div>
+    <p>In both cases, the agent's planning loop ingests attacker-controlled text and treats it with the same weight as legitimate instructions. The attack isn't a bug in the agent — it's a consequence of how agents work.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag01-slide-08.html">← Back</a>
+    <a class="btn-primary" href="ag01-slide-10.html">Start with Type 1 → How does direct manipulation work?</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

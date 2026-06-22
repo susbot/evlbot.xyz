@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 15 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 15 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg done" href="api03-slide-03.html"></a><a class="seg done" href="api03-slide-04.html"></a><a class="seg done" href="api03-slide-05.html"></a><a class="seg done" href="api03-slide-06.html"></a><a class="seg done" href="api03-slide-07.html"></a><a class="seg done" href="api03-slide-08.html"></a><a class="seg done" href="api03-slide-09.html"></a><a class="seg done" href="api03-slide-10.html"></a><a class="seg done" href="api03-slide-11.html"></a><a class="seg done" href="api03-slide-12.html"></a><a class="seg done" href="api03-slide-13.html"></a><a class="seg done" href="api03-slide-14.html"></a><a class="seg active" href="api03-slide-15.html"></a><a class="seg" href="api03-slide-16.html"></a><a class="seg" href="api03-slide-17.html"></a><a class="seg" href="api03-slide-18.html"></a><a class="seg" href="api03-slide-19.html"></a><a class="seg" href="api03-slide-20.html"></a><a class="seg" href="api03-slide-21.html"></a><a class="seg" href="api03-slide-22.html"></a><a class="seg" href="api03-slide-23.html"></a><a class="seg" href="api03-slide-24.html"></a><a class="seg" href="api03-slide-25.html"></a><a class="seg" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 · Attack Scenarios</span><span>Slide 15</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 15 · Scenario 2</div>
+  <div class="slide-title">A marketplace host changes the price of a guest's stay.</div>
+  <div class="slide-subtitle">OWASP Scenario #2 — mass assignment lets a property manager overcharge guests.</div>
+
+  <div class="source-tag">📄 OWASP API Security Top 10 · 2023 · API3 · Scenario 2</div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SETUP</div>
+    <div class="scenario-title">A rental platform's approval flow.</div>
+    <div class="scenario-body">
+      <p>A short-term rental marketplace lets property hosts approve booking requests from guests. When a host approves a booking, their app sends a PUT request to confirm the stay.</p>
+      <p>The request body is supposed to contain: <code>{"status": "approved"}</code>. But the endpoint accepts and writes all fields it receives.</p>
+    </div>
+    <div class="scenario-why"><strong>The exploit:</strong> A malicious host intercepts the approval request and adds <code>"total_stay_price": "$10,000"</code> to the body. The API accepts the extra field and writes it to the booking record. The guest's confirmed price is now $10,000 — whatever the host chose to set. The guest has no way to know this happened at the API level.</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">THE DAMAGE</div>
+    <div class="scenario-title">The guest is charged the manipulated amount.</div>
+    <div class="scenario-body">
+      <p>When checkout runs, it reads <code>total_stay_price</code> from the booking record — which now contains the host-modified value. <strong>The guest is charged an amount they never agreed to.</strong></p>
+      <p>The marketplace may not catch this without monitoring for anomalous price values in the booking API, because the approval request itself looks structurally valid.</p>
+    </div>
+    <div class="scenario-why"><strong>Why it works:</strong> The booking object has a <code>total_stay_price</code> field that hosts should never be able to set directly — prices are calculated by the platform. But the API accepted the field because nothing restricted what could be written.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-14.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-16.html">Scenario 3 →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

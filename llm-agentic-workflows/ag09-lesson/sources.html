@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Sources</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation — Sources</span>
+  </div>
+  <span class="nav-right">References</span>
+</div>
+
+<div class="slide active" style="max-width:860px;margin:2rem auto;">
+
+  <div class="slide-eyebrow">Sources &amp; References</div>
+  <div class="slide-title">Primary sources for AG09: Human-Agent Trust Exploitation</div>
+
+  <div class="block">
+    <div class="block-label purple">OWASP Primary Source</div>
+    <p><strong>OWASP Top 10 for LLM Applications and Agentic AI — ASI09:2026: Human-Agent Trust Exploitation</strong><br>
+    OWASP Foundation, 2025–2026.<br>
+    The authoritative source for this lesson's scope, definition, and framing. The ASI09 entry defines the human-agent trust relationship as an attack surface and identifies the three core exploitation modalities: blind spot targeting, credibility relay, and miscalibration by design.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Automation Bias — Foundational Research</div>
+    <p><strong>Mosier, K. L., &amp; Skitka, L. J. (1996). Human decision makers and automated decision aids: Made for each other?</strong><br>
+    In R. Parasuraman &amp; M. Mouloua (Eds.), Automation and human performance (pp. 201–220). Lawrence Erlbaum Associates.<br>
+    The foundational paper introducing "automation bias" as a distinct cognitive phenomenon. Based on aviation cockpit automation research; first systematic documentation of humans deferring to automated recommendations without independent verification even when automation was producing incorrect outputs.</p>
+
+    <p style="margin-top:1rem;"><strong>Parasuraman, R., &amp; Riley, V. (1997). Humans and automation: Use, misuse, disuse, abuse.</strong><br>
+    Human Factors, 39(2), 230–253.<br>
+    Formalizes the framework of automation trust miscalibration in both directions (complacency/bias and mistrust/aversion). Introduced the key insight that high automation accuracy paradoxically increases automation bias — the basis for the "experience paradox" described in Slides 4 and 24.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Algorithm Trust — AI-Specific Research</div>
+    <p><strong>Logg, J. M., Minson, J. A., &amp; Moore, D. A. (2019). Algorithm appreciation: People prefer algorithmic to human judgment.</strong><br>
+    Organizational Behavior and Human Decision Processes, 151, 90–103.<br>
+    Documents "algorithm appreciation" — the phenomenon where humans trust AI/algorithmic recommendations more than human expert recommendations, even when equivalent in accuracy. Relevant to the AI oracle effect discussed in Slide 4.</p>
+
+    <p style="margin-top:1rem;"><strong>Dietvorst, B. J., Logg, J. A., &amp; Moore, D. A. (2015). Algorithm aversion: People erroneously avoid algorithms after seeing them err.</strong><br>
+    Journal of Experimental Psychology: General, 144(1), 114–126.<br>
+    Documents "algorithm aversion" — the opposite phenomenon, where humans distrust algorithmic recommendations after observing a single error, even when the algorithm outperforms human judgment on average. Relevant to the under-trust dimension of AG09.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Human Factors and Skill Atrophy</div>
+    <p><strong>Sarter, N. B., Woods, D. D., &amp; Billings, C. E. (1997). Automation surprises.</strong><br>
+    In G. Salvendy (Ed.), Handbook of human factors and ergonomics (2nd ed., pp. 1926–1943). Wiley.<br>
+    Documents "automation surprises" in aviation — situations where pilots were unaware of what the automated system was doing because they had stopped actively monitoring it. Provides the theoretical basis for skill atrophy (MIT09) and the dependency erosion pattern (Pattern 5).</p>
+
+    <p style="margin-top:1rem;"><strong>Hancock, P. A., Billings, D. R., Schaefer, K. E., Chen, J. Y. C., De Visser, E. J., &amp; Parasuraman, R. (2011). A meta-analysis of factors affecting trust in human-robot interaction.</strong><br>
+    Human Factors, 53(5), 517–527.<br>
+    Comprehensive meta-analysis of factors affecting human-robot/human-automation trust. Identifies performance-based trust development as the primary driver of trust calibration — directly underpinning the "rational but miscalibrated" framing of automation bias in skilled professionals.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label blue" style="background:rgba(100,160,255,0.15);color:#90b8ff;">Social Engineering and Influence</div>
+    <p><strong>Cialdini, R. B. (1984). Influence: The psychology of persuasion.</strong><br>
+    HarperCollins.<br>
+    The canonical reference for the six principles of influence (authority, urgency, scarcity, social proof, liking, reciprocity) that underlie traditional social engineering. Used in Slide 27 to frame how AI agents amplify each principle when acting as social engineering relays.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">Regulatory and Framework References</div>
+    <p><strong>NIST AI Risk Management Framework 1.0 (2023).</strong><br>
+    National Institute of Standards and Technology.<br>
+    The AI RMF's "Govern" function includes requirements for ongoing monitoring of human-AI team performance and system explainability. Aligned with MIT03 (explanation requirements) and MIT06 (override logging) in this lesson.</p>
+
+    <p style="margin-top:1rem;"><strong>Regulation (EU) 2024/1689 of the European Parliament and of the Council (EU AI Act).</strong><br>
+    European Union, 2024.<br>
+    Article 14 mandates human oversight for high-risk AI systems, requiring that natural persons can understand, monitor, and intervene in AI system operation. The limitations of this framing (technical override ability vs. cognitive oversight capacity) are discussed in the Appendix (Slide 27).</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Clinical Decision Support — Applied Context</div>
+    <p><strong>Goddard, K., Roudsari, A., &amp; Wyatt, J. C. (2012). Automation bias: A systematic review of frequency, effect mediators, and mitigations.</strong><br>
+    Journal of the American Medical Informatics Association, 19(1), 121–127.<br>
+    Systematic review of automation bias in clinical decision support systems. Documents that automation bias occurs across multiple clinical contexts (drug dosing alerts, diagnostic support, imaging analysis) and is stronger for high-expertise users — supporting the expert paradox claim in Slide 4 and Q1 of the quiz.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-28.html">← Back to lesson</a>
+    <a class="btn-primary" href="../index.html">← Course Home</a>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 11 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 11 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg done" href="api09-slide-05.html"></a><a class="seg done" href="api09-slide-06.html"></a><a class="seg done" href="api09-slide-07.html"></a><a class="seg done" href="api09-slide-08.html"></a><a class="seg done" href="api09-slide-09.html"></a><a class="seg done" href="api09-slide-10.html"></a><a class="seg active" href="api09-slide-11.html"></a><a class="seg" href="api09-slide-12.html"></a><a class="seg" href="api09-slide-13.html"></a><a class="seg" href="api09-slide-14.html"></a><a class="seg" href="api09-slide-15.html"></a><a class="seg" href="api09-slide-16.html"></a><a class="seg" href="api09-slide-17.html"></a><a class="seg" href="api09-slide-18.html"></a><a class="seg" href="api09-slide-19.html"></a><a class="seg" href="api09-slide-20.html"></a><a class="seg" href="api09-slide-21.html"></a><a class="seg" href="api09-slide-22.html"></a><a class="seg" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 11</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 11 &#xb7; Real Incident</div>
+  <div class="slide-title">Facebook Graph API v1 &#x2014; the friends permission that harvested 87 million profiles.</div>
+  <div class="slide-subtitle">The feature was removed in v2 in 2014. v1 remained live. Cambridge Analytica used it in 2015.</div>
+  <div class="source-tag">&#x1F4C4; U.S. FTC &#xb7; U.S. Senate &#xb7; UK ICO &#xb7; New York Times &#xb7; 2018</div>
+  <div class="scenario-card">
+    <div class="scenario-num">TIMELINE</div>
+    <div class="scenario-title">Facebook / Cambridge Analytica &#x2014; 2013&#x2013;2018</div>
+    <div class="scenario-body">
+      <p><strong>2013:</strong> Aleksandr Kogan, a Cambridge University researcher, creates the &#x201C;This Is Your Digital Life&#x201D; personality quiz app on Facebook. The app registers with Facebook Graph API v1 and requests the friends permission.</p>
+      <p><strong>April 2014:</strong> Facebook launches Graph API v2 and removes the friends permission. All newly registered apps must use v2. Apps registered before April 30, 2014 &#x2014; including Kogan&#x2019;s &#x2014; retain v1 access.</p>
+      <p><strong>2014&#x2013;2015:</strong> 270,000 users install Kogan&#x2019;s app and grant it data access. Through Graph API v1&#x2019;s friends permission, the app harvests data from each user&#x2019;s Facebook friends &#x2014; without those friends consenting or being notified. Total profiles harvested: approximately 87 million.</p>
+      <p><strong>2015:</strong> Kogan sells the data to Cambridge Analytica, violating Facebook&#x2019;s platform policies. Cambridge Analytica uses the data to build psychographic profiles for political advertising.</p>
+    </div>
+    <div class="scenario-why"><strong>March 2018:</strong> The Guardian and New York Times publish the Cambridge Analytica story. Facebook&#x2019;s share price falls 20% in two weeks. Mark Zuckerberg testifies before the U.S. Senate. Facebook is fined $5 billion by the FTC (the largest privacy fine in U.S. history at the time) and &#xA3;500,000 by the UK ICO. The core API9 failure: a permission model that violated privacy principles was removed from v2 &#x2014; but v1 remained live and exploitable for a year after the fix.</div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-10.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-12.html">Pattern 2: Environment pivot &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

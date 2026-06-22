@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 12 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 12 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a><a class="seg done" href="ag08-slide-11.html"></a>
+    <a class="seg active" href="ag08-slide-12.html"></a>
+    <a class="seg" href="ag08-slide-13.html"></a><a class="seg" href="ag08-slide-14.html"></a><a class="seg" href="ag08-slide-15.html"></a><a class="seg" href="ag08-slide-16.html"></a><a class="seg" href="ag08-slide-17.html"></a><a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Failure Patterns</span><span>Slide 12</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 12 · Patterns 5 &amp; 6</div>
+  <div class="slide-title">Shared dependencies create simultaneous failure footprints. Adversarial cascades use legitimate agents as attack relays.</div>
+
+  <div class="block">
+    <div class="block-label blue">Pattern 5 — Dependency Chain Collapse</div>
+    <p>Many agent pipelines share infrastructure: a vector database used by multiple retrieval agents, a shared LLM API endpoint, a common tool server, a central state store. When a shared dependency fails, every agent that depends on it fails simultaneously — creating a blast radius proportional to the number of sharing agents.</p>
+    <p><strong>The deeper the dependency, the wider the failure:</strong> A failure in a tool used by one specialized agent is contained. A failure in the shared state store used by the orchestrator, all sub-agents, and the monitoring system produces a simultaneous outage of the entire pipeline — including the monitoring that would detect and respond to the outage.</p>
+    <p><strong>Why agents don't naturally isolate shared dependencies:</strong> Agent orchestration frameworks encourage composition — building complex pipelines from shared components. The same property that makes a shared vector database efficient (one update visible to all agents) makes it a single point of failure: one corruption visible to all agents. The efficiency and the fragility come from the same architectural decision.</p>
+    <p><strong>Cascading shutdown:</strong> In many pipelines, when an agent detects that its dependency is unavailable, it marks itself unavailable. The agents that depend on it detect that, and mark themselves unavailable. The cascade of "dependency unavailable" signals propagates upward, shutting down the entire pipeline from the bottom up.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Pattern 6 — Adversarial Cascade</div>
+    <p>An attacker deliberately crafts the failure in the initial agent to produce specific downstream effects — using the cascade mechanism as an attack amplifier. Instead of attacking the terminal action-taking agent directly (which may have strong controls), the attacker targets a less-protected upstream agent and engineers an output that, after being processed by intermediate agents, produces the desired harmful action downstream.</p>
+    <p><strong>Why this is harder to defend than a direct attack:</strong> Each intermediate agent's processing transforms the attacker's instructions, making attribution difficult. The final harmful action is taken by a legitimate, authorized agent — it appears to be operating normally. The attacker's fingerprints are several hops upstream, in an agent that may have weaker monitoring.</p>
+    <p><strong>The stepping-stone pattern:</strong> Attack a data retrieval agent → craft output that instructs the analysis agent → analysis agent produces a recommendation that instructs the action agent → action agent takes the attacker-desired action. Three agents, all working correctly. One attacker who only touched the first.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-11.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-13.html">Part 3 — Scenarios →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

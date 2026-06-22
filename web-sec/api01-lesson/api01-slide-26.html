@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 26 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 26 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg done" href="api01-slide-10.html"></a><a class="seg done" href="api01-slide-11.html"></a><a class="seg done" href="api01-slide-12.html"></a><a class="seg done" href="api01-slide-13.html"></a><a class="seg done" href="api01-slide-14.html"></a><a class="seg done" href="api01-slide-15.html"></a><a class="seg done" href="api01-slide-16.html"></a><a class="seg done" href="api01-slide-17.html"></a><a class="seg done" href="api01-slide-18.html"></a><a class="seg done" href="api01-slide-19.html"></a><a class="seg done" href="api01-slide-20.html"></a><a class="seg done" href="api01-slide-21.html"></a><a class="seg done" href="api01-slide-22.html"></a><a class="seg done" href="api01-slide-23.html"></a><a class="seg done" href="api01-slide-24.html"></a><a class="seg done" href="api01-slide-25.html"></a><a class="seg active" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 26</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 26 · The Matrix</div>
+  <div class="slide-title">Which mitigations stop which attacks?</div>
+  <div class="slide-subtitle">Real breaches mapped to the defenses that would have stopped them.</div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">BREACH — Peloton (2021) · 4M users · No auth required</div>
+    <div class="scenario-title">Unauthenticated access to any user's private fitness data</div>
+    <div class="scenario-body">
+      <p>The endpoint had no authentication at all — any HTTP request returned data. Beyond BOLA, this was a complete auth failure.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 01 (ownership check) + MIT 03 (derive identity from token, don't trust client) + MIT 04 (cross-user testing would have caught this immediately)</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">BREACH — T-Mobile (2023) · 37M customers · 6 weeks undetected</div>
+    <div class="scenario-title">Mass enumeration of customer records via API</div>
+    <div class="scenario-body">
+      <p>Authorization check existed but failed in practice. Attacker ran millions of queries over weeks — no alert triggered.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 01 (working auth check) + MIT 07 (monitoring — 37M queries should have fired an alert on day one) + MIT 06 (centralized enforcement would have closed the policy gap)</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">BREACH — Bumble (2020) · Any user's location · Blocked users bypassed</div>
+    <div class="scenario-title">Precise GPS coordinates exposed via profile API — blocking ignored</div>
+    <div class="scenario-body">
+      <p>The API returned location data regardless of block status. The authorization check didn't account for the social relationship between users.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 01 (ownership check — also verify block status) + MIT 03 (server derives requesting identity, checks relationship) + MIT 05 (query filters that include block relationships)</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">BREACH — USPS (2018) · 60M accounts · Sequential user IDs</div>
+    <div class="scenario-title">Any authenticated user could read any other user's account details</div>
+    <div class="scenario-body">
+      <p>Sequential integer user IDs + no object-level check = trivial enumeration of 60 million accounts.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 01 (ownership check) + MIT 02 (UUIDs would make enumeration impossible) + MIT 07 (sequential ID pattern is obvious in logs)</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-25.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-27.html">Ready to test yourself? →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

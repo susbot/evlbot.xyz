@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 3 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 3 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg active" href="api02-slide-03.html"></a><a class="seg" href="api02-slide-04.html"></a><a class="seg" href="api02-slide-05.html"></a><a class="seg" href="api02-slide-06.html"></a><a class="seg" href="api02-slide-07.html"></a><a class="seg" href="api02-slide-08.html"></a><a class="seg" href="api02-slide-09.html"></a><a class="seg" href="api02-slide-10.html"></a><a class="seg" href="api02-slide-11.html"></a><a class="seg" href="api02-slide-12.html"></a><a class="seg" href="api02-slide-13.html"></a><a class="seg" href="api02-slide-14.html"></a><a class="seg" href="api02-slide-15.html"></a><a class="seg" href="api02-slide-16.html"></a><a class="seg" href="api02-slide-17.html"></a><a class="seg" href="api02-slide-18.html"></a><a class="seg" href="api02-slide-19.html"></a><a class="seg" href="api02-slide-20.html"></a><a class="seg" href="api02-slide-21.html"></a><a class="seg" href="api02-slide-22.html"></a><a class="seg" href="api02-slide-23.html"></a><a class="seg" href="api02-slide-24.html"></a><a class="seg" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 3</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 3 · The Definition</div>
+  <div class="slide-title">What OWASP says.</div>
+  <div class="slide-subtitle">The formal definition, in plain English.</div>
+
+  <div class="source-tag">📄 OWASP API Security Top 10 · 2023 · API2</div>
+
+  <div class="block">
+    <div class="block-label pink">The Official Definition</div>
+    <p><strong>Authentication mechanisms are frequently implemented incorrectly or incompletely, allowing attackers to compromise authentication tokens or to exploit implementation flaws to assume other users' identities temporarily or permanently.</strong></p>
+    <p>Compromising a system's ability to identify the client/user compromises API security overall.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">Breaking it down</div>
+    <p>Authentication has four jobs that can each break independently:</p>
+    <p><strong>1. Credential check</strong> — verify the password, token, or key is correct</p>
+    <p><strong>2. Token issuance</strong> — generate a secure, unforgeable token after login</p>
+    <p><strong>3. Token validation</strong> — verify the token on every subsequent request</p>
+    <p><strong>4. Session management</strong> — expire, rotate, and revoke tokens properly</p>
+    <p>Break any one of these four and authentication is broken.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label green">Why this matters for APIs specifically</div>
+    <p>APIs don't have a human reviewing requests. Every call is automated. A broken auth check runs the same way whether it's a legitimate user or an attacker running a script with 10 million attempts.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-02.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-04.html">How is this different from API1? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

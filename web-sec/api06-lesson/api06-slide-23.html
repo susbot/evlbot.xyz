@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 23 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 23 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg done" href="api06-slide-09.html"></a><a class="seg done" href="api06-slide-10.html"></a><a class="seg done" href="api06-slide-11.html"></a><a class="seg done" href="api06-slide-12.html"></a><a class="seg done" href="api06-slide-13.html"></a><a class="seg done" href="api06-slide-14.html"></a><a class="seg done" href="api06-slide-15.html"></a><a class="seg done" href="api06-slide-16.html"></a><a class="seg done" href="api06-slide-17.html"></a><a class="seg done" href="api06-slide-18.html"></a><a class="seg done" href="api06-slide-19.html"></a><a class="seg done" href="api06-slide-20.html"></a><a class="seg done" href="api06-slide-21.html"></a><a class="seg done" href="api06-slide-22.html"></a><a class="seg active" href="api06-slide-23.html"></a><a class="seg" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 23</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 23 &#xb7; Mitigation 5</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 05</div>
+    <div class="mit-title">Flag and reject flows completed faster than any human could.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Define minimum reasonable completion times for multi-step business flows based on human interaction patterns. Reject or flag completions that fall outside the human range:</p>
+      <p>&#x2022; <strong>Account registration:</strong> A real user fills a form in 30&#x2013;300 seconds. Registration completed in under 5 seconds: bot.</p>
+      <p>&#x2022; <strong>Checkout flow (browse &#x2192; cart &#x2192; payment &#x2192; confirm):</strong> Real users take 2&#x2013;10 minutes. Completed in under 10 seconds: bot.</p>
+      <p>&#x2022; <strong>Referral code entry:</strong> A user reads and types a code in 5&#x2013;30 seconds. Pasted and submitted in under 500ms: bot.</p>
+      <p>&#x2022; <strong>Survey or review submission:</strong> A real user takes 60&#x2013;600 seconds to write a review. Submitted in 3 seconds: bot.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Implementation</div>
+      <p>Track session timestamps server-side: when did the user reach step 1, step 2, and the final step? Compute the elapsed time. If below the minimum human threshold, return a challenge (CAPTCHA) rather than processing the transaction. Log the anomalous timing for review.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">Bot operators adapt</div>
+      <p>Sophisticated bots add artificial delays to mimic human timing. Combine this detection with behavioral fingerprinting (MIT 03) &#x2014; a session that takes the right amount of time but has no real mouse movement is still a bot. Multiple signals together are more robust than any single signal alone.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask whether your analytics would flag 10,000 accounts all redeeming a promotional code within one hour. Automated attacks look very different from human behavior patterns and should be detectable in your data.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-22.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-24.html">MIT 06: Identity verification &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

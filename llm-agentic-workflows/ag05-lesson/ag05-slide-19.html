@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG05:2026 — Unexpected Code Execution · Slide 19 of 28</title>
+<link rel="stylesheet" href="ag05-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG05:2026</span>
+    <span class="nav-title">Unexpected Code Execution</span>
+  </div>
+  <span class="nav-right">Slide 19 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag05-slide-01.html"></a><a class="seg done" href="ag05-slide-02.html"></a><a class="seg done" href="ag05-slide-03.html"></a><a class="seg done" href="ag05-slide-04.html"></a><a class="seg done" href="ag05-slide-05.html"></a><a class="seg done" href="ag05-slide-06.html"></a><a class="seg done" href="ag05-slide-07.html"></a><a class="seg done" href="ag05-slide-08.html"></a><a class="seg done" href="ag05-slide-09.html"></a><a class="seg done" href="ag05-slide-10.html"></a><a class="seg done" href="ag05-slide-11.html"></a><a class="seg done" href="ag05-slide-12.html"></a><a class="seg done" href="ag05-slide-13.html"></a><a class="seg done" href="ag05-slide-14.html"></a><a class="seg done" href="ag05-slide-15.html"></a><a class="seg done" href="ag05-slide-16.html"></a><a class="seg done" href="ag05-slide-17.html"></a><a class="seg done" href="ag05-slide-18.html"></a>
+    <a class="seg active" href="ag05-slide-19.html"></a>
+    <a class="seg" href="ag05-slide-20.html"></a><a class="seg" href="ag05-slide-21.html"></a><a class="seg" href="ag05-slide-22.html"></a><a class="seg" href="ag05-slide-23.html"></a><a class="seg" href="ag05-slide-24.html"></a><a class="seg" href="ag05-slide-25.html"></a><a class="seg" href="ag05-slide-26.html"></a><a class="seg" href="ag05-slide-27.html"></a><a class="seg" href="ag05-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 19</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 19 · MIT01 — Strong Sandbox Isolation</div>
+  <div class="slide-title">MIT01: The execution environment must actually be isolated — verified, not assumed.</div>
+  <div class="slide-subtitle">A sandbox that is assumed to be strong but isn't is worse than no sandbox — it creates false confidence while providing no real protection.</div>
+
+  <div class="block">
+    <div class="block-label purple">What strong isolation requires</div>
+    <p><strong>No host filesystem access.</strong> The sandbox should have access only to a purpose-built ephemeral working directory, not to the host's filesystem, mounted volumes, or home directories. Verified through explicit filesystem namespace restrictions, not just file permission settings.</p>
+    <p><strong>No host process visibility.</strong> Processes running in the sandbox should not be able to see or interact with host processes. Container namespaces (PID, network, IPC, user) must be properly configured and verified.</p>
+    <p><strong>No subprocess escalation.</strong> Calls to <code>os.system()</code>, <code>subprocess.run()</code>, and equivalent functions should be blocked or restricted to a pre-approved list of commands. This is enforced via seccomp profiles, syscall filtering, or a restricted interpreter that does not expose these functions.</p>
+    <p><strong>No environment variable inheritance.</strong> The sandbox's environment should be a clean, minimal set — not inherited from the host process. All platform secrets (API tokens, connection strings) should be excluded from the sandbox environment entirely.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Implementation options — ordered by strength</div>
+    <p><strong>gVisor / Firecracker MicroVMs:</strong> Kernel-level isolation via a user-space kernel (gVisor) or hardware virtualization (Firecracker). The strongest available option. Used by Google and AWS respectively for production code sandbox workloads.</p>
+    <p><strong>Seccomp-restricted containers:</strong> Docker or OCI containers with a strict seccomp profile that blocks all non-essential syscalls. Substantially stronger than default container configuration.</p>
+    <p><strong>Restricted Python interpreter:</strong> Running code in a Python environment that blocks imports of <code>os</code>, <code>subprocess</code>, <code>socket</code>, and similar modules. Weaker than OS-level isolation but meaningful as a defense-in-depth layer.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: when your AI agent runs code, is that code running directly on your company's servers — or in a separate, locked-down environment where it can't touch anything else? Ask what would happen if the code it ran turned out to be malicious.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag05-slide-18.html">← Back</a>
+    <a class="btn-primary" href="ag05-slide-20.html">MIT02 — Network Egress Restriction →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

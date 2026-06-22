@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 8 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 8 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg active" href="api01-slide-08.html"></a><a class="seg" href="api01-slide-09.html"></a><a class="seg" href="api01-slide-10.html"></a><a class="seg" href="api01-slide-11.html"></a><a class="seg" href="api01-slide-12.html"></a><a class="seg" href="api01-slide-13.html"></a><a class="seg" href="api01-slide-14.html"></a><a class="seg" href="api01-slide-15.html"></a><a class="seg" href="api01-slide-16.html"></a><a class="seg" href="api01-slide-17.html"></a><a class="seg" href="api01-slide-18.html"></a><a class="seg" href="api01-slide-19.html"></a><a class="seg" href="api01-slide-20.html"></a><a class="seg" href="api01-slide-21.html"></a><a class="seg" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 8</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 8 · Why APIs Are Different</div>
+  <div class="slide-title">APIs made this problem much worse.</div>
+  <div class="slide-subtitle">The shift to APIs moved a responsibility — and most teams didn't notice.</div>
+
+  <div class="callout blue">
+    <div class="callout-label">Before APIs — the server was in control</div>
+    <p>Old web apps rendered HTML on the server. You clicked "My Account." The server looked up your session, grabbed your data, and returned a page built just for you. <strong>You never touched an ID. The server handled everything.</strong> If the server was coded correctly, you only ever saw your data.</p>
+  </div>
+
+  <div class="callout yellow">
+    <div class="callout-label">After APIs — the client is in control</div>
+    <p>Modern apps use APIs. Your phone, your browser, your third-party integration — they all send requests with IDs. <strong>GET /api/users/8831/profile.</strong> The client picks the ID. The server just responds. Now the server has to actively verify every ID it receives — and most of the time, it doesn't.</p>
+  </div>
+
+  <div class="callout red">
+    <div class="callout-label">The numbers don't help</div>
+    <p>Most APIs use <strong>sequential integer IDs</strong> — 1, 2, 3, 4. If your ID is 1042, order 1041 and 1043 almost certainly exist. An attacker doesn't need to guess. They just count. <strong>The data is practically labeled.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label pink">The bottom line</div>
+    <p>APIs are everywhere now. Every mobile app, every SaaS product, every connected device runs on APIs. BOLA is so common because <strong>the architecture that powers the modern internet creates this problem by default</strong> — and fixing it requires every developer to remember to add a check they weren't taught to add.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-07.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-09.html">Let's go deeper → How does it actually work? →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 9 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 9 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg done" href="api02-slide-07.html"></a><a class="seg done" href="api02-slide-08.html"></a><a class="seg active" href="api02-slide-09.html"></a><a class="seg" href="api02-slide-10.html"></a><a class="seg" href="api02-slide-11.html"></a><a class="seg" href="api02-slide-12.html"></a><a class="seg" href="api02-slide-13.html"></a><a class="seg" href="api02-slide-14.html"></a><a class="seg" href="api02-slide-15.html"></a><a class="seg" href="api02-slide-16.html"></a><a class="seg" href="api02-slide-17.html"></a><a class="seg" href="api02-slide-18.html"></a><a class="seg" href="api02-slide-19.html"></a><a class="seg" href="api02-slide-20.html"></a><a class="seg" href="api02-slide-21.html"></a><a class="seg" href="api02-slide-22.html"></a><a class="seg" href="api02-slide-23.html"></a><a class="seg" href="api02-slide-24.html"></a><a class="seg" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 · How It Works</span><span>Slide 9</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 2</span>
+    <div><div class="part-title">How It Works</div><div class="part-count">Slides 9–13 · Five attack patterns, each grounded in reality</div></div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 9 · Five Patterns</div>
+  <div class="slide-title">Authentication breaks in five distinct ways.</div>
+  <div class="slide-subtitle">Same vulnerability class, very different attack mechanics.</div>
+
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">📋</div>
+      <div>
+        <div class="outcome-title">1. Credential Stuffing</div>
+        <div class="outcome-desc">Automated testing of username/password pairs leaked from other breaches. Works because people reuse passwords. No guessing needed — the list comes from someone else's breach.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🔑</div>
+      <div>
+        <div class="outcome-title">2. Brute Force Without Lockout</div>
+        <div class="outcome-desc">Trying millions of password guesses on a login endpoint that has no rate limit, no lockout, and no CAPTCHA. APIs make this trivially scriptable.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🆔</div>
+      <div>
+        <div class="outcome-title">3. Broken Token Validation</div>
+        <div class="outcome-desc">JWT tokens accepted without verifying the signature, or accepting {"alg":"none"}, or tokens that never expire. An attacker can craft or modify a token and the API won't catch it.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🔗</div>
+      <div>
+        <div class="outcome-title">4. Token Exposure in URLs</div>
+        <div class="outcome-desc">Auth tokens passed as URL query parameters leak into server logs, browser history, proxy caches, and referrer headers. Once logged, they persist far longer than the intended session.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">📧</div>
+      <div>
+        <div class="outcome-title">5. Missing Re-authentication</div>
+        <div class="outcome-desc">Sensitive operations — changing email, disabling MFA, updating payment info — don't require the current password. A stolen session token is enough to take full control.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-08.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-10.html">Start with credential stuffing →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

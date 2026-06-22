@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 14 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 14 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a>
+    <a class="seg done" href="ag04-slide-02.html"></a>
+    <a class="seg done" href="ag04-slide-03.html"></a>
+    <a class="seg done" href="ag04-slide-04.html"></a>
+    <a class="seg done" href="ag04-slide-05.html"></a>
+    <a class="seg done" href="ag04-slide-06.html"></a>
+    <a class="seg done" href="ag04-slide-07.html"></a>
+    <a class="seg done" href="ag04-slide-08.html"></a>
+    <a class="seg done" href="ag04-slide-09.html"></a>
+    <a class="seg done" href="ag04-slide-10.html"></a>
+    <a class="seg done" href="ag04-slide-11.html"></a>
+    <a class="seg done" href="ag04-slide-12.html"></a>
+    <a class="seg done" href="ag04-slide-13.html"></a>
+    <a class="seg active" href="ag04-slide-14.html"></a>
+    <a class="seg" href="ag04-slide-15.html"></a>
+    <a class="seg" href="ag04-slide-16.html"></a>
+    <a class="seg" href="ag04-slide-17.html"></a>
+    <a class="seg" href="ag04-slide-18.html"></a>
+    <a class="seg" href="ag04-slide-19.html"></a>
+    <a class="seg" href="ag04-slide-20.html"></a>
+    <a class="seg" href="ag04-slide-21.html"></a>
+    <a class="seg" href="ag04-slide-22.html"></a>
+    <a class="seg" href="ag04-slide-23.html"></a>
+    <a class="seg" href="ag04-slide-24.html"></a>
+    <a class="seg" href="ag04-slide-25.html"></a>
+    <a class="seg" href="ag04-slide-26.html"></a>
+    <a class="seg" href="ag04-slide-27.html"></a>
+    <a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Attack Scenarios</span><span>Slide 14</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 3</span>
+    <div>
+      <div class="part-title">Attack Scenarios</div>
+      <div class="part-count">Slides 14–17 · Six documented incidents and the pattern they share</div>
+    </div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 14 · Scenarios 1–2</div>
+  <div class="slide-title">Scenario 1: Amazon Q VS Code — Scenario 2: GitHub MCP Tool Descriptor Poisoning</div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-num">Scenario 1</span>
+      <span class="scenario-name">Amazon Q VS Code Extension — Compromised Update Channel (2025)</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>What happened:</strong> Version 1.84.0 of the Amazon Q Developer VS Code extension was found to contain code that exfiltrated developer credentials — API keys, tokens, and access credentials from the developer's environment. The extension was distributed through the official VS Code marketplace with a valid signature.</p>
+      <p><strong>The supply chain failure:</strong> The attack entered through the extension's update channel. Developers (and AI coding agents using the extension) received the malicious update as a routine, signed package from a trusted source.</p>
+      <p><strong>Why agents amplify this:</strong> AI coding agents that are configured to use Amazon Q as a tool received the compromised extension automatically — and then ran with the compromised code operating in the background of every subsequent agentic task.</p>
+      <div class="scenario-tag red">Type 4 — Compromised registry/update channel</div>
+    </div>
+  </div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-num">Scenario 2</span>
+      <span class="scenario-name">GitHub MCP Tool Descriptor Poisoning — Invariant Labs (2025)</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>What happened:</strong> Invariant Labs demonstrated that hidden instructions embedded in a GitHub issue body — invisible to human readers but processed as authoritative context by LLMs — could cause an AI coding assistant to read and exfiltrate the developer's private repository contents. The assistant was using a GitHub MCP server to access issues as part of its normal workflow.</p>
+      <p><strong>The supply chain failure:</strong> The data the tool returned was the attack vector. The tool itself was operating exactly as intended — fetching issue content and providing it as context. The poisoning happened in the content, not the tool.</p>
+      <p><strong>The key finding:</strong> Any tool that fetches external content and provides it as context to an LLM is a potential tool descriptor / data poisoning vector.</p>
+      <div class="scenario-tag yellow">Type 1 — Poisoned tool data supply chain</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-13.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-15.html">Scenarios 3–4 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

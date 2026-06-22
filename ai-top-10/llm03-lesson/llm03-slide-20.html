@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM03:2025 — Supply Chain · Slide 20 of 29</title>
+<link rel="stylesheet" href="llm03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM03:2025</span><span class="nav-title">Supply Chain</span></div>
+  <span class="nav-right">Slide 20 of 29</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm03-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm03-slide-02.html" title="Slide 2 · The Twist"></a><a class="seg done" href="llm03-slide-03.html" title="Slide 3 · The Definition"></a><a class="seg done" href="llm03-slide-04.html" title="Slide 4 · Your Supply Chain"></a><a class="seg done" href="llm03-slide-05.html" title="Slide 5 · The Component Map"></a><a class="seg done" href="llm03-slide-06.html" title="Slide 6 · The Outcomes"></a><a class="seg done" href="llm03-slide-07.html" title="Slide 7 · Who Attacks"></a><a class="seg done" href="llm03-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm03-slide-09.html" title="Slide 9 · Dependency Confusion"></a><a class="seg done" href="llm03-slide-10.html" title="Slide 10 · Poisoned Build Pipeline"></a><a class="seg done" href="llm03-slide-11.html" title="Slide 11 · Malicious Model File"></a><a class="seg done" href="llm03-slide-12.html" title="Slide 12 · Scanner Bypass"></a><a class="seg done" href="llm03-slide-13.html" title="Slide 13 · Vulnerable LoRA Adapter"></a><a class="seg done" href="llm03-slide-14.html" title="Slide 14 · Fake & Abandoned Models"></a><a class="seg done" href="llm03-slide-15.html" title="Slide 15 · Scenario: PoisonGPT"></a><a class="seg done" href="llm03-slide-16.html" title="Slide 16 · Scenario: LeftoverLocals"></a><a class="seg done" href="llm03-slide-17.html" title="Slide 17 · Scenario: On-Device Swap"></a><a class="seg done" href="llm03-slide-18.html" title="Slide 18 · Scenario: T&Cs Change"></a><a class="seg done" href="llm03-slide-19.html" title="Slide 19 · Vet Suppliers"></a><a class="seg active" href="llm03-slide-20.html" title="Slide 20 · SBOM / AIBOM"></a><a class="seg" href="llm03-slide-21.html" title="Slide 21 · Patch & Scan"></a><a class="seg" href="llm03-slide-22.html" title="Slide 22 · Sign & Verify"></a><a class="seg" href="llm03-slide-23.html" title="Slide 23 · Red-Team First"></a><a class="seg" href="llm03-slide-24.html" title="Slide 24 · Demand Provenance"></a><a class="seg" href="llm03-slide-25.html" title="Slide 25 · Monitor Collaboration"></a><a class="seg" href="llm03-slide-26.html" title="Slide 26 · Anomaly Testing"></a><a class="seg" href="llm03-slide-27.html" title="Slide 27 · Protect the Edge"></a><a class="seg" href="llm03-slide-28.html" title="Slide 28 · Quiz"></a><a class="seg" href="llm03-slide-29.html" title="Slide 29 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 20</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 20 · Mitigation 2 of 9 — Inventory (SBOM / AIBOM)</div>
+  <div class="slide-title">You can't protect what you can't list.</div>
+  <div class="source-tag">📄 OWASP LLM Top 10:2025 · LLM03 Prevention #4 &amp; #5</div>
+
+  <div class="mit-card">
+    <div class="mit-num">OWASP — Software Bill of Materials</div>
+    <div class="mit-title">Maintain an up-to-date inventory of every component with an SBOM</div>
+    <div class="mit-section"><div class="mit-section-label blue">What OWASP Says</div><p>&ldquo;Maintain an up-to-date inventory of components using a Software Bill of Materials (SBOM)&hellip; this can also include license inventories.&rdquo; Extend it to models, datasets, and adapters &mdash; an <strong>AIBOM</strong>.</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label red">The Gap This Closes</div><p>When torchtriton (Slide 9) and Ultralytics (Slide 10) were found malicious, the urgent question for every team was &ldquo;are we affected, and where?&rdquo; Without an inventory you can't answer that in an incident &mdash; you're grepping production by hand while the clock runs.</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label green">How to Do This Right</div><p>&rarr; Generate an SBOM/AIBOM automatically in CI, every build &mdash; packages, models, datasets, adapters, versions, hashes<br>&rarr; Include license info so a bad license (Slide 18) is visible before you ship<br>&rarr; Make it queryable: &ldquo;does anything we run use package X version Y?&rdquo; should take seconds</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label yellow">How to Validate</div><p>Name yesterday's CVE and ask your inventory whether you're exposed. If producing the answer takes more than a minute, your SBOM isn't real yet.</p></div>
+  </div>
+<div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team for a list of every AI model, plugin, and dataset your application depends on. If that list doesn't exist, you can't patch what you don't know you have.</p>
+  </div>
+  <div class="btn-row"><a class="btn-secondary" href="llm03-slide-19.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm03-slide-21.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → Scan and patch the components</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

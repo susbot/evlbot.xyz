@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API5:2023 â Broken Function Level Authorization Â· Slide 24 of 28</title>
+<link rel="stylesheet" href="api05-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API5:2023</span><span class="nav-title">Broken Function Level Authorization</span></div>
+  <span class="nav-right">Slide 24 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api05-slide-01.html"></a><a class="seg done" href="api05-slide-02.html"></a><a class="seg done" href="api05-slide-03.html"></a><a class="seg done" href="api05-slide-04.html"></a><a class="seg done" href="api05-slide-05.html"></a><a class="seg done" href="api05-slide-06.html"></a><a class="seg done" href="api05-slide-07.html"></a><a class="seg done" href="api05-slide-08.html"></a><a class="seg done" href="api05-slide-09.html"></a><a class="seg done" href="api05-slide-10.html"></a><a class="seg done" href="api05-slide-11.html"></a><a class="seg done" href="api05-slide-12.html"></a><a class="seg done" href="api05-slide-13.html"></a><a class="seg done" href="api05-slide-14.html"></a><a class="seg done" href="api05-slide-15.html"></a><a class="seg done" href="api05-slide-16.html"></a><a class="seg done" href="api05-slide-17.html"></a><a class="seg done" href="api05-slide-18.html"></a><a class="seg done" href="api05-slide-19.html"></a><a class="seg done" href="api05-slide-20.html"></a><a class="seg done" href="api05-slide-21.html"></a><a class="seg done" href="api05-slide-22.html"></a><a class="seg done" href="api05-slide-23.html"></a><a class="seg active" href="api05-slide-24.html"></a><a class="seg" href="api05-slide-25.html"></a><a class="seg" href="api05-slide-26.html"></a><a class="seg" href="api05-slide-27.html"></a><a class="seg" href="api05-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 Â· Prevention</span><span>Slide 24</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 24 &#xb7; Mitigation 6</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 06</div>
+    <div class="mit-title">Explicitly test non-admin tokens against every admin endpoint in your test suite.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Authorization is a correctness property that must be tested, not assumed. For every admin endpoint in your API, write a test that:</p>
+      <p>1. Authenticates as a regular user (non-admin token)</p>
+      <p>2. Calls the admin endpoint</p>
+      <p>3. Asserts the response is 403 Forbidden</p>
+      <p>4. Fails the test (and the CI build) if it returns anything else</p>
+      <p>This class of tests is sometimes called &#x201C;negative authorization tests&#x201D; or &#x201C;privilege escalation tests.&#x201D; They verify that non-privileged roles cannot access privileged functions &#x2014; which is exactly what BFLA exploits when missing.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Test every role against every function</div>
+      <p>For complete coverage, test each role against each function:</p>
+      <p>&#x2022; Guest calling user functions &#x2192; expect 401 (not authenticated)</p>
+      <p>&#x2022; User calling premium functions &#x2192; expect 403</p>
+      <p>&#x2022; User calling admin functions &#x2192; expect 403</p>
+      <p>&#x2022; Premium user calling admin functions &#x2192; expect 403</p>
+      <p>&#x2022; Admin calling any function &#x2192; expect 200 (positive test)</p>
+      <p>These tests catch regressions: if a developer accidentally removes a role check during a refactor, the test suite catches it before it reaches production.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label yellow">Automation</div>
+      <p>Generate these tests from the permissions matrix (MIT 05). If the matrix defines what&#x2019;s permitted, a test generator can automatically produce negative tests for every DENY cell. When a new endpoint is added to the matrix, the negative tests for it are generated automatically.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your QA team whether your test suite includes tests that attempt to call admin endpoints while logged in as a regular user &#x2014; and confirms that those calls are rejected. If those tests don&#x2019;t exist, function-level authorization is untested.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api05-slide-23.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api05-slide-25.html">MIT 07: Monitor for probing &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

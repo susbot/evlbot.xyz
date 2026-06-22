@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 6 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 6 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag04-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag04-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag04-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag04-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg active" href="ag04-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg" href="ag04-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg" href="ag04-slide-08.html" title="Slide 8 · Why Runtime Composition Changes Everything"></a>
+    <a class="seg" href="ag04-slide-09.html" title="Slide 9 · Six Vulnerability Types"></a>
+    <a class="seg" href="ag04-slide-10.html" title="Slide 10 · Type 1 — Poisoned Prompts and Descriptors"></a>
+    <a class="seg" href="ag04-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg" href="ag04-slide-12.html" title="Slide 12 · Type 2 — Impersonation and Typosquatting"></a>
+    <a class="seg" href="ag04-slide-13.html" title="Slide 13 · Types 3–4 — Third-Party Agents and Poisoned Knowledge"></a>
+    <a class="seg" href="ag04-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg" href="ag04-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg" href="ag04-slide-16.html" title="Slide 16 · Scenarios 5–6"></a>
+    <a class="seg" href="ag04-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag04-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag04-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag04-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag04-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag04-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag04-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag04-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag04-slide-25.html" title="Slide 25 · Mitigations 7–8"></a>
+    <a class="seg" href="ag04-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag04-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag04-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — What Is It?</span><span>Slide 6</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 6 · The Attackers</div>
+  <div class="slide-title">Who launches AG04 attacks — and why agents are their preferred delivery vehicle</div>
+  <div class="slide-subtitle">Supply chain attackers don't target the agent directly. They target what the agent trusts.</div>
+
+  <div class="block">
+    <div class="block-label red">Registry and package poisoners</div>
+    <p>Attackers who compromise public package registries (npm, PyPI, LangChain, LlamaIndex) or push malicious packages to open-source ecosystems. They know that AI coding agents automatically install dependencies — and that agents are far less likely than humans to notice unusual behavior in a package that passes automated scans.</p>
+    <p>Their goal: get into every developer's machine simultaneously, by compromising the package that thousands of agents will install on their behalf.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Malicious MCP server publishers</div>
+    <p>Attackers who publish fake MCP servers to npm or other registries, mimicking the names, APIs, and descriptions of legitimate services. The first documented in-the-wild malicious MCP server (impersonating Postmark) was found on npm — it had the right name, right API signatures, and right documentation. It also secretly BCC'd every email to the attacker.</p>
+    <p>As the MCP ecosystem grows, this attack surface grows with it. Every new legitimate MCP server creates an opportunity for a convincing impersonator.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Prompt template and orchestration poisoners</div>
+    <p>Attackers who compromise the remote sources from which agents pull prompt templates, system instructions, or orchestration scripts. If an agent loads its system prompt from an external URL at startup, anyone who can modify that URL's content can reprogram the agent's behavior — without touching the agent's code or deployment.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label blue">Knowledge base and RAG index manipulators</div>
+    <p>Attackers who seed a shared knowledge index or RAG data source with crafted entries. The agent's retrieval system surfaces these entries as authoritative context. Over time, the agent's outputs shift in the attacker's desired direction — without any single obviously malicious action.</p>
+    <p><strong>This is a slow, hard-to-detect attack. By the time the bias is noticed, hundreds of responses may have been affected.</strong></p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-05.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-07.html">Let's be precise about what AG04 is — and isn't →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

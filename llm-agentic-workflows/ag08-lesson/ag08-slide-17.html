@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 17 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a><a class="seg done" href="ag08-slide-11.html"></a><a class="seg done" href="ag08-slide-12.html"></a><a class="seg done" href="ag08-slide-13.html"></a><a class="seg done" href="ag08-slide-14.html"></a><a class="seg done" href="ag08-slide-15.html"></a><a class="seg done" href="ag08-slide-16.html"></a>
+    <a class="seg active" href="ag08-slide-17.html"></a>
+    <a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 17</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 17 · Prevention Overview</div>
+  <div class="slide-title">Nine mitigations across three layers: detect failures early, contain them at boundaries, and limit blast radius at the action end.</div>
+
+  <div class="mit-overview-grid">
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT01</div>
+      <div class="mit-name">Output Validation at Agent Boundaries</div>
+      <div class="mit-desc">Every agent's output is validated against expected schema, value ranges, and completeness criteria before being passed to downstream agents.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT02</div>
+      <div class="mit-name">Circuit Breakers</div>
+      <div class="mit-desc">When an agent produces anomalous output or becomes unavailable, a circuit breaker stops passing requests to it and routes to a fallback — preventing further propagation and retry storms.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT03</div>
+      <div class="mit-name">Graceful Degradation and Fallback Behaviors</div>
+      <div class="mit-desc">When a primary agent fails, the pipeline falls back to simpler, safer behavior rather than failing completely or propagating the error downstream.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT04</div>
+      <div class="mit-name">Retry with Exponential Backoff and Jitter</div>
+      <div class="mit-desc">Failed requests are retried with increasing delays and randomized timing — preventing thundering herd patterns that extend outages when dependencies recover.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT05</div>
+      <div class="mit-name">Bulkhead Isolation</div>
+      <div class="mit-desc">Resource pools (connections, threads, memory) are partitioned per agent so that one agent's resource exhaustion cannot starve other agents that share the same infrastructure.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT06</div>
+      <div class="mit-name">Rate Limiting and Human Confirmation Gates</div>
+      <div class="mit-desc">High-volume or irreversible terminal actions (bulk emails, transfers, deletions) require human confirmation or are rate-limited — preventing a cascaded error from executing at full scale before detection.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT07</div>
+      <div class="mit-name">Idempotent Operations</div>
+      <div class="mit-desc">Actions are designed so that executing them multiple times produces the same result as executing them once — making retry-driven duplicates harmless.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT08</div>
+      <div class="mit-name">Pipeline Health Monitoring and Alerting</div>
+      <div class="mit-desc">Each agent's output volume, latency, error rate, and value distributions are monitored independently so that anomalies are detected before they propagate far downstream.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT09</div>
+      <div class="mit-name">Chaos Engineering and Failure Mode Testing</div>
+      <div class="mit-desc">Deliberate failure injection into the pipeline in controlled conditions — verifying that circuit breakers, fallbacks, and isolation mechanisms work as designed before production failures occur.</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-16.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-18.html">MIT01 + MIT02 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

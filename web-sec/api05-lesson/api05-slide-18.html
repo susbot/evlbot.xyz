@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API5:2023 â Broken Function Level Authorization Â· Slide 18 of 28</title>
+<link rel="stylesheet" href="api05-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API5:2023</span><span class="nav-title">Broken Function Level Authorization</span></div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api05-slide-01.html"></a><a class="seg done" href="api05-slide-02.html"></a><a class="seg done" href="api05-slide-03.html"></a><a class="seg done" href="api05-slide-04.html"></a><a class="seg done" href="api05-slide-05.html"></a><a class="seg done" href="api05-slide-06.html"></a><a class="seg done" href="api05-slide-07.html"></a><a class="seg done" href="api05-slide-08.html"></a><a class="seg done" href="api05-slide-09.html"></a><a class="seg done" href="api05-slide-10.html"></a><a class="seg done" href="api05-slide-11.html"></a><a class="seg done" href="api05-slide-12.html"></a><a class="seg done" href="api05-slide-13.html"></a><a class="seg done" href="api05-slide-14.html"></a><a class="seg done" href="api05-slide-15.html"></a><a class="seg done" href="api05-slide-16.html"></a><a class="seg done" href="api05-slide-17.html"></a><a class="seg active" href="api05-slide-18.html"></a><a class="seg" href="api05-slide-19.html"></a><a class="seg" href="api05-slide-20.html"></a><a class="seg" href="api05-slide-21.html"></a><a class="seg" href="api05-slide-22.html"></a><a class="seg" href="api05-slide-23.html"></a><a class="seg" href="api05-slide-24.html"></a><a class="seg" href="api05-slide-25.html"></a><a class="seg" href="api05-slide-26.html"></a><a class="seg" href="api05-slide-27.html"></a><a class="seg" href="api05-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 Â· Prevention</span><span>Slide 18</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 4</span>
+    <div><div class="part-title">Prevention</div><div class="part-count">Slides 18&#x2013;26 &#xb7; Seven mitigations + the full picture</div></div>
+  </div>
+  <div class="slide-eyebrow">Slide 18 &#xb7; Prevention Overview</div>
+  <div class="slide-title">Seven ways to fix broken function level authorization.</div>
+  <div class="slide-subtitle">Define who can call what. Enforce it everywhere. Test it explicitly.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F6AB;</div>
+      <div><div class="outcome-title">MIT 01 &#x2014; Deny by Default</div><div class="outcome-desc">Every endpoint returns 403 unless the calling role is explicitly permitted. No role = no access, automatically.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F511;</div>
+      <div><div class="outcome-title">MIT 02 &#x2014; Role-Based Access Control (RBAC) at the API Layer</div><div class="outcome-desc">Define roles. Define which roles can call which functions. Enforce the check in the API, not the UI.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4CB;</div>
+      <div><div class="outcome-title">MIT 03 &#x2014; Authorize on Method + Path, Not Just Path</div><div class="outcome-desc">A role check for GET /resource is not a role check for DELETE /resource. Each method-path combination is a distinct function.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F9E9;</div>
+      <div><div class="outcome-title">MIT 04 &#x2014; Centralized Authorization Logic</div><div class="outcome-desc">Don&#x2019;t duplicate role checks across every controller. One authorization service, enforced consistently across all endpoints.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4DD;</div>
+      <div><div class="outcome-title">MIT 05 &#x2014; Maintain an Explicit Function Permissions Map</div><div class="outcome-desc">A documented, reviewed list of every function and which roles can call it. Makes gaps visible and auditable.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F9EA;</div>
+      <div><div class="outcome-title">MIT 06 &#x2014; Explicitly Test Non-Admin Tokens Against Admin Paths</div><div class="outcome-desc">In your test suite: take a regular user token and try to call every admin endpoint. Expect 403 on all of them. Fail the build if any return 200.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F6A8;</div>
+      <div><div class="outcome-title">MIT 07 &#x2014; Log and Alert on 403s from Suspicious Clients</div><div class="outcome-desc">A spike in 403 responses from one user is a signal they&#x2019;re probing for unprotected endpoints. Monitor and alert.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api05-slide-17.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api05-slide-19.html">MIT 01: Deny by default &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

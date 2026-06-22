@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 3 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 3 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a>
+    <a class="seg active" href="ag08-slide-03.html"></a>
+    <a class="seg" href="ag08-slide-04.html"></a><a class="seg" href="ag08-slide-05.html"></a><a class="seg" href="ag08-slide-06.html"></a><a class="seg" href="ag08-slide-07.html"></a><a class="seg" href="ag08-slide-08.html"></a><a class="seg" href="ag08-slide-09.html"></a><a class="seg" href="ag08-slide-10.html"></a><a class="seg" href="ag08-slide-11.html"></a><a class="seg" href="ag08-slide-12.html"></a><a class="seg" href="ag08-slide-13.html"></a><a class="seg" href="ag08-slide-14.html"></a><a class="seg" href="ag08-slide-15.html"></a><a class="seg" href="ag08-slide-16.html"></a><a class="seg" href="ag08-slide-17.html"></a><a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 3</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 3 · Official Definition</div>
+  <div class="slide-title">What OWASP ASI08:2026 says — and what each phrase actually means.</div>
+
+  <div class="block">
+    <div class="block-label purple">OWASP ASI08:2026 — Cascading Failures</div>
+    <p style="font-size:1.05rem;line-height:1.7;color:var(--text);border-left:3px solid var(--accent);padding-left:1rem;margin:0.5rem 0 1rem;">"Failures, errors, or compromises in one agent propagate through a multi-agent system — causing dependent agents to produce incorrect results, consume excessive resources, or perform unauthorized actions — because the system lacks adequate isolation, validation, circuit-breaking, and graceful degradation mechanisms."</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Phrase by phrase</div>
+    <p><strong>"Failures, errors, or compromises in one agent"</strong> — The trigger can be accidental (a bad API response, a resource spike) or adversarial (a compromised agent deliberately emitting bad output). The cascade mechanism is the same in both cases.</p>
+    <p><strong>"Propagate through a multi-agent system"</strong> — The failure doesn't stay contained. It crosses the boundaries between agents through their normal communication channels — function calls, message queues, shared state.</p>
+    <p><strong>"Causing dependent agents to produce incorrect results, consume excessive resources, or perform unauthorized actions"</strong> — Three distinct harm modes: quality harm (wrong output), availability harm (resource exhaustion), and security harm (unauthorized actions triggered by malformed instructions).</p>
+    <p><strong>"Because the system lacks adequate isolation, validation, circuit-breaking, and graceful degradation"</strong> — The vulnerability is architectural, not in any individual agent. Each agent may be working correctly given what it was told. The problem is that no layer between them caught the bad data before it propagated.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-02.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-04.html">Why agents cascade →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 26 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+<style>
+.complete-hero { text-align:center; padding:2rem 1rem 1.5rem; }
+.complete-badge { font-size:3rem; margin-bottom:0.5rem; }
+.complete-title { font-size:1.8rem; font-weight:700; color:var(--fg); margin-bottom:0.5rem; }
+.complete-sub { font-size:1rem; color:var(--fg-dim); max-width:520px; margin:0 auto; line-height:1.6; }
+.takeaway-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin:1.5rem 0; }
+.takeaway-item { background:#111118; border:1px solid #2a2a3a; border-radius:10px; padding:0.9rem 1rem; }
+.takeaway-num { font-size:1.4rem; font-weight:800; color:var(--accent); line-height:1; }
+.takeaway-text { font-size:0.82rem; color:var(--fg-dim); margin-top:0.3rem; line-height:1.5; }
+.nav-cards { display:flex; gap:1rem; margin-top:1.5rem; }
+.nav-card { flex:1; background:#0f0f1a; border:1px solid #2a2a3a; border-radius:12px; padding:1rem; text-decoration:none; color:var(--fg); transition:border-color 0.15s; }
+.nav-card:hover { border-color:var(--accent); }
+.nav-card-label { font-size:0.7rem; color:var(--fg-dim); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.3rem; }
+.nav-card-title { font-size:0.92rem; font-weight:600; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Complete</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a><a class="seg done" href="ag06-slide-03.html"></a><a class="seg done" href="ag06-slide-04.html"></a><a class="seg done" href="ag06-slide-05.html"></a><a class="seg done" href="ag06-slide-06.html"></a><a class="seg done" href="ag06-slide-07.html"></a><a class="seg done" href="ag06-slide-08.html"></a><a class="seg done" href="ag06-slide-09.html"></a><a class="seg done" href="ag06-slide-10.html"></a><a class="seg done" href="ag06-slide-11.html"></a><a class="seg done" href="ag06-slide-12.html"></a><a class="seg done" href="ag06-slide-13.html"></a><a class="seg done" href="ag06-slide-14.html"></a><a class="seg done" href="ag06-slide-15.html"></a><a class="seg done" href="ag06-slide-16.html"></a><a class="seg done" href="ag06-slide-17.html"></a><a class="seg done" href="ag06-slide-18.html"></a><a class="seg done" href="ag06-slide-19.html"></a><a class="seg done" href="ag06-slide-20.html"></a><a class="seg done" href="ag06-slide-21.html"></a><a class="seg done" href="ag06-slide-22.html"></a><a class="seg done" href="ag06-slide-23.html"></a><a class="seg done" href="ag06-slide-24.html"></a><a class="seg done" href="ag06-slide-25.html"></a>
+    <a class="seg done" href="ag06-slide-26.html"></a>
+    <a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>AG06 Complete</span><span>26 / 28</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="complete-hero">
+    <div class="complete-badge">✓</div>
+    <div class="complete-title">AG06 Complete</div>
+    <div class="complete-sub">You've finished Memory &amp; Context Poisoning — 4 memory tiers, 6 vulnerability types, 6 real scenarios, and 9 mitigations across three defensive layers.</div>
+  </div>
+
+  <div class="takeaway-grid">
+    <div class="takeaway-item">
+      <div class="takeaway-num">01</div>
+      <div class="takeaway-text">Memory poisoning doesn't happen in the conversations it affects. The attack happens once — at write time. Everything after is the agent faithfully acting on a planted belief.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">02</div>
+      <div class="takeaway-text">Persistence is the defining risk. A single poisoning event can silently affect every conversation that retrieves the poisoned entry — potentially hundreds or thousands — until the entry is found and removed.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">03</div>
+      <div class="takeaway-text">The indirect ingestion channel is the most common attack path. Attackers don't need database access — they need to control content the agent will process and store.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">04</div>
+      <div class="takeaway-text">Memory tier separation (MIT06) is the highest-leverage control: agents cannot write to the curated knowledge base, so no injection technique can corrupt it.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">05</div>
+      <div class="takeaway-text">Cross-user memory leakage (Type 6) requires database-level namespace isolation — application-layer filtering can be bypassed by prompt injection that instructs the agent to query without the filter.</div>
+    </div>
+    <div class="takeaway-item">
+      <div class="takeaway-num">06</div>
+      <div class="takeaway-text">Multi-agent memory contamination propagates horizontally: one poisoned write to a shared store corrupts the beliefs of every agent that reads from it — the blast radius scales with the number of agents in the pipeline.</div>
+    </div>
+  </div>
+
+  <div class="nav-cards">
+    <a class="nav-card" href="ag06-slide-01.html">
+      <div class="nav-card-label">Review</div>
+      <div class="nav-card-title">← Restart AG06</div>
+    </a>
+    <a class="nav-card" href="../index.html">
+      <div class="nav-card-label">All Modules</div>
+      <div class="nav-card-title">← Back to Course Home</div>
+    </a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

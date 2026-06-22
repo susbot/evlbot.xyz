@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG05:2026 — Unexpected Code Execution · Slide 18 of 28</title>
+<link rel="stylesheet" href="ag05-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG05:2026</span>
+    <span class="nav-title">Unexpected Code Execution</span>
+  </div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag05-slide-01.html"></a><a class="seg done" href="ag05-slide-02.html"></a><a class="seg done" href="ag05-slide-03.html"></a><a class="seg done" href="ag05-slide-04.html"></a><a class="seg done" href="ag05-slide-05.html"></a><a class="seg done" href="ag05-slide-06.html"></a><a class="seg done" href="ag05-slide-07.html"></a><a class="seg done" href="ag05-slide-08.html"></a><a class="seg done" href="ag05-slide-09.html"></a><a class="seg done" href="ag05-slide-10.html"></a><a class="seg done" href="ag05-slide-11.html"></a><a class="seg done" href="ag05-slide-12.html"></a><a class="seg done" href="ag05-slide-13.html"></a><a class="seg done" href="ag05-slide-14.html"></a><a class="seg done" href="ag05-slide-15.html"></a><a class="seg done" href="ag05-slide-16.html"></a><a class="seg done" href="ag05-slide-17.html"></a>
+    <a class="seg active" href="ag05-slide-18.html"></a>
+    <a class="seg" href="ag05-slide-19.html"></a><a class="seg" href="ag05-slide-20.html"></a><a class="seg" href="ag05-slide-21.html"></a><a class="seg" href="ag05-slide-22.html"></a><a class="seg" href="ag05-slide-23.html"></a><a class="seg" href="ag05-slide-24.html"></a><a class="seg" href="ag05-slide-25.html"></a><a class="seg" href="ag05-slide-26.html"></a><a class="seg" href="ag05-slide-27.html"></a><a class="seg" href="ag05-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 18</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 4</span>
+    <div>
+      <div class="part-title">Prevention and Mitigations</div>
+      <div class="part-count">Slides 18–28 · Nine mitigations, a matrix, a quiz, and completion</div>
+    </div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 18 · Prevention Overview</div>
+  <div class="slide-title">Nine mitigations — built around three layers: harden the environment, control the execution, review the output</div>
+
+  <div class="mit-overview-grid">
+
+    <div class="mit-overview-item">
+      <div class="mit-overview-num">MIT01</div>
+      <div class="mit-overview-name">Strong sandbox isolation</div>
+      <div class="mit-overview-principle">Harden</div>
+    </div>
+
+    <div class="mit-overview-item">
+      <div class="mit-overview-num">MIT02</div>
+      <div class="mit-overview-name">Network egress restriction</div>
+      <div class="mit-overview-principle">Harden</div>
+    </div>
+
+    <div class="mit-overview-item">
+      <div class="mit-overview-num">MIT03</div>
+      <div class="mit-overview-name">Resource limits (CPU, memory, disk, time)</div>
+      <div class="mit-overview-principle">Harden</div>
+    </div>
+
+    <div class="mit-overview-item">
+      <div class="mit-overview-num">MIT04</div>
+      <div class="mit-overview-name">Least-privilege execution environment</div>
+      <div class="mit-overview-principle">Harden</div>
+    </div>
+
+    <div class="mit-overview-item">
+      <div class="mit-overview-num">MIT05</div>
+      <div class="mit-overview-name">Pre-execution code review — human or automated</div>
+      <div class="mit-overview-principle">Control</div>
+    </div>
+
+    <div class="mit-overview-item">
+      <div class="mit-overview-num">MIT06</div>
+      <div class="mit-overview-name">Confirmation gates for destructive operations</div>
+      <div class="mit-overview-principle">Control</div>
+    </div>
+
+    <div class="mit-overview-item">
+      <div class="mit-overview-num">MIT07</div>
+      <div class="mit-overview-name">Secrets isolation — no credentials in the execution environment</div>
+      <div class="mit-overview-principle">Harden</div>
+    </div>
+
+    <div class="mit-overview-item">
+      <div class="mit-overview-num">MIT08</div>
+      <div class="mit-overview-name">Execution logging and behavioral monitoring</div>
+      <div class="mit-overview-principle">Review</div>
+    </div>
+
+    <div class="mit-overview-item">
+      <div class="mit-overview-num">MIT09</div>
+      <div class="mit-overview-name">Generated code scanning before commit/deploy</div>
+      <div class="mit-overview-principle">Review</div>
+    </div>
+
+  </div>
+
+  <div class="callout yellow">
+    <div class="callout-label">The three-layer strategy</div>
+    <p><strong>Harden</strong> (MIT01–04, 07): Build the execution environment so that even if unexpected code runs, its impact is limited — no network, no excess permissions, no secrets, no unlimited resources. <strong>Control</strong> (MIT05–06): Insert checkpoints between generation and execution for high-risk operations. <strong>Review</strong> (MIT08–09): Log everything; scan generated code for suspicious patterns before it's committed or deployed.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag05-slide-17.html">← Back</a>
+    <a class="btn-primary" href="ag05-slide-19.html">MIT01 — Strong Sandbox Isolation →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 5 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 5 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a>
+    <a class="seg active" href="ag08-slide-05.html"></a>
+    <a class="seg" href="ag08-slide-06.html"></a><a class="seg" href="ag08-slide-07.html"></a><a class="seg" href="ag08-slide-08.html"></a><a class="seg" href="ag08-slide-09.html"></a><a class="seg" href="ag08-slide-10.html"></a><a class="seg" href="ag08-slide-11.html"></a><a class="seg" href="ag08-slide-12.html"></a><a class="seg" href="ag08-slide-13.html"></a><a class="seg" href="ag08-slide-14.html"></a><a class="seg" href="ag08-slide-15.html"></a><a class="seg" href="ag08-slide-16.html"></a><a class="seg" href="ag08-slide-17.html"></a><a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 5</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 5 · Outcomes</div>
+  <div class="slide-title">Six categories of harm that cascading failures produce — each harder to recover from than the last.</div>
+
+  <div class="vuln-grid">
+    <div class="vuln-card">
+      <div class="vuln-title">Incorrect action execution at scale</div>
+      <div class="vuln-body">Downstream agents execute actions — emails sent, transactions processed, files modified — based on corrupted upstream data. By the time the error is detected, many irreversible actions have been taken.</div>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-title">Error amplification across hops</div>
+      <div class="vuln-body">A small input error compounds at each pipeline stage. A 5% data truncation becomes a 40% analysis distortion, which becomes a 100% wrong recommendation. Each agent processes bad input and produces output that is worse than what it received.</div>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-title">Resource exhaustion and availability collapse</div>
+      <div class="vuln-body">A failing agent that retries excessively, or returns data that causes a downstream agent to loop, consumes compute and memory across the entire pipeline — degrading or crashing components that would otherwise have operated normally.</div>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-title">Runaway feedback loops</div>
+      <div class="vuln-body">When agent outputs feed back into their own inputs — directly or through shared state — a failure can create a self-reinforcing loop that drives behavior to an extreme, with no natural stopping point short of external intervention.</div>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-title">Unauthorized actions via corrupted instructions</div>
+      <div class="vuln-body">An attacker who can control one agent's output can use that agent as a stepping stone — emitting instructions that, when passed downstream, cause other agents to perform actions the attacker couldn't trigger directly.</div>
+    </div>
+    <div class="vuln-card">
+      <div class="vuln-title">Delayed detection and extended blast radius</div>
+      <div class="vuln-body">Because failures appear in correct format, automated monitoring doesn't catch them. Harm accumulates for minutes to hours before a human notices an anomaly. The longer detection takes, the larger the set of real-world actions that need to be reversed.</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-04.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-06.html">Who triggers this →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

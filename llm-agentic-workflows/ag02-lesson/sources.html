@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG02:2026 — Sources and References</title>
+<link rel="stylesheet" href="ag02-shared.css">
+<style>
+.sources-section{margin-bottom:28px;}
+.source-section-title{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.source-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:10px;}
+.source-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.source-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent-bright);margin-bottom:6px;}
+.source-desc{font-size:12px;color:var(--muted);line-height:1.6;}
+.source-used{font-size:11px;color:var(--subtle);margin-top:6px;padding-top:6px;border-top:1px solid var(--border);}
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG02:2026</span>
+    <span class="nav-title">Sources and References</span>
+  </div>
+  <span class="nav-right"><a href="ag02-slide-01.html" style="color:var(--accent-bright);text-decoration:none;">← Back to lesson</a></span>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Bibliography</div>
+  <div class="slide-title">Sources for AG02: Tool Misuse and Exploitation</div>
+  <div class="slide-subtitle">All claims in this module are grounded in the sources below.</div>
+
+  <div class="sources-section">
+    <div class="source-section-title">Primary Source — OWASP Framework</div>
+
+    <div class="source-item">
+      <div class="source-title">OWASP Top 10 for Agentic Applications 2026</div>
+      <div class="source-meta">OWASP Gen AI Security Project · 2026 · ASI02: Tool Misuse and Exploitation</div>
+      <div class="source-desc">The authoritative source for this module. ASI02 definition, attack scenarios (Tool Poisoning, Indirect Injection → Tool Pivot, Over-Privileged API, Tool Chaining exfil, Typosquatting, EDR Bypass via Tool Chain, Approved Tool Misuse), and all eight mitigations are sourced directly from this document.</div>
+      <div class="source-used">Used in: Slides 3, 4, 5, 8, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26</div>
+    </div>
+  </div>
+
+  <div class="sources-section">
+    <div class="source-section-title">Real Incidents and CVEs</div>
+
+    <div class="source-item">
+      <div class="source-title">AgentFlayer: 0-Click Exploit Leading to Data Exfiltration from Microsoft Copilot Studio</div>
+      <div class="source-meta">Security Research · 2024 · Microsoft Copilot Studio</div>
+      <div class="source-desc">Demonstrated a 0-click exploit against Microsoft Copilot Studio exploiting over-broad tool defaults to exfiltrate user data without any required user interaction. Cited in the OWASP ASI02 references as a key real-world example of Type 1 (Over-Privileged Tool) exploitation.</div>
+      <div class="source-used">Used in: Slides 5, 11, 26</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-title">Amazon Q Developer: Secrets Leaked via DNS and Prompt Injection</div>
+      <div class="source-meta">Security Research · 2025 · Amazon Web Services</div>
+      <div class="source-desc">Documented attack against Amazon Q Developer where a prompt injection caused the agent to exfiltrate secrets by encoding them in DNS query hostnames — using the agent's legitimate network access tools. Demonstrates that any tool generating outbound network traffic is a potential covert exfiltration channel. Cited in OWASP ASI02 references.</div>
+      <div class="source-used">Used in: Slides 5, 11, 24, 26</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-title">MCP GitHub Vulnerability — Tool Descriptor Poisoning</div>
+      <div class="source-meta">Invariant Labs · 2025 · GitHub MCP Integration</div>
+      <div class="source-desc">Invariant Labs demonstrated a prompt injection in GitHub's MCP server where malicious content hidden in a public repository's tool metadata caused an AI assistant to exfiltrate private repository data when the tool was invoked. Demonstrates tool descriptor poisoning as an attack vector in the MCP ecosystem.</div>
+      <div class="source-used">Used in: Slides 8, 13, 26</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-title">AutoGPT — Unbounded Filesystem and Execution Permissions</div>
+      <div class="source-meta">Community-documented · 2023 · Early AutoGPT deployments</div>
+      <div class="source-desc">Early AutoGPT incidents demonstrated how agents with unrestricted filesystem and shell execution tools perform unintended destructive actions within their authorized scope — a foundational case study for the ASI02 misalignment scenario (Scenario 07). Cited in the OWASP ASI02 references.</div>
+      <div class="source-used">Used in: Slides 5, 16</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-title">Progent: Programmable Privilege Control for LLM Agents</div>
+      <div class="source-meta">Academic Research · cited in OWASP ASI02</div>
+      <div class="source-desc">Research on programmatic privilege control mechanisms for LLM agents — relevant to the Least Privilege (MIT 01) and Intent Gate (MIT 04) mitigations discussed in this module.</div>
+      <div class="source-used">Used in: Slide 19 (context)</div>
+    </div>
+  </div>
+
+  <div class="sources-section">
+    <div class="source-section-title">Background and Context</div>
+
+    <div class="source-item">
+      <div class="source-title">Model Context Protocol (MCP) — Specification</div>
+      <div class="source-meta">Anthropic · Released November 2024</div>
+      <div class="source-desc">The open standard for dynamic tool discovery and connection in AI agent systems. Understanding MCP is essential context for ASI02 because dynamic tool discovery dramatically expands the attack surface for tool descriptor poisoning and tool name impersonation attacks.</div>
+      <div class="source-used">Used in: Slide 8</div>
+    </div>
+
+    <div class="source-item">
+      <div class="source-title">Building AI Agents with Python: From LangChain to AutoGPT</div>
+      <div class="source-meta">Technical Tutorial · cited in OWASP ASI02</div>
+      <div class="source-desc">Introductory agent-building tutorial that illustrates the risks of unconstrained tools, identity-less execution, and overly permissive agent capabilities — relevant context for why ASI02 is so common in early-stage agentic deployments.</div>
+      <div class="source-used">Used in: Context for Slides 10, 16</div>
+    </div>
+  </div>
+
+  <div class="sources-section">
+    <div class="source-section-title">Disclaimer</div>
+    <div class="source-item">
+      <div class="source-desc">This module is an independent educational resource. It is not affiliated with, endorsed by, or sponsored by OWASP or any of the organizations whose research is cited above. All trademarks and product names are the property of their respective owners. Real incident descriptions are based on publicly available security research disclosures and may not reflect the full technical details of the original findings.</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag02-slide-01.html">← Back to Lesson</a>
+    <a class="btn-primary" href="../index.html">Course Home</a>
+  </div>
+
+</div>
+</body>
+</html>

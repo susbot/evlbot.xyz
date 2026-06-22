@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG01:2026 — Agent Goal Hijack · Slide 18 of 28</title>
+<link rel="stylesheet" href="ag01-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG01:2026</span>
+    <span class="nav-title">Agent Goal Hijack</span>
+  </div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag01-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag01-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag01-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag01-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag01-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag01-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag01-slide-07.html" title="Slide 7 · Prompt Injection vs Goal Hijack"></a>
+    <a class="seg done" href="ag01-slide-08.html" title="Slide 8 · Why Agents Are Different"></a>
+    <a class="seg done" href="ag01-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag01-slide-10.html" title="Slide 10 · Direct Goal Manipulation"></a>
+    <a class="seg done" href="ag01-slide-11.html" title="Slide 11 · Direct — Real Example"></a>
+    <a class="seg done" href="ag01-slide-12.html" title="Slide 12 · Indirect Instruction Injection"></a>
+    <a class="seg done" href="ag01-slide-13.html" title="Slide 13 · Indirect — Real Example"></a>
+    <a class="seg done" href="ag01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a>
+    <a class="seg done" href="ag01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a>
+    <a class="seg done" href="ag01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a>
+    <a class="seg done" href="ag01-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg active" href="ag01-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag01-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag01-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag01-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag01-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag01-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag01-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag01-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag01-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag01-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag01-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 18</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 4</span>
+    <div>
+      <div class="part-title">Prevention</div>
+      <div class="part-count">Slides 18–28 · Seven mitigations, a matrix, a quiz, and what you now know</div>
+    </div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 18 · Prevention Overview</div>
+  <div class="slide-title">Why defense is hard — and what the strategy actually is</div>
+  <div class="slide-subtitle">No single control stops agent goal hijack. Here's why, and what a real defense looks like.</div>
+
+  <div class="callout red">
+    <div class="callout-label">Why this is hard</div>
+    <p>The attack uses the agent's own capabilities against it. There is no malicious binary to block, no exploit to patch, no signature to detect. <strong>The attack is valid text, processed correctly, by a working system.</strong> Traditional security tooling — firewalls, AV, WAFs — has no visibility into what an agent is reasoning about.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label blue">The strategy: layered architectural controls</div>
+    <p>Because no single control is sufficient, defense requires multiple independent layers — each reducing the probability and impact of a successful hijack. The goal isn't to make hijack impossible. It's to make it detectable, limited in blast radius, and recoverable.</p>
+    <p>The seven mitigations that follow operate across four dimensions:</p>
+    <p><strong>Visibility</strong> — knowing what the agent is doing and why (MIT 4).</p>
+    <p><strong>Intent integrity</strong> — protecting the agent's goal state from corruption (MIT 1, MIT 2).</p>
+    <p><strong>Access restriction</strong> — limiting what a hijacked agent can reach (MIT 3).</p>
+    <p><strong>Human oversight</strong> — requiring human approval before high-stakes actions execute (MIT 5, MIT 6, MIT 7).</p>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">The honest tradeoff</div>
+    <p>Every mitigation reduces capability alongside risk. Least privilege means the agent can do less. Human-in-the-loop means the agent is slower. Strict input sanitization means some legitimate content gets flagged. <strong>There is no free defense.</strong> The mitigations that follow are worth it — but teams need to understand what they're trading to deploy them honestly.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag01-slide-17.html">← Back</a>
+    <a class="btn-primary" href="ag01-slide-19.html">Start the mitigations → MIT 01</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">View sources for this lesson</a></div>
+</body>
+</html>

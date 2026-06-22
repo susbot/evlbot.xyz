@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 25 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 25 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a><a class="seg done" href="ag04-slide-02.html"></a><a class="seg done" href="ag04-slide-03.html"></a><a class="seg done" href="ag04-slide-04.html"></a><a class="seg done" href="ag04-slide-05.html"></a><a class="seg done" href="ag04-slide-06.html"></a><a class="seg done" href="ag04-slide-07.html"></a><a class="seg done" href="ag04-slide-08.html"></a><a class="seg done" href="ag04-slide-09.html"></a><a class="seg done" href="ag04-slide-10.html"></a><a class="seg done" href="ag04-slide-11.html"></a><a class="seg done" href="ag04-slide-12.html"></a><a class="seg done" href="ag04-slide-13.html"></a><a class="seg done" href="ag04-slide-14.html"></a><a class="seg done" href="ag04-slide-15.html"></a><a class="seg done" href="ag04-slide-16.html"></a><a class="seg done" href="ag04-slide-17.html"></a><a class="seg done" href="ag04-slide-18.html"></a><a class="seg done" href="ag04-slide-19.html"></a><a class="seg done" href="ag04-slide-20.html"></a><a class="seg done" href="ag04-slide-21.html"></a><a class="seg done" href="ag04-slide-22.html"></a><a class="seg done" href="ag04-slide-23.html"></a><a class="seg done" href="ag04-slide-24.html"></a>
+    <a class="seg active" href="ag04-slide-25.html"></a>
+    <a class="seg" href="ag04-slide-26.html"></a><a class="seg" href="ag04-slide-27.html"></a><a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 25</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 25 · MIT08 + MIT09 — Supply Chain Kill Switch and Zero-Trust Design</div>
+  <div class="slide-title">MIT08: Build in the ability to instantly isolate any component. MIT09: Never trust anything just because it's inside the system.</div>
+  <div class="slide-subtitle">When a supply chain compromise is detected, you need a response that's faster than the attack's blast radius.</div>
+
+  <div class="block">
+    <div class="block-label red">MIT08 — Supply chain kill switch</div>
+    <p>A supply chain kill switch is the ability to immediately isolate or disable any component in your agentic system — a specific tool, an MCP server connection, a third-party agent integration, a knowledge source — without taking down the entire system.</p>
+    <p>When a compromise is detected (say, a newly reported malicious version of a package your agents use), the kill switch lets you block that component across all deployments simultaneously, before you've finished the full incident response. This is the operational equivalent of a circuit breaker.</p>
+    <p><strong>What it requires:</strong> a dynamic allowlist that can be updated in real-time; agents that check the allowlist before each component load (not just at startup); centralized control plane that propagates kill signals to all agent instances.</p>
+    <p>Without a kill switch, responding to an active supply chain compromise means taking down all affected agent deployments while the fix is deployed — which may take hours or days. With a kill switch, you can isolate the compromised component in seconds.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">MIT09 — Zero-trust design</div>
+    <p>Zero-trust for agentic supply chains means: <strong>no component is trusted by default, regardless of where it came from or how it arrived.</strong></p>
+    <p>Every tool call is treated as potentially hostile. Every sub-agent response is validated before use. Every prompt template is verified against a hash before loading. Every knowledge base entry is treated as untrusted input until proven otherwise. Every agent card is verified against a PKI before use.</p>
+    <p>Zero-trust doesn't mean you verify everything in a computationally expensive way on every call. It means the architecture defaults to minimal trust and requires explicit, verifiable authorization for every operation — rather than assuming that anything inside the system boundary is safe.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-24.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-26.html">The mitigation matrix →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

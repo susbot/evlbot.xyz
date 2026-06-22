@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 28 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 28 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg done" href="api02-slide-07.html"></a><a class="seg done" href="api02-slide-08.html"></a><a class="seg done" href="api02-slide-09.html"></a><a class="seg done" href="api02-slide-10.html"></a><a class="seg done" href="api02-slide-11.html"></a><a class="seg done" href="api02-slide-12.html"></a><a class="seg done" href="api02-slide-13.html"></a><a class="seg done" href="api02-slide-14.html"></a><a class="seg done" href="api02-slide-15.html"></a><a class="seg done" href="api02-slide-16.html"></a><a class="seg done" href="api02-slide-17.html"></a><a class="seg done" href="api02-slide-18.html"></a><a class="seg done" href="api02-slide-19.html"></a><a class="seg done" href="api02-slide-20.html"></a><a class="seg done" href="api02-slide-21.html"></a><a class="seg done" href="api02-slide-22.html"></a><a class="seg done" href="api02-slide-23.html"></a><a class="seg done" href="api02-slide-24.html"></a><a class="seg done" href="api02-slide-25.html"></a><a class="seg done" href="api02-slide-26.html"></a><a class="seg done" href="api02-slide-27.html"></a><a class="seg active" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Complete</span><span>Slide 28</span></div>
+</div>
+<div class="slide active">
+
+  <div class="complete-wrap">
+    <div class="complete-icon">✅</div>
+    <div class="complete-title">Module Complete</div>
+    <div class="complete-sub">You finished API2 — Broken Authentication. Here's what you now understand:</div>
+    <div class="checklist">
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">What broken authentication is — the system that confirms identity can be bypassed, forged, or stolen</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">How it differs from API1 — API1 knew who you were but didn't check what you could access; API2 can't confirm who you are at all</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Five attack patterns: credential stuffing, brute force without lockout, broken token validation (JWT alg:none), token leakage in URLs, and missing re-auth</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Real incidents — Fortnite (200M accounts, OAuth redirect exploit), Spotify (380M credential pairs, no rate limiting), Parler (70TB scraped, no auth on endpoints)</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Seven mitigations: proven standards, rate limiting + lockout, MFA, proper token validation, secure storage, re-auth for sensitive ops, tokens in headers not URLs</span></div>
+      <div class="check-item"><span class="check-mark">✓</span><span class="check-text">Why authentication is foundational — every other API security control assumes it worked correctly</span></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label pink">The one thing to carry forward</div>
+    <p>Authentication isn't a gate you pass through once at login. It's a continuous contract: <strong>every request must prove identity, every token must be validated completely, every sensitive operation must re-verify the user.</strong> One gap in that contract is all an attacker needs.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-27.html">← Back to Quiz</a>
+    <a class="btn-primary" href="../api03-lesson/api03-slide-01.html">Next: API3 — Broken Object Property Level Authorization →</a>
+  </div>
+
+</div>
+
+</body>
+</html>

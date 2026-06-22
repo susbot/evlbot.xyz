@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 22 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 22 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg done" href="api10-slide-11.html"></a><a class="seg done" href="api10-slide-12.html"></a><a class="seg done" href="api10-slide-13.html"></a><a class="seg done" href="api10-slide-14.html"></a><a class="seg done" href="api10-slide-15.html"></a><a class="seg done" href="api10-slide-16.html"></a><a class="seg done" href="api10-slide-17.html"></a><a class="seg done" href="api10-slide-18.html"></a><a class="seg done" href="api10-slide-19.html"></a><a class="seg done" href="api10-slide-20.html"></a><a class="seg done" href="api10-slide-21.html"></a><a class="seg active" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 22</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 22 &#xb7; MIT 04</div>
+  <div class="slide-title">Security due diligence &#x2014; evaluate a vendor&#x2019;s security before integrating.</div>
+  <div class="slide-subtitle">A vendor breach becomes your breach. Evaluate their security as part of every integration decision.</div>
+  <div class="block">
+    <div class="block-label pink">What to evaluate</div>
+    <p>Before integrating a third-party API, evaluate the vendor&#x2019;s security posture: their disclosure and incident response history, whether they have published SOC 2 Type II or ISO 27001 certifications, how they handle CDN file integrity, and their data handling practices. This due diligence is not a guarantee &#x2014; it&#x2019;s a baseline that filters out vendors with known poor practices.</p>
+  </div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4C4;</div>
+      <div><div class="outcome-title">Review security certifications and attestations</div><div class="outcome-desc">Ask vendors for SOC 2 Type II reports, ISO 27001 certifications, or penetration test summaries. A vendor who refuses to share any security documentation is a red flag. SOC 2 Type II in particular attests to security controls over a period of time &#x2014; not just a point-in-time assessment.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F50D;</div>
+      <div><div class="outcome-title">Research public incident history</div><div class="outcome-desc">Search for past security incidents involving the vendor: breaches, CVEs, or CDN compromises. Inbenta had not published a security breach prior to the Ticketmaster incident &#x2014; but researching their CDN hosting, script integrity practices, and security controls would have revealed gaps. Public bug bounty programs are a positive signal: vendors who run bug bounty programs are more likely to have a mature security response process.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4CB;</div>
+      <div><div class="outcome-title">Include third-party security in vendor contracts</div><div class="outcome-desc">Contracts with third-party API vendors should include: security requirements (encryption, access controls), incident notification timelines (notification within 24-72 hours of a suspected breach), and right-to-audit clauses. A contract doesn&#x2019;t prevent breaches &#x2014; but it creates accountability and ensures timely notification so you can respond before the impact expands.</div></div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Before signing a contract with a third-party API vendor, ask them for a SOC 2 Type II report or equivalent security certification. Also ask how they would notify you if their service was breached &#x2014; and how quickly. Ticketmaster ran a compromised script for four months before a bank spotted the fraud.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-21.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-23.html">MIT 05: Subresource Integrity &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

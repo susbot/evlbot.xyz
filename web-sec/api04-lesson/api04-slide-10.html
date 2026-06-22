@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Unrestricted Resource Consumption · Slide 10 of 28</title>
+<link rel="stylesheet" href="api04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Unrestricted Resource Consumption</span></div>
+  <span class="nav-right">Slide 10 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api04-slide-01.html"></a><a class="seg done" href="api04-slide-02.html"></a><a class="seg done" href="api04-slide-03.html"></a><a class="seg done" href="api04-slide-04.html"></a><a class="seg done" href="api04-slide-05.html"></a><a class="seg done" href="api04-slide-06.html"></a><a class="seg done" href="api04-slide-07.html"></a><a class="seg done" href="api04-slide-08.html"></a><a class="seg done" href="api04-slide-09.html"></a><a class="seg active" href="api04-slide-10.html"></a><a class="seg" href="api04-slide-11.html"></a><a class="seg" href="api04-slide-12.html"></a><a class="seg" href="api04-slide-13.html"></a><a class="seg" href="api04-slide-14.html"></a><a class="seg" href="api04-slide-15.html"></a><a class="seg" href="api04-slide-16.html"></a><a class="seg" href="api04-slide-17.html"></a><a class="seg" href="api04-slide-18.html"></a><a class="seg" href="api04-slide-19.html"></a><a class="seg" href="api04-slide-20.html"></a><a class="seg" href="api04-slide-21.html"></a><a class="seg" href="api04-slide-22.html"></a><a class="seg" href="api04-slide-23.html"></a><a class="seg" href="api04-slide-24.html"></a><a class="seg" href="api04-slide-25.html"></a><a class="seg" href="api04-slide-26.html"></a><a class="seg" href="api04-slide-27.html"></a><a class="seg" href="api04-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 · How It Works</span><span>Slide 10</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 10 · Bulk Scraping</div>
+  <div class="slide-title">No rate limit. No pagination cap. The dataset is yours.</div>
+  <div class="slide-subtitle">How an automated client drains an entire dataset from an unprotected API.</div>
+
+  <div class="callout yellow">
+    <div class="callout-label">The Setup</div>
+    <p>An API endpoint returns a list of records with optional pagination. Without a rate limit, a client can call it as fast as the network allows. Without a maximum page size, a single request can return millions of records. Without authentication on public endpoints, no credential is needed at all.</p>
+    <p>An attacker writes a simple loop:</p>
+  </div>
+
+  <div class="mono-block"><span class="comment"># Pseudocode: bulk scrape with no rate limiting</span>
+page = 1
+while True:
+    response = GET /api/users?page={page}&limit=1000
+    if response.records is empty:
+        break
+    save(response.records)    <span class="comment"># write to disk</span>
+    page += 1
+    <span class="comment"># no sleep needed — the API doesn't enforce any delay</span>
+
+<span class="comment"># Result: all users extracted, one page per request, as fast as the server responds</span>
+<span class="comment"># On a fast API: millions of records in hours</span></div>
+
+  <div class="block">
+    <div class="block-label red">Why there's no alarm</div>
+    <p>Each individual request is valid. It hits the same endpoint a real user would. It uses a valid (or no) token. The response is correct data. The only anomaly is the <em>rate</em> — but without a rate limit defined, the server has no baseline to compare against. From the server's perspective, it's just a busy day.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">The three controls that stop this</div>
+    <p>Rate limiting (max requests per minute per client), maximum page size (cap the records-per-page parameter), and — for sensitive data — authentication. Any one of these adds meaningful friction. All three together make bulk scraping economically unfeasible.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api04-slide-09.html">← Back</a>
+    <a class="btn-primary" href="api04-slide-11.html">Real incident: Venmo →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

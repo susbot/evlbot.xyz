@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 9 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 9 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a>
+    <a class="seg active" href="ag07-slide-09.html"></a>
+    <a class="seg" href="ag07-slide-10.html"></a><a class="seg" href="ag07-slide-11.html"></a><a class="seg" href="ag07-slide-12.html"></a><a class="seg" href="ag07-slide-13.html"></a><a class="seg" href="ag07-slide-14.html"></a><a class="seg" href="ag07-slide-15.html"></a><a class="seg" href="ag07-slide-16.html"></a><a class="seg" href="ag07-slide-17.html"></a><a class="seg" href="ag07-slide-18.html"></a><a class="seg" href="ag07-slide-19.html"></a><a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Vulnerability Types</span><span>Slide 9</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 9 · Part 2 Overview</div>
+  <div class="slide-title">Six ways insecure inter-agent channels are exploited — each targeting a different property of the communication.</div>
+
+  <div class="mit-overview-grid">
+    <div class="mit-overview-item">
+      <div class="mit-num">Type 1</div>
+      <div class="mit-name">Message Forgery</div>
+      <div class="mit-desc">Attacker creates a fake message that appears to originate from a legitimate agent — exploiting the absence of sender authentication.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Type 2</div>
+      <div class="mit-name">Message Tampering in Transit</div>
+      <div class="mit-desc">A valid message is intercepted and its content is altered before delivery — exploiting the absence of message integrity verification.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Type 3</div>
+      <div class="mit-name">Orchestrator Impersonation</div>
+      <div class="mit-desc">An attacker or compromised component claims the orchestrator's identity — gaining the ability to issue instructions to all sub-agents the orchestrator controls.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Type 4</div>
+      <div class="mit-name">Replay Attacks</div>
+      <div class="mit-desc">A previously valid message is re-sent at an unauthorized time — exploiting the absence of replay protection (nonces, timestamps, sequence numbers).</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Type 5</div>
+      <div class="mit-name">Channel Eavesdropping</div>
+      <div class="mit-desc">Inter-agent messages are read in transit — harvesting sensitive data (credentials, user data, tool results) passed between agents over unencrypted channels.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">Type 6</div>
+      <div class="mit-name">Task Queue Injection</div>
+      <div class="mit-desc">Attacker with write access to a shared task queue inserts unauthorized tasks that agents pull and execute as if they were legitimately queued.</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-08.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-10.html">Types 1 &amp; 2 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

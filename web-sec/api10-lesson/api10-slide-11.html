@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 11 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 11 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg active" href="api10-slide-11.html"></a><a class="seg" href="api10-slide-12.html"></a><a class="seg" href="api10-slide-13.html"></a><a class="seg" href="api10-slide-14.html"></a><a class="seg" href="api10-slide-15.html"></a><a class="seg" href="api10-slide-16.html"></a><a class="seg" href="api10-slide-17.html"></a><a class="seg" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 11</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 11 &#xb7; Real Incident</div>
+  <div class="slide-title">Ticketmaster / Magecart / Inbenta &#x2014; 40,000 cards stolen through a trusted chatbot script.</div>
+  <div class="slide-subtitle">February&#x2013;June 2018. The attack ran undetected for four months. A bank&#x2019;s fraud detection found it first.</div>
+  <div class="source-tag">&#x1F4C4; UK ICO &#xb7; Inbenta blog post &#xb7; RiskIQ Magecart research &#xb7; 2018</div>
+  <div class="scenario-card">
+    <div class="scenario-num">TIMELINE</div>
+    <div class="scenario-title">Ticketmaster UK &#x2014; Magecart Group 9 &#x2014; 2018</div>
+    <div class="scenario-body">
+      <p><strong>Before the attack:</strong> Ticketmaster UK integrated Inbenta&#x2019;s customer support chatbot. The integration loaded a single JavaScript file from Inbenta&#x2019;s CDN on multiple pages &#x2014; including the payment and checkout pages. The script ran with full page access. Inbenta later stated that Ticketmaster had specifically asked them to use a JavaScript snippet that was not intended for payment pages and that Inbenta had not been informed it would be used there.</p>
+      <p><strong>February 2018:</strong> Attackers &#x2014; attributed to Magecart Group 9 by RiskIQ &#x2014; gained access to Inbenta&#x2019;s CDN. They modified the JavaScript file served to Ticketmaster to include a card-skimming payload. The modification was subtle: the skimmer was appended to the existing legitimate functionality of the widget, making it harder to detect by casual review.</p>
+      <p><strong>February&#x2013;June 2018:</strong> Every Ticketmaster UK customer who completed a purchase on an affected page had their card data captured by the skimmer and exfiltrated to an attacker-controlled server. The attack ran silently for approximately four months.</p>
+    </div>
+    <div class="scenario-why"><strong>Discovery and aftermath:</strong> Monzo Bank, a UK digital bank, identified a pattern of fraudulent card transactions where the common preceding transaction was a Ticketmaster UK purchase. Monzo notified Ticketmaster on June 12, 2018. Ticketmaster disabled Inbenta&#x2019;s script within hours and confirmed the breach on June 23, 2018. Approximately 9.4 million customers across Europe were notified. The UK ICO fined Ticketmaster &#xA3;1.25 million in November 2020 for failing to protect customers&#x2019; payment card data. Inbenta stated the attack targeted only the customized script used by Ticketmaster and that no other Inbenta client was affected by this specific incident.</div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-10.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-12.html">Pattern 2: Redirect exploitation &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

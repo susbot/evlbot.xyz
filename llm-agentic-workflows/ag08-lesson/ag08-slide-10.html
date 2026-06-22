@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 10 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 10 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a>
+    <a class="seg active" href="ag08-slide-10.html"></a>
+    <a class="seg" href="ag08-slide-11.html"></a><a class="seg" href="ag08-slide-12.html"></a><a class="seg" href="ag08-slide-13.html"></a><a class="seg" href="ag08-slide-14.html"></a><a class="seg" href="ag08-slide-15.html"></a><a class="seg" href="ag08-slide-16.html"></a><a class="seg" href="ag08-slide-17.html"></a><a class="seg" href="ag08-slide-18.html"></a><a class="seg" href="ag08-slide-19.html"></a><a class="seg" href="ag08-slide-20.html"></a><a class="seg" href="ag08-slide-21.html"></a><a class="seg" href="ag08-slide-22.html"></a><a class="seg" href="ag08-slide-23.html"></a><a class="seg" href="ag08-slide-24.html"></a><a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Failure Patterns</span><span>Slide 10</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 10 · Patterns 1 &amp; 2</div>
+  <div class="slide-title">Silent errors pass through every quality gate because they look correct. Amplification makes each hop worse than the last.</div>
+
+  <div class="block">
+    <div class="block-label purple">Pattern 1 — Silent Error Propagation</div>
+    <p>A failure produces output that is structurally indistinguishable from correct output. The agent that produced it doesn't know it failed. Every downstream agent receives the output through a channel it trusts and processes it as legitimate context.</p>
+    <p><strong>Why it's silent:</strong> LLM agents don't produce exception stack traces. They produce text and JSON. If an LLM was asked to summarize 82,000 records and only received 4,200, it will summarize what it received — confidently, coherently, and incorrectly. The output has the same format, similar length, and plausible content. Nothing in the output signals the incompleteness.</p>
+    <p><strong>Detection requires understanding, not just checking:</strong> Detecting that a summary of 4,200 records is wrong requires knowing what a correct summary of 82,000 records would look like. No automated schema check, type validator, or output length check catches this. Detection requires either a ground-truth comparison (rare in production) or a human reviewer who notices an implausible pattern.</p>
+    <p><strong>Why it propagates so far:</strong> Each downstream agent operates correctly given its inputs — it has no basis for doubt. The failure doesn't accumulate warning signals as it passes through hops. It arrives at the final action-taking agent with the same apparent confidence as a correct input.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Pattern 2 — Error Amplification</div>
+    <p>Unlike Pattern 1 where the failure passes through unchanged, Pattern 2 involves each pipeline stage actively processing bad input and producing output that is worse than what it received.</p>
+    <p><strong>The mechanism:</strong> The analysis agent in the hook scenario didn't just relay the truncated data — it derived insights from it. Those insights were not 95% wrong; they were constructed from a biased sample and could be directionally inverted from the truth (the 5% of data that arrived in the truncated batch may have been systematically different from the 95% that didn't). A 5% data error can produce a 180-degree wrong recommendation.</p>
+    <p><strong>Real-world analog:</strong> Financial models trained on survivorship-biased data. The "error" in the training set is small by volume (only the failed companies are missing) but produces catastrophically wrong model outputs because the missing data was not a random sample — it was the most important data. The same dynamic applies when an agent processes a non-random subset of its expected input.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-09.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-11.html">Patterns 3 &amp; 4 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Sources &amp; References</title>
+<link rel="stylesheet" href="ag08-shared.css">
+<style>
+.sources-header { margin-bottom: 1.5rem; }
+.sources-header h1 { font-size: 1.4rem; font-weight: 700; color: var(--text); }
+.sources-header p { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.3rem; }
+.source-group { margin-bottom: 1.4rem; }
+.source-group-label { font-size: 0.75rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 0.6rem; }
+.source-item { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1rem; margin-bottom: 0.6rem; }
+.source-title { font-weight: 600; color: var(--text); font-size: 0.92rem; margin-bottom: 0.2rem; }
+.source-meta { color: var(--text-muted); font-size: 0.8rem; margin-bottom: 0.35rem; }
+.source-note { color: var(--text-muted); font-size: 0.83rem; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures — Sources</span>
+  </div>
+  <a href="ag08-slide-01.html" style="color:var(--accent);font-size:0.85rem;text-decoration:none;">← Back to lesson</a>
+</div>
+
+<div style="max-width:800px;margin:2rem auto;padding:0 1.5rem 3rem;">
+
+  <div class="sources-header">
+    <h1>Sources &amp; References — AG08:2026</h1>
+    <p>Primary sources for the OWASP specification, distributed systems resilience patterns, circuit breaker engineering, chaos engineering, and cascading failure research cited in this module.</p>
+  </div>
+
+  <div class="source-group">
+    <div class="source-group-label">Primary OWASP Source</div>
+    <div class="source-item">
+      <div class="source-title">OWASP Top 10 for LLM &amp; Generative AI Applications — ASI08:2026: Cascading Failures</div>
+      <div class="source-meta">OWASP Foundation · 2026 · owasp.org/www-project-top-10-for-large-language-model-applications/</div>
+      <div class="source-note">The primary specification for this vulnerability. Defines cascading failure vulnerability in multi-agent systems, describes propagation mechanisms, and lists prevention strategies including circuit breakers, graceful degradation, output validation, and blast radius limitation. All module content is based on this specification.</div>
+    </div>
+  </div>
+
+  <div class="source-group">
+    <div class="source-group-label">Circuit Breaker and Stability Patterns</div>
+    <div class="source-item">
+      <div class="source-title">Nygard, M. — "Release It! Design and Deploy Production-Ready Software" (2nd edition)</div>
+      <div class="source-meta">Pragmatic Programmer · 2018 · ISBN 978-1-68050-239-8</div>
+      <div class="source-note">The foundational reference for production resilience patterns in distributed systems. Chapter 5 (Stability Patterns) documents the circuit breaker, bulkhead, timeout, and fail fast patterns described in MIT02 and MIT05. Nygard's formalization of the circuit breaker pattern — including the three states (closed, open, half-open) — is the standard reference cited by all subsequent implementations.</div>
+    </div>
+    <div class="source-item">
+      <div class="source-title">Fowler, M. — "CircuitBreaker" (martinfowler.com, 2014)</div>
+      <div class="source-meta">martinfowler.com/bliki/CircuitBreaker.html</div>
+      <div class="source-note">Martin Fowler's widely-cited explanation of the circuit breaker pattern, documenting the state machine (closed → open → half-open) that governs circuit breaker behavior. The three-state model described in MIT02 (slide 18) is drawn from this reference.</div>
+    </div>
+    <div class="source-item">
+      <div class="source-title">Netflix Technology Blog — "Making the Netflix API More Resilient" (2011) and Hystrix documentation</div>
+      <div class="source-meta">Netflix Tech Blog · 2011–2018 · netflixtechblog.com; github.com/Netflix/Hystrix</div>
+      <div class="source-note">Netflix's documentation of their cascading failure experiences and the Hystrix circuit breaker library developed to address them. The thundering herd and retry storm patterns described in Pattern 4 and Scenario 3 are directly derived from Netflix's documented production failure modes.</div>
+    </div>
+  </div>
+
+  <div class="source-group">
+    <div class="source-group-label">Retry, Backoff, and Thundering Herd</div>
+    <div class="source-item">
+      <div class="source-title">Brooker, M. — "Exponential Backoff and Jitter" (AWS Builder's Library, 2015)</div>
+      <div class="source-meta">Amazon Web Services · aws.amazon.com/builders-library/timeouts-retries-and-backoff-with-jitter/</div>
+      <div class="source-note">The definitive explanation of why jitter (randomized retry timing) is necessary in addition to pure exponential backoff. Documents how synchronized retry bursts from multiple clients repeatedly overwhelm recovering services — the thundering herd pattern shown in Scenario 3. MIT04 is drawn directly from this reference.</div>
+    </div>
+  </div>
+
+  <div class="source-group">
+    <div class="source-group-label">Chaos Engineering</div>
+    <div class="source-item">
+      <div class="source-title">Basiri, A., Behnam, N., de Rooij, R., Hochstein, L., Kosewski, L., Reynolds, J., &amp; Rosenthal, C. — "Chaos Engineering" (IEEE Software, 33(3):35–41, 2016)</div>
+      <div class="source-meta">IEEE Software · May/June 2016 · doi.org/10.1109/MS.2016.60</div>
+      <div class="source-note">Academic documentation of the chaos engineering discipline pioneered at Netflix, including the Chaos Monkey tool. Provides the theoretical and practical basis for MIT09 (chaos engineering and failure mode testing). The paper documents the principle that resilience mechanisms not tested under realistic conditions should not be trusted in production.</div>
+    </div>
+    <div class="source-item">
+      <div class="source-title">Rosenthal, C., &amp; Jones, N. — "Chaos Engineering: System Resiliency in Practice" (O'Reilly, 2020)</div>
+      <div class="source-meta">O'Reilly Media · 2020 · ISBN 978-1-492-04357-7</div>
+      <div class="source-note">Comprehensive reference for chaos engineering practice, including how to design failure injection experiments and what to measure. The failure scenarios in this module (Scenarios 3 and 5) are the type of failure modes that chaos engineering is designed to discover before they occur in production.</div>
+    </div>
+  </div>
+
+  <div class="source-group">
+    <div class="source-group-label">Distributed Systems Resilience Standards</div>
+    <div class="source-item">
+      <div class="source-title">Google SRE Book — Chapter 22: Addressing Cascading Failures</div>
+      <div class="source-meta">Google · Beyer, B. et al. (eds.) · sre.google/sre-book/addressing-cascading-failures/ · Available free online</div>
+      <div class="source-note">Google's Site Reliability Engineering documentation of cascading failure patterns at scale, including load shedding, graceful degradation, and feedback loop prevention strategies. The three-zone defense model (Zone 1: detection, Zone 2: containment, Zone 3: blast radius limitation) in slide 22 is informed by this material.</div>
+    </div>
+    <div class="source-item">
+      <div class="source-title">NIST SP 800-204 — Security Strategies for Microservices-based Application Systems</div>
+      <div class="source-meta">NIST · 2019 · doi.org/10.6028/NIST.SP.800-204</div>
+      <div class="source-note">Covers fault isolation, health monitoring, and resilience architecture for distributed service-based systems. The bulkhead isolation pattern (MIT05) and monitoring independence requirement (MIT08 Takeaway 6) are consistent with the defense-in-depth architecture described in this publication.</div>
+    </div>
+    <div class="source-item">
+      <div class="source-title">AWS Well-Architected Framework — Reliability Pillar</div>
+      <div class="source-meta">Amazon Web Services · docs.aws.amazon.com/wellarchitected/latest/reliability-pillar/</div>
+      <div class="source-note">Covers workload resilience patterns including fault isolation, retry policies, graceful degradation, and failure mode testing. The SQS queue isolation patterns relevant to Scenario 3 (retry storm) and the idempotency token pattern (MIT07) are described in this reference.</div>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;padding-top:1rem;border-top:1px solid var(--border);">
+    <a href="ag08-slide-01.html" style="color:var(--accent);font-size:0.9rem;text-decoration:none;">← Back to AG08 lesson</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="../index.html" style="color:var(--accent);font-size:0.9rem;text-decoration:none;">← Course Home</a>
+  </div>
+
+</div>
+</body>
+</html>

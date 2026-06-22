@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Sources and References</title>
+<link rel="stylesheet" href="ag04-shared.css">
+<style>
+.sources-section { margin-bottom: 32px; }
+.sources-section h2 { font-size: 1rem; font-weight: 700; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 16px; }
+.source-entry { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; margin-bottom: 12px; }
+.source-entry .source-title { font-weight: 700; font-size: 0.95rem; color: var(--fg); margin-bottom: 4px; }
+.source-entry .source-meta { font-size: 0.82rem; color: var(--fg-dim); margin-bottom: 8px; }
+.source-entry .source-use { font-size: 0.88rem; color: var(--fg); line-height: 1.5; }
+.source-badge { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-right: 6px; }
+.badge-primary { background: rgba(239,159,39,0.2); color: var(--accent); }
+.badge-incident { background: rgba(239,68,68,0.15); color: #fca5a5; }
+.badge-research { background: rgba(139,92,246,0.15); color: #c4b5fd; }
+.badge-standard { background: rgba(59,130,246,0.15); color: #93c5fd; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Sources and References</span>
+  </div>
+  <span class="nav-right"><a href="ag04-slide-01.html" style="color:var(--accent);">← Back to slides</a></span>
+</div>
+
+<div class="slide active" style="max-width:820px;">
+
+  <div class="slide-eyebrow">AG04:2026 — Agentic Supply Chain Vulnerabilities</div>
+  <div class="slide-title">Sources and References</div>
+  <div class="slide-subtitle">All incidents, claims, and technical assertions cited in this module are sourced below.</div>
+
+  <div class="sources-section">
+    <h2>Primary Authority</h2>
+
+    <div class="source-entry">
+      <div class="source-title"><span class="source-badge badge-primary">PRIMARY</span>OWASP Top 10 for Agentic Applications 2026 — ASI04: Agentic Supply Chain Vulnerabilities</div>
+      <div class="source-meta">OWASP Foundation · 2026 · owasp.org</div>
+      <div class="source-use">Authoritative source for the official definition of ASI04, the six vulnerability types (poisoned prompt templates, tool-descriptor injection, impersonation/typosquatting, vulnerable third-party agents, compromised MCP/registry servers, poisoned knowledge plugins), the six attack scenarios, and the nine mitigation categories. The OWASP PDF is the canonical source for the distinction between static and dynamic supply chain attack surfaces, and for the "live supply chain" characterization of agentic ecosystems. Used throughout this module.</div>
+    </div>
+  </div>
+
+  <div class="sources-section">
+    <h2>Documented Incidents (Scenarios 1–5)</h2>
+
+    <div class="source-entry">
+      <div class="source-title"><span class="source-badge badge-incident">INCIDENT</span>Amazon Q Developer VS Code Extension v1.84.0 — Credential Exfiltration via Compromised Update</div>
+      <div class="source-meta">Reported 2025 · VS Code Marketplace / Amazon Q Security Advisory</div>
+      <div class="source-use">Basis for Scenario 1. The Amazon Q VS Code extension version 1.84.0 was found to contain code that exfiltrated developer credentials. Distributed through the official VS Code marketplace with a valid signature, demonstrating that authenticated distribution channels are not sufficient to prevent supply chain attacks on agentic tooling. Referenced in slides 14 and 19.</div>
+    </div>
+
+    <div class="source-entry">
+      <div class="source-title"><span class="source-badge badge-research">RESEARCH</span>MCP Tool Descriptor Poisoning via GitHub — Invariant Labs</div>
+      <div class="source-meta">Invariant Labs · March 2025 · invariantlabs.ai</div>
+      <div class="source-use">Basis for Scenario 2 and the deep-dive in slides 10–11. Invariant Labs demonstrated that hidden instructions embedded in GitHub issue content — invisible to humans but processed by LLMs — could cause an AI coding assistant (using the GitHub MCP server) to exfiltrate private repository contents. This research established the "tool data supply chain" as an attack surface distinct from user-sent prompt injection. Referenced in slides 10, 11, and 14.</div>
+    </div>
+
+    <div class="source-entry">
+      <div class="source-title"><span class="source-badge badge-incident">INCIDENT</span>First In-the-Wild Malicious MCP Server — Postmark Impersonator on npm</div>
+      <div class="source-meta">Discovered 2025 · npm registry · Reported via security community</div>
+      <div class="source-use">Basis for Scenario 3 and the deep-dive in slide 12. The first documented malicious MCP server found in a public registry. Published on npm under a name impersonating the legitimate Postmark email API MCP server, with matching API signatures and documentation. The server secretly BCC'd all outgoing emails to an attacker-controlled address. Referenced in slides 6, 12, and 15.</div>
+    </div>
+
+    <div class="source-entry">
+      <div class="source-title"><span class="source-badge badge-research">RESEARCH</span>AgentSmith Prompt-Hub Proxy Attack — Compromised Shared Infrastructure</div>
+      <div class="source-meta">Security research · 2025 · Demonstrated multi-agent pipeline interception</div>
+      <div class="source-use">Basis for Scenario 4. Demonstrated that a compromised prompt hub — shared infrastructure used by multiple agents to load prompt templates — could act as a proxy, exfiltrating all data (prompts, responses, retrieved documents, user inputs) passing through it. Highlights the amplification risk of shared agent infrastructure components. Referenced in slides 13 and 15.</div>
+    </div>
+
+    <div class="source-entry">
+      <div class="source-title"><span class="source-badge badge-incident">INCIDENT</span>Poisoned nx/debug NPM Package — Auto-Installed by AI Coding Agents</div>
+      <div class="source-meta">2025 · npm ecosystem · Reported via security research</div>
+      <div class="source-use">Basis for Scenario 5 and the opening story in Slide 1. A malicious version of a widely-used npm package was published; AI coding agents autonomously installed it during routine dependency resolution. The payload read SSH keys, environment variables, and API tokens and exfiltrated them. Demonstrates how agent autonomy removes the human review checkpoint that might otherwise catch supply chain attacks. Referenced in slides 1, 5, 13, and 16.</div>
+    </div>
+  </div>
+
+  <div class="sources-section">
+    <h2>Research and Standards</h2>
+
+    <div class="source-entry">
+      <div class="source-title"><span class="source-badge badge-standard">STANDARD</span>SBOM Standards: SPDX and CycloneDX</div>
+      <div class="source-meta">Linux Foundation (SPDX) / OWASP (CycloneDX) · spdx.dev · cyclonedx.org</div>
+      <div class="source-use">Referenced in the MIT01 slide (19) on provenance verification and SBOMs. SPDX (ISO/IEC 5962:2021) and CycloneDX are the two primary machine-readable SBOM standards. CycloneDX is specifically extending its schema to support AI/ML components (AIBOM), including model weights, training datasets, and agentic tool manifests.</div>
+    </div>
+
+    <div class="source-entry">
+      <div class="source-title"><span class="source-badge badge-standard">STANDARD</span>US Executive Order 14028 — Improving the Nation's Cybersecurity (SBOM Mandate)</div>
+      <div class="source-meta">US White House · May 2021 · federalregister.gov</div>
+      <div class="source-use">EO 14028 mandated SBOM adoption for federal software procurement, driving industry-wide SBOM adoption. Establishes the regulatory context for MIT01 (provenance verification and SBOMs). Provides background for why SBOM practices are becoming standard requirements rather than optional security practices.</div>
+    </div>
+
+    <div class="source-entry">
+      <div class="source-title"><span class="source-badge badge-research">RESEARCH</span>SolarWinds SUNBURST Supply Chain Attack (2020)</div>
+      <div class="source-meta">FireEye / Microsoft / CISA · December 2020 · cisa.gov</div>
+      <div class="source-use">Referenced in Slide 2 as the canonical pre-agentic software supply chain attack. A build server was compromised, inserting a backdoor into signed SolarWinds Orion software updates distributed to ~18,000 organizations. Establishes the historical context for supply chain attacks and demonstrates that signature verification and authenticated distribution channels are not sufficient when the signing infrastructure itself is compromised.</div>
+    </div>
+
+    <div class="source-entry">
+      <div class="source-title"><span class="source-badge badge-research">RESEARCH</span>Model Context Protocol (MCP) — Anthropic</div>
+      <div class="source-meta">Anthropic · modelcontextprotocol.io · 2024–2025</div>
+      <div class="source-use">Background for the MCP ecosystem attacks (Scenarios 2, 3, 6). MCP is the open protocol defining how AI assistants connect to tools, resources, and data sources. The rapid growth of the MCP ecosystem — and the emergence of malicious MCP servers published to npm — makes MCP server authentication (MIT05) and allowlisting (MIT02) critical. Referenced in slides 6, 10, 12, 13, 15, and 23.</div>
+    </div>
+
+    <div class="source-entry">
+      <div class="source-title"><span class="source-badge badge-research">RESEARCH</span>Agent-to-Agent (A2A) Protocol and Agent Cards — Google</div>
+      <div class="source-meta">Google · developers.google.com/agent-to-agent · 2025</div>
+      <div class="source-use">Background for Scenario 6 (Agent-in-the-Middle via agent cards). Agent cards are the metadata documents used in A2A communication for agent discovery and routing. The A2A protocol specification and the agent card format are the technical basis for the PKI/signature verification approach in MIT05. Referenced in slides 13, 16, and 23.</div>
+    </div>
+
+    <div class="source-entry">
+      <div class="source-title"><span class="source-badge badge-standard">STANDARD</span>NIST SP 800-218: Secure Software Development Framework (SSDF)</div>
+      <div class="source-meta">NIST · csrc.nist.gov · February 2022</div>
+      <div class="source-use">Provides the broader secure software development context for supply chain mitigations. SSDF practices PW.4 (reuse existing, well-secured software) and RV.1 (identify and confirm vulnerabilities) inform the dependency gatekeeping (MIT02) and continuous validation (MIT06) controls described in this module.</div>
+    </div>
+  </div>
+
+  <div class="btn-row" style="margin-top:32px;">
+    <a class="btn-secondary" href="ag04-slide-01.html">← Return to AG04 Slide 1</a>
+    <a class="btn-primary" href="../index.html">← All Modules</a>
+  </div>
+
+</div>
+</body>
+</html>

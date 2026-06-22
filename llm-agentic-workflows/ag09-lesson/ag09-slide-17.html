@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 17 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a><a class="seg done" href="ag09-slide-07.html"></a><a class="seg done" href="ag09-slide-08.html"></a><a class="seg done" href="ag09-slide-09.html"></a><a class="seg done" href="ag09-slide-10.html"></a><a class="seg done" href="ag09-slide-11.html"></a><a class="seg done" href="ag09-slide-12.html"></a><a class="seg done" href="ag09-slide-13.html"></a><a class="seg done" href="ag09-slide-14.html"></a><a class="seg done" href="ag09-slide-15.html"></a><a class="seg done" href="ag09-slide-16.html"></a>
+    <a class="seg active" href="ag09-slide-17.html"></a>
+    <a class="seg" href="ag09-slide-18.html"></a><a class="seg" href="ag09-slide-19.html"></a><a class="seg" href="ag09-slide-20.html"></a><a class="seg" href="ag09-slide-21.html"></a><a class="seg" href="ag09-slide-22.html"></a><a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Prevention</span><span>Slide 17</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 17 · Part 3 Overview</div>
+  <div class="slide-title">Nine mitigations — organized across three defense categories: trust calibration, oversight enforcement, and audit.</div>
+
+  <div class="mit-overview-grid">
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT01</div>
+      <div class="mit-name">Calibrated Uncertainty Communication</div>
+      <div class="mit-desc">Agents must surface uncertainty, confidence levels, and out-of-distribution signals — not suppress them — so humans have the information needed to calibrate their deference appropriately.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT02</div>
+      <div class="mit-name">Mandatory Human Review Checkpoints</div>
+      <div class="mit-desc">For decisions above defined risk thresholds, human review is mandatory and cannot be bypassed by agent confidence scores. The agent's verdict may inform the review, but cannot replace it.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT03</div>
+      <div class="mit-name">Explanation Requirements</div>
+      <div class="mit-desc">Agents must explain the reasoning behind recommendations — not just the conclusion — so humans can evaluate the reasoning, not just accept the result. Explanation depth scales with decision risk.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT04</div>
+      <div class="mit-name">Adversarial Spot-Checking</div>
+      <div class="mit-desc">Regular blind tests where known-bad cases are injected into the agent's review queue. Humans who approve known-bad cases while following normal protocol reveal trust calibration problems before they are exploited.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT05</div>
+      <div class="mit-name">Trust Calibration Training</div>
+      <div class="mit-desc">Ongoing training that teaches users the agent's specific limitations, failure modes, and the case categories where independent verification is most important — not generic "don't trust AI" advice.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT06</div>
+      <div class="mit-name">Override Logging and Review</div>
+      <div class="mit-desc">All cases where a human overrides the agent's recommendation — in either direction — are logged and periodically reviewed. Systematic override patterns reveal trust calibration drift or adversarial probing.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT07</div>
+      <div class="mit-name">Separation of Duties</div>
+      <div class="mit-desc">No single agent-human pair has end-to-end authority over high-risk decisions. A second human or independent agent review is required for actions above a defined impact threshold.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT08</div>
+      <div class="mit-name">Content Provenance Labeling</div>
+      <div class="mit-desc">Agents clearly distinguish between content they generated, content they retrieved from verified internal sources, and content sourced from external inputs. Eliminates the credibility relay path for attacker-controlled content.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT09</div>
+      <div class="mit-name">Human Independence Maintenance</div>
+      <div class="mit-desc">Deliberate operational practices — independent review drills, periodic unassisted decision exercises, agent-off days — maintain the human's ability to evaluate decisions without AI assistance.</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-16.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-18.html">MIT01 & MIT02 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

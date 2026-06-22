@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 5 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 5 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg active" href="api06-slide-05.html"></a><a class="seg" href="api06-slide-06.html"></a><a class="seg" href="api06-slide-07.html"></a><a class="seg" href="api06-slide-08.html"></a><a class="seg" href="api06-slide-09.html"></a><a class="seg" href="api06-slide-10.html"></a><a class="seg" href="api06-slide-11.html"></a><a class="seg" href="api06-slide-12.html"></a><a class="seg" href="api06-slide-13.html"></a><a class="seg" href="api06-slide-14.html"></a><a class="seg" href="api06-slide-15.html"></a><a class="seg" href="api06-slide-16.html"></a><a class="seg" href="api06-slide-17.html"></a><a class="seg" href="api06-slide-18.html"></a><a class="seg" href="api06-slide-19.html"></a><a class="seg" href="api06-slide-20.html"></a><a class="seg" href="api06-slide-21.html"></a><a class="seg" href="api06-slide-22.html"></a><a class="seg" href="api06-slide-23.html"></a><a class="seg" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 5</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 5 &#xb7; Why It Keeps Happening</div>
+  <div class="slide-title">APIs are built for users. Bots aren&#x2019;t users.</div>
+  <div class="slide-subtitle">Three design assumptions that automation breaks.</div>
+  <div class="block">
+    <div class="block-label red">Assumption 1: &#x201C;Users complete flows at human speed&#x201D;</div>
+    <p>Business logic is designed for a person: browsing, selecting, entering payment, waiting for confirmation. The flow takes 2&#x2013;5 minutes for a human. A bot completes it in milliseconds. No inventory reservation system, no purchase limit, no fraud detection was calibrated for millisecond completion. The business logic had no concept of &#x201C;this is too fast.&#x201D;</p>
+  </div>
+  <div class="block">
+    <div class="block-label red">Assumption 2: &#x201C;One person, one session&#x201D;</div>
+    <p>The checkout flow assumes one person is checking out. Bots run hundreds or thousands of parallel sessions &#x2014; each holding tickets in a cart, each completing the checkout independently. The per-session limit is fine; the absence of a per-account or per-identity limit is the gap.</p>
+  </div>
+  <div class="block">
+    <div class="block-label red">Assumption 3: &#x201C;Security controls stop abusers&#x201D;</div>
+    <p>Authentication, rate limiting, and fraud detection focus on unauthorized access. Business flow abuse is authorized &#x2014; the bot has a valid account and a valid payment method. Traditional security controls don&#x2019;t catch it because the requests are technically legitimate. The problem is the intent and the scale, not the authorization.</p>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">Why this is hard</div>
+    <p>There is no technical signature that distinguishes a bot completing a checkout from a very fast human. The defense requires business-level rules (max 2 tickets per account), behavioral analysis (completed checkout in 200ms), and human verification challenges &#x2014; none of which are standard API security controls.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-04.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-06.html">What&#x2019;s the actual damage? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

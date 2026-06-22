@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 25 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 25 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg done" href="api01-slide-10.html"></a><a class="seg done" href="api01-slide-11.html"></a><a class="seg done" href="api01-slide-12.html"></a><a class="seg done" href="api01-slide-13.html"></a><a class="seg done" href="api01-slide-14.html"></a><a class="seg done" href="api01-slide-15.html"></a><a class="seg done" href="api01-slide-16.html"></a><a class="seg done" href="api01-slide-17.html"></a><a class="seg done" href="api01-slide-18.html"></a><a class="seg done" href="api01-slide-19.html"></a><a class="seg done" href="api01-slide-20.html"></a><a class="seg done" href="api01-slide-21.html"></a><a class="seg done" href="api01-slide-22.html"></a><a class="seg done" href="api01-slide-23.html"></a><a class="seg done" href="api01-slide-24.html"></a><a class="seg active" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 25</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 25 · Mitigation 7</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 07</div>
+    <div class="mit-title">Monitor for enumeration — sequential ID requests are a red flag.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Log every API request that includes an object ID. Set up alerts for patterns that indicate enumeration: the same token requesting 50+ different object IDs in a short window, sequential IDs being requested in order, or a high rate of 404 responses from the same source.</p>
+      <p>Real users don't request 10,000 order IDs in sequence. <strong>That pattern is an attack in progress.</strong></p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Plain English</div>
+      <p>T-Mobile's breach ran undetected for <strong>six weeks</strong> because nobody noticed 37 million queries coming from an unusual source. Monitoring would have flagged it on day one — or hour one. The attacker was walking through an unlocked door repeatedly. A camera would have caught them immediately.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label yellow">What to watch for</div>
+      <p>Same token, many different object IDs in a short time. Sequential IDs being requested in order (1001, 1002, 1003...). Unusual spikes in requests to endpoints that return user data. High 404 rates from a single source — even 404s mean they're probing.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What this doesn't fix</div>
+      <p>Monitoring detects attacks — it doesn't prevent them. If MIT 01 is missing, an attacker who flies under the rate limit can still exfiltrate data slowly without triggering alerts. Detection is not a substitute for proper authorization checks.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Put API access control on your security review calendar. It&#x2019;s the kind of control that passes a review once and then drifts as new endpoints are added &#x2014; without anyone noticing.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-24.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-26.html">Show me how it all connects →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 19 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 19 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg done" href="api06-slide-09.html"></a><a class="seg done" href="api06-slide-10.html"></a><a class="seg done" href="api06-slide-11.html"></a><a class="seg done" href="api06-slide-12.html"></a><a class="seg done" href="api06-slide-13.html"></a><a class="seg done" href="api06-slide-14.html"></a><a class="seg done" href="api06-slide-15.html"></a><a class="seg done" href="api06-slide-16.html"></a><a class="seg done" href="api06-slide-17.html"></a><a class="seg done" href="api06-slide-18.html"></a><a class="seg active" href="api06-slide-19.html"></a><a class="seg" href="api06-slide-20.html"></a><a class="seg" href="api06-slide-21.html"></a><a class="seg" href="api06-slide-22.html"></a><a class="seg" href="api06-slide-23.html"></a><a class="seg" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 19</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 19 &#xb7; Mitigation 1</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 01</div>
+    <div class="mit-title">Enforce per-account business flow limits at the API layer &#x2014; not the UI.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Every sensitive business flow must have explicit server-side limits on how much any single verified identity can participate:</p>
+      <p>&#x2022; <strong>Ticket purchase:</strong> max 4 tickets per verified account per event. Enforced in the checkout API handler before processing payment.</p>
+      <p>&#x2022; <strong>Limited-edition retail:</strong> max 1 unit per billing address, per payment method, per device fingerprint. All three checked server-side.</p>
+      <p>&#x2022; <strong>Referral redemption:</strong> max 5 successful referrals per account per month. Checked at reward-trigger time.</p>
+      <p>&#x2022; <strong>Appointment booking:</strong> max 1 active appointment per verified phone number at a time.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">The UI limit is not a limit</div>
+      <p>The OWASP Scenario 3 failure (quantity bypass) happens because the limit lived in the UI dropdown. Any client calling the API directly bypasses the UI. The limit must be in the API handler: if <code>quantity &gt; MAX_PER_ACCOUNT</code>, reject the request with 422 Unprocessable Entity before any inventory is reserved or charged.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Identity granularity matters</div>
+      <p>Per-account limits can be bypassed by creating multiple accounts. Stack identity layers: per account, per verified phone number, per payment method, per device fingerprint. The more identity signals required, the harder it is for a bot operator to scale.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your product team to identify your highest-value business flows &#x2014; ticket checkout, referral redemption, limited inventory purchase &#x2014; then ask your security team whether those specific flows have protection against automated abuse.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-18.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-20.html">MIT 02: Cart timeouts &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

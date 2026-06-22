@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 13 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 13 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg done" href="api08-slide-05.html"></a><a class="seg done" href="api08-slide-06.html"></a><a class="seg done" href="api08-slide-07.html"></a><a class="seg done" href="api08-slide-08.html"></a><a class="seg done" href="api08-slide-09.html"></a><a class="seg done" href="api08-slide-10.html"></a><a class="seg done" href="api08-slide-11.html"></a><a class="seg done" href="api08-slide-12.html"></a><a class="seg active" href="api08-slide-13.html"></a><a class="seg" href="api08-slide-14.html"></a><a class="seg" href="api08-slide-15.html"></a><a class="seg" href="api08-slide-16.html"></a><a class="seg" href="api08-slide-17.html"></a><a class="seg" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 13</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 13 &#xb7; Real Incident</div>
+  <div class="slide-title">Firebase open rules &#x2014; 100 million records exposed by default configuration.</div>
+  <div class="slide-subtitle">September 2018. 2,446 apps. Open read/write by anyone. The default was insecure.</div>
+  <div class="source-tag">&#x1F4C4; Appthority Mobile Threat Intelligence Report &#xb7; September 2018</div>
+  <div class="scenario-card">
+    <div class="scenario-num">THE VULNERABILITY</div>
+    <div class="scenario-title">Firebase Realtime Database &#x2014; Default Open Rules</div>
+    <div class="scenario-body">
+      <p>Firebase is Google&#x2019;s backend-as-a-service platform. Firebase Realtime Database stores data and exposes it through a REST API. Access to the database is controlled by security rules &#x2014; a JSON configuration that specifies who can read and write which data.</p>
+      <p>At the time, Firebase&#x2019;s default rule when creating a new database was: <code>{ &#x201C;rules&#x201D;: { &#x201C;.read&#x201D;: true, &#x201C;.write&#x201D;: true } }</code> &#x2014; open read/write access for anyone, with no authentication required. This was the template shown during database setup.</p>
+      <p>Developers created databases using the default rules for rapid prototyping &#x2014; and never changed them before shipping.</p>
+    </div>
+    <div class="scenario-why"><strong>What Appthority found:</strong> Analyzing 2,705 iOS and Android apps, they identified 2,446 apps (over 90%) using Firebase databases with open read/write access. The exposed databases contained: 2.6 million plain-text passwords and usernames, 4 million+ protected health information (PHI) records, 25 million+ GPS location records, 50,000+ financial records (bank transactions), and 4.5 million+ Facebook, LinkedIn, and Twitter tokens. Total: approximately 100 million records exposed to anyone who knew the Firebase database URL (often discoverable in the app&#x2019;s binary).</div>
+  </div>
+  <div class="callout orange">
+    <div class="callout-label">The default problem</div>
+    <p>Firebase changed their default rules in 2019 to require authentication. But this incident illustrates a systemic API8 pattern: when the default is insecure and there is no enforced review step before deployment, misconfigurations proliferate at scale. The bug wasn&#x2019;t in any single developer&#x2019;s code &#x2014; it was in the default that 2,446 developers never changed.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-12.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-14.html">Attack Scenarios &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM03:2025 — Supply Chain · Slide 21 of 29</title>
+<link rel="stylesheet" href="llm03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM03:2025</span><span class="nav-title">Supply Chain</span></div>
+  <span class="nav-right">Slide 21 of 29</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm03-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm03-slide-02.html" title="Slide 2 · The Twist"></a><a class="seg done" href="llm03-slide-03.html" title="Slide 3 · The Definition"></a><a class="seg done" href="llm03-slide-04.html" title="Slide 4 · Your Supply Chain"></a><a class="seg done" href="llm03-slide-05.html" title="Slide 5 · The Component Map"></a><a class="seg done" href="llm03-slide-06.html" title="Slide 6 · The Outcomes"></a><a class="seg done" href="llm03-slide-07.html" title="Slide 7 · Who Attacks"></a><a class="seg done" href="llm03-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm03-slide-09.html" title="Slide 9 · Dependency Confusion"></a><a class="seg done" href="llm03-slide-10.html" title="Slide 10 · Poisoned Build Pipeline"></a><a class="seg done" href="llm03-slide-11.html" title="Slide 11 · Malicious Model File"></a><a class="seg done" href="llm03-slide-12.html" title="Slide 12 · Scanner Bypass"></a><a class="seg done" href="llm03-slide-13.html" title="Slide 13 · Vulnerable LoRA Adapter"></a><a class="seg done" href="llm03-slide-14.html" title="Slide 14 · Fake & Abandoned Models"></a><a class="seg done" href="llm03-slide-15.html" title="Slide 15 · Scenario: PoisonGPT"></a><a class="seg done" href="llm03-slide-16.html" title="Slide 16 · Scenario: LeftoverLocals"></a><a class="seg done" href="llm03-slide-17.html" title="Slide 17 · Scenario: On-Device Swap"></a><a class="seg done" href="llm03-slide-18.html" title="Slide 18 · Scenario: T&Cs Change"></a><a class="seg done" href="llm03-slide-19.html" title="Slide 19 · Vet Suppliers"></a><a class="seg done" href="llm03-slide-20.html" title="Slide 20 · SBOM / AIBOM"></a><a class="seg active" href="llm03-slide-21.html" title="Slide 21 · Patch & Scan"></a><a class="seg" href="llm03-slide-22.html" title="Slide 22 · Sign & Verify"></a><a class="seg" href="llm03-slide-23.html" title="Slide 23 · Red-Team First"></a><a class="seg" href="llm03-slide-24.html" title="Slide 24 · Demand Provenance"></a><a class="seg" href="llm03-slide-25.html" title="Slide 25 · Monitor Collaboration"></a><a class="seg" href="llm03-slide-26.html" title="Slide 26 · Anomaly Testing"></a><a class="seg" href="llm03-slide-27.html" title="Slide 27 · Protect the Edge"></a><a class="seg" href="llm03-slide-28.html" title="Slide 28 · Quiz"></a><a class="seg" href="llm03-slide-29.html" title="Slide 29 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 21</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 21 · Mitigation 3 of 9 — Patch &amp; Scan</div>
+  <div class="slide-title">Old components rot. Scan them, patch them, on a policy.</div>
+  <div class="source-tag">📄 OWASP LLM Top 10:2025 · LLM03 Prevention #2 &amp; #9</div>
+
+  <div class="mit-card">
+    <div class="mit-num">OWASP — Vulnerability Management &amp; Patching</div>
+    <div class="mit-title">Apply A06:2021 controls — scan, manage, and patch components</div>
+    <div class="mit-section"><div class="mit-section-label blue">What OWASP Says</div><p>Apply the mitigations of &ldquo;A06:2021 – Vulnerable and Outdated Components,&rdquo; including &ldquo;vulnerability scanning, management, and patching,&rdquo; and &ldquo;implement a patching policy&rdquo; for vulnerable or deprecated components and models.</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label red">The Gap This Closes</div><p>The PickleScan bypass (Slide 12) was fixed in version 0.0.31 &mdash; but only protects teams that actually upgrade. Outdated and deprecated models carry the same risk: unmaintained components don't get fixes, so running them is accepting known holes forever.</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label green">How to Do This Right</div><p>&rarr; Run dependency + model scanners in CI and block builds on critical findings<br>&rarr; Set a patching SLA (e.g. criticals within N days) &mdash; including your security tools themselves<br>&rarr; Track end-of-life for models and frameworks; plan migration off deprecated ones before they're abandoned</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label yellow">How to Validate</div><p>Check the version of every scanner and core dependency in production against its latest release. A months-old scanner is a slide-12 waiting to happen.</p></div>
+  </div>
+<div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team how often the AI dependencies in your product are scanned for known vulnerabilities — and what the process is when one is found. "We'll deal with it when it happens" is a policy, but not a safe one.</p>
+  </div>
+  <div class="btn-row"><a class="btn-secondary" href="llm03-slide-20.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm03-slide-22.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → The single strongest control</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

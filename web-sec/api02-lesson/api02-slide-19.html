@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 19 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 19 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg done" href="api02-slide-07.html"></a><a class="seg done" href="api02-slide-08.html"></a><a class="seg done" href="api02-slide-09.html"></a><a class="seg done" href="api02-slide-10.html"></a><a class="seg done" href="api02-slide-11.html"></a><a class="seg done" href="api02-slide-12.html"></a><a class="seg done" href="api02-slide-13.html"></a><a class="seg done" href="api02-slide-14.html"></a><a class="seg done" href="api02-slide-15.html"></a><a class="seg done" href="api02-slide-16.html"></a><a class="seg done" href="api02-slide-17.html"></a><a class="seg done" href="api02-slide-18.html"></a><a class="seg active" href="api02-slide-19.html"></a><a class="seg" href="api02-slide-20.html"></a><a class="seg" href="api02-slide-21.html"></a><a class="seg" href="api02-slide-22.html"></a><a class="seg" href="api02-slide-23.html"></a><a class="seg" href="api02-slide-24.html"></a><a class="seg" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 19</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 19 · Mitigation 1</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 01</div>
+    <div class="mit-title">Use proven authentication standards. Never build your own.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Use <strong>OAuth 2.0</strong> for delegated authorization and API access. Use <strong>OpenID Connect (OIDC)</strong> for identity verification on top of OAuth. Use established, well-audited libraries for JWT generation and validation — not hand-rolled implementations.</p>
+      <p>Audit every authentication pathway your API exposes: mobile app login, web login, SSO, social auth, API key flows, deep links. They all need to be secure.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Why custom auth fails</div>
+      <p>Authentication is one of the hardest things to get right in security. The failure modes are subtle — JWT algorithm confusion, timing attacks on password comparison, OAuth redirect validation. Published standards have been reviewed by thousands of security researchers for years.</p>
+      <p>Custom auth has been reviewed by the three people who built it.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What this doesn't fix</div>
+      <p>Using OAuth doesn't automatically mean you've configured it correctly. Misconfigured OAuth flows (open redirect validators, unvalidated state parameters) are themselves a source of broken authentication. Using the standard is necessary but not sufficient — you still need to implement it correctly.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team what format your session tokens use and how long they stay valid. Tokens that never expire mean a stolen token &#x2014; from a lost device or a phishing attack &#x2014; remains valid indefinitely.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-18.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-20.html">MIT 02: Rate limiting + lockout →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

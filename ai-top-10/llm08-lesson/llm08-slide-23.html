@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM08:2025 — Vector &amp; Embedding Weaknesses · Slide 23 of 27</title>
+<link rel="stylesheet" href="llm08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM08:2025</span><span class="nav-title">Vector &amp; Embedding Weaknesses</span></div>
+  <span class="nav-right">Slide 23 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm08-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm08-slide-02.html" title="Slide 2 · What Is a Vector"></a><a class="seg done" href="llm08-slide-03.html" title="Slide 3 · What Is RAG"></a><a class="seg done" href="llm08-slide-04.html" title="Slide 4 · The Definition"></a><a class="seg done" href="llm08-slide-05.html" title="Slide 5 · The Attack Surface"></a><a class="seg done" href="llm08-slide-06.html" title="Slide 6 · The Outcomes"></a><a class="seg done" href="llm08-slide-07.html" title="Slide 7 · LLM08 vs LLM04"></a><a class="seg done" href="llm08-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm08-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg done" href="llm08-slide-10.html" title="Slide 10 · Retrieval Poisoning"></a><a class="seg done" href="llm08-slide-11.html" title="Slide 11 · Embedding Inversion"></a><a class="seg done" href="llm08-slide-12.html" title="Slide 12 · Cross-Context Leakage"></a><a class="seg done" href="llm08-slide-13.html" title="Slide 13 · Context Manipulation"></a><a class="seg done" href="llm08-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg done" href="llm08-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg done" href="llm08-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg done" href="llm08-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg done" href="llm08-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg done" href="llm08-slide-19.html" title="Slide 19 · Validate Ingestion"></a><a class="seg done" href="llm08-slide-20.html" title="Slide 20 · Permission-Aware Stores"></a><a class="seg done" href="llm08-slide-21.html" title="Slide 21 · Retrieval Controls"></a><a class="seg done" href="llm08-slide-22.html" title="Slide 22 · Encrypt Vectors"></a><a class="seg active" href="llm08-slide-23.html" title="Slide 23 · Monitor Anomalies"></a><a class="seg" href="llm08-slide-24.html" title="Slide 24 · Limit Persistence"></a><a class="seg" href="llm08-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm08-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm08-slide-27.html" title="Slide 27 · Complete"></a></div>
+<div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 23</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 23 · Mitigation Category 5 of 6</div>
+  <div class="slide-title">Log what was retrieved. Alert when the ranking shifts.</div>
+  <div class="source-tag">&#x1F4C4; OWASP LLM Top 10:2025 &middot; LLM08 Prevention &mdash; Monitoring</div>
+
+  <div class="mit-card">
+    <div class="mit-num">M5 &mdash; Monitor for Poisoning Patterns</div>
+    <div class="mit-title">Maintain Immutable Retrieval Logs and Alert on Anomalies</div>
+    <div class="mit-section"><div class="mit-section-label blue">What OWASP Says</div><p>&ldquo;Maintain immutable logs of retrieval activities for threat detection.&rdquo; Because LLM08 attacks are invisible in user prompts, the only way to detect them is to monitor the retrieval layer itself &mdash; which documents are being retrieved, for which queries, contributed by whom.</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label red">Which Incident This Would Have Stopped</div><p>ConfusedPilot (Slide 16): the attack persisted silently because there was no retrieval monitoring. Had retrieval logs flagged that a document added by a low-access contractor suddenly ranked #1 for executive-level queries within 24 hours of upload, that anomaly would have been detectable and actionable.</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label green">How to Do This Right</div><p>&rarr; Log every retrieval event: document ID, source contributor, similarity score, query hash, requesting user<br>&rarr; Alert on ranking anomalies: a new document ranking in the top 3 for a high-value query type within 24 hours of upload is a detection signal<br>&rarr; Monitor for contribution patterns: a single contributor responsible for top-ranked documents across multiple unrelated topics is suspicious</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label yellow">How to Validate</div><p>Insert a canary document and submit a related query. Does the retrieval log capture the event with document provenance? If the log is empty or doesn&rsquo;t include contributor metadata, the monitoring layer doesn&rsquo;t exist yet.</p></div>
+  </div>
+<div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team whether they log which documents the AI retrieves when it answers questions. Without retrieval logs, there's no way to investigate after the fact whether the AI was serving content it shouldn't have been.</p>
+  </div>
+  <div class="btn-row"><a class="btn-secondary" href="llm08-slide-22.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">&larr; Back</a><a class="btn-primary" href="llm08-slide-24.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next &rarr; M6: Limit persistence</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

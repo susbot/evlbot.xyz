@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 4 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg active" href="api01-slide-04.html"></a><a class="seg" href="api01-slide-05.html"></a><a class="seg" href="api01-slide-06.html"></a><a class="seg" href="api01-slide-07.html"></a><a class="seg" href="api01-slide-08.html"></a><a class="seg" href="api01-slide-09.html"></a><a class="seg" href="api01-slide-10.html"></a><a class="seg" href="api01-slide-11.html"></a><a class="seg" href="api01-slide-12.html"></a><a class="seg" href="api01-slide-13.html"></a><a class="seg" href="api01-slide-14.html"></a><a class="seg" href="api01-slide-15.html"></a><a class="seg" href="api01-slide-16.html"></a><a class="seg" href="api01-slide-17.html"></a><a class="seg" href="api01-slide-18.html"></a><a class="seg" href="api01-slide-19.html"></a><a class="seg" href="api01-slide-20.html"></a><a class="seg" href="api01-slide-21.html"></a><a class="seg" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 4</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 4 · The Definition — Part II</div>
+  <div class="slide-title">The official definition — in plain English.</div>
+  <div class="slide-subtitle">Here's what OWASP says, and what it actually means.</div>
+
+  <div class="source-tag">📄 OWASP API Security Top 10 · 2023 · API1</div>
+
+  <div class="callout pink">
+    <div class="callout-label">OWASP Definition</div>
+    <p>"APIs tend to expose endpoints that handle object identifiers, creating a wide attack surface for Object Level Access Control issues. Object level authorization checks should be considered in every function that accesses a data source using an ID supplied by the user."</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label pink">Translation — sentence by sentence</div>
+    <p><strong>"APIs expose endpoints that handle object identifiers"</strong> — Every API has URLs that include IDs: /users/42, /orders/1042, /documents/9. Those IDs are the target.</p>
+    <p><strong>"Wide attack surface"</strong> — There are a lot of these endpoints. Every single one is a potential door.</p>
+    <p><strong>"Object level authorization checks should be considered in every function that accesses a data source using an ID supplied by the user"</strong> — Every time a user sends you an ID, you must verify they're allowed to access what that ID points to. Every time. Not sometimes. Every time.</p>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">Why developers miss this</div>
+    <p>Most developers check authentication — "Is this user logged in?" — but forget authorization — "Does this logged-in user own this specific record?" They're two different questions. <strong>BOLA is what happens when you only ask the first one.</strong></p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-03.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-05.html">Clear → What actually goes wrong? →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

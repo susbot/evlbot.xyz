@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 21 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 21 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg done" href="api06-slide-09.html"></a><a class="seg done" href="api06-slide-10.html"></a><a class="seg done" href="api06-slide-11.html"></a><a class="seg done" href="api06-slide-12.html"></a><a class="seg done" href="api06-slide-13.html"></a><a class="seg done" href="api06-slide-14.html"></a><a class="seg done" href="api06-slide-15.html"></a><a class="seg done" href="api06-slide-16.html"></a><a class="seg done" href="api06-slide-17.html"></a><a class="seg done" href="api06-slide-18.html"></a><a class="seg done" href="api06-slide-19.html"></a><a class="seg done" href="api06-slide-20.html"></a><a class="seg active" href="api06-slide-21.html"></a><a class="seg" href="api06-slide-22.html"></a><a class="seg" href="api06-slide-23.html"></a><a class="seg" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 21</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 21 &#xb7; Mitigation 3</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 03</div>
+    <div class="mit-title">Use device fingerprinting and behavioral signals to distinguish bots from humans.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Collect signals that distinguish real browsers from automated clients:</p>
+      <p>&#x2022; <strong>Browser API checks:</strong> Does the client have a working canvas, WebGL, audio context? Headless browsers often fail or return fingerprint-less results.</p>
+      <p>&#x2022; <strong>Mouse and keyboard patterns:</strong> Real users have non-linear mouse movement, varying typing speed, pauses. Bots move in straight lines or not at all.</p>
+      <p>&#x2022; <strong>Event timing:</strong> Real users take 0.5&#x2013;3 seconds to click between form fields. A form filled in 50ms was not filled by a human.</p>
+      <p>&#x2022; <strong>Device consistency:</strong> Does the reported User-Agent match the actual browser capabilities? Mismatches indicate spoofing.</p>
+      <p>&#x2022; <strong>IP reputation:</strong> Is the IP in a known datacenter range or residential proxy pool? Legitimate users rarely come from AWS or DigitalOcean IP ranges.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Commercial bot detection services</div>
+      <p>Building fingerprinting from scratch is complex &#x2014; bots adapt quickly. Commercial services like Cloudflare Bot Management, DataDome, PerimeterX (Human), and Arkose Labs specialize in this and continuously update their detection as bot operators respond. For high-value business flows, a commercial service is usually more effective than a DIY implementation.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">The arms race</div>
+      <p>Sophisticated bot operators use real browsers (Puppeteer/Playwright with stealth plugins), residential proxies, and mouse-movement simulation to bypass fingerprinting. No detection is perfect &#x2014; the goal is to raise the cost of bot operation, not eliminate it entirely.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your product team where bot verification (CAPTCHA, device checks) is implemented &#x2014; and whether those protections apply to your API endpoints, not just your web forms. A CAPTCHA on the form but not on the API is not protection.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-20.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-22.html">MIT 04: CAPTCHA &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 3 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 3 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg active" href="api08-slide-03.html"></a><a class="seg" href="api08-slide-04.html"></a><a class="seg" href="api08-slide-05.html"></a><a class="seg" href="api08-slide-06.html"></a><a class="seg" href="api08-slide-07.html"></a><a class="seg" href="api08-slide-08.html"></a><a class="seg" href="api08-slide-09.html"></a><a class="seg" href="api08-slide-10.html"></a><a class="seg" href="api08-slide-11.html"></a><a class="seg" href="api08-slide-12.html"></a><a class="seg" href="api08-slide-13.html"></a><a class="seg" href="api08-slide-14.html"></a><a class="seg" href="api08-slide-15.html"></a><a class="seg" href="api08-slide-16.html"></a><a class="seg" href="api08-slide-17.html"></a><a class="seg" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 3</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 3 &#xb7; The Six Surfaces</div>
+  <div class="slide-title">Where Security Misconfiguration hides in an API deployment.</div>
+  <div class="slide-subtitle">Six distinct areas &#x2014; each with its own failure mode, each exploitable independently.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F310;</div>
+      <div><div class="outcome-title">CORS Policy</div><div class="outcome-desc">Cross-Origin Resource Sharing controls which websites can call your API from a browser. Misconfigured: allows any origin, or reflects the caller&#x2019;s origin without an allowlist, enabling attacker-controlled sites to make authenticated requests to your API.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4AC;</div>
+      <div><div class="outcome-title">Error Messages</div><div class="outcome-desc">API error responses expose stack traces, SQL queries, internal file paths, framework versions, or environment details. Gives attackers a map of the system&#x2019;s internals.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4CB;</div>
+      <div><div class="outcome-title">Security Headers</div><div class="outcome-desc">Missing HTTP response headers: HSTS (forces HTTPS), Content-Security-Policy (restricts resource loading), X-Content-Type-Options, X-Frame-Options. Each missing header removes a browser-level defense.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F527;</div>
+      <div><div class="outcome-title">HTTP Methods</div><div class="outcome-desc">Endpoints that should only accept GET or POST also respond to DELETE, PUT, PATCH, or OPTIONS with full functionality. Attackers call unexpected methods to trigger unintended behavior.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F512;</div>
+      <div><div class="outcome-title">TLS Configuration</div><div class="outcome-desc">API served over HTTP (no encryption), or accepts deprecated TLS versions (1.0, 1.1) or weak cipher suites. Allows traffic interception and downgrade attacks.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F6E0;&#xFE0F;</div>
+      <div><div class="outcome-title">Debug and Admin Endpoints</div><div class="outcome-desc">Development endpoints (/debug, /actuator, /admin, /console, /metrics, /health) deployed to production, often without authentication or with default credentials. Exposes internals or allows unauthorized control.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-02.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-04.html">CORS deep dive &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

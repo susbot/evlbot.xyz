@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 16 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 16 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a>
+    <a class="seg done" href="ag04-slide-02.html"></a>
+    <a class="seg done" href="ag04-slide-03.html"></a>
+    <a class="seg done" href="ag04-slide-04.html"></a>
+    <a class="seg done" href="ag04-slide-05.html"></a>
+    <a class="seg done" href="ag04-slide-06.html"></a>
+    <a class="seg done" href="ag04-slide-07.html"></a>
+    <a class="seg done" href="ag04-slide-08.html"></a>
+    <a class="seg done" href="ag04-slide-09.html"></a>
+    <a class="seg done" href="ag04-slide-10.html"></a>
+    <a class="seg done" href="ag04-slide-11.html"></a>
+    <a class="seg done" href="ag04-slide-12.html"></a>
+    <a class="seg done" href="ag04-slide-13.html"></a>
+    <a class="seg done" href="ag04-slide-14.html"></a>
+    <a class="seg done" href="ag04-slide-15.html"></a>
+    <a class="seg active" href="ag04-slide-16.html"></a>
+    <a class="seg" href="ag04-slide-17.html"></a>
+    <a class="seg" href="ag04-slide-18.html"></a>
+    <a class="seg" href="ag04-slide-19.html"></a>
+    <a class="seg" href="ag04-slide-20.html"></a>
+    <a class="seg" href="ag04-slide-21.html"></a>
+    <a class="seg" href="ag04-slide-22.html"></a>
+    <a class="seg" href="ag04-slide-23.html"></a>
+    <a class="seg" href="ag04-slide-24.html"></a>
+    <a class="seg" href="ag04-slide-25.html"></a>
+    <a class="seg" href="ag04-slide-26.html"></a>
+    <a class="seg" href="ag04-slide-27.html"></a>
+    <a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Attack Scenarios</span><span>Slide 16</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 16 · Scenarios 5–6</div>
+  <div class="slide-title">Scenario 5: Poisoned nx/debug npm package — Scenario 6: Agent-in-the-Middle via Agent Cards</div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-num">Scenario 5</span>
+      <span class="scenario-name">Poisoned nx/debug NPM Package — Auto-Installed by AI Coding Agents</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>What happened:</strong> A malicious version of a widely-used npm package (in the nx/debug ecosystem) was published. AI coding agents that autonomously manage dependencies — reading package.json, resolving updates, and running <code>npm install</code> — automatically installed the malicious version during routine dependency resolution.</p>
+      <p><strong>The payload:</strong> The malicious package read SSH keys, environment variables, and API tokens from the developer's home directory and exfiltrated them to an attacker endpoint — the scenario from Slide 1 of this module, now in documented form.</p>
+      <p><strong>Why agents make this worse:</strong> A human developer running <code>npm install</code> might notice unusual network activity or unexpected file access. An agent installing a package as part of a larger workflow has no mechanism to notice these side effects. <strong>The agent's autonomy removes the one human checkpoint that might have caught the attack.</strong></p>
+      <div class="scenario-tag red">Type 4 — Compromised package registry</div>
+    </div>
+  </div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-num">Scenario 6</span>
+      <span class="scenario-name">Agent-in-the-Middle via Forged Agent Cards</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>What happened:</strong> In an agent-to-agent (A2A) architecture, agents discover and connect to each other using "agent cards" — metadata documents that describe an agent's capabilities, endpoints, and authentication requirements. A research team demonstrated that a forged or tampered agent card could redirect A2A communication through an attacker-controlled agent, which acted as an invisible intermediary: reading all messages, manipulating responses, and exfiltrating data from the pipeline.</p>
+      <p><strong>The supply chain failure:</strong> Agent cards are published to shared discovery registries. If an attacker can publish a forged card — or modify an existing one — they can insert themselves into any A2A communication that relies on that card for routing.</p>
+      <p><strong>Why this matters now:</strong> A2A communication is a rapidly growing pattern in enterprise agentic deployments. Agent card registries are the emerging shared infrastructure for multi-agent systems — and they have almost no integrity verification today.</p>
+      <div class="scenario-tag purple">Type 6 — Agent-in-the-Middle / forged agent card</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-15.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-17.html">The pattern across all six scenarios →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

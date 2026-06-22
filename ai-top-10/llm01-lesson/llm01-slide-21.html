@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM01:2025 — Prompt Injection · Slide 21 of 28</title>
+<link rel="stylesheet" href="llm01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM01:2025</span><span class="nav-title">Prompt Injection</span></div>
+  <span class="nav-right">Slide 21 of 28</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm01-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm01-slide-02.html" title="Slide 2 · The Word"></a><a class="seg done" href="llm01-slide-03.html" title="Slide 3 · The Definition Part 1"></a><a class="seg done" href="llm01-slide-04.html" title="Slide 4 · The Definition Part 2"></a><a class="seg done" href="llm01-slide-05.html" title="Slide 5 · The Outcomes"></a><a class="seg done" href="llm01-slide-06.html" title="Slide 6 · The Attackers"></a><a class="seg done" href="llm01-slide-07.html" title="Slide 7 · Injection vs Jailbreaking"></a><a class="seg done" href="llm01-slide-08.html" title="Slide 8 · RAG and Fine-Tuning"></a><a class="seg done" href="llm01-slide-09.html" title="Slide 9 · Two Types Overview"></a><a class="seg done" href="llm01-slide-10.html" title="Slide 10 · Direct Injection"></a><a class="seg done" href="llm01-slide-11.html" title="Slide 11 · Direct Injection Example"></a><a class="seg done" href="llm01-slide-12.html" title="Slide 12 · Indirect Injection"></a><a class="seg done" href="llm01-slide-13.html" title="Slide 13 · Indirect Injection Example"></a><a class="seg done" href="llm01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a><a class="seg done" href="llm01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a><a class="seg done" href="llm01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a><a class="seg done" href="llm01-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg done" href="llm01-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg done" href="llm01-slide-19.html" title="Slide 19 · Mitigation 1"></a><a class="seg done" href="llm01-slide-20.html" title="Slide 20 · Mitigation 2"></a><a class="seg active" href="llm01-slide-21.html" title="Slide 21 · Mitigation 3"></a><a class="seg" href="llm01-slide-22.html" title="Slide 22 · Mitigation 4"></a><a class="seg" href="llm01-slide-23.html" title="Slide 23 · Mitigation 5"></a><a class="seg" href="llm01-slide-24.html" title="Slide 24 · Mitigation 6"></a><a class="seg" href="llm01-slide-25.html" title="Slide 25 · Mitigation 7"></a><a class="seg" href="llm01-slide-26.html" title="Slide 26 · The Matrix"></a><a class="seg" href="llm01-slide-27.html" title="Slide 27 · Quiz"></a><a class="seg" href="llm01-slide-28.html" title="Slide 28 · Complete"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 21</span></div>
+</div>
+<div class="slide active">
+<div class="slide-eyebrow">Slide 21 · Mitigation 3 of 7</div>
+  <div class="slide-title">Implement input and output filtering — with real tools.</div>
+  <div class="slide-subtitle">Screen what goes in and what comes out. Here's what production teams actually use.</div>
+  <div class="source-tag">📄 OWASP LLM Top 10:2025 · LLM01 Prevention #3</div>
+  <div class="mit-card">
+    <div class="mit-num">OWASP M3</div>
+    <div class="mit-title">Implement Input and Output Filtering</div>
+    <div class="mit-section"><div class="mit-section-label blue">What OWASP Says</div><p>"Define sensitive categories and construct rules for identifying and handling such content. Apply semantic filters and use string-checking to scan for non-allowed content. Evaluate responses using the RAG Triad: context relevance, groundedness, and question/answer relevance."</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label red">Why String Matching Alone Fails — OWASP Says So</div><p>Scenario #9 exists because string matching on "ignore previous instructions" misses the same phrase in Base64, in Japanese, encoded in emoji, or obfuscated with Unicode lookalike characters. Benchmark research found that even state-of-the-art guardrail models had significantly lower detection rates on obfuscated versus plain-English injections. <strong>Semantic filtering — understanding meaning regardless of encoding — is required.</strong></p></div>
+  </div>
+  <div class="tool-grid">
+    <div class="tool-card"><div class="tool-name">Lakera Guard</div><div class="tool-maker">Lakera · Commercial API · Real-time screening</div><div class="tool-desc">ML-based prompt injection detection trained on millions of real adversarial attempts from Lakera's Gandalf public demo — including obfuscated, multilingual, and encoded attacks. Screens both inputs and outputs. Used in production enterprise deployments. Catches patterns that string-match filters miss.</div></div>
+    <div class="tool-card"><div class="tool-name">LLM Guard</div><div class="tool-maker">Protect AI · Open source · Apache 2.0 · Python</div><div class="tool-desc">Open-source security toolkit that integrates directly into your LLM pipeline. Includes a DeBERTa-based prompt injection classifier, PII scrubbing, output relevance scoring, and toxicity detection. Free to self-host — no API call required.</div></div>
+    <div class="tool-card"><div class="tool-name">NeMo Guardrails</div><div class="tool-maker">NVIDIA · Open source · Apache 2.0</div><div class="tool-desc">Dialog management framework with programmable guardrails. Input rails filter before the model sees content. Output rails filter before the response reaches users. Execution rails control what the model can invoke. Best for multi-turn conversation control and agentic workflows.</div></div>
+    <div class="tool-card"><div class="tool-name">Azure AI Prompt Shields</div><div class="tool-maker">Microsoft · Managed cloud service</div><div class="tool-desc">Microsoft's managed guardrail API covering jailbreak detection, data exfiltration patterns, and obfuscation attacks. Integrated into Azure OpenAI Service. Note: Microsoft's own Copilot products use this — EchoLeak bypassed the first version of their XPIA classifier before the post-disclosure patch, which is why OWASP M7 (adversarial testing) matters.</div></div>
+    <div class="tool-card"><div class="tool-name">Meta Prompt Guard</div><div class="tool-maker">Meta · Open source · 86M parameter classifier</div><div class="tool-desc">A lightweight classifier fine-tuned specifically to detect prompt injection and jailbreak attempts. Can be run as a pre-filter before your main LLM call with minimal added latency. Free to use and self-host via Hugging Face.</div></div>
+  </div>
+  <div class="callout yellow"><div class="callout-label">The RAG Triad — For RAG System Output Evaluation</div><p>OWASP recommends evaluating three things for RAG outputs: <strong>Context relevance</strong> (is the retrieved content relevant to the question? Off-topic retrievals signal knowledge base poisoning), <strong>Groundedness</strong> (is the answer supported by the retrieved content? Ungrounded answers suggest injection redirected the model), <strong>Answer relevance</strong> (does the answer actually address the question? Drift signals something went wrong).</p></div>
+  <div class="callout red"><div class="callout-label">Critical Gap: Only Filtering Inputs</div><p>A successful indirect injection that's already in the model's context window won't be stopped by input filtering. EchoLeak would not have been stopped by input filtering — the email passed normally. It needed output filtering to catch the external URL before rendering. Both layers are required.</p></div>
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team what tool, if any, screens what users send to the AI and what the AI sends back. "We trust the model" is not an answer to that question.</p>
+  </div>
+  <div class="btn-row"><a class="btn-secondary" href="llm01-slide-20.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">← Back</a><a class="btn-primary" href="llm01-slide-22.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next → M4: Least privilege</a></div></div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

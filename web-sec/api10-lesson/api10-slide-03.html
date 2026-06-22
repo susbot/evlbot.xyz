@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 3 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 3 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg active" href="api10-slide-03.html"></a><a class="seg" href="api10-slide-04.html"></a><a class="seg" href="api10-slide-05.html"></a><a class="seg" href="api10-slide-06.html"></a><a class="seg" href="api10-slide-07.html"></a><a class="seg" href="api10-slide-08.html"></a><a class="seg" href="api10-slide-09.html"></a><a class="seg" href="api10-slide-10.html"></a><a class="seg" href="api10-slide-11.html"></a><a class="seg" href="api10-slide-12.html"></a><a class="seg" href="api10-slide-13.html"></a><a class="seg" href="api10-slide-14.html"></a><a class="seg" href="api10-slide-15.html"></a><a class="seg" href="api10-slide-16.html"></a><a class="seg" href="api10-slide-17.html"></a><a class="seg" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 3</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 3 &#xb7; The Trust Model</div>
+  <div class="slide-title">Third-party APIs feel different from user input. That feeling is wrong &#x2014; and attackers know it.</div>
+  <div class="slide-subtitle">Why the implicit trust in third-party responses exists, and why it&#x2019;s misplaced.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F91D;</div>
+      <div><div class="outcome-title">&#x201C;They&#x2019;re a reputable company&#x201D;</div><div class="outcome-desc">Stripe, Google Maps, Twilio, Auth0 &#x2014; these are well-known vendors with security teams. The developer&#x2019;s mental model: their API output must be safe to use. But even reputable vendors can be compromised, have bugs in their own data handling, or have their CDN files tampered with. Reputation is not a substitute for validation.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4DC;</div>
+      <div><div class="outcome-title">&#x201C;It&#x2019;s structured data &#x2014; JSON/XML&#x201D;</div><div class="outcome-desc">Third-party responses are machine-generated, structured, and typed &#x2014; so developers assume the values are safe. But the <em>format</em> being JSON doesn&#x2019;t mean the <em>values</em> are safe for SQL queries, HTML rendering, or log processing. A JSON string field can contain SQL injection, XSS payloads, or JNDI lookup strings.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x26A1;</div>
+      <div><div class="outcome-title">&#x201C;Validating it would break things / slow us down&#x201D;</div><div class="outcome-desc">Third-party responses have schemas the developer doesn&#x2019;t fully control. Applying strict validation risks breaking the integration when the vendor makes a schema change. Developers often choose flexibility over security &#x2014; accepting whatever the API sends and processing it directly.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4E6;</div>
+      <div><div class="outcome-title">&#x201C;The integration code was written once and never reviewed&#x201D;</div><div class="outcome-desc">Third-party integration code is often written in an initial sprint, works, and is never touched again. Security reviews focus on new features and changed code &#x2014; stable integration adapters are invisible. The code that processes third-party responses may have no input validation because nobody went back to add it.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F517;</div>
+      <div><div class="outcome-title">&#x201C;We&#x2019;re contractually trusting them&#x201D;</div><div class="outcome-desc">Third-party APIs require terms of service acceptance. There&#x2019;s an implicit sense that the vendor is contractually responsible for their output being safe. But a contract doesn&#x2019;t prevent a breach. When the vendor&#x2019;s CDN is compromised, the malicious data flows through the same trusted channel &#x2014; regardless of what the contract says.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-02.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-04.html">What third-party APIs do you trust? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

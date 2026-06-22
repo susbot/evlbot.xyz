@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG02:2026 — Tool Misuse and Exploitation · Slide 13 of 28</title>
+<link rel="stylesheet" href="ag02-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG02:2026</span>
+    <span class="nav-title">Tool Misuse and Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 13 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag02-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag02-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag02-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag02-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag02-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag02-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag02-slide-07.html" title="Slide 7 · Tool Misuse vs Other Risks"></a>
+    <a class="seg done" href="ag02-slide-08.html" title="Slide 8 · Why Tools Are the New Attack Surface"></a>
+    <a class="seg done" href="ag02-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag02-slide-10.html" title="Slide 10 · Type 1 — Over-Privileged Tools"></a>
+    <a class="seg done" href="ag02-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg done" href="ag02-slide-12.html" title="Slide 12 · Type 2 — Tool Chaining"></a>
+    <a class="seg active" href="ag02-slide-13.html" title="Slide 13 · Type 2 — Real Example"></a>
+    <a class="seg" href="ag02-slide-14.html" title="Slide 14 · Scenarios 1–3"></a>
+    <a class="seg" href="ag02-slide-15.html" title="Slide 15 · Scenarios 4–6"></a>
+    <a class="seg" href="ag02-slide-16.html" title="Slide 16 · Scenarios 7–9"></a>
+    <a class="seg" href="ag02-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag02-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag02-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag02-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag02-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag02-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag02-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag02-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag02-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag02-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag02-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag02-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — How It Works</span><span>Slide 13</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 13 · Type 2 — Real Example</div>
+  <div class="slide-title">EDR bypass via tool chaining — security tooling, used as the attack</div>
+  <div class="slide-subtitle">When legitimate admin tools become the exfiltration pipeline, endpoint detection is blind.</div>
+
+  <div class="real-incident">
+    <div class="real-incident-tag">Real Attack Pattern · Documented 2024–2025</div>
+    <div class="real-incident-title">EDR Bypass via Tool Chaining (Security Automation Agents)</div>
+    <div class="real-incident-body">
+      <p>A security-automation agent receives an injected instruction — embedded in a log file it was parsing — that causes it to chain together three legitimate administrative tools: <strong>PowerShell</strong> (query internal logs), <strong>cURL</strong> (format and transmit data), and an <strong>internal API</strong> (authenticate the request using valid credentials).</p>
+      <p>Each tool is used by legitimate security workflows every day. PowerShell runs constantly. cURL calls are routine. The API endpoint is authorized. <strong>Because every command is executed by trusted binaries under valid credentials, the host-centric monitoring (EDR/XDR) sees no malware, no exploit, no unauthorized process.</strong></p>
+      <p>The security logs are exfiltrated. The EDR never fires. The SIEM has no matching rule — because the individual actions it saw were completely normal.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Lesson:</strong> EDR and XDR tools detect malicious <em>behavior patterns</em> based on known attack techniques — not intent. An agent conducting an attack through authorized, legitimate tools generates no behavior that matches those patterns. Tool-level monitoring must be augmented with intent-level controls.</div>
+  </div>
+
+  <div class="real-incident">
+    <div class="real-incident-tag">Documented Technique · Invariant Labs 2025</div>
+    <div class="real-incident-title">MCP Tool Descriptor Poisoning — GitHub Integration</div>
+    <div class="real-incident-body">
+      <p>Invariant Labs demonstrated a prompt injection in GitHub's MCP server where a malicious public repository embedded commands in its tool metadata (the descriptor the agent reads to understand what the tool does). When an assistant invoked the tool, it read the poisoned descriptor and exfiltrated private repository data — including code and secrets — without user knowledge.</p>
+      <p>The tool was fully legitimate. The MCP server was the official GitHub integration. <strong>The attack lived in the tool's own description of itself.</strong></p>
+    </div>
+    <div class="real-incident-lesson"><strong>Lesson:</strong> Tool metadata is an attack surface. Agents that trust tool descriptors without validation can be made to perform any action the descriptor instructs — regardless of what the tool was originally designed to do.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag02-slide-12.html">← Back</a>
+    <a class="btn-primary" href="ag02-slide-14.html">Let's see more scenarios →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

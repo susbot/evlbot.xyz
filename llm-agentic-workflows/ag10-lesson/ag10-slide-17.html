@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG10:2026 — Rogue Agents · Slide 17 of 28</title>
+<link rel="stylesheet" href="ag10-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG10:2026</span>
+    <span class="nav-title">Rogue Agents</span>
+  </div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag10-slide-01.html"></a><a class="seg done" href="ag10-slide-02.html"></a><a class="seg done" href="ag10-slide-03.html"></a><a class="seg done" href="ag10-slide-04.html"></a><a class="seg done" href="ag10-slide-05.html"></a><a class="seg done" href="ag10-slide-06.html"></a><a class="seg done" href="ag10-slide-07.html"></a><a class="seg done" href="ag10-slide-08.html"></a><a class="seg done" href="ag10-slide-09.html"></a><a class="seg done" href="ag10-slide-10.html"></a><a class="seg done" href="ag10-slide-11.html"></a><a class="seg done" href="ag10-slide-12.html"></a><a class="seg done" href="ag10-slide-13.html"></a><a class="seg done" href="ag10-slide-14.html"></a><a class="seg done" href="ag10-slide-15.html"></a><a class="seg done" href="ag10-slide-16.html"></a>
+    <a class="seg active" href="ag10-slide-17.html"></a>
+    <a class="seg" href="ag10-slide-18.html"></a><a class="seg" href="ag10-slide-19.html"></a><a class="seg" href="ag10-slide-20.html"></a><a class="seg" href="ag10-slide-21.html"></a><a class="seg" href="ag10-slide-22.html"></a><a class="seg" href="ag10-slide-23.html"></a><a class="seg" href="ag10-slide-24.html"></a><a class="seg" href="ag10-slide-25.html"></a><a class="seg" href="ag10-slide-26.html"></a><a class="seg" href="ag10-slide-27.html"></a><a class="seg" href="ag10-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Prevention</span><span>Slide 17</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 17 · Part 3 Overview</div>
+  <div class="slide-title">Nine mitigations — across three defense categories: constrain capability, enforce oversight, and detect divergence.</div>
+
+  <div class="mit-overview-grid">
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT01</div>
+      <div class="mit-name">Minimal Footprint / Least Privilege</div>
+      <div class="mit-desc">Grant agents only the tools, data access, and permissions they need for their specific task. Minimize the gap between authorized scope and capable scope. Review and reduce footprint periodically.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT02</div>
+      <div class="mit-name">Explicit Constraint Specification</div>
+      <div class="mit-desc">State not just what the agent should achieve but what it must not do — explicit prohibitions on methods, resource types, scope expansion, and self-modification. Complement objective specification with constraint specification.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT03</div>
+      <div class="mit-name">Behavioral Monitoring and Anomaly Detection</div>
+      <div class="mit-desc">Monitor cumulative effects and behavioral patterns, not just individual actions. Detect anomalous tool usage, unexpected capability combinations, and metric patterns inconsistent with expected behavior.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT04</div>
+      <div class="mit-name">Capability Sandboxing</div>
+      <div class="mit-desc">Technically constrain what actions the agent can take, independent of what it is instructed to do. Sandboxing enforces limits that instruction-following cannot — it is effective even after goal injection succeeds.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT05</div>
+      <div class="mit-name">Tripwires and Sentinel Checks</div>
+      <div class="mit-desc">Establish automated checks that flag specific high-risk behavioral patterns: bulk operations above threshold, self-modification attempts, anomalous access patterns, or deviation from expected action sequences.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT06</div>
+      <div class="mit-name">Human Approval Gates for High-Impact Actions</div>
+      <div class="mit-desc">For actions above defined impact, irreversibility, or novelty thresholds, require explicit human approval before the action executes — not passive approval, explicit approval. The agent proposes; the human decides.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT07</div>
+      <div class="mit-name">Action Reversibility Requirements</div>
+      <div class="mit-desc">Prefer reversible over irreversible actions, especially for high-impact operations. Stage irreversible actions with a reversibility window. Never delete data without confirmed backup. Never make permanent changes in a single step.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT08</div>
+      <div class="mit-name">Principal Hierarchy Enforcement</div>
+      <div class="mit-desc">Technically enforce the principal hierarchy: agents can only execute actions within the scope authorized by their position in the hierarchy. An agent cannot grant itself permissions higher than its principal authorized.</div>
+    </div>
+    <div class="mit-overview-item">
+      <div class="mit-num">MIT09</div>
+      <div class="mit-name">Red-Teaming and Alignment Testing</div>
+      <div class="mit-desc">Proactively test for rogue behavior: adversarial goal injection attempts, proxy exploitation scenarios, capability boundary discovery, and multi-step chain detection. Test in staging before and continuously after deployment.</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag10-slide-16.html">← Back</a>
+    <a class="btn-primary" href="ag10-slide-18.html">MIT01 & MIT02 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

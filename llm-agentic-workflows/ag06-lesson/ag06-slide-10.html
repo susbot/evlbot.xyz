@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 10 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 10 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a><a class="seg done" href="ag06-slide-03.html"></a><a class="seg done" href="ag06-slide-04.html"></a><a class="seg done" href="ag06-slide-05.html"></a><a class="seg done" href="ag06-slide-06.html"></a><a class="seg done" href="ag06-slide-07.html"></a><a class="seg done" href="ag06-slide-08.html"></a><a class="seg done" href="ag06-slide-09.html"></a>
+    <a class="seg active" href="ag06-slide-10.html"></a>
+    <a class="seg" href="ag06-slide-11.html"></a><a class="seg" href="ag06-slide-12.html"></a><a class="seg" href="ag06-slide-13.html"></a><a class="seg" href="ag06-slide-14.html"></a><a class="seg" href="ag06-slide-15.html"></a><a class="seg" href="ag06-slide-16.html"></a><a class="seg" href="ag06-slide-17.html"></a><a class="seg" href="ag06-slide-18.html"></a><a class="seg" href="ag06-slide-19.html"></a><a class="seg" href="ag06-slide-20.html"></a><a class="seg" href="ag06-slide-21.html"></a><a class="seg" href="ag06-slide-22.html"></a><a class="seg" href="ag06-slide-23.html"></a><a class="seg" href="ag06-slide-24.html"></a><a class="seg" href="ag06-slide-25.html"></a><a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Vulnerability Types</span><span>Slide 10</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 10 · Type 1 — RAG / Knowledge Base Poisoning</div>
+  <div class="slide-title">Type 1: Malicious content written into the document store the agent retrieves from — affecting every user who asks a related question.</div>
+
+  <div class="block">
+    <div class="block-label purple">How RAG works and where the attack enters</div>
+    <p>A Retrieval-Augmented Generation (RAG) system stores documents in a vector database. When a user asks a question, the agent embeds the query, retrieves the most semantically similar stored chunks, and includes them as context in its prompt. The agent answers based on what it retrieved.</p>
+    <p>The attack target is the ingestion pipeline — the process by which new documents enter the vector store. If an attacker can control the content of a document that gets ingested, they can write arbitrary context that will be retrieved whenever a user asks a semantically related question.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Why this is the highest-impact memory poisoning type</div>
+    <p><strong>One write, many readers.</strong> A single poisoned document can be retrieved into thousands of future conversations — from a single ingestion event. Unlike other memory poisoning types that target one user's session, RAG poisoning is inherently multi-user: it affects everyone whose query is semantically similar to the poisoned content.</p>
+    <p><strong>High retrieval confidence.</strong> A well-crafted poisoned document is designed to score high semantic similarity for the target query. The attacker can test and optimize retrieval ranking before submission — making the attack highly reliable.</p>
+    <p><strong>Trusted source halo.</strong> Retrieved RAG content is typically presented to the model as "background knowledge" or "relevant context" — a higher-trust framing than live user input. The model is more likely to accept retrieved content as factual.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Real example pattern: Poisoned web page in an auto-crawling RAG system</div>
+    <p>Security researchers (Greshake et al., 2023) demonstrated that if an agent is instructed to browse the web and incorporates retrieved content into its RAG store, an attacker can publish a web page containing both legitimate-looking content and hidden instructions optimized for retrieval. When another user's query triggers retrieval of this page, the injected instructions appear as trusted "retrieved context" in the agent's prompt.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag06-slide-09.html">← Back</a>
+    <a class="btn-primary" href="ag06-slide-11.html">Types 2 &amp; 3 — Session and Profile Poisoning →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

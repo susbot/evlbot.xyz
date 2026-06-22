@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG01:2026 — Agent Goal Hijack · Slide 27 of 28</title>
+<link rel="stylesheet" href="ag01-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG01:2026</span>
+    <span class="nav-title">Agent Goal Hijack</span>
+  </div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag01-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag01-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag01-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag01-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag01-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag01-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag01-slide-07.html" title="Slide 7 · Prompt Injection vs Goal Hijack"></a>
+    <a class="seg done" href="ag01-slide-08.html" title="Slide 8 · Why Agents Are Different"></a>
+    <a class="seg done" href="ag01-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag01-slide-10.html" title="Slide 10 · Direct Goal Manipulation"></a>
+    <a class="seg done" href="ag01-slide-11.html" title="Slide 11 · Direct — Real Example"></a>
+    <a class="seg done" href="ag01-slide-12.html" title="Slide 12 · Indirect Instruction Injection"></a>
+    <a class="seg done" href="ag01-slide-13.html" title="Slide 13 · Indirect — Real Example"></a>
+    <a class="seg done" href="ag01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a>
+    <a class="seg done" href="ag01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a>
+    <a class="seg done" href="ag01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a>
+    <a class="seg done" href="ag01-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg done" href="ag01-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg done" href="ag01-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg done" href="ag01-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg done" href="ag01-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg done" href="ag01-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg done" href="ag01-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg done" href="ag01-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg done" href="ag01-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg done" href="ag01-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg active" href="ag01-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag01-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 27</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 27 · Quiz</div>
+  <div class="slide-title">Five questions</div>
+  <div class="slide-subtitle">These test understanding, not memorization. Each question has one clearly correct answer — but the wrong answers are plausible.</div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 01 OF 05</div>
+    <div class="question-text">An attacker embeds hidden instructions in a public blog post, knowing an AI coding agent will fetch it during a research task. The agent executes the instructions and exfiltrates API keys. The victim never clicks anything. What type of attack is this?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Direct goal manipulation — the attacker gave the agent instructions directly</button>
+      <button class="option" onclick="answer(this,true)">Indirect instruction injection — the attacker placed content in a location the agent retrieved on its own</button>
+      <button class="option" onclick="answer(this,false)">Prompt injection — the attacker modified the system prompt</button>
+      <button class="option" onclick="answer(this,false)">Supply chain attack — the attacker compromised a dependency the agent uses</button>
+    </div>
+    <div class="feedback correct">Correct — this is indirect instruction injection. The attacker never interacted with the agent directly; they placed malicious content in an external source the agent fetched as part of its normal workflow. The "zero-click" nature — no victim action required — is the defining characteristic.</div>
+    <div class="feedback wrong">Not quite — the attacker had no direct access to the agent interface, system prompt, or its dependencies. They placed content in a public location the agent retrieved autonomously. That's indirect instruction injection: the attack travels through the data the agent reads, not through the agent's input channel.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 02 OF 05</div>
+    <div class="question-text">What is the root cause that makes agent goal hijack possible — and why can't it be patched the way a software CVE can?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Agents have too many permissions and need to be locked down at the OS level</button>
+      <button class="option" onclick="answer(this,false)">Agent developers fail to validate user input before passing it to the model</button>
+      <button class="option" onclick="answer(this,true)">Agents use natural language for goals and reasoning, so attacker instructions and developer instructions look identical to the model — there is no compile-time boundary between trusted code and untrusted input</button>
+      <button class="option" onclick="answer(this,false)">AI models are undertrained on security examples and would recognize attacks if fine-tuned correctly</button>
+    </div>
+    <div class="feedback correct">Correct — the root cause is architectural, not a coding error. Natural language is the medium for both legitimate instructions and attacker content. The model cannot cryptographically verify the origin of text in its context window. This is why defense requires architectural controls, not a patch.</div>
+    <div class="feedback wrong">Not quite — while input validation and permissions matter, they address symptoms rather than the root cause. The fundamental issue is that an agent's goals, plans, and the attacker's instructions all exist as natural language in the same context window. The model has no way to distinguish their origins. Fine-tuning helps at the margins but cannot solve a structural problem.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 03 OF 05</div>
+    <div class="question-text">In the EchoLeak attack (CVE-2025-32711), what made it a "zero-click" vulnerability even though Microsoft had prompt injection defenses in place?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Microsoft had not deployed any prompt injection detection on Copilot at the time</button>
+      <button class="option" onclick="answer(this,false)">The attacker exploited a memory corruption bug in Copilot's underlying code</button>
+      <button class="option" onclick="answer(this,true)">The attacker chained four separate bypasses — evading the XPIA classifier, link redaction, Content-Security-Policy, and a Teams image proxy — so the attack succeeded even though individual controls were present</button>
+      <button class="option" onclick="answer(this,false)">The victim's account had admin privileges that Copilot inherited automatically</button>
+    </div>
+    <div class="feedback correct">Correct — EchoLeak succeeded by chaining bypasses around each individual control in sequence. No single control was absent; the attack found a path through all of them in combination. This is why defense in depth — multiple independent layers — matters more than any single strong control.</div>
+    <div class="feedback wrong">Not quite — Microsoft did have defenses in place, including an XPIA classifier specifically designed to detect prompt injection. The attack succeeded by bypassing each control sequentially: evading the classifier, circumventing link redaction via reference-style Markdown, bypassing CSP, and abusing a Teams proxy on the CSP allowlist. The lesson is that individual controls can each be bypassed; layers are what make attacks expensive.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 04 OF 05</div>
+    <div class="question-text">A security team wants to protect a financial agent that processes invoices and initiates payments. They can only implement two mitigations right now. Based on the matrix, which two provide the broadest coverage across documented real attacks?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Input filtering (MIT 01) and circuit breakers (MIT 07) — these catch attacks at entry and exit</button>
+      <button class="option" onclick="answer(this,true)">Lock the goal state (MIT 02) and least privilege (MIT 03) — these appear in every documented real incident and limit both the probability and blast radius of a successful hijack</button>
+      <button class="option" onclick="answer(this,false)">Behavioral monitoring (MIT 04) and human-in-the-loop (MIT 05) — these provide human oversight at every stage</button>
+      <button class="option" onclick="answer(this,false)">Authenticated inter-agent messaging (MIT 06) and circuit breakers (MIT 07) — these protect the pipeline boundaries</button>
+    </div>
+    <div class="feedback correct">Correct — MIT 02 and MIT 03 appear in the coverage column for every documented real attack in the matrix. MIT 02 makes it harder to displace the agent's goal; MIT 03 limits what a successfully hijacked agent can do. Together they address both prevention and blast radius limitation — the two most important properties for a high-stakes financial agent.</div>
+    <div class="feedback wrong">Not quite — while all mitigations have value, MIT 02 (lock goal) and MIT 03 (least privilege) have the broadest coverage across documented incidents. Input filtering was bypassed in EchoLeak and partially in PerplexedBrowser. Circuit breakers, monitoring, and human-in-the-loop are important but depend on the attack being detectable at runtime. Goal locking and least privilege reduce harm even when detection fails.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 05 OF 05</div>
+    <div class="question-text">An agent is asked to "accept a calendar invite." Hidden past blank lines in the invite are instructions in a mix of Hebrew and English, directing the agent to access a password manager and exfiltrate credentials. Which property of this attack makes it hardest to defend against?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">The attacker used an unusual file format that security tools don't scan</button>
+      <button class="option" onclick="answer(this,false)">The agent had write access to the password manager, which it shouldn't have had</button>
+      <button class="option" onclick="answer(this,false)">The calendar system didn't authenticate the sender of the invite</button>
+      <button class="option" onclick="answer(this,true)">The attack was triggered by a completely routine, legitimate action the user requested — accepting a meeting — so no behavior looked suspicious until the damage was done</button>
+    </div>
+    <div class="feedback correct">Correct — this is what makes the PerplexedBrowser attack so significant. The triggering action (accepting a calendar invite) is routine and expected. The agent was doing exactly what it was asked. The malicious content was invisible to the human. There was no anomalous behavior to detect until the credential exfiltration occurred. This is why human-in-the-loop controls for high-stakes actions (MIT 05) are essential even when everything looks normal.</div>
+    <div class="feedback wrong">Not quite — while authentication and least privilege are relevant concerns, the most challenging property of this attack is that the triggering action was completely legitimate. The user asked the agent to accept a meeting — a normal, expected task. The attack exploited the gap between what the user saw (a routine request) and what the agent was reading (hidden instructions). Defenses that rely on detecting suspicious behavior struggle when the attack hides inside ordinary workflow.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag01-slide-26.html">← Back</a>
+    <a class="btn-primary" href="ag01-slide-28.html">Done → See what you've learned</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">View sources for this lesson</a></div>
+
+<script>
+function answer(btn, correct) {
+  var card = btn.closest('.question-card');
+  card.querySelectorAll('.option').forEach(function(o) { o.disabled = true; });
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  card.querySelector('.feedback.' + (correct ? 'correct' : 'wrong')).classList.add('show');
+}
+</script>
+</body>
+</html>

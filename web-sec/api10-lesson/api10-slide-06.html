@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 6 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 6 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg active" href="api10-slide-06.html"></a><a class="seg" href="api10-slide-07.html"></a><a class="seg" href="api10-slide-08.html"></a><a class="seg" href="api10-slide-09.html"></a><a class="seg" href="api10-slide-10.html"></a><a class="seg" href="api10-slide-11.html"></a><a class="seg" href="api10-slide-12.html"></a><a class="seg" href="api10-slide-13.html"></a><a class="seg" href="api10-slide-14.html"></a><a class="seg" href="api10-slide-15.html"></a><a class="seg" href="api10-slide-16.html"></a><a class="seg" href="api10-slide-17.html"></a><a class="seg" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 6</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 6 &#xb7; Why It Happens</div>
+  <div class="slide-title">Five root causes that let third-party trust become a structural vulnerability.</div>
+  <div class="slide-subtitle">All of them trace back to a single assumption: third-party output is not user input.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x274C;</div>
+      <div><div class="outcome-title">Input validation scoped to user-facing endpoints</div><div class="outcome-desc">Security controls &#x2014; input validation, sanitization, output encoding &#x2014; are applied at the API&#x2019;s external boundary: the endpoints that receive requests from users. Data that enters through third-party integrations takes a different code path &#x2014; one that was never reviewed for injection risks because it was considered internal, not external.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x274C;</div>
+      <div><div class="outcome-title">No security review of third-party integration code</div><div class="outcome-desc">Integration adapters are often written to &#x201C;just make it work&#x201D; and then forgotten. Threat models focus on what an attacker can send to the API &#x2014; not on what a compromised third-party might return to it. Penetration tests target the API&#x2019;s external surface. Nobody tests what happens if the geolocation API returns SQL in a city name.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x274C;</div>
+      <div><div class="outcome-title">Supply chain attacks are harder to model</div><div class="outcome-desc">The threat model &#x201C;what if our payment processor is compromised and starts returning malicious data?&#x201D; is uncomfortable to model because it implies distrusting a business partner. Teams focus on threats they can control. Supply chain attacks are external to the organization and feel like someone else&#x2019;s problem &#x2014; until they aren&#x2019;t.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x274C;</div>
+      <div><div class="outcome-title">No monitoring for third-party behavior changes</div><div class="outcome-desc">Third-party API responses are assumed to be stable. There is no alert for &#x201C;the response from this endpoint changed significantly&#x201D; or &#x201C;this CDN file changed since yesterday.&#x201D; A compromised third-party can modify responses gradually or suddenly &#x2014; with no automatic detection by the consuming API.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x274C;</div>
+      <div><div class="outcome-title">TLS provides transport security &#x2014; not content security</div><div class="outcome-desc">Developers often conflate &#x201C;secure connection to the third-party API&#x201D; with &#x201C;the data from the third-party is safe.&#x201D; TLS ensures the response came from the expected server without being modified in transit. It says nothing about whether the server itself has been compromised or whether the response data is safe to process without validation.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-05.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-07.html">What&#x2019;s at stake? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

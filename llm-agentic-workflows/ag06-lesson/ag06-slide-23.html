@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 23 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 23 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a><a class="seg done" href="ag06-slide-03.html"></a><a class="seg done" href="ag06-slide-04.html"></a><a class="seg done" href="ag06-slide-05.html"></a><a class="seg done" href="ag06-slide-06.html"></a><a class="seg done" href="ag06-slide-07.html"></a><a class="seg done" href="ag06-slide-08.html"></a><a class="seg done" href="ag06-slide-09.html"></a><a class="seg done" href="ag06-slide-10.html"></a><a class="seg done" href="ag06-slide-11.html"></a><a class="seg done" href="ag06-slide-12.html"></a><a class="seg done" href="ag06-slide-13.html"></a><a class="seg done" href="ag06-slide-14.html"></a><a class="seg done" href="ag06-slide-15.html"></a><a class="seg done" href="ag06-slide-16.html"></a><a class="seg done" href="ag06-slide-17.html"></a><a class="seg done" href="ag06-slide-18.html"></a><a class="seg done" href="ag06-slide-19.html"></a><a class="seg done" href="ag06-slide-20.html"></a><a class="seg done" href="ag06-slide-21.html"></a><a class="seg done" href="ag06-slide-22.html"></a>
+    <a class="seg active" href="ag06-slide-23.html"></a>
+    <a class="seg" href="ag06-slide-24.html"></a><a class="seg" href="ag06-slide-25.html"></a><a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 23</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 23 · How the Nine Mitigations Work Together</div>
+  <div class="slide-title">Three defense layers — each operating at a different point in the four-step attack chain.</div>
+
+  <div class="block">
+    <div class="block-label purple">Layer 1 — Write-time controls (Step 1 and 2)</div>
+    <p>Operate when content attempts to enter memory. <strong>MIT01</strong> (input validation) filters malicious content before it's stored. <strong>MIT02</strong> (source provenance) tags everything with its trust level at write time. <strong>MIT03</strong> (access controls) restricts who can write where. <strong>MIT05</strong> (human review) inserts a person into the write path for high-stakes entries. <strong>MIT06</strong> (tier separation) makes the curated knowledge base physically inaccessible to agent writes.</p>
+    <p>These controls prevent poisoning from happening. When they work, there is nothing to detect or recover from.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Layer 2 — Storage-time controls (between Steps 2 and 4)</div>
+    <p>Operate on what's already in memory before it gets retrieved. <strong>MIT04</strong> (TTL) limits how long any entry can persist — so a poisoning event that evades write-time controls has a bounded window of impact. <strong>MIT08</strong> (audit logging) creates the record that makes anomalous writes detectable after the fact. <strong>MIT09</strong> (periodic review) actively hunts for poisoned entries that passed initial validation.</p>
+    <p>These controls limit damage duration and enable detection and recovery.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Layer 3 — Retrieval-time controls (Step 4)</div>
+    <p>Operate when memory is retrieved and used. <strong>MIT07</strong> (reduced trust for retrieved content) reduces the impact of any poisoned entry that survives to retrieval — by instructing the agent to treat retrieved authorization claims skeptically rather than accepting them as ground truth. <strong>MIT02</strong> also operates here — surfacing provenance metadata so the agent knows whether the retrieved entry came from a trusted source.</p>
+    <p>This layer is the last line of defense: it reduces the harm from entries that evaded all earlier controls.</p>
+  </div>
+
+  <div class="callout amber">
+    <div class="callout-label">Minimum viable set</div>
+    <p><strong>MIT06</strong> (tier separation) is the single highest-leverage control — it makes the curated knowledge base immune to agent-mediated writes. Add <strong>MIT01</strong> (input validation) and <strong>MIT03</strong> (access controls) to cover the episodic tier. These three together reduce the attack surface by the largest margin with the most straightforward implementation.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag06-slide-22.html">← Back</a>
+    <a class="btn-primary" href="ag06-slide-24.html">The mitigation matrix →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

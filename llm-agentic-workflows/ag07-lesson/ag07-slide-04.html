@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 4 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a>
+    <a class="seg active" href="ag07-slide-04.html"></a>
+    <a class="seg" href="ag07-slide-05.html"></a><a class="seg" href="ag07-slide-06.html"></a><a class="seg" href="ag07-slide-07.html"></a><a class="seg" href="ag07-slide-08.html"></a><a class="seg" href="ag07-slide-09.html"></a><a class="seg" href="ag07-slide-10.html"></a><a class="seg" href="ag07-slide-11.html"></a><a class="seg" href="ag07-slide-12.html"></a><a class="seg" href="ag07-slide-13.html"></a><a class="seg" href="ag07-slide-14.html"></a><a class="seg" href="ag07-slide-15.html"></a><a class="seg" href="ag07-slide-16.html"></a><a class="seg" href="ag07-slide-17.html"></a><a class="seg" href="ag07-slide-18.html"></a><a class="seg" href="ag07-slide-19.html"></a><a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 4</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 4 · Definition Part 2</div>
+  <div class="slide-title">Why agents in a pipeline extend implicit trust to each other — and why that trust is unearned.</div>
+
+  <div class="block">
+    <div class="block-label purple">How inter-agent trust develops by default</div>
+    <p>When a developer builds a multi-agent pipeline, the primary security focus is typically on the boundary between the human user and the first agent. That boundary gets authentication tokens, API keys, rate limiting, and input validation. The communication between agents in the pipeline — once inside the trusted boundary — is often treated as an internal concern that doesn't need the same level of protection.</p>
+    <p>This mirrors the historical "hard shell, soft interior" network security mistake: strong perimeter controls, weak internal controls. The assumption is that anything inside the pipeline is already authorized. But "inside the pipeline" is exactly where a compromised component, a supply chain attack, or an insider with network access operates.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">What LLM agents trust in practice</div>
+    <p>When an LLM agent receives a message via its input channel — whether a JSON task payload, a tool result, or a natural language instruction — it typically treats the content as accurate based on position in the prompt, not based on cryptographic proof of origin. If the message arrives in the part of the prompt designated for "orchestrator instructions," the agent treats it as orchestrator instructions.</p>
+    <p>This means the agent's trust model is entirely dependent on the integrity of the channel that delivers the message. There is no "show me your cryptographic identity" step in most current agent frameworks.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">The amplification problem</div>
+    <p>In a single-agent system, a compromised message affects one agent. In a multi-agent pipeline, a forged or tampered message delivered to the orchestrator may cascade into instructions dispatched to every sub-agent the orchestrator manages. The trust granted to orchestrator messages is transitive — sub-agents trust instructions that appear to come from the orchestrator, and the orchestrator's authority extends to everything downstream.</p>
+    <p>An attacker who can impersonate the orchestrator doesn't control one agent. They control the entire pipeline.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-03.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-05.html">What can go wrong →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

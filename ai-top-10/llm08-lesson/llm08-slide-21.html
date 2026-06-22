@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM08:2025 — Vector &amp; Embedding Weaknesses · Slide 21 of 27</title>
+<link rel="stylesheet" href="llm08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">LLM08:2025</span><span class="nav-title">Vector &amp; Embedding Weaknesses</span></div>
+  <span class="nav-right">Slide 21 of 27</span>
+</div>
+<div class="progress-wrap">
+<div class="tab-nav"><a class="seg done" href="llm08-slide-01.html" title="Slide 1 · The Setup"></a><a class="seg done" href="llm08-slide-02.html" title="Slide 2 · What Is a Vector"></a><a class="seg done" href="llm08-slide-03.html" title="Slide 3 · What Is RAG"></a><a class="seg done" href="llm08-slide-04.html" title="Slide 4 · The Definition"></a><a class="seg done" href="llm08-slide-05.html" title="Slide 5 · The Attack Surface"></a><a class="seg done" href="llm08-slide-06.html" title="Slide 6 · The Outcomes"></a><a class="seg done" href="llm08-slide-07.html" title="Slide 7 · LLM08 vs LLM04"></a><a class="seg done" href="llm08-slide-08.html" title="Slide 8 · The Misconception"></a><a class="seg done" href="llm08-slide-09.html" title="Slide 9 · Types Overview"></a><a class="seg done" href="llm08-slide-10.html" title="Slide 10 · Retrieval Poisoning"></a><a class="seg done" href="llm08-slide-11.html" title="Slide 11 · Embedding Inversion"></a><a class="seg done" href="llm08-slide-12.html" title="Slide 12 · Cross-Context Leakage"></a><a class="seg done" href="llm08-slide-13.html" title="Slide 13 · Context Manipulation"></a><a class="seg done" href="llm08-slide-14.html" title="Slide 14 · Scenario 1"></a><a class="seg done" href="llm08-slide-15.html" title="Slide 15 · Scenario 2"></a><a class="seg done" href="llm08-slide-16.html" title="Slide 16 · Scenario 3"></a><a class="seg done" href="llm08-slide-17.html" title="Slide 17 · The Pattern"></a><a class="seg done" href="llm08-slide-18.html" title="Slide 18 · Prevention Overview"></a><a class="seg done" href="llm08-slide-19.html" title="Slide 19 · Validate Ingestion"></a><a class="seg done" href="llm08-slide-20.html" title="Slide 20 · Permission-Aware Stores"></a><a class="seg active" href="llm08-slide-21.html" title="Slide 21 · Retrieval Controls"></a><a class="seg" href="llm08-slide-22.html" title="Slide 22 · Encrypt Vectors"></a><a class="seg" href="llm08-slide-23.html" title="Slide 23 · Monitor Anomalies"></a><a class="seg" href="llm08-slide-24.html" title="Slide 24 · Limit Persistence"></a><a class="seg" href="llm08-slide-25.html" title="Slide 25 · The Matrix"></a><a class="seg" href="llm08-slide-26.html" title="Slide 26 · Quiz"></a><a class="seg" href="llm08-slide-27.html" title="Slide 27 · Complete"></a></div>
+<div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 21</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 21 · Mitigation Category 3 of 6</div>
+  <div class="slide-title">Don&rsquo;t let cosine similarity be the only gate.</div>
+  <div class="source-tag">&#x1F4C4; OWASP LLM Top 10:2025 &middot; LLM08 Prevention &mdash; Retrieval Controls</div>
+
+  <div class="mit-card">
+    <div class="mit-num">M3 &mdash; Retrieval Controls Beyond Similarity</div>
+    <div class="mit-title">Apply Provenance Checks and Confidence Thresholds</div>
+    <div class="mit-section"><div class="mit-section-label blue">What OWASP Says</div><p>&ldquo;Apply strict retrieval controls using metadata filters and confidence thresholds beyond similarity scores.&rdquo; The retrieval layer should validate not only <em>how similar</em> a document is but also <em>where it came from</em>, <em>when it was added</em>, and <em>by whom</em>.</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label red">Which Incident This Would Have Stopped</div><p>PoisonedRAG (Slide 10) works by maximizing cosine similarity &mdash; that is the entire attack mechanism. A provenance check flagging newly added documents from low-trust contributors, or a confidence floor that alerts when a document scores unusually high relative to its historical baseline, would have surfaced the poisoned documents before they influenced any responses.</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label green">How to Do This Right</div><p>&rarr; Require retrieved documents to pass a provenance check: known source, authorized contributor, not recently modified by a low-trust account<br>&rarr; Set confidence thresholds: flag a document that suddenly ranks #1 for a query it has never appeared in before<br>&rarr; Limit how many retrieved documents per query can originate from a single contributor</p></div>
+    <div class="divider"></div>
+    <div class="mit-section"><div class="mit-section-label yellow">How to Validate</div><p>Inject a canary document from a low-trust test account. Query the system on the canary&rsquo;s topic. Does the canary rank at the top? If yes, provenance is not part of the retrieval scoring.</p></div>
+  </div>
+<div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team what determines which documents the AI uses to answer a question — and whether that retrieval mechanism can be influenced by a user. A system that returns documents purely based on text similarity can be nudged to surface content that wouldn't pass a manual review.</p>
+  </div>
+  <div class="btn-row"><a class="btn-secondary" href="llm08-slide-20.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">&larr; Back</a><a class="btn-primary" href="llm08-slide-22.html" style="text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;">Next &rarr; M4: Encrypt vectors</a></div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 12 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 12 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg done" href="api08-slide-05.html"></a><a class="seg done" href="api08-slide-06.html"></a><a class="seg done" href="api08-slide-07.html"></a><a class="seg done" href="api08-slide-08.html"></a><a class="seg done" href="api08-slide-09.html"></a><a class="seg done" href="api08-slide-10.html"></a><a class="seg done" href="api08-slide-11.html"></a><a class="seg active" href="api08-slide-12.html"></a><a class="seg" href="api08-slide-13.html"></a><a class="seg" href="api08-slide-14.html"></a><a class="seg" href="api08-slide-15.html"></a><a class="seg" href="api08-slide-16.html"></a><a class="seg" href="api08-slide-17.html"></a><a class="seg" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 12</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 12 &#xb7; Pattern 2 Mechanics</div>
+  <div class="slide-title">Admin endpoint discovery &#x2192; No auth &#x2192; Full access</div>
+  <div class="slide-subtitle">How attackers find and exploit unauthenticated admin and debug endpoints.</div>
+  <div class="scenario-card">
+    <div class="scenario-num">THE SETUP</div>
+    <div class="scenario-title">A Spring Boot API with Actuator endpoints deployed to production.</div>
+    <div class="scenario-body">
+      <p>Spring Boot Actuator is a production-ready features framework. In development, the <code>/actuator</code> endpoint is enabled with all sub-endpoints exposed for debugging. The configuration is not locked down before production deployment.</p>
+      <p>Exposed endpoints include: <code>/actuator/env</code> (all environment variables, including secrets), <code>/actuator/heapdump</code> (full JVM heap dump &#x2014; contains everything in memory), <code>/actuator/beans</code> (all Spring beans and configuration), <code>/actuator/mappings</code> (all URL route mappings).</p>
+    </div>
+  </div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">1&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Attacker scans for common admin paths</div><div class="outcome-desc">Automated scanner (or manual attempt) tries: <code>/admin</code>, <code>/actuator</code>, <code>/actuator/health</code>, <code>/debug</code>, <code>/console</code>, <code>/metrics</code>, <code>/.env</code>, <code>/swagger-ui</code>. Finds <code>/actuator</code> returns HTTP 200.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">2&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Attacker fetches <code>/actuator/env</code></div><div class="outcome-desc">Response contains: <code>SPRING_DATASOURCE_PASSWORD: prod-db-pass-2024</code>, <code>AWS_SECRET_ACCESS_KEY: AKIA...</code>, <code>STRIPE_SECRET_KEY: sk_live_...</code>. All production secrets exposed in plain JSON.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">3&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Attacker fetches <code>/actuator/heapdump</code></div><div class="outcome-desc">Downloads a binary heap dump of the JVM memory. Parsed with standard tools, it contains: session tokens, decrypted secrets, database query results still in memory, user data cached in application. Everything the application has touched.</div></div>
+    </div>
+  </div>
+  <div class="callout red">
+    <div class="callout-label">The heapdump is the worst one</div>
+    <p>The JVM heap dump is particularly dangerous because it contains the decrypted form of everything in memory. Even if secrets are stored encrypted in environment variables, they are decrypted when used &#x2014; and those decrypted values live in the heap. The heapdump is essentially a snapshot of everything the application currently knows.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-11.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-13.html">Real incident: Firebase &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

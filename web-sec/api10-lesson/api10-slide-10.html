@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 10 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 10 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg active" href="api10-slide-10.html"></a><a class="seg" href="api10-slide-11.html"></a><a class="seg" href="api10-slide-12.html"></a><a class="seg" href="api10-slide-13.html"></a><a class="seg" href="api10-slide-14.html"></a><a class="seg" href="api10-slide-15.html"></a><a class="seg" href="api10-slide-16.html"></a><a class="seg" href="api10-slide-17.html"></a><a class="seg" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 10</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 10 &#xb7; Pattern 1 Mechanics</div>
+  <div class="slide-title">CDN compromise &#x2192; Malicious script on trusted pages &#x2192; Data exfiltration at browser level</div>
+  <div class="slide-subtitle">Step by step: how a third-party CDN compromise becomes a payment card skimmer on hundreds of checkout pages.</div>
+  <div class="scenario-card">
+    <div class="scenario-num">THE SETUP</div>
+    <div class="scenario-title">An e-commerce checkout page that loads a third-party analytics or chatbot script.</div>
+    <div class="scenario-body">
+      <p>The checkout page HTML includes: <code>&lt;script src="https://vendor-cdn.example.com/widget.js"&gt;&lt;/script&gt;</code></p>
+      <p>This script is loaded from the vendor&#x2019;s CDN with no integrity verification (<code>integrity=</code> attribute absent). It runs in the context of the payment page with full DOM access &#x2014; it can read any field the user types, including card numbers, CVV codes, and billing addresses.</p>
+    </div>
+  </div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">1&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Attacker compromises the vendor&#x2019;s CDN</div><div class="outcome-desc">Through a credential theft, a CDN misconfiguration, or a vulnerability in the vendor&#x2019;s deployment pipeline, the attacker gains write access to the CDN file. They modify <code>widget.js</code> to append a skimming payload: a few lines that listen for form submissions, capture card data, and POST it to an attacker-controlled domain.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">2&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Every page load now delivers the malicious script</div><div class="outcome-desc">The checkout page loads <code>widget.js</code> fresh on each visit &#x2014; from the CDN. Every user who loads the checkout page now executes the skimming payload. The consuming site&#x2019;s own security controls &#x2014; its WAF, its CSP (if absent), its API security &#x2014; are irrelevant. The attack runs in the browser before any data reaches the server.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">3&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Attacker harvests card data in real time</div><div class="outcome-desc">As users complete checkout, the skimmer intercepts the form submission, copies card number, expiry, CVV, and billing address, and sends them to <code>https://cdn-static[.]su/track</code> (or similar attacker-controlled domain disguised as a CDN). The legitimate form submission also goes through normally &#x2014; the user sees no error. The theft is invisible to the victim, the merchant, and their payment processor.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-09.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-11.html">Real incident: Ticketmaster &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

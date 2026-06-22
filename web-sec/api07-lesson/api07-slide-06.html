@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 6 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 6 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg active" href="api07-slide-06.html"></a><a class="seg" href="api07-slide-07.html"></a><a class="seg" href="api07-slide-08.html"></a><a class="seg" href="api07-slide-09.html"></a><a class="seg" href="api07-slide-10.html"></a><a class="seg" href="api07-slide-11.html"></a><a class="seg" href="api07-slide-12.html"></a><a class="seg" href="api07-slide-13.html"></a><a class="seg" href="api07-slide-14.html"></a><a class="seg" href="api07-slide-15.html"></a><a class="seg" href="api07-slide-16.html"></a><a class="seg" href="api07-slide-17.html"></a><a class="seg" href="api07-slide-18.html"></a><a class="seg" href="api07-slide-19.html"></a><a class="seg" href="api07-slide-20.html"></a><a class="seg" href="api07-slide-21.html"></a><a class="seg" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 6</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 6 &#xb7; Why It Happens</div>
+  <div class="slide-title">Trust flows the wrong direction. The server trusts the URL it&#x2019;s told to fetch.</div>
+  <div class="slide-subtitle">Four root causes that turn a URL-fetching feature into an SSRF vulnerability.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x274C;</div>
+      <div><div class="outcome-title">No URL validation before fetching</div><div class="outcome-desc">The server takes the user-supplied URL and passes it directly to an HTTP client library (curl, requests, fetch, HttpClient). No check: is this a permitted host? Is this a private IP? Is this a permitted protocol?</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x274C;</div>
+      <div><div class="outcome-title">Blocklist instead of allowlist</div><div class="outcome-desc">The developer blocks &#x201C;obvious&#x201D; internal addresses: 127.0.0.1, localhost, 169.254.169.254. Attackers bypass with: decimal notation (2130706433 = 127.0.0.1), URL encoding, IPv6 (::1), DNS rebinding, or redirects to internal IPs.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x274C;</div>
+      <div><div class="outcome-title">Following HTTP redirects automatically</div><div class="outcome-desc">The URL validation checks the original URL and it passes. The fetch follows a redirect (302) to an internal address. The library fetches the redirect destination &#x2014; bypassing the validation entirely.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x274C;</div>
+      <div><div class="outcome-title">Returning full server responses to the client</div><div class="outcome-desc">The server fetches the URL and returns the raw response body to the API caller. If the URL was a metadata endpoint, the caller receives the credentials. If it was a config file, the caller receives the secrets.</div></div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">The invisible network boundary</div>
+    <p>Developers build URL-fetching features thinking about external URLs. They don&#x2019;t think about the fact that the server is inside the network and can reach internal services that have no auth because they&#x2019;re &#x201C;trusted.&#x201D; The boundary they forgot exists is the one between the internet and the internal network &#x2014; and the API server straddles it.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-05.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-07.html">Who does this affect? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

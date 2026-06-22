@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG05:2026 — Unexpected Code Execution · Slide 25 of 28</title>
+<link rel="stylesheet" href="ag05-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG05:2026</span>
+    <span class="nav-title">Unexpected Code Execution</span>
+  </div>
+  <span class="nav-right">Slide 25 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag05-slide-01.html"></a><a class="seg done" href="ag05-slide-02.html"></a><a class="seg done" href="ag05-slide-03.html"></a><a class="seg done" href="ag05-slide-04.html"></a><a class="seg done" href="ag05-slide-05.html"></a><a class="seg done" href="ag05-slide-06.html"></a><a class="seg done" href="ag05-slide-07.html"></a><a class="seg done" href="ag05-slide-08.html"></a><a class="seg done" href="ag05-slide-09.html"></a><a class="seg done" href="ag05-slide-10.html"></a><a class="seg done" href="ag05-slide-11.html"></a><a class="seg done" href="ag05-slide-12.html"></a><a class="seg done" href="ag05-slide-13.html"></a><a class="seg done" href="ag05-slide-14.html"></a><a class="seg done" href="ag05-slide-15.html"></a><a class="seg done" href="ag05-slide-16.html"></a><a class="seg done" href="ag05-slide-17.html"></a><a class="seg done" href="ag05-slide-18.html"></a><a class="seg done" href="ag05-slide-19.html"></a><a class="seg done" href="ag05-slide-20.html"></a><a class="seg done" href="ag05-slide-21.html"></a><a class="seg done" href="ag05-slide-22.html"></a><a class="seg done" href="ag05-slide-23.html"></a><a class="seg done" href="ag05-slide-24.html"></a>
+    <a class="seg active" href="ag05-slide-25.html"></a>
+    <a class="seg" href="ag05-slide-26.html"></a><a class="seg" href="ag05-slide-27.html"></a><a class="seg" href="ag05-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 25</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 25 · How the Nine Mitigations Work Together</div>
+  <div class="slide-title">No single control is sufficient. The nine mitigations form three concentric rings — each one catches what the previous ring missed.</div>
+
+  <div class="block">
+    <div class="block-label purple">Ring 1 — Harden the environment (MIT01–04, MIT07)</div>
+    <p>The innermost ring limits what any code can do, regardless of how it got there or whether it was reviewed. Even if a malicious script executes, it can't escape the sandbox (MIT01), can't phone home (MIT02), can't exhaust resources (MIT03), can't escalate permissions (MIT04), and can't steal credentials (MIT07).</p>
+    <p><strong>This ring operates at the OS and infrastructure level — not at the code level. It works even when the code is adversarial and the agent has been fully compromised.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Ring 2 — Control the execution (MIT05, MIT06)</div>
+    <p>The middle ring inserts human or automated judgment between generation and execution. Pre-execution code review (MIT05) catches dangerous patterns before they run. Confirmation gates (MIT06) require explicit approval for irreversible operations.</p>
+    <p>This ring catches the cases that the hardened environment can't prevent — scenarios where the code is within the sandbox's permitted scope but would cause unintended harm (like deleting the wrong database, which the sandbox has legitimate access to).</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Ring 3 — Review the output (MIT08, MIT09)</div>
+    <p>The outer ring operates after execution (MIT08) or before deployment (MIT09). Execution logging provides the audit trail for post-incident investigation and feeds behavioral anomaly detection. Generated code scanning catches backdoors and security issues before they reach production repositories.</p>
+    <p>This ring is the only defense available against Type 5 (backdoor insertion) in a deployment workflow where code is generated and committed but not immediately executed — the other rings don't apply until execution time.</p>
+  </div>
+
+  <div class="callout yellow">
+    <div class="callout-label">The minimum viable set</div>
+    <p>If resources are constrained: implement <strong>MIT01 + MIT02 + MIT03</strong> first — they eliminate entire vulnerability classes (Type 1 sandbox escape, Type 3 exfiltration, Type 6 resource exhaustion) through infrastructure controls that require no per-code-execution work. Add <strong>MIT06</strong> next — a confirmation gate before destructive operations is the highest-leverage single control for preventing unintentional damage.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag05-slide-24.html">← Back</a>
+    <a class="btn-primary" href="ag05-slide-26.html">The mitigation matrix →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

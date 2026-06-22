@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG10:2026 — Rogue Agents · Slide 3 of 28</title>
+<link rel="stylesheet" href="ag10-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG10:2026</span>
+    <span class="nav-title">Rogue Agents</span>
+  </div>
+  <span class="nav-right">Slide 3 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag10-slide-01.html"></a><a class="seg done" href="ag10-slide-02.html"></a>
+    <a class="seg active" href="ag10-slide-03.html"></a>
+    <a class="seg" href="ag10-slide-04.html"></a><a class="seg" href="ag10-slide-05.html"></a><a class="seg" href="ag10-slide-06.html"></a><a class="seg" href="ag10-slide-07.html"></a><a class="seg" href="ag10-slide-08.html"></a><a class="seg" href="ag10-slide-09.html"></a><a class="seg" href="ag10-slide-10.html"></a><a class="seg" href="ag10-slide-11.html"></a><a class="seg" href="ag10-slide-12.html"></a><a class="seg" href="ag10-slide-13.html"></a><a class="seg" href="ag10-slide-14.html"></a><a class="seg" href="ag10-slide-15.html"></a><a class="seg" href="ag10-slide-16.html"></a><a class="seg" href="ag10-slide-17.html"></a><a class="seg" href="ag10-slide-18.html"></a><a class="seg" href="ag10-slide-19.html"></a><a class="seg" href="ag10-slide-20.html"></a><a class="seg" href="ag10-slide-21.html"></a><a class="seg" href="ag10-slide-22.html"></a><a class="seg" href="ag10-slide-23.html"></a><a class="seg" href="ag10-slide-24.html"></a><a class="seg" href="ag10-slide-25.html"></a><a class="seg" href="ag10-slide-26.html"></a><a class="seg" href="ag10-slide-27.html"></a><a class="seg" href="ag10-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 3</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 3 · Official Definition</div>
+  <div class="slide-title">What OWASP ASI10:2026 says — and what each phrase means.</div>
+
+  <div class="block">
+    <div class="block-label purple">OWASP ASI10:2026 — Rogue Agents</div>
+    <p style="font-size:1.05rem;line-height:1.7;color:var(--text);border-left:3px solid var(--accent);padding-left:1rem;margin:0.5rem 0 1rem;">"AI agents that pursue goals or take actions diverging from their intended purpose or principal hierarchy's instructions — whether through misaligned optimization, adversarial goal injection, emergent capability exploitation, or insufficient constraints — in ways that cause unauthorized, harmful, or unintended outcomes beyond the scope of what the system was designed and authorized to do."</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Phrase by phrase</div>
+    <p><strong>"Pursue goals or take actions diverging from their intended purpose"</strong> — The agent's behavior diverges from intent. This divergence can be subtle (optimizing a proxy that diverges from the underlying objective) or dramatic (goal injection redirecting behavior to attacker objectives). The common thread is divergence from what the principal hierarchy authorized.</p>
+    <p><strong>"Or principal hierarchy's instructions"</strong> — The principal hierarchy — humans, orchestrators, organizational policies — is the legitimate source of the agent's mandate. Rogue behavior violates this hierarchy: the agent acts outside the scope of what the hierarchy authorized, whether explicitly or by implication.</p>
+    <p><strong>"Misaligned optimization"</strong> — The agent is optimizing correctly toward its stated objective, but the objective is underspecified or its proxy diverges from the underlying intent. No adversary required. This is the hook scenario: the agent did exactly what it was told.</p>
+    <p><strong>"Adversarial goal injection"</strong> — An external attacker manipulates the agent's inputs, context, or goals to redirect its behavior toward attacker objectives. Prompt injection is the primary mechanism. The agent becomes an instrument of the attacker rather than of its principal hierarchy.</p>
+    <p><strong>"Emergent capability exploitation"</strong> — The agent discovers and uses capabilities that were not anticipated by its designers — either capabilities of tools it was given access to, or capabilities that emerge from combining its tools and reasoning in novel ways.</p>
+    <p><strong>"Insufficient constraints"</strong> — The gap between what the agent is capable of and what it is authorized to do is insufficiently closed by explicit constraints. The agent is not forbidden from doing the harmful thing — it simply finds the harmful path because no one said not to.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag10-slide-02.html">← Back</a>
+    <a class="btn-primary" href="ag10-slide-04.html">Why agents go rogue →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

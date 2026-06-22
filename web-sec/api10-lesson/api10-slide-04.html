@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 4 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg active" href="api10-slide-04.html"></a><a class="seg" href="api10-slide-05.html"></a><a class="seg" href="api10-slide-06.html"></a><a class="seg" href="api10-slide-07.html"></a><a class="seg" href="api10-slide-08.html"></a><a class="seg" href="api10-slide-09.html"></a><a class="seg" href="api10-slide-10.html"></a><a class="seg" href="api10-slide-11.html"></a><a class="seg" href="api10-slide-12.html"></a><a class="seg" href="api10-slide-13.html"></a><a class="seg" href="api10-slide-14.html"></a><a class="seg" href="api10-slide-15.html"></a><a class="seg" href="api10-slide-16.html"></a><a class="seg" href="api10-slide-17.html"></a><a class="seg" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 4</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 4 &#xb7; The Integration Surface</div>
+  <div class="slide-title">Most APIs consume dozens of third-party services. Each one is a potential trust exploitation point.</div>
+  <div class="slide-subtitle">The categories of third-party API integrations and the risks each carries.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4B3;</div>
+      <div><div class="outcome-title">Payment processors (Stripe, Braintree, PayPal)</div><div class="outcome-desc">Risk: webhook events contain customer data inserted into the database. If the response fields are not validated, a compromised or spoofed webhook can inject SQL or HTML into stored records. API10 pattern: process webhook payloads as untrusted input, not as inherently safe structured data.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4CD;</div>
+      <div><div class="outcome-title">Geolocation / enrichment (Google Maps, MaxMind, IPinfo)</div><div class="outcome-desc">Risk: addresses, city names, and country strings returned from enrichment APIs are stored directly in the database or displayed to users. A compromised enrichment API can return SQL injection in an address field or XSS in a location name. Log4Shell was triggered through enrichment data logged by applications.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F512;</div>
+      <div><div class="outcome-title">Identity providers / OAuth (Google, GitHub, Auth0, Okta)</div><div class="outcome-desc">Risk: the OAuth token exchange response contains fields (email, name, profile URL) that are stored and displayed. A redirect URI returned by the provider can be followed without validation. A compromised identity provider can inject malicious values into profile fields.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4E7;</div>
+      <div><div class="outcome-title">Communication APIs (SendGrid, Twilio, Mailchimp)</div><div class="outcome-desc">Risk: delivery webhook callbacks contain recipient addresses, event metadata, and custom fields that are processed and stored. Unvalidated webhook data can be used for injection attacks if the attacker can influence what gets sent in the callback.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F9E9;</div>
+      <div><div class="outcome-title">CDN-hosted third-party scripts (analytics, chatbots, A/B testing)</div><div class="outcome-desc">Risk: scripts loaded from third-party CDNs run with full DOM access on the host page. If the CDN file is tampered (as with Ticketmaster/Inbenta), the script can access and exfiltrate any data on the page &#x2014; form fields, session tokens, payment card data. No API call is needed &#x2014; just trust in the CDN URL.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-03.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-05.html">How threats manifest &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

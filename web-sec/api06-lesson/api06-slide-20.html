@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 20 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 20 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg done" href="api06-slide-09.html"></a><a class="seg done" href="api06-slide-10.html"></a><a class="seg done" href="api06-slide-11.html"></a><a class="seg done" href="api06-slide-12.html"></a><a class="seg done" href="api06-slide-13.html"></a><a class="seg done" href="api06-slide-14.html"></a><a class="seg done" href="api06-slide-15.html"></a><a class="seg done" href="api06-slide-16.html"></a><a class="seg done" href="api06-slide-17.html"></a><a class="seg done" href="api06-slide-18.html"></a><a class="seg done" href="api06-slide-19.html"></a><a class="seg active" href="api06-slide-20.html"></a><a class="seg" href="api06-slide-21.html"></a><a class="seg" href="api06-slide-22.html"></a><a class="seg" href="api06-slide-23.html"></a><a class="seg" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 20</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 20 &#xb7; Mitigation 2</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 02</div>
+    <div class="mit-title">Release held inventory after a short timeout &#x2014; don&#x2019;t let carts hold it indefinitely.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>When a user adds inventory to a cart or reservation system, the reservation is time-limited. If the purchase isn&#x2019;t completed within the window, the inventory is released back to the available pool &#x2014; automatically, server-side.</p>
+      <p>Typical timeouts by context:</p>
+      <p>&#x2022; <strong>Concert tickets:</strong> 8&#x2013;15 minutes to complete checkout before tickets are released</p>
+      <p>&#x2022; <strong>Retail checkout:</strong> 10&#x2013;30 minutes before cart items become available again</p>
+      <p>&#x2022; <strong>Appointment slots:</strong> 5&#x2013;10 minutes to confirm a slot before it&#x2019;s re-opened</p>
+      <p>&#x2022; <strong>Limited releases:</strong> 5 minutes &#x2014; short enough that bots can&#x2019;t hold inventory without actually purchasing</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Why this helps</div>
+      <p>Bots that hold inventory without completing purchase (to test demand before committing funds) are forced to either complete the transaction or lose their hold. Short timeouts also limit the damage of abandoned bot carts &#x2014; even if a bot holds 500 tickets, they&#x2019;re released after 10 minutes if not purchased, giving real buyers another window.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label yellow">Pair with limits on simultaneous holds</div>
+      <p>A bot with 500 accounts can hold tickets in 500 separate carts simultaneously, each with its own 10-minute timer. Pair cart timeouts with per-identity cart limits (max 4 tickets per verified account, max 1 active cart per device fingerprint) to prevent this.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask whether your API can distinguish between a human customer and a bot making the same request. If the answer is no, ask what evidence you would have after an automated abuse event to understand what happened.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-19.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-21.html">MIT 03: Device fingerprinting &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

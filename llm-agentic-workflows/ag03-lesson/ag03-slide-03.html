@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Identity and Privilege Abuse · Slide 3 of 28</title>
+<link rel="stylesheet" href="ag03-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Identity and Privilege Abuse</span>
+  </div>
+  <span class="nav-right">Slide 3 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag03-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag03-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg active" href="ag03-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg" href="ag03-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg" href="ag03-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg" href="ag03-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg" href="ag03-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg" href="ag03-slide-08.html" title="Slide 8 · Why Agent Identity Is Different"></a>
+    <a class="seg" href="ag03-slide-09.html" title="Slide 9 · Five Vulnerability Types"></a>
+    <a class="seg" href="ag03-slide-10.html" title="Slide 10 · Type 1 — Un-scoped Privilege Inheritance"></a>
+    <a class="seg" href="ag03-slide-11.html" title="Slide 11 · Type 1 — A Real Example"></a>
+    <a class="seg" href="ag03-slide-12.html" title="Slide 12 · Type 2 — Memory-Based Privilege Retention"></a>
+    <a class="seg" href="ag03-slide-13.html" title="Slide 13 · Types 3–5 — More Vulnerability Patterns"></a>
+    <a class="seg" href="ag03-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg" href="ag03-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg" href="ag03-slide-16.html" title="Slide 16 · Scenarios 5–7"></a>
+    <a class="seg" href="ag03-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag03-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag03-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag03-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag03-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag03-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag03-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag03-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg" href="ag03-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg" href="ag03-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag03-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag03-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — What Is It?</span><span>Slide 3</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 3 · The Definition Part 1</div>
+  <div class="slide-title">The official definition — first half</div>
+  <div class="slide-subtitle">OWASP calls this "dynamic trust and delegation." Let's unpack that.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI03</div>
+
+  <div class="mono-block">"Identity &amp; Privilege Abuse exploits dynamic trust and delegation
+in agents to escalate access and bypass controls by manipulating
+delegation chains, role inheritance, control flows, and agent context."</div>
+
+  <div class="block">
+    <div class="block-label purple">Dynamic trust</div>
+    <p>In traditional systems, trust is relatively static — you log in, you get a role, that role has defined permissions. In agentic systems, trust is <strong>dynamic</strong>: it flows from orchestrator to sub-agent, from user to agent, from one agent to another, and it can change mid-task.</p>
+    <p>That dynamic nature is the attack surface. Trust that flows can be intercepted, forged, or manipulated.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Delegation</div>
+    <p><strong>Delegation</strong> is when a high-privilege principal (a user, an orchestrator agent) hands some of its permissions to a lower-level agent to complete a task. In theory, the delegated permission should be narrowly scoped to the task. In practice, it often isn't.</p>
+    <p>A finance manager agent delegates to a "DB query" sub-agent to pull a report — but passes its full permission set instead of just the query permissions. The sub-agent is now over-privileged. And the attacker who can steer that sub-agent just inherited the manager's access.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Delegation chains, role inheritance, control flows</div>
+    <p>These three phrases describe how privilege travels through a multi-agent system. It moves along <strong>delegation chains</strong> (agent hands off to agent), accumulates through <strong>role inheritance</strong> (each step picks up the permissions of the step above), and propagates via <strong>control flows</strong> (orchestration logic that routes tasks between agents).</p>
+    <p>Each hop is an opportunity for privilege to expand, leak, or be exploited.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-02.html">← Back</a>
+    <a class="btn-primary" href="ag03-slide-04.html">The second half of the definition →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

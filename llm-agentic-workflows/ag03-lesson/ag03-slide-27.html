@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Identity and Privilege Abuse · Slide 27 of 28</title>
+<link rel="stylesheet" href="ag03-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Identity and Privilege Abuse</span>
+  </div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag03-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag03-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag03-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag03-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag03-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag03-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag03-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg done" href="ag03-slide-08.html" title="Slide 8 · Why Agent Identity Is Different"></a>
+    <a class="seg done" href="ag03-slide-09.html" title="Slide 9 · Five Vulnerability Types"></a>
+    <a class="seg done" href="ag03-slide-10.html" title="Slide 10 · Type 1 — Un-scoped Privilege Inheritance"></a>
+    <a class="seg done" href="ag03-slide-11.html" title="Slide 11 · Type 1 — A Real Example"></a>
+    <a class="seg done" href="ag03-slide-12.html" title="Slide 12 · Type 2 — Memory-Based Privilege Retention"></a>
+    <a class="seg done" href="ag03-slide-13.html" title="Slide 13 · Types 3–5 — More Vulnerability Patterns"></a>
+    <a class="seg done" href="ag03-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg done" href="ag03-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg done" href="ag03-slide-16.html" title="Slide 16 · Scenarios 5–7"></a>
+    <a class="seg done" href="ag03-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg done" href="ag03-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg done" href="ag03-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg done" href="ag03-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg done" href="ag03-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg done" href="ag03-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg done" href="ag03-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg done" href="ag03-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg done" href="ag03-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg done" href="ag03-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg active" href="ag03-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag03-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 27</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 27 · Quiz</div>
+  <div class="slide-title">Test what you know</div>
+  <div class="slide-subtitle">Five questions. No memorization required — just understanding.</div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 01 OF 05</div>
+    <div class="question-text">An IT admin agent holds SSH credentials in memory after completing a server patch. Later, a support engineer with limited access prompts the agent to set up SSH access for them — and it does, using the cached admin credentials. What is the core reason this is a security failure?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this, false)">The SSH server had a vulnerability that the agent exploited</button>
+      <button class="option" onclick="answer(this, true)">Credentials from one privileged session persisted into a separate, lower-privilege session</button>
+      <button class="option" onclick="answer(this, false)">The engineer used social engineering to trick the agent into ignoring its permissions</button>
+      <button class="option" onclick="answer(this, false)">The agent exceeded its authorized tool usage by making too many SSH calls</button>
+    </div>
+    <div class="feedback correct">Correct — this is the memory-based privilege retention pattern. The admin's SSH credentials were never revoked from the agent's context after the original task ended. When the next user interacted with the same agent, those credentials were still available. No exploit, no social engineering — just credentials that persisted past their intended scope.</div>
+    <div class="feedback wrong">Not quite — the key here is memory persistence. The SSH server had no vulnerability, no engineering trickery was involved, and tool usage wasn't the issue. The failure was architectural: the agent's memory wasn't cleared between sessions, so admin credentials from an earlier task were still accessible to whoever prompted the agent next.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 02 OF 05</div>
+    <div class="question-text">A finance manager agent delegates a reporting task to a DB query sub-agent, passing its full permission set. An attacker steers the sub-agent to access HR and legal data. What is the underlying vulnerability?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this, false)">The DB query agent had admin access granted directly by the system administrator</button>
+      <button class="option" onclick="answer(this, true)">The delegation didn't scope permissions to what the task actually needed — the sub-agent inherited far more access than a database query requires</button>
+      <button class="option" onclick="answer(this, false)">The attacker broke the encryption on the finance agent's credential store</button>
+      <button class="option" onclick="answer(this, false)">The DB query tool itself had a known security flaw that allowed privilege escalation</button>
+    </div>
+    <div class="feedback correct">Correct — un-scoped privilege inheritance. The finance agent delegated the task but passed its full permission context rather than a narrowly scoped token that only allows reading the specific report table. The attacker who compromised the sub-agent effectively compromised the finance manager's full access, because the delegation chain didn't enforce scope boundaries.</div>
+    <div class="feedback wrong">Not quite — the issue is scoping at delegation time. The DB query agent didn't have admin access independently, and no encryption was broken. The attacker didn't need to exploit the tool — they just steered the sub-agent that already had the finance manager's full privileges. The fix is narrowing the token at the point of delegation, not at the tool level.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 03 OF 05</div>
+    <div class="question-text">A crafted email instructs an email-sorting agent to forward a payment instruction to a finance agent. The finance agent processes the payment because it trusts messages from internal agents. What security principle does this violate?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this, false)">Least privilege — the email agent had too many capabilities</button>
+      <button class="option" onclick="answer(this, false)">Data minimization — the email agent should not have seen the payment details</button>
+      <button class="option" onclick="answer(this, true)">Per-action authorization — the finance agent executed a privileged action without verifying the original user's current authority</button>
+      <button class="option" onclick="answer(this, false)">Memory isolation — the email content should not have persisted into the finance agent's context</button>
+    </div>
+    <div class="feedback correct">Correct — this is the confused deputy pattern. The finance agent trusted an internal agent's forwarded message as implicitly authorized — but it never verified whether the original sender had authority to issue a payment instruction. Per-action authorization (MIT 03) would require the finance agent to re-verify the original authorization source for any payment action, regardless of who forwarded the request.</div>
+    <div class="feedback wrong">Not quite — per-action authorization is the key principle violated here. Least privilege isn't the issue (the email agent was doing its job). Memory isolation doesn't apply. Data minimization doesn't explain why the payment happened. The problem is that the finance agent accepted a payment instruction from an internal relay without verifying the original user's authorization for that specific payment.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 04 OF 05</div>
+    <div class="question-text">A procurement agent validates a user's $50,000 spending limit at the start of a long-running workflow. Midway through, the limit is reduced to $10,000 — but the agent isn't notified and completes the full $50,000 transaction using the original token. What type of vulnerability is this?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this, false)">Memory-based privilege retention — the agent cached the old spending limit in its memory</button>
+      <button class="option" onclick="answer(this, false)">Delegated privilege abuse — the agent inherited too much authority from the orchestrator</button>
+      <button class="option" onclick="answer(this, true)">Authorization drift — permissions were valid when checked but had changed by the time the action was taken</button>
+      <button class="option" onclick="answer(this, false)">Synthetic identity injection — a fake agent was used to bypass the spending limit check</button>
+    </div>
+    <div class="feedback correct">Correct — this is the TOCTOU (Time-of-Check to Time-of-Use) authorization drift pattern. The check happened at one point in time; the action happened later, after the authorization had changed. The token was valid when issued, but the underlying permission it represented had been revoked. This is why both MIT 01 (time-bound tokens) and MIT 03 (per-action authorization) are needed — tokens must expire, and re-verification must happen at the point of action, not just at session start.</div>
+    <div class="feedback wrong">Not quite — authorization drift is the answer. Memory retention is about credentials persisting across sessions (which isn't what happened here). Delegated privilege is about scope expansion in a chain. Synthetic identity is about forged agents. This scenario is specifically about the gap between when a permission was validated and when it was used — and how that gap can be exploited if authorization state changes mid-workflow.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 05 OF 05</div>
+    <div class="question-text">Why does giving agents managed non-human identities (with their own distinct identity records and credentials) improve security — rather than just using the deploying user's credentials?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this, false)">Managed identities are always more powerful than user credentials, giving agents better access</button>
+      <button class="option" onclick="answer(this, true)">Managed identities allow agent actions to be attributed, audited, and controlled independently — closing the attribution gap that makes least privilege impossible to enforce</button>
+      <button class="option" onclick="answer(this, false)">Managed identities automatically encrypt all credentials stored in the agent's memory</button>
+      <button class="option" onclick="answer(this, false)">Managed identities prevent agents from delegating tasks to sub-agents, eliminating the delegation chain</button>
+    </div>
+    <div class="feedback correct">Correct — the attribution gap is the root cause of most AG03 failures. When an agent borrows a human's identity, you can't enforce least privilege on the agent independently (you'd be constraining the human). You can't audit what the agent did separately from what the human did. You can't revoke the agent's access without affecting the human. A managed non-human identity solves all three: the agent has its own bounded, auditable, revocable identity that is distinct from any human account.</div>
+    <div class="feedback wrong">Not quite — managed identities aren't about more power or automatic encryption. They're about attribution and control. When an agent uses a managed identity, every action it takes is logged against that identity, its permissions can be scoped independently of any human account, and its access can be revoked without affecting any user. This is the structural fix for the attribution gap that makes least privilege enforcement possible in agentic systems.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-26.html">← Back</a>
+    <a class="btn-primary" href="ag03-slide-28.html">Done → See what you learned</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+
+<script>
+function answer(btn, correct) {
+  const card = btn.closest('.question-card');
+  card.querySelectorAll('.option').forEach(o => o.disabled = true);
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  card.querySelector('.feedback.' + (correct ? 'correct' : 'wrong')).classList.add('show');
+}
+</script>
+</body>
+</html>

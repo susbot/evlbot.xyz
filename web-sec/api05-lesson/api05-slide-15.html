@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API5:2023 â Broken Function Level Authorization Â· Slide 15 of 28</title>
+<link rel="stylesheet" href="api05-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API5:2023</span><span class="nav-title">Broken Function Level Authorization</span></div>
+  <span class="nav-right">Slide 15 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api05-slide-01.html"></a><a class="seg done" href="api05-slide-02.html"></a><a class="seg done" href="api05-slide-03.html"></a><a class="seg done" href="api05-slide-04.html"></a><a class="seg done" href="api05-slide-05.html"></a><a class="seg done" href="api05-slide-06.html"></a><a class="seg done" href="api05-slide-07.html"></a><a class="seg done" href="api05-slide-08.html"></a><a class="seg done" href="api05-slide-09.html"></a><a class="seg done" href="api05-slide-10.html"></a><a class="seg done" href="api05-slide-11.html"></a><a class="seg done" href="api05-slide-12.html"></a><a class="seg done" href="api05-slide-13.html"></a><a class="seg done" href="api05-slide-14.html"></a><a class="seg active" href="api05-slide-15.html"></a><a class="seg" href="api05-slide-16.html"></a><a class="seg" href="api05-slide-17.html"></a><a class="seg" href="api05-slide-18.html"></a><a class="seg" href="api05-slide-19.html"></a><a class="seg" href="api05-slide-20.html"></a><a class="seg" href="api05-slide-21.html"></a><a class="seg" href="api05-slide-22.html"></a><a class="seg" href="api05-slide-23.html"></a><a class="seg" href="api05-slide-24.html"></a><a class="seg" href="api05-slide-25.html"></a><a class="seg" href="api05-slide-26.html"></a><a class="seg" href="api05-slide-27.html"></a><a class="seg" href="api05-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 Â· Attack Scenarios</span><span>Slide 15</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 15 &#xb7; Scenario 2</div>
+  <div class="slide-title">The user who deleted someone else&#x2019;s content.</div>
+  <div class="slide-subtitle">OWASP Scenario #2 &#x2014; HTTP verb manipulation on a shared resource endpoint.</div>
+  <div class="source-tag">&#x1F4C4; OWASP API Security Top 10 &#xb7; 2023 &#xb7; API5 &#xb7; Scenario 2</div>
+  <div class="scenario-card">
+    <div class="scenario-num">SETUP</div>
+    <div class="scenario-title">A content platform&#x2019;s post endpoint.</div>
+    <div class="scenario-body">
+      <p>A content platform&#x2019;s post endpoint handles reads and writes:</p>
+      <p>&#x2022; <code>GET /api/v1/posts/{id}</code> &#x2014; returns a post, available to any user</p>
+      <p>&#x2022; <code>PUT /api/v1/posts/{id}</code> &#x2014; updates the post, restricted to the post&#x2019;s author</p>
+      <p>&#x2022; <code>DELETE /api/v1/posts/{id}</code> &#x2014; deletes the post, intended for admins only</p>
+      <p>The developer added an ownership check for PUT (only the author can update their post). DELETE was added later and has no role check &#x2014; it was assumed to be &#x201C;internal.&#x201D;</p>
+    </div>
+    <div class="scenario-why"><strong>The exploit:</strong> A user who wants to remove a competitor&#x2019;s post sends <code>DELETE /api/v1/posts/5523</code> with their own (non-admin) auth token. The API validates the token (valid), routes to the delete handler, finds no role check or ownership check for DELETE, and removes the post. Any user can now delete any post on the platform &#x2014; including content they never created.</div>
+  </div>
+  <div class="callout orange">
+    <div class="callout-label">The asymmetry of HTTP method protection</div>
+    <p>It is extremely common to add ownership checks for PUT but forget them for DELETE. The consequences of an unauthorized DELETE are usually worse &#x2014; deletion may be irreversible. The methods that cause the most damage are often the least protected.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api05-slide-14.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api05-slide-16.html">Scenario 3 &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

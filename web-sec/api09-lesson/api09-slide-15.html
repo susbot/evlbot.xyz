@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 15 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 15 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg done" href="api09-slide-05.html"></a><a class="seg done" href="api09-slide-06.html"></a><a class="seg done" href="api09-slide-07.html"></a><a class="seg done" href="api09-slide-08.html"></a><a class="seg done" href="api09-slide-09.html"></a><a class="seg done" href="api09-slide-10.html"></a><a class="seg done" href="api09-slide-11.html"></a><a class="seg done" href="api09-slide-12.html"></a><a class="seg done" href="api09-slide-13.html"></a><a class="seg done" href="api09-slide-14.html"></a><a class="seg active" href="api09-slide-15.html"></a><a class="seg" href="api09-slide-16.html"></a><a class="seg" href="api09-slide-17.html"></a><a class="seg" href="api09-slide-18.html"></a><a class="seg" href="api09-slide-19.html"></a><a class="seg" href="api09-slide-20.html"></a><a class="seg" href="api09-slide-21.html"></a><a class="seg" href="api09-slide-22.html"></a><a class="seg" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 &#xb7; Attack Scenarios</span><span>Slide 15</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 15 &#xb7; Scenario 2</div>
+  <div class="slide-title">A staging environment with real user data and no authentication check.</div>
+  <div class="slide-subtitle">Security controls are configured for production. Staging is the shortcut around all of them.</div>
+  <div class="source-tag">&#x1F4C4; OWASP API Security Top 10 2023 &#xb7; API9:2023 Example Attack Scenarios</div>
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 2</div>
+    <div class="scenario-title">Internet-accessible staging environment with production data copy</div>
+    <div class="scenario-body">
+      <p>An organization maintains a staging environment at <code>staging.api.company.com</code>. It was created to mirror production for QA testing. To make testing faster, the team copied production data to staging three months ago. The environment was temporarily given a public IP for a vendor integration test and never moved back behind the VPN.</p>
+      <p>Staging uses the same codebase as production but was configured with <code>AUTH_REQUIRED=false</code> to simplify automated testing. No monitoring alerts are set up for staging. The security team&#x2019;s WAF rules, rate limiting, and intrusion detection apply only to production.</p>
+      <p>An attacker enumerating subdomains through certificate transparency logs finds <code>staging.api.company.com</code>. They call <code>GET /api/v2/users</code> &#x2014; no auth header &#x2014; and receive a paginated list of real user accounts from the three-month-old production copy. They download the full dataset in 40 minutes. The production API is never touched.</p>
+    </div>
+    <div class="scenario-why"><strong>The compounding factor:</strong> The data breach involves real users &#x2014; even though it came from a staging copy. &#x201C;That was just staging data&#x201D; is not a legal or regulatory defense when staging contains real PII or PHI copied from production. GDPR and HIPAA apply to the data, not the environment it was copied into.</div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-14.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-16.html">Scenario 3 &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API5:2023 â Broken Function Level Authorization Â· Slide 19 of 28</title>
+<link rel="stylesheet" href="api05-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API5:2023</span><span class="nav-title">Broken Function Level Authorization</span></div>
+  <span class="nav-right">Slide 19 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api05-slide-01.html"></a><a class="seg done" href="api05-slide-02.html"></a><a class="seg done" href="api05-slide-03.html"></a><a class="seg done" href="api05-slide-04.html"></a><a class="seg done" href="api05-slide-05.html"></a><a class="seg done" href="api05-slide-06.html"></a><a class="seg done" href="api05-slide-07.html"></a><a class="seg done" href="api05-slide-08.html"></a><a class="seg done" href="api05-slide-09.html"></a><a class="seg done" href="api05-slide-10.html"></a><a class="seg done" href="api05-slide-11.html"></a><a class="seg done" href="api05-slide-12.html"></a><a class="seg done" href="api05-slide-13.html"></a><a class="seg done" href="api05-slide-14.html"></a><a class="seg done" href="api05-slide-15.html"></a><a class="seg done" href="api05-slide-16.html"></a><a class="seg done" href="api05-slide-17.html"></a><a class="seg done" href="api05-slide-18.html"></a><a class="seg active" href="api05-slide-19.html"></a><a class="seg" href="api05-slide-20.html"></a><a class="seg" href="api05-slide-21.html"></a><a class="seg" href="api05-slide-22.html"></a><a class="seg" href="api05-slide-23.html"></a><a class="seg" href="api05-slide-24.html"></a><a class="seg" href="api05-slide-25.html"></a><a class="seg" href="api05-slide-26.html"></a><a class="seg" href="api05-slide-27.html"></a><a class="seg" href="api05-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 Â· Prevention</span><span>Slide 19</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 19 &#xb7; Mitigation 1</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 01</div>
+    <div class="mit-title">Deny by default &#x2014; every function requires an explicit permit, not an explicit deny.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>The authorization system&#x2019;s default answer to &#x201C;can this role call this function?&#x201D; must be <strong>no</strong>. A role must be explicitly listed as permitted to call a function. If no permission is defined, access is denied with 403.</p>
+      <p>This is the same principle as the allowlist vs. blocklist argument in API3 &#x2014; applied to functions instead of fields. A blocklist says &#x201C;deny these specific functions.&#x201D; An allowlist (deny-by-default) says &#x201C;permit only these specific functions.&#x201D; New functions are denied until explicitly permitted.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Why this matters at scale</div>
+      <p>A team building 50 endpoints over 6 months will add new endpoints regularly. With a blocklist approach, each new endpoint is permitted by default until someone remembers to add it to the deny list. With deny-by-default, each new endpoint returns 403 until the developer explicitly grants access to specific roles &#x2014; forcing the authorization decision to be made at the time the endpoint is created.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What &#x201C;no permission defined&#x201D; looks like in practice</div>
+      <p>In an RBAC system: if endpoint /api/admin/reports has no role permission entry, the authorization middleware returns 403 before the handler runs. The developer must actively add an entry like <code>PERMIT role=admin ON GET /api/admin/reports</code> before the endpoint becomes accessible.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team: if a new API endpoint is added and no one explicitly sets its access permissions, who can call it by default? &#x201C;Anyone&#x201D; is the wrong answer &#x2014; new endpoints should require explicit authorization to unlock.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api05-slide-18.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api05-slide-20.html">MIT 02: RBAC at the API layer &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

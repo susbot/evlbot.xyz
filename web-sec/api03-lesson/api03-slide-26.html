@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 26 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 26 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg done" href="api03-slide-03.html"></a><a class="seg done" href="api03-slide-04.html"></a><a class="seg done" href="api03-slide-05.html"></a><a class="seg done" href="api03-slide-06.html"></a><a class="seg done" href="api03-slide-07.html"></a><a class="seg done" href="api03-slide-08.html"></a><a class="seg done" href="api03-slide-09.html"></a><a class="seg done" href="api03-slide-10.html"></a><a class="seg done" href="api03-slide-11.html"></a><a class="seg done" href="api03-slide-12.html"></a><a class="seg done" href="api03-slide-13.html"></a><a class="seg done" href="api03-slide-14.html"></a><a class="seg done" href="api03-slide-15.html"></a><a class="seg done" href="api03-slide-16.html"></a><a class="seg done" href="api03-slide-17.html"></a><a class="seg done" href="api03-slide-18.html"></a><a class="seg done" href="api03-slide-19.html"></a><a class="seg done" href="api03-slide-20.html"></a><a class="seg done" href="api03-slide-21.html"></a><a class="seg done" href="api03-slide-22.html"></a><a class="seg done" href="api03-slide-23.html"></a><a class="seg done" href="api03-slide-24.html"></a><a class="seg done" href="api03-slide-25.html"></a><a class="seg active" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 26</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 26 · The Matrix</div>
+  <div class="slide-title">Which mitigations stop which attacks?</div>
+  <div class="slide-subtitle">Real incidents mapped to the defenses that would have stopped them.</div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">BREACH — GitHub (2012) · Admin access · Mass Assignment</div>
+    <div class="scenario-title">One extra parameter associated a key with another organization</div>
+    <div class="scenario-body">
+      <p>Rails' auto-binding wrote user_id from the incoming request. One unguarded field = admin write access to any public repository on GitHub.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 01 (allowlist: only permit "key" field on this endpoint) + MIT 02 (use params.permit() not auto-bind) + MIT 04 (user_id is a server-side-only field — never settable by client input)</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">BREACH — Peloton (2021) · 4M+ users · Excessive Data Exposure</div>
+    <div class="scenario-title">Private accounts returned age, weight, city, birthday, workout stats via API</div>
+    <div class="scenario-body">
+      <p>The app's privacy setting controlled the UI display. The API returned the full user object regardless of privacy status.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 03 (DTO: define UserPublicResponse with only public fields) + MIT 05 (minimize: the "view profile" endpoint should not return weight or birthday) + MIT 07 (enforce at the API layer — not the app)</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">OWASP — Marketplace Price Manipulation · Financial damage · Mass Assignment</div>
+    <div class="scenario-title">Host added total_stay_price to the approval request body</div>
+    <div class="scenario-body">
+      <p>The approval endpoint accepted all fields. A host modified the guest's total price by adding one field to the request body.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 01 (allowlist: approval endpoint only accepts "status") + MIT 04 (total_stay_price is platform-calculated — server-side only, never user-settable) + MIT 06 (schema validation on input would have rejected the extra field)</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">OWASP — Content Moderation Bypass · Platform integrity · Mass Assignment</div>
+    <div class="scenario-title">User set blocked=false on their own flagged video</div>
+    <div class="scenario-body">
+      <p>The video update endpoint accepted the "blocked" field. A user reversed their own moderation action in one request.</p>
+    </div>
+    <div class="scenario-why"><strong>Stopped by:</strong> MIT 01 (allowlist: video update only accepts title, description, tags) + MIT 04 (blocked, flagged, under_review are admin-only fields — never in the user-facing update schema)</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-25.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-27.html">Ready to test yourself? →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

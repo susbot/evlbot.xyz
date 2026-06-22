@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 11 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 11 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg done" href="api07-slide-07.html"></a><a class="seg done" href="api07-slide-08.html"></a><a class="seg done" href="api07-slide-09.html"></a><a class="seg done" href="api07-slide-10.html"></a><a class="seg active" href="api07-slide-11.html"></a><a class="seg" href="api07-slide-12.html"></a><a class="seg" href="api07-slide-13.html"></a><a class="seg" href="api07-slide-14.html"></a><a class="seg" href="api07-slide-15.html"></a><a class="seg" href="api07-slide-16.html"></a><a class="seg" href="api07-slide-17.html"></a><a class="seg" href="api07-slide-18.html"></a><a class="seg" href="api07-slide-19.html"></a><a class="seg" href="api07-slide-20.html"></a><a class="seg" href="api07-slide-21.html"></a><a class="seg" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 11</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 11 &#xb7; Real Incident</div>
+  <div class="slide-title">Capital One &#x2014; how Pattern 1 played out at scale.</div>
+  <div class="slide-subtitle">July 2019. $270M in total costs. The WAF that became a proxy.</div>
+  <div class="source-tag">&#x1F4C4; U.S. DOJ &#xb7; OCC &#xb7; Court records &#xb7; 2019&#x2013;2022</div>
+  <div class="scenario-card">
+    <div class="scenario-num">TIMELINE</div>
+    <div class="scenario-title">Capital One Breach &#x2014; March to July 2019</div>
+    <div class="scenario-body">
+      <p><strong>March 22&#x2013;23, 2019:</strong> Paige Thompson executes the SSRF attack. She exploits a misconfigured WAF (ModSecurity running on an EC2 instance). The WAF is configured to forward certain requests to backend services &#x2014; Thompson finds it will also make outbound requests to arbitrary URLs, including the metadata endpoint.</p>
+      <p><strong>The specific vulnerability:</strong> The WAF had a misconfigured rule that allowed a specific HTTP header to cause the WAF to make a proxied request to an attacker-specified destination. The destination could be the metadata endpoint.</p>
+      <p><strong>What she accessed:</strong> Over 100 S3 buckets containing Capital One customer data &#x2014; 100 million US and Canadian customers&#x2019; credit card applications. Data included: names, addresses, zip codes, phone numbers, email addresses, dates of birth, reported income, credit scores, credit limits, payment history, contact history, SSNs (140,000), linked bank account numbers (80,000).</p>
+    </div>
+    <div class="scenario-why"><strong>Discovery:</strong> On July 17, 2019, an anonymous tipster emailed Capital One about GitHub repositories posted by &#x201C;erratic&#x201D; (Thompson&#x2019;s online alias) that appeared to contain stolen Capital One data. Capital One alerted the FBI on July 19. Thompson was arrested on July 29, 2019. The gap between the breach (March) and discovery (July) &#x2014; nearly four months &#x2014; illustrates how difficult SSRF attacks are to detect without proper logging of outbound server requests.</div>
+  </div>
+  <div class="callout red">
+    <div class="callout-label">The lesson beyond SSRF</div>
+    <p>The SSRF was the entry point. The blast radius was determined by IAM role over-permissioning &#x2014; the EC2 role had access to over 100 S3 buckets it didn&#x2019;t need. Least-privilege IAM would have limited the damage even if the SSRF was exploited.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-10.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-12.html">Pattern 2: Internal pivot &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

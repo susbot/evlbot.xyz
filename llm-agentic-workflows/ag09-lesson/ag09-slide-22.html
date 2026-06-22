@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 22 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 22 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a><a class="seg done" href="ag09-slide-07.html"></a><a class="seg done" href="ag09-slide-08.html"></a><a class="seg done" href="ag09-slide-09.html"></a><a class="seg done" href="ag09-slide-10.html"></a><a class="seg done" href="ag09-slide-11.html"></a><a class="seg done" href="ag09-slide-12.html"></a><a class="seg done" href="ag09-slide-13.html"></a><a class="seg done" href="ag09-slide-14.html"></a><a class="seg done" href="ag09-slide-15.html"></a><a class="seg done" href="ag09-slide-16.html"></a><a class="seg done" href="ag09-slide-17.html"></a><a class="seg done" href="ag09-slide-18.html"></a><a class="seg done" href="ag09-slide-19.html"></a><a class="seg done" href="ag09-slide-20.html"></a><a class="seg done" href="ag09-slide-21.html"></a>
+    <a class="seg active" href="ag09-slide-22.html"></a>
+    <a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Defense Model</span><span>Slide 22</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 22 · Defense Model</div>
+  <div class="slide-title">Three defense layers — each addressing a different dimension of the trust exploitation problem.</div>
+
+  <div class="block">
+    <div class="block-label red">Layer 1 — Trust Calibration (MIT01, MIT03, MIT05, MIT08)</div>
+    <p><strong>Purpose:</strong> Ensure the human has the information and knowledge needed to trust the agent at the right level for each specific situation.</p>
+    <p>MIT01 (uncertainty communication) gives the human real-time information about when the agent's confidence is lower than usual. MIT03 (explanation requirements) gives the human the agent's reasoning, not just its conclusion. MIT05 (training) gives the human durable knowledge of where the agent's limitations lie. MIT08 (content provenance) ensures the human knows when they are seeing external content vs. the agent's own analysis.</p>
+    <p><strong>These mitigations do not constrain the human — they inform the human.</strong> A human with accurate information about agent confidence, reasoning, limitations, and content sources will naturally calibrate their trust more accurately than one without. Layer 1 is the foundation; without it, the other layers are enforcing rules the human doesn't understand the reason for.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Layer 2 — Oversight Enforcement (MIT02, MIT07, MIT06)</div>
+    <p><strong>Purpose:</strong> For high-risk decisions, ensure oversight happens regardless of the agent's recommendation — through hard enforcement, not human discretion.</p>
+    <p>MIT02 (mandatory checkpoints) sets non-bypassable review gates for decisions above defined thresholds. MIT07 (separation of duties) requires independent second review for irreversible high-impact actions. MIT06 (override logging) provides the detection layer that identifies when the oversight system is being gamed, stressed, or drifting — and creates accountability for decisions made outside protocol.</p>
+    <p><strong>The key word is "mandatory."</strong> Elena had a protocol. She didn't follow it, because the agent gave her a reason not to. Layer 2 removes that choice for the decisions where getting it wrong is most costly.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Layer 3 — Human Capability (MIT04, MIT09)</div>
+    <p><strong>Purpose:</strong> Maintain the human's independent capacity to evaluate the agent's output and to perform the underlying task without the agent.</p>
+    <p>MIT04 (adversarial spot-checking) actively tests whether the human-agent pair is catching what it should — and surfaces trust calibration drift before it creates an exploitable gap. MIT09 (independence maintenance) maintains the human's underlying skill through deliberate practice, so that when the agent fails or is compromised, the human's independent evaluation capacity has not atrophied.</p>
+    <p><strong>Minimum viable set:</strong> MIT01 + MIT02 + MIT08 + MIT07 addresses the highest-impact exposure across all six patterns. Start there. Add MIT04 and MIT06 for operational maturity. MIT03, MIT05, and MIT09 for full depth.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-21.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-23.html">Mitigation matrix →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 22 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 22 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg done" href="api07-slide-07.html"></a><a class="seg done" href="api07-slide-08.html"></a><a class="seg done" href="api07-slide-09.html"></a><a class="seg done" href="api07-slide-10.html"></a><a class="seg done" href="api07-slide-11.html"></a><a class="seg done" href="api07-slide-12.html"></a><a class="seg done" href="api07-slide-13.html"></a><a class="seg done" href="api07-slide-14.html"></a><a class="seg done" href="api07-slide-15.html"></a><a class="seg done" href="api07-slide-16.html"></a><a class="seg done" href="api07-slide-17.html"></a><a class="seg done" href="api07-slide-18.html"></a><a class="seg done" href="api07-slide-19.html"></a><a class="seg done" href="api07-slide-20.html"></a><a class="seg done" href="api07-slide-21.html"></a><a class="seg active" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 22</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 22 &#xb7; Mitigation 4</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 04</div>
+    <div class="mit-title">Parse and extract. Never proxy the raw server response back to the client.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>When the server fetches a URL on behalf of the user, extract only the specific data the feature requires. Return only that extracted data to the caller. Never return the raw HTTP response body.</p>
+      <p>&#x2022; <strong>Link preview:</strong> parse the HTML, extract <code>&lt;title&gt;</code>, <code>&lt;meta name="description"&gt;</code>, and the first image URL. Return those three fields. Do not return the raw HTML body.</p>
+      <p>&#x2022; <strong>File import:</strong> parse the JSON/CSV structure. Return the count of imported records or a structured result. Do not return the raw response body in error messages.</p>
+      <p>&#x2022; <strong>Webhook test:</strong> return &#x201C;success&#x201D; or &#x201C;failed&#x201D;. Do not return the HTTP response body from the webhook endpoint.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">Why this is a defense layer</div>
+      <p>Even if SSRF occurs and the server fetches the metadata endpoint, the attacker gains nothing if the raw response is never returned. The server may process the response internally (and fail to parse it as expected data), but the credentials are never transmitted back to the caller. This doesn&#x2019;t fix the SSRF vulnerability &#x2014; but it prevents the exfiltration that makes SSRF dangerous.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label yellow">Error message hygiene</div>
+      <p>A common SSRF exfiltration path: the URL fetch fails (wrong content type, parse error), and the error message includes the response body: &#x201C;Failed to parse JSON: [raw response here].&#x201D; Attacker reads the credentials from the error. Sanitize error messages &#x2014; never include the raw server response in error output to the client.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team whether your API ever returns the raw content of a URL it fetched to the caller. If it does, that lets an attacker use your server as a proxy to read internal systems and get the response back.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-21.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-23.html">MIT 05: Auth on internal services &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

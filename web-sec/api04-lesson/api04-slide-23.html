@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Unrestricted Resource Consumption · Slide 23 of 28</title>
+<link rel="stylesheet" href="api04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Unrestricted Resource Consumption</span></div>
+  <span class="nav-right">Slide 23 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api04-slide-01.html"></a><a class="seg done" href="api04-slide-02.html"></a><a class="seg done" href="api04-slide-03.html"></a><a class="seg done" href="api04-slide-04.html"></a><a class="seg done" href="api04-slide-05.html"></a><a class="seg done" href="api04-slide-06.html"></a><a class="seg done" href="api04-slide-07.html"></a><a class="seg done" href="api04-slide-08.html"></a><a class="seg done" href="api04-slide-09.html"></a><a class="seg done" href="api04-slide-10.html"></a><a class="seg done" href="api04-slide-11.html"></a><a class="seg done" href="api04-slide-12.html"></a><a class="seg done" href="api04-slide-13.html"></a><a class="seg done" href="api04-slide-14.html"></a><a class="seg done" href="api04-slide-15.html"></a><a class="seg done" href="api04-slide-16.html"></a><a class="seg done" href="api04-slide-17.html"></a><a class="seg done" href="api04-slide-18.html"></a><a class="seg done" href="api04-slide-19.html"></a><a class="seg done" href="api04-slide-20.html"></a><a class="seg done" href="api04-slide-21.html"></a><a class="seg done" href="api04-slide-22.html"></a><a class="seg active" href="api04-slide-23.html"></a><a class="seg" href="api04-slide-24.html"></a><a class="seg" href="api04-slide-25.html"></a><a class="seg" href="api04-slide-26.html"></a><a class="seg" href="api04-slide-27.html"></a><a class="seg" href="api04-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 23</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 23 · Mitigation 5</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 05</div>
+    <div class="mit-title">Limit GraphQL query depth and complexity before execution.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>GraphQL's flexibility is also its resource risk: a client can craft a single query that fetches deeply nested relationships, generating hundreds or thousands of database calls from one HTTP request. Limit this at the query analysis stage — <em>before</em> execution begins.</p>
+    </div>
+
+    <div class="mono-block"><span class="comment"># A GraphQL "batched bomb" query</span>
+{
+  users {
+    friends {
+      friends {
+        friends {
+          friends {
+            posts {
+              comments {
+                author { friends { name } }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+<span class="comment"># Each nesting level multiplies DB calls. 8 levels deep on 100 users</span>
+<span class="comment"># can generate tens of thousands of queries. No limit = server meltdown.</span></div>
+
+    <div class="mit-section">
+      <div class="mit-section-label blue">Two controls to implement</div>
+      <p><strong>Depth limit:</strong> Reject queries nested more than N levels deep (typically 5–7 for most APIs). Libraries: graphql-depth-limit (JS), graphene query complexity (Python).</p>
+      <p><strong>Complexity score:</strong> Assign a cost to each field and reject queries whose total cost exceeds a threshold. Fields that trigger database calls cost more than scalar fields. Reject before the query runs.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label yellow">Also consider</div>
+      <p>Query whitelisting (only allow known-good queries in production), persisted queries (client registers queries by hash, server only runs registered queries), and disabling introspection in production (prevents attackers from exploring the schema to craft targeted heavy queries).</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask whether your cloud cost monitoring would alert if API usage caused a sudden 10x spike in compute or data costs. An attacker running expensive operations at scale might go unnoticed until the bill arrives.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api04-slide-22.html">← Back</a>
+    <a class="btn-primary" href="api04-slide-24.html">MIT 06: Cost-based throttling →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

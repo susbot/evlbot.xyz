@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 10 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 10 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg done" href="api08-slide-05.html"></a><a class="seg done" href="api08-slide-06.html"></a><a class="seg done" href="api08-slide-07.html"></a><a class="seg done" href="api08-slide-08.html"></a><a class="seg done" href="api08-slide-09.html"></a><a class="seg active" href="api08-slide-10.html"></a><a class="seg" href="api08-slide-11.html"></a><a class="seg" href="api08-slide-12.html"></a><a class="seg" href="api08-slide-13.html"></a><a class="seg" href="api08-slide-14.html"></a><a class="seg" href="api08-slide-15.html"></a><a class="seg" href="api08-slide-16.html"></a><a class="seg" href="api08-slide-17.html"></a><a class="seg" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 10</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 10 &#xb7; Pattern 1 Mechanics</div>
+  <div class="slide-title">Reflected CORS + Credentials &#x2192; Cross-Origin Account Access</div>
+  <div class="slide-subtitle">Step by step: how a CORS misconfiguration becomes authenticated account data theft.</div>
+  <div class="scenario-card">
+    <div class="scenario-num">THE SETUP</div>
+    <div class="scenario-title">An API that reflects the Origin header with credentials allowed.</div>
+    <div class="scenario-body">
+      <p>The API response includes:</p>
+      <p><code>Access-Control-Allow-Origin: [whatever the caller sent as Origin]</code></p>
+      <p><code>Access-Control-Allow-Credentials: true</code></p>
+      <p>The API uses session cookies for authentication. Users are logged in when they visit the app.</p>
+    </div>
+  </div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">1&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Attacker hosts a page at <code>https://evil.attacker.com</code></div><div class="outcome-desc">The page contains JavaScript: <code>fetch(&#x2019;https://api.target.com/api/account&#x2019;, { credentials: &#x2019;include&#x2019; }).then(r => r.json()).then(data => { /* send data to attacker */ });</code></div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">2&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Victim visits <code>evil.attacker.com</code> while logged into <code>target.com</code></div><div class="outcome-desc">The JavaScript runs. The browser sends a cross-origin request to <code>api.target.com</code> with the victim&#x2019;s session cookie (because <code>credentials: include</code>).</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">3&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">The API checks its CORS configuration</div><div class="outcome-desc">The incoming <code>Origin: https://evil.attacker.com</code>. The API reflects it: <code>Access-Control-Allow-Origin: https://evil.attacker.com</code> + <code>Access-Control-Allow-Credentials: true</code>.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">4&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">The browser allows the page to read the API response</div><div class="outcome-desc">Because the CORS headers say the origin is permitted and credentials are allowed, the browser lets the JavaScript read the response body &#x2014; which contains the victim&#x2019;s account data. The JavaScript sends it to the attacker.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-09.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-11.html">Tesla deep dive &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

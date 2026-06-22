@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 24 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 24 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg done" href="api01-slide-10.html"></a><a class="seg done" href="api01-slide-11.html"></a><a class="seg done" href="api01-slide-12.html"></a><a class="seg done" href="api01-slide-13.html"></a><a class="seg done" href="api01-slide-14.html"></a><a class="seg done" href="api01-slide-15.html"></a><a class="seg done" href="api01-slide-16.html"></a><a class="seg done" href="api01-slide-17.html"></a><a class="seg done" href="api01-slide-18.html"></a><a class="seg done" href="api01-slide-19.html"></a><a class="seg done" href="api01-slide-20.html"></a><a class="seg done" href="api01-slide-21.html"></a><a class="seg done" href="api01-slide-22.html"></a><a class="seg done" href="api01-slide-23.html"></a><a class="seg active" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 24</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 24 · Mitigation 6</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 06</div>
+    <div class="mit-title">Enforce authorization at a central layer — not endpoint by endpoint.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Instead of each developer writing their own authorization check on every endpoint, implement a <strong>centralized authorization layer</strong> — a single piece of code or policy that all requests pass through before reaching the data.</p>
+      <p>This can be an API gateway policy, a middleware function, or a dedicated authorization service. The key is: <strong>one place enforces the rule, not hundreds of individual endpoints.</strong></p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Plain English</div>
+      <p>Imagine a hotel. Instead of each room having its own security system that every staff member has to remember to set — there's one central front desk that controls access to every room. Miss the front desk and you don't get in, period.</p>
+      <p>Centralized authorization is the front desk. A developer adding a new endpoint doesn't need to remember to add a check — the check happens automatically before they even get to the endpoint.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What this doesn't fix</div>
+      <p>A centralized layer is only as good as its rules. If the policy itself has gaps — or if some endpoints bypass the layer entirely — protection fails. The policy needs to be tested (MIT 04) just like everything else.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your QA team whether your tests ever try to access one user&#x2019;s data while logged in as a different user. If that test doesn&#x2019;t exist, BOLA is essentially untested in your system.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-23.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-25.html">Last mitigation →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

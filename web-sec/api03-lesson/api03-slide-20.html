@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 20 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 20 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg done" href="api03-slide-03.html"></a><a class="seg done" href="api03-slide-04.html"></a><a class="seg done" href="api03-slide-05.html"></a><a class="seg done" href="api03-slide-06.html"></a><a class="seg done" href="api03-slide-07.html"></a><a class="seg done" href="api03-slide-08.html"></a><a class="seg done" href="api03-slide-09.html"></a><a class="seg done" href="api03-slide-10.html"></a><a class="seg done" href="api03-slide-11.html"></a><a class="seg done" href="api03-slide-12.html"></a><a class="seg done" href="api03-slide-13.html"></a><a class="seg done" href="api03-slide-14.html"></a><a class="seg done" href="api03-slide-15.html"></a><a class="seg done" href="api03-slide-16.html"></a><a class="seg done" href="api03-slide-17.html"></a><a class="seg done" href="api03-slide-18.html"></a><a class="seg done" href="api03-slide-19.html"></a><a class="seg active" href="api03-slide-20.html"></a><a class="seg" href="api03-slide-21.html"></a><a class="seg" href="api03-slide-22.html"></a><a class="seg" href="api03-slide-23.html"></a><a class="seg" href="api03-slide-24.html"></a><a class="seg" href="api03-slide-25.html"></a><a class="seg" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 20</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 20 · Mitigation 2</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 02</div>
+    <div class="mit-title">Disable or restrict framework auto-binding features.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Every major ORM and web framework has a mechanism to protect against mass assignment. Use it.</p>
+      <p>• <strong>Ruby on Rails:</strong> Use <code>params.require(:key).permit(:field1, :field2)</code> — never <code>update_attributes(params[:key])</code> directly.</p>
+      <p>• <strong>Django REST Framework:</strong> Explicitly list fields in the serializer's <code>fields</code> or use <code>read_only_fields</code>.</p>
+      <p>• <strong>Laravel:</strong> Use the <code>$fillable</code> property on models to whitelist assignable fields — or use <code>$guarded</code> carefully.</p>
+      <p>• <strong>ASP.NET MVC:</strong> Use <code>[Bind(Include="field1,field2")]</code> on model parameters.</p>
+      <p>• <strong>Spring:</strong> Use <code>@JsonIgnore</code> on sensitive fields and <code>@DataBoundConstructor</code> carefully.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">The GitHub lesson</div>
+      <p>The GitHub breach happened because <code>update_attributes(params[:public_key])</code> bound all params including <code>user_id</code>. The fix was one line: <code>params.require(:public_key).permit(:key)</code>. The vulnerability existed because auto-binding was used without a field permit list.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your engineering team whether your API frameworks use auto-binding or mass assignment features. If they do, ask what prevents a user from including a &#x201C;role: admin&#x201D; or &#x201C;balance: 10000&#x201D; field in their request.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-19.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-21.html">MIT 03: DTOs and separate schemas →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

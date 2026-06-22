@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Sources & References</title>
+<link rel="stylesheet" href="api04-shared.css">
+<style>
+body{padding-bottom:40px;}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent-bright);text-decoration:none;margin:24px 0 8px;}
+.back-link:hover{opacity:.8;}
+.src-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.src-title{font-size:clamp(20px,5vw,28px);font-weight:600;color:#fff;line-height:1.2;margin-bottom:24px;}
+.src-section{margin-bottom:28px;}
+.src-section-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:12px;}
+.src-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:8px;}
+.src-item-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.src-item-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;}
+.src-item-desc{font-size:12px;color:var(--subtle);line-height:1.6;}
+.src-note{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:12px;color:var(--muted);line-height:1.8;margin-top:24px;}
+</style>
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Sources &amp; References</span></div>
+  <a href="https://evlbot.xyz" style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:4px 10px;text-decoration:none;letter-spacing:.06em;">evlbot.xyz</a>
+</div>
+
+<div class="wrap">
+  <a class="back-link" href="api04-slide-01.html">← Back to lesson</a>
+
+  <div class="src-eyebrow">References</div>
+  <div class="src-title">Sources for API4 — Unrestricted Resource Consumption</div>
+
+  <div class="src-section">
+    <div class="src-section-label">Primary Source</div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP API Security Top 10 — 2023 · API4:2023 Unrestricted Resource Consumption</div>
+      <div class="src-item-meta">OWASP Foundation · owasp.org · 2023</div>
+      <div class="src-item-desc">The authoritative source for the definition, vulnerable patterns, example attack scenarios, and prevention guidance in this module. The three attack scenarios on slides 14–16 are drawn directly from the OWASP API4 page (unbounded pagination, AI cost amplification, SMS OTP flooding). CWE references: CWE-770 (Allocation of Resources Without Limits or Throttling), CWE-400 (Uncontrolled Resource Consumption). This course is an independent study companion — not affiliated with or endorsed by OWASP.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Real Incidents</div>
+    <div class="src-item">
+      <div class="src-item-title">Venmo Public API Scrape — 207 Million Transactions</div>
+      <div class="src-item-meta">Dan Salmon (security researcher) · 2019</div>
+      <div class="src-item-desc">Researcher Dan Salmon scraped 207,984,218 public Venmo transactions over approximately one month using Venmo's public transaction API. The endpoint required no authentication and had no rate limiting. Salmon published aggregate findings on his blog to demonstrate the privacy implications of combining public transaction data (which included real names, amounts, and payment messages) with unthrottled bulk access. Venmo subsequently added rate limiting to the endpoint. The incident prompted broader discussion about whether "public by default" and "accessible in bulk" are the same threat model. Referenced in slides 1, 11, 26.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Twitter Phone/Email Lookup API — 5.4 Million Accounts Scraped</div>
+      <div class="src-item-meta">Twitter (now X) disclosure · August 2022</div>
+      <div class="src-item-desc">Twitter's "find your contacts" feature included an API endpoint that accepted phone numbers or email addresses and returned associated Twitter accounts. The endpoint had a logic vulnerability (it returned data for phone numbers not belonging to the requesting user) combined with insufficient rate limiting. Attackers automated lookups against phone number ranges, collecting 5.4 million account-to-phone-number mappings. The dataset was posted for sale in July 2022 and made freely available online. Twitter disclosed the breach in August 2022. The original vulnerability report was submitted via their bug bounty program in January 2022 — six months before the breach disclosure. Referenced in slides 13, 26.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Technical References</div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP API Security Cheat Sheet — Rate Limiting</div>
+      <div class="src-item-meta">OWASP Foundation · owasp.org/cheatsheets</div>
+      <div class="src-item-desc">Implementation guidance on rate limiting strategies for REST APIs, including token bucket vs. sliding window algorithms, per-IP vs. per-user vs. per-resource limiting, and HTTP response conventions (429 Too Many Requests, Retry-After header). Directly informs MIT 01 in this module.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">GraphQL Security — Query Complexity and Depth Limiting</div>
+      <div class="src-item-meta">graphql-depth-limit (npm), graphene-django complexity (PyPI)</div>
+      <div class="src-item-desc">Technical background on GraphQL's N+1 query problem and how deeply nested queries can generate exponential database calls from a single HTTP request. Covers depth limiting (reject queries beyond N levels) and complexity scoring (assign costs to fields, reject when total exceeds threshold). Referenced in MIT 05 on slide 23.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">AWS Well-Architected Framework — Cost Optimization</div>
+      <div class="src-item-meta">Amazon Web Services · aws.amazon.com</div>
+      <div class="src-item-desc">AWS guidance on setting billing alerts, budget caps, and per-resource spending thresholds. Context for the "billing alerts are a fallback, not a defense" argument in MIT 06 — alerts report after spending occurs; API-layer rate limits prevent spending from occurring.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Further Reading</div>
+    <div class="src-item">
+      <div class="src-item-title">PortSwigger Web Security Academy — API Testing</div>
+      <div class="src-item-meta">PortSwigger · portswigger.net/web-security/api-testing</div>
+      <div class="src-item-desc">Interactive labs for testing API vulnerabilities including rate limit bypass techniques and resource consumption patterns. Recommended hands-on practice after completing this module.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">"Scraping the Web for Fun and Profit" — Dan Salmon</div>
+      <div class="src-item-meta">Dan Salmon · 2019 blog post</div>
+      <div class="src-item-desc">Salmon's original write-up of the Venmo scraping experiment, including methodology, what was found in the data, and his recommendations for Venmo. A clear first-person account of how a public API with no rate limiting exposes the entire dataset to anyone willing to write a loop. Search for "Dan Salmon Venmo scraping" to find archived copies.</div>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <strong>About this course:</strong> This is an independent, unofficial study companion built for educational purposes. Content is based on publicly available security research and the OWASP API Security Top 10 framework. This project is not affiliated with, endorsed by, or sponsored by the OWASP Foundation. All trademarks remain the property of their respective owners.
+  </div>
+</div>
+</body>
+</html>

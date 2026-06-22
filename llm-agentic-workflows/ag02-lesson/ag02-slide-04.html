@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG02:2026 — Tool Misuse and Exploitation · Slide 4 of 28</title>
+<link rel="stylesheet" href="ag02-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG02:2026</span>
+    <span class="nav-title">Tool Misuse and Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 4 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag02-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag02-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag02-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg active" href="ag02-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg" href="ag02-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg" href="ag02-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg" href="ag02-slide-07.html" title="Slide 7 · Tool Misuse vs Other Risks"></a>
+    <a class="seg" href="ag02-slide-08.html" title="Slide 8 · Why Tools Are the New Attack Surface"></a>
+    <a class="seg" href="ag02-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg" href="ag02-slide-10.html" title="Slide 10 · Type 1 — Over-Privileged Tools"></a>
+    <a class="seg" href="ag02-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg" href="ag02-slide-12.html" title="Slide 12 · Type 2 — Tool Chaining"></a>
+    <a class="seg" href="ag02-slide-13.html" title="Slide 13 · Type 2 — Real Example"></a>
+    <a class="seg" href="ag02-slide-14.html" title="Slide 14 · Scenarios 1–3"></a>
+    <a class="seg" href="ag02-slide-15.html" title="Slide 15 · Scenarios 4–6"></a>
+    <a class="seg" href="ag02-slide-16.html" title="Slide 16 · Scenarios 7–9"></a>
+    <a class="seg" href="ag02-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag02-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag02-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag02-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag02-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag02-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag02-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag02-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag02-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag02-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag02-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag02-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — What Is It?</span><span>Slide 4</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 4 · The Definition Part 2</div>
+  <div class="slide-title">The thing that makes ASI02 different from every other AI tool problem</div>
+  <div class="slide-subtitle">The agent is operating within its authorized permissions. That's exactly what makes this dangerous.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI02</div>
+
+  <div class="callout purple">
+    <div class="callout-label">The critical distinction</div>
+    <p>ASI02 covers cases where <strong>"the agent operates within its authorized privileges but applies a legitimate tool in an unsafe or unintended way."</strong></p>
+    <p>The agent isn't breaking any rules it knows about. The tool call succeeds. The audit log shows an authorized action. Everything looks normal from the outside.</p>
+  </div>
+
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">What ASI02 IS</div>
+      <div class="compare-item">Agent uses a tool it's allowed to use</div>
+      <div class="compare-item">Tool executes successfully</div>
+      <div class="compare-item">Authorization check passes</div>
+      <div class="compare-item">The purpose is wrong, not the permission</div>
+      <div class="compare-item">Example: refund bot issuing fraudulent refunds</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">What ASI02 is NOT</div>
+      <div class="compare-item">Privilege escalation (that's ASI03)</div>
+      <div class="compare-item">Running injected code (that's ASI05)</div>
+      <div class="compare-item">A compromised tool at install time (that's ASI04)</div>
+      <div class="compare-item">A stolen credential or token (that's ASI03)</div>
+      <div class="compare-item">The tool itself being malicious</div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">One line to remember</div>
+    <p>In every other security risk, something unauthorized happened. In ASI02, <strong>everything was authorized — and that's why traditional security controls missed it.</strong></p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag02-slide-03.html">← Back</a>
+    <a class="btn-primary" href="ag02-slide-05.html">Got it → What actually goes wrong when this happens?</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

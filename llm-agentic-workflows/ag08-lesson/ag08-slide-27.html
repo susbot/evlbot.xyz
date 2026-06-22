@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 27 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a><a class="seg done" href="ag08-slide-11.html"></a><a class="seg done" href="ag08-slide-12.html"></a><a class="seg done" href="ag08-slide-13.html"></a><a class="seg done" href="ag08-slide-14.html"></a><a class="seg done" href="ag08-slide-15.html"></a><a class="seg done" href="ag08-slide-16.html"></a><a class="seg done" href="ag08-slide-17.html"></a><a class="seg done" href="ag08-slide-18.html"></a><a class="seg done" href="ag08-slide-19.html"></a><a class="seg done" href="ag08-slide-20.html"></a><a class="seg done" href="ag08-slide-21.html"></a><a class="seg done" href="ag08-slide-22.html"></a><a class="seg done" href="ag08-slide-23.html"></a><a class="seg done" href="ag08-slide-24.html"></a><a class="seg done" href="ag08-slide-25.html"></a><a class="seg done" href="ag08-slide-26.html"></a>
+    <a class="seg active" href="ag08-slide-27.html"></a>
+    <a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Appendix</span><span>Slide 27</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 27 · Research &amp; Engineering Context</div>
+  <div class="slide-title">What two decades of distributed systems engineering says — and why agent pipelines are only beginning to apply it.</div>
+
+  <div class="block">
+    <div class="block-label purple">Circuit breakers: from Netflix Hystrix to agent pipelines</div>
+    <p>The circuit breaker pattern was popularized by Michael Nygard in "Release It!" (2007) and became widely adopted through Netflix's Hystrix library (2012) and later Resilience4j. These libraries emerged from Netflix's experience running hundreds of microservices — where a single slow dependency could cascade into system-wide outages in seconds without isolation mechanisms.</p>
+    <p>As of 2025, none of the major agent orchestration frameworks (LangChain, AutoGen, CrewAI, LlamaIndex) include built-in circuit breaker primitives equivalent to those that have been standard in microservices frameworks for over a decade. Teams building production agent pipelines must implement them manually or import them from microservices libraries — and many don't, because the pattern is not yet part of the "standard" agentic architecture vocabulary.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Thundering herd and exponential backoff</div>
+    <p>The thundering herd problem was documented in Unix operating systems research in the 1990s (multiple processes waking simultaneously when a resource becomes available, overwhelming the resource). It reappears as a distributed systems problem whenever multiple clients share a dependency and retry simultaneously after a failure.</p>
+    <p>The solution — exponential backoff with jitter — was established practice by the 2000s in network protocols (TCP backoff, DNS retry), payment processing systems, and cloud infrastructure (AWS SDK retry behavior). The "jitter" addition (randomizing retry timing) was documented by AWS in 2015 as a necessary improvement over pure exponential backoff, which still produces synchronized bursts when clients all experience the same failure at the same time.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">Chaos engineering: Chaos Monkey and its descendants</div>
+    <p>Netflix introduced Chaos Monkey in 2011 — a tool that randomly terminates production services to verify that the system recovers correctly. This formalized the principle that resilience mechanisms that have never been tested under realistic conditions should not be trusted to work in production. The practice evolved into chaos engineering, with tools like Chaos Toolkit, Gremlin, and AWS Fault Injection Simulator.</p>
+    <p>Applied to agent pipelines: injecting failures into agents (returning truncated data, introducing latency, triggering circuit breakers deliberately) before production is the only reliable way to verify that output validation, fallback behaviors, and blast radius limits all function as designed. Without chaos testing, the first real cascade is also the first functional test of the resilience architecture.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-26.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-28.html">Sources →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

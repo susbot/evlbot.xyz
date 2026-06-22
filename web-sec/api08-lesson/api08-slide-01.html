@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 1 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 1 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg active" href="api08-slide-01.html"></a><a class="seg" href="api08-slide-02.html"></a><a class="seg" href="api08-slide-03.html"></a><a class="seg" href="api08-slide-04.html"></a><a class="seg" href="api08-slide-05.html"></a><a class="seg" href="api08-slide-06.html"></a><a class="seg" href="api08-slide-07.html"></a><a class="seg" href="api08-slide-08.html"></a><a class="seg" href="api08-slide-09.html"></a><a class="seg" href="api08-slide-10.html"></a><a class="seg" href="api08-slide-11.html"></a><a class="seg" href="api08-slide-12.html"></a><a class="seg" href="api08-slide-13.html"></a><a class="seg" href="api08-slide-14.html"></a><a class="seg" href="api08-slide-15.html"></a><a class="seg" href="api08-slide-16.html"></a><a class="seg" href="api08-slide-17.html"></a><a class="seg" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 1</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 1 &#xb7; The Breach That Defined the Category</div>
+  <div class="slide-title">No password. Kubernetes on the internet. Tesla&#x2019;s cloud mining for someone else.</div>
+  <div class="slide-subtitle">February 2018 &#x2014; RedLock researchers found Tesla&#x2019;s admin console open to the world. Attackers had already been there.</div>
+  <div class="source-tag">&#x1F4C4; RedLock Cloud Security Intelligence Report &#xb7; February 2018 &#xb7; Palo Alto Networks</div>
+  <div class="scenario-card">
+    <div class="scenario-num">THE INCIDENT</div>
+    <div class="scenario-title">Tesla Kubernetes Cryptojacking &#x2014; February 2018</div>
+    <div class="scenario-body">
+      <p>RedLock security researchers were scanning cloud environments for misconfigured services. They found that Tesla&#x2019;s Kubernetes cluster &#x2014; the orchestration system managing their cloud workloads &#x2014; had its admin dashboard exposed directly on the internet with no password protection.</p>
+      <p>The Kubernetes dashboard is an administrative web interface that shows all running containers, their logs, and their environment variables. Tesla&#x2019;s dashboard was accessible to anyone who knew the URL &#x2014; no username, no password, no IP restriction.</p>
+    </div>
+    <div class="scenario-why"><strong>What the researchers found inside:</strong> AWS credentials in environment variables within the Kubernetes pods &#x2014; the standard way to pass cloud credentials to containers. More alarmingly, attackers had already found the dashboard before the researchers did. A Kubernetes pod was running a cryptomining script, using Tesla&#x2019;s AWS compute resources to mine cryptocurrency for the attackers. The miner was configured to connect to a mining pool through a proxy to mask the traffic. Tesla was paying their AWS bill while attackers collected the mining proceeds.</div>
+  </div>
+  <div class="callout red">
+    <div class="callout-label">Two misconfigurations. Both required.</div>
+    <p>This required two separate failures: (1) The Kubernetes dashboard was deployed with no authentication &#x2014; a default configuration mistake. (2) AWS credentials were accessible as environment variables inside pods visible through that dashboard. Either fix alone would have limited the damage. This is the compounding nature of Security Misconfiguration.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="../index.html">&#x2190; All modules</a>
+    <a class="btn-primary" href="api08-slide-02.html">What is API8? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 17 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a>
+    <a class="seg done" href="ag04-slide-02.html"></a>
+    <a class="seg done" href="ag04-slide-03.html"></a>
+    <a class="seg done" href="ag04-slide-04.html"></a>
+    <a class="seg done" href="ag04-slide-05.html"></a>
+    <a class="seg done" href="ag04-slide-06.html"></a>
+    <a class="seg done" href="ag04-slide-07.html"></a>
+    <a class="seg done" href="ag04-slide-08.html"></a>
+    <a class="seg done" href="ag04-slide-09.html"></a>
+    <a class="seg done" href="ag04-slide-10.html"></a>
+    <a class="seg done" href="ag04-slide-11.html"></a>
+    <a class="seg done" href="ag04-slide-12.html"></a>
+    <a class="seg done" href="ag04-slide-13.html"></a>
+    <a class="seg done" href="ag04-slide-14.html"></a>
+    <a class="seg done" href="ag04-slide-15.html"></a>
+    <a class="seg done" href="ag04-slide-16.html"></a>
+    <a class="seg active" href="ag04-slide-17.html"></a>
+    <a class="seg" href="ag04-slide-18.html"></a>
+    <a class="seg" href="ag04-slide-19.html"></a>
+    <a class="seg" href="ag04-slide-20.html"></a>
+    <a class="seg" href="ag04-slide-21.html"></a>
+    <a class="seg" href="ag04-slide-22.html"></a>
+    <a class="seg" href="ag04-slide-23.html"></a>
+    <a class="seg" href="ag04-slide-24.html"></a>
+    <a class="seg" href="ag04-slide-25.html"></a>
+    <a class="seg" href="ag04-slide-26.html"></a>
+    <a class="seg" href="ag04-slide-27.html"></a>
+    <a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Attack Scenarios</span><span>Slide 17</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 17 · The Pattern</div>
+  <div class="slide-title">Six scenarios, one pattern: the attack enters before the agent makes a decision</div>
+  <div class="slide-subtitle">Every AG04 attack exploits the same window: the gap between what the agent was designed to trust and what it actually receives.</div>
+
+  <div class="block">
+    <div class="block-label purple">The universal attack structure</div>
+    <p>Every scenario in this module follows the same structure:</p>
+    <p><strong>Step 1 — Identify a trusted source.</strong> The attacker finds something the agent depends on and trusts: a registry, an MCP server, a prompt template, a tool descriptor, a knowledge source, an agent card.</p>
+    <p><strong>Step 2 — Compromise or impersonate it.</strong> The attacker either takes over the legitimate source or creates a convincing substitute.</p>
+    <p><strong>Step 3 — Wait.</strong> The agent eventually loads, fetches, or connects to the compromised source — as part of its normal operation. No further attacker action is required.</p>
+    <p><strong>Step 4 — Collect.</strong> The agent executes the attacker's payload autonomously, trusting it as if it came from the legitimate source it was designed to use.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Why traditional defenses don't stop this</div>
+    <p>Signature verification, HTTPS, authenticated registries — all of these protect the channel and verify the source's identity. They do not protect against a legitimate, authenticated source that has been compromised. The Amazon Q extension was signed and distributed from the official marketplace. The Postmark impersonator had a valid npm account. The GitHub issue that drove the MCP descriptor attack was a real issue on a real repository.</p>
+    <p><strong>The attacks passed all traditional trust checks. The supply chain itself was the attack surface.</strong></p>
+  </div>
+
+  <div class="callout yellow">
+    <div class="callout-label">Going into Part 4</div>
+    <p>The mitigations for AG04 can't just verify that a source is who it claims to be. They must also verify the <strong>integrity and content</strong> of what the source provides, and limit what the agent can do with it even if that content is malicious. That combination — provenance + containment + continuous validation — is the architecture of Part 4.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-16.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-18.html">Part 4: Prevention and Mitigations →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

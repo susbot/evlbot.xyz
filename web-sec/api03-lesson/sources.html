@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Sources & References</title>
+<link rel="stylesheet" href="api03-shared.css">
+<style>
+body{padding-bottom:40px;}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent-bright);text-decoration:none;margin:24px 0 8px;}
+.back-link:hover{opacity:.8;}
+.src-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.src-title{font-size:clamp(20px,5vw,28px);font-weight:600;color:#fff;line-height:1.2;margin-bottom:24px;}
+.src-section{margin-bottom:28px;}
+.src-section-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:12px;}
+.src-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:8px;}
+.src-item-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.src-item-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;}
+.src-item-desc{font-size:12px;color:var(--subtle);line-height:1.6;}
+.src-note{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:12px;color:var(--muted);line-height:1.8;margin-top:24px;}
+</style>
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Sources &amp; References</span></div>
+  <a href="https://evlbot.xyz" style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:4px 10px;text-decoration:none;letter-spacing:.06em;">evlbot.xyz</a>
+</div>
+
+<div class="wrap">
+  <a class="back-link" href="api03-slide-01.html">← Back to lesson</a>
+
+  <div class="src-eyebrow">References</div>
+  <div class="src-title">Sources for API3 — Broken Object Property Level Authorization</div>
+
+  <div class="src-section">
+    <div class="src-section-label">Primary Source</div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP API Security Top 10 — 2023 · API3:2023 Broken Object Property Level Authorization</div>
+      <div class="src-item-meta">OWASP Foundation · owasp.org · 2023</div>
+      <div class="src-item-desc">The authoritative source for the definition, vulnerable patterns, example attack scenarios, and prevention guidance in this module. The three attack scenarios on slides 14–16 are drawn directly from the OWASP API3 page (dating app location leak, marketplace price manipulation, social media moderation bypass). CWE references: CWE-213 (Exposure of Sensitive Information Due to Incompatible Policies), CWE-915 (Improperly Controlled Modification of Dynamically-Determined Object Attributes). This course is an independent study companion — not affiliated with or endorsed by OWASP.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Real Incidents</div>
+    <div class="src-item">
+      <div class="src-item-title">GitHub Mass Assignment Breach — Egor Homakov</div>
+      <div class="src-item-meta">GitHub / Ruby on Rails · March 4, 2012</div>
+      <div class="src-item-desc">Developer Egor Homakov exploited Ruby on Rails' auto-binding (mass assignment) feature to associate his own SSH public key with the Ruby on Rails GitHub organization. He added a single extra parameter — public_key[user_id]=4223 — to a form POST. Rails' update_attributes() bound all incoming parameters to the model, including user_id, without restriction. Homakov then pushed a commit to the Rails master repository with a timestamp of the year 3012 to demonstrate write access. GitHub patched the endpoint within 1 hour; the Rails team added mass assignment protection (attr_accessible / strong parameters) within 5 hours. Homakov had reported the underlying Rails vulnerability before demonstrating it. Referenced in slides 1, 5, 13, 20, 26.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Peloton Excessive Data Exposure — Private Profile Data</div>
+      <div class="src-item-meta">Pen Test Partners (Jan Masters) · January–May 2021</div>
+      <div class="src-item-desc">Security researcher Jan Masters at Pen Test Partners discovered that Peloton's user profile API endpoint returned the complete user object — including age, gender, city, weight, birthday, and workout statistics — regardless of whether the account was marked as private. The privacy setting only affected what the official Peloton app displayed; the API itself made no distinction between private and public accounts. Any authenticated Peloton user could enumerate other users' full profiles. Affected approximately 4 million users. Peloton was first notified in January 2021. Their initial fix (adding authentication) did not resolve the property-level exposure. Full remediation took over 90 days. Referenced in slides 11, 23, 26.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Technical References</div>
+    <div class="src-item">
+      <div class="src-item-title">Ruby on Rails Security Guide — Mass Assignment</div>
+      <div class="src-item-meta">Rails Documentation · guides.rubyonrails.org</div>
+      <div class="src-item-desc">Official Rails documentation on mass assignment vulnerabilities and the Strong Parameters API (params.require().permit()) introduced in Rails 4 to replace the insecure attr_accessible approach. Background for slides 5, 13, and 20.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP Mass Assignment Cheat Sheet</div>
+      <div class="src-item-meta">OWASP Foundation · owasp.org/cheatsheets</div>
+      <div class="src-item-desc">Framework-specific guidance on preventing mass assignment vulnerabilities in Node.js, Spring MVC, ASP.NET MVC, Laravel, Ruby on Rails, Grails, Play, and Django. Directly informs mitigations MIT 01 and MIT 02 in this module.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP API Security Cheat Sheet — Sensitive Data Exposure</div>
+      <div class="src-item-meta">OWASP Foundation · owasp.org/cheatsheets</div>
+      <div class="src-item-desc">Guidance on identifying and protecting sensitive properties in API responses, including the use of response DTOs and schema-based validation to prevent excessive data exposure. Informs mitigations MIT 03, 05, 06, and 07 in this module.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Further Reading</div>
+    <div class="src-item">
+      <div class="src-item-title">PortSwigger Web Security Academy — Mass Assignment</div>
+      <div class="src-item-meta">PortSwigger · portswigger.net/web-security/api-testing/lab-exploiting-mass-assignment-vulnerability</div>
+      <div class="src-item-desc">Free interactive lab for practicing mass assignment attacks against an API. Recommended hands-on practice after completing this module — lets you experience exactly how adding an extra JSON field to a PATCH request can escalate your price to zero.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Homakov's Blog Post — "How I hacked Github again"</div>
+      <div class="src-item-meta">Egor Homakov · March 2012</div>
+      <div class="src-item-desc">Homakov's own write-up of the GitHub mass assignment breach, explaining his motivation (he had reported the vulnerability and was ignored), the exact HTTP request he sent, and the timeline of events. One of the clearest first-person accounts of a responsible disclosure that escalated to a demonstration. Search for "homakov github mass assignment" to find archived copies.</div>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <strong>About this course:</strong> This is an independent, unofficial study companion built for educational purposes. Content is based on publicly available security research and the OWASP API Security Top 10 framework. This project is not affiliated with, endorsed by, or sponsored by the OWASP Foundation. All trademarks remain the property of their respective owners.
+  </div>
+</div>
+</body>
+</html>

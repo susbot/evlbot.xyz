@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 12 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 12 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg done" href="api10-slide-09.html"></a><a class="seg done" href="api10-slide-10.html"></a><a class="seg done" href="api10-slide-11.html"></a><a class="seg active" href="api10-slide-12.html"></a><a class="seg" href="api10-slide-13.html"></a><a class="seg" href="api10-slide-14.html"></a><a class="seg" href="api10-slide-15.html"></a><a class="seg" href="api10-slide-16.html"></a><a class="seg" href="api10-slide-17.html"></a><a class="seg" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 12</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 12 &#xb7; Pattern 2 Mechanics</div>
+  <div class="slide-title">Third-party redirect &#x2192; Consuming API follows it server-side &#x2192; Internal target reached</div>
+  <div class="slide-subtitle">How an SSRF attack is delivered through a trusted third-party redirect instead of direct user input.</div>
+  <div class="scenario-card">
+    <div class="scenario-num">THE SETUP</div>
+    <div class="scenario-title">An API that fetches a URL returned by a third-party service to process a file or resource.</div>
+    <div class="scenario-body">
+      <p>The consuming API calls a third-party document processing service. The service returns a JSON response: <code>&#x7B;"status":"ready","download_url":"https://cdn.processor.example.com/file.pdf"&#x7D;</code>.</p>
+      <p>The API fetches the <code>download_url</code> from the response, trusting that a URL returned by a legitimate third-party service is safe to follow. No URL validation is applied &#x2014; the URL came from a trusted source, not a user.</p>
+    </div>
+  </div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">1&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Attacker compromises or impersonates the third-party</div><div class="outcome-desc">The attacker either compromises the third-party API to return a malicious <code>download_url</code>, or performs a DNS hijack/BGP hijack that causes the consuming API&#x2019;s DNS resolution of the third-party domain to return an attacker-controlled server. Either way, the consuming API makes a legitimate request to what it believes is the trusted third-party, and receives a response that includes a malicious redirect URL.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">2&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Malicious redirect points to internal target</div><div class="outcome-desc">The attacker-controlled response returns: <code>&#x7B;"download_url":"http://169.254.169.254/latest/meta-data/iam/security-credentials/role"&#x7D;</code>. The API follows this URL without validation &#x2014; it came from the trusted third-party &#x2014; and makes a server-side HTTP request to the AWS metadata endpoint.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">3&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Consuming API reaches internal target and returns or stores the response</div><div class="outcome-desc">The metadata endpoint returns IAM credentials. Depending on how the API processes the fetched content, the credentials may be: returned to the attacker in an error message, stored in a database field, or logged &#x2014; all accessible to the attacker. The API&#x2019;s SSRF protections (applied to user-supplied URLs) never fired &#x2014; because the URL came from a trusted third-party response, not a user.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-11.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-13.html">Real incident: Log4Shell via API data &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

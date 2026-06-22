@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 5 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 5 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg active" href="api01-slide-05.html"></a><a class="seg" href="api01-slide-06.html"></a><a class="seg" href="api01-slide-07.html"></a><a class="seg" href="api01-slide-08.html"></a><a class="seg" href="api01-slide-09.html"></a><a class="seg" href="api01-slide-10.html"></a><a class="seg" href="api01-slide-11.html"></a><a class="seg" href="api01-slide-12.html"></a><a class="seg" href="api01-slide-13.html"></a><a class="seg" href="api01-slide-14.html"></a><a class="seg" href="api01-slide-15.html"></a><a class="seg" href="api01-slide-16.html"></a><a class="seg" href="api01-slide-17.html"></a><a class="seg" href="api01-slide-18.html"></a><a class="seg" href="api01-slide-19.html"></a><a class="seg" href="api01-slide-20.html"></a><a class="seg" href="api01-slide-21.html"></a><a class="seg" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 5</span></div>
+</div>
+<div class="slide active">
+  <div class="slide-eyebrow">Slide 5 · The Outcomes</div>
+  <div class="slide-title">What actually goes wrong.</div>
+  <div class="slide-subtitle">These aren't hypotheticals. They happened.</div>
+
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">👤</div>
+      <div>
+        <div class="outcome-title">Personal data exposed at scale</div>
+        <div class="outcome-desc">Peloton (2021) — age, weight, location, workout history of 4 million users. Accessible with no authentication. Just change the user ID in the URL.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">📱</div>
+      <div>
+        <div class="outcome-title">37 million customer records stolen</div>
+        <div class="outcome-desc">T-Mobile (Jan 2023) — names, billing addresses, emails, phone numbers, account numbers. An attacker queried a customer API by phone number for months before detection.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">📍</div>
+      <div>
+        <div class="outcome-title">Exact locations of dating app users leaked</div>
+        <div class="outcome-desc">Bumble (2020) — researcher Sanjana Sarda found any user's precise GPS coordinates were returned via API, even for users who had blocked the requester.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">📬</div>
+      <div>
+        <div class="outcome-title">60 million accounts exposed</div>
+        <div class="outcome-desc">USPS Informed Delivery (2018) — any authenticated user could look up account details for any other USPS user by changing the user ID. Name, address, email, phone number.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🔑</div>
+      <div>
+        <div class="outcome-title">Account takeover</div>
+        <div class="outcome-desc">When exposed data includes email addresses and security question answers, BOLA can be a first step toward fully taking over an account.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="block">
+    <div class="block-label pink">The pattern</div>
+    <p>Every one of these breaches had the same root cause. The API returned data based on an ID the user supplied — <strong>without checking if that user was allowed to access it.</strong></p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-04.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-06.html">Who does this? →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

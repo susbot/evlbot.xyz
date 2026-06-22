@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 21 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 21 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a><a class="seg done" href="ag09-slide-07.html"></a><a class="seg done" href="ag09-slide-08.html"></a><a class="seg done" href="ag09-slide-09.html"></a><a class="seg done" href="ag09-slide-10.html"></a><a class="seg done" href="ag09-slide-11.html"></a><a class="seg done" href="ag09-slide-12.html"></a><a class="seg done" href="ag09-slide-13.html"></a><a class="seg done" href="ag09-slide-14.html"></a><a class="seg done" href="ag09-slide-15.html"></a><a class="seg done" href="ag09-slide-16.html"></a><a class="seg done" href="ag09-slide-17.html"></a><a class="seg done" href="ag09-slide-18.html"></a><a class="seg done" href="ag09-slide-19.html"></a><a class="seg done" href="ag09-slide-20.html"></a>
+    <a class="seg active" href="ag09-slide-21.html"></a>
+    <a class="seg" href="ag09-slide-22.html"></a><a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Prevention</span><span>Slide 21</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 21 · MIT07, MIT08 & MIT09</div>
+  <div class="slide-title">Separation of Duties · Content Provenance Labeling · Human Independence Maintenance</div>
+
+  <div class="block">
+    <div class="block-label purple">MIT07 — Separation of Duties</div>
+    <p><strong>Core principle:</strong> No single human-agent pair should have end-to-end authority over high-risk decisions. Require a second independent reviewer — human or agent — for decisions above defined impact thresholds. The second reviewer should be provided with the case independently, not just asked to ratify the first reviewer's decision.</p>
+    <p><strong>Why "second set of eyes on the same output" is not sufficient:</strong> If reviewer B is shown reviewer A's decision alongside the agent's recommendation, B's independent judgment is anchored to A's conclusion. Effective separation of duties means B reviews the case without knowing what A decided. Only when both reviewers reach independent conclusions does the system compare them.</p>
+    <p><strong>The irreversibility multiplier:</strong> Separation of duties requirements should scale with action irreversibility. Decisions that can be easily reversed can have lighter oversight. Decisions that are irreversible — a wire transfer, a deleted record, a published advisory, a signed contract — warrant the heaviest oversight, because there is no recovery if the oversight fails.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">MIT08 — Content Provenance Labeling</div>
+    <p><strong>Core principle:</strong> The credibility relay attack (Pattern 4, Scenarios 2 and 5) works because the agent presents externally-sourced content with the same visual formatting and implicit credibility as its own analysis. Eliminating this requires a hard distinction in the UI and in the agent's behavior between content the agent generated and content it received from external sources.</p>
+    <p><strong>Practical implementation:</strong></p>
+    <ul>
+      <li><strong>Source attribution on every claim:</strong> Every statement in an agent's output is tagged with its source — "my analysis," "from vendor email (external, unverified)," "from internal CRM (verified)," "from regulatory feed (third-party)."</li>
+      <li><strong>Visual distinction:</strong> External-sourced content is presented in a visually distinct style — different background, border, or label — so the human cannot mistake it for the agent's own verified output.</li>
+      <li><strong>Hardcoded skepticism prompts for security-relevant content:</strong> Any content that advises disabling a security control, changing payment details, or modifying access permissions — regardless of source — triggers a mandatory out-of-band verification prompt that cannot be dismissed without completion.</li>
+    </ul>
+    <p><strong>Directly addresses:</strong> Scenarios 2 and 5. In both cases, the attacker's content was indistinguishable from the agent's own output in the human's view.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label orange">MIT09 — Human Independence Maintenance</div>
+    <p><strong>Core principle:</strong> The only defense against dependency erosion (Pattern 5) is deliberate practice. If you want humans to retain the skill to evaluate the agent's output independently, they must regularly exercise that skill in conditions where the agent's output is not available to anchor their judgment.</p>
+    <p><strong>Operational practices:</strong></p>
+    <ul>
+      <li><strong>Agent-off drills:</strong> Periodic exercises where the AI assistant is unavailable and the team must make decisions using only their own analysis. Monthly or quarterly depending on risk level.</li>
+      <li><strong>Blind case reviews:</strong> Periodically, reviewers are given cases to evaluate independently before seeing the agent's recommendation. Their independent assessment is recorded, then compared to the agent's. Differences are discussed.</li>
+      <li><strong>Skill maintenance requirements:</strong> For roles in high-stakes human-agent review processes, define explicit skill competency requirements for the underlying task — not just for operating the AI tool.</li>
+    </ul>
+    <p><strong>The core insight:</strong> Scenario 6 required no attacker. The junior analyst lost the ability to catch what the agent missed through the ordinary use of a reliable tool over two years. MIT09 is the only mitigation that directly addresses this class of harm.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: could the people who review your AI's recommendations still do those reviews competently if the AI were turned off tomorrow? Ask whether your review process maintains the human expertise to catch what the agent misses — or whether that skill has quietly eroded.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-20.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-22.html">Defense model →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

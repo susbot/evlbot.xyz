@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 27 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg done" href="api07-slide-07.html"></a><a class="seg done" href="api07-slide-08.html"></a><a class="seg done" href="api07-slide-09.html"></a><a class="seg done" href="api07-slide-10.html"></a><a class="seg done" href="api07-slide-11.html"></a><a class="seg done" href="api07-slide-12.html"></a><a class="seg done" href="api07-slide-13.html"></a><a class="seg done" href="api07-slide-14.html"></a><a class="seg done" href="api07-slide-15.html"></a><a class="seg done" href="api07-slide-16.html"></a><a class="seg done" href="api07-slide-17.html"></a><a class="seg done" href="api07-slide-18.html"></a><a class="seg done" href="api07-slide-19.html"></a><a class="seg done" href="api07-slide-20.html"></a><a class="seg done" href="api07-slide-21.html"></a><a class="seg done" href="api07-slide-22.html"></a><a class="seg done" href="api07-slide-23.html"></a><a class="seg done" href="api07-slide-24.html"></a><a class="seg done" href="api07-slide-25.html"></a><a class="seg done" href="api07-slide-26.html"></a><a class="seg active" href="api07-slide-27.html"></a><a class="seg" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention &#xb7; Quiz</span><span>Slide 27</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 27 &#xb7; Quiz</div>
+  <div class="slide-title">Five questions. No pressure.</div>
+  <div class="slide-subtitle">Test what you understood &#x2014; not what you memorized.</div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 01 OF 05</div>
+    <div class="question-text">What makes SSRF in a cloud environment significantly more dangerous than in an on-premises deployment?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Cloud APIs handle more traffic, so SSRF causes more server load</button>
+      <button class="option" onclick="answer(this,false)">Cloud providers don&#x2019;t support WAFs, so SSRF can&#x2019;t be blocked at the network layer</button>
+      <button class="option" onclick="answer(this,true)">Cloud instances have a metadata endpoint (169.254.169.254) that returns IAM credentials. SSRF that reaches it yields cloud account credentials &#x2014; one request can lead to full account compromise</button>
+      <button class="option" onclick="answer(this,false)">Cloud deployments use weaker encryption, making SSRF data more valuable</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; the AWS/GCP/Azure instance metadata endpoint is accessible from within the instance and returns temporary IAM/service account credentials. In an on-premises deployment, SSRF can reach internal services and read local files &#x2014; serious, but bounded. In a cloud deployment, SSRF can reach 169.254.169.254 and return credentials that give the attacker the same cloud permissions as the application itself &#x2014; potentially access to all data the app role can touch, across all services, from anywhere on the internet. This is why SSRF was added to the OWASP API Top 10 in 2023.</div>
+    <div class="feedback wrong">Not quite &#x2014; the core reason is the instance metadata endpoint. Every major cloud provider (AWS, GCP, Azure) exposes a special endpoint at a fixed link-local IP that returns the instance&#x2019;s cloud credentials. SSRF lets an attacker make the server fetch this endpoint and return the credentials. In Capital One&#x2019;s case, this one URL provided access to 100M+ customer records across 100+ S3 buckets.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 02 OF 05</div>
+    <div class="question-text">An API validates that a user-supplied URL hostname is not an internal IP address. An attacker registers &#x201C;attacker.com&#x201D; which initially resolves to a public IP, then changes the DNS to resolve to 10.0.0.1. Why does this bypass the validation?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">DNS records are cached indefinitely, so the old public IP is always used</button>
+      <button class="option" onclick="answer(this,true)">The hostname check resolves the DNS at validation time (public IP &#x2014; passes). The actual HTTP request resolves DNS again at fetch time (now returns 10.0.0.1 &#x2014; goes to internal network). This is DNS rebinding.</button>
+      <button class="option" onclick="answer(this,false)">The API trusts all .com domains, so no DNS check is performed</button>
+      <button class="option" onclick="answer(this,false)">IPv4 addresses cannot be validated through DNS lookups</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; this is DNS rebinding. The validation and the fetch are two separate DNS lookups. If the attacker controls the DNS record and sets a very short TTL, the record can change between the two lookups. The validation checks the public IP (passes), but by the time the HTTP client makes the connection, DNS returns 10.0.0.1. The fix: resolve the hostname once, validate the resulting IP, then make the HTTP request directly to that resolved IP &#x2014; not to the hostname again. This guarantees the IP that was validated is the IP that receives the connection.</div>
+    <div class="feedback wrong">Not quite &#x2014; this is DNS rebinding. The key is that DNS resolution happens twice: once during the check (returns public IP) and once when the HTTP connection is made (now returns internal IP). With a short DNS TTL (e.g., 1 second), the attacker can control which IP is returned at each moment. The fix is to resolve DNS once, validate the IP, then connect directly to the resolved IP &#x2014; skipping the second DNS lookup entirely.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 03 OF 05</div>
+    <div class="question-text">An import API validates that user-supplied URLs don&#x2019;t point to internal IPs. An attacker supplies a URL from a legitimate domain that returns a 302 redirect to http://169.254.169.254/. The SSRF succeeds. What was missing?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">The API should have required HTTPS; HTTP URLs bypass IP validation</button>
+      <button class="option" onclick="answer(this,false)">The legitimate domain should have been on an allowlist &#x2014; unknown domains should be blocked</button>
+      <button class="option" onclick="answer(this,true)">HTTP redirects were not disabled. The IP validation checked the original URL (legitimate domain, passes). The HTTP client followed the redirect to 169.254.169.254 without re-validating the destination IP.</button>
+      <button class="option" onclick="answer(this,false)">The 302 redirect used a different HTTP method, bypassing the IP check</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; redirect-based SSRF bypass is one of the most common ways to circumvent IP validation. The validation passes on the original URL (legitimate domain). The HTTP client follows the 302 redirect automatically. The redirect destination (169.254.169.254) is never validated. Fix: disable automatic redirect following entirely, OR apply the same IP validation to every redirect destination before following it. Disabling redirects is simpler and safer for most use cases &#x2014; if the feature doesn&#x2019;t genuinely need to follow redirects, don&#x2019;t.</div>
+    <div class="feedback wrong">Not quite &#x2014; the issue is that the HTTP client follows redirects automatically without validating the redirect destination. The original URL passes the IP check (it resolves to a legitimate public IP). The 302 redirect sends the client to 169.254.169.254 &#x2014; but this destination is never checked against the IP validation rules. The fix is to disable automatic redirect following (MIT 03), so the redirect is never followed, or to validate each redirect destination before following it.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 04 OF 05</div>
+    <div class="question-text">Why is returning raw server responses to API clients a problem specific to SSRF, even if the URL-fetching itself was already blocked or failed?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Raw responses reveal the server&#x2019;s IP address, enabling targeted attacks</button>
+      <button class="option" onclick="answer(this,true)">Even when SSRF occurs and the server fetches an internal URL, the attacker gains nothing if the response is never returned to them. Returning raw responses (or including them in error messages) is what makes SSRF a data exfiltration path rather than a blind probe.</button>
+      <button class="option" onclick="answer(this,false)">Raw responses bypass CORS headers and expose data to cross-origin scripts</button>
+      <button class="option" onclick="answer(this,false)">Raw responses include HTTP headers that reveal internal service versions</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; MIT 04 (don&#x2019;t return raw responses) is a defense-in-depth layer. Even if SSRF occurs and the server successfully fetches the metadata endpoint, the attacker can&#x2019;t steal the credentials if the response is never returned to them. The server fetches the credentials, fails to parse them as the expected data format (e.g., the JSON isn&#x2019;t a valid product catalog), and returns &#x201C;import failed&#x201D; &#x2014; without including the raw response. The attacker learns the import failed, but gets nothing useful. This doesn&#x2019;t fix SSRF &#x2014; it limits what the attacker can do with it.</div>
+    <div class="feedback wrong">Not quite &#x2014; the core issue is data exfiltration. SSRF is most dangerous when the attacker can read the response. If the server fetches the metadata endpoint but only returns &#x201C;import failed, invalid format&#x201D; without the response body, the SSRF occurred but the attacker got nothing. Many SSRF exfiltrations work specifically through error messages: &#x201C;Failed to parse JSON: [response body here]&#x201D; &#x2014; the credentials are in the error message. Sanitizing error messages and never returning raw responses prevents this exfiltration path.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 05 OF 05</div>
+    <div class="question-text">In the Capital One breach, the blast radius was 100M+ records across 100+ S3 buckets. What non-SSRF factor made the damage this large?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Capital One did not use encryption for their S3 objects, making all data readable</button>
+      <button class="option" onclick="answer(this,false)">AWS S3 buckets were configured with public read access, not requiring IAM credentials</button>
+      <button class="option" onclick="answer(this,true)">The EC2 instance&#x2019;s IAM role was over-permissioned: it had s3:GetObject on more than 100 buckets it didn&#x2019;t need access to. Least-privilege IAM would have limited the stolen credentials to only the specific buckets the application actually required.</button>
+      <button class="option" onclick="answer(this,false)">Capital One stored all customer data in a single bucket with no sub-folder restrictions</button>
+    </div>
+    <div class="feedback correct">Correct &#x2014; SSRF was the entry point, but IAM over-permissioning determined the blast radius. The EC2 role&#x2019;s credentials, once stolen, granted access to every S3 bucket the role could touch. If the role had been scoped to only the specific buckets and prefixes the application actually needed &#x2014; least privilege &#x2014; the breach would have been much smaller. This is a general security principle that compounds SSRF: the damage from credential theft is bounded by what those credentials can do. Tight IAM policies limit the damage even when SSRF succeeds.</div>
+    <div class="feedback wrong">Not quite &#x2014; the amplifier was IAM over-permissioning. The EC2 instance role had access to far more S3 data than the application needed to function. When SSRF stole those credentials, the attacker inherited all of those permissions. The principle of least privilege &#x2014; granting each role only the minimum permissions it requires &#x2014; is not an SSRF defense itself, but it is the primary control that limits SSRF damage when credential theft occurs. Minimum IAM scope + SSRF prevention = defense in depth.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-26.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api07-slide-28.html">Done &#x2192; See what you learned</a>
+  </div>
+
+<script>
+function answer(btn, correct) {
+  const card = btn.closest('.question-card');
+  card.querySelectorAll('.option').forEach(o => o.disabled = true);
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  card.querySelector('.feedback.' + (correct ? 'correct' : 'wrong')).classList.add('show');
+}
+</script>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

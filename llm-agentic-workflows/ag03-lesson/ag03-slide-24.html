@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG03:2026 — Identity and Privilege Abuse · Slide 24 of 28</title>
+<link rel="stylesheet" href="ag03-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG03:2026</span>
+    <span class="nav-title">Identity and Privilege Abuse</span>
+  </div>
+  <span class="nav-right">Slide 24 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag03-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag03-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag03-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag03-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag03-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag03-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag03-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg done" href="ag03-slide-08.html" title="Slide 8 · Why Agent Identity Is Different"></a>
+    <a class="seg done" href="ag03-slide-09.html" title="Slide 9 · Five Vulnerability Types"></a>
+    <a class="seg done" href="ag03-slide-10.html" title="Slide 10 · Type 1 — Un-scoped Privilege Inheritance"></a>
+    <a class="seg done" href="ag03-slide-11.html" title="Slide 11 · Type 1 — A Real Example"></a>
+    <a class="seg done" href="ag03-slide-12.html" title="Slide 12 · Type 2 — Memory-Based Privilege Retention"></a>
+    <a class="seg done" href="ag03-slide-13.html" title="Slide 13 · Types 3–5 — More Vulnerability Patterns"></a>
+    <a class="seg done" href="ag03-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg done" href="ag03-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg done" href="ag03-slide-16.html" title="Slide 16 · Scenarios 5–7"></a>
+    <a class="seg done" href="ag03-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg done" href="ag03-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg done" href="ag03-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg done" href="ag03-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg done" href="ag03-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg done" href="ag03-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg done" href="ag03-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg active" href="ag03-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg" href="ag03-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg" href="ag03-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag03-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag03-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 24</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 24 · Mitigations 6–7</div>
+  <div class="slide-title">Treat agents as managed identities — and bind every permission to its context</div>
+  <div class="slide-subtitle">Two structural mitigations that shift agents from identity borrowers to identity holders.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI03</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 06</div>
+    <div class="mit-title">Evaluate Agentic Identity Management Platforms</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Use identity platforms that treat agents as <strong>managed non-human identities</strong> — with their own distinct identity record, scoped credentials, audit trail, and lifecycle controls. Major platforms that now support this include Microsoft Entra (with workload identity federation), AWS IAM Roles for service accounts, Salesforce Agentforce, and Google Vertex AI service accounts.</p>
+      <p>The goal: give each agent deployment a verifiable, bounded identity that is distinct from any human user — so that agent actions can be attributed, audited, and controlled independently from the humans who deploy or interact with them.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Why this matters for AG03</div>
+      <p>The attribution gap (slide 4) exists because agents borrow human identity. Managed non-human identities close that gap. When an agent has its own identity, you can enforce least privilege on that specific identity, audit its actions independently, and revoke its access without affecting any human user account.</p>
+    </div>
+  </div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 07</div>
+    <div class="mit-title">Bind Permissions to Subject, Resource, Purpose, and Duration</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Every permission granted to an agent must be bound to four dimensions: <strong>subject</strong> (which specific agent, for which specific user), <strong>resource</strong> (which exact resource — not "the database," but "the orders table for this user's account"), <strong>purpose</strong> (what the permission was granted to accomplish), and <strong>duration</strong> (when the permission expires or must be revoked).</p>
+      <p>Require re-authentication when any of these dimensions changes — when a new resource is accessed, when the task purpose shifts, or when control passes to a different context. Include automated revocation on idle timeout or detected anomaly.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What this stops</div>
+      <p>Directly addresses un-scoped privilege inheritance (Scenario 01 — the worker agent receives a permission bound to the query resource, not the full finance manager scope), identity sharing (Scenario 07 — the shared agent's permissions are bound to the original user's subject, not available to other users), and authorization drift (Scenario 05 — duration binding triggers revocation when the user's spending limit is reduced).</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag03-slide-23.html">← Back</a>
+    <a class="btn-primary" href="ag03-slide-25.html">Next → Mitigations 8–9: Detection</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 8 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 8 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg done" href="api08-slide-05.html"></a><a class="seg done" href="api08-slide-06.html"></a><a class="seg done" href="api08-slide-07.html"></a><a class="seg active" href="api08-slide-08.html"></a><a class="seg" href="api08-slide-09.html"></a><a class="seg" href="api08-slide-10.html"></a><a class="seg" href="api08-slide-11.html"></a><a class="seg" href="api08-slide-12.html"></a><a class="seg" href="api08-slide-13.html"></a><a class="seg" href="api08-slide-14.html"></a><a class="seg" href="api08-slide-15.html"></a><a class="seg" href="api08-slide-16.html"></a><a class="seg" href="api08-slide-17.html"></a><a class="seg" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 8</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 8 &#xb7; Context</div>
+  <div class="slide-title">The broadest risk on the list &#x2014; and the one that keeps growing.</div>
+  <div class="slide-subtitle">API8 covers everything from one missing header to an entire admin panel exposed to the internet. Both qualify.</div>
+  <div class="block">
+    <div class="block-label pink">Why it&#x2019;s broad</div>
+    <p>OWASP API Security Top 10 ranks risks by exploitability, prevalence, and impact. API8 is #8 because the individual instances vary widely in severity &#x2014; a missing <code>X-Content-Type-Options</code> header is less severe than an unauthenticated admin panel. But the category is prevalent: nearly every API deployment has at least one misconfiguration. The aggregate risk is high even if any single instance may be low.</p>
+  </div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Lower severity (but common)</div>
+      <div class="compare-item">Missing <code>X-Content-Type-Options</code> header</div>
+      <div class="compare-item">Outdated TLS 1.1 still accepted</div>
+      <div class="compare-item">OPTIONS method returns all allowed methods</div>
+      <div class="compare-item">Server version disclosed in <code>Server:</code> header</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Higher severity (less common, catastrophic)</div>
+      <div class="compare-item">Reflected CORS with credentials enabled</div>
+      <div class="compare-item">Production debug mode with stack traces</div>
+      <div class="compare-item">Admin console without authentication (Tesla)</div>
+      <div class="compare-item">Cloud storage with public read/write (Firebase)</div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">The compounding effect</div>
+    <p>Misconfigurations compound. A verbose error message reveals the framework version. A known CVE for that version exists. The API also accepts unnecessary HTTP methods. The combination creates an attack chain where each misconfiguration makes the next one easier to exploit. This is why comprehensive configuration hardening matters &#x2014; not just fixing the obvious one.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-07.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-09.html">How do attacks work? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

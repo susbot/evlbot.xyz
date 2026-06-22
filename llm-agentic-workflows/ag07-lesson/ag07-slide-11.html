@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 11 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 11 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a><a class="seg done" href="ag07-slide-09.html"></a><a class="seg done" href="ag07-slide-10.html"></a>
+    <a class="seg active" href="ag07-slide-11.html"></a>
+    <a class="seg" href="ag07-slide-12.html"></a><a class="seg" href="ag07-slide-13.html"></a><a class="seg" href="ag07-slide-14.html"></a><a class="seg" href="ag07-slide-15.html"></a><a class="seg" href="ag07-slide-16.html"></a><a class="seg" href="ag07-slide-17.html"></a><a class="seg" href="ag07-slide-18.html"></a><a class="seg" href="ag07-slide-19.html"></a><a class="seg" href="ag07-slide-20.html"></a><a class="seg" href="ag07-slide-21.html"></a><a class="seg" href="ag07-slide-22.html"></a><a class="seg" href="ag07-slide-23.html"></a><a class="seg" href="ag07-slide-24.html"></a><a class="seg" href="ag07-slide-25.html"></a><a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Vulnerability Types</span><span>Slide 11</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 11 · Types 3 &amp; 4</div>
+  <div class="slide-title">Type 3: Claiming the orchestrator's identity to command the fleet. Type 4: Replaying a valid past message at the wrong time.</div>
+
+  <div class="block">
+    <div class="block-label red">Type 3 — Orchestrator impersonation</div>
+    <p>The orchestrator is the most privileged agent in a pipeline. It directs sub-agents, delegates tasks, and defines scope. An attacker who can successfully impersonate the orchestrator inherits this authority over every downstream agent that trusts orchestrator messages.</p>
+    <p><strong>Why orchestrator impersonation is particularly dangerous:</strong> Sub-agents are often designed to be obedient to the orchestrator — their system prompts instruct them to execute tasks assigned by the orchestrator without independently verifying whether those tasks are within scope. This is a deliberate design choice for efficiency. It becomes a vulnerability when the "orchestrator" sending instructions isn't the real one.</p>
+    <p><strong>How it happens in practice:</strong> In agent frameworks that use role-based message channels (a common pattern), the orchestrator role is identified by a field in the message, not by cryptographic proof. Any component that can write to the orchestrator channel — including a compromised logging sidecar, a malicious plugin, or an insider with queue access — can issue instructions with orchestrator authority.</p>
+    <p><strong>Google A2A and Anthropic MCP context:</strong> Both protocols include agent identity mechanisms, but the security properties depend heavily on implementation. An orchestrator "identity" that is just a claimed string in the message body — without a verifiable cryptographic credential — provides no real protection against impersonation.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Type 4 — Replay attacks</div>
+    <p>A replay attack re-sends a previously legitimate message that was valid at the time it was sent. The classic example: an "approve transaction" message from last week is re-sent today. If the receiving agent has no replay protection, it cannot distinguish the replayed message from a fresh approval.</p>
+    <p><strong>What replay protection requires:</strong> Every message must carry a unique identifier (nonce) or a timestamp with a narrow validity window. The receiving agent tracks seen nonces or checks timestamps and rejects messages that have already been processed or that fall outside the validity window. Without this, captured messages become reusable attack tokens.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-10.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-12.html">Types 5 &amp; 6 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

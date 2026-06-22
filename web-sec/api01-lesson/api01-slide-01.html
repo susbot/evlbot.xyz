@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 1 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">API1:2023</span>
+    <span class="nav-title">Broken Object Level Authorization</span>
+  </div>
+  <span class="nav-right">Slide 1 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg active" href="api01-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg" href="api01-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg" href="api01-slide-03.html" title="Slide 3 · The Definition I"></a>
+    <a class="seg" href="api01-slide-04.html" title="Slide 4 · The Definition II"></a>
+    <a class="seg" href="api01-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg" href="api01-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg" href="api01-slide-07.html" title="Slide 7 · BOLA vs BFLA"></a>
+    <a class="seg" href="api01-slide-08.html" title="Slide 8 · Why APIs Are Different"></a>
+    <a class="seg" href="api01-slide-09.html" title="Slide 9 · Two Types"></a>
+    <a class="seg" href="api01-slide-10.html" title="Slide 10 · Horizontal BOLA"></a>
+    <a class="seg" href="api01-slide-11.html" title="Slide 11 · Horizontal Real Example"></a>
+    <a class="seg" href="api01-slide-12.html" title="Slide 12 · Vertical BOLA"></a>
+    <a class="seg" href="api01-slide-13.html" title="Slide 13 · Vertical Real Example"></a>
+    <a class="seg" href="api01-slide-14.html" title="Slide 14 · Scenarios 1–3"></a>
+    <a class="seg" href="api01-slide-15.html" title="Slide 15 · Scenarios 4–6"></a>
+    <a class="seg" href="api01-slide-16.html" title="Slide 16 · Scenarios 7–9"></a>
+    <a class="seg" href="api01-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="api01-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="api01-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="api01-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="api01-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="api01-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="api01-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="api01-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="api01-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="api01-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="api01-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="api01-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 · What Is It?</span><span>Slide 1</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 1</span>
+    <div>
+      <div class="part-title">What Is It?</div>
+      <div class="part-count">Slides 1–8 · From story to definition</div>
+    </div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 1 · The Setup</div>
+  <div class="slide-title">You changed one number.</div>
+  <div class="slide-subtitle">That's all it took.</div>
+
+  <div class="callout yellow">
+    <div class="callout-label">The Scenario</div>
+    <p>It's 2021. You download the Peloton app to track your workouts. You notice that your profile URL ends with a number — your user ID.</p>
+    <p>Out of curiosity, you change the number. You hit enter.</p>
+    <p><strong>Someone else's profile loads. Their age. Their weight. Their location. Their workout history. Everything.</strong></p>
+    <p>You didn't hack anything. You didn't write any code. You changed one number in a URL.</p>
+  </div>
+
+  <div class="callout red">
+    <div class="callout-label">The Scale</div>
+    <p>This wasn't a one-off. <strong>Every single Peloton account</strong> — over 4 million users — had their private data exposed this way. The vulnerability existed for months before anyone reported it. Peloton took another 3 months to fix it after being told.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label pink">Before we name it</div>
+    <p>You didn't need to know what this vulnerability is called to exploit it. All you needed was curiosity and a browser. That's what makes it the #1 API security risk in the world.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-primary" href="api01-slide-02.html">What is this called? →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

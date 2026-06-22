@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 20 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 20 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a><a class="seg done" href="ag09-slide-07.html"></a><a class="seg done" href="ag09-slide-08.html"></a><a class="seg done" href="ag09-slide-09.html"></a><a class="seg done" href="ag09-slide-10.html"></a><a class="seg done" href="ag09-slide-11.html"></a><a class="seg done" href="ag09-slide-12.html"></a><a class="seg done" href="ag09-slide-13.html"></a><a class="seg done" href="ag09-slide-14.html"></a><a class="seg done" href="ag09-slide-15.html"></a><a class="seg done" href="ag09-slide-16.html"></a><a class="seg done" href="ag09-slide-17.html"></a><a class="seg done" href="ag09-slide-18.html"></a><a class="seg done" href="ag09-slide-19.html"></a>
+    <a class="seg active" href="ag09-slide-20.html"></a>
+    <a class="seg" href="ag09-slide-21.html"></a><a class="seg" href="ag09-slide-22.html"></a><a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Prevention</span><span>Slide 20</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 20 · MIT05 & MIT06</div>
+  <div class="slide-title">MIT05: Trust Calibration Training — MIT06: Override Logging and Review</div>
+
+  <div class="block">
+    <div class="block-label purple">MIT05 — Trust Calibration Training</div>
+    <p><strong>Core principle:</strong> Generic "don't trust AI too much" training does not help humans in the moment when they have 7 seconds to review a transaction that the agent scored as low risk. Effective trust calibration training is specific: it teaches users exactly what the agent's limitations are, what case categories are most likely to fall in its blind spots, and what verification steps are most important when those cases appear.</p>
+    <p><strong>What makes this training different from generic security awareness training:</strong></p>
+    <ul>
+      <li><strong>System-specific:</strong> Trained on the specific agent the team uses, its specific training data gaps, its known false negative patterns. Not generic AI advice.</li>
+      <li><strong>Case-category specific:</strong> "When you see a combination of A, B, and C, the agent's confidence may be lower than its score suggests. Apply the 15-minute independent review protocol." Not "be skeptical of AI."</li>
+      <li><strong>Periodically refreshed:</strong> As the agent is updated, as new attacker patterns emerge, and as post-incident analysis reveals new blind spots, the training is updated. Trust calibration training is not a one-time onboarding exercise.</li>
+    </ul>
+    <p><strong>The alert fatigue angle:</strong> MIT05 also addresses Pattern 3 — teams should be trained on alert quality metrics, how to recognize when their agent is generating noise, and how to request recalibration. Passive alert fatigue is a training problem as much as a system problem.</p>
+    <p><strong>Directly addresses:</strong> Pattern 1 (Elena didn't know which case categories were outside the agent's reliable range), Pattern 3 (SOC analysts didn't recognize their alert false-positive rate as a signal to escalate).</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">MIT06 — Override Logging and Review</div>
+    <p><strong>Core principle:</strong> Overrides — cases where a human decides differently from the agent's recommendation — are a gold mine of trust calibration signal. Systematic review of overrides reveals: where the agent is wrong (humans override it and they're right), where humans are over-trusting (agent is right but humans sometimes ignore it), and where adversarial probing patterns may be emerging (unusual override patterns may be an attacker testing boundaries).</p>
+    <p><strong>Log both directions:</strong></p>
+    <ul>
+      <li><strong>Agent said HIGH RISK, human approved:</strong> Human overrode in the permissive direction. Review asks: was the human right? If yes, agent calibration issue. If no, potential manipulation or poor training.</li>
+      <li><strong>Agent said LOW RISK, human escalated:</strong> Human overrode in the restrictive direction. Review asks: was the human right? If yes, the agent missed something. Document what it missed — that's a blind spot to train against and test with MIT04 spot-checking.</li>
+    </ul>
+    <p><strong>Adversarial probing detection:</strong> An attacker systematically testing an agent's boundaries to find its blind spots will generate an unusual pattern of low-risk cases that are genuinely high risk. If a reviewer repeatedly escalates agent-approved cases from a specific source, category, or time window, this pattern is detectable in override logs before any successful attack completes. MIT06 is also an early warning system.</p>
+    <p><strong>Directly addresses:</strong> Pattern 1 (would have revealed the blind spot being probed in Scenario 1), Pattern 3 (override logs would reveal systematic alert dismissal patterns).</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: when a reviewer disagrees with the AI's recommendation, is that disagreement recorded anywhere? Ask whether a pattern of overrides — reviewers repeatedly escalating cases the agent approved — would be noticed before it became a security incident.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-19.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-21.html">MIT07, MIT08 & MIT09 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 19 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 19 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a><a class="seg done" href="ag04-slide-02.html"></a><a class="seg done" href="ag04-slide-03.html"></a><a class="seg done" href="ag04-slide-04.html"></a><a class="seg done" href="ag04-slide-05.html"></a><a class="seg done" href="ag04-slide-06.html"></a><a class="seg done" href="ag04-slide-07.html"></a><a class="seg done" href="ag04-slide-08.html"></a><a class="seg done" href="ag04-slide-09.html"></a><a class="seg done" href="ag04-slide-10.html"></a><a class="seg done" href="ag04-slide-11.html"></a><a class="seg done" href="ag04-slide-12.html"></a><a class="seg done" href="ag04-slide-13.html"></a><a class="seg done" href="ag04-slide-14.html"></a><a class="seg done" href="ag04-slide-15.html"></a><a class="seg done" href="ag04-slide-16.html"></a><a class="seg done" href="ag04-slide-17.html"></a><a class="seg done" href="ag04-slide-18.html"></a>
+    <a class="seg active" href="ag04-slide-19.html"></a>
+    <a class="seg" href="ag04-slide-20.html"></a><a class="seg" href="ag04-slide-21.html"></a><a class="seg" href="ag04-slide-22.html"></a><a class="seg" href="ag04-slide-23.html"></a><a class="seg" href="ag04-slide-24.html"></a><a class="seg" href="ag04-slide-25.html"></a><a class="seg" href="ag04-slide-26.html"></a><a class="seg" href="ag04-slide-27.html"></a><a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 19</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 19 · MIT01 — Provenance Verification and SBOMs/AIBOMs</div>
+  <div class="slide-title">MIT01: Know exactly what every component is, where it came from, and who signed it — before it runs</div>
+  <div class="slide-subtitle">A Software Bill of Materials (SBOM) or AI Bill of Materials (AIBOM) is a complete, signed inventory of every component in your agentic system.</div>
+
+  <div class="block">
+    <div class="block-label purple">What provenance verification means</div>
+    <p>Provenance is the documented origin of a component. Provenance verification means confirming — cryptographically, not just by name — that a component came from who it claims to come from, has not been modified since it was published, and matches a hash or signature you have on record.</p>
+    <p>For traditional software, this means package signatures and checksums. For agentic systems, it extends to: tool manifests, MCP server identities, model weights, prompt templates, agent cards, and knowledge base snapshots.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">SBOMs and AIBOMs</div>
+    <p>A <strong>Software Bill of Materials (SBOM)</strong> is a machine-readable inventory of every software dependency in a system — versions, hashes, licenses, and known vulnerabilities. SBOM standards like SPDX and CycloneDX are already used in regulated industries.</p>
+    <p>An <strong>AI Bill of Materials (AIBOM)</strong> extends this concept to AI-specific components: the model and its version, the tools and plugins with their exact manifest hashes, the prompt templates with their version IDs, the knowledge base and its ingestion pipeline provenance.</p>
+    <p><strong>If you can't produce an AIBOM for your agentic system, you don't know what you're running.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">What this stops</div>
+    <p>MIT01 directly addresses Scenarios 1 (Amazon Q update), 2 (GitHub tool data), and 5 (poisoned npm package). If you pin every dependency to a content hash in your AIBOM and verify that hash before loading, a compromised registry version will fail the hash check — even if it passes signature verification from a hijacked key.</p>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">💼 Business takeaway</div>
+    <p>Ask your team: do you have a documented list of every AI model, tool, and data source your agents depend on — and does anyone verify that list hasn't changed before a deployment goes live? An undocumented dependency is one an attacker can replace without anyone noticing.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-18.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-20.html">MIT02 — Dependency Gatekeeping →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

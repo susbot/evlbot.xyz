@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 &#x2014; Server Side Request Forgery &#xb7; Slide 28 of 28</title>
+<link rel="stylesheet" href="api07-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Server Side Request Forgery</span></div>
+  <span class="nav-right">Slide 28 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api07-slide-01.html"></a><a class="seg done" href="api07-slide-02.html"></a><a class="seg done" href="api07-slide-03.html"></a><a class="seg done" href="api07-slide-04.html"></a><a class="seg done" href="api07-slide-05.html"></a><a class="seg done" href="api07-slide-06.html"></a><a class="seg done" href="api07-slide-07.html"></a><a class="seg done" href="api07-slide-08.html"></a><a class="seg done" href="api07-slide-09.html"></a><a class="seg done" href="api07-slide-10.html"></a><a class="seg done" href="api07-slide-11.html"></a><a class="seg done" href="api07-slide-12.html"></a><a class="seg done" href="api07-slide-13.html"></a><a class="seg done" href="api07-slide-14.html"></a><a class="seg done" href="api07-slide-15.html"></a><a class="seg done" href="api07-slide-16.html"></a><a class="seg done" href="api07-slide-17.html"></a><a class="seg done" href="api07-slide-18.html"></a><a class="seg done" href="api07-slide-19.html"></a><a class="seg done" href="api07-slide-20.html"></a><a class="seg done" href="api07-slide-21.html"></a><a class="seg done" href="api07-slide-22.html"></a><a class="seg done" href="api07-slide-23.html"></a><a class="seg done" href="api07-slide-24.html"></a><a class="seg done" href="api07-slide-25.html"></a><a class="seg done" href="api07-slide-26.html"></a><a class="seg done" href="api07-slide-27.html"></a><a class="seg active" href="api07-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Complete</span><span>Slide 28</span></div>
+</div>
+<div class="slide active">
+
+  <div class="complete-wrap">
+    <div class="complete-icon">&#x2705;</div>
+    <div class="complete-title">Module Complete</div>
+    <div class="complete-sub">You finished API7 &#x2014; Server Side Request Forgery. Here&#x2019;s what you now understand:</div>
+    <div class="checklist">
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">What SSRF is &#x2014; an API that fetches user-supplied URLs server-side, letting the attacker make the server reach internal targets it can&#x2019;t access directly</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Why APIs are specifically exposed &#x2014; webhooks, file import, link preview, and integration features are all legitimate URL-fetching patterns that become SSRF vectors</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">The cloud metadata jackpot &#x2014; 169.254.169.254 returns IAM credentials; SSRF that reaches it yields cloud account access</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Two attack patterns: cloud credential theft (SSRF &#x2192; metadata &#x2192; IAM keys &#x2192; cloud data) and internal network pivot (SSRF &#x2192; internal services that trust internal callers)</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Real incidents &#x2014; Capital One 2019 ($270M total cost, 100M records) and GitLab CVE-2021-22214 (unauthenticated SSRF via CI lint API)</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Three bypass techniques &#x2014; DNS rebinding, redirect chains, and alternative IP notations &#x2014; and why allowlists + IP validation + redirect disabling are required together</span></div>
+      <div class="check-item"><span class="check-mark">&#x2713;</span><span class="check-text">Seven mitigations: URL allowlist, post-DNS IP validation, disable redirects, no raw response return, internal service auth, network isolation, and metadata endpoint monitoring</span></div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="block-label pink">The one thing to carry forward</div>
+    <p>Your server is inside the network. Every URL it fetches is fetched from inside &#x2014; with access to internal services, cloud credentials, and local files that the caller cannot reach directly. <strong>User-supplied URLs must be validated against what your server can reach, not just what a browser would reach.</strong> The default assumption must be: this URL could be the metadata endpoint.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api07-slide-27.html">&#x2190; Back to Quiz</a>
+    <a class="btn-primary" href="../api08-lesson/api08-slide-01.html">Next: API8 &#x2014; Security Misconfiguration &#x2192;</a>
+  </div>
+
+</div>
+
+</body>
+</html>

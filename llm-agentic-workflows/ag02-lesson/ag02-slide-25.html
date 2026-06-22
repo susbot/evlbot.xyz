@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG02:2026 — Tool Misuse and Exploitation · Slide 25 of 28</title>
+<link rel="stylesheet" href="ag02-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG02:2026</span>
+    <span class="nav-title">Tool Misuse and Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 25 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag02-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag02-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag02-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag02-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag02-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag02-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag02-slide-07.html" title="Slide 7 · Tool Misuse vs Other Risks"></a>
+    <a class="seg done" href="ag02-slide-08.html" title="Slide 8 · Why Tools Are the New Attack Surface"></a>
+    <a class="seg done" href="ag02-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag02-slide-10.html" title="Slide 10 · Type 1 — Over-Privileged Tools"></a>
+    <a class="seg done" href="ag02-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg done" href="ag02-slide-12.html" title="Slide 12 · Type 2 — Tool Chaining"></a>
+    <a class="seg done" href="ag02-slide-13.html" title="Slide 13 · Type 2 — Real Example"></a>
+    <a class="seg done" href="ag02-slide-14.html" title="Slide 14 · Scenarios 1–3"></a>
+    <a class="seg done" href="ag02-slide-15.html" title="Slide 15 · Scenarios 4–6"></a>
+    <a class="seg done" href="ag02-slide-16.html" title="Slide 16 · Scenarios 7–9"></a>
+    <a class="seg done" href="ag02-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg done" href="ag02-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg done" href="ag02-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg done" href="ag02-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg done" href="ag02-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg done" href="ag02-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg done" href="ag02-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg done" href="ag02-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg active" href="ag02-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag02-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag02-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag02-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 25</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 25 · Mitigation 7</div>
+  <div class="slide-title">Semantic validation and monitoring — know what a tool call means, not just what it is</div>
+  <div class="slide-subtitle">The last line of defense and the best source of evidence after an incident.</div>
+
+  <div class="source-tag">📄 OWASP Top 10 for Agentic Applications 2026 · ASI02</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 07</div>
+    <div class="mit-title">Semantic Firewalls, Logging, and Drift Detection</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">Semantic Firewalls — what to do</div>
+      <p>Enforce <strong>fully qualified, version-pinned tool names</strong>: the agent must call <code>report_finance@v2.1</code>, not just <code>report</code>. Tool resolution must fail closed on ambiguity — if two tools could match, block and ask for disambiguation rather than resolving to whichever comes first.</p>
+      <p>Validate the <em>semantic intent</em> of tool calls: a query tool should receive query-type parameters, not command-type parameters. A schema mismatch blocks the call before execution.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label green">Monitoring and drift detection — what to do</div>
+      <p>Maintain <strong>immutable logs</strong> of every tool invocation: tool name and version, full parameter payload, calling agent, session ID, timestamp, and outcome. These logs must be tamper-resistant.</p>
+      <p>Monitor for anomalous patterns: unusual tool-chaining sequences (DB read followed by external send), abnormal invocation rates, parameter values outside expected ranges, and calls to tools not in the expected set for this agent's task type.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What this doesn't fix</div>
+      <p>Monitoring is detective, not preventive. A successful attack will be captured in the logs — but the damage may already be done. Monitoring catches attacks in progress or after the fact; it must be paired with active controls (MIT 01–06) to actually stop them.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Attacks this addresses</div>
+      <p>S05 (Typosquatting) — blocked by fully qualified name enforcement. S06 (DNS exfil) — detected by parameter anomaly monitoring (base64-encoded hostname). S13 (EDR bypass via tool chain) — the immutable log captures the full PowerShell + cURL + API sequence that EDR missed.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag02-slide-24.html">← Back</a>
+    <a class="btn-primary" href="ag02-slide-26.html">Now put it all together → The Matrix</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

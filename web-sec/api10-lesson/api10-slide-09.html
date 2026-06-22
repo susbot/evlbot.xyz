@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API10:2023 &#x2014; Unsafe Consumption of APIs &#xb7; Slide 9 of 28</title>
+<link rel="stylesheet" href="api10-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API10:2023</span><span class="nav-title">Unsafe Consumption of APIs</span></div>
+  <span class="nav-right">Slide 9 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api10-slide-01.html"></a><a class="seg done" href="api10-slide-02.html"></a><a class="seg done" href="api10-slide-03.html"></a><a class="seg done" href="api10-slide-04.html"></a><a class="seg done" href="api10-slide-05.html"></a><a class="seg done" href="api10-slide-06.html"></a><a class="seg done" href="api10-slide-07.html"></a><a class="seg done" href="api10-slide-08.html"></a><a class="seg active" href="api10-slide-09.html"></a><a class="seg" href="api10-slide-10.html"></a><a class="seg" href="api10-slide-11.html"></a><a class="seg" href="api10-slide-12.html"></a><a class="seg" href="api10-slide-13.html"></a><a class="seg" href="api10-slide-14.html"></a><a class="seg" href="api10-slide-15.html"></a><a class="seg" href="api10-slide-16.html"></a><a class="seg" href="api10-slide-17.html"></a><a class="seg" href="api10-slide-18.html"></a><a class="seg" href="api10-slide-19.html"></a><a class="seg" href="api10-slide-20.html"></a><a class="seg" href="api10-slide-21.html"></a><a class="seg" href="api10-slide-22.html"></a><a class="seg" href="api10-slide-23.html"></a><a class="seg" href="api10-slide-24.html"></a><a class="seg" href="api10-slide-25.html"></a><a class="seg" href="api10-slide-26.html"></a><a class="seg" href="api10-slide-27.html"></a><a class="seg" href="api10-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 9</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 2</span>
+    <div><div class="part-title">How It Works</div><div class="part-count">Slides 9&#x2013;13 &#xb7; Attack patterns and real incidents</div></div>
+  </div>
+  <div class="slide-eyebrow">Slide 9 &#xb7; Two Attack Patterns</div>
+  <div class="slide-title">Supply chain compromise and redirect exploitation &#x2014; two paths through the same trust boundary.</div>
+  <div class="slide-subtitle">Both patterns enter the target system through a channel where validation was deliberately skipped.</div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Pattern 1: Third-Party Compromise</div>
+      <div class="compare-item">Attacker compromises a vendor&#x2019;s CDN, API, or data pipeline</div>
+      <div class="compare-item">Malicious payload is embedded in the vendor&#x2019;s response or script</div>
+      <div class="compare-item">Consuming API processes the malicious data without validation</div>
+      <div class="compare-item">Payload executes: card skimmer, SQL injection, XSS, Log4Shell</div>
+      <div class="compare-item">All consuming APIs are affected simultaneously</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Pattern 2: Redirect Exploitation (SSRF via Trust)</div>
+      <div class="compare-item">Third-party API returns a redirect URL in its response</div>
+      <div class="compare-item">Attacker compromises or impersonates the third-party to control the redirect target</div>
+      <div class="compare-item">Consuming API follows the redirect server-side &#x2014; trusting the third-party&#x2019;s direction</div>
+      <div class="compare-item">Redirect targets internal URL: cloud metadata, admin API, internal service</div>
+      <div class="compare-item">Consuming API reaches internal systems it should never reach</div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">The distinguishing feature</div>
+    <p>In a direct SSRF attack (API7), the attacker controls the URL through their own request to the target API. In the API10 redirect pattern, the URL comes from a trusted third-party response &#x2014; and the consuming API follows it because it trusts the source. The underlying mechanism (server-side URL fetch reaching an internal target) is the same; the delivery path is different and bypasses the SSRF-specific input validation applied to direct requests.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api10-slide-08.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api10-slide-10.html">Pattern 1 mechanics &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API7:2023 — Sources &amp; References</title>
+<link rel="stylesheet" href="api07-shared.css">
+<style>
+body{padding-bottom:40px;}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent-bright);text-decoration:none;margin:24px 0 8px;}
+.back-link:hover{opacity:.8;}
+.src-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.src-title{font-size:clamp(20px,5vw,28px);font-weight:600;color:#fff;line-height:1.2;margin-bottom:24px;}
+.src-section{margin-bottom:28px;}
+.src-section-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:12px;}
+.src-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:8px;}
+.src-item-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.src-item-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;}
+.src-item-desc{font-size:12px;color:var(--subtle);line-height:1.6;}
+.src-note{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:12px;color:var(--muted);line-height:1.8;margin-top:24px;}
+</style>
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API7:2023</span><span class="nav-title">Sources &amp; References</span></div>
+  <a href="https://evlbot.xyz" style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:4px 10px;text-decoration:none;letter-spacing:.06em;">evlbot.xyz</a>
+</div>
+
+<div class="wrap">
+  <a class="back-link" href="api07-slide-01.html">&#x2190; Back to lesson</a>
+
+  <div class="src-eyebrow">References</div>
+  <div class="src-title">Sources for API7 &#x2014; Server Side Request Forgery</div>
+
+  <div class="src-section">
+    <div class="src-section-label">Primary Source</div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP API Security Top 10 &#x2014; 2023 &#xb7; API7:2023 Server Side Request Forgery</div>
+      <div class="src-item-meta">OWASP Foundation &#xb7; owasp.org &#xb7; 2023</div>
+      <div class="src-item-desc">The authoritative source for the definition, vulnerable patterns, example attack scenarios (webhook to internal admin, file import hitting cloud metadata, URL preview with file://) and prevention guidance in this module. CWE reference: CWE-918 (Server-Side Request Forgery). This course is an independent study companion &#x2014; not affiliated with or endorsed by OWASP.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Real Incidents</div>
+    <div class="src-item">
+      <div class="src-item-title">Capital One Data Breach &#x2014; July 2019</div>
+      <div class="src-item-meta">U.S. Department of Justice &#xb7; Office of the Comptroller of the Currency &#xb7; 2019&#x2013;2022</div>
+      <div class="src-item-desc">Paige Thompson exploited an SSRF vulnerability in a misconfigured WAF running on AWS EC2 to access the instance metadata endpoint (169.254.169.254). She retrieved IAM role credentials and used them to download over 100 S3 buckets containing personal data for 100 million US customers and 6 million Canadian customers. Capital One paid an $80 million OCC fine and reached a $190 million class-action settlement. Thompson was convicted of computer fraud and abuse in June 2022. Referenced in slides 1, 5, 10, 11, 26. Primary sources: DOJ press releases (July 2019, June 2022), OCC enforcement action (August 2020), court documents (USDC W.D. Washington, Case 2:19-cr-00159).</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">GitLab &#x2014; SSRF via CI Lint API (CVE-2021-22214)</div>
+      <div class="src-item-meta">GitLab Security &#xb7; CVE-2021-22214 &#xb7; 2021</div>
+      <div class="src-item-desc">An unauthenticated SSRF vulnerability in GitLab&#x2019;s CI lint endpoint (/api/v4/ci/lint) allowed attackers to specify arbitrary URLs in YAML include directives. GitLab would fetch the specified URL server-side and return an error that included the response body &#x2014; enabling cloud metadata endpoint access on cloud-hosted GitLab instances. The vulnerability affected GitLab CE/EE versions prior to 13.10.3, 13.9.6, and 13.8.8. Patch released June 2021. Referenced in slides 13, 26. Primary source: GitLab Security Advisory GLSA-2021-06-01, CVE-2021-22214 NVD entry.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Technical References</div>
+    <div class="src-item">
+      <div class="src-item-title">AWS Instance Metadata Service (IMDSv1 and IMDSv2)</div>
+      <div class="src-item-meta">Amazon Web Services &#xb7; docs.aws.amazon.com &#xb7; 2019&#x2013;present</div>
+      <div class="src-item-desc">AWS documentation on the EC2 instance metadata service at 169.254.169.254. IMDSv1 (GET-based, no session token) was the default at the time of Capital One. IMDSv2 (requires PUT to get a session token before making metadata requests) was introduced in November 2019 as a partial SSRF mitigation. AWS now recommends requiring IMDSv2 on all instances and allows disabling IMDSv1 entirely. Relevant to slides 5, 24.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP SSRF Prevention Cheat Sheet</div>
+      <div class="src-item-meta">OWASP Foundation &#xb7; cheatsheetseries.owasp.org</div>
+      <div class="src-item-desc">Technical guidance on SSRF prevention including allowlist vs blocklist comparison, DNS rebinding attack patterns, IP range validation, redirect handling, and protocol restriction. Directly informs MIT 01 through MIT 04 in this module. The cheat sheet&#x2019;s &#x201C;Application Layer Defence&#x201D; and &#x201C;Network Layer Defence&#x201D; sections map to MIT 01&#x2013;05 and MIT 06 respectively.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">DNS Rebinding Attack &#x2014; Technical Analysis</div>
+      <div class="src-item-meta">Multiple sources &#xb7; Taviso Ormandy, Google Project Zero and academic literature</div>
+      <div class="src-item-desc">DNS rebinding is a technique where an attacker controls a domain&#x2019;s DNS record with a short TTL, causing it to resolve to different IPs at different times. In the SSRF context: validates as a public IP at check time, resolves to an internal IP at fetch time. The fix is to resolve DNS once, validate the resulting IP, and make the connection directly to the resolved IP. Relevant to slides 14 (webhook scenario) and 20 (MIT 02).</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">GCP and Azure Metadata Endpoints</div>
+      <div class="src-item-meta">Google Cloud Platform &#xb7; Microsoft Azure &#xb7; Documentation</div>
+      <div class="src-item-desc">Google Cloud Platform exposes the metadata endpoint at metadata.google.internal (resolves to 169.254.169.254) and requires a specific header (Metadata-Flavor: Google) for requests. Azure exposes its IMDS at 169.254.169.254/metadata/. Both GCP and Azure have their own token formats for credential access. Relevant to slide 4 (cloud metadata vectors).</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Further Reading</div>
+    <div class="src-item">
+      <div class="src-item-title">PortSwigger Web Security Academy &#x2014; Server-Side Request Forgery</div>
+      <div class="src-item-meta">PortSwigger &#xb7; portswigger.net/web-security/ssrf</div>
+      <div class="src-item-desc">Interactive SSRF labs covering: basic SSRF against internal services, SSRF against the loopback interface, blind SSRF (where the response is not returned), SSRF bypass techniques (blocklist bypass, allowlist bypass, open redirect chains). Recommended hands-on practice after completing this module.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">HackTricks &#x2014; SSRF (Server Side Request Forgery)</div>
+      <div class="src-item-meta">HackTricks &#xb7; book.hacktricks.xyz</div>
+      <div class="src-item-desc">Comprehensive technical reference for SSRF exploitation techniques including: URL schemes (file://, dict://, gopher://), IP notation bypasses (decimal, octal, hex, IPv6), DNS rebinding, redirect chains, cloud provider metadata endpoints, and blind SSRF exfiltration. Useful reference for understanding the full range of bypass techniques that make blocklists unreliable.</div>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <strong>About this course:</strong> This is an independent, unofficial study companion built for educational purposes. Content is based on publicly available security research, court records, CVE entries, and the OWASP API Security Top 10 framework. This project is not affiliated with, endorsed by, or sponsored by the OWASP Foundation. All trademarks remain the property of their respective owners.
+  </div>
+</div>
+</body>
+</html>

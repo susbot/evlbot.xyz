@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG02:2026 — Tool Misuse and Exploitation · Slide 27 of 28</title>
+<link rel="stylesheet" href="ag02-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG02:2026</span>
+    <span class="nav-title">Tool Misuse and Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag02-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag02-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag02-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag02-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag02-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag02-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag02-slide-07.html" title="Slide 7 · Tool Misuse vs Other Risks"></a>
+    <a class="seg done" href="ag02-slide-08.html" title="Slide 8 · Why Tools Are the New Attack Surface"></a>
+    <a class="seg done" href="ag02-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag02-slide-10.html" title="Slide 10 · Type 1 — Over-Privileged Tools"></a>
+    <a class="seg done" href="ag02-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg done" href="ag02-slide-12.html" title="Slide 12 · Type 2 — Tool Chaining"></a>
+    <a class="seg done" href="ag02-slide-13.html" title="Slide 13 · Type 2 — Real Example"></a>
+    <a class="seg done" href="ag02-slide-14.html" title="Slide 14 · Scenarios 1–3"></a>
+    <a class="seg done" href="ag02-slide-15.html" title="Slide 15 · Scenarios 4–6"></a>
+    <a class="seg done" href="ag02-slide-16.html" title="Slide 16 · Scenarios 7–9"></a>
+    <a class="seg done" href="ag02-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg done" href="ag02-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg done" href="ag02-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg done" href="ag02-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg done" href="ag02-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg done" href="ag02-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg done" href="ag02-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg done" href="ag02-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg done" href="ag02-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg done" href="ag02-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg active" href="ag02-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag02-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 27</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 27 · Quiz</div>
+  <div class="slide-title">Test what you know</div>
+  <div class="slide-subtitle">Five questions. No memorization required — just understanding.</div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 01 OF 05</div>
+    <div class="question-text">A customer service agent issues an unauthorized refund using its legitimate refund API tool. The authorization check passed and the tool worked correctly. What is the key reason this is a security failure?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this, false)">The agent used credentials it wasn't authorized to have</button>
+      <button class="option" onclick="answer(this, true)">The agent used an authorized tool for a purpose it was never meant to serve</button>
+      <button class="option" onclick="answer(this, false)">The refund API had a software vulnerability that was exploited</button>
+      <button class="option" onclick="answer(this, false)">The agent's network connection was compromised by an attacker</button>
+    </div>
+    <div class="feedback correct">Correct — this is the core of AG02. The tool was authorized, the call succeeded, and no vulnerability was exploited. The failure was entirely about <em>intent</em>: the refund tool was used for a purpose (unauthorized refund) that its designers never intended. Everything was authorized. The use was not.</div>
+    <div class="feedback wrong">Not quite — the key here is that nothing was unauthorized in the traditional sense. No stolen credentials, no software vulnerability, no network compromise. The authorization check passed. The tool worked. The failure was that the agent used the right tool for the wrong reason — and there was nothing to stop it.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 02 OF 05</div>
+    <div class="question-text">An agent has both a CRM query tool and an email send tool. An attacker crafts a message that causes the agent to query all customer records and email them to an external address. Each individual tool call was authorized. What type of ASI02 attack is this?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this, false)">Type 1 — Over-Privileged Tools, because the CRM gave too much access</button>
+      <button class="option" onclick="answer(this, true)">Type 2 — Tool Chaining, because the attack used an unintended sequence of authorized tools</button>
+      <button class="option" onclick="answer(this, false)">Tool Poisoning, because the attacker corrupted the tool's metadata</button>
+      <button class="option" onclick="answer(this, false)">Loop Amplification, because the attack involved repeated API calls</button>
+    </div>
+    <div class="feedback correct">Correct — this is a classic Type 2 (Tool Chaining) attack. Each individual tool call was authorized and within scope. The attack exploited the absence of intent validation across the sequence: "does a CRM read followed immediately by an external email send make sense together?"</div>
+    <div class="feedback wrong">Not quite — Tool Chaining is the answer here. Type 1 (Over-Privileged) is when a single tool has too much capability. In this scenario, each tool's individual scope might be appropriate — the problem is combining them into an exfiltration sequence. Tool Poisoning corrupts descriptors. Loop Amplification involves repetition, not sequencing.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 03 OF 05</div>
+    <div class="question-text">In the Amazon Q Developer DNS exfiltration incident, how did the attacker exfiltrate secrets?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this, false)">By stealing the agent's API key from its configuration file</button>
+      <button class="option" onclick="answer(this, false)">By exploiting a vulnerability in Amazon's authentication system</button>
+      <button class="option" onclick="answer(this, true)">By causing the agent to make DNS queries to attacker-controlled infrastructure, encoding secrets in the hostname</button>
+      <button class="option" onclick="answer(this, false)">By injecting malicious code that ran on the host server</button>
+    </div>
+    <div class="feedback correct">Correct — the attack caused the agent to use its legitimate network access tool to make DNS lookups where the hostname encoded the secret data. DNS traffic looks normal, especially at the application level. No malware, no exploit, no unauthorized credential — just a legitimate tool used as a covert channel.</div>
+    <div class="feedback wrong">Not quite — the DNS channel answer is correct. The genius (and danger) of this attack is that it used a completely legitimate network operation — DNS resolution — as the exfiltration channel. EDR sees normal DNS traffic. No code was injected onto the host. No credentials were stolen. The tool misuse was in what was being resolved.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 04 OF 05</div>
+    <div class="question-text">You have an agent with a ping tool in its auto-approved toolkit. Why is this still a security risk even if ping seems harmless?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this, false)">Ping can be used to execute code on remote hosts</button>
+      <button class="option" onclick="answer(this, true)">DNS queries generated by ping can encode stolen data in hostnames, making ping a covert exfiltration channel</button>
+      <button class="option" onclick="answer(this, false)">Ping gives the agent root access to the host system</button>
+      <button class="option" onclick="answer(this, false)">Ping is only risky if the agent also has a file read tool</button>
+    </div>
+    <div class="feedback correct">Correct — any tool that generates outbound network traffic can be used as a data exfiltration channel, including ping. By resolving hostnames that encode secret data, an attacker can receive that data at their DNS nameserver with no HTTP traffic and no suspicious outbound connections to flag.</div>
+    <div class="feedback wrong">Not quite — the DNS exfiltration answer is right. Ping doesn't run code or give root access. But it does make DNS queries, and DNS is a network protocol that can carry data. Hostnames like "c2VjcmV0.attacker.com" look like normal DNS traffic to most monitoring tools.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 05 OF 05</div>
+    <div class="question-text">If you can only implement two of the seven ASI02 mitigations, which two provide the highest coverage across the widest range of attack scenarios?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this, false)">MIT 03 (Execution Sandboxes) and MIT 05 (Tool Budgeting)</button>
+      <button class="option" onclick="answer(this, false)">MIT 06 (JIT Access) and MIT 07 (Semantic Firewalls)</button>
+      <button class="option" onclick="answer(this, true)">MIT 01 (Least Privilege) and MIT 04 (Intent Gate)</button>
+      <button class="option" onclick="answer(this, false)">MIT 02 (Action Auth) and MIT 07 (Monitoring)</button>
+    </div>
+    <div class="feedback correct">Correct — MIT 01 (Least Privilege) appears in the mitigation column for every over-privileged tool scenario and directly reduces the blast radius of any tool misuse. MIT 04 (Intent Gate) addresses both Type 1 and Type 2 attacks by validating intent before execution. Together they cover the widest range of ASI02 attack patterns per the matrix on slide 26.</div>
+    <div class="feedback wrong">Not quite — MIT 01 and MIT 04 are the highest-coverage pair. MIT 01 (Least Privilege) shrinks tool scope, reducing the damage possible from any misuse. MIT 04 (Intent Gate) validates the purpose of each tool call before it executes, catching both injection-based and chaining-based attacks. Sandboxes and budgets are important but narrower in scope.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag02-slide-26.html">← Back</a>
+    <a class="btn-primary" href="ag02-slide-28.html">Done → See what you learned</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+
+<script>
+function answer(btn, correct) {
+  const card = btn.closest('.question-card');
+  card.querySelectorAll('.option').forEach(o => o.disabled = true);
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  card.querySelector('.feedback.' + (correct ? 'correct' : 'wrong')).classList.add('show');
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API2:2023 — Broken Authentication · Slide 24 of 28</title>
+<link rel="stylesheet" href="api02-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API2:2023</span><span class="nav-title">Broken Authentication</span></div>
+  <span class="nav-right">Slide 24 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api02-slide-01.html"></a><a class="seg done" href="api02-slide-02.html"></a><a class="seg done" href="api02-slide-03.html"></a><a class="seg done" href="api02-slide-04.html"></a><a class="seg done" href="api02-slide-05.html"></a><a class="seg done" href="api02-slide-06.html"></a><a class="seg done" href="api02-slide-07.html"></a><a class="seg done" href="api02-slide-08.html"></a><a class="seg done" href="api02-slide-09.html"></a><a class="seg done" href="api02-slide-10.html"></a><a class="seg done" href="api02-slide-11.html"></a><a class="seg done" href="api02-slide-12.html"></a><a class="seg done" href="api02-slide-13.html"></a><a class="seg done" href="api02-slide-14.html"></a><a class="seg done" href="api02-slide-15.html"></a><a class="seg done" href="api02-slide-16.html"></a><a class="seg done" href="api02-slide-17.html"></a><a class="seg done" href="api02-slide-18.html"></a><a class="seg done" href="api02-slide-19.html"></a><a class="seg done" href="api02-slide-20.html"></a><a class="seg done" href="api02-slide-21.html"></a><a class="seg done" href="api02-slide-22.html"></a><a class="seg done" href="api02-slide-23.html"></a><a class="seg active" href="api02-slide-24.html"></a><a class="seg" href="api02-slide-25.html"></a><a class="seg" href="api02-slide-26.html"></a><a class="seg" href="api02-slide-27.html"></a><a class="seg" href="api02-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Prevention</span><span>Slide 24</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 24 · Mitigation 6</div>
+
+  <div class="mit-card">
+    <div class="mit-num">MIT 06</div>
+    <div class="mit-title">Require re-authentication for high-stakes operations.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>For any operation that could permanently lock a user out or enable full account takeover, require the user to prove their identity again with their current password:</p>
+      <p>• Changing email address</p>
+      <p>• Changing password</p>
+      <p>• Disabling or changing MFA</p>
+      <p>• Adding or removing payment methods</p>
+      <p>• Deleting the account</p>
+      <p>• Viewing or exporting sensitive data</p>
+      <p>A valid session token proves you were authenticated sometime in the past. Re-authentication proves you're the legitimate user <em>right now</em>.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Plain English</div>
+      <p>Banks do this instinctively: you can check your balance with a saved login, but to wire money you re-enter your PIN. The session getting the balance isn't the same trust level as the session moving your money.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">What this doesn't fix</div>
+      <p>Re-auth stops token theft from escalating to full takeover. It doesn't stop an attacker who already has the victim's password (from credential stuffing). For those scenarios, MFA is the answer.</p>
+    </div>
+  </div>
+
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your security team whether you would know if someone was testing thousands of username and password combinations against your login API &#x2014; and how quickly that alert would fire.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api02-slide-23.html">← Back</a>
+    <a class="btn-primary" href="api02-slide-25.html">MIT 07: Never tokens in URLs →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

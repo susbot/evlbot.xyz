@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG05:2026 — Unexpected Code Execution · Slide 1 of 28</title>
+<link rel="stylesheet" href="ag05-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG05:2026</span>
+    <span class="nav-title">Unexpected Code Execution</span>
+  </div>
+  <span class="nav-right">Slide 1 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg active" href="ag05-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg" href="ag05-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg" href="ag05-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg" href="ag05-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg" href="ag05-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg" href="ag05-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg" href="ag05-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg" href="ag05-slide-08.html" title="Slide 8 · Why Code Execution Changes Everything"></a>
+    <a class="seg" href="ag05-slide-09.html" title="Slide 9 · Six Vulnerability Types"></a>
+    <a class="seg" href="ag05-slide-10.html" title="Slide 10 · Type 1 — Sandbox Escape"></a>
+    <a class="seg" href="ag05-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg" href="ag05-slide-12.html" title="Slide 12 · Types 2–3 — File System and Network Exfil"></a>
+    <a class="seg" href="ag05-slide-13.html" title="Slide 13 · Types 4–6 — Privilege Escalation, Backdoors, Resource Exhaustion"></a>
+    <a class="seg" href="ag05-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg" href="ag05-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg" href="ag05-slide-16.html" title="Slide 16 · Scenarios 5–6"></a>
+    <a class="seg" href="ag05-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag05-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag05-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag05-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag05-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag05-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag05-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag05-slide-24.html" title="Slide 24 · Mitigations 6–7"></a>
+    <a class="seg" href="ag05-slide-25.html" title="Slide 25 · Mitigations 8–9"></a>
+    <a class="seg" href="ag05-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag05-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag05-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — What Is It?</span><span>Slide 1</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 1</span>
+    <div>
+      <div class="part-title">What Is It?</div>
+      <div class="part-count">Slides 1–8 · Understanding the risk before it has a name</div>
+    </div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 1 · The Setup</div>
+  <div class="slide-title">A data analyst asked an AI agent to "clean up the old test data." The agent wrote a script and ran it. The wrong database was deleted. There was no backup.</div>
+  <div class="slide-subtitle">The agent understood the instruction. It generated valid code. It executed it correctly. Everything worked exactly as built — and it was a catastrophe.</div>
+
+  <div class="callout yellow">
+    <div class="callout-label">What happened</div>
+    <p>A data team uses an AI agent connected to a Python code interpreter and database access. An analyst asks the agent to remove stale test records from the development database. The agent interprets "clean up the old test data," writes a DELETE script, and executes it.</p>
+    <p>The agent connected to the production database — not the development one — because its connection string pointed to whichever database was marked "primary" in the config. The script ran successfully. All records matching the query were deleted from production.</p>
+    <p><strong>The code was correct. The logic was sound. The execution was flawless. And the outcome was catastrophic.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Nobody made a mistake in the traditional sense</div>
+    <p>The analyst gave a reasonable instruction. The agent wrote reasonable code. No one bypassed a security control. No attacker was involved. The agent's code execution capability — the very thing that makes it useful for data tasks — is what caused the incident.</p>
+    <p><strong>This is the core dynamic of AG05: the agent's ability to generate and execute real code against real systems, autonomously and at speed, makes every ambiguous instruction a potential production incident.</strong></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">The key question</div>
+    <p>If the agent did exactly what it was asked, in a way that was technically correct, using only the access it was given — <strong>where did security fail?</strong></p>
+    <p>That's what this module is about.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="../index.html">← All Modules</a>
+    <a class="btn-primary" href="ag05-slide-02.html">The agent ran the code. What went wrong? →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

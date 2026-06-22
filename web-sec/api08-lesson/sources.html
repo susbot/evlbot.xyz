@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 — Sources &amp; References</title>
+<link rel="stylesheet" href="api08-shared.css">
+<style>
+body{padding-bottom:40px;}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px;}
+.back-link{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--accent-bright);text-decoration:none;margin:24px 0 8px;}
+.back-link:hover{opacity:.8;}
+.src-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.src-title{font-size:clamp(20px,5vw,28px);font-weight:600;color:#fff;line-height:1.2;margin-bottom:24px;}
+.src-section{margin-bottom:28px;}
+.src-section-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-bright);margin-bottom:12px;}
+.src-item{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin-bottom:8px;}
+.src-item-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.src-item-meta{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);margin-bottom:6px;}
+.src-item-desc{font-size:12px;color:var(--subtle);line-height:1.6;}
+.src-note{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;font-size:12px;color:var(--muted);line-height:1.8;margin-top:24px;}
+</style>
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Sources &amp; References</span></div>
+  <a href="https://evlbot.xyz" style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:4px 10px;text-decoration:none;letter-spacing:.06em;">evlbot.xyz</a>
+</div>
+
+<div class="wrap">
+  <a class="back-link" href="api08-slide-01.html">&#x2190; Back to lesson</a>
+
+  <div class="src-eyebrow">References</div>
+  <div class="src-title">Sources for API8 &#x2014; Security Misconfiguration</div>
+
+  <div class="src-section">
+    <div class="src-section-label">Primary Source</div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP API Security Top 10 &#x2014; 2023 &#xb7; API8:2023 Security Misconfiguration</div>
+      <div class="src-item-meta">OWASP Foundation &#xb7; owasp.org &#xb7; 2023</div>
+      <div class="src-item-desc">The authoritative source for the definition, misconfiguration categories, example attack scenarios (CORS misconfiguration, verbose error messages, unnecessary HTTP methods), and prevention guidance in this module. CWE references: CWE-2 (Environmental Security Flaws), CWE-16 (Configuration), CWE-388 (Error Handling). This course is an independent study companion &#x2014; not affiliated with or endorsed by OWASP.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Real Incidents</div>
+    <div class="src-item">
+      <div class="src-item-title">Tesla Kubernetes Cryptojacking &#x2014; February 2018</div>
+      <div class="src-item-meta">RedLock Cloud Security Intelligence Report &#xb7; February 2018 &#xb7; (RedLock acquired by Palo Alto Networks, 2018)</div>
+      <div class="src-item-desc">RedLock security researchers discovered Tesla&#x2019;s Kubernetes admin dashboard exposed to the public internet with no authentication. The dashboard showed environment variables including AWS credentials across multiple pods. Attackers had already found the open dashboard and deployed a Monero cryptomining container configured to use minimal CPU and route through a proxy to avoid detection. Tesla was alerted and patched the misconfiguration the same day. The incident was part of a broader RedLock Cloud Security Intelligence Report that found similar Kubernetes misconfigurations at other organizations. Referenced in slides 1, 11, 24, 26. Primary source: RedLock CSI Report, February 2018.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Firebase Open Database Rules &#x2014; September 2018</div>
+      <div class="src-item-meta">Appthority Mobile Threat Intelligence &#xb7; September 2018</div>
+      <div class="src-item-desc">Appthority researchers analyzed 2,705 iOS and Android apps using Firebase Realtime Database. They found 2,446 apps (over 90%) with databases configured using open read/write rules &#x2014; Firebase&#x2019;s default at the time &#x2014; allowing anyone to read and write without authentication. The exposed data included approximately 2.6 million plaintext passwords, 4 million+ PHI records, 25 million GPS location records, 50,000 financial records, and 4.5 million social media tokens. Approximately 100 million records total. Firebase changed their default security rules in 2019 to require authentication. Referenced in slides 13, 26. Primary source: Appthority HospitalGown Threat Report, September 2018.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Technical References</div>
+    <div class="src-item">
+      <div class="src-item-title">CORS Misconfiguration Research &#x2014; &#x201C;Exploiting CORS Misconfigurations for Bitcoins and Bounties&#x201D;</div>
+      <div class="src-item-meta">James Kettle, PortSwigger &#xb7; AppSec USA 2016</div>
+      <div class="src-item-desc">Seminal research on CORS misconfiguration exploitation, demonstrating reflected-origin vulnerabilities at scale across major websites including banks, UK government sites, and major tech companies. Describes the null origin bypass, subdomain trust misuse, and pre-flight exploitation patterns. Forms the technical basis for the CORS content in slides 4, 10, 14, 19. The research introduced automated CORS misconfiguration scanning and showed these issues were widespread across high-value targets.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Mozilla Observatory &#x2014; HTTP Security Headers Analysis</div>
+      <div class="src-item-meta">Mozilla Foundation &#xb7; observatory.mozilla.org</div>
+      <div class="src-item-desc">Free tool that analyzes HTTP security headers and grades API/web application security configuration. Tests for HSTS, Content-Security-Policy, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, and CORS configuration. Provides actionable recommendations. Referenced in MIT 03 (slide 21) and MIT 07 (slide 25) as an automated scanning tool for CI/CD integration.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Spring Boot Actuator Security &#x2014; Production Hardening</div>
+      <div class="src-item-meta">Spring Documentation &#xb7; docs.spring.io</div>
+      <div class="src-item-desc">Official Spring Boot documentation on securing Actuator endpoints. Covers enabling authentication, restricting exposed endpoints to only health and metrics, and disabling heapdump and env endpoints in production. Relevant to the admin endpoint mechanics in slide 12 and MIT 06 (slide 24). Multiple real-world breaches have occurred through exposed Actuator heapdump endpoints leaking secrets from JVM heap memory.</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Mozilla SSL Configuration Generator</div>
+      <div class="src-item-meta">Mozilla Foundation &#xb7; ssl-config.mozilla.org</div>
+      <div class="src-item-desc">Tool generating production-ready TLS configurations for nginx, Apache, HAProxy, and other servers. Produces configurations that disable deprecated TLS versions (1.0, 1.1) and weak cipher suites while maintaining compatibility with current browsers. Referenced in MIT 05 (slide 23) as the recommended starting point for TLS configuration.</div>
+    </div>
+  </div>
+
+  <div class="src-section">
+    <div class="src-section-label">Further Reading</div>
+    <div class="src-item">
+      <div class="src-item-title">OWASP Secure Headers Project</div>
+      <div class="src-item-meta">OWASP Foundation &#xb7; owasp.org/www-project-secure-headers</div>
+      <div class="src-item-desc">Complete reference for HTTP security response headers: what each header does, recommended values, browser support, and implementation guidance. Covers HSTS, CSP, X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy, and Cross-Origin headers. Directly informs MIT 03 (slide 21).</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">Qualys SSL Labs &#x2014; SSL Server Test</div>
+      <div class="src-item-meta">Qualys &#xb7; ssllabs.com/ssltest</div>
+      <div class="src-item-desc">Free, comprehensive TLS configuration analysis that grades protocol versions, cipher suites, certificate validity, and known vulnerabilities. Produces an A&#x2013;F grade with specific remediation recommendations. Run against any public HTTPS API endpoint. Referenced in MIT 05 (slide 23).</div>
+    </div>
+    <div class="src-item">
+      <div class="src-item-title">PortSwigger Web Security Academy &#x2014; CORS</div>
+      <div class="src-item-meta">PortSwigger &#xb7; portswigger.net/web-security/cors</div>
+      <div class="src-item-desc">Interactive CORS labs covering: basic reflected-origin exploitation, null-origin bypass, trusted subdomain exploitation, and CORS with internal networks. Recommended hands-on practice for the CORS content in this module (slides 4, 10, 14, 19).</div>
+    </div>
+  </div>
+
+  <div class="src-note">
+    <strong>About this course:</strong> This is an independent, unofficial study companion built for educational purposes. Content is based on publicly available security research, industry reports, and the OWASP API Security Top 10 framework. This project is not affiliated with, endorsed by, or sponsored by the OWASP Foundation. All trademarks remain the property of their respective owners.
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 5 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 5 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg active" href="api09-slide-05.html"></a><a class="seg" href="api09-slide-06.html"></a><a class="seg" href="api09-slide-07.html"></a><a class="seg" href="api09-slide-08.html"></a><a class="seg" href="api09-slide-09.html"></a><a class="seg" href="api09-slide-10.html"></a><a class="seg" href="api09-slide-11.html"></a><a class="seg" href="api09-slide-12.html"></a><a class="seg" href="api09-slide-13.html"></a><a class="seg" href="api09-slide-14.html"></a><a class="seg" href="api09-slide-15.html"></a><a class="seg" href="api09-slide-16.html"></a><a class="seg" href="api09-slide-17.html"></a><a class="seg" href="api09-slide-18.html"></a><a class="seg" href="api09-slide-19.html"></a><a class="seg" href="api09-slide-20.html"></a><a class="seg" href="api09-slide-21.html"></a><a class="seg" href="api09-slide-22.html"></a><a class="seg" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 5</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 5 &#xb7; Environment Exposure</div>
+  <div class="slide-title">Staging is production with weaker security. Attackers love staging.</div>
+  <div class="slide-subtitle">Why non-production environments are frequently more vulnerable than production &#x2014; and why they&#x2019;re internet-accessible.</div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Production</div>
+      <div class="compare-item">Authentication enforced on all endpoints</div>
+      <div class="compare-item">Rate limiting active</div>
+      <div class="compare-item">Debug mode off</div>
+      <div class="compare-item">Logging and monitoring active</div>
+      <div class="compare-item">Security team reviews changes</div>
+      <div class="compare-item">Firewall rules audited</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Staging / Dev (often)</div>
+      <div class="compare-item">Auth bypassed for convenience (&#x201C;it&#x2019;s just staging&#x201D;)</div>
+      <div class="compare-item">Rate limiting disabled to speed up testing</div>
+      <div class="compare-item">Debug mode on for troubleshooting</div>
+      <div class="compare-item">Minimal logging; no security alerts</div>
+      <div class="compare-item">Changes deployed without review</div>
+      <div class="compare-item">Accessible from internet because &#x201C;it&#x2019;s easier&#x201D;</div>
+    </div>
+  </div>
+  <div class="callout orange">
+    <div class="callout-label">The data problem</div>
+    <p>Staging environments that use realistic or copied production data are particularly dangerous. An attacker who finds an internet-accessible staging environment with weak auth may be able to access real user data &#x2014; not just test data. Data copying from production to staging for testing purposes is common and creates a second, less-protected copy of sensitive data.</p>
+  </div>
+  <div class="callout red">
+    <div class="callout-label">How staging becomes internet-accessible</div>
+    <p>Cloud deployments make it trivial to give any service a public IP. A developer spins up a staging environment for a client demo, assigns it a public IP, forgets to remove it afterward. An infrastructure change opens port 443 on a staging environment that was previously internal-only. A misconfigured CDN routes public traffic to staging. Each of these creates an externally accessible environment the security team doesn&#x2019;t know about.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-04.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-06.html">Why does this happen? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

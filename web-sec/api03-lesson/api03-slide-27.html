@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 27 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 27 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg done" href="api03-slide-03.html"></a><a class="seg done" href="api03-slide-04.html"></a><a class="seg done" href="api03-slide-05.html"></a><a class="seg done" href="api03-slide-06.html"></a><a class="seg done" href="api03-slide-07.html"></a><a class="seg done" href="api03-slide-08.html"></a><a class="seg done" href="api03-slide-09.html"></a><a class="seg done" href="api03-slide-10.html"></a><a class="seg done" href="api03-slide-11.html"></a><a class="seg done" href="api03-slide-12.html"></a><a class="seg done" href="api03-slide-13.html"></a><a class="seg done" href="api03-slide-14.html"></a><a class="seg done" href="api03-slide-15.html"></a><a class="seg done" href="api03-slide-16.html"></a><a class="seg done" href="api03-slide-17.html"></a><a class="seg done" href="api03-slide-18.html"></a><a class="seg done" href="api03-slide-19.html"></a><a class="seg done" href="api03-slide-20.html"></a><a class="seg done" href="api03-slide-21.html"></a><a class="seg done" href="api03-slide-22.html"></a><a class="seg done" href="api03-slide-23.html"></a><a class="seg done" href="api03-slide-24.html"></a><a class="seg done" href="api03-slide-25.html"></a><a class="seg done" href="api03-slide-26.html"></a><a class="seg active" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 · Quiz</span><span>Slide 27</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 27 · Quiz</div>
+  <div class="slide-title">Five questions. No pressure.</div>
+  <div class="slide-subtitle">Test what you understood — not what you memorized.</div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 01 OF 05</div>
+    <div class="question-text">In the 2012 GitHub breach, Egor Homakov added public_key[user_id]=4223 to his HTTP request. What made this exploit possible?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">He found an admin account with a weak password and logged in as them</button>
+      <button class="option" onclick="answer(this,true)">Ruby on Rails' auto-binding feature wrote all incoming parameters to the model — including user_id — without any field allowlist</button>
+      <button class="option" onclick="answer(this,false)">He exploited a SQL injection in the public key upload form to modify another user's record</button>
+      <button class="option" onclick="answer(this,false)">He bypassed authentication entirely and called an unauthenticated admin endpoint</button>
+    </div>
+    <div class="feedback correct">Correct — Rails' update_attributes(params[:public_key]) bound every incoming parameter to the model. There was no permit list restricting which fields could be written. Homakov added user_id to the form data, and Rails silently wrote it to the database, associating his SSH key with the Rails organization.</div>
+    <div class="feedback wrong">Not quite — Homakov was authenticated as himself the whole time. He didn't need admin credentials, SQL injection, or an unauthenticated endpoint. He exploited Rails' mass assignment feature: the API accepted and wrote any field he sent — including user_id, which should have been server-side only.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 02 OF 05</div>
+    <div class="question-text">What was wrong with Peloton's "private account" feature before it was fixed?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">The privacy setting only worked on the mobile app — not the website</button>
+      <button class="option" onclick="answer(this,false)">Other users could change someone's privacy setting by adding "private": false to a request</button>
+      <button class="option" onclick="answer(this,true)">The privacy setting controlled what the app displayed — but the API still returned the full user object including age, weight, city, and workout stats</button>
+      <button class="option" onclick="answer(this,false)">The API required admin credentials to mark an account private, which regular users didn't have</button>
+    </div>
+    <div class="feedback correct">Correct — this is the core excessive data exposure failure. The frontend UI respected the privacy setting and hid sensitive fields. But the API returned the complete user object to anyone who called it directly. Bypassing the UI — by calling the API with an HTTP client — exposed all the "hidden" data.</div>
+    <div class="feedback wrong">Not quite — the problem wasn't cross-platform or a mass assignment on the privacy field. It was simpler and more fundamental: the API returned the full user object (including private fields) to any caller, regardless of the account's privacy setting. The setting only affected the UI display, not the API response.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 03 OF 05</div>
+    <div class="question-text">A developer adds a "resetToken" field to the user database model and the user serializer returns all model fields by default. What's the risk?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">The reset token will be used by the server to validate password reset requests, which is the intended behavior</button>
+      <button class="option" onclick="answer(this,false)">The reset token might expire too quickly if returned in the response</button>
+      <button class="option" onclick="answer(this,true)">Any user who reads the raw API response for their own profile — or someone else's via BOLA — can see the active reset token and immediately take over the account without triggering a reset request</button>
+      <button class="option" onclick="answer(this,false)">The reset token can be used for mass assignment to change any user's password</button>
+    </div>
+    <div class="feedback correct">Correct — if the API returns an active password reset token in the user object, any attacker who can read that response can immediately take over the account. They use the leaked token to complete a password reset without ever requesting one. No email is sent. No notification is triggered. This is why internal tokens must never appear in API responses.</div>
+    <div class="feedback wrong">Not quite — the danger is on the read side. If the resetToken appears in the API response, anyone who can call the profile endpoint gets it. They can then complete a password reset without requesting one — silently, with no alert to the account owner. The fix: never include resetToken in any user-facing API response.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 04 OF 05</div>
+    <div class="question-text">Why is an allowlist safer than a blocklist for protecting against mass assignment?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">An allowlist is faster to implement because it requires less code</button>
+      <button class="option" onclick="answer(this,true)">New sensitive fields are blocked by default with an allowlist — a developer must actively permit them. With a blocklist, new fields are allowed by default and must be explicitly blocked, which is easy to forget.</button>
+      <button class="option" onclick="answer(this,false)">A blocklist can be bypassed using encoded field names, but an allowlist cannot</button>
+      <button class="option" onclick="answer(this,false)">Allowlists work at the database layer while blocklists only work at the API layer</button>
+    </div>
+    <div class="feedback correct">Correct — this is the fundamental security principle of default-deny. An allowlist fails safe: if you forget to add a new field to the list, it's blocked. A blocklist fails open: if you forget to add a new sensitive field to the block list, it's accepted. Over time, as models grow, blocklists inevitably miss something.</div>
+    <div class="feedback wrong">Not quite — the key difference is the failure mode. With a blocklist, the default is "allow" — forgetting to block a new sensitive field means it's exposed. With an allowlist, the default is "deny" — forgetting to allow a new field means it's blocked. In security, failing safe (deny by default) is always preferred over failing open.</div>
+  </div>
+
+  <div class="question-card">
+    <div class="question-num">QUESTION 05 OF 05</div>
+    <div class="question-text">In the OWASP dating app scenario, a user can get another user's fullName and recentLocation by using the "report user" feature. What type of failure is this?</div>
+    <div class="options">
+      <button class="option" onclick="answer(this,false)">Mass assignment — the attacker is writing sensitive fields to the victim's profile</button>
+      <button class="option" onclick="answer(this,false)">Broken Authentication — the attacker is impersonating the victim to access their data</button>
+      <button class="option" onclick="answer(this,true)">Excessive Data Exposure — the report endpoint returns more properties than the caller should be able to read</button>
+      <button class="option" onclick="answer(this,false)">Broken Object Level Authorization — the attacker is accessing an object they don't own</button>
+    </div>
+    <div class="feedback correct">Correct — the attacker is authenticated and calling an intended endpoint (report user). The problem isn't who they're calling it about (that's BOLA) or whether they're logged in (that's auth). The problem is what the endpoint returns: fullName and recentLocation are properties the reporting user should never be able to read. That's excessive data exposure — a property-level read failure.</div>
+    <div class="feedback wrong">Not quite — the attacker isn't writing anything (not mass assignment), isn't pretending to be someone else (not broken auth), and the object access itself may be legitimate (the report endpoint is designed to be called about any user). The failure is what's in the response: sensitive properties that shouldn't be returned to this caller. That's excessive data exposure — API3's read-side vulnerability.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-26.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-28.html">Done → See what you learned</a>
+  </div>
+
+<script>
+function answer(btn, correct) {
+  const card = btn.closest('.question-card');
+  card.querySelectorAll('.option').forEach(o => o.disabled = true);
+  btn.classList.add(correct ? 'correct' : 'wrong');
+  card.querySelector('.feedback.' + (correct ? 'correct' : 'wrong')).classList.add('show');
+}
+</script>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

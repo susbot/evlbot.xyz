@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API5:2023 â Broken Function Level Authorization Â· Slide 20 of 28</title>
+<link rel="stylesheet" href="api05-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API5:2023</span><span class="nav-title">Broken Function Level Authorization</span></div>
+  <span class="nav-right">Slide 20 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api05-slide-01.html"></a><a class="seg done" href="api05-slide-02.html"></a><a class="seg done" href="api05-slide-03.html"></a><a class="seg done" href="api05-slide-04.html"></a><a class="seg done" href="api05-slide-05.html"></a><a class="seg done" href="api05-slide-06.html"></a><a class="seg done" href="api05-slide-07.html"></a><a class="seg done" href="api05-slide-08.html"></a><a class="seg done" href="api05-slide-09.html"></a><a class="seg done" href="api05-slide-10.html"></a><a class="seg done" href="api05-slide-11.html"></a><a class="seg done" href="api05-slide-12.html"></a><a class="seg done" href="api05-slide-13.html"></a><a class="seg done" href="api05-slide-14.html"></a><a class="seg done" href="api05-slide-15.html"></a><a class="seg done" href="api05-slide-16.html"></a><a class="seg done" href="api05-slide-17.html"></a><a class="seg done" href="api05-slide-18.html"></a><a class="seg done" href="api05-slide-19.html"></a><a class="seg active" href="api05-slide-20.html"></a><a class="seg" href="api05-slide-21.html"></a><a class="seg" href="api05-slide-22.html"></a><a class="seg" href="api05-slide-23.html"></a><a class="seg" href="api05-slide-24.html"></a><a class="seg" href="api05-slide-25.html"></a><a class="seg" href="api05-slide-26.html"></a><a class="seg" href="api05-slide-27.html"></a><a class="seg" href="api05-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 Â· Prevention</span><span>Slide 20</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 20 &#xb7; Mitigation 2</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 02</div>
+    <div class="mit-title">Implement Role-Based Access Control at the API layer, not the UI.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Define roles that reflect your business model: <code>user</code>, <code>premium_user</code>, <code>moderator</code>, <code>admin</code>, <code>superadmin</code>. Assign each API function a minimum required role. Enforce the check in the API &#x2014; not in the frontend, not in the mobile app.</p>
+      <p>The check must happen in the server-side code that processes the request, before the business logic runs:</p>
+      <p>1. Extract the user&#x2019;s role from the authenticated token (JWT claim, session, database lookup)</p>
+      <p>2. Compare it against the required role for this endpoint + HTTP method</p>
+      <p>3. If the user&#x2019;s role doesn&#x2019;t meet the requirement: return 403 immediately</p>
+      <p>4. If it does: proceed to the handler</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label red">The Bumble lesson</div>
+      <p>Bumble&#x2019;s premium endpoints called Bumble Boost features &#x2014; a specific subscription tier. The role check for those endpoints should have been: <code>if user.subscription != &#x2018;boost&#x2019;: return 403</code>. Instead there was no such check. The UI enforced it by not showing the button. The API didn&#x2019;t.</p>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label blue">Roles in JWTs</div>
+      <p>Store the user&#x2019;s role(s) in the JWT payload as a claim (e.g., <code>"roles": ["premium_user"]</code>). Read it on every request. Never derive the role from the token&#x2019;s account ID alone &#x2014; look up the current role from the database on sensitive operations to catch role changes mid-session.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask your team to list the roles your API recognizes &#x2014; then ask whether every admin or elevated function is explicitly restricted to those roles, or whether it is just hidden from the user interface.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api05-slide-19.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api05-slide-21.html">MIT 03: Method + path authorization &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

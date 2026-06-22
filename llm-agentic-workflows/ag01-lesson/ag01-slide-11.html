@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG01:2026 — Agent Goal Hijack · Slide 11 of 28</title>
+<link rel="stylesheet" href="ag01-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG01:2026</span>
+    <span class="nav-title">Agent Goal Hijack</span>
+  </div>
+  <span class="nav-right">Slide 11 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag01-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag01-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag01-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag01-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag01-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag01-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag01-slide-07.html" title="Slide 7 · Prompt Injection vs Goal Hijack"></a>
+    <a class="seg done" href="ag01-slide-08.html" title="Slide 8 · Why Agents Are Different"></a>
+    <a class="seg done" href="ag01-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag01-slide-10.html" title="Slide 10 · Direct Goal Manipulation"></a>
+    <a class="seg active" href="ag01-slide-11.html" title="Slide 11 · Direct — Real Example"></a>
+    <a class="seg" href="ag01-slide-12.html" title="Slide 12 · Indirect Instruction Injection"></a>
+    <a class="seg" href="ag01-slide-13.html" title="Slide 13 · Indirect — Real Example"></a>
+    <a class="seg" href="ag01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a>
+    <a class="seg" href="ag01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a>
+    <a class="seg" href="ag01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a>
+    <a class="seg" href="ag01-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag01-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag01-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag01-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag01-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag01-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag01-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag01-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag01-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag01-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag01-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag01-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — How It Works</span><span>Slide 11</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 11 · Direct — Real Example</div>
+  <div class="slide-title">The McKinsey "Lilli" red team exercise</div>
+  <div class="slide-subtitle">A controlled test that demonstrated full platform compromise through direct agent manipulation — in under two hours.</div>
+
+  <div class="real-incident">
+    <div class="real-incident-tag">Real Incident · 2025</div>
+    <div class="real-incident-title">McKinsey internal AI platform "Lilli" — red team exercise</div>
+    <div class="real-incident-body">
+      <p>McKinsey's internal AI assistant, Lilli, was deployed to help consultants research, synthesize documents, and access internal knowledge. In a controlled red team exercise conducted in 2025, security researchers tested what would happen if an attacker could interact with the agent directly.</p>
+      <p>Using direct manipulation techniques — feeding the agent crafted instructions that reframed its role and expanded its perceived permissions — the red team achieved <strong>broad system access across multiple connected services in under two hours</strong>. The agent, operating within its normal interface, followed the redirected goal without triggering automated alerts.</p>
+      <p>The exercise demonstrated that even an enterprise-grade internal AI platform, designed with security in mind, could be steered away from its intended purpose by an actor with nothing more than access to the chat interface.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Lesson:</strong> Direct access to an agent's interface is sufficient to attempt goal hijack. Role reframing and authority claims — without any technical exploit — can redirect a capable agent toward full platform compromise. The speed of the attack (under two hours) underscores how fast agentic threats escalate once a foothold is established.</div>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">What made this possible</div>
+    <p>Lilli had broad access to internal knowledge and connected services — by design, because that's what made it useful. <strong>The same connectivity that enabled its value enabled the blast radius of the hijack.</strong> Reducing access would have reduced usefulness. This is the core tension every agent deployment must navigate.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag01-slide-10.html">← Back</a>
+    <a class="btn-primary" href="ag01-slide-12.html">Now show me Type 2 → The invisible attack</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">View sources for this lesson</a></div>
+</body>
+</html>

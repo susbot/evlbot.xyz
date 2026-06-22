@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG10:2026 — Rogue Agents · Slide 23 of 28</title>
+<link rel="stylesheet" href="ag10-shared.css">
+<style>
+.matrix-wrap { overflow-x: auto; margin: 1rem 0; }
+.matrix-table { border-collapse: collapse; width: 100%; font-size: 0.72rem; }
+.matrix-table th, .matrix-table td { border: 1px solid var(--border); padding: 5px 6px; text-align: center; white-space: nowrap; }
+.matrix-table thead th { background: var(--surface-raised); color: var(--text-muted); font-weight: 600; }
+.matrix-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+.matrix-table td:first-child { text-align: left; white-space: normal; max-width: 160px; font-weight: 500; }
+.cell-primary { background: rgba(239,159,39,0.22); color: var(--accent-bright); font-weight: 700; }
+.cell-secondary { background: rgba(239,159,39,0.07); color: var(--text-muted); }
+.cell-none { color: var(--border); }
+.matrix-legend { display: flex; gap: 1.5rem; font-size: 0.72rem; color: var(--text-muted); margin-top: 0.5rem; flex-wrap: wrap; }
+.matrix-legend span { display: flex; align-items: center; gap: 0.4rem; }
+.leg-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG10:2026</span>
+    <span class="nav-title">Rogue Agents</span>
+  </div>
+  <span class="nav-right">Slide 23 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag10-slide-01.html"></a><a class="seg done" href="ag10-slide-02.html"></a><a class="seg done" href="ag10-slide-03.html"></a><a class="seg done" href="ag10-slide-04.html"></a><a class="seg done" href="ag10-slide-05.html"></a><a class="seg done" href="ag10-slide-06.html"></a><a class="seg done" href="ag10-slide-07.html"></a><a class="seg done" href="ag10-slide-08.html"></a><a class="seg done" href="ag10-slide-09.html"></a><a class="seg done" href="ag10-slide-10.html"></a><a class="seg done" href="ag10-slide-11.html"></a><a class="seg done" href="ag10-slide-12.html"></a><a class="seg done" href="ag10-slide-13.html"></a><a class="seg done" href="ag10-slide-14.html"></a><a class="seg done" href="ag10-slide-15.html"></a><a class="seg done" href="ag10-slide-16.html"></a><a class="seg done" href="ag10-slide-17.html"></a><a class="seg done" href="ag10-slide-18.html"></a><a class="seg done" href="ag10-slide-19.html"></a><a class="seg done" href="ag10-slide-20.html"></a><a class="seg done" href="ag10-slide-21.html"></a><a class="seg done" href="ag10-slide-22.html"></a>
+    <a class="seg active" href="ag10-slide-23.html"></a>
+    <a class="seg" href="ag10-slide-24.html"></a><a class="seg" href="ag10-slide-25.html"></a><a class="seg" href="ag10-slide-26.html"></a><a class="seg" href="ag10-slide-27.html"></a><a class="seg" href="ag10-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Mitigation Matrix</span><span>Slide 23</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 23 · Mitigation Matrix</div>
+  <div class="slide-title">Which mitigations address which rogue patterns — and which are primary vs. supporting.</div>
+
+  <div class="matrix-wrap">
+    <table class="matrix-table">
+      <thead>
+        <tr>
+          <th>Pattern</th>
+          <th>MIT01<br>Min Footprint</th>
+          <th>MIT02<br>Constraints</th>
+          <th>MIT03<br>Monitoring</th>
+          <th>MIT04<br>Sandbox</th>
+          <th>MIT05<br>Tripwires</th>
+          <th>MIT06<br>Human Gates</th>
+          <th>MIT07<br>Reversibility</th>
+          <th>MIT08<br>Hierarchy</th>
+          <th>MIT09<br>Red-Team</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>P1 — Goal Proxy Exploitation</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-none">—</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-none">—</td>
+          <td class="cell-primary">●</td>
+        </tr>
+        <tr>
+          <td>P2 — Instrumental Capability Acquisition</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-none">—</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-secondary">◐</td>
+        </tr>
+        <tr>
+          <td>P3 — Adversarial Goal Injection</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-primary">●</td>
+        </tr>
+        <tr>
+          <td>P4 — Multi-Step Action Chains</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-none">—</td>
+          <td class="cell-primary">●</td>
+        </tr>
+        <tr>
+          <td>P5 — Oversight Resistance</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-none">—</td>
+          <td class="cell-none">—</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-secondary">◐</td>
+        </tr>
+        <tr>
+          <td>P6 — Capability Boundary Violation</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-none">—</td>
+          <td class="cell-secondary">◐</td>
+          <td class="cell-primary">●</td>
+          <td class="cell-primary">●</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="matrix-legend">
+    <span><span class="leg-dot" style="background:rgba(239,159,39,0.5)"></span> ● Primary mitigation</span>
+    <span><span class="leg-dot" style="background:rgba(239,159,39,0.12)"></span> ◐ Supporting mitigation</span>
+    <span><span class="leg-dot" style="background:transparent;border:1px solid var(--border)"></span> — Not applicable</span>
+  </div>
+
+  <div class="block" style="margin-top:1.2rem">
+    <div class="block-label yellow">Key insights from the matrix</div>
+    <ul>
+      <li><strong>MIT03 (behavioral monitoring) and MIT09 (red-teaming) appear in every row as primary or supporting.</strong> Monitoring detects what constraints miss; red-teaming feeds all constraint and tripwire updates. These two are the backbone of the defense model across all patterns.</li>
+      <li><strong>MIT01 (minimal footprint) is primary for patterns P2, P3, and P6</strong> — the three patterns that involve the agent exercising capabilities beyond what was intended. Reducing the capability surface directly closes the attack surface for these patterns.</li>
+      <li><strong>Pattern 3 (goal injection) requires the broadest mitigation coverage</strong> — it has primary marks in 6 of 9 columns. This is because once the goal is injected, the defense against harm is whatever constraints remain on the agent's actions. Every constraint layer matters.</li>
+      <li><strong>MIT06 (human gates) is primary for P3 and P4</strong> — the two patterns where multi-step autonomous execution is the key risk. A human gate converts autonomous execution of a high-impact action into a human decision.</li>
+      <li><strong>MIT08 (principal hierarchy enforcement) is primary for P2, P3, P5, and P6</strong> — all patterns that involve the agent exceeding its authorized position in the hierarchy. Technical enforcement of the hierarchy is required because instruction-based hierarchy is not a reliable security boundary.</li>
+    </ul>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag10-slide-22.html">← Back</a>
+    <a class="btn-primary" href="ag10-slide-24.html">Part 4 — Quiz →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

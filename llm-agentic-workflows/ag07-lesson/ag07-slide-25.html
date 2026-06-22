@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG07:2026 — Insecure Inter-Agent Communication · Slide 25 of 28</title>
+<link rel="stylesheet" href="ag07-shared.css">
+<style>
+.quiz-block { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 1.4rem; margin-bottom: 1.1rem; }
+.quiz-q { font-weight: 600; color: var(--text); margin-bottom: 0.8rem; line-height: 1.5; }
+.quiz-options { display: flex; flex-direction: column; gap: 0.45rem; }
+.quiz-opt { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.55rem 0.8rem; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: 0.9rem; color: var(--text); transition: border-color 0.15s; }
+.quiz-opt:hover { border-color: var(--accent); }
+.quiz-opt input[type=radio] { margin-top: 2px; accent-color: var(--accent); flex-shrink: 0; }
+.quiz-feedback { display: none; margin-top: 0.7rem; padding: 0.6rem 0.9rem; border-radius: 6px; font-size: 0.88rem; line-height: 1.5; }
+.quiz-feedback.correct { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+.quiz-feedback.incorrect { background: rgba(239,68,68,0.10); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+.quiz-submit { margin-top: 0.7rem; padding: 0.45rem 1rem; border-radius: 6px; border: none; background: var(--accent); color: #000; font-weight: 600; font-size: 0.88rem; cursor: pointer; }
+.quiz-submit:hover { background: var(--accent-bright); }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG07:2026</span>
+    <span class="nav-title">Insecure Inter-Agent Communication</span>
+  </div>
+  <span class="nav-right">Slide 25 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag07-slide-01.html"></a><a class="seg done" href="ag07-slide-02.html"></a><a class="seg done" href="ag07-slide-03.html"></a><a class="seg done" href="ag07-slide-04.html"></a><a class="seg done" href="ag07-slide-05.html"></a><a class="seg done" href="ag07-slide-06.html"></a><a class="seg done" href="ag07-slide-07.html"></a><a class="seg done" href="ag07-slide-08.html"></a><a class="seg done" href="ag07-slide-09.html"></a><a class="seg done" href="ag07-slide-10.html"></a><a class="seg done" href="ag07-slide-11.html"></a><a class="seg done" href="ag07-slide-12.html"></a><a class="seg done" href="ag07-slide-13.html"></a><a class="seg done" href="ag07-slide-14.html"></a><a class="seg done" href="ag07-slide-15.html"></a><a class="seg done" href="ag07-slide-16.html"></a><a class="seg done" href="ag07-slide-17.html"></a><a class="seg done" href="ag07-slide-18.html"></a><a class="seg done" href="ag07-slide-19.html"></a><a class="seg done" href="ag07-slide-20.html"></a><a class="seg done" href="ag07-slide-21.html"></a><a class="seg done" href="ag07-slide-22.html"></a><a class="seg done" href="ag07-slide-23.html"></a><a class="seg done" href="ag07-slide-24.html"></a>
+    <a class="seg active" href="ag07-slide-25.html"></a>
+    <a class="seg" href="ag07-slide-26.html"></a><a class="seg" href="ag07-slide-27.html"></a><a class="seg" href="ag07-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Quiz</span><span>Slide 25</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 25 · Quiz — Questions 3, 4 &amp; 5</div>
+
+  <!-- Q3 -->
+  <div class="quiz-block">
+    <div class="quiz-q">3. An agent pipeline operates entirely on an internal corporate network with no external internet access. A security architect argues that TLS between agents is unnecessary because the traffic never leaves the internal network. What is wrong with this reasoning?</div>
+    <div class="quiz-options">
+      <label class="quiz-opt"><input type="radio" name="q3" value="a"> <span>Nothing — internal-only traffic does not require encryption, so the architect is correct</span></label>
+      <label class="quiz-opt"><input type="radio" name="q3" value="b"> <span>Internal networks are not inherently trusted: compromised internal services, overpermissioned logging tools, and shared cloud VPC segments can all read unencrypted internal traffic</span></label>
+      <label class="quiz-opt"><input type="radio" name="q3" value="c"> <span>TLS is required only when agents communicate with external APIs — internal agent-to-agent traffic is out of scope for TLS</span></label>
+      <label class="quiz-opt"><input type="radio" name="q3" value="d"> <span>TLS adds too much latency for internal agent communication and should be replaced with application-layer encryption instead</span></label>
+    </div>
+    <button class="quiz-submit" onclick="checkQ('q3','b',this)">Check answer</button>
+    <div class="quiz-feedback" id="q3-fb"></div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="quiz-block">
+    <div class="quiz-q">4. What makes orchestrator impersonation more dangerous than impersonating a specialized sub-agent (such as a data retrieval agent)?</div>
+    <div class="quiz-options">
+      <label class="quiz-opt"><input type="radio" name="q4" value="a"> <span>Orchestrators are harder to compromise because they run on more secure infrastructure</span></label>
+      <label class="quiz-opt"><input type="radio" name="q4" value="b"> <span>Sub-agents verify the orchestrator's identity more rigorously than the orchestrator verifies sub-agent identities</span></label>
+      <label class="quiz-opt"><input type="radio" name="q4" value="c"> <span>Impersonating the orchestrator gives the attacker authority over all downstream sub-agents simultaneously, because sub-agents are designed to follow orchestrator instructions</span></label>
+      <label class="quiz-opt"><input type="radio" name="q4" value="d"> <span>Orchestrators use stronger cryptographic keys than sub-agents, making impersonation harder to achieve</span></label>
+    </div>
+    <button class="quiz-submit" onclick="checkQ('q4','c',this)">Check answer</button>
+    <div class="quiz-feedback" id="q4-fb"></div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="quiz-block">
+    <div class="quiz-q">5. A team is building a new agent pipeline and must choose the minimum viable set of mitigations for a first deployment. Which combination addresses the broadest set of attack types for the lowest implementation cost?</div>
+    <div class="quiz-options">
+      <label class="quiz-opt"><input type="radio" name="q5" value="a"> <span>MIT08 (audit logging) + MIT09 (anomaly detection): detect attacks quickly and respond</span></label>
+      <label class="quiz-opt"><input type="radio" name="q5" value="b"> <span>MIT04 (input validation) + MIT05 (replay protection): validate every message and ensure freshness</span></label>
+      <label class="quiz-opt"><input type="radio" name="q5" value="c"> <span>MIT01 (agent authentication) + MIT03 (mTLS) + MIT02 (message signing) + MIT05 (replay protection): authenticate identities, encrypt channels, sign content, and prevent replays</span></label>
+      <label class="quiz-opt"><input type="radio" name="q5" value="d"> <span>MIT07 (agent registry) alone: a central registry of trusted agents addresses all inter-agent trust issues</span></label>
+    </div>
+    <button class="quiz-submit" onclick="checkQ('q5','c',this)">Check answer</button>
+    <div class="quiz-feedback" id="q5-fb"></div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag07-slide-24.html">← Back</a>
+    <a class="btn-primary" href="ag07-slide-26.html">Complete AG07 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+
+<script>
+const explanations = {
+  q3: {
+    b: "Correct. The 'internal network is trusted' assumption is dangerous. In cloud environments, internal network segments may be shared with other tenants or accessible to compromised internal services (monitoring tools, logging sidecars, test functions with overpermissioned IAM roles). Several AG07 scenarios (Scenarios 1, 3, 5) exploit exactly this false assumption. The correct principle is: encrypt all inter-agent traffic regardless of network topology.",
+    a: "Incorrect. Internal network access does not imply confidentiality. Supply-chain attacks on monitoring tools, overpermissioned internal services, and shared cloud VPC segments are all real attack vectors demonstrated in the scenarios in this module.",
+    c: "Incorrect. External-API-facing encryption is not the only concern. The healthcare scenario (Scenario 5) involved purely internal agent-to-agent traffic. The PHI was exposed to a passive listener with access to the internal subnet — no external network was involved.",
+    d: "Incorrect. Application-layer encryption is an option, but TLS at the transport layer is more standardized, easier to implement correctly, and provides both encryption and mutual authentication (mTLS). The question's framing is a false tradeoff — TLS latency for internal traffic is negligible on modern infrastructure."
+  },
+  q4: {
+    c: "Correct. The orchestrator is the command authority for the entire pipeline. Sub-agents are typically instructed — by design — to follow orchestrator instructions without independently questioning each one. An attacker who successfully impersonates the orchestrator inherits control over all downstream sub-agents simultaneously. Impersonating a data retrieval agent only controls one narrow function; impersonating the orchestrator controls everything the orchestrator can direct.",
+    a: "Incorrect. There is no general security principle that makes orchestrator infrastructure harder to compromise. The danger comes from the authority the orchestrator role conveys, not from any infrastructure protection.",
+    b: "Incorrect. Sub-agents often verify orchestrator identity less rigorously than the reverse — the pipeline is designed to make sub-agents responsive to orchestrator direction. This is exactly what makes orchestrator impersonation so dangerous.",
+    d: "Incorrect. Orchestrators and sub-agents typically use similar cryptographic mechanisms. The danger of orchestrator impersonation is not about the attacker's cryptographic effort — it's about the downstream authority that orchestrator identity conveys."
+  },
+  q5: {
+    c: "Correct. MIT01 + MIT03 (mTLS) together close forgery, eavesdropping, and orchestrator impersonation — the three highest-impact attack types. MIT02 (message signing) adds tamper detection that MIT01/MIT03 alone do not provide. MIT05 adds replay protection. Together these four controls address five of the six attack types as either primary or contributing mitigations, and are all achievable with standard cryptographic libraries and TLS configuration.",
+    a: "Incorrect. Audit logging and anomaly detection (MIT08, MIT09) are detection and response controls — they tell you an attack happened after the fact. They do not prevent attacks. A minimum viable set must include preventive controls.",
+    b: "Incorrect. MIT04 and MIT05 are important but are Ring 2 controls (message-level verification). Without Ring 1 controls (MIT01, MIT03) to authenticate senders and encrypt channels, attackers can still forge identities and eavesdrop — schema validation and replay protection alone cannot address forgery, impersonation, or eavesdropping.",
+    d: "Incorrect. A registry (MIT07) is the infrastructure for verifying credentials — but agents must also actually use those credentials (MIT01), sign their messages (MIT02), and protect the channel (MIT03). A registry without these other controls is a list of identities that nobody checks."
+  }
+};
+function checkQ(name, correct, btn) {
+  const sel = document.querySelector(`input[name=${name}]:checked`);
+  const fb = document.getElementById(`${name}-fb`);
+  if (!sel) { fb.style.display='block'; fb.className='quiz-feedback incorrect'; fb.textContent='Please select an answer first.'; return; }
+  const val = sel.value;
+  fb.style.display = 'block';
+  fb.className = val === correct ? 'quiz-feedback correct' : 'quiz-feedback incorrect';
+  fb.textContent = (val === correct ? '✓ ' : '✗ ') + explanations[name][val];
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>

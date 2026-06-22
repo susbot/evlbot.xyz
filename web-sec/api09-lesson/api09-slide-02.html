@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 2 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 2 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg active" href="api09-slide-02.html"></a><a class="seg" href="api09-slide-03.html"></a><a class="seg" href="api09-slide-04.html"></a><a class="seg" href="api09-slide-05.html"></a><a class="seg" href="api09-slide-06.html"></a><a class="seg" href="api09-slide-07.html"></a><a class="seg" href="api09-slide-08.html"></a><a class="seg" href="api09-slide-09.html"></a><a class="seg" href="api09-slide-10.html"></a><a class="seg" href="api09-slide-11.html"></a><a class="seg" href="api09-slide-12.html"></a><a class="seg" href="api09-slide-13.html"></a><a class="seg" href="api09-slide-14.html"></a><a class="seg" href="api09-slide-15.html"></a><a class="seg" href="api09-slide-16.html"></a><a class="seg" href="api09-slide-17.html"></a><a class="seg" href="api09-slide-18.html"></a><a class="seg" href="api09-slide-19.html"></a><a class="seg" href="api09-slide-20.html"></a><a class="seg" href="api09-slide-21.html"></a><a class="seg" href="api09-slide-22.html"></a><a class="seg" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 2</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 2 &#xb7; Definition</div>
+  <div class="slide-title">Improper Inventory Management &#x2014; when you don&#x2019;t know everything you&#x2019;re running.</div>
+  <div class="slide-subtitle">Forgotten versions, exposed environments, and undocumented endpoints &#x2014; the attack surface you can&#x2019;t defend because you can&#x2019;t see it.</div>
+  <div class="block">
+    <div class="block-label pink">One-sentence definition</div>
+    <p>Improper Inventory Management occurs when an organization lacks complete visibility and control over its deployed API versions, environments, and endpoints &#x2014; allowing attackers to find and exploit older, less-secure versions or unintended surfaces that the security team doesn&#x2019;t know exist.</p>
+  </div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">What the team thinks is running</div>
+      <div class="compare-item"><code>api.company.com/v2/</code> &#x2014; current, documented, secured</div>
+      <div class="compare-item">Authentication required on all endpoints</div>
+      <div class="compare-item">Rate limiting enforced</div>
+      <div class="compare-item">One production environment</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">What is actually running</div>
+      <div class="compare-item"><code>api.company.com/v1/</code> &#x2014; deprecated, forgotten, not secured</div>
+      <div class="compare-item"><code>api.company.com/v2/internal/</code> &#x2014; undocumented, no auth</div>
+      <div class="compare-item"><code>staging-api.company.com</code> &#x2014; accessible from internet, test data</div>
+      <div class="compare-item"><code>api-old.company.com</code> &#x2014; from the 2019 migration, never decommissioned</div>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">You can only secure what you know about</div>
+    <p>Every security control &#x2014; authentication, rate limiting, input validation, logging &#x2014; is applied to known, documented endpoints. An endpoint the team doesn&#x2019;t know about gets none of those controls. API9 is the risk that the documented API surface is not the actual API surface.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-01.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-03.html">Three types of inventory failure &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

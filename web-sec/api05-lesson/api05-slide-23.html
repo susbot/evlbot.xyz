@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API5:2023 â Broken Function Level Authorization Â· Slide 23 of 28</title>
+<link rel="stylesheet" href="api05-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API5:2023</span><span class="nav-title">Broken Function Level Authorization</span></div>
+  <span class="nav-right">Slide 23 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api05-slide-01.html"></a><a class="seg done" href="api05-slide-02.html"></a><a class="seg done" href="api05-slide-03.html"></a><a class="seg done" href="api05-slide-04.html"></a><a class="seg done" href="api05-slide-05.html"></a><a class="seg done" href="api05-slide-06.html"></a><a class="seg done" href="api05-slide-07.html"></a><a class="seg done" href="api05-slide-08.html"></a><a class="seg done" href="api05-slide-09.html"></a><a class="seg done" href="api05-slide-10.html"></a><a class="seg done" href="api05-slide-11.html"></a><a class="seg done" href="api05-slide-12.html"></a><a class="seg done" href="api05-slide-13.html"></a><a class="seg done" href="api05-slide-14.html"></a><a class="seg done" href="api05-slide-15.html"></a><a class="seg done" href="api05-slide-16.html"></a><a class="seg done" href="api05-slide-17.html"></a><a class="seg done" href="api05-slide-18.html"></a><a class="seg done" href="api05-slide-19.html"></a><a class="seg done" href="api05-slide-20.html"></a><a class="seg done" href="api05-slide-21.html"></a><a class="seg done" href="api05-slide-22.html"></a><a class="seg active" href="api05-slide-23.html"></a><a class="seg" href="api05-slide-24.html"></a><a class="seg" href="api05-slide-25.html"></a><a class="seg" href="api05-slide-26.html"></a><a class="seg" href="api05-slide-27.html"></a><a class="seg" href="api05-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 Â· Prevention</span><span>Slide 23</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 23 &#xb7; Mitigation 5</div>
+  <div class="mit-card">
+    <div class="mit-num">MIT 05</div>
+    <div class="mit-title">Maintain an explicit, audited map of every function and who can call it.</div>
+    <div class="mit-section">
+      <div class="mit-section-label green">What to do</div>
+      <p>Create and maintain a permissions matrix that maps every API function to the roles permitted to call it. This document (or configuration file) is both the source of truth for authorization and an auditable record of decisions made.</p>
+      <p>Format it as a table: rows are functions (method + path), columns are roles. Each cell is PERMIT or DENY:</p>
+    </div>
+    <div class="callout blue">
+      <div class="callout-label">Example permissions matrix (partial)</div>
+      <table style="width:100%;border-collapse:collapse;font-family:'IBM Plex Mono',monospace;font-size:11px;">
+        <thead><tr style="color:var(--accent-bright);">
+          <th style="text-align:left;padding:4px 8px;border-bottom:1px solid var(--border);">Function</th>
+          <th style="padding:4px 8px;border-bottom:1px solid var(--border);">guest</th>
+          <th style="padding:4px 8px;border-bottom:1px solid var(--border);">user</th>
+          <th style="padding:4px 8px;border-bottom:1px solid var(--border);">premium</th>
+          <th style="padding:4px 8px;border-bottom:1px solid var(--border);">admin</th>
+        </tr></thead>
+        <tbody style="color:var(--subtle);">
+          <tr><td style="padding:4px 8px;">GET /api/posts/{id}</td><td style="padding:4px 8px;text-align:center;color:var(--green);">&#x2713;</td><td style="padding:4px 8px;text-align:center;color:var(--green);">&#x2713;</td><td style="padding:4px 8px;text-align:center;color:var(--green);">&#x2713;</td><td style="padding:4px 8px;text-align:center;color:var(--green);">&#x2713;</td></tr>
+          <tr><td style="padding:4px 8px;">GET /api/premium/matches</td><td style="padding:4px 8px;text-align:center;color:var(--red);">&#x2717;</td><td style="padding:4px 8px;text-align:center;color:var(--red);">&#x2717;</td><td style="padding:4px 8px;text-align:center;color:var(--green);">&#x2713;</td><td style="padding:4px 8px;text-align:center;color:var(--green);">&#x2713;</td></tr>
+          <tr><td style="padding:4px 8px;">DELETE /api/posts/{id}</td><td style="padding:4px 8px;text-align:center;color:var(--red);">&#x2717;</td><td style="padding:4px 8px;text-align:center;color:var(--red);">&#x2717;</td><td style="padding:4px 8px;text-align:center;color:var(--red);">&#x2717;</td><td style="padding:4px 8px;text-align:center;color:var(--green);">&#x2713;</td></tr>
+          <tr><td style="padding:4px 8px;">GET /api/admin/users</td><td style="padding:4px 8px;text-align:center;color:var(--red);">&#x2717;</td><td style="padding:4px 8px;text-align:center;color:var(--red);">&#x2717;</td><td style="padding:4px 8px;text-align:center;color:var(--red);">&#x2717;</td><td style="padding:4px 8px;text-align:center;color:var(--green);">&#x2713;</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mit-section">
+      <div class="mit-section-label yellow">Keep it code-adjacent</div>
+      <p>The matrix should live in version control alongside the code &#x2014; ideally as a config file that the authorization middleware reads directly. This makes authorization auditable in code review: when a new endpoint is added, the PR must also update the permissions matrix, making gaps visible.</p>
+    </div>
+  </div>
+  <div class="callout blue">
+    <div class="callout-label">&#x1F4BC; Business takeaway</div>
+    <p>Ask for a list of all admin or elevated-privilege API endpoints &#x2014; then ask when each one was last reviewed to confirm its access control is correct and being enforced.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api05-slide-22.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api05-slide-24.html">MIT 06: Testing non-admin tokens &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

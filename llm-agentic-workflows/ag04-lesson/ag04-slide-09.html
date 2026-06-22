@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 9 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 9 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a>
+    <a class="seg done" href="ag04-slide-02.html"></a>
+    <a class="seg done" href="ag04-slide-03.html"></a>
+    <a class="seg done" href="ag04-slide-04.html"></a>
+    <a class="seg done" href="ag04-slide-05.html"></a>
+    <a class="seg done" href="ag04-slide-06.html"></a>
+    <a class="seg done" href="ag04-slide-07.html"></a>
+    <a class="seg done" href="ag04-slide-08.html"></a>
+    <a class="seg active" href="ag04-slide-09.html"></a>
+    <a class="seg" href="ag04-slide-10.html"></a>
+    <a class="seg" href="ag04-slide-11.html"></a>
+    <a class="seg" href="ag04-slide-12.html"></a>
+    <a class="seg" href="ag04-slide-13.html"></a>
+    <a class="seg" href="ag04-slide-14.html"></a>
+    <a class="seg" href="ag04-slide-15.html"></a>
+    <a class="seg" href="ag04-slide-16.html"></a>
+    <a class="seg" href="ag04-slide-17.html"></a>
+    <a class="seg" href="ag04-slide-18.html"></a>
+    <a class="seg" href="ag04-slide-19.html"></a>
+    <a class="seg" href="ag04-slide-20.html"></a>
+    <a class="seg" href="ag04-slide-21.html"></a>
+    <a class="seg" href="ag04-slide-22.html"></a>
+    <a class="seg" href="ag04-slide-23.html"></a>
+    <a class="seg" href="ag04-slide-24.html"></a>
+    <a class="seg" href="ag04-slide-25.html"></a>
+    <a class="seg" href="ag04-slide-26.html"></a>
+    <a class="seg" href="ag04-slide-27.html"></a>
+    <a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Vulnerability Types</span><span>Slide 9</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 2</span>
+    <div>
+      <div class="part-title">Vulnerability Types</div>
+      <div class="part-count">Slides 9–13 · The six ways supply chains fail in agentic systems</div>
+    </div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 9 · Overview</div>
+  <div class="slide-title">Six vulnerability types — six different points where a poisoned component enters the agent's trust boundary</div>
+  <div class="slide-subtitle">Each type targets a different kind of component. Together they cover the full surface of an agentic supply chain.</div>
+
+  <div class="vuln-grid">
+
+    <div class="vuln-card">
+      <div class="vuln-num">Type 1</div>
+      <div class="vuln-name">Poisoned prompt templates and tool descriptors</div>
+      <div class="vuln-desc">Malicious instructions injected into the text the agent reads to understand what a tool does or how to behave</div>
+    </div>
+
+    <div class="vuln-card">
+      <div class="vuln-num">Type 2</div>
+      <div class="vuln-name">Impersonation and typosquatting</div>
+      <div class="vuln-desc">Fake tools, plugins, or MCP servers published under names nearly identical to legitimate ones, exploiting trust in familiar names</div>
+    </div>
+
+    <div class="vuln-card">
+      <div class="vuln-num">Type 3</div>
+      <div class="vuln-name">Vulnerable third-party agents (A2A)</div>
+      <div class="vuln-desc">A sub-agent in a pipeline is compromised or contains vulnerabilities — its outputs propagate untrusted data to orchestrating agents</div>
+    </div>
+
+    <div class="vuln-card">
+      <div class="vuln-num">Type 4</div>
+      <div class="vuln-name">Compromised MCP or registry servers</div>
+      <div class="vuln-desc">A shared infrastructure component — an MCP server or package registry — is hijacked, turning every agent that relies on it into a victim</div>
+    </div>
+
+    <div class="vuln-card">
+      <div class="vuln-num">Type 5</div>
+      <div class="vuln-name">Poisoned knowledge plugins (RAG)</div>
+      <div class="vuln-desc">Malicious entries seeded into a knowledge index or RAG data source gradually bias the agent's context and outputs</div>
+    </div>
+
+    <div class="vuln-card">
+      <div class="vuln-num">Type 6</div>
+      <div class="vuln-name">Agent-in-the-middle via agent cards</div>
+      <div class="vuln-desc">A forged or tampered agent card redirects agent-to-agent communication through an attacker-controlled intermediary</div>
+    </div>
+
+  </div>
+
+  <div class="callout yellow">
+    <div class="callout-label">Common thread</div>
+    <p>All six types share the same root cause: <strong>the agent cannot independently verify the integrity of every component it depends on at runtime.</strong> It trusts what it's given. Supply chain defenses work by making what the agent is given trustworthy before it arrives.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-08.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-10.html">Type 1 — Poisoned Prompts and Descriptors →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

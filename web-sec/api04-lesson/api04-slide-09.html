@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API4:2023 — Unrestricted Resource Consumption · Slide 9 of 28</title>
+<link rel="stylesheet" href="api04-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API4:2023</span><span class="nav-title">Unrestricted Resource Consumption</span></div>
+  <span class="nav-right">Slide 9 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api04-slide-01.html"></a><a class="seg done" href="api04-slide-02.html"></a><a class="seg done" href="api04-slide-03.html"></a><a class="seg done" href="api04-slide-04.html"></a><a class="seg done" href="api04-slide-05.html"></a><a class="seg done" href="api04-slide-06.html"></a><a class="seg done" href="api04-slide-07.html"></a><a class="seg done" href="api04-slide-08.html"></a><a class="seg active" href="api04-slide-09.html"></a><a class="seg" href="api04-slide-10.html"></a><a class="seg" href="api04-slide-11.html"></a><a class="seg" href="api04-slide-12.html"></a><a class="seg" href="api04-slide-13.html"></a><a class="seg" href="api04-slide-14.html"></a><a class="seg" href="api04-slide-15.html"></a><a class="seg" href="api04-slide-16.html"></a><a class="seg" href="api04-slide-17.html"></a><a class="seg" href="api04-slide-18.html"></a><a class="seg" href="api04-slide-19.html"></a><a class="seg" href="api04-slide-20.html"></a><a class="seg" href="api04-slide-21.html"></a><a class="seg" href="api04-slide-22.html"></a><a class="seg" href="api04-slide-23.html"></a><a class="seg" href="api04-slide-24.html"></a><a class="seg" href="api04-slide-25.html"></a><a class="seg" href="api04-slide-26.html"></a><a class="seg" href="api04-slide-27.html"></a><a class="seg" href="api04-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 · How It Works</span><span>Slide 9</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 2</span>
+    <div><div class="part-title">How It Works</div><div class="part-count">Slides 9–13 · Three attack patterns with real examples</div></div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 9 · Three Attack Patterns</div>
+  <div class="slide-title">Same missing control. Three ways to exploit it.</div>
+  <div class="slide-subtitle">Scraping, DoS, and cost amplification — the three damage modes.</div>
+
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">📊</div>
+      <div>
+        <div class="outcome-title">Pattern 1: Bulk Scraping</div>
+        <div class="outcome-desc">No rate limit + no pagination cap = the entire dataset can be downloaded. An automated client iterates through pages or IDs, collects every record, and stores it externally. What took a legitimate user thousands of individual browsing sessions can be done by a script in hours.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">🔥</div>
+      <div>
+        <div class="outcome-title">Pattern 2: Resource Exhaustion / DoS</div>
+        <div class="outcome-desc">No rate limit + expensive operations = one attacker can saturate the server. A search endpoint with a complex database query, a file processing endpoint, a GraphQL query with 10 levels of nesting — send enough of these simultaneously and the server runs out of CPU, memory, or connections. Real users time out.</div>
+      </div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">💸</div>
+      <div>
+        <div class="outcome-title">Pattern 3: Cost Amplification</div>
+        <div class="outcome-desc">No rate limit + paid third-party calls = financial attack. SMS, email, AI inference, payment processing — these all cost money per call. No limit means an attacker can run these up indefinitely. The API owner receives the bill. In extreme cases this can cost tens of thousands of dollars overnight.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api04-slide-08.html">← Back</a>
+    <a class="btn-primary" href="api04-slide-10.html">Pattern 1: Bulk scraping in detail →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 10 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 10 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a><a class="seg done" href="ag09-slide-07.html"></a><a class="seg done" href="ag09-slide-08.html"></a><a class="seg done" href="ag09-slide-09.html"></a>
+    <a class="seg active" href="ag09-slide-10.html"></a>
+    <a class="seg" href="ag09-slide-11.html"></a><a class="seg" href="ag09-slide-12.html"></a><a class="seg" href="ag09-slide-13.html"></a><a class="seg" href="ag09-slide-14.html"></a><a class="seg" href="ag09-slide-15.html"></a><a class="seg" href="ag09-slide-16.html"></a><a class="seg" href="ag09-slide-17.html"></a><a class="seg" href="ag09-slide-18.html"></a><a class="seg" href="ag09-slide-19.html"></a><a class="seg" href="ag09-slide-20.html"></a><a class="seg" href="ag09-slide-21.html"></a><a class="seg" href="ag09-slide-22.html"></a><a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Exploitation Patterns</span><span>Slide 10</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 10 · Patterns 1 & 2</div>
+  <div class="slide-title">Pattern 1: Automation Bias Exploitation — Pattern 2: Authority and Urgency Spoofing</div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Pattern 1 — Automation Bias Exploitation</span>
+      <span class="scenario-tag red">Bypass</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>What it is:</strong> The attacker doesn't need to fool the human directly. They only need to fool the agent — knowing the human will defer to the agent's verdict. They study the agent's known limitations (training data cutoffs, underrepresented case categories, score calibration weaknesses) and craft their attack to land precisely where the agent systematically underweights risk.</p>
+      <p><strong>Mechanism:</strong> Agent outputs low-risk verdict → human's trust suppresses independent review → attacker's action passes without the scrutiny that would have caught it.</p>
+      <p><strong>Why it's hard to detect:</strong> The human behaves rationally given what they see. The agent behaves as designed. No individual system fails in a detectable way. The vulnerability is in the interaction between them.</p>
+      <p><strong>Key insight:</strong> The more accurate the agent is on average, the more dangerous this pattern becomes — because high average accuracy builds deep trust, which makes the human's deference at edge cases more automatic and harder to interrupt.</p>
+    </div>
+  </div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Pattern 2 — Authority and Urgency Spoofing</span>
+      <span class="scenario-tag orange">Manipulation</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>What it is:</strong> The agent — whether compromised by an attacker or poorly designed — presents a recommendation with artificial authority (claiming executive approval, regulatory mandate, or organizational urgency) and/or time pressure ("action required within 3 minutes," "system will roll back if not confirmed"). Both suppress deliberate evaluation.</p>
+      <p><strong>Authority spoofing:</strong> "This action has been pre-approved by the CFO and Legal — your confirmation is procedural only." Even if the human is skeptical, the apparent pre-authorization removes the perceived need to independently verify. They provide confirmation, not a decision.</p>
+      <p><strong>Urgency spoofing:</strong> Time pressure is the enemy of careful thought. An agent that can generate urgency signals controls the human's deliberation window. Under time pressure, humans default to heuristics — including "the AI said it's fine" — rather than careful independent evaluation.</p>
+      <p><strong>Why routing through an agent makes it more effective:</strong> A phone call from an unknown person claiming CFO approval triggers skepticism. A notification from the trusted internal AI assistant saying the same thing triggers less skepticism — because the AI has institutional credibility and the human assumes it wouldn't generate the notification without valid backing.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-09.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-11.html">Patterns 3 & 4 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

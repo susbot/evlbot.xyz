@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG08:2026 — Cascading Failures · Slide 24 of 28</title>
+<link rel="stylesheet" href="ag08-shared.css">
+<style>
+.quiz-block { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem 1.4rem; margin-bottom: 1.1rem; }
+.quiz-q { font-weight: 600; color: var(--text); margin-bottom: 0.8rem; line-height: 1.5; }
+.quiz-options { display: flex; flex-direction: column; gap: 0.45rem; }
+.quiz-opt { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.55rem 0.8rem; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: 0.9rem; color: var(--text); transition: border-color 0.15s; }
+.quiz-opt:hover { border-color: var(--accent); }
+.quiz-opt input[type=radio] { margin-top: 2px; accent-color: var(--accent); flex-shrink: 0; }
+.quiz-feedback { display: none; margin-top: 0.7rem; padding: 0.6rem 0.9rem; border-radius: 6px; font-size: 0.88rem; line-height: 1.5; }
+.quiz-feedback.correct { background: rgba(34,197,94,0.12); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+.quiz-feedback.incorrect { background: rgba(239,68,68,0.10); color: #f87171; border: 1px solid rgba(239,68,68,0.25); }
+.quiz-submit { margin-top: 0.7rem; padding: 0.45rem 1rem; border-radius: 6px; border: none; background: var(--accent); color: #000; font-weight: 600; font-size: 0.88rem; cursor: pointer; }
+.quiz-submit:hover { background: var(--accent-bright); }
+</style>
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG08:2026</span>
+    <span class="nav-title">Cascading Failures</span>
+  </div>
+  <span class="nav-right">Slide 24 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag08-slide-01.html"></a><a class="seg done" href="ag08-slide-02.html"></a><a class="seg done" href="ag08-slide-03.html"></a><a class="seg done" href="ag08-slide-04.html"></a><a class="seg done" href="ag08-slide-05.html"></a><a class="seg done" href="ag08-slide-06.html"></a><a class="seg done" href="ag08-slide-07.html"></a><a class="seg done" href="ag08-slide-08.html"></a><a class="seg done" href="ag08-slide-09.html"></a><a class="seg done" href="ag08-slide-10.html"></a><a class="seg done" href="ag08-slide-11.html"></a><a class="seg done" href="ag08-slide-12.html"></a><a class="seg done" href="ag08-slide-13.html"></a><a class="seg done" href="ag08-slide-14.html"></a><a class="seg done" href="ag08-slide-15.html"></a><a class="seg done" href="ag08-slide-16.html"></a><a class="seg done" href="ag08-slide-17.html"></a><a class="seg done" href="ag08-slide-18.html"></a><a class="seg done" href="ag08-slide-19.html"></a><a class="seg done" href="ag08-slide-20.html"></a><a class="seg done" href="ag08-slide-21.html"></a><a class="seg done" href="ag08-slide-22.html"></a><a class="seg done" href="ag08-slide-23.html"></a>
+    <a class="seg active" href="ag08-slide-24.html"></a>
+    <a class="seg" href="ag08-slide-25.html"></a><a class="seg" href="ag08-slide-26.html"></a><a class="seg" href="ag08-slide-27.html"></a><a class="seg" href="ag08-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Quiz</span><span>Slide 24</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 24 · Quiz — Questions 1 &amp; 2</div>
+  <div class="slide-title">Test your understanding of cascading failures in multi-agent systems.</div>
+
+  <!-- Q1 -->
+  <div class="quiz-block">
+    <div class="quiz-q">1. A retrieval agent returns 5% of its expected records due to an API timeout that returned a partial success. The analysis agent processes the truncated data and produces confident-looking output. No error signal is emitted at any stage. Which failure pattern does this most closely represent?</div>
+    <div class="quiz-options">
+      <label class="quiz-opt"><input type="radio" name="q1" value="a"> <span>Pattern 4 — Resource exhaustion cascade, because the partial response caused extra processing load</span></label>
+      <label class="quiz-opt"><input type="radio" name="q1" value="b"> <span>Pattern 1 — Silent error propagation, because the failure produced structurally valid output with no error signal at any hop</span></label>
+      <label class="quiz-opt"><input type="radio" name="q1" value="c"> <span>Pattern 6 — Adversarial cascade, because an attacker caused the API to return partial data</span></label>
+      <label class="quiz-opt"><input type="radio" name="q1" value="d"> <span>Pattern 3 — Runaway feedback loop, because the analysis agent re-read the retrieval agent's output</span></label>
+    </div>
+    <button class="quiz-submit" onclick="checkQ('q1','b',this)">Check answer</button>
+    <div class="quiz-feedback" id="q1-fb"></div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="quiz-block">
+    <div class="quiz-q">2. A vector database used by 4 retrieval agents has a 12-second outage. All 4 agents retry simultaneously every 2 seconds with no jitter. The database recovers at 12 seconds but is immediately overwhelmed by the simultaneous retry bursts and fails again. This repeats for 4 minutes. Which mitigation would most directly have prevented the extended outage?</div>
+    <div class="quiz-options">
+      <label class="quiz-opt"><input type="radio" name="q2" value="a"> <span>MIT01 (output validation) — checking the agents' outputs would have caught the bad data</span></label>
+      <label class="quiz-opt"><input type="radio" name="q2" value="b"> <span>MIT06 (rate limiting + human confirmation) — requiring human approval before retrying would have stopped the storm</span></label>
+      <label class="quiz-opt"><input type="radio" name="q2" value="c"> <span>MIT04 (exponential backoff with jitter) — randomizing retry timing would have prevented simultaneous bursts from overwhelming the recovering database</span></label>
+      <label class="quiz-opt"><input type="radio" name="q2" value="d"> <span>MIT07 (idempotent operations) — making retries idempotent would have prevented the duplicate requests from causing harm</span></label>
+    </div>
+    <button class="quiz-submit" onclick="checkQ('q2','c',this)">Check answer</button>
+    <div class="quiz-feedback" id="q2-fb"></div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag08-slide-23.html">← Back</a>
+    <a class="btn-primary" href="ag08-slide-25.html">Questions 3–5 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+
+<script>
+const explanations = {
+  q1: {
+    b: "Correct. Pattern 1 is silent error propagation: a failure produces output in the correct format with no error signal. The partial API response returned a structurally valid result — 4,200 records in the expected schema. The analysis agent received it as authoritative context and processed it confidently. No agent emitted an error signal at any hop. This is the defining characteristic of Pattern 1.",
+    a: "Not quite. Pattern 4 (resource exhaustion cascade) involves overloaded agents, queuing retries, and resource starvation spreading between components. In this scenario, no agent was overloaded — each completed quickly. The problem was content quality (wrong data), not resource contention.",
+    c: "Not quite. Pattern 6 (adversarial cascade) requires deliberate attacker manipulation of an agent's output. This scenario describes an accidental failure — an API under load returning a partial success response. No attacker was involved.",
+    d: "Not quite. Pattern 3 (feedback loops) requires an agent's output to influence its own future inputs, creating a self-reinforcing cycle. In this scenario, the data flowed linearly through the pipeline; there was no cycle where output fed back into input."
+  },
+  q2: {
+    c: "Correct. The extended outage was caused by a thundering herd pattern: all 4 agents retrying simultaneously every 2 seconds, overwhelming the database each time it tried to recover. MIT04 (exponential backoff with jitter) addresses this directly — each agent would wait an increasing and randomized delay before retrying, spreading the retry load across time and allowing the database to recover without being immediately overwhelmed again.",
+    a: "Not quite. MIT01 (output validation) checks the content of agent outputs for correctness. In this scenario the problem was availability, not content quality — the agents weren't producing bad outputs, they were failing to get responses at all. Output validation doesn't affect retry timing or resource load.",
+    b: "Not quite. MIT06 (rate limiting + human confirmation) governs terminal action agents — the agents at the end of the pipeline that take irreversible real-world actions. Retrieval agents making database requests are not in scope for human confirmation gates. The problem here was retry storm mechanics, not blast radius.",
+    d: "Not quite. MIT07 (idempotency) makes it safe to retry the same logical operation multiple times — the second execution produces the same result as the first without side effects. But idempotency doesn't prevent the retries from happening simultaneously and overwhelming the database. The problem was timing of retries (thundering herd), not the semantic effect of duplicate retries."
+  }
+};
+function checkQ(name, correct, btn) {
+  const sel = document.querySelector(`input[name=${name}]:checked`);
+  const fb = document.getElementById(`${name}-fb`);
+  if (!sel) { fb.style.display='block'; fb.className='quiz-feedback incorrect'; fb.textContent='Please select an answer first.'; return; }
+  const val = sel.value;
+  fb.style.display = 'block';
+  fb.className = val === correct ? 'quiz-feedback correct' : 'quiz-feedback incorrect';
+  fb.textContent = (val === correct ? '✓ ' : '✗ ') + explanations[name][val];
+  btn.disabled = true;
+}
+</script>
+</body>
+</html>

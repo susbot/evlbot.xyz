@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG09:2026 — Human-Agent Trust Exploitation · Slide 12 of 28</title>
+<link rel="stylesheet" href="ag09-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG09:2026</span>
+    <span class="nav-title">Human-Agent Trust Exploitation</span>
+  </div>
+  <span class="nav-right">Slide 12 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag09-slide-01.html"></a><a class="seg done" href="ag09-slide-02.html"></a><a class="seg done" href="ag09-slide-03.html"></a><a class="seg done" href="ag09-slide-04.html"></a><a class="seg done" href="ag09-slide-05.html"></a><a class="seg done" href="ag09-slide-06.html"></a><a class="seg done" href="ag09-slide-07.html"></a><a class="seg done" href="ag09-slide-08.html"></a><a class="seg done" href="ag09-slide-09.html"></a><a class="seg done" href="ag09-slide-10.html"></a><a class="seg done" href="ag09-slide-11.html"></a>
+    <a class="seg active" href="ag09-slide-12.html"></a>
+    <a class="seg" href="ag09-slide-13.html"></a><a class="seg" href="ag09-slide-14.html"></a><a class="seg" href="ag09-slide-15.html"></a><a class="seg" href="ag09-slide-16.html"></a><a class="seg" href="ag09-slide-17.html"></a><a class="seg" href="ag09-slide-18.html"></a><a class="seg" href="ag09-slide-19.html"></a><a class="seg" href="ag09-slide-20.html"></a><a class="seg" href="ag09-slide-21.html"></a><a class="seg" href="ag09-slide-22.html"></a><a class="seg" href="ag09-slide-23.html"></a><a class="seg" href="ag09-slide-24.html"></a><a class="seg" href="ag09-slide-25.html"></a><a class="seg" href="ag09-slide-26.html"></a><a class="seg" href="ag09-slide-27.html"></a><a class="seg" href="ag09-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 2 — Exploitation Patterns</span><span>Slide 12</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 12 · Patterns 5 & 6</div>
+  <div class="slide-title">Pattern 5: Dependency Erosion — Pattern 6: Oversight Bypass via Urgency Framing</div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Pattern 5 — Dependency Erosion</span>
+      <span class="scenario-tag blue">Long-term degradation</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>What it is:</strong> Over months or years of working with an AI agent, a human professional's independent analytical skills and verification habits gradually atrophy — because they are rarely used. This is a natural consequence of effective AI assistance: if the agent handles a task reliably, the human stops practicing the underlying skill.</p>
+      <p><strong>The security implication:</strong> If the agent is compromised, manipulated, or encounters a case outside its competence, the human who would ordinarily catch the error has lost the skill to do so. Dependency erosion converts the human from a backup check to a rubber stamp — not through any attack on the human, but through the ordinary operation of the AI system over time.</p>
+      <p><strong>Examples:</strong></p>
+      <ul>
+        <li>A security analyst who has relied on an AI threat-triage system for two years no longer has a practiced instinct for which indicators matter — they've outsourced that judgment to the agent.</li>
+        <li>A financial reviewer using an AI contract analysis tool loses the ability to spot non-standard clauses independently, because the agent always caught them — until the one time it didn't.</li>
+      </ul>
+      <p><strong>This is a system design problem:</strong> An agent that fully replaces human judgment, rather than augmenting and exercising it, creates this vulnerability as a side effect of doing its job well. Defense requires deliberate design to maintain human skill and verification capability over time.</p>
+    </div>
+  </div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-name">Pattern 6 — Oversight Bypass via Urgency Framing</span>
+      <span class="scenario-tag red">Procedure bypass</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>What it is:</strong> An agent frames a decision as requiring immediate action, causing the human to skip the deliberate oversight steps that the decision's risk level warrants. The urgency may be fabricated (by an attacker who compromised the agent) or systemic (the agent is designed to prioritize speed over deliberation).</p>
+      <p><strong>The structural version (more common than the attacker version):</strong> Many AI systems are designed to surface high-priority items and resolve them quickly. If the system rewards speed — showing "time in queue" metrics, expressing urgency in framing, or providing approval as the default path — it structurally trains humans to minimize deliberation time. Over time, the review process degrades from genuine evaluation to rapid approval.</p>
+      <p><strong>The attacker version:</strong> An attacker who has compromised or can influence the agent's output can cause the agent to mark any specific decision as urgent — triggering expedited processing, bypassing secondary review queues, and suppressing the human's own sense that the decision warrants more time. This is particularly powerful because the human's response to urgency is automatic: urgency signals activate a different cognitive mode, one that deprioritizes systematic evaluation in favor of fast response.</p>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag09-slide-11.html">← Back</a>
+    <a class="btn-primary" href="ag09-slide-13.html">Scenarios →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

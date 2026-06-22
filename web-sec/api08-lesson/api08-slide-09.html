@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 9 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 9 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg done" href="api08-slide-05.html"></a><a class="seg done" href="api08-slide-06.html"></a><a class="seg done" href="api08-slide-07.html"></a><a class="seg done" href="api08-slide-08.html"></a><a class="seg active" href="api08-slide-09.html"></a><a class="seg" href="api08-slide-10.html"></a><a class="seg" href="api08-slide-11.html"></a><a class="seg" href="api08-slide-12.html"></a><a class="seg" href="api08-slide-13.html"></a><a class="seg" href="api08-slide-14.html"></a><a class="seg" href="api08-slide-15.html"></a><a class="seg" href="api08-slide-16.html"></a><a class="seg" href="api08-slide-17.html"></a><a class="seg" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 &#xb7; How It Works</span><span>Slide 9</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 2</span>
+    <div><div class="part-title">How It Works</div><div class="part-count">Slides 9&#x2013;13 &#xb7; Attack patterns and real incidents</div></div>
+  </div>
+  <div class="slide-eyebrow">Slide 9 &#xb7; Two Attack Patterns</div>
+  <div class="slide-title">Two patterns. Different surfaces. Both exploitable without any application code bug.</div>
+  <div class="slide-subtitle">CORS credential theft and admin endpoint takeover &#x2014; the two highest-impact misconfiguration paths.</div>
+  <div class="compare">
+    <div class="compare-col red-col">
+      <div class="compare-header">Pattern 1: CORS Credential Theft</div>
+      <div class="compare-item">Target: an API with permissive CORS (reflects any origin + credentials)</div>
+      <div class="compare-item">Attacker hosts a malicious page at their domain</div>
+      <div class="compare-item">Victim visits the page while logged into the target API</div>
+      <div class="compare-item">Page makes cross-origin API calls with victim&#x2019;s session cookies</div>
+      <div class="compare-item">Attacker reads the full API response &#x2014; victim&#x2019;s account data, PII, tokens</div>
+      <div class="compare-item">No credentials needed. No code vulnerability exploited.</div>
+    </div>
+    <div class="compare-col green-col">
+      <div class="compare-header">Pattern 2: Admin Endpoint Takeover</div>
+      <div class="compare-item">Target: an admin, debug, or management endpoint with no auth or default credentials</div>
+      <div class="compare-item">Attacker discovers the endpoint via scanning (common paths: /admin, /actuator, /console, /debug, /metrics)</div>
+      <div class="compare-item">Attacker accesses the endpoint directly &#x2014; no login required</div>
+      <div class="compare-item">Endpoint exposes data, credentials, or allows system control</div>
+      <div class="compare-item">Attacker exfiltrates data, deploys malware, or uses credentials to pivot</div>
+    </div>
+  </div>
+  <div class="callout orange">
+    <div class="callout-label">What makes both patterns dangerous</div>
+    <p>Neither attack exploits a bug in the application&#x2019;s business logic. Both exploit the absence of a control that should have been present. In Pattern 1, the application logic is correct &#x2014; it just has the wrong CORS policy. In Pattern 2, the endpoint works as designed &#x2014; it just shouldn&#x2019;t be reachable without authentication. The fix in each case is a configuration change, not a code change.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-08.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-10.html">CORS theft mechanics &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

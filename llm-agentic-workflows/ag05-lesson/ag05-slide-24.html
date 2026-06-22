@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG05:2026 — Unexpected Code Execution · Slide 24 of 28</title>
+<link rel="stylesheet" href="ag05-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG05:2026</span>
+    <span class="nav-title">Unexpected Code Execution</span>
+  </div>
+  <span class="nav-right">Slide 24 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag05-slide-01.html"></a><a class="seg done" href="ag05-slide-02.html"></a><a class="seg done" href="ag05-slide-03.html"></a><a class="seg done" href="ag05-slide-04.html"></a><a class="seg done" href="ag05-slide-05.html"></a><a class="seg done" href="ag05-slide-06.html"></a><a class="seg done" href="ag05-slide-07.html"></a><a class="seg done" href="ag05-slide-08.html"></a><a class="seg done" href="ag05-slide-09.html"></a><a class="seg done" href="ag05-slide-10.html"></a><a class="seg done" href="ag05-slide-11.html"></a><a class="seg done" href="ag05-slide-12.html"></a><a class="seg done" href="ag05-slide-13.html"></a><a class="seg done" href="ag05-slide-14.html"></a><a class="seg done" href="ag05-slide-15.html"></a><a class="seg done" href="ag05-slide-16.html"></a><a class="seg done" href="ag05-slide-17.html"></a><a class="seg done" href="ag05-slide-18.html"></a><a class="seg done" href="ag05-slide-19.html"></a><a class="seg done" href="ag05-slide-20.html"></a><a class="seg done" href="ag05-slide-21.html"></a><a class="seg done" href="ag05-slide-22.html"></a><a class="seg done" href="ag05-slide-23.html"></a>
+    <a class="seg active" href="ag05-slide-24.html"></a>
+    <a class="seg" href="ag05-slide-25.html"></a><a class="seg" href="ag05-slide-26.html"></a><a class="seg" href="ag05-slide-27.html"></a><a class="seg" href="ag05-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 4 — Prevention</span><span>Slide 24</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 24 · MIT08 + MIT09 — Execution Logging and Generated Code Scanning</div>
+  <div class="slide-title">MIT08: Log every generated code execution in full. MIT09: Scan generated code for malicious patterns before it's committed or deployed.</div>
+  <div class="slide-subtitle">The review layer — for when code has already run, or is about to be committed. Detection after the fact, and prevention of slow-burn attacks.</div>
+
+  <div class="block">
+    <div class="block-label purple">MIT08 — Execution logging and behavioral monitoring</div>
+    <p>Every piece of code the agent generates and every execution attempt — successful or not — should be logged with: the full code text, the timestamp, the input that triggered it, the execution result, and any external connections or filesystem operations performed.</p>
+    <p><strong>Why full code logging matters:</strong> Post-incident investigation of an unexpected code execution is impossible without knowing what code ran. Partial logging (just outcomes, not code) leaves the root cause unexaminable.</p>
+    <p><strong>Behavioral anomaly detection:</strong> Over time, a baseline of normal code execution patterns can be established. Deviations — unusual syscalls, unexpected filesystem paths, outbound connections to new destinations, resource consumption spikes — should generate alerts even if the code technically executed "successfully."</p>
+    <p><strong>Immutable audit trail:</strong> Logs must be written to a store the agent cannot modify. An agent that can edit its own execution logs provides no real accountability.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">MIT09 — Generated code scanning before commit or deploy</div>
+    <p>For coding agents that generate application code for review and deployment (rather than executing it immediately in an interpreter), the generated code should pass through security scanning before it reaches a repository or deployment pipeline.</p>
+    <p><strong>Secret scanning:</strong> Tools like <code>truffleHog</code>, <code>git-secrets</code>, or GitHub's built-in secret scanning detect hardcoded credentials, API keys, and tokens in generated code before they're committed.</p>
+    <p><strong>Static Application Security Testing (SAST):</strong> SAST tools (Semgrep, CodeQL, Bandit for Python) can detect backdoor patterns, dangerous function calls, SQL injection vulnerabilities, and other security issues in generated code using the same rules they apply to human-written code.</p>
+    <p><strong>Dependency confusion / malicious import detection:</strong> Generated code that imports unexpected packages should be flagged before those packages are installed in the project. This catches Type 5 backdoor attacks that work through dependencies rather than direct code.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag05-slide-23.html">← Back</a>
+    <a class="btn-primary" href="ag05-slide-25.html">The final mitigation — and how all nine fit together →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

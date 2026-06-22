@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API6:2023 &#x2014; Unrestricted Access to Sensitive Business Flows &#xb7; Slide 18 of 28</title>
+<link rel="stylesheet" href="api06-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API6:2023</span><span class="nav-title">Unrestricted Access to Sensitive Business Flows</span></div>
+  <span class="nav-right">Slide 18 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api06-slide-01.html"></a><a class="seg done" href="api06-slide-02.html"></a><a class="seg done" href="api06-slide-03.html"></a><a class="seg done" href="api06-slide-04.html"></a><a class="seg done" href="api06-slide-05.html"></a><a class="seg done" href="api06-slide-06.html"></a><a class="seg done" href="api06-slide-07.html"></a><a class="seg done" href="api06-slide-08.html"></a><a class="seg done" href="api06-slide-09.html"></a><a class="seg done" href="api06-slide-10.html"></a><a class="seg done" href="api06-slide-11.html"></a><a class="seg done" href="api06-slide-12.html"></a><a class="seg done" href="api06-slide-13.html"></a><a class="seg done" href="api06-slide-14.html"></a><a class="seg done" href="api06-slide-15.html"></a><a class="seg done" href="api06-slide-16.html"></a><a class="seg done" href="api06-slide-17.html"></a><a class="seg active" href="api06-slide-18.html"></a><a class="seg" href="api06-slide-19.html"></a><a class="seg" href="api06-slide-20.html"></a><a class="seg" href="api06-slide-21.html"></a><a class="seg" href="api06-slide-22.html"></a><a class="seg" href="api06-slide-23.html"></a><a class="seg" href="api06-slide-24.html"></a><a class="seg" href="api06-slide-25.html"></a><a class="seg" href="api06-slide-26.html"></a><a class="seg" href="api06-slide-27.html"></a><a class="seg" href="api06-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 4 &#xb7; Prevention</span><span>Slide 18</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 4</span>
+    <div><div class="part-title">Prevention</div><div class="part-count">Slides 18&#x2013;26 &#xb7; Seven mitigations + the full picture</div></div>
+  </div>
+  <div class="slide-eyebrow">Slide 18 &#xb7; Prevention Overview</div>
+  <div class="slide-title">Seven ways to protect sensitive business flows.</div>
+  <div class="slide-subtitle">Business rules. Verification gates. Bot detection. All enforced at the API.</div>
+  <div class="outcome-list">
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F522;</div>
+      <div><div class="outcome-title">MIT 01 &#x2014; Server-Side Business Flow Limits</div><div class="outcome-desc">Purchase caps, cart limits, and action quotas enforced in the API &#x2014; not the UI. Per account, per identity.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x23F1;&#xFE0F;</div>
+      <div><div class="outcome-title">MIT 02 &#x2014; Cart and Reservation Timeouts</div><div class="outcome-desc">Inventory held in a cart is released after a short window (5&#x2013;15 minutes). Prevents indefinite hold-and-abandon tactics.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F9EC;</div>
+      <div><div class="outcome-title">MIT 03 &#x2014; Device Fingerprinting and Bot Detection</div><div class="outcome-desc">Identify bot clients by behavioral signals: missing browser APIs, unrealistic mouse patterns, headless browser indicators.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F916;</div>
+      <div><div class="outcome-title">MIT 04 &#x2014; CAPTCHA on Sensitive Flow Steps</div><div class="outcome-desc">Challenge-response verification at high-value steps: checkout, account creation, referral redemption. Not at every step &#x2014; only where abuse is likely.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x26A1;</div>
+      <div><div class="outcome-title">MIT 05 &#x2014; Human-Speed Pattern Detection</div><div class="outcome-desc">Flag flows completed faster than humanly possible. A checkout completed in 300ms has no legitimate human explanation.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F4DE;</div>
+      <div><div class="outcome-title">MIT 06 &#x2014; Identity Verification Gates</div><div class="outcome-desc">Require phone or email verification before high-value flows. Each real person has a finite number of phone numbers; bot operators can&#x2019;t scale infinitely.</div></div>
+    </div>
+    <div class="outcome-item">
+      <div class="outcome-icon">&#x1F6A8;</div>
+      <div><div class="outcome-title">MIT 07 &#x2014; Business Metric Monitoring</div><div class="outcome-desc">Monitor inventory depletion rate, referral redemption velocity, and account creation spikes. Security logs don&#x2019;t reveal API6 &#x2014; business metrics do.</div></div>
+    </div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api06-slide-17.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api06-slide-19.html">MIT 01: Business flow limits &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

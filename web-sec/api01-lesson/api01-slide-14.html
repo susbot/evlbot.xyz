@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API1:2023 — Broken Object Level Authorization · Slide 14 of 28</title>
+<link rel="stylesheet" href="api01-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API1:2023</span><span class="nav-title">Broken Object Level Authorization</span></div>
+  <span class="nav-right">Slide 14 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="api01-slide-01.html"></a><a class="seg done" href="api01-slide-02.html"></a><a class="seg done" href="api01-slide-03.html"></a><a class="seg done" href="api01-slide-04.html"></a><a class="seg done" href="api01-slide-05.html"></a><a class="seg done" href="api01-slide-06.html"></a><a class="seg done" href="api01-slide-07.html"></a><a class="seg done" href="api01-slide-08.html"></a><a class="seg done" href="api01-slide-09.html"></a><a class="seg done" href="api01-slide-10.html"></a><a class="seg done" href="api01-slide-11.html"></a><a class="seg done" href="api01-slide-12.html"></a><a class="seg done" href="api01-slide-13.html"></a><a class="seg active" href="api01-slide-14.html"></a><a class="seg" href="api01-slide-15.html"></a><a class="seg" href="api01-slide-16.html"></a><a class="seg" href="api01-slide-17.html"></a><a class="seg" href="api01-slide-18.html"></a><a class="seg" href="api01-slide-19.html"></a><a class="seg" href="api01-slide-20.html"></a><a class="seg" href="api01-slide-21.html"></a><a class="seg" href="api01-slide-22.html"></a><a class="seg" href="api01-slide-23.html"></a><a class="seg" href="api01-slide-24.html"></a><a class="seg" href="api01-slide-25.html"></a><a class="seg" href="api01-slide-26.html"></a><a class="seg" href="api01-slide-27.html"></a><a class="seg" href="api01-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 · Attack Scenarios</span><span>Slide 14</span></div>
+</div>
+<div class="slide active">
+
+  <div class="part-banner">
+    <span class="part-num">PART 3</span>
+    <div>
+      <div class="part-title">Attack Scenarios</div>
+      <div class="part-count">Slides 14–17 · Where this shows up in the real world</div>
+    </div>
+  </div>
+
+  <div class="slide-eyebrow">Slide 14 · Scenarios 1–3</div>
+  <div class="slide-title">It's everywhere you shop, see a doctor, or bank.</div>
+  <div class="slide-subtitle">Three industries. Same vulnerability. Different consequences.</div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 01 · E-Commerce</div>
+    <div class="scenario-title">You see a stranger's entire order history.</div>
+    <div class="scenario-body">
+      <p>You buy something online. Your order confirmation links to <strong>/api/orders/58291</strong>. You change it to 58290. You see the previous customer's name, shipping address, items purchased, and partial payment method.</p>
+      <p>Multiply this by an automated script that loops through 100,000 order IDs. Now you have a list of real names, real addresses, and what people bought.</p>
+    </div>
+    <div class="scenario-why"><strong>Why it matters:</strong> Home addresses plus purchase history is enough to enable targeted theft, fraud, or stalking.</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 02 · Healthcare</div>
+    <div class="scenario-title">A patient reads another patient's medical records.</div>
+    <div class="scenario-body">
+      <p>A patient portal exposes records at <strong>/api/patients/3310/records</strong>. A user changes their patient ID. They can now read another patient's diagnoses, medications, lab results, and doctor's notes.</p>
+    </div>
+    <div class="scenario-why"><strong>Why it matters:</strong> Medical data is among the most sensitive personal information that exists. It can affect insurance, employment, and relationships. HIPAA violations alone can cost millions in fines.</div>
+  </div>
+
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 03 · Banking</div>
+    <div class="scenario-title">A customer views another customer's transactions.</div>
+    <div class="scenario-body">
+      <p>A banking app fetches statements at <strong>/api/accounts/AC-10042/transactions</strong>. Changing the account number returns another customer's full transaction history — where they shop, how much they earn, what they spend.</p>
+    </div>
+    <div class="scenario-why"><strong>Why it matters:</strong> Transaction data reveals life patterns. Combined with a name and address, it enables identity theft and targeted financial fraud.</div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api01-slide-13.html">← Back</a>
+    <a class="btn-primary" href="api01-slide-15.html">More scenarios →</a>
+  </div>
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

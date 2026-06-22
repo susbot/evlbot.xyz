@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 15 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 15 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html"></a>
+    <a class="seg done" href="ag04-slide-02.html"></a>
+    <a class="seg done" href="ag04-slide-03.html"></a>
+    <a class="seg done" href="ag04-slide-04.html"></a>
+    <a class="seg done" href="ag04-slide-05.html"></a>
+    <a class="seg done" href="ag04-slide-06.html"></a>
+    <a class="seg done" href="ag04-slide-07.html"></a>
+    <a class="seg done" href="ag04-slide-08.html"></a>
+    <a class="seg done" href="ag04-slide-09.html"></a>
+    <a class="seg done" href="ag04-slide-10.html"></a>
+    <a class="seg done" href="ag04-slide-11.html"></a>
+    <a class="seg done" href="ag04-slide-12.html"></a>
+    <a class="seg done" href="ag04-slide-13.html"></a>
+    <a class="seg done" href="ag04-slide-14.html"></a>
+    <a class="seg active" href="ag04-slide-15.html"></a>
+    <a class="seg" href="ag04-slide-16.html"></a>
+    <a class="seg" href="ag04-slide-17.html"></a>
+    <a class="seg" href="ag04-slide-18.html"></a>
+    <a class="seg" href="ag04-slide-19.html"></a>
+    <a class="seg" href="ag04-slide-20.html"></a>
+    <a class="seg" href="ag04-slide-21.html"></a>
+    <a class="seg" href="ag04-slide-22.html"></a>
+    <a class="seg" href="ag04-slide-23.html"></a>
+    <a class="seg" href="ag04-slide-24.html"></a>
+    <a class="seg" href="ag04-slide-25.html"></a>
+    <a class="seg" href="ag04-slide-26.html"></a>
+    <a class="seg" href="ag04-slide-27.html"></a>
+    <a class="seg" href="ag04-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Attack Scenarios</span><span>Slide 15</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 15 · Scenarios 3–4</div>
+  <div class="slide-title">Scenario 3: Malicious Postmark MCP Impersonator — Scenario 4: AgentSmith Prompt-Hub Proxy Attack</div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-num">Scenario 3</span>
+      <span class="scenario-name">Malicious MCP Server Impersonating Postmark on npm (2025)</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>What happened:</strong> A malicious MCP server was published to npm under a name designed to impersonate the legitimate Postmark email API MCP server. It offered the same API, parameter names, and documentation. When AI assistants or developers installed and used it to send emails, the server silently BCC'd every outgoing email to an attacker-controlled address.</p>
+      <p><strong>Why it worked:</strong> Agents select tools based on their name and description. The impersonator was indistinguishable at selection time. The malicious behavior only became visible in email server logs — which users rarely check for BCC recipients.</p>
+      <p><strong>Historical significance:</strong> This is documented as the first in-the-wild malicious MCP server discovered in a public registry. It signals the beginning of an impersonation ecosystem targeting the growing MCP tool marketplace.</p>
+      <div class="scenario-tag red">Type 2 — Impersonation / typosquatting</div>
+    </div>
+  </div>
+
+  <div class="scenario-block">
+    <div class="scenario-header">
+      <span class="scenario-num">Scenario 4</span>
+      <span class="scenario-name">AgentSmith Prompt-Hub Proxy Attack</span>
+    </div>
+    <div class="scenario-body">
+      <p><strong>What happened:</strong> A research team demonstrated an attack where a compromised prompt hub — a service agents use to load shared prompt templates and orchestration scripts — acted as a proxy layer between agents. The compromised hub exfiltrated all data passing through it: prompts, responses, retrieved documents, user inputs, and agentic outputs.</p>
+      <p><strong>The supply chain failure:</strong> The prompt hub was a shared infrastructure component. Every agent that used it for template loading was simultaneously affected. The agent-to-agent communication passing through the hub was intercepted, logged, and manipulated.</p>
+      <p><strong>The key risk:</strong> Shared prompt hubs are becoming common in enterprise deployments — they allow teams to centralize and version-control agent behaviors. Compromising one hub can affect an entire organization's agent fleet at once.</p>
+      <div class="scenario-tag orange">Type 3 — Compromised shared infrastructure / proxy</div>
+    </div>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-14.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-16.html">Scenarios 5–6 →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

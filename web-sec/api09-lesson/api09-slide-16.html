@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API9:2023 &#x2014; Improper Inventory Management &#xb7; Slide 16 of 28</title>
+<link rel="stylesheet" href="api09-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API9:2023</span><span class="nav-title">Improper Inventory Management</span></div>
+  <span class="nav-right">Slide 16 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api09-slide-01.html"></a><a class="seg done" href="api09-slide-02.html"></a><a class="seg done" href="api09-slide-03.html"></a><a class="seg done" href="api09-slide-04.html"></a><a class="seg done" href="api09-slide-05.html"></a><a class="seg done" href="api09-slide-06.html"></a><a class="seg done" href="api09-slide-07.html"></a><a class="seg done" href="api09-slide-08.html"></a><a class="seg done" href="api09-slide-09.html"></a><a class="seg done" href="api09-slide-10.html"></a><a class="seg done" href="api09-slide-11.html"></a><a class="seg done" href="api09-slide-12.html"></a><a class="seg done" href="api09-slide-13.html"></a><a class="seg done" href="api09-slide-14.html"></a><a class="seg done" href="api09-slide-15.html"></a><a class="seg active" href="api09-slide-16.html"></a><a class="seg" href="api09-slide-17.html"></a><a class="seg" href="api09-slide-18.html"></a><a class="seg" href="api09-slide-19.html"></a><a class="seg" href="api09-slide-20.html"></a><a class="seg" href="api09-slide-21.html"></a><a class="seg" href="api09-slide-22.html"></a><a class="seg" href="api09-slide-23.html"></a><a class="seg" href="api09-slide-24.html"></a><a class="seg" href="api09-slide-25.html"></a><a class="seg" href="api09-slide-26.html"></a><a class="seg" href="api09-slide-27.html"></a><a class="seg" href="api09-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 3 &#xb7; Attack Scenarios</span><span>Slide 16</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 16 &#xb7; Scenario 3</div>
+  <div class="slide-title">An undocumented endpoint with hardcoded credentials was never in scope for any security review.</div>
+  <div class="slide-subtitle">Undocumented means un-reviewed, un-monitored, and un-patched. Permanently.</div>
+  <div class="source-tag">&#x1F4C4; OWASP API Security Top 10 2023 &#xb7; API9:2023 Example Attack Scenarios</div>
+  <div class="scenario-card">
+    <div class="scenario-num">SCENARIO 3</div>
+    <div class="scenario-title">Test/debug endpoint in production with hardcoded admin access</div>
+    <div class="scenario-body">
+      <p>Two years ago, a developer added a test endpoint to speed up integration testing: <code>POST /api/internal/test-auth</code>. It accepts a hardcoded token (<code>test-token-dev-2022</code>) and returns a full admin session. The developer intended to remove it before production deployment. It was never removed.</p>
+      <p>The endpoint is not in the API documentation. It was not in scope for the last penetration test. It is not monitored in the security log analysis because analysts only alert on documented endpoint access patterns. It has been live in production for two years, accessible from the internet, known only to the original developer (who has since left the company).</p>
+      <p>An attacker fuzzes the API with a wordlist of common test/debug paths. <code>/api/internal/test-auth</code> returns HTTP 405 (Method Not Allowed) on GET &#x2014; which signals the endpoint exists. They switch to POST with the hardcoded token from the exposed JavaScript source file and receive a full admin session token. They have administrator access to every user account in the system.</p>
+    </div>
+    <div class="scenario-why"><strong>Why this is API9:</strong> The application&#x2019;s documented API was secure. The penetration test found no issues. But the actual API surface included an endpoint that was never part of any security process. Incomplete inventory made the security investment irrelevant for the most dangerous entry point.</div>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api09-slide-15.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api09-slide-17.html">The pattern &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

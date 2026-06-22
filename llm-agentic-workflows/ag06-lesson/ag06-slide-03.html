@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG06:2026 — Memory &amp; Context Poisoning · Slide 3 of 28</title>
+<link rel="stylesheet" href="ag06-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG06:2026</span>
+    <span class="nav-title">Memory &amp; Context Poisoning</span>
+  </div>
+  <span class="nav-right">Slide 3 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag06-slide-01.html"></a><a class="seg done" href="ag06-slide-02.html"></a>
+    <a class="seg active" href="ag06-slide-03.html"></a>
+    <a class="seg" href="ag06-slide-04.html"></a><a class="seg" href="ag06-slide-05.html"></a><a class="seg" href="ag06-slide-06.html"></a><a class="seg" href="ag06-slide-07.html"></a><a class="seg" href="ag06-slide-08.html"></a><a class="seg" href="ag06-slide-09.html"></a><a class="seg" href="ag06-slide-10.html"></a><a class="seg" href="ag06-slide-11.html"></a><a class="seg" href="ag06-slide-12.html"></a><a class="seg" href="ag06-slide-13.html"></a><a class="seg" href="ag06-slide-14.html"></a><a class="seg" href="ag06-slide-15.html"></a><a class="seg" href="ag06-slide-16.html"></a><a class="seg" href="ag06-slide-17.html"></a><a class="seg" href="ag06-slide-18.html"></a><a class="seg" href="ag06-slide-19.html"></a><a class="seg" href="ag06-slide-20.html"></a><a class="seg" href="ag06-slide-21.html"></a><a class="seg" href="ag06-slide-22.html"></a><a class="seg" href="ag06-slide-23.html"></a><a class="seg" href="ag06-slide-24.html"></a><a class="seg" href="ag06-slide-25.html"></a><a class="seg" href="ag06-slide-26.html"></a><a class="seg" href="ag06-slide-27.html"></a><a class="seg" href="ag06-slide-28.html"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — The Problem</span><span>Slide 3</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 3 · Definition Part 1</div>
+  <div class="slide-title">The OWASP definition, broken into its essential parts.</div>
+
+  <div class="callout amber">
+    <div class="callout-label">OWASP ASI06:2026 — Memory &amp; Context Poisoning</div>
+    <p><em>"Memory and Context Poisoning occurs when an attacker manipulates the data stored in an agent's memory systems — including conversational context, RAG knowledge bases, session state, and long-term storage — causing the agent to operate based on false, misleading, or attacker-controlled information across one or more interactions."</em></p>
+  </div>
+
+  <div class="block">
+    <div class="block-label purple">Part 1: "the data stored in an agent's memory systems"</div>
+    <p>The attack targets stored data — not just what's being said right now. This distinguishes AG06 from live prompt injection (which manipulates the current conversation turn). Memory poisoning targets information that will persist and be retrieved later. The attack surface includes: vector database entries, RAG document stores, session logs, user preference stores, agent scratchpads, and any other external storage the agent reads from.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label yellow">Part 2: "causing the agent to operate based on false, misleading, or attacker-controlled information"</div>
+    <p>The goal is not to disrupt the agent's current response — it's to shape future responses by corrupting the information the agent treats as trusted background knowledge. The agent retrieves the poisoned entry as if it were legitimate prior context, learned fact, or established preference. It doesn't know the information was planted — it just knows it "remembers" it.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label red">Part 3: "across one or more interactions"</div>
+    <p>The persistence dimension is what distinguishes this risk. A poisoned memory entry may affect every future interaction that retrieves it — potentially hundreds or thousands of conversations — from a single write event that occurred once in the past. The attack multiplies across time.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag06-slide-02.html">← Back</a>
+    <a class="btn-primary" href="ag06-slide-04.html">The four types of agent memory →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

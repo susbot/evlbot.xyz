@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API3:2023 — Broken Object Property Level Authorization · Slide 13 of 28</title>
+<link rel="stylesheet" href="api03-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API3:2023</span><span class="nav-title">Broken Object Property Level Authorization</span></div>
+  <span class="nav-right">Slide 13 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api03-slide-01.html"></a><a class="seg done" href="api03-slide-02.html"></a><a class="seg done" href="api03-slide-03.html"></a><a class="seg done" href="api03-slide-04.html"></a><a class="seg done" href="api03-slide-05.html"></a><a class="seg done" href="api03-slide-06.html"></a><a class="seg done" href="api03-slide-07.html"></a><a class="seg done" href="api03-slide-08.html"></a><a class="seg done" href="api03-slide-09.html"></a><a class="seg done" href="api03-slide-10.html"></a><a class="seg done" href="api03-slide-11.html"></a><a class="seg done" href="api03-slide-12.html"></a><a class="seg active" href="api03-slide-13.html"></a><a class="seg" href="api03-slide-14.html"></a><a class="seg" href="api03-slide-15.html"></a><a class="seg" href="api03-slide-16.html"></a><a class="seg" href="api03-slide-17.html"></a><a class="seg" href="api03-slide-18.html"></a><a class="seg" href="api03-slide-19.html"></a><a class="seg" href="api03-slide-20.html"></a><a class="seg" href="api03-slide-21.html"></a><a class="seg" href="api03-slide-22.html"></a><a class="seg" href="api03-slide-23.html"></a><a class="seg" href="api03-slide-24.html"></a><a class="seg" href="api03-slide-25.html"></a><a class="seg" href="api03-slide-26.html"></a><a class="seg" href="api03-slide-27.html"></a><a class="seg" href="api03-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 2 · How It Works</span><span>Slide 13</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 13 · Real Incident: Mass Assignment</div>
+  <div class="slide-title">One extra parameter. Admin access to 100 million repositories.</div>
+  <div class="slide-subtitle">GitHub, 2012 — the canonical mass assignment breach.</div>
+
+  <div class="real-incident">
+    <div class="real-incident-tag">Real Incident · March 4, 2012</div>
+    <div class="real-incident-title">GitHub — Mass Assignment via Ruby on Rails Auto-Binding</div>
+    <div class="real-incident-body">
+      <p>GitHub's API endpoint for adding SSH public keys used Ruby on Rails' <code>update_attributes(params[:public_key])</code> — which bound all incoming parameters to the model without restriction.</p>
+      <p>The endpoint was designed to accept: <code>public_key[key]</code> (the SSH key content). Developer Egor Homakov added one extra parameter: <code>public_key[user_id]=4223</code> — the user ID of the Ruby on Rails GitHub organization.</p>
+      <p><strong>Rails bound the user_id field to the public key record, associating Homakov's SSH key with the Rails organization.</strong> He now had write access to the Rails master repository.</p>
+      <p>He demonstrated the access by creating an issue timestamped in the year 3012 and pushing a commit to the Rails codebase. GitHub fixed the vulnerability within 1 hour. The Rails framework added mass assignment protection within 5 hours.</p>
+    </div>
+    <div class="real-incident-lesson"><strong>Lesson:</strong> Auto-binding framework features must always be combined with an explicit allowlist of permitted fields. A developer who adds a new field to the model must actively decide whether it should be user-settable — the framework will not make that decision for them.</div>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">Homakov had reported this first</div>
+    <p>Before exploiting it, Homakov had reported the mass assignment vulnerability as a bug on GitHub's issue tracker. The report was dismissed and the thread was deleted. He demonstrated it to force the fix — and GitHub acknowledged the bug was real and restored his account after review.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="api03-slide-12.html">← Back</a>
+    <a class="btn-primary" href="api03-slide-14.html">See it in attack scenarios →</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">📄 View sources</a></div>
+</body>
+</html>

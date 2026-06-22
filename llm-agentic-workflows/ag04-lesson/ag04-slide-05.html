@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG04:2026 — Agentic Supply Chain Vulnerabilities · Slide 5 of 28</title>
+<link rel="stylesheet" href="ag04-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG04:2026</span>
+    <span class="nav-title">Agentic Supply Chain Vulnerabilities</span>
+  </div>
+  <span class="nav-right">Slide 5 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag04-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag04-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag04-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag04-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg active" href="ag04-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg" href="ag04-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg" href="ag04-slide-07.html" title="Slide 7 · What This Is — And What It Isn't"></a>
+    <a class="seg" href="ag04-slide-08.html" title="Slide 8 · Why Runtime Composition Changes Everything"></a>
+    <a class="seg" href="ag04-slide-09.html" title="Slide 9 · Six Vulnerability Types"></a>
+    <a class="seg" href="ag04-slide-10.html" title="Slide 10 · Type 1 — Poisoned Prompts and Descriptors"></a>
+    <a class="seg" href="ag04-slide-11.html" title="Slide 11 · Type 1 — Real Example"></a>
+    <a class="seg" href="ag04-slide-12.html" title="Slide 12 · Type 2 — Impersonation and Typosquatting"></a>
+    <a class="seg" href="ag04-slide-13.html" title="Slide 13 · Types 3–4 — Third-Party Agents and Poisoned Knowledge"></a>
+    <a class="seg" href="ag04-slide-14.html" title="Slide 14 · Scenarios 1–2"></a>
+    <a class="seg" href="ag04-slide-15.html" title="Slide 15 · Scenarios 3–4"></a>
+    <a class="seg" href="ag04-slide-16.html" title="Slide 16 · Scenarios 5–6"></a>
+    <a class="seg" href="ag04-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag04-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag04-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag04-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag04-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag04-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag04-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag04-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag04-slide-25.html" title="Slide 25 · Mitigations 7–8"></a>
+    <a class="seg" href="ag04-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag04-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag04-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 1 — What Is It?</span><span>Slide 5</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 5 · The Outcomes</div>
+  <div class="slide-title">What AG04 attacks actually do — concrete, documented consequences</div>
+  <div class="slide-subtitle">Supply chain attacks against agentic systems can achieve outcomes that go far beyond what a single compromised app would allow.</div>
+
+  <div class="outcome-list">
+
+    <div class="outcome-item">
+      <div class="outcome-icon">🔑</div>
+      <div>
+        <div class="outcome-title">Credential exfiltration at scale</div>
+        <div class="outcome-desc">A poisoned package installed by a coding agent silently reads SSH keys, API tokens, and environment variables from the developer's machine and sends them to the attacker. This happened in a documented 2025 incident involving a compromised npm package automatically installed by AI coding agents.</div>
+      </div>
+    </div>
+
+    <div class="outcome-item">
+      <div class="outcome-icon">📧</div>
+      <div>
+        <div class="outcome-title">Silent communication interception</div>
+        <div class="outcome-desc">A malicious MCP server impersonating a legitimate email service secretly BCC'd all outgoing emails to an attacker-controlled address — while the agent and user saw no indication anything was wrong. Every email sent through the agent was copied to the attacker.</div>
+      </div>
+    </div>
+
+    <div class="outcome-item">
+      <div class="outcome-icon">📂</div>
+      <div>
+        <div class="outcome-title">Private data exfiltration via hidden tool commands</div>
+        <div class="outcome-desc">Hidden instructions embedded in a tool's metadata caused an AI assistant to exfiltrate the user's private repository data when the tool was invoked — without any visible indication to the user that anything unusual was happening.</div>
+      </div>
+    </div>
+
+    <div class="outcome-item">
+      <div class="outcome-icon">🧠</div>
+      <div>
+        <div class="outcome-title">Gradual belief manipulation via poisoned knowledge</div>
+        <div class="outcome-desc">A compromised RAG plugin that fetches context from a third-party indexer can gradually bias an agent's responses by seeding the index with crafted entries — shifting the agent's outputs in ways that serve the attacker without any single action being obviously malicious.</div>
+      </div>
+    </div>
+
+    <div class="outcome-item">
+      <div class="outcome-icon">🔄</div>
+      <div>
+        <div class="outcome-title">Response hijacking and prompt proxying</div>
+        <div class="outcome-desc">A compromised prompt hub or proxy layer intercepts the agent's responses, exfiltrates data, and manipulates what the agent sends back — effectively acting as a man-in-the-middle between the agent and its outputs, with no indication to the user or operator.</div>
+      </div>
+    </div>
+
+    <div class="outcome-item">
+      <div class="outcome-icon">💥</div>
+      <div>
+        <div class="outcome-title">Wide-scale deployment cascade</div>
+        <div class="outcome-desc">A malicious component pushed through a shared registry, MCP server, or update channel can simultaneously compromise every agent deployment that trusts that source — turning a single supply chain compromise into a mass incident affecting thousands of users before the attack is detected.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag04-slide-04.html">← Back</a>
+    <a class="btn-primary" href="ag04-slide-06.html">Who does this — and how do they get in? →</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">📄 View sources for this lesson</a></div>
+</body>
+</html>

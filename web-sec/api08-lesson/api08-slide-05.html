@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>API8:2023 &#x2014; Security Misconfiguration &#xb7; Slide 5 of 28</title>
+<link rel="stylesheet" href="api08-shared.css">
+</head>
+<body>
+<div class="top-nav">
+  <div class="nav-left"><span class="nav-badge">API8:2023</span><span class="nav-title">Security Misconfiguration</span></div>
+  <span class="nav-right">Slide 5 of 28</span>
+</div>
+<div class="progress-wrap">
+  <div class="tab-nav"><a class="seg done" href="api08-slide-01.html"></a><a class="seg done" href="api08-slide-02.html"></a><a class="seg done" href="api08-slide-03.html"></a><a class="seg done" href="api08-slide-04.html"></a><a class="seg active" href="api08-slide-05.html"></a><a class="seg" href="api08-slide-06.html"></a><a class="seg" href="api08-slide-07.html"></a><a class="seg" href="api08-slide-08.html"></a><a class="seg" href="api08-slide-09.html"></a><a class="seg" href="api08-slide-10.html"></a><a class="seg" href="api08-slide-11.html"></a><a class="seg" href="api08-slide-12.html"></a><a class="seg" href="api08-slide-13.html"></a><a class="seg" href="api08-slide-14.html"></a><a class="seg" href="api08-slide-15.html"></a><a class="seg" href="api08-slide-16.html"></a><a class="seg" href="api08-slide-17.html"></a><a class="seg" href="api08-slide-18.html"></a><a class="seg" href="api08-slide-19.html"></a><a class="seg" href="api08-slide-20.html"></a><a class="seg" href="api08-slide-21.html"></a><a class="seg" href="api08-slide-22.html"></a><a class="seg" href="api08-slide-23.html"></a><a class="seg" href="api08-slide-24.html"></a><a class="seg" href="api08-slide-25.html"></a><a class="seg" href="api08-slide-26.html"></a><a class="seg" href="api08-slide-27.html"></a><a class="seg" href="api08-slide-28.html"></a></div>
+  <div class="progress-labels"><span>Part 1 &#xb7; What Is It?</span><span>Slide 5</span></div>
+</div>
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 5 &#xb7; Error Messages</div>
+  <div class="slide-title">A stack trace in production is a tour of your internal infrastructure.</div>
+  <div class="slide-subtitle">What attackers learn from verbose API errors &#x2014; and why developers leave debug mode on.</div>
+  <div class="block">
+    <div class="block-label pink">What a verbose error exposes</div>
+    <p>A single unhandled exception response can reveal: the framework and version (Java Spring 2.7.3, Django 4.1), internal file paths (/app/src/services/UserService.java:142), SQL queries with table and column names, library names and versions (cross-referenceable with CVE databases), environment variable names, and sometimes partial data from the failed operation.</p>
+  </div>
+  <div class="scenario-card">
+    <div class="scenario-num">EXAMPLE</div>
+    <div class="scenario-title">What a developer sees vs. what an attacker reads</div>
+    <div class="scenario-body">
+      <p><strong>The error:</strong> <code>POST /api/users/search</code> with a malformed input returns HTTP 500 with body:</p>
+      <p><code>java.sql.SQLException: You have an error in your SQL syntax near &#x2019;&#x2019; at line 1 &#x2014; Query: SELECT * FROM user_accounts WHERE email = &#x2019;&#x2019; AND status = &#x2019;active&#x2019; AND org_id = 42</code></p>
+      <p><code>at com.company.api.repository.UserRepository.findByEmail(UserRepository.java:87)</code></p>
+      <p><code>at com.company.api.service.UserSearchService.search(UserSearchService.java:134)</code></p>
+    </div>
+    <div class="scenario-why"><strong>What the attacker learned:</strong> (1) The database table is named <code>user_accounts</code>. (2) Columns include <code>email</code>, <code>status</code>, and <code>org_id</code>. (3) The query is not parameterized (the input is directly in the SQL string &#x2014; SQL injection likely). (4) The exact source file and line number. This verbose error just handed the attacker a SQL injection roadmap.</div>
+  </div>
+  <div class="callout orange">
+    <div class="callout-label">Why debug mode stays on</div>
+    <p>Debug mode is enabled during development for good reason &#x2014; detailed errors speed up debugging. The failure is a deployment process that doesn&#x2019;t enforce environment-specific configuration. <code>DEBUG=True</code> is committed to the repo, never changed for production, and ships unchanged. The fix is not removing debug mode from development &#x2014; it&#x2019;s ensuring production deployments enforce <code>DEBUG=False</code> independently of what&#x2019;s in source control.</p>
+  </div>
+  <div class="btn-row">
+    <a class="btn-secondary" href="api08-slide-04.html">&#x2190; Back</a>
+    <a class="btn-primary" href="api08-slide-06.html">Why does this happen? &#x2192;</a>
+  </div>
+
+</div>
+<div class="page-footer"><a href="sources.html">&#x1F4C4; View sources</a></div>
+</body>
+</html>

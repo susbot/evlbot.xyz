@@ -1,0 +1,25 @@
+node_modules/
+package.json
+package-lock.json
+
+# IDE / editor
+.idea/
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Build / temp
+dist/
+.cache/
+*.log
+*.tmp
+
+# Local assets not for repo
+LESSON-AUTHORING-GUIDE.md
+evlbot-avatar.svg
+evlbot-banner.svg
+og-image.svg

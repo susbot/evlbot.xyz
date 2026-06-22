@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AG01:2026 — Agent Goal Hijack · Slide 17 of 28</title>
+<link rel="stylesheet" href="ag01-shared.css">
+</head>
+<body>
+
+<div class="top-nav">
+  <div class="nav-left">
+    <span class="nav-badge">AG01:2026</span>
+    <span class="nav-title">Agent Goal Hijack</span>
+  </div>
+  <span class="nav-right">Slide 17 of 28</span>
+</div>
+
+<div class="progress-wrap">
+  <div class="tab-nav">
+    <a class="seg done" href="ag01-slide-01.html" title="Slide 1 · The Setup"></a>
+    <a class="seg done" href="ag01-slide-02.html" title="Slide 2 · The Word"></a>
+    <a class="seg done" href="ag01-slide-03.html" title="Slide 3 · The Definition Part 1"></a>
+    <a class="seg done" href="ag01-slide-04.html" title="Slide 4 · The Definition Part 2"></a>
+    <a class="seg done" href="ag01-slide-05.html" title="Slide 5 · The Outcomes"></a>
+    <a class="seg done" href="ag01-slide-06.html" title="Slide 6 · The Attackers"></a>
+    <a class="seg done" href="ag01-slide-07.html" title="Slide 7 · Prompt Injection vs Goal Hijack"></a>
+    <a class="seg done" href="ag01-slide-08.html" title="Slide 8 · Why Agents Are Different"></a>
+    <a class="seg done" href="ag01-slide-09.html" title="Slide 9 · Two Types Overview"></a>
+    <a class="seg done" href="ag01-slide-10.html" title="Slide 10 · Direct Goal Manipulation"></a>
+    <a class="seg done" href="ag01-slide-11.html" title="Slide 11 · Direct — Real Example"></a>
+    <a class="seg done" href="ag01-slide-12.html" title="Slide 12 · Indirect Instruction Injection"></a>
+    <a class="seg done" href="ag01-slide-13.html" title="Slide 13 · Indirect — Real Example"></a>
+    <a class="seg done" href="ag01-slide-14.html" title="Slide 14 · Scenarios 1-3"></a>
+    <a class="seg done" href="ag01-slide-15.html" title="Slide 15 · Scenarios 4-6"></a>
+    <a class="seg done" href="ag01-slide-16.html" title="Slide 16 · Scenarios 7-9"></a>
+    <a class="seg active" href="ag01-slide-17.html" title="Slide 17 · The Pattern"></a>
+    <a class="seg" href="ag01-slide-18.html" title="Slide 18 · Prevention Overview"></a>
+    <a class="seg" href="ag01-slide-19.html" title="Slide 19 · Mitigation 1"></a>
+    <a class="seg" href="ag01-slide-20.html" title="Slide 20 · Mitigation 2"></a>
+    <a class="seg" href="ag01-slide-21.html" title="Slide 21 · Mitigation 3"></a>
+    <a class="seg" href="ag01-slide-22.html" title="Slide 22 · Mitigation 4"></a>
+    <a class="seg" href="ag01-slide-23.html" title="Slide 23 · Mitigation 5"></a>
+    <a class="seg" href="ag01-slide-24.html" title="Slide 24 · Mitigation 6"></a>
+    <a class="seg" href="ag01-slide-25.html" title="Slide 25 · Mitigation 7"></a>
+    <a class="seg" href="ag01-slide-26.html" title="Slide 26 · The Matrix"></a>
+    <a class="seg" href="ag01-slide-27.html" title="Slide 27 · Quiz"></a>
+    <a class="seg" href="ag01-slide-28.html" title="Slide 28 · Complete"></a>
+  </div>
+  <div class="progress-labels"><span>Part 3 — Attack Scenarios</span><span>Slide 17</span></div>
+</div>
+
+<div class="slide active">
+
+  <div class="slide-eyebrow">Slide 17 · The Pattern</div>
+  <div class="slide-title">Every one of those nine attacks worked the same way</div>
+  <div class="slide-subtitle">The root cause behind every scenario — and why it can't be patched away.</div>
+
+  <div class="callout purple">
+    <div class="callout-label">The root cause</div>
+    <p><strong>Agents use natural language to represent goals, plans, and reasoning — and natural language cannot distinguish between instructions from the developer and instructions from an attacker.</strong></p>
+    <p>There is no cryptographic signature on a system prompt. There is no type system that separates "trusted intent" from "untrusted data." When an agent reads an email, a document, a web page, or an API response, all of that content enters the same context window as the developer's instructions and the user's request. The agent weighs it all together.</p>
+  </div>
+
+  <div class="block">
+    <div class="block-label blue">The three-step pattern every hijack follows</div>
+    <p><strong>1 — Attacker-controlled content reaches the agent's context.</strong> Whether through direct input or through content the agent retrieves, the attacker's instructions enter the agent's reasoning space. The entry point varies. The mechanism is always the same.</p>
+    <p><strong>2 — The agent integrates the instructions into its goal state.</strong> Because the agent cannot distinguish malicious instructions from legitimate ones by origin alone, it treats the attacker's instructions as part of its task. The original goal is displaced, extended, or overridden.</p>
+    <p><strong>3 — The agent executes the attacker's objective using its own legitimate access.</strong> No credentials are stolen. No vulnerabilities are exploited. The agent simply does what agents do — takes actions, uses tools, accesses systems — but for the wrong principal. The victim's trust in the agent becomes the attack's delivery mechanism.</p>
+  </div>
+
+  <div class="callout orange">
+    <div class="callout-label">Why this can't be patched</div>
+    <p>This isn't a bug in any particular agent implementation. It's a property of how language models process context. <strong>The same capability that lets an agent understand nuanced human instructions is what lets an attacker's instructions work.</strong> You cannot remove one without removing the other. Defense requires architectural controls — not a software update.</p>
+  </div>
+
+  <div class="btn-row">
+    <a class="btn-secondary" href="ag01-slide-16.html">← Back</a>
+    <a class="btn-primary" href="ag01-slide-18.html">Understood → Now show me how to defend against it</a>
+  </div>
+
+</div>
+
+<div class="page-footer"><a href="sources.html">View sources for this lesson</a></div>
+</body>
+</html>
