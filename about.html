@@ -8,21 +8,106 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230ea5e9'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='30' font-weight='bold' fill='%23fff' text-anchor='middle' dominant-baseline='middle'%3E%26lt;/%26gt;%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="main.css">
 <style>
-.wrap { max-width: 760px; margin: 0 auto; padding: 0 20px 60px; }
-.back-link { display: inline-flex; align-items: center; gap: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: var(--accent-bright); text-decoration: none; margin: 24px 0 8px; }
-.back-link:hover { opacity: .8; }
-.about-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-.about-title { font-size: clamp(24px, 5vw, 32px); font-weight: 600; color: #fff; line-height: 1.2; margin-bottom: 24px; }
-.about-body { font-size: 14px; color: var(--subtle); line-height: 1.9; margin-bottom: 16px; }
+/* Base: desktop scroll snap */
+html, body { height: 100%; overflow: hidden; }
+.top-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; }
+.scroll-container {
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  padding-top: 52px;
+  box-sizing: border-box;
+}
+.section {
+  scroll-snap-align: start;
+  height: calc(100vh - 52px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* Mobile: normal scroll */
+@media (max-width: 767px) {
+  html, body { height: auto; overflow: auto; }
+  .top-nav { position: sticky; top: 0; z-index: 100; }
+  .scroll-container { height: auto; overflow: visible; padding-top: 0; }
+  .section { height: auto; display: block; padding: 40px 20px; border-bottom: 1px solid var(--border); }
+  .side-dots { display: none; }
+}
+
+.section-inner {
+  max-width: 680px;
+  width: 100%;
+}
+
+/* Side dots */
+.side-dots {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 200;
+}
+.side-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  border: 1px solid var(--muted);
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+}
+.side-dot.active {
+  background: #fff;
+  border-color: #fff;
+  transform: scale(1.3);
+  box-shadow: 0 0 8px rgba(255,255,255,0.6);
+}
+
+/* Section labels */
+.section-eyebrow { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.section-title { font-size: clamp(24px, 5vw, 36px); font-weight: 600; color: #fff; line-height: 1.2; margin-bottom: 24px; }
+.about-body { font-size: 14px; color: var(--subtle); line-height: 1.9; margin-bottom: 14px; }
 .about-body strong { color: var(--text); }
-.divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
-.connect-label { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
-.connect-links { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+/* Connect */
+.connect-links { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
 .connect-link { display: inline-flex; align-items: center; gap: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: #ffffff; background: rgba(226,232,240,0.06); border: 1px solid #e2e8f0; border-radius: 4px; padding: 6px 12px; text-decoration: none; transition: opacity .15s; }
 .connect-link:hover { opacity: .8; }
+
+/* Timeline */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.tl-item { display: flex; gap: 16px; }
+.tl-left { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
+.tl-dot { width: 12px; height: 12px; border-radius: 50%; background: #fff; box-shadow: 0 0 8px 2px rgba(167,139,250,0.8), 0 0 20px 4px rgba(56,189,248,0.4); flex-shrink: 0; animation: pulse-dot 2.5s ease-in-out infinite; }
+@keyframes pulse-dot { 0%,100%{ box-shadow: 0 0 8px 2px rgba(167,139,250,0.8), 0 0 20px 4px rgba(56,189,248,0.4); } 50%{ box-shadow: 0 0 14px 4px rgba(56,189,248,0.9), 0 0 30px 8px rgba(167,139,250,0.5); } }
+.tl-line { width: 2px; flex: 1; min-height: 20px; margin-top: 6px; border-radius: 99px; background: linear-gradient(180deg, rgba(167,139,250,0.8) 0%, rgba(56,189,248,0.6) 40%, rgba(245,158,11,0.4) 70%, rgba(167,139,250,0.2) 100%); background-size: 100% 200%; animation: galaxy-flow 3s linear infinite; }
+@keyframes galaxy-flow { 0%{ background-position: 0 0; } 100%{ background-position: 0 200%; } }
+.tl-right { flex: 1; padding-bottom: 20px; }
+.tl-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; cursor: pointer; transition: border-color .18s, box-shadow .18s; user-select: none; }
+.tl-header:hover { border-color: rgba(167,139,250,0.6); box-shadow: 0 0 16px rgba(167,139,250,0.12); }
+.tl-company { font-size: 15px; font-weight: 600; color: #fff; margin-bottom: 3px; }
+.tl-role { font-size: 12px; color: var(--muted); font-family: 'IBM Plex Mono', monospace; }
+.tl-meta { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.tl-date { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); }
+.tl-chevron { font-size: 18px; color: var(--muted); transition: transform .25s; line-height: 1; }
+.tl-item.open .tl-chevron { transform: rotate(90deg); }
+.tl-item.open .tl-header { border-color: rgba(167,139,250,0.6); box-shadow: 0 0 20px rgba(167,139,250,0.15); }
+.tl-body { overflow: hidden; max-height: 0; transition: max-height .3s ease, padding .3s ease; padding: 0 16px; font-size: 13px; color: var(--subtle); line-height: 1.75; }
+.tl-item.open .tl-body { max-height: 400px; padding: 14px 16px; }
+/* Stars canvas */
+#starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+.top-nav, .side-dots, .scroll-container { position: relative; z-index: 1; }
 </style>
 </head>
 <body>
+<canvas id="starfield"></canvas>
 
 <nav class="top-nav">
   <a href="index.html" style="text-decoration:none;display:flex;align-items:center;gap:12px;">
@@ -31,29 +116,162 @@
   </a>
 </nav>
 
-<div class="wrap">
+<!-- Side dots -->
+<div class="side-dots">
+  <div class="side-dot active" onclick="scrollToSection(0)" title="About"></div>
+  <div class="side-dot" onclick="scrollToSection(1)" title="Connect"></div>
+  <div class="side-dot" onclick="scrollToSection(2)" title="Experience"></div>
+</div>
 
-  <a class="back-link" href="index.html">&#x2190; Back to home</a>
+<div class="scroll-container" id="scrollContainer">
 
-  <div class="about-eyebrow">About</div>
-  <h1 class="about-title">Hey, I'm Susbot.</h1>
+  <!-- Section 1: About -->
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-eyebrow">About</div>
+      <h1 class="section-title">Hey, I'm Susbot.</h1>
+      <p class="about-body">I built evlbot.xyz because I couldn't find the kind of security content that worked for how <strong>I</strong> learn. Not walls of text. Not hour-long videos. Just clear, visual, slide-by-slide breakdowns of concepts that actually matter.</p>
+      <p class="about-body">I'm a <strong>different kind of learner</strong> — and I figured if I needed this, someone else did too. So I turned the official OWASP documentation into interactive courses anyone can follow, for free.</p>
+      <p class="about-body">This is an independent project. No company behind it, no funding — just curiosity and a lot of late nights. If it helps you, that's enough.</p>
+    </div>
+  </div>
 
-  <p class="about-body">I built evlbot.xyz because I couldn't find the kind of security content that worked for how <strong>I</strong> learn. Not walls of text. Not hour-long videos. Just clear, visual, slide-by-slide breakdowns of concepts that actually matter.</p>
+  <!-- Section 2: Connect -->
+  <div class="section">
+    <div class="section-inner">
+      <div class="section-eyebrow">Connect &amp; Support</div>
+      <h2 class="section-title">Let's connect.</h2>
+      <p class="about-body">Find me on LinkedIn or support the project on Ko-fi — every bit helps keep this free and growing.</p>
+      <div class="connect-links">
+        <a class="connect-link" href="https://www.linkedin.com/in/julio-perez-b1062796/" target="_blank" rel="noopener">&#x1F517; LinkedIn</a>
+        <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+        <script type='text/javascript'>kofiwidget2.init('Support the project', '#7c3aed', 'W8B121MBZL');kofiwidget2.draw();</script>
+      </div>
+    </div>
+  </div>
 
-  <p class="about-body">I'm a <strong>different kind of learner</strong> — and I figured if I needed this, someone else did too. So I turned the official OWASP documentation into interactive courses anyone can follow, for free.</p>
+  <!-- Section 3: Experience -->
+  <div class="section" style="align-items:flex-start;padding-top:60px;">
+    <div class="section-inner">
+      <div class="section-eyebrow">Experience</div>
+      <h2 class="section-title">Where I've been.</h2>
+      <div class="timeline">
 
-  <p class="about-body">This is an independent project. No company behind it, no funding — just curiosity and a lot of late nights. If it helps you, that's enough. If you want to support it, there's a Ko-fi below.</p>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-right">
+            <div class="tl-header" onclick="toggleEntry(this)">
+              <div><div class="tl-company">Carta</div><div class="tl-role">IT / Technology</div></div>
+              <div class="tl-meta"><span class="tl-date">Apr 2019 — Present</span><span class="tl-chevron">›</span></div>
+            </div>
+            <div class="tl-body"><p>Details coming soon.</p></div>
+          </div>
+        </div>
 
-  <hr class="divider">
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-right">
+            <div class="tl-header" onclick="toggleEntry(this)">
+              <div><div class="tl-company">OHLNA</div><div class="tl-role">IT / Technology</div></div>
+              <div class="tl-meta"><span class="tl-date">May 2018 — Apr 2019</span><span class="tl-chevron">›</span></div>
+            </div>
+            <div class="tl-body"><p>Details coming soon.</p></div>
+          </div>
+        </div>
 
-  <div class="connect-label">Connect &amp; Support</div>
-  <div class="connect-links">
-    <a class="connect-link" href="https://www.linkedin.com/in/julio-perez-b1062796/" target="_blank" rel="noopener">&#x1F517; LinkedIn</a>
-    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
-    <script type='text/javascript'>kofiwidget2.init('Support the project', '#7c3aed', 'W8B121MBZL');kofiwidget2.draw();</script>
+        <div class="tl-item">
+          <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
+          <div class="tl-right">
+            <div class="tl-header" onclick="toggleEntry(this)">
+              <div><div class="tl-company">Mopro</div><div class="tl-role">IT / Technology</div></div>
+              <div class="tl-meta"><span class="tl-date">Apr 2015 — Mar 2018</span><span class="tl-chevron">›</span></div>
+            </div>
+            <div class="tl-body"><p>Details coming soon.</p></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 
 </div>
 
+<script>
+// Galaxy starfield
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+
+function initStars() {
+  stars = [];
+  for (let i = 0; i < 200; i++) {
+    stars.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      r: Math.random() * 1.5 + 0.2,
+      speed: Math.random() * 0.3 + 0.05,
+      opacity: Math.random() * 0.7 + 0.2,
+      color: ['#a78bfa','#38bdf8','#ffffff','#fbbf24'][Math.floor(Math.random()*4)],
+      twinkle: Math.random() * Math.PI * 2
+    });
+  }
+}
+
+function drawStars() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    s.twinkle += 0.02;
+    const opacity = s.opacity * (0.6 + 0.4 * Math.sin(s.twinkle));
+    ctx.beginPath();
+    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = s.color;
+    ctx.globalAlpha = opacity;
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    // drift slowly
+    s.y += s.speed;
+    s.x += Math.sin(s.twinkle * 0.3) * 0.1;
+    if (s.y > canvas.height) { s.y = 0; s.x = Math.random() * canvas.width; }
+  });
+  requestAnimationFrame(drawStars);
+}
+
+resize();
+initStars();
+drawStars();
+window.addEventListener('resize', () => { resize(); initStars(); });
+
+function toggleEntry(header) {
+  header.closest('.tl-item').classList.toggle('open');
+}
+
+function scrollToSection(index) {
+  const container = document.getElementById('scrollContainer');
+  const sections = container.querySelectorAll('.section');
+  sections[index].scrollIntoView({ behavior: 'smooth' });
+}
+
+// Update active dot on scroll
+const container = document.getElementById('scrollContainer');
+const dots = document.querySelectorAll('.side-dot');
+const sections = container.querySelectorAll('.section');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const index = Array.from(sections).indexOf(entry.target);
+      dots.forEach(d => d.classList.remove('active'));
+      dots[index].classList.add('active');
+    }
+  });
+}, { root: container, threshold: 0.5 });
+
+sections.forEach(s => observer.observe(s));
+</script>
 </body>
 </html>
