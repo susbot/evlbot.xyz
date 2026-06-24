@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -16,7 +16,7 @@
 <meta name="twitter:title" content="LLM Top 10 · Interactive Security Course">
 <meta name="twitter:description" content="An interactive, slide-by-slide breakdown of the top 10 large language model security risks.">
 <link rel="canonical" href="https://evlbot.xyz/">
-<link rel="stylesheet" href="llm01-lesson/llm01-shared.css">
+<link rel="stylesheet" href="llm01/llm01-shared.css">
 <style>
 html{background:var(--bg);}
 body{padding-bottom:24px;}
@@ -57,7 +57,7 @@ body{padding-bottom:24px;}
 .about-text strong{color:var(--text);}
 .about-link{display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:4px 10px;text-decoration:none;transition:opacity .15s;}
 .about-link:hover{opacity:.8;}
-.page-footer{margin:32px 20px 0;padding:24px 0 32px;border-top:1px solid var(--border);text-align:left;}
+.page-footer{margin:32px 20px 0;padding:24px 0 32px;border-top:none;text-align:left;} .footer-bottom{border-top:none;}
 .footer-top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;margin-bottom:20px;}
 .footer-brand{display:flex;align-items:center;gap:10px;}
 .footer-mark{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.08em;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:6px;padding:5px 10px;}
@@ -76,11 +76,10 @@ body{padding-bottom:24px;}
 <body>
 
 <div class="top-nav">
-  <div class="nav-left">
-    <span class="nav-badge">LLM Top 10</span>
-    <span class="nav-title">Interactive Security Course</span>
-  </div>
-  <a href="https://evlbot.xyz" class="nav-right" style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:var(--accent-bright);background:var(--accent-glow);border:1px solid var(--accent);border-radius:4px;padding:4px 10px;text-decoration:none;letter-spacing:.06em;">evlbot.xyz</a>
+  <a href="../index.html" style="text-decoration:none;display:flex;align-items:center;gap:12px;">
+    <span class="nav-badge" style="color:#ffffff;background:rgba(226,232,240,0.06);border-color:#e2e8f0;">evlbot.xyz</span>
+    <span class="nav-title">OWASP LLM Top 10</span>
+  </a>
 </div>
 
 <div class="hero">
@@ -103,7 +102,7 @@ body{padding-bottom:24px;}
     <div class="mod-title">Prompt Injection</div>
     <div class="mod-desc">How attackers hijack LLM behavior through crafted inputs — direct and indirect.</div>
     <div class="mod-footer"><span class="mod-slides">28 slides</span></div>
-    <a class="mod-link" href="llm01-lesson/llm01-slide-01.html">Start →</a>
+    <a class="mod-link" href="llm01/llm01-slide-01.html">Start →</a>
   </div>
 
   <div class="module-card available">
@@ -111,7 +110,7 @@ body{padding-bottom:24px;}
     <div class="mod-title">Sensitive Info Disclosure</div>
     <div class="mod-desc">When models leak training data, system prompts, or confidential context.</div>
     <div class="mod-footer"><span class="mod-slides">27 slides</span></div>
-    <a class="mod-link" href="llm02-lesson/llm02-slide-01.html">Start →</a>
+    <a class="mod-link" href="llm02/llm02-slide-01.html">Start →</a>
   </div>
 
   <div class="module-card available">
@@ -119,7 +118,7 @@ body{padding-bottom:24px;}
     <div class="mod-title">Supply Chain</div>
     <div class="mod-desc">Risks from third-party models, datasets, plugins, and fine-tuning pipelines.</div>
     <div class="mod-footer"><span class="mod-slides">29 slides</span></div>
-    <a class="mod-link" href="llm03-lesson/llm03-slide-01.html">Start →</a>
+    <a class="mod-link" href="llm03/llm03-slide-01.html">Start →</a>
   </div>
 
   <div class="module-card available">
@@ -127,7 +126,7 @@ body{padding-bottom:24px;}
     <div class="mod-title">Data & Model Poisoning</div>
     <div class="mod-desc">Corrupting training data or fine-tuning to introduce backdoors and biases.</div>
     <div class="mod-footer"><span class="mod-slides">27 slides</span></div>
-    <a class="mod-link" href="llm04-lesson/llm04-slide-01.html">Start →</a>
+    <a class="mod-link" href="llm04/llm04-slide-01.html">Start →</a>
   </div>
 
   <div class="module-card available">
@@ -135,7 +134,7 @@ body{padding-bottom:24px;}
     <div class="mod-title">Improper Output Handling</div>
     <div class="mod-desc">XSS, SSRF, and code execution via unvalidated LLM outputs.</div>
     <div class="mod-footer"><span class="mod-slides">27 slides</span></div>
-    <a class="mod-link" href="llm05-lesson/llm05-slide-01.html">Start →</a>
+    <a class="mod-link" href="llm05/llm05-slide-01.html">Start →</a>
   </div>
 
   <div class="module-card available">
@@ -143,7 +142,7 @@ body{padding-bottom:24px;}
     <div class="mod-title">Excessive Agency</div>
     <div class="mod-desc">Over-permissioned agents acting beyond intended scope.</div>
     <div class="mod-footer"><span class="mod-slides">27 slides</span></div>
-    <a class="mod-link" href="llm06-lesson/llm06-slide-01.html">Start →</a>
+    <a class="mod-link" href="llm06/llm06-slide-01.html">Start →</a>
   </div>
 
   <div class="module-card available">
@@ -151,7 +150,7 @@ body{padding-bottom:24px;}
     <div class="mod-title">System Prompt Leakage</div>
     <div class="mod-desc">Extracting confidential instructions through adversarial prompting.</div>
     <div class="mod-footer"><span class="mod-slides">27 slides</span></div>
-    <a class="mod-link" href="llm07-lesson/llm07-slide-01.html">Start →</a>
+    <a class="mod-link" href="llm07/llm07-slide-01.html">Start →</a>
   </div>
 
   <div class="module-card available">
@@ -159,7 +158,7 @@ body{padding-bottom:24px;}
     <div class="mod-title">Vector & Embedding Weaknesses</div>
     <div class="mod-desc">Attacks targeting RAG pipelines and semantic search infrastructure.</div>
     <div class="mod-footer"><span class="mod-slides">27 slides</span></div>
-    <a class="mod-link" href="llm08-lesson/llm08-slide-01.html">Start →</a>
+    <a class="mod-link" href="llm08/llm08-slide-01.html">Start →</a>
   </div>
 
   <div class="module-card available">
@@ -167,7 +166,7 @@ body{padding-bottom:24px;}
     <div class="mod-title">Misinformation</div>
     <div class="mod-desc">Hallucinations and fabricated outputs used as attack vectors.</div>
     <div class="mod-footer"><span class="mod-slides">27 slides</span></div>
-    <a class="mod-link" href="llm09-lesson/llm09-slide-01.html">Start &rarr;</a>
+    <a class="mod-link" href="llm09/llm09-slide-01.html">Start →</a>
   </div>
 
   <div class="module-card available">
@@ -175,38 +174,21 @@ body{padding-bottom:24px;}
     <div class="mod-title">Unbounded Consumption</div>
     <div class="mod-desc">DoS, resource exhaustion, and cost-based attacks on LLM deployments.</div>
     <div class="mod-footer"><span class="mod-slides">27 slides</span></div>
-    <a class="mod-link" href="llm10-lesson/llm10-slide-01.html">Start →</a>
+    <a class="mod-link" href="llm10/llm10-slide-01.html">Start →</a>
   </div>
 
 </div>
 
-<div class="section-header">About</div>
-
-<div class="about-section">
-  <div class="about-label">Built by Susbot</div>
-  <p class="about-text">I'm a different kind of learner — let's learn together. Hope it helps you learn faster.</p>
-  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-    <a class="about-link" href="https://www.linkedin.com/in/julio-perez-b1062796/" target="_blank">&#x1F517; LinkedIn</a>
-    <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support the project', '#7c3aed', 'W8B121MBZL');kofiwidget2.draw();</script>
-  </div>
-</div>
 
 <div class="page-footer">
-  <div class="footer-top">
-    <div class="footer-brand">
-      <span class="footer-mark">evlbot.xyz</span>
-      <span class="footer-tag">Interactive lessons on securing<br>large language model applications.</span>
-    </div>
-    <div class="footer-links">
-      <a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener">&#x1F4C4; View the official framework &#x2197;</a>
-      <a href="terms.html">&#x1F4DC; Terms &amp; Disclaimer</a>
-    </div>
-  </div>
   <div class="footer-bottom">
-    <span class="footer-copy">&copy; 2026 Susbot · Built for learning, free to use.</span>
+    <span class="footer-copy">&copy; 2026 Susbot &middot; Built for learning, free to use.</span>
+    <div class="footer-links">
+      <a href="terms.html">&#x1F4DC; Terms &amp; Disclaimer</a>
+      <a href="../legal-notice.html">&#x2696;&#xFE0F; Legal Notice</a>
+    </div>
     <span class="footer-copy">Made with <span class="heart">&#x2665;</span> &amp; a lot of curiosity</span>
   </div>
-  <p class="footer-disclaimer"><strong>Source &amp; attribution:</strong> This is an independent, unofficial study companion. The risk categories taught here are based on a publicly available, industry-standard security framework maintained by an external nonprofit foundation &mdash; <strong>not created by this site</strong>. For the authoritative and most current version, please refer to the <a href="https://genai.owasp.org/llm-top-10/" target="_blank" rel="noopener">official framework</a>. This project is not affiliated with, endorsed by, or sponsored by that foundation, and all trademarks remain the property of their respective owners.</p>
 </div>
 
 </body>
