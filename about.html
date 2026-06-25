@@ -100,7 +100,14 @@ html, body { height: 100%; overflow: hidden; }
 .tl-item.open .tl-chevron { transform: rotate(90deg); }
 .tl-item.open .tl-header { border-color: rgba(167,139,250,0.6); box-shadow: 0 0 20px rgba(167,139,250,0.15); }
 .tl-body { overflow: hidden; max-height: 0; transition: max-height .3s ease, padding .3s ease; padding: 0 16px; font-size: 13px; color: var(--subtle); line-height: 1.75; }
-.tl-item.open .tl-body { max-height: 400px; padding: 14px 16px; }
+.tl-item.open .tl-body { max-height: 600px; padding: 14px 16px; }
+.sub-roles { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+.sub-col-header { font-family: 'IBM Plex Mono', monospace; font-size: 9px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding-bottom: 8px; border-bottom: 1px solid var(--border); margin-bottom: 2px; }
+.sub-role { display: flex; flex-direction: column; gap: 3px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.sub-role:last-child { border-bottom: none; }
+.sub-role-title { font-size: 12px; color: var(--text); font-weight: 500; line-height: 1.4; }
+.sub-tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 9px; color: var(--accent-bright); background: var(--accent-glow); border: 1px solid rgba(226,232,240,0.15); border-radius: 3px; padding: 1px 5px; margin-left: 5px; }
+.sub-role-date { font-family: 'IBM Plex Mono', monospace; font-size: 10px; color: var(--muted); }
 /* Stars canvas */
 #starfield { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 .top-nav, .side-dots, .scroll-container { position: relative; z-index: 1; }
@@ -161,10 +168,57 @@ html, body { height: 100%; overflow: hidden; }
           <div class="tl-left"><div class="tl-dot"></div><div class="tl-line"></div></div>
           <div class="tl-right">
             <div class="tl-header" onclick="toggleEntry(this)">
-              <div><div class="tl-company">Carta</div><div class="tl-role">IT / Technology</div></div>
+              <div><div class="tl-company">Carta</div><div class="tl-role">IT Engineer · Multiple Focus Areas</div></div>
               <div class="tl-meta"><span class="tl-date">Apr 2019 — Present</span><span class="tl-chevron">›</span></div>
             </div>
-            <div class="tl-body"><p>Details coming soon.</p></div>
+            <div class="tl-body">
+              <div class="sub-roles">
+                <div class="sub-col-header">Focus Area</div>
+                <div class="sub-col-header">Current</div>
+
+                <div class="sub-role">
+                  <div class="sub-role-title">IT Engineer · Security Investigations <span class="sub-tag">Splunk · DoControl</span></div>
+                  <div class="sub-role-date">2022 — 2025</div>
+                </div>
+                <div class="sub-role">
+                  <div class="sub-role-title">IT Engineer · Automation &amp; AI Integration <span class="sub-tag">n8n · GCP · Slack</span></div>
+                  <div class="sub-role-date">Jun 2025 — Present</div>
+                </div>
+
+                <div class="sub-role">
+                  <div class="sub-role-title">IT Engineer · Data Loss Prevention <span class="sub-tag">DoControl</span></div>
+                  <div class="sub-role-date">May 2022 — Mar 2023</div>
+                </div>
+                <div class="sub-role">
+                  <div class="sub-role-title">IT Engineer · Identity &amp; Access Management <span class="sub-tag">Okta</span></div>
+                  <div class="sub-role-date">Sep 2024 — Present</div>
+                </div>
+
+                <div class="sub-role">
+                  <div class="sub-role-title">IT Engineer · Endpoint Management <span class="sub-tag">Intune</span></div>
+                  <div class="sub-role-date">2022 — 2023</div>
+                </div>
+                <div class="sub-role">
+                  <div class="sub-role-title">IT Engineer · Infrastructure as Code <span class="sub-tag">Terraform</span></div>
+                  <div class="sub-role-date">2023 — Present</div>
+                </div>
+
+                <div class="sub-role">
+                  <div class="sub-role-title">IT Engineer · Endpoint Management <span class="sub-tag">JAMF</span></div>
+                  <div class="sub-role-date">2021 — 2022</div>
+                </div>
+                <div class="sub-role">
+                  <div class="sub-role-title">IT Engineer · SaaS &amp; Vendor Management</div>
+                  <div class="sub-role-date">2022 — Present</div>
+                </div>
+
+                <div style="padding:0;"></div>
+                <div class="sub-role" style="border-bottom:none;">
+                  <div class="sub-role-title">IT Engineer · IT Operations · Utah Office</div>
+                  <div class="sub-role-date">Apr 2019 — Present</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -191,6 +245,35 @@ html, body { height: 100%; overflow: hidden; }
         </div>
 
       </div>
+
+      <!-- Certifications -->
+      <div style="margin-top:32px;">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:14px;">Certifications</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:12px;font-weight:500;color:var(--text);margin-bottom:4px;">Jamf Certified Associate</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Jamf · Jan 2025</div>
+          </div>
+
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:12px;font-weight:500;color:var(--text);margin-bottom:4px;">Okta Certified Professional</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Okta · Oct 2024 — Oct 2026</div>
+          </div>
+
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:12px;font-weight:500;color:var(--text);margin-bottom:4px;">Splunk Core Certified User</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Splunk · Jul 2024 — Jul 2027</div>
+          </div>
+
+          <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px 14px;">
+            <div style="font-size:12px;font-weight:500;color:var(--text);margin-bottom:4px;">Linux Essentials</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--muted);">Linux Professional Institute</div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </div>
 

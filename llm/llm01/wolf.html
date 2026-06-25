@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompt Injection · LLM01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 100%; height: 100%; background: #0a0a0f; overflow: hidden; font-family: 'IBM Plex Sans', sans-serif; }
+canvas { display: block; position: fixed; inset: 0; }
+.hero {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+  z-index: 10;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 65% 60% at 50% 50%, rgba(10,10,15,0.96) 0%, rgba(10,10,15,0.75) 55%, rgba(10,10,15,0.2) 100%);
+  z-index: -1;
+}
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(167,139,250,0.6);
+  margin-bottom: 16px;
+}
+.title {
+  font-size: clamp(36px, 7vw, 72px);
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 14px;
+  text-shadow: 0 0 40px rgba(124,58,237,0.4);
+}
+.subtitle {
+  font-size: clamp(14px, 2vw, 18px);
+  color: rgba(168,139,250,0.75);
+  margin-bottom: 32px;
+  line-height: 1.5;
+}
+.meta {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: .1em;
+  margin-bottom: 36px;
+}
+.start-btn {
+  pointer-events: all;
+  display: inline-block;
+  background: #7c3aed;
+  color: #fff;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 14px 36px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: .02em;
+  transition: opacity .15s, transform .15s;
+}
+.start-btn:hover { opacity: .85; transform: translateY(-2px); }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="hero">
+  <div class="eyebrow">LLM01 · OWASP LLM Top 10</div>
+  <div class="title">Prompt Injection</div>
+  <div class="subtitle">How attackers hijack AI with words.</div>
+  <div class="meta" style="color:rgba(167,139,250,0.6);">28 slides &nbsp;·&nbsp; avg 30 min &nbsp;·&nbsp; free</div>
+  <a class="start-btn" href="llm01-slide-01.html">Start →</a>
+</div>
+<script>
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+let W = canvas.width = window.innerWidth;
+let H = canvas.height = window.innerHeight;
+let mouse = { x: -999, y: -999 };
+document.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+const offW = 600, offH = 600;
+const off = document.createElement('canvas');
+off.width = offW; off.height = offH;
+const octx = off.getContext('2d');
+
+function drawWolf() {
+  octx.clearRect(0, 0, offW, offH);
+  const cx = offW / 2, cy = offH / 2 + 20;
+
+  const wool = [[cx,cy-130,70],[cx-70,cy-110,58],[cx+70,cy-110,58],[cx-120,cy-60,55],[cx+120,cy-60,55],[cx-130,cy+10,52],[cx+130,cy+10,52],[cx-110,cy+75,50],[cx+110,cy+75,50],[cx-50,cy+120,52],[cx+50,cy+120,52],[cx,cy+130,55]];
+  octx.fillStyle = '#e8e8f0';
+  wool.forEach(([bx,by,r]) => { octx.beginPath(); octx.arc(bx,by,r,0,Math.PI*2); octx.fill(); });
+
+  octx.fillStyle = '#3b1f6e';
+  octx.beginPath(); octx.ellipse(cx, cy, 75, 85, 0, 0, Math.PI*2); octx.fill();
+
+  octx.fillStyle = '#3b1f6e';
+  octx.beginPath(); octx.moveTo(cx-55,cy-55); octx.lineTo(cx-95,cy-170); octx.lineTo(cx-8,cy-88); octx.closePath(); octx.fill();
+  octx.fillStyle = '#7c3aed';
+  octx.beginPath(); octx.moveTo(cx-52,cy-60); octx.lineTo(cx-82,cy-152); octx.lineTo(cx-16,cy-92); octx.closePath(); octx.fill();
+
+  octx.fillStyle = '#3b1f6e';
+  octx.beginPath(); octx.moveTo(cx+55,cy-55); octx.lineTo(cx+95,cy-170); octx.lineTo(cx+8,cy-88); octx.closePath(); octx.fill();
+  octx.fillStyle = '#7c3aed';
+  octx.beginPath(); octx.moveTo(cx+52,cy-60); octx.lineTo(cx+82,cy-152); octx.lineTo(cx+16,cy-92); octx.closePath(); octx.fill();
+
+  octx.fillStyle = '#2d1654';
+  octx.beginPath(); octx.ellipse(cx, cy+38, 40, 48, 0, 0, Math.PI*2); octx.fill();
+  octx.fillStyle = '#4a2080';
+  octx.beginPath(); octx.ellipse(cx, cy+44, 28, 34, 0, 0, Math.PI*2); octx.fill();
+
+  octx.fillStyle = '#0d0718';
+  octx.beginPath(); octx.ellipse(cx, cy+20, 14, 9, 0, 0, Math.PI*2); octx.fill();
+  octx.fillStyle = '#6d28d9';
+  octx.beginPath(); octx.ellipse(cx-4,cy+17,4,3,0,0,Math.PI*2); octx.fill();
+
+  octx.fillStyle = '#ffe0a0';
+  octx.beginPath(); octx.ellipse(cx-26,cy-22,16,10,-0.3,0,Math.PI*2); octx.fill();
+  octx.beginPath(); octx.ellipse(cx+26,cy-22,16,10,0.3,0,Math.PI*2); octx.fill();
+  octx.fillStyle = '#0d0718';
+  octx.beginPath(); octx.ellipse(cx-26,cy-22,4,9,-0.3,0,Math.PI*2); octx.fill();
+  octx.beginPath(); octx.ellipse(cx+26,cy-22,4,9,0.3,0,Math.PI*2); octx.fill();
+  octx.fillStyle = '#a78bfa';
+  octx.beginPath(); octx.arc(cx-19,cy-26,3,0,Math.PI*2); octx.fill();
+  octx.beginPath(); octx.arc(cx+32,cy-26,3,0,Math.PI*2); octx.fill();
+
+  octx.fillStyle = '#f0f0ff';
+  octx.beginPath(); octx.moveTo(cx-22,cy+62); octx.lineTo(cx-14,cy+86); octx.lineTo(cx-5,cy+62); octx.closePath(); octx.fill();
+  octx.beginPath(); octx.moveTo(cx+5,cy+62); octx.lineTo(cx+14,cy+86); octx.lineTo(cx+22,cy+62); octx.closePath(); octx.fill();
+  octx.beginPath(); octx.moveTo(cx-5,cy+62); octx.lineTo(cx,cy+74); octx.lineTo(cx+5,cy+62); octx.closePath(); octx.fill();
+}
+
+drawWolf();
+
+const DOT_COUNT = 2600;
+const dots = [];
+
+function sampleDots() {
+  dots.length = 0;
+  const imgData = octx.getImageData(0,0,offW,offH).data;
+  const scale = Math.min(W/offW, H/offH) * 0.88;
+  const ox = (W - offW*scale)/2;
+  const oy = (H - offH*scale)/2;
+  let attempts = 0;
+  while (dots.length < DOT_COUNT && attempts < DOT_COUNT*40) {
+    attempts++;
+    const sx = Math.floor(Math.random()*offW);
+    const sy = Math.floor(Math.random()*offH);
+    const idx = (sy*offW+sx)*4;
+    if (imgData[idx+3] > 80) {
+      const r=imgData[idx],g=imgData[idx+1],b=imgData[idx+2];
+      const tx = ox+sx*scale, ty = oy+sy*scale;
+      dots.push({ x: tx+(Math.random()-.5)*W*.6, y: ty+(Math.random()-.5)*H*.6, tx, ty, vx:0, vy:0, color:`rgb(${r},${g},${b})`, size: Math.random()*2+0.7 });
+    }
+  }
+}
+
+sampleDots();
+
+function animate() {
+  requestAnimationFrame(animate);
+  ctx.fillStyle = 'rgba(10,10,15,0.2)';
+  ctx.fillRect(0,0,W,H);
+  for (let i=0; i<dots.length; i++) {
+    const d = dots[i];
+    const dx=d.x-mouse.x, dy=d.y-mouse.y;
+    const dist=Math.sqrt(dx*dx+dy*dy)||1;
+    if (dist<110) { const f=(110-dist)/110*8; d.vx+=(dx/dist)*f; d.vy+=(dy/dist)*f; }
+    d.vx += (d.tx-d.x)*0.055;
+    d.vy += (d.ty-d.y)*0.055;
+    d.vx *= 0.80; d.vy *= 0.80;
+    d.x += d.vx; d.y += d.vy;
+    ctx.beginPath(); ctx.arc(d.x,d.y,d.size,0,Math.PI*2);
+    ctx.fillStyle=d.color; ctx.fill();
+  }
+}
+
+animate();
+window.addEventListener('resize', () => { W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; sampleDots(); });
+</script>
+</body>
+</html>
