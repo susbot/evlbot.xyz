@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nice work · LLM01 Break</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%236d28d9'/%3E%3Ctext x='50%25' y='54%25' font-family='monospace' font-size='30' font-weight='bold' fill='%23fff' text-anchor='middle' dominant-baseline='middle'%3E%26lt;/%26gt;%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #0a0a0f;
+  --surface: #13131a;
+  --border: rgba(255,255,255,0.08);
+  --accent: #6d28d9;
+  --accent-bright: #a78bfa;
+  --accent-glow: rgba(109,40,217,0.12);
+  --text: #f1f5f9;
+  --muted: #64748b;
+  --subtle: #94a3b8;
+  --green: #10b981;
+}
+
+html, body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'IBM Plex Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.break-wrap {
+  max-width: 640px;
+  width: 100%;
+  text-align: center;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  background: var(--accent-glow);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  padding: 3px 10px;
+  margin-bottom: 28px;
+}
+
+.headline {
+  font-size: clamp(28px, 6vw, 42px);
+  font-weight: 600;
+  line-height: 1.2;
+  color: #fff;
+  margin-bottom: 14px;
+}
+
+.headline span { color: var(--accent-bright); }
+
+.subline {
+  font-size: 16px;
+  color: var(--subtle);
+  line-height: 1.75;
+  margin-bottom: 40px;
+}
+
+.recap-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  text-align: left;
+  margin-bottom: 36px;
+}
+
+.recap-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+
+.recap-item {
+  display: flex;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+
+.recap-item:last-child { border-bottom: none; }
+
+.recap-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-bright);
+  margin-top: 7px;
+  flex-shrink: 0;
+}
+
+.recap-text {
+  font-size: 14px;
+  color: var(--subtle);
+  line-height: 1.6;
+}
+
+.recap-text strong { color: var(--text); font-weight: 500; }
+
+.progress {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 16px;
+  letter-spacing: .06em;
+}
+
+.progress span { color: var(--accent-bright); }
+
+.cta {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 14px 36px;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'IBM Plex Sans', sans-serif;
+  transition: opacity .15s;
+  letter-spacing: .01em;
+}
+
+.cta:hover { opacity: .85; }
+
+.cta-sub {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+}
+</style>
+</head>
+<body>
+
+<div class="break-wrap">
+
+  <div class="badge">&#x2615; Break · Slides 1–8</div>
+
+  <h1 class="headline">You're <span>8 slides in.</span><br>Solid start.</h1>
+  <p class="subline">Here's what just happened — in plain English.</p>
+
+  <div class="recap-card">
+    <div class="recap-label">Quick recap</div>
+
+    <div class="recap-item">
+      <div class="recap-dot"></div>
+      <div class="recap-text"><strong>Prompt injection is sneaky.</strong> Attackers feed the AI crafted text that hijacks what it does — no hacking required, just words.</div>
+    </div>
+
+    <div class="recap-item">
+      <div class="recap-dot"></div>
+      <div class="recap-text"><strong>It doesn't have to be visible.</strong> The malicious instruction can be hidden in a webpage, a document, or an image — stuff the AI reads, not you.</div>
+    </div>
+
+    <div class="recap-item">
+      <div class="recap-dot"></div>
+      <div class="recap-text"><strong>When it works, it's bad.</strong> Data leaks, unauthorized actions, users getting manipulated — real consequences from a text input.</div>
+    </div>
+
+    <div class="recap-item">
+      <div class="recap-dot"></div>
+      <div class="recap-text"><strong>It's not just hackers.</strong> Competitors, scammers, curious people — anyone with access can try it.</div>
+    </div>
+
+    <div class="recap-item">
+      <div class="recap-dot"></div>
+      <div class="recap-text"><strong>It's not jailbreaking.</strong> Jailbreaking bends the rules. Prompt injection hijacks the mission entirely.</div>
+    </div>
+
+    <div class="recap-item">
+      <div class="recap-dot"></div>
+      <div class="recap-text"><strong>RAG and fine-tuning don't fix it.</strong> Common belief, wrong answer. The vulnerability is in how LLMs process instructions — not in the data.</div>
+    </div>
+  </div>
+
+  <div class="progress">Slides <span>8 / 28</span> complete · Next up: the two types of injection</div>
+
+  <a class="cta" href="llm01-slide-09.html">I'm ready. Keep going →</a>
+  <span class="cta-sub">or take a real break — the slides will be here.</span>
+
+</div>
+
+</body>
+</html>
